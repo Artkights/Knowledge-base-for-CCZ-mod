@@ -80,7 +80,9 @@ def main() -> None:
         "canonicalFiles": [{"path": rel, "sha256": sha256(ROOT / rel)} for rel in files],
         "entries": entries,
     }
-    (ROOT / "index.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "index.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n"
+    )
     print(f"indexed_entities={len(entries)} canonical_files={len(files)}")
 
 

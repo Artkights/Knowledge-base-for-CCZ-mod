@@ -213,7 +213,9 @@ def main() -> None:
                 continue
             name = FILENAMES[entity_type]
             expected.add(name)
-            (reference / name).write_text(render_group(version_dir, entity_type, entries), encoding="utf-8")
+            (reference / name).write_text(
+                render_group(version_dir, entity_type, entries), encoding="utf-8", newline="\n"
+            )
             written += 1
         for stale in reference.glob("*.md"):
             if stale.name not in expected:
