@@ -4,28 +4,6 @@
   "profile": null,
   "entries": [
     {
-      "id": "research.shared.eex-header-fields",
-      "title": "解析 EEX 头部与目录字段",
-      "versions": [
-        "6.5",
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "probe-only",
-      "known": [
-        "offset 0x00 为 45 45 58 00（EEX\\0）",
-        "现有读取器曾探测 0x04、0x0A、0x0E、0x12、0x16、0x1A"
-      ],
-      "needed": [
-        "为各字段建立多样本取值与实际目录的对应关系",
-        "确认字节序、计数语义、目录起点和记录宽度",
-        "在写回前补齐边界、长度和损坏样本测试"
-      ],
-      "sourceRefs": [
-        "src.ccz.eex-reader"
-      ]
-    },
-    {
       "id": "research.65.physical-recovery-hook-contract",
       "title": "补齐 0x00418335 物理回复 Hook 的完整桩契约",
       "versions": [
@@ -2865,6 +2843,28 @@
         "去除开发记录和二手转述"
       ],
       "sourceRefs": []
+    },
+    {
+      "id": "research.shared.eex-header-fields",
+      "title": "解析 EEX 头部与目录字段",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "probe-only",
+      "known": [
+        "offset 0x00 为 45 45 58 00（EEX\\0）",
+        "现有读取器曾探测 0x04、0x0A、0x0E、0x12、0x16、0x1A"
+      ],
+      "needed": [
+        "为各字段建立多样本取值与实际目录的对应关系",
+        "确认字节序、计数语义、目录起点和记录宽度",
+        "在写回前补齐边界、长度和损坏样本测试"
+      ],
+      "sourceRefs": [
+        "src.ccz.eex-reader"
+      ]
     }
   ]
 }
