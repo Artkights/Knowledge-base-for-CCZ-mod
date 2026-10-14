@@ -1,0 +1,239 @@
+{
+  "schema": "ccz.effect-scan-nine-concepts.v1",
+  "generatedAt": "2026-09-15",
+  "status": "initial-research",
+  "engineProfile": {
+    "engineVersion": "6.6",
+    "sample": "基底/复刻版6.6山贼",
+    "exe": "Ekd5.exe",
+    "exeSha256": "6929FE0DB049935EEC793CE785D431947E48BED406ED94233F9B3A9C6DB4BCB8",
+    "imageBase": "00400000",
+    "dllsRequireIndependentSha": true,
+    "dllSha256": {
+      "ExtendData.dll": "6562791F4E1AF07B8DBE0C12A8695FF6CB129D4803DF14BC9B21FDEF918EF062"
+    }
+  },
+  "concepts": [
+    {
+      "id": "engineNumber",
+      "nameZh": "引擎号",
+      "channel": "Both",
+      "status": "defined",
+      "evidenceTier": "VerifiedSignatureDataFlow",
+      "source": "004101D9 four-parameter ABI"
+    },
+    {
+      "id": "itemEffectId",
+      "nameZh": "宝物特效号",
+      "channel": "Item",
+      "status": "defined-with-66-correction",
+      "evidenceTier": "VerifiedTableField",
+      "source": "Ccz66ItemLayoutService raw/effective mapping"
+    },
+    {
+      "id": "personalEffectId",
+      "nameZh": "个人特效号",
+      "channel": "PersonalJob",
+      "status": "defined",
+      "evidenceTier": "VerifiedSignatureDataFlow",
+      "source": "004101D9 and 6.X-7 bindings"
+    },
+    {
+      "id": "itemEffectName",
+      "nameZh": "宝物特效名称",
+      "channel": "Item",
+      "status": "defined-display-only",
+      "evidenceTier": "VerifiedTableField",
+      "source": "project catalog > native name evidence > base name"
+    },
+    {
+      "id": "itemEffectSuffix",
+      "nameZh": "宝物特效后缀",
+      "channel": "Item",
+      "status": "undefined",
+      "suffixStatus": "Undefined",
+      "evidenceTier": "SampleOnly"
+    },
+    {
+      "id": "personalEffectName",
+      "nameZh": "个人特效名称",
+      "channel": "PersonalJob",
+      "status": "defined-display-only",
+      "evidenceTier": "VerifiedTableField",
+      "source": "6.X-7 name area / target name pool"
+    },
+    {
+      "id": "personalEffectSuffix",
+      "nameZh": "个人特效后缀",
+      "channel": "PersonalJob",
+      "status": "undefined",
+      "suffixStatus": "Undefined",
+      "evidenceTier": "SampleOnly"
+    },
+    {
+      "id": "itemEffectValue",
+      "nameZh": "宝物特效值",
+      "channel": "Item",
+      "status": "defined-source-not-full-semantics",
+      "evidenceTier": "VerifiedTableField",
+      "source": "item row effect-value field; consumer meaning pending"
+    },
+    {
+      "id": "personalEffectValue",
+      "nameZh": "个人特效值",
+      "channel": "PersonalJob",
+      "status": "defined-source-not-full-semantics",
+      "evidenceTier": "VerifiedTableField",
+      "source": "6.6-7-2/7-3 and ExtendData; dynamic meaning pending"
+    }
+  ],
+  "coreFunctions": [
+    {
+      "va": "004101D9",
+      "role": "core-effect"
+    },
+    {
+      "va": "0041301E",
+      "role": "dual-channel-check"
+    },
+    {
+      "va": "00413009",
+      "role": "effect-value-read"
+    },
+    {
+      "va": "0042518F",
+      "role": "ability-check-wrapper"
+    },
+    {
+      "va": "004198BE",
+      "role": "person-effect-forwarder"
+    },
+    {
+      "va": "0049F820",
+      "role": "6.6-runtime-item-table-candidate"
+    }
+  ],
+  "item66Rules": {
+    "rowSize": 25,
+    "rawMarkerOffset": "0x12",
+    "typeOrEffectiveOffset": "0x11",
+    "effectValueOffset": "0x16",
+    "accessoryMarkers": [
+      2,
+      3
+    ],
+    "preserveRawAndEffectiveSeparately": true
+  },
+  "suffixPolicy": "verified native suffix slot > project UTF-8 catalog > candidate text; current native suffix status remains Candidate and auto writes catalog only.",
+  "legacyCsvFinding": {
+    "file": "基底/复刻版6.6山贼/宝物设定.csv",
+    "rows": 255,
+    "ffRows": 33,
+    "finding": "33 rows export 0xFF; treat as LegacyExportConflict pending raw/effective reparse"
+  },
+  "dynamicValidation": {
+    "required": true,
+    "scenarios": [
+      "none",
+      "personal-only",
+      "item-only",
+      "both",
+      "same-id-two-channels",
+      "item-00",
+      "personal-ff",
+      "item-ff",
+      "values-0-1-25-100-255",
+      "marker-2-3"
+    ]
+  },
+  "itemAuditReport": {
+    "path": "工具整合包/CCZModStudio_Reports/EffectSemantics/6.6山贼物品原始效果号诊断.json",
+    "schema": "ccz.effect-scan-item-row-audit.v1",
+    "readOnly": true,
+    "layoutOffsetStatus": "candidate-from-6.5-source-table",
+    "fields": [
+      "rawRowHex",
+      "rawMarker",
+      "rawEffectId",
+      "effectiveEffectId",
+      "effectValue",
+      "effectValueOffset",
+      "parseRule",
+      "legacyCsvConflict"
+    ],
+    "lastRunSummary": {
+      "rowCount": 255,
+      "rawMarker2Or3": 151,
+      "legacyCsvEffectiveConflicts": 35,
+      "legacyCsvRawMarkerConflicts": 160,
+      "legacyCsvNameMatches": 241,
+      "rowsWithError": 0,
+      "legacyCsvNameMismatches": 14
+    },
+    "writePolicy": "diagnostic-only; never overwrite formal base"
+  },
+  "suffixInvestigation": {
+    "status": "candidate-only",
+    "policy": "keep suffixStatus=Undefined until two independent sources map to target SHA",
+    "candidates": [
+      {
+        "channel": "Item+Personal",
+        "kind": "effect-value-display-domain",
+        "source": "特效整理/6.6/【6.6xKF】攻击-策略-ALL后缀.txt",
+        "engineScope": "6.6xKF-241 only",
+        "mapping": {
+          "1": "攻击",
+          "2": "策略",
+          "3": "ALL"
+        },
+        "evidenceTier": "ProjectTextSingleSource",
+        "writeImpact": "none"
+      },
+      {
+        "channel": "Personal",
+        "kind": "penetration-count-display",
+        "source": "特效整理/6.6/【star6.6x】穿透攻击特技化.txt",
+        "mapping": "suffix type C; personal start id; count expands consecutive ids",
+        "evidenceTier": "ProjectTextSingleSource",
+        "writeImpact": "none"
+      }
+    ],
+    "nextStep": "locate independent UI/export implementation and verify against Ekd5.exe SHA 6929...BC8"
+  },
+  "directUnrestricted": {
+    "capability": "DirectUnrestricted",
+    "profileTrustTier": "UserAuthorizedUnverified",
+    "verification": "UnverifiedDirect",
+    "bypassedGates": [
+      "profile registration",
+      "unknown executable audit",
+      "old-byte authorization",
+      "dynamic V3 evidence",
+      "release component manifest"
+    ],
+    "retainedGuards": [
+      "file exists",
+      "offset and width bounds",
+      "value domain",
+      "backup",
+      "before/after SHA",
+      "reread",
+      "undo history"
+    ]
+  },
+  "writeModel": {
+    "scope": "full",
+    "itemRows": "writable",
+    "personalBindings": "writable",
+    "nativeNamePools": "writable",
+    "projectCatalog": "writable",
+    "suffix": "candidate-writable",
+    "history": "undo-enabled"
+  },
+  "encodingPolicy": {
+    "knowledgeFiles": "UTF-8-BOM",
+    "projectCatalog": "UTF-8",
+    "nativeItemNames": "GBK-fixed-slot",
+    "personalNames": "sample-specific"
+  }
+}

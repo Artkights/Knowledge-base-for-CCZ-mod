@@ -1,0 +1,30 @@
+﻿<!-- generated-kb-entry -->
+<!-- source: 特效整理/6.5/【Star6.5】强化攻击穿透.txt -->
+<!-- version: 6.5 -->
+<!-- topic: mechanics-effects -->
+<!-- status: canonical -->
+<!-- evidence: source-reviewed -->
+
+.1.0.6.5
+o
+
+-407831
+90 90 90 90 90 90 90 90 90 B8 9A 0E 50 00 80 38 02 75 11 8A 48 01 E8 CC 70 01 00 E8 D6 D5 07 00
+84 C0 75 28 6A 05 6A 00 6A 33 8B 4D FC E8 B0 53 00 00 85 C0 75 0E 8B 4D FC E8 A1 ED FF FF 8A 80
+81 78 40 00 8B 4D FC E8 D2 31 01 00
+
+-41AA4F
+55 8B EC 50 33 C0 38 05 DC 5F 50 00 75 20 6A 00 6A 03 6A 00 68 DD 00 00 00 E8 22 A7 00 00 8B 4D
+FC 85 C0 74 08 8A 81 81 AA 41 00 EB 01 91 8B E5 5D C3 04 02 03 08 07 0B 06 05 06 01 0A 0B
+
+#宝物-个人
+-41AA62
+00
+
+-41AA64
+DD
+
+## 版本与证据边界
+
+- 本条目由发布整理流程归档。
+- 具体结论必须结合上方版本、状态和证据等级使用。

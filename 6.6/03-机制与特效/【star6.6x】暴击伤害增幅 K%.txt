@@ -1,0 +1,23 @@
+﻿<!-- generated-kb-entry -->
+<!-- source: 特效整理/6.6/【star6.6x】暴击伤害增幅 K%.txt -->
+<!-- version: 6.6 -->
+<!-- topic: mechanics-effects -->
+<!-- status: canonical -->
+<!-- evidence: source-reviewed -->
+
+.1.0.6.6
+o
+
+#暴击伤害增幅 K%：计算暴击伤害时，在原加成基础上额外增加K%（加算，非乘算）。
+
+-405F02
+FF 75 F4 FF 75 DC FF 75 D8 E8 37 84 02 00 90 90 90 90 90 90 90
+
+-42E4FD
+55 8B EC 8B 4D 10 8B 49 0C 6A 00 6A 01 6A 00 6A 70 E8 C6 1C FE FF 8B 4D 0C D1 F9 85 C0 74 02 03
+C8 8B 55 08 FF 32 51 E8 B0 75 FF FF 8B 55 08 01 02 8B E5 5D C2 0C 00
+
+## 版本与证据边界
+
+- 本条目由发布整理流程归档。
+- 具体结论必须结合上方版本、状态和证据等级使用。

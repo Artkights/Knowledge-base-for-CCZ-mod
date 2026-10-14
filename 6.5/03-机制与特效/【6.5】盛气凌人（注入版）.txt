@@ -1,0 +1,34 @@
+﻿<!-- generated-kb-entry -->
+<!-- source: 特效整理/6.5/【6.5】盛气凌人（注入版）.txt -->
+<!-- version: 6.5 -->
+<!-- topic: mechanics-effects -->
+<!-- status: canonical -->
+<!-- evidence: source-reviewed -->
+
+#【盛气凌人】：暴击时使攻击目标全部6项属性各降1档，个人号BF，装备号00（无法通过装备获取）
+
+.1.0.6.5
+o
+
+-472D92
+E9 10 FC FD FF 90
+
+-4529A7
+B8 F0 27 49 00 83 B8 04 06 00 00 00 74 34 8B 4D
+F8 6A 01 6A 01 6A 00 68 BF 00 00 00 E8 11 D8 FB
+FF 85 C0 74 1D C7 45 FC 00 00 00 00 6A 00 FF 75
+FC 8B 4D 0C E8 41 6E FB FF FF 45 FC 83 7D FC 06
+7C EA 89 EC 5D C2 08 00
+
+#盛气凌人装备号
+-4529BD
+00
+
+#盛气凌人个人号
+-4529BF
+BF
+
+## 版本与证据边界
+
+- 本条目由发布整理流程归档。
+- 具体结论必须结合上方版本、状态和证据等级使用。

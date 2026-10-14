@@ -1,0 +1,271 @@
+﻿sourcePath,destinationPath,version,topic,evidenceLevel,status,sha256,sourceType,correctionNote
+data管理器/知识库/00-总览与共性规范.md,00-共性知识/资料与模板/00-总览与共性规范.md,shared,data-manager,source-reviewed,canonical,65593B9968095A74FC7BC6CD674961DD403FE752CA6E168D69EF97F55CEC2935,md,
+data管理器/知识库/01-Profile系统.md,00-共性知识/资料与模板/01-Profile系统.md,shared,data-manager,external-source,canonical,87C8D4122629CC85FFE0FC11E88CE49A9A236F677D9E8DA647F368DB24B5F300,md,
+data管理器/知识库/02-6.5布局.md,6.5/06-工具与验证/02-6.5布局.md,6.5,data-manager,source-reviewed,canonical,9E1F8600A3D7EAE6A8D45AF5CAA506E1EF86C295653FF390B4B84774F47D1583,md,
+data管理器/知识库/03-6.6布局变体.md,6.6/06-工具与验证/03-6.6布局变体.md,6.6,data-manager,local-or-test-evidence,canonical,F6C57F86C33A98AF5C3B8D2764DA59D58DF5C5DB43CE4AD459DCA32E9BA22889,md,
+data管理器/知识库/04-版本差异矩阵.md,00-共性知识/资料与模板/04-版本差异矩阵.md,shared,data-manager,source-reviewed,canonical,224D561EFB5BB8FB0381746BAEB6DB4956C7A136B98B048AAD0AE6C2B7807B17,md,
+data管理器/知识库/05-人物与兵种.md,00-共性知识/资料与模板/05-人物与兵种.md,shared,data-manager,external-source,canonical,23BAE621D71DB00F4DEDF205E6BE708D1F78EE264939CA0319202DDF0C5519A2,md,
+data管理器/知识库/06-策略与宝物.md,00-共性知识/资料与模板/06-策略与宝物.md,shared,data-manager,source-reviewed,canonical,F3ECE384BBFF8E1F109EDD756A8AA4BBC2B440238CB6116DC4EDED0F243B4422,md,
+data管理器/知识库/07-人物与套装特效.md,00-共性知识/资料与模板/07-人物与套装特效.md,shared,data-manager,local-or-test-evidence,canonical,948E522C37F4FEFEAAC95197A4F1FCD7B496D919C0218380255A56FDEAB57D29,md,
+data管理器/知识库/08-扫描匹配与回退.md,00-共性知识/资料与模板/08-扫描匹配与回退.md,shared,data-manager,local-or-test-evidence,canonical,15DCA9836D617926C59C9D48A234983DABB007659A0BEA3CAB977E5DFB0595FB,md,
+data管理器/知识库/09-CSV与历史记录.md,00-共性知识/资料与模板/09-CSV与历史记录.md,shared,data-manager,external-source,canonical,BC646948B929FB1577B34DB301F870DBA943AA845D50E3FEAC58D53BE186D1DC,md,
+data管理器/知识库/10-验证与烟测.md,00-共性知识/资料与模板/10-验证与烟测.md,shared,data-manager,local-or-test-evidence,canonical,6D79164DAA86BFCCB9C45953C047DC28C057E6410F51C61E5146418485AFBE5F,md,
+data管理器/知识库/90-证据索引.md,00-共性知识/资料与模板/90-证据索引.md,shared,data-manager,source-reviewed,canonical,D431CBD6C03E56314996C243D05C75D85BA23BB63A0E6522BF91E10A7F0EB072,md,
+data管理器/知识库/README.md,00-共性知识/资料与模板/来源-知识库-README.md,shared,data-manager,local-or-test-evidence,canonical,0FBDF54EAA1E7F52BA2CC3BBE81EE8C1455432C7326471884DB9CCF86AB295D8,md,
+制作提示词模板.md,,shared,general,local-or-test-evidence,source-only,B33F280F70C9DE8A2A037CAEB2F7D2AEDEB44526C94D78C91C5DE98FB850D3BE,md,内容已合并到规范化主条目 00-共性知识/资料与模板/制作提示词模板.md
+剧本文本导入AI说明模板.md,,shared,general,external-source,source-only,0E5E71FC5D6D311CF45AF3358014D569E4CD9EED3C159653EBA0C651F2A4E7AF,md,内容已合并到规范化主条目 00-共性知识/资料与模板/剧本文本导入AI说明模板.md
+工具整合包/本地知识库/00-总览与规范/工具来源映射.md,00-共性知识/资料与模板/工具来源映射.md,shared,general,local-or-test-evidence,canonical,D53231663824F1FEDB39645C39B06023B079D1749623FECDB74FA5840F858128,md,
+工具整合包/本地知识库/00-总览与规范/工具查询索引.md,00-共性知识/资料与模板/工具查询索引.md,shared,general,local-or-test-evidence,canonical,19E133ECB88A6A9A578B45A458AD7C48AF7CF82AEE1A28447E6CD718F6EDDAB2,md,
+工具整合包/本地知识库/00-总览与规范/开发执行规则.md,00-共性知识/资料与模板/开发执行规则.md,shared,general,local-or-test-evidence,canonical,6CA98C4BF869F8B5B6661867DECAAD5AF774B892F359316F4D1EC43DEC945F38,md,
+工具整合包/本地知识库/00-总览与规范/待验证清单.md,00-共性知识/资料与模板/待验证清单.md,shared,general,local-or-test-evidence,canonical,240BDC93AD220BA14D04BAC654267997DB953E071DF648E0FF99E76F58817B3F,md,
+工具整合包/本地知识库/00-总览与规范/更新记录.md,00-共性知识/资料与模板/更新记录.md,shared,general,local-or-test-evidence,canonical,7A754B83B19E2F305D5FEEA62E49B111248D6163E78163E991AF88A850AEAC24,md,
+工具整合包/本地知识库/00-总览与规范/来源清洗与整合规则.md,00-共性知识/资料与模板/来源清洗与整合规则.md,shared,general,local-or-test-evidence,canonical,53AB69312C6292DC911BB601DA4195ECF798044AAE53E01711723410C79F3BEF,md,
+工具整合包/本地知识库/00-总览与规范/格式与文件后缀.md,00-共性知识/资料与模板/格式与文件后缀.md,shared,general,local-or-test-evidence,canonical,8CAB8C416A0C71B5607A85FEBCEAFE8D4CF17DE6CF3ED98F99741C0C27E66C21,md,
+工具整合包/本地知识库/00-总览与规范/知识库规范.md,00-共性知识/资料与模板/知识库规范.md,shared,general,local-or-test-evidence,canonical,481FF597D7CE852E6DD33F082A7ECF171A21A79C31F9049CBBAB072EB902CF96,md,
+工具整合包/本地知识库/00-总览与规范/知识条目模板.md,,shared,general,source-reviewed,source-only,21831A50B1B17D1268BD8FEA962BC099B415856620E67760E621FABFDED9E3C7,md,内容已合并到 00-共性知识/05-知识条目模板.md
+工具整合包/本地知识库/00-总览与规范/项目约束.md,00-共性知识/资料与模板/项目约束.md,shared,general,local-or-test-evidence,canonical,D84B75884C9897B538501D595393FC88646A2CE7F3552B80F63D702758462255,md,
+工具整合包/本地知识库/01-核心引擎/代码空洞与安全补丁.md,6.5/01-核心引擎/代码空洞与安全补丁.md,6.5,core-engine,local-or-test-evidence,canonical,B1D94E95B328AA2864739EC74B9CC1BDEEB8EC264BDCCFA79CAFFB4B9CAEC1C5,md,
+工具整合包/本地知识库/01-核心引擎/地址语义与Hook契约.md,6.5/01-核心引擎/地址语义与Hook契约.md,6.5,core-engine,source-reviewed,canonical,79FE2C99A04612BE50A1FAAB258D2BE3CECB2F4C0679595609A1A2FA436EE30F,md,
+工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼P0-007初始化与存档补证.md,6.6/01-核心引擎/复刻版6.6山贼P0-007初始化与存档补证.md,6.6,core-engine,local-or-test-evidence,canonical,977FABE044A6792DE930687AC3AD1AF262B0DFB35EC488924BB12A6B7ADE13B6,md,
+工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼P0-008接口消费者补证.md,6.6/01-核心引擎/复刻版6.6山贼P0-008接口消费者补证.md,6.6,core-engine,source-reviewed,canonical,D3AF9005F592FC9565A1D011F98FBFC067D81A60A474B111D933C1DA4362691A,md,
+工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼P0-009行动与GetAttack接口补证.md,6.6/01-核心引擎/复刻版6.6山贼P0-009行动与GetAttack接口补证.md,6.6,core-engine,source-reviewed,canonical,256E3073DB85456D1ED93155A26CD73E76DDDACDB1D48249DAB4DB0CF3A031A5,md,
+工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼特效与扩展接口.md,6.6/01-核心引擎/复刻版6.6山贼特效与扩展接口.md,6.6,core-engine,local-or-test-evidence,canonical,EF6FE1073FC64ECFD246F27EB36F48531209618FDBCF85F2343135C65BDE0581,md,
+工具整合包/本地知识库/01-核心引擎/引擎工作索引.md,6.5/01-核心引擎/引擎工作索引.md,6.5,core-engine,local-or-test-evidence,canonical,7B2F85E52DBF094F04386CF7B9D53AC3969D8E7B06E4BCA8750D5A5F33592195,md,
+工具整合包/本地知识库/01-核心引擎/引擎深入分析.md,6.5/01-核心引擎/引擎深入分析.md,6.5,core-engine,local-or-test-evidence,canonical,18F8AA3A49A3DF35F241682EFBD05EFAD0E83E3A86C98A8222E534BB5DFFA5D7,md,
+工具整合包/本地知识库/01-核心引擎/核心引擎.md,6.5/01-核心引擎/核心引擎.md,6.5,core-engine,local-or-test-evidence,canonical,5AA0B0D1D3C3C89A5DEB3EEC736DCDE9888276A9641599F8B1364D808C94FD95,md,
+工具整合包/本地知识库/01-核心引擎/桩函数.md,6.5/01-核心引擎/桩函数.md,6.5,core-engine,local-or-test-evidence,canonical,E88A96042A868470ECB0276438778E37BB47A08D53C331B5CF8BB9E562415004,md,
+工具整合包/本地知识库/01-核心引擎/特效号定位与安全读写-原生表.md,6.5/01-核心引擎/特效号定位与安全读写-原生表.md,6.5,core-engine,local-or-test-evidence,canonical,7D0AF44F6749979DAA76D38ECBD144A59094B4647DDEE3547E6A87D119D5633E,md,
+工具整合包/本地知识库/01-核心引擎/特效号定位与安全读写-命名空间.md,6.5/01-核心引擎/特效号定位与安全读写-命名空间.md,6.5,core-engine,source-reviewed,canonical,DA88BC62D5B559FFAEE183BB870686F4911F073B2640DF38D76FBBCC3410D41A,md,
+工具整合包/本地知识库/01-核心引擎/特效号定位与安全读写-指令参数.md,6.5/01-核心引擎/特效号定位与安全读写-指令参数.md,6.5,core-engine,local-or-test-evidence,canonical,A914212F885823AE9AC2CD09ABDE646994215AC79EE64D9671C32D353A0DFCA5,md,
+工具整合包/本地知识库/01-核心引擎/特效号定位与安全读写-验证流程.md,6.5/01-核心引擎/特效号定位与安全读写-验证流程.md,6.5,core-engine,local-or-test-evidence,canonical,DAE107688DA39375DF0DFF36F95B55EF8BB6974CCF07C4CB48ECC2E38C2A02E3,md,
+工具整合包/本地知识库/01-核心引擎/调度函数.md,6.5/01-核心引擎/调度函数.md,6.5,core-engine,local-or-test-evidence,canonical,5D4B3E93B7DEBE7F02F242805EC95DE391A84A026B30D3A5E38D884D9AAAD9EC,md,
+工具整合包/本地知识库/02-数据结构/6.4-6.5运行时静态数据表地址.md,6.5/02-数据结构/6.4-6.5运行时静态数据表地址.md,6.5,data-structures,local-or-test-evidence,canonical,734F001A4080021FF90AE5A66A1735D5101902E4D36C9FD72AFB1C2FAB34F26F,md,
+工具整合包/本地知识库/02-数据结构/全局变量.md,6.5/02-数据结构/全局变量.md,6.5,data-structures,local-or-test-evidence,canonical,6F3F0D2AB95EF3197B1425E578D511E5C4EB1E79FAFDE703EC691443D7D924E5,md,
+工具整合包/本地知识库/02-数据结构/单位结构体.md,6.5/02-数据结构/单位结构体.md,6.5,data-structures,local-or-test-evidence,canonical,C9DFA4BA4CB211C1710B942DCE2EB1354017898AB3A2BE66BA51FB67EE07174C,md,
+工具整合包/本地知识库/02-数据结构/复刻版6.6山贼P0-014资源计算与效果事件补证.md,6.6/02-数据结构/复刻版6.6山贼P0-014资源计算与效果事件补证.md,6.6,data-structures,source-reviewed,canonical,450EE0CA98C615332B406281814C5D7D757CD3BE878A6E0D1BA5A354C55B7470,md,
+工具整合包/本地知识库/02-数据结构/复刻版6.6山贼P0-015资源加成与效果类别补证.md,6.6/02-数据结构/复刻版6.6山贼P0-015资源加成与效果类别补证.md,6.6,data-structures,source-reviewed,canonical,9CCA982CF22AC010BF2299E364E99C446A230A938E0697583E410C06B3A63117,md,
+工具整合包/本地知识库/02-数据结构/复刻版6.6山贼P0-016类别映射与字段写入补证.md,6.6/02-数据结构/复刻版6.6山贼P0-016类别映射与字段写入补证.md,6.6,data-structures,external-source,canonical,C5AD9C1D3E8F42C5D8A60B314446715F6D9FD28AA4E8F4F4A9C0B1D700E52844,md,
+工具整合包/本地知识库/02-数据结构/复刻版6.6山贼运行时数据结构.md,6.6/02-数据结构/复刻版6.6山贼运行时数据结构.md,6.6,data-structures,local-or-test-evidence,canonical,A6A552E4AFFA51861825E99F405A4C99E8BF42D6B940B53BAAC1C70FD6A8349E,md,
+工具整合包/本地知识库/02-数据结构/战场运行时内存-6.4资料与6.5复核.md,6.5/02-数据结构/战场运行时内存-6.4资料与6.5复核.md,6.5,data-structures,local-or-test-evidence,canonical,C8F707F6A7DB3AEEC1BCA7CA6BA26FE167AA2664485A6FC89E1C75E82F949340,md,
+工具整合包/本地知识库/02-数据结构/战斗数据结构.md,6.5/02-数据结构/战斗数据结构.md,6.5,data-structures,local-or-test-evidence,canonical,B8B4937EB7C1701FDE38DC8C2314C3F2236B83B3975FE470DF6EFFD9A81728D8,md,
+工具整合包/本地知识库/03-机制详解/6.5特效注入索引.md,6.5/03-机制与特效/6.5特效注入索引.md,6.5,mechanics-effects,local-or-test-evidence,canonical,56D3F3ED53678CFD9755E93BB09848C996D4EA7FADB262A145C6C2126F7648EC,md,
+工具整合包/本地知识库/03-机制详解/二次行动.md,6.5/03-机制与特效/二次行动.md,6.5,mechanics-effects,local-or-test-evidence,canonical,57A4192A54CFEF2C4989C57E2E4761EB61DBC764EF6860DE539EB27E7C6DEA7C,md,
+工具整合包/本地知识库/03-机制详解/功勋模式与五维功勋.md,6.5/03-机制与特效/功勋模式与五维功勋.md,6.5,mechanics-effects,local-or-test-evidence,canonical,C73BA89AC9CF0812EEFBBF871988E28827BD168DE312CAB5B39431A1749896A8,md,
+工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-010行动数值与战场结果补证.md,6.6/03-机制与特效/复刻版6.6山贼P0-010行动数值与战场结果补证.md,6.6,mechanics-effects,source-reviewed,canonical,E02DFAE09040C52BE4F8519E6B290FFF6C1C1EE70F2EBFC1D96A134EADFB924F,md,
+工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-011战斗扣减与字段上限补证.md,6.6/03-机制与特效/复刻版6.6山贼P0-011战斗扣减与字段上限补证.md,6.6,mechanics-effects,source-reviewed,canonical,8F7E6DA56B35AA2D5A5A58B220063FE05347D10746D5A66003B1DC72E87B693E,md,
+工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-012资源同步与结算补证.md,6.6/03-机制与特效/复刻版6.6山贼P0-012资源同步与结算补证.md,6.6,mechanics-effects,source-reviewed,canonical,E6FBB75F69EB36E068AB4426C17349AC56A6E54A22C3DDE4A6663D04A9287196,md,
+工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-013资源继承与多目标结算补证.md,6.6/03-机制与特效/复刻版6.6山贼P0-013资源继承与多目标结算补证.md,6.6,mechanics-effects,local-or-test-evidence,canonical,3BBA919C8225391AA1C1EFB05E4C479EA815ABF93987E838F87C0751EB057BD3,md,
+工具整合包/本地知识库/03-机制详解/复刻版6.6山贼状态与更新记录核对.md,6.6/03-机制与特效/复刻版6.6山贼状态与更新记录核对.md,6.6,mechanics-effects,local-or-test-evidence,canonical,12D9276B4B5B7420B113BEAB6DC100FB975B12EA13498FC0A19A4030428F63AF,md,
+工具整合包/本地知识库/03-机制详解/已注入特技扫描与自然语言语义.md,6.5/03-机制与特效/已注入特技扫描与自然语言语义.md,6.5,mechanics-effects,source-reviewed,canonical,D1E035D27BB05627B40622ABD14C0FF0361BF7FDA23FAA41899EC03605F26A33,md,
+工具整合包/本地知识库/03-机制详解/引导攻击.md,6.5/03-机制与特效/引导攻击.md,6.5,mechanics-effects,local-or-test-evidence,canonical,8913B6736B1123CB5BB92915A91FBAF87D802D29D6EDEEBB18FA078C807A4B05,md,
+工具整合包/本地知识库/03-机制详解/战斗公式.md,6.5/03-机制与特效/战斗公式.md,6.5,mechanics-effects,local-or-test-evidence,canonical,B8D6592EA0B869E3DCD6D17CB6A5BAEC791AE93E1294ED7F3284524B985FD503,md,
+工具整合包/本地知识库/03-机制详解/攻击范围与穿透范围.md,6.5/03-机制与特效/攻击范围与穿透范围.md,6.5,mechanics-effects,local-or-test-evidence,canonical,A42136C992D7871DBEE94860EBB78F4997C0E7550485ED5DE9640896DD1C6D18,md,
+工具整合包/本地知识库/03-机制详解/攻击附带属性下降.md,6.5/03-机制与特效/攻击附带属性下降.md,6.5,mechanics-effects,local-or-test-evidence,canonical,1415E6B26F44A1B1E8B6D4A0D6A1A3D728D3D3AF28D4E0B2E2BE05627DEA85C9,md,
+工具整合包/本地知识库/03-机制详解/旧版工具引擎号合并行为对照.md,6.5/03-机制与特效/旧版工具引擎号合并行为对照.md,6.5,mechanics-effects,local-or-test-evidence,canonical,C3D7FDD7FF7F334FAD3FEC9B27CBB08E8407B91242159BB73A607091E05CF6B6,md,
+工具整合包/本地知识库/03-机制详解/暴击.md,6.5/03-机制与特效/暴击.md,6.5,mechanics-effects,local-or-test-evidence,canonical,6173CB1810218EDB5367ACE083603EE7DE20B3E37B7884DA226779B660052102,md,
+工具整合包/本地知识库/03-机制详解/模块化复合特效制作.md,6.5/03-机制与特效/模块化复合特效制作.md,6.5,mechanics-effects,local-or-test-evidence,canonical,4A130F675841A2E1C5CED24CEB93EEFA0B93EA39BDD79DB82F81088CA6B87014,md,
+工具整合包/本地知识库/03-机制详解/物理攻击.md,6.5/03-机制与特效/物理攻击.md,6.5,mechanics-effects,local-or-test-evidence,canonical,5F6B67EAB4EAEFCC0971E6A5BAC9C441955D3A08895D998C6393C3DB734FEF30,md,
+工具整合包/本地知识库/03-机制详解/特效值机制.md,6.5/03-机制与特效/特效值机制.md,6.5,mechanics-effects,local-or-test-evidence,canonical,CED6B987E839C854C0601F12C18D0A653D7BA7D2315ADE9400A10A8F85F9E1C9,md,
+工具整合包/本地知识库/03-机制详解/特效后缀位置与读写方案.md,6.5/03-机制与特效/特效后缀位置与读写方案.md,6.5,mechanics-effects,local-or-test-evidence,canonical,39CC2A4A1579E6116A585D9E17A04D81E0EDF73211174C5184FFE7D0C398316F,md,
+工具整合包/本地知识库/03-机制详解/特效扫描九概念统一词典.md,6.5/03-机制与特效/特效扫描九概念统一词典.md,6.5,mechanics-effects,local-or-test-evidence,canonical,2C383D83FFF5D2D54F131B67229BFCF0C47A499CFDDD9F4141FB9233AF90FB5A,md,
+工具整合包/本地知识库/03-机制详解/特效扫描九概念证据台账.json,6.5/03-机制与特效/特效扫描九概念证据台账.json,6.5,mechanics-effects,source-reviewed,canonical,9FAE10A89FA49568092A7C3C9CF7660B20DC74C882A17478778A8E75FB3A1F51,json,
+工具整合包/本地知识库/03-机制详解/特效扫描九概念调查记录.md,6.5/03-机制与特效/特效扫描九概念调查记录.md,6.5,mechanics-effects,local-or-test-evidence,canonical,4BBBB49D04CAA4B5C5EE622833A03F7B9A948F83B79E51C2EA7A774CA3033175,md,
+工具整合包/本地知识库/03-机制详解/特效确认台账.md,6.5/03-机制与特效/特效确认台账.md,6.5,mechanics-effects,local-or-test-evidence,canonical,E91CC43B4D1CD150273DEEDBE29260B201376D7254B7CB0FEC9523AA41769F3E,md,
+工具整合包/本地知识库/03-机制详解/特效路径常量扫描与旧工具合并.md,6.5/03-机制与特效/特效路径常量扫描与旧工具合并.md,6.5,mechanics-effects,local-or-test-evidence,canonical,2A1231C040707CFFE2934951FFA63010EDE71E26120E8BDA3D0F789AE3BDE1E3,md,
+工具整合包/本地知识库/03-机制详解/盛气凌人.md,6.5/03-机制与特效/盛气凌人.md,6.5,mechanics-effects,local-or-test-evidence,canonical,B09071501F14DB075DF2AD21A35C20767D495B228DE9880C47D821D650711708,md,
+工具整合包/本地知识库/03-机制详解/真实复合特效机制.md,6.5/03-机制与特效/真实复合特效机制.md,6.5,mechanics-effects,local-or-test-evidence,canonical,5F57D88A049BE370CA47FEFE75EF5BEF4920EDE036FB9F7FF7A57ABE0E3E25B9,md,
+工具整合包/本地知识库/03-机制详解/策略附带随机状态.md,6.5/03-机制与特效/策略附带随机状态.md,6.5,mechanics-effects,local-or-test-evidence,canonical,19FA4462220D189A918D9B83676AB108824ACF3F496B6D762E17BA96EEEB7E80,md,
+工具整合包/本地知识库/03-机制详解/能力档位与显示补丁.md,6.5/03-机制与特效/能力档位与显示补丁.md,6.5,mechanics-effects,local-or-test-evidence,canonical,53173F986AE358DA84C9D0472CF7F9026A3930C0865914E1617BB2D9E3836515,md,
+工具整合包/本地知识库/03-机制详解/连击.md,6.5/03-机制与特效/连击.md,6.5,mechanics-effects,local-or-test-evidence,canonical,1596B2259C9ED6245AEC191C6C1A6DC52694EE8DADB289DD766FE10F5C53B7BE,md,
+工具整合包/本地知识库/03-机制详解/随机状态攻击.md,6.5/03-机制与特效/随机状态攻击.md,6.5,mechanics-effects,local-or-test-evidence,canonical,0275333FE57AED81A20CDE7A12E7063263CEC1081E915C79FF43A3E0A1364D92,md,
+工具整合包/本地知识库/04-函数速查/函数速查表.md,6.5/04-函数速查/函数速查表.md,6.5,function-reference,local-or-test-evidence,canonical,A561A482F0074685741F03D8434318632BB40A8834CE2D84DDD54B3D6B8B9622,md,
+工具整合包/本地知识库/04-函数速查/复刻版6.6山贼函数静态目录.md,6.6/04-函数速查/复刻版6.6山贼函数静态目录.md,6.6,function-reference,source-reviewed,canonical,6D78F79D5EB4A577DAE95C168B06D31C54967EC8947265DA87B7336DB029A81D,md,
+工具整合包/本地知识库/05-教程指南/入门指南.md,6.5/05-教程指南/入门指南.md,6.5,guides,local-or-test-evidence,canonical,AE361E9D155C15694451EE1EB362B8AD3CE4B8F51710125237733C4DF52DA000,md,
+工具整合包/本地知识库/05-教程指南/战场操作自动化与调试流程.md,6.5/05-教程指南/战场操作自动化与调试流程.md,6.5,guides,local-or-test-evidence,canonical,120A1C642A116EDCB5F46B357EC4D47F3031D1D0A50D102F1E1D9BDDADC46DA1,md,
+工具整合包/本地知识库/06-项目与工具链/PL天气补丁迁移与复刻版6.6山贼实现方案.md,6.6/06-工具与验证/PL天气补丁迁移与复刻版6.6山贼实现方案.md,6.6,tools-validation,local-or-test-evidence,canonical,31F40B16A071F88338101B002D67EFF97F3355284719234780448F1E753C2652,md,
+工具整合包/本地知识库/06-项目与工具链/旧扳手源码专项-功勋引擎特效战场.md,6.5/06-工具与验证/旧扳手源码专项-功勋引擎特效战场.md,6.5,tools-validation,local-or-test-evidence,canonical,C0FE3DED3D748372EA69E6242030BE9C2001C9D60E5D318383AC0F716973ED93,md,
+工具整合包/本地知识库/06-项目与工具链/旧扳手调试器源码对照.md,6.5/06-工具与验证/旧扳手调试器源码对照.md,6.5,tools-validation,local-or-test-evidence,canonical,FC825075F782286FCA6FDC53C9BE688D421EB9AB13898AF029D3884B904F6C91,md,
+工具整合包/本地知识库/06-项目与工具链/曹操传6.6扳手适配与自动回归验证.md,6.6/06-工具与验证/曹操传6.6扳手适配与自动回归验证.md,6.6,tools-validation,local-or-test-evidence,canonical,1F463E02D038504FC133F8BFF58AA88D7EE586DCF9D96FF0D6DAA74299A6417B,md,
+工具整合包/本地知识库/06-项目与工具链/本地Agent特效草案安全字段.md,6.5/06-工具与验证/本地Agent特效草案安全字段.md,6.5,tools-validation,local-or-test-evidence,canonical,3E61D5EEC17BC35CECCD2C4F7B8FCF52C057BD88B3568EE7E94732353134E4DA,md,
+工具整合包/本地知识库/06-项目与工具链/本地Agent生成可注入特效代码指南.md,6.5/06-工具与验证/本地Agent生成可注入特效代码指南.md,6.5,tools-validation,local-or-test-evidence,canonical,CDA60E81FAA2D06032828942CA0731419C0985ADAB92198AE836AA49834FC284,md,
+工具整合包/本地知识库/06-项目与工具链/模型上下文协议接入.md,6.5/06-工具与验证/模型上下文协议接入.md,6.5,tools-validation,local-or-test-evidence,canonical,22202CA966D19F03F4094B63CADDA93CD600C6F6706EFA6F1542E0527999E045,md,
+工具整合包/本地知识库/06-项目与工具链/特效工作台复盘与验收.md,6.5/06-工具与验证/特效工作台复盘与验收.md,6.5,tools-validation,local-or-test-evidence,canonical,8D39D3B50BA16D33F0C5A7474085392941797B181D9A4D1C94B9979ADEBC228A,md,
+工具整合包/本地知识库/06-项目与工具链/自动化MOD制作.md,6.5/06-工具与验证/自动化MOD制作.md,6.5,tools-validation,local-or-test-evidence,canonical,89213929F73532BD248A1BEB38D9504D6EBFE203F8136F15F25A069E80A83090,md,
+工具整合包/本地知识库/06-项目与工具链/跨设备迁移.md,6.5/06-工具与验证/跨设备迁移.md,6.5,tools-validation,local-or-test-evidence,canonical,F7D627FB9C0F4F4A465F82548E93140CEFACA115BFFC04081B4EC1AF1FB23DB8,md,
+工具整合包/本地知识库/06-项目与工具链/验证与烟测.md,6.5/06-工具与验证/验证与烟测.md,6.5,tools-validation,local-or-test-evidence,canonical,7D70B9CD13DBDADBF064EE9F7CF737A20B658F7ADDBC293A2EF84D36469F4AC8,md,
+工具整合包/本地知识库/07-数据表与资源/人工智能绘图-图像工作室-模型上下文协议.md,6.5/04-数据表与资源/人工智能绘图-图像工作室-模型上下文协议.md,6.5,data-resources,local-or-test-evidence,canonical,35DF5A77F1B0A2ED273BE75C2F53AEB5DF2200F17A2828F2F1F3A13F5C187312,md,
+工具整合包/本地知识库/07-数据表与资源/人物R-S像素形象制作链路.md,6.5/04-数据表与资源/人物R-S像素形象制作链路.md,6.5,data-resources,local-or-test-evidence,canonical,5DDAB2049D25A59B5F00A2B2887C0834E1E6F878DAA07C614283FAC4EB4AAF83,md,
+工具整合包/本地知识库/07-数据表与资源/人物R-S像素形象提示词模板.md,6.5/04-数据表与资源/人物R-S像素形象提示词模板.md,6.5,data-resources,external-source,canonical,B2A3971AE81BFF7530DC163CC560F3F5E0D62146B1E19501028F558E104CA85B,md,
+工具整合包/本地知识库/07-数据表与资源/人物形象-RS-形象指定器.md,6.5/04-数据表与资源/人物形象-RS-形象指定器.md,6.5,data-resources,local-or-test-evidence,canonical,34B84EA002C6CF9D17DBC813660096930B96D98E20329A24A5C34B8FA1CBE2AD,md,
+工具整合包/本地知识库/07-数据表与资源/兵种设定.md,6.5/04-数据表与资源/兵种设定.md,6.5,data-resources,local-or-test-evidence,canonical,D457C9616280AE82B484B5B2588DB9A683642A4859044E798E58892986F4AFDD,md,
+工具整合包/本地知识库/07-数据表与资源/动态链接库图标资源.md,6.5/04-数据表与资源/动态链接库图标资源.md,6.5,data-resources,local-or-test-evidence,canonical,5682C725DAC0D99DA7CABB760E5A33A7DDF01319D1716983D542CA7564E5E080,md,
+工具整合包/本地知识库/07-数据表与资源/图片处理-E5资源.md,6.5/04-数据表与资源/图片处理-E5资源.md,6.5,data-resources,local-or-test-evidence,canonical,0C959241BB57CAFA12D5865C6C6D20F44979CF97D5DDD57AC4B6B2A4C05E71C2,md,
+工具整合包/本地知识库/07-数据表与资源/地图制作.md,6.5/04-数据表与资源/地图制作.md,6.5,data-resources,local-or-test-evidence,canonical,78B2243F8CC1A1E5BB7E02167D0EF02C5C12CFD352F0489052D1E5451329C9F0,md,
+工具整合包/本地知识库/07-数据表与资源/地形编辑.md,6.5/04-数据表与资源/地形编辑.md,6.5,data-resources,local-or-test-evidence,canonical,ABB6C8625713CC59222793E533AC1863C4B8F82931338D4696C8F0A516361582,md,
+工具整合包/本地知识库/07-数据表与资源/宝物物品设定.md,6.5/04-数据表与资源/宝物物品设定.md,6.5,data-resources,local-or-test-evidence,canonical,FA3ACB04746E3CE9252D4CCD0DF3044755F2402BEBDE07483AA7A6CF39E7126E,md,
+工具整合包/本地知识库/07-数据表与资源/曹操传坐标规律.md,6.5/04-数据表与资源/曹操传坐标规律.md,6.5,data-resources,local-or-test-evidence,canonical,F9AEE9DC2839E14F0F8D7313D379A971A2DD65B8A3EB5E49F9E854C0042AF008,md,
+工具整合包/本地知识库/07-数据表与资源/枪骑兵R-S样本学习与人工审阅.md,6.5/04-数据表与资源/枪骑兵R-S样本学习与人工审阅.md,6.5,data-resources,source-reviewed,canonical,4717FB6E9F9E27F3F51D140D8A19C00389C668A8940BA414AE74C066D911F498,md,
+工具整合包/本地知识库/07-数据表与资源/策略动画-Meff-Mcall.md,6.5/04-数据表与资源/策略动画-Meff-Mcall.md,6.5,data-resources,local-or-test-evidence,canonical,59AD91D3109D6B1420591F03408C09395C5084FB992F443BD5C9B65D52CDFC94,md,
+工具整合包/本地知识库/07-数据表与资源/纯净基底清洗.md,6.5/04-数据表与资源/纯净基底清洗.md,6.5,data-resources,local-or-test-evidence,canonical,45DB5E900CAE8C17BEB11003D11FD455140F81E76E49D7F84A05FE5ECCAA0055,md,
+工具整合包/本地知识库/07-数据表与资源/范围模板与图片规范.md,6.5/04-数据表与资源/范围模板与图片规范.md,6.5,data-resources,local-or-test-evidence,canonical,9FEE5E882ED227293D23DCB7B47E870DAB4C6ADB91535B73B05B271D703F75AB,md,
+工具整合包/本地知识库/07-数据表与资源/角色与扩展数据修复记录.md,6.5/04-数据表与资源/角色与扩展数据修复记录.md,6.5,data-resources,local-or-test-evidence,canonical,67B2EDB2CAD99F32E20626A56F6C1350BE26DEC94CC6F3777E9871D54A5CF109,md,
+工具整合包/本地知识库/07-数据表与资源/角色设定.md,6.5/04-数据表与资源/角色设定.md,6.5,data-resources,local-or-test-evidence,canonical,08D027284E0E4A71A635CED22662B887F513FA27979A67917F9AAA015904911C,md,
+工具整合包/本地知识库/08-剧本与战场/R剧本模板克隆复用规范.md,6.5/05-剧本与战场/R剧本模板克隆复用规范.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,9BEA33058B2201325467787DBCE50662E02C1B45B8D5DE49AD62F566A1440B55,md,
+工具整合包/本地知识库/08-剧本与战场/Tr-e5-R插图.md,6.5/05-剧本与战场/Tr-e5-R插图.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,599E7A5A6524C20BB0A9921D36365C1887BFF66ADA09A5F6BB141879E159D939,md,
+工具整合包/本地知识库/08-剧本与战场/全剧本指令详解2023归纳.md,6.5/05-剧本与战场/全剧本指令详解2023归纳.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,64015EE68EFF87857339C09D4F030EC0917FBD1033EF9F56A9F4DE1A44D1A980,md,
+工具整合包/本地知识库/08-剧本与战场/剧本与战场制作.md,6.5/05-剧本与战场/剧本与战场制作.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,C3F06CB4ECC3DE2E37E2C59D5862151420E84D49225204279F44E2A71EAE28AC,md,
+工具整合包/本地知识库/08-剧本与战场/剧本指令大全/01-00-13结构流程.md,6.5/05-剧本与战场/01-00-13结构流程.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,C67BF299DEF009DD503A8CD0ED4B1A8BE85CCE60934756A844B348D1CC01BB6E,md,
+工具整合包/本地知识库/08-剧本与战场/剧本指令大全/02-14-24文本音画.md,6.5/05-剧本与战场/02-14-24文本音画.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,551A50AF8036F1C00A122BDE5675415FA56CD8BA8F2A84DAE30B8855A21C8CD2,md,
+工具整合包/本地知识库/08-剧本与战场/剧本指令大全/03-25-35触发与R场景.md,6.5/05-剧本与战场/03-25-35触发与R场景.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,0AA24A5D10BEA4ACE83CF8F7A71F4F6774BED50E2C0DA455B3FCC3C4B7382444,md,
+工具整合包/本地知识库/08-剧本与战场/剧本指令大全/04-36-4B变量部署.md,6.5/05-剧本与战场/04-36-4B变量部署.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,6F9F5A8813D07AAE06AAEC9D35E1D0FC47044D1A21386CEC7230AF299BE1FBB4,md,
+工具整合包/本地知识库/08-剧本与战场/剧本指令大全/05-4C-5E战场操作.md,6.5/05-剧本与战场/05-4C-5E战场操作.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,377285E533BCB4E4FD142731045CE282AF5B2EEC370E0D226B43A39294975EAB,md,
+工具整合包/本地知识库/08-剧本与战场/剧本指令大全/06-5F-6F单挑与扩展.md,6.5/05-剧本与战场/06-5F-6F单挑与扩展.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,75B57923E58B931143E5155C1649ED16073BA2049BD48F168B1E1E562BA2FBBC,md,
+工具整合包/本地知识库/08-剧本与战场/剧本指令大全/07-70-7B高级变量与系统.md,6.5/05-剧本与战场/07-70-7B高级变量与系统.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,65105BA1C01FB2A1B018C704CA438C54719F5D7582599E444B244BF6DD7A86A9,md,
+工具整合包/本地知识库/08-剧本与战场/剧本指令大全/08-72信息传送子功能.md,6.5/05-剧本与战场/08-72信息传送子功能.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,114F4A3B920A472AD34A88F4F98D1503A5C08171EA1FD73C6A1788072407BCE8,md,
+工具整合包/本地知识库/08-剧本与战场/剧本指令大全/README.md,00-共性知识/资料与模板/来源-剧本指令大全-README.md,shared,scenarios-battlefields,local-or-test-evidence,canonical,CD1B8B69343A88B262D2D2B2A3EEF7477A1E34D3D47643DF827999CD83B8BBE8,md,
+工具整合包/本地知识库/08-剧本与战场/剧本文本导入AI说明模板.md,00-共性知识/资料与模板/剧本文本导入AI说明模板.md,shared,scenarios-battlefields,local-or-test-evidence,canonical,9A6C8963F2E9A021B05401E0DA9761817A5F577F7DE23534993C0E1AF7DCB67D,md,
+工具整合包/本地知识库/08-剧本与战场/剧本编辑器v0.24静态对照.md,6.5/05-剧本与战场/剧本编辑器v0.24静态对照.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,20D79C847CE45D9A8A4994722F8D2FB30770B338D1E3C7793FA0A2F5D68898C3,md,
+工具整合包/本地知识库/08-剧本与战场/剧本设计语义命令映射表.md,6.5/05-剧本与战场/剧本设计语义命令映射表.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,351497ED7C95BE7CA98F724D1C14D35CA9673CC605CCED352205C796323B3264,md,
+工具整合包/本地知识库/08-剧本与战场/旧剧本编辑器源码对照.md,6.5/05-剧本与战场/旧剧本编辑器源码对照.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,CF7AB6F55AF803823BDFAB240FF49BFD23598D05A813B132C336D718366AB7DB,md,
+工具整合包/本地知识库/08-剧本与战场/曹操传剧本文案提示词工程.md,6.5/05-剧本与战场/曹操传剧本文案提示词工程.md,6.5,scenarios-battlefields,local-or-test-evidence,canonical,EFE82C4E52ABEA30CBFB6A38060C19AE56E61096D26578A323DE68DF35BB8E01,md,
+工具整合包/本地知识库/09-版本与外部资料/6.6信奈与烈焰加速兼容差异.md,6.6/06-工具与验证/6.6信奈与烈焰加速兼容差异.md,6.6,version-external,local-or-test-evidence,canonical,B3DA584C87582F4E1FAEFA39A28382D023F778DE45EC5BD1A695E510A593FF73,md,
+工具整合包/本地知识库/09-版本与外部资料/6X版本差异与适配.md,00-共性知识/资料与模板/6X版本差异与适配.md,shared,version-external,local-or-test-evidence,canonical,D9B18F849047C447E1ADC8D03E7AB9A72AF077B3F4EBDEF6E46DAAFBD77128E9,md,
+工具整合包/本地知识库/09-版本与外部资料/CheatMaker-CMF证据索引.md,6.5/06-工具与验证/CheatMaker-CMF证据索引.md,6.5,version-external,local-or-test-evidence,canonical,5BA3942F515A0EA1887B86A92C30F6CB749E7D02128C1CFE4B950E4F7132064D,md,
+工具整合包/本地知识库/09-版本与外部资料/CMF派生功能矩阵.md,6.5/06-工具与验证/CMF派生功能矩阵.md,6.5,version-external,local-or-test-evidence,canonical,6C076265C66353BBA7FD06F793C73847D8A3402940D1D02B02942FDA2ED21C12,md,
+工具整合包/本地知识库/09-版本与外部资料/Star6.5引擎CMF人工地址清单.md,6.5/06-工具与验证/Star6.5引擎CMF人工地址清单.md,6.5,version-external,local-or-test-evidence,canonical,6568B3D065A3BD682DD47A5D53AD7A3DD0A18D3BDAC87DCB65FDD88B1A7AD141,md,
+工具整合包/本地知识库/09-版本与外部资料/Star6.6引擎CMF人工地址清单.md,6.6/06-工具与验证/Star6.6引擎CMF人工地址清单.md,6.6,version-external,local-or-test-evidence,canonical,C6AAD510E64C742163D1466E8C5B3099A2B1198F890D833EB918AACCDEA5F818,md,
+工具整合包/本地知识库/09-版本与外部资料/复刻版6.6山贼基底身份与静态分析总览.md,6.6/06-工具与验证/复刻版6.6山贼基底身份与静态分析总览.md,6.6,version-external,local-or-test-evidence,canonical,3D1874002459ACBEC204A919A82BC92DD56A3041E61D3FEBDC4575EBB0D7C2EA,md,
+工具整合包/本地知识库/09-版本与外部资料/联网深度专题.md,00-共性知识/资料与模板/联网深度专题.md,shared,version-external,local-or-test-evidence,canonical,671A16A52FC35FDA7E29C4556502C043E72691409C3B2B9283E7E06CDEE31839,md,
+工具整合包/本地知识库/09-版本与外部资料/联网资料索引-曹操传模组6.5.md,6.5/06-工具与验证/联网资料索引-曹操传模组6.5.md,6.5,version-external,local-or-test-evidence,canonical,61235310E2423A7EE3C9136D099F12D3338FAAFD100EB95A2B8AEE84657BC861,md,
+工具整合包/本地知识库/10-制作案例/人工智能垂域S形象模型-延期计划.md,6.5/07-制作案例/人工智能垂域S形象模型-延期计划.md,6.5,case-studies,local-or-test-evidence,canonical,B1DA0F7B4594EB198B76633E0B8685DAFED8283B639A331D5F54E5F4481EE80A,md,
+工具整合包/本地知识库/10-制作案例/刘备6.4-RS模板学习.md,6.5/07-制作案例/刘备6.4-RS模板学习.md,6.5,case-studies,local-or-test-evidence,canonical,C4313B3220ECE1675AA3F0586AE4F945C9C96748C1F40912B07F8F2391A4EEA2,md,
+工具整合包/本地知识库/90-来源归档/制作区帖子备份-抽取草稿/extract-summary.md,,,general,external-source,source-only,2B563B9F4D0E6CF8CFF1E217FFFACC20382AD21E5E087A0B2354DFB98EB2A3E8,md,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/制作区帖子备份-抽取草稿/extract_make_zone_posts.py,,,general,external-source,source-only,3491A271B7CF8A3895A69BE065FC6FDACE19127CEFE1C3AC623DDC4811830C1F,py,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/制作区帖子备份-抽取草稿/sources.csv,,,general,external-source,source-only,1501700503ADFF5EE8145C9220E9DA9C2D76291558C0D8520A800F7D23AB50E7,csv,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/制作区帖子备份-抽取草稿/topic-map.md,,,general,external-source,source-only,DBDA713ED27E7B2DE547C67FB55A8052E0AEF37A91F87683BFB9D022287089C1,md,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/制作区帖子备份-抽取草稿/unresolved.md,,,general,external-source,source-only,FAF0B9C731B22CFED702BF8A5C0F9EDF6980C240FA8EE936EE569B4AA43167F9,md,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/原始文档/6.4一些地址.xlsx,,,general,external-source,excluded,EF4F7704375B28081118C48C53BD64A76A2468F045EFE8C92873FEF04BC76F61,xlsx,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/原始文档/Star175引擎发布文稿5.6-6.6.docx,,,general,external-source,excluded,73E3CA22140DA8F8008289973E5999F02F6BDEF08C6C4978CD7959D370BC3E3D,docx,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/原始文档/全剧本指令详解（2023）.docx,,,general,external-source,excluded,F8E4322D912FDF667930D19C0A91B934A4AF18B1519483E80023136DB374A16F,docx,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/原始文档/解读KOEI曹操传代码.docx,,,general,external-source,excluded,431BD0BCF62A2AC8B4098DEF46A41240649725041D6DCF0C0D4F419CC654C056,docx,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/复刻版6.6山贼错误知识纠正台账.md,,,general,external-source,source-only,0878C204849D47E1E98AC618675C90E21344F9EFA6C5135882DED0BDE747FFD0,md,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/复刻版6.6山贼静态分析证据索引.md,,,general,external-source,source-only,53EE712D0AFFC22B72ACF1304A283F34939D269472D5C22247053C55D0228ED6,md,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/散落资料整合索引.md,,,general,external-source,source-only,41B357D96F6AC085F9FDADEF2E530ADE710CBF8E3FD4CB645A44DD5F1E2B2F41,md,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/旧入口-knowledge-base-README.md,,,general,external-source,source-only,1A7F6F880CC6077F8F52EB3A92A13D837C465A2F920C8FE2052CCE95098260D9,md,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/旧入口-README-20260606.md,,,general,external-source,source-only,23F609DCDC92C2CBF16B4A14E0833DED4979711021CA8020A0D248568363FA4E,md,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/90-来源归档/迁移索引.md,,,general,external-source,source-only,DD94A45A88757C2538FF9223AB0EB7F277CCADFB9BC88A5521BC85A02BAC98C1,md,旧来源归档只保留在清单，不作为公开正文
+工具整合包/本地知识库/README.md,,,general,source-reviewed,source-only,A53F2C27ED96C7BA3CD2FD6B2C8A277D93996C9349ED7BF069582213144EEB83,md,旧主入口已由公开仓库根 README 和版本入口替代
+工具整合包/本地知识库/制作区帖子备份/(图文教程)OLLYDBG修改曹操传EXE实际操作演示 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,36C8382FEC58D953986413C1CDEF3FE7411F8E278E10049A0057AB44C11436E5,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/5.9版更新 bystar175.doc,,,general,external-source,excluded,65A35EDAD47F529D3BA68D8ED4583FB35E793E4AC0EF112CE95E8392D1EA563B,doc,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/CCZ MOD美工之无双教程 - 风华录 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,833414D7785BD360CA9ADD4B740EDEB743DF8AED92200EB72B2AB5A1E1C6A503,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/EXE补充研究及修改 - 设计与修改 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,7C17804033655AFEACB2A5AAA5A0E50295E38D23EAB2A235C1D0366D7A16CCDC,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/DATA扩展类大攻略 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,5AEA8C7C0779636F5BDF88911D433CB13028A711DD2F8ED2123F47528AB75823,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/godtype的最终引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,E8CF80D9767B1FDF9E0CED808FC7DCCC0E6C5A68C8E0A59614D6C502DFA9AA70,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/HP回复类策略的计算 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,B1D03714CC1BB35326ACC5D909D50F576A090B9B793F967A2DFA395D8B8A6FA5,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/Mcall文件的初步研究 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,771FFB7224155148C8AB58462F2E930317E3B401A8802E291A84F6F99871604A,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/R单挑基本素材及示范剧本 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,46A9BCCB5030DB8A7C0144DE9D9F10D6057250C3BC4104E852EC0B49593647D9,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/STAR175新引擎商店自动售出物品的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,98464A9B05C5098884BB2FD5E4BE3DF51869B5D619F39469F33F2E29581BFC4F,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/【懒人福音】简易快速形象换色 - 风华录 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,65591318EEF06B4D2E8E0CFA6BEA04130B32D8510DFDA7229572BD1F96E6CE31,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/【扫盲】关于每回合的天气变化 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,16DEA4B04146B30F304E5EE489F8012CB33567035BBA7D644CEA57D0C3A6449F,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/〖各种研究成果〗 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,1B77FAD94FFD970725DD4F29204C287923DB269B0732DC5F5885028AFFFA5649,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/〖各种研究成果〗2 - 曹操传MOD制作交流 - 轩辕春秋文化论坛(2).htm,,,general,external-source,excluded,50A7785D20744C6BE7F474D7534C18D567B94D4558190C668C2969CA7DC9D071,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/修正移动下降不能显示 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,4314892B7D3B11DF466C67EC5D678ECE4CE51DCE8443E55C2585F933BF554120,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/全策略效果代码分析 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,42B592D8C6C80601AAEC479C869D42CA265AF6346E0E8F639B9CFAC65A8D8A71,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/关于在战场中使用75特殊形象指定后实时改变形象的代码 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,E155C970B45ED0FB46EFB005E7D04826C974AB17017A823B30F4BF6CF7437FAB,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/四类策略可使用的地形修改，可恢复地形的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,1A051E16CBBDBF46DDC26D5C342294EA5F5057460C9F18984D3450081C2C6C1A,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/在武将资料对话框中增加显示项 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,E522320B2E67C90111A5FBBE690C212516329F910697754308C3E76983767F1D,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/增加兵种相克 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,87680EF089510E860B9D93147767BD2B8D0389D8D1831E209105B9EC2F193E9C,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/如何使用Ollydbg修改曹操传引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,B1C8460D0427A206CC92F3DD4F3959C8F69F89141B66B2702D0ADE378638021A,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/存档数量的扩展 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,01505D1C074BF8432F8E9591594C52A149D8CC944F33AEC33123C144D295DCF8,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/宝物特效效果值按等级提升的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,A42280B045A0065D3CCBFE9A289F0B363746122E65D0FF43FB559B4F7BA9653A,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/对话内容部分颜色化 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,7CDA2FBEEBDC6B751FF232886CC93F72AD359950129763F4DA483B9324A7E257,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/弄些色色的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,783550A04F3EE4A88A37BE930EA8B74AAE536431C0819D07E3BE56A868747A19,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/扩展引擎中的对话框 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,6AA2D83147F2BF541B6EA0F20B5828EF477BAC6212CA798711D766EDDDAB0C56,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/整型及指针变量实例 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,6718CAE63DB3A93F0CEB46353B61633BEC380DA9C6B785177812E6725D4163F2,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/整型变量的另一种用途 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,AEDC838F1342BE600060330DF2A336FC5981606569EEC7EEA1D3A219E3D45269,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/新引擎 71特效请求 指令的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,2C9EDD4D0A18760D8F16B1C411DC1666EFE22094D0F482561136D52C5A7B3E68,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/每回合自动提升的宝物特效 + 可以恢复MP的地型 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,ED42426A6878836068397AC71AD47978576EF8DBFA13E6198B0C5A78F921CE85,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/章节的扩展 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,3C9B1F6DD9F701D4D071B7D43CC6E785FA362BE665594B37844D0F279DE9C61D,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/结局显示制作人员 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,B3BB2D26334C37755EFA9D79FD33229BEDA2E765853EE3F77EB4DE3E5E14A41E,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/致命一击的改良 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,735C0655772EE61C1A87EDCB5FA22EBDA9ED22D2A4490E8A016585D29C2C90E5,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/让引擎从普通小头像转成支持真彩半身头像 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,9E69A79109129FD229B9DAA1EF1E2B6A7174EB811882461558D99539F0494910,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/部分剧本指令修正及改造 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,72E5C53A54A52198DF80A2D1254C34D477A3B6220C5BB71866E4F067AA4F3F12,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype/部分旧引擎修改资料整理 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,D26850D2C821337A486BBB2340115F1A4BE811AB13F24B4ABF53BB1476EB809A,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/godtype的最终引擎.doc,,,general,external-source,excluded,CBEF84DCFA8FFA2BC6F2D5E0A2D5564720F0E14AFD7DE742C8B34A04D2F057E9,doc,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/5.8修正版 重要更新 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,39FB90C117B7086081CC2E867AD155DFCA6BC3C6144C0AB007C88B7BCA11F7BD,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/5.9 正式版特别更新 修正头像变化的bug - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,AB47973B44E737FBDB76DE51DC4FC9596C828C7D78E6CB8DCB8CBFC321B8CE41,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/Star175引擎比较特殊的整形变量和剧本指令.doc,,,general,external-source,excluded,5D3064A44BDA3EEE7BAFB7941869C7604B797546D8AFDF69140D001319D8409C,doc,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/star5.6及旧版引擎.doc,,,general,external-source,excluded,C5A37FF9473D1B7416AD9F49C45F1198D4095CE830BFC29591208ADD60596436,doc,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/star5.7&5.8.doc,,,general,external-source,excluded,59C53FB6C6B57FF66B7BDD92449C5916C47B14CAC78AB469A246E7E6792D29DA,doc,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/star5.9.doc,,,general,external-source,excluded,F5D5E78C85BF5BA8C67814748359687274713C53356C5C806897968C464C4596,doc,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/star6.0.doc,,,general,external-source,excluded,CD9B651BB88360CBD05594DC1F2E8385ECF6B1FF405EEE5F8092C4E7F1AADBF1,doc,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/star6.1.docx,,,general,external-source,excluded,E8EA089761C59B42350ADD78C3958177E43B7B780184A8A66100F86DA6540153,docx,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/发一个EXE - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,387BD289C105368ACBC7A9B8B0D8C73AC041DC629A58C65046548407C9DA8982,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/发布6.0正式版 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,B87CE454EEE3055D815AF410DAEDA8F933EF22DF4D2E2A04E4D4A6A9AEFE3547,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/指定辅助装备可以由哪些兵种装备的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,2F522BC271F5B81710280D7272383D4CDBA0804E9D825D851083D4C73BA729D7,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175/音效放入文件夹 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,189729E46CD7A0066E8FC2E024F07B0E0618E110AD4DC191E803045378A83453,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/star175.rar,,,general,external-source,excluded,6CEE69F16E7A752FAC4F613F6D943496CB467C662772A2D941C5C4A1BAAC5555,rar,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/各种兵种与宝物特效（不断更新中） - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,45E801B0E7C09721E5D4B34F08ECA96900008E8EA3D33A26222A820DBC6BBAF0,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/各种兵种与宝物特效（不断更新中）2 - 曹操传MOD制作交流 - 轩辕春秋文化论坛(2).htm,,,general,external-source,excluded,A10303736DF494887484AE648FE215354D3896C8805B6802935508D467BF4688,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/幽人教程.txt,,,general,external-source,excluded,A95F168B440325632BDCE0375DAFC48D6EC70A1B9BEF8F6B55C3E06FE16FD664,txt,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/曹操传EXE修改详解 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,7B6D3ADD9C974C7585D70329D10CBC81C4C25B3E08BF219B59E6E150D8AE8AE8,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/曹操传exe部分函数功能 - 设计与修改 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,900EC61FA4256A0B293C22E854664F7F0C7FC440C2F8A5DA8A1C2492BAECC1AF,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/月半教程.txt,,,general,external-source,excluded,E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855,txt,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/用star175 5.6版exe做自己的曹操传MOD - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,466839C810B3B25AD3E849C47AE029DB3D0D80F5D416B12987B3D3BED1C9E18A,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/解读KOEI曹操传代码 - 设计与修改 - 轩辕春秋文化论坛.htm,,,general,external-source,excluded,AED4107EDF2676DE65BD10ADCB783FD6F44E6AE02BDAE9750C9295DF17B582DD,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/解读KOEI曹操传代码2- 设计与修改 - 轩辕春秋文化论坛(2).htm,,,general,external-source,excluded,D8A14AB83C20CEF1B5D3710DFE58238382A9D04279885F875BE2623B292B8396,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/解读KOEI曹操传代码3 - 设计与修改 - 轩辕春秋文化论坛(2).htm,,,general,external-source,excluded,CDD1AB01719972BC2942C96E1E0C75DDF2F6ABCEE40F56603D82928C4CD25428,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作区帖子备份/解读KOEI曹操传代码4 - 设计与修改 - 轩辕春秋文化论坛(2).htm,,,general,external-source,excluded,4DA7E293C56957DAB38769E7477DB148DC858383C5C3F116E11BA0A425B474D1,htm,论坛原始归档和抽取草稿只保留来源索引，不作为公开正文
+工具整合包/本地知识库/制作提示词模板.md,00-共性知识/资料与模板/制作提示词模板.md,shared,general,local-or-test-evidence,canonical,98234ABA354CF06E23E804807F7356A7A6E38DBB6C94555ECD6B9BCA576C4A3A,md,
+特效整理/6.5/【6.5】信息传送29 根据兵种指定特殊S.txt,6.5/03-机制与特效/【6.5】信息传送29 根据兵种指定特殊S.txt,6.5,mechanics-effects,source-reviewed,canonical,AD46F22EE9B5A78D95944CF3D2B0C461ABC9D2E4D51396FF5DBD630A1B774D40,txt,
+特效整理/6.5/【6.5】噬心毒咒（注入版）.txt,6.5/03-机制与特效/【6.5】噬心毒咒（注入版）.txt,6.5,mechanics-effects,source-reviewed,canonical,4F0DC68ED4B7E7E64B6277B65F95B1FD3D61088974AE6AECEF63C699D41E5742,txt,
+特效整理/6.5/【6.5】回mp攻击(注入版) (1).txt,6.5/03-机制与特效/【6.5】回mp攻击(注入版) (1).txt,6.5,mechanics-effects,source-reviewed,canonical,05BB487746B868CDDD33DC3E03F51F84D0A36953C61391C8065D8B4B9E4B59C4,txt,
+特效整理/6.5/【6.5】回mp攻击(注入版).txt,6.5/03-机制与特效/【6.5】回mp攻击(注入版).txt,6.5,mechanics-effects,source-reviewed,canonical,644D69B2C890A7D79434F265324BFA69758678AB80A01D9D4540DB157F19425A,txt,
+特效整理/6.5/【6.5】多多益善（注入版）.txt,6.5/03-机制与特效/【6.5】多多益善（注入版）.txt,6.5,mechanics-effects,source-reviewed,canonical,522E447CB62B1BA94F87CDAD2750FB08E7761ED17C65F8ACCD8DD6CDE1BE2C60,txt,
+特效整理/6.5/【6.5】大杀四方（注入版）.txt,6.5/03-机制与特效/【6.5】大杀四方（注入版）.txt,6.5,mechanics-effects,source-reviewed,canonical,478799394413AA17DDE7451FBBC893D9E9BFFE48A86D310322189A755322E92B,txt,
+特效整理/6.5/【6.5】护卫-最终版.txt,6.5/03-机制与特效/【6.5】护卫-最终版.txt,6.5,mechanics-effects,source-reviewed,canonical,660A57555195FAC3F5A979A1CAC8AE19C21B78C26455D4DB45D83A16A7CED43D,txt,
+特效整理/6.5/【6.5】敌潮逆噬（注入版）.txt,6.5/03-机制与特效/【6.5】敌潮逆噬（注入版）.txt,6.5,mechanics-effects,source-reviewed,canonical,EAAF8A5A90A1E4184B5B21D26AFBF99F0172208430352C07018C856925DA8BF6,txt,
+特效整理/6.5/【6.5】殭屍大法（注入版）.txt,6.5/03-机制与特效/【6.5】殭屍大法（注入版）.txt,6.5,mechanics-effects,source-reviewed,canonical,A3D25E65EF128DACAC88EF86E7C052A3094C24B7DAA2D51DE297A66643F71BCE,txt,
+特效整理/6.5/【6.5】盛气凌人（注入版）.txt,6.5/03-机制与特效/【6.5】盛气凌人（注入版）.txt,6.5,mechanics-effects,source-reviewed,canonical,079985821A38C49ABA263B63FE564455DD75A532B9BDC594EBEB75406D985856,txt,
+特效整理/6.5/【6.5】策略偷钱（注入版）.txt,6.5/03-机制与特效/【6.5】策略偷钱（注入版）.txt,6.5,mechanics-effects,source-reviewed,canonical,FE792C5F7221C66522BC1B269E29F00DFFA74937BE598284D2C9DFA29C813D48,txt,
+特效整理/6.5/【6.5】策略冲锋（注入版）.txt,6.5/03-机制与特效/【6.5】策略冲锋（注入版）.txt,6.5,mechanics-effects,source-reviewed,canonical,C3E2A56121C5D20D8CEEAAB449F96F10D87B05B59542C0DA49228DD7C2E00B27,txt,
+特效整理/6.5/【6.5】聚势伐谋（注入版）.txt,6.5/03-机制与特效/【6.5】聚势伐谋（注入版）.txt,6.5,mechanics-effects,source-reviewed,canonical,9C5FA598A081B660F0F6B76122F9CE4F5D6DED13665CC6E3DB7F3CEF71CD54D8,txt,
+特效整理/6.5/【Star6.5】强化攻击穿透.txt,6.5/03-机制与特效/【Star6.5】强化攻击穿透.txt,6.5,mechanics-effects,source-reviewed,canonical,944145DCF39004BEC9B04C0A3944579F0983CAC5E39AF61B295E15E28D36A5F5,txt,
+特效整理/6.5/【star6.5】整形4003控制保底伤害.txt,6.5/03-机制与特效/【star6.5】整形4003控制保底伤害.txt,6.5,mechanics-effects,source-reviewed,canonical,35BB81E41E56889796DCC39EF0742DC91B3428B40EBBCA52BBA3929C81CFD8A6,txt,
+特效整理/6.5/【star6.5】无视策略减伤（修复版）.txt,6.5/03-机制与特效/【star6.5】无视策略减伤（修复版）.txt,6.5,mechanics-effects,source-reviewed,canonical,FFB3FA02479237E8C681E452443CBCEA4419FB6BC1F0C8F051D3D2B4FCCEB393,txt,
+特效整理/6.5/【star6.5】策略保底&策略限伤.txt,6.5/03-机制与特效/【star6.5】策略保底&策略限伤.txt,6.5,mechanics-effects,source-reviewed,canonical,683AB442C6F7D00F0D73B9C92A9B1C3CDFF07C49C12F76779C7B133FB29EB9C4,txt,
+特效整理/6.6/6.6x功勋吃果双开.txt,6.6/03-机制与特效/6.6x功勋吃果双开.txt,6.6,mechanics-effects,source-reviewed,canonical,F0D78E4903F331E47D3F6C57413A16897835F145CD65B5BAA6A5316F48A244ED,txt,
+特效整理/6.6/6.6修改装备自动升级后价格.txt,6.6/03-机制与特效/6.6修改装备自动升级后价格.txt,6.6,mechanics-effects,source-reviewed,canonical,77EF823F073EC2FEA2A51B1F679E1CC9EC966A12CA54A437C5F52A9F24025B33,txt,
+特效整理/6.6/6.6修改記錄整理.txt,6.6/03-机制与特效/6.6修改記錄整理.txt,6.6,mechanics-effects,source-reviewed,canonical,94BCF0B2A159C68A87CD7CB9977BFBFC8B96D2AEC06E77B4C0042B0E40E8F0BE,txt,
+特效整理/6.6/6.6冥想回蓝百分比（注入版）.txt,6.6/03-机制与特效/6.6冥想回蓝百分比（注入版）.txt,6.6,mechanics-effects,source-reviewed,canonical,B287B3983D00563CA4C1591D75BD41B0BD042DB732EF2A3822283F0318C328E7,txt,
+特效整理/6.6/6.6骑马步兵攻击防御偷袭共5特技.txt,6.6/03-机制与特效/6.6骑马步兵攻击防御偷袭共5特技.txt,6.6,mechanics-effects,source-reviewed,canonical,1570E48E744C592064BAD03F9FA68E977B29EB3525431D8C07CD0E611C93AFB3,txt,
+特效整理/6.6/【6.6x KF】BUG修复.txt,6.6/03-机制与特效/【6.6x KF】BUG修复.txt,6.6,mechanics-effects,source-reviewed,canonical,1E8A1431BC5FAC0D79608AE57B71A3D80584566B1303233E5CB44F4F7B4CAB72,txt,
+特效整理/6.6/【6.6x KF】修改档位.txt,6.6/03-机制与特效/【6.6x KF】修改档位.txt,6.6,mechanics-effects,source-reviewed,canonical,C1E8F0086100DBABB7B2480E96F88A7EF19E9EC9440D45ECEBFB7FA2E3B712C0,txt,
+特效整理/6.6/【6.6x KF】修正杀敌加成卡死.txt,6.6/03-机制与特效/【6.6x KF】修正杀敌加成卡死.txt,6.6,mechanics-effects,source-reviewed,canonical,FF55CF3DF5948AC68DE604BB3CD20D7C4F9FE35561959D6662CF9D76EB6B24E2,txt,
+特效整理/6.6/【6.6xKF】保底全伤害调整LV+N.txt,6.6/03-机制与特效/【6.6xKF】保底全伤害调整LV+N.txt,6.6,mechanics-effects,source-reviewed,canonical,6F2C3A4FE26313E05007C26F2FBCB73C13085616C1F5D4393504FC9B2A9F91B5,txt,
+特效整理/6.6/【6.6xKF】修复回复周围HP无效.txt,6.6/03-机制与特效/【6.6xKF】修复回复周围HP无效.txt,6.6,mechanics-effects,source-reviewed,canonical,0AB441F1F3FF498DD0CC14FBDC2E9696A7CB8795AEAADE6317479D845B1C4805,txt,
+特效整理/6.6/【6.6xKF】攻击-策略-ALL后缀.txt,6.6/03-机制与特效/【6.6xKF】攻击-策略-ALL后缀.txt,6.6,mechanics-effects,source-reviewed,canonical,5BF6FBD7521DE32FD5F45E547339CE9148DA85B1C1AB1BA554EA5D2C89776813,txt,
+特效整理/6.6/【6.6x】护卫-最终版.txt,6.6/03-机制与特效/【6.6x】护卫-最终版.txt,6.6,mechanics-effects,source-reviewed,canonical,CC7AE905CA99D6204FACFD86103D3C21BCC079441D57385D795AFEC28D02C1A9,txt,
+特效整理/6.6/【6.6x】致死不触发转移伤害.txt,6.6/03-机制与特效/【6.6x】致死不触发转移伤害.txt,6.6,mechanics-effects,source-reviewed,canonical,9B58EDCDD587B0C35F4A10D3E7A3A763418013D49093FCB1390BB92649422A11,txt,
+特效整理/6.6/【star6.6x】化力为疗+夺锐攻击.txt,6.6/03-机制与特效/【star6.6x】化力为疗+夺锐攻击.txt,6.6,mechanics-effects,source-reviewed,canonical,4F707052F8701D2EBEFDC7DA151424838E2C1FF6120F94D2A66934ECAF9825B8,txt,
+特效整理/6.6/【star6.6x】增减移动力新写法（含地址）.txt,6.6/03-机制与特效/【star6.6x】增减移动力新写法（含地址）.txt,6.6,mechanics-effects,source-reviewed,canonical,280CAE59ED9FEC8E0D5DD8E85A6BC47FBE3A917E629C9E04FDD550F011D95361,txt,
+特效整理/6.6/【star6.6x】宝物图鉴大小调整.txt,6.6/03-机制与特效/【star6.6x】宝物图鉴大小调整.txt,6.6,mechanics-effects,source-reviewed,canonical,BBBE88EC47532F52DEE008A656AAEDFAB3366D12909B4BDDB293916C87E67CC7,txt,
+特效整理/6.6/【star6.6x】拆分四系增伤，无视策略减伤.txt,6.6/03-机制与特效/【star6.6x】拆分四系增伤，无视策略减伤.txt,6.6,mechanics-effects,source-reviewed,canonical,B1A36419435C0428E6D8540A4D0C8756B328EC16F80C510F64CEACF62AAA7214,txt,
+特效整理/6.6/【star6.6x】暴击伤害增幅 K%.txt,6.6/03-机制与特效/【star6.6x】暴击伤害增幅 K%.txt,6.6,mechanics-effects,source-reviewed,canonical,4C31B36A8B144E410CA519B583A9F675AACE5D0B3FA239284756611D86B46C6E,txt,
+特效整理/6.6/【star6.6x】武器精通.txt,6.6/03-机制与特效/【star6.6x】武器精通.txt,6.6,mechanics-effects,source-reviewed,canonical,6790D659A372F50A0EABAA1DD3095AD2A3F9E8D247A0F70D9C85C303206F1660,txt,
+特效整理/6.6/【star6.6x】治疗效果特技（包含负面特技）.txt,6.6/03-机制与特效/【star6.6x】治疗效果特技（包含负面特技）.txt,6.6,mechanics-effects,source-reviewed,canonical,21AD659B2C96A0F1B353E3E8C24AA3ADA3ADC29549EF5B14ECE9C81C56227A1A,txt,
+特效整理/6.6/【star6.6x】物理免疫.txt,6.6/03-机制与特效/【star6.6x】物理免疫.txt,6.6,mechanics-effects,source-reviewed,canonical,A7EBE803C76B0E4A1556F0CF5338E3B6C8BD4B83E4A8F9BEB0B126AFF1E0545D,txt,
+特效整理/6.6/【star6.6x】破坏MP攻击.txt,6.6/03-机制与特效/【star6.6x】破坏MP攻击.txt,6.6,mechanics-effects,source-reviewed,canonical,0F09830BCA6BBDBA480653732BE90B05EE595C28B6FA9D066FAA837071BCCCA6,txt,
+特效整理/6.6/【star6.6x】穿透攻击特技化.txt,6.6/03-机制与特效/【star6.6x】穿透攻击特技化.txt,6.6,mechanics-effects,source-reviewed,canonical,94774D2700EFE2C2C9487702DE0503C605DD02FEBB2352561E31B33166D89045,txt,
+特效整理/6.6/【star6.6x】策略破坏能力.txt,6.6/03-机制与特效/【star6.6x】策略破坏能力.txt,6.6,mechanics-effects,source-reviewed,canonical,737AE174B9BB03F5FFF0922E3BEFE7F3E01290B5DCA93B7518408A3F8BA29816,txt,
+特效整理/6.6/【star6.6x】能力6档+强化成长.txt,6.6/03-机制与特效/【star6.6x】能力6档+强化成长.txt,6.6,mechanics-effects,source-reviewed,canonical,CC4EC93E3812B3309FAD7E618CD3C56AAFD03BA3E2066FDA7C919ECAE5580C13,txt,
+特效整理/6.6/【Star6.6x】调整强化穿透攻击.txt,6.6/03-机制与特效/【Star6.6x】调整强化穿透攻击.txt,6.6,mechanics-effects,source-reviewed,canonical,3E3A9E7A8F5EF551021B037786C79C7EF7779B5ED6DC8DBB3D9E1F2DF3627B27,txt,
+特效整理/6.6/【star6.6x】辅助真伤.txt,6.6/03-机制与特效/【star6.6x】辅助真伤.txt,6.6,mechanics-effects,source-reviewed,canonical,3228FDB5568DAFF35AADD1F8C6238E6201A15D5DA33A8DE0D5C4C9EF383AC1E8,txt,
+特效整理/6.6/【star6.6x】远距攻击特技化.txt,6.6/03-机制与特效/【star6.6x】远距攻击特技化.txt,6.6,mechanics-effects,source-reviewed,canonical,D1F2448ECB2A254A954F5625B764CA6A2C26780EF9FC105AB7D2802D74584E70,txt,
+特效整理/6.6/【star6.6x】连击率特效（包含负面特技）.txt,6.6/03-机制与特效/【star6.6x】连击率特效（包含负面特技）.txt,6.6,mechanics-effects,source-reviewed,canonical,7B6A6D42FBEE5FC5EA0E3ECC96DBB15525F7E5A9905F9D5CE14F8B16F789D594,txt,
+特效整理/6.6/【star6.6x】连击，反击相关特技.txt,6.6/03-机制与特效/【star6.6x】连击，反击相关特技.txt,6.6,mechanics-effects,source-reviewed,canonical,6AB95C39726542D88675AC13F1E83EEF42FF81FA021944BF534AF9B0C76730D2,txt,
+特效整理/6.6/【star6.6x】逆境减伤.txt,6.6/03-机制与特效/【star6.6x】逆境减伤.txt,6.6,mechanics-effects,source-reviewed,canonical,CD29289F6F864F7E3FDCBCBD097AFDCE3ED13CD78A50A8767E6F3A628B9B97EC,txt,
+特效整理/6.6/【Star6.6x】附加特技到回合必定失效.txt,6.6/03-机制与特效/【Star6.6x】附加特技到回合必定失效.txt,6.6,mechanics-effects,source-reviewed,canonical,A69226912C1D16760DE0E842297233A08E59454AD73B3050070D7F431A01781E,txt,
+特效整理/6.6/【star6.6】bug修正.txt,6.6/03-机制与特效/【star6.6】bug修正.txt,6.6,mechanics-effects,source-reviewed,canonical,976E27F832651E1427431B4AC0809C46BB60FFC1DD65A00F4C72F34EE2D8C90B,txt,
+特效整理/6.6/【star6.6】无视策略减伤.txt,6.6/03-机制与特效/【star6.6】无视策略减伤.txt,6.6,mechanics-effects,source-reviewed,canonical,7B6FED386FB1F4BC5A6EAFD3C4627217C0CE19522E3EC1364F912C02F703A7A5,txt,
+特效整理/6.6/【star6.6】策略保底&策略限伤.txt,6.6/03-机制与特效/【star6.6】策略保底&策略限伤.txt,6.6,mechanics-effects,source-reviewed,canonical,89ACF1C15B1EA999085769B110F4AD13FCC3CBA515BF83A0B0A50990282398AE,txt,

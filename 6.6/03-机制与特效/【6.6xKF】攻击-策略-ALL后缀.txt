@@ -1,0 +1,34 @@
+﻿<!-- generated-kb-entry -->
+<!-- source: 特效整理/6.6/【6.6xKF】攻击-策略-ALL后缀.txt -->
+<!-- version: 6.6 -->
+<!-- topic: mechanics-effects -->
+<!-- status: canonical -->
+<!-- evidence: source-reviewed -->
+
+.1.0.6.6
+o
+
+#只适用6.6xKF-241特技引擎，增加【致命一击】【众矢之的】【逆境减伤】特效值显示后缀（1=攻击 2=策略 3=ALL）
+
+-428351
+3C 0F 73 2A 3C 0D 75 0B FE C9 8D 8C 89 70 C4 48 00 EB 68 3C 0C 75 0A 3E 8D 0C CD B0 AE 41 00 EB
+5A 3C 0E 75 0B 8D 8C 89 CB AF 41 00 EB 4D
+
+u
+
+-1a3d0
+B9 A5 BB F7 00 B2 DF C2 D4 00 41 4C 4C 00
+
+-9eb3f
+0F
+
+-9ed3f
+0F
+
+-9f32f
+0F
+
+## 版本与证据边界
+
+- 本条目由发布整理流程归档。
+- 具体结论必须结合上方版本、状态和证据等级使用。
