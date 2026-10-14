@@ -65,66 +65,30 @@
     },
     {
       "id": "format.eex.probed-header",
-      "title": "EEX 资源/剧本封包头",
+      "title": "EEX 文件识别魔数",
       "versions": [
         "6.5",
         "6.6"
       ],
-      "status": "partial",
+      "status": "canonical",
       "evidence": "source-reviewed",
       "magic": {
         "offset": "0x00",
         "bytes": "45 45 58 00",
         "text": "EEX\\0"
       },
-      "endianness": "little for probed header fields",
+      "endianness": "not applicable to the verified magic",
       "headerFields": [
         {
-          "name": "version",
-          "offset": "0x4",
-          "width": 2,
-          "type": "uint16le",
-          "meaning": "疑似版本"
-        },
-        {
-          "name": "entry_count",
-          "offset": "0xA",
+          "name": "magic",
+          "offset": "0x0",
           "width": 4,
-          "type": "uint32le",
-          "meaning": "疑似条目数"
-        },
-        {
-          "name": "unknown_0e",
-          "offset": "0xE",
-          "width": 4,
-          "type": "uint32le",
-          "meaning": "待验证"
-        },
-        {
-          "name": "unknown_12",
-          "offset": "0x12",
-          "width": 4,
-          "type": "uint32le",
-          "meaning": "待验证"
-        },
-        {
-          "name": "unknown_16",
-          "offset": "0x16",
-          "width": 4,
-          "type": "uint32le",
-          "meaning": "待验证"
-        },
-        {
-          "name": "unknown_1a",
-          "offset": "0x1A",
-          "width": 4,
-          "type": "uint32le",
-          "meaning": "待验证"
+          "type": "bytes",
+          "meaning": "固定字节 45 45 58 00，即 ASCII EEX\\0"
         }
       ],
       "semantics": [
-        "可扫描 GBK NUL 结尾文本作为只读定位线索",
-        "0x0E 之后字段尚不能作为稳定写回规则"
+        "offset 0x00 的四字节魔数用于识别 EEX 文件"
       ],
       "sourceRefs": [
         "src.ccz.eex-reader"

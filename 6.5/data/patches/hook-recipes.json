@@ -152,43 +152,6 @@
       "sourceRefs": [
         "src.ccz.range-profile"
       ]
-    },
-    {
-      "id": "patch.65.physical-recovery-hook",
-      "title": "物理攻击回复/回 MP 注入入口",
-      "versions": [
-        "6.5"
-      ],
-      "profile": "profile.ccz65.unencrypted.f9a",
-      "status": "partial",
-      "evidence": "static-verified",
-      "kind": "hook",
-      "sites": [
-        {
-          "address": {
-            "kind": "va",
-            "value": "0x00418335",
-            "profile": "profile.ccz65.unencrypted.f9a",
-            "evidence": "static-verified"
-          },
-          "expectedBytes": null,
-          "overwriteLength": null,
-          "instructionBoundary": false
-        }
-      ],
-      "abi": "待从具体注入实现补齐寄存器、flags 和栈契约",
-      "stub": {
-        "entry": "injected recovery body",
-        "legacyBody": "0x004528FC..0x004529A6",
-        "return": null,
-        "relocations": []
-      },
-      "relations": [
-        "global.65.physical-context"
-      ],
-      "sourceRefs": [
-        "src.ccz.runtime-registry"
-      ]
     }
   ]
 }

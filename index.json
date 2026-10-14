@@ -2,11 +2,11 @@
   "schemaVersion": 2,
   "canonicalAuthority": "structured-json",
   "generatedBy": "tools/build_index.py",
-  "entityCount": 122,
+  "entityCount": 121,
   "canonicalFiles": [
     {
       "path": "6.5/data/file-formats/binary-formats.json",
-      "sha256": "1040A1A964EA8E30BE45EEC63A6DAE378B9C9674669956391261843AF321D166"
+      "sha256": "F81A621B8E57E2BF316694C47FBCFCD47B9A8F47C6F17082A04B003CADE69AFB"
     },
     {
       "path": "6.5/data/functions/runtime-functions.json",
@@ -22,7 +22,7 @@
     },
     {
       "path": "6.5/data/patches/hook-recipes.json",
-      "sha256": "E0212BCC199E3AE5C6FD1B2D4D2F73B1A22C31A8CDF0C740F9046262ECC88B85"
+      "sha256": "5D5E054C00D0DBB84A42CA2B02F1B569AA3D6DE9BDC5C6E34F1E427E2CE0DB96"
     },
     {
       "path": "6.5/data/profiles/engine-profiles.json",
@@ -1187,18 +1187,18 @@
     {
       "id": "format.eex.probed-header",
       "entityType": "file-format",
-      "title": "EEX 资源/剧本封包头",
+      "title": "EEX 文件识别魔数",
       "versions": [
         "6.5",
         "6.6"
       ],
       "profile": null,
-      "status": "partial",
+      "status": "canonical",
       "evidence": "source-reviewed",
       "address": null,
       "searchTerms": [
         "format.eex.probed-header",
-        "EEX 资源/剧本封包头"
+        "EEX 文件识别魔数"
       ],
       "canonicalDataPath": "6.5/data/file-formats/binary-formats.json",
       "referencePath": "6.5/reference/file-formats.md",
@@ -2823,33 +2823,6 @@
       "referencePath": "6.5/reference/patches.md",
       "sourceRefs": [
         "src.ccz.range-profile"
-      ]
-    },
-    {
-      "id": "patch.65.physical-recovery-hook",
-      "entityType": "patch-recipe",
-      "title": "物理攻击回复/回 MP 注入入口",
-      "versions": [
-        "6.5"
-      ],
-      "profile": "profile.ccz65.unencrypted.f9a",
-      "status": "partial",
-      "evidence": "static-verified",
-      "address": {
-        "kind": "va",
-        "value": "0x00418335",
-        "profile": "profile.ccz65.unencrypted.f9a",
-        "evidence": "static-verified"
-      },
-      "searchTerms": [
-        "patch.65.physical-recovery-hook",
-        "物理攻击回复/回 MP 注入入口",
-        "0x00418335"
-      ],
-      "canonicalDataPath": "6.5/data/patches/hook-recipes.json",
-      "referencePath": "6.5/reference/patches.md",
-      "sourceRefs": [
-        "src.ccz.runtime-registry"
       ]
     },
     {

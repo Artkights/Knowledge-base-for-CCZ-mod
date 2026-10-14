@@ -67,19 +67,3 @@ ABI: center coordinate; pierce/effect code; output buffer; filter/fallback
 返回: `preserve original callee contract`
 
 重定位: 无
-
-## 物理攻击回复/回 MP 注入入口
-
-ID: `patch.65.physical-recovery-hook`；类型: `hook`；画像: `profile.ccz65.unencrypted.f9a`
-
-| 地址 | 原字节 | 目标字节 | 写入方式 | 长度 | 完整指令边界 |
-|---|---|---|---|---:|---|
-| `0x00418335` (va) | `None` | `-` | - | - | False |
-
-ABI: 待从具体注入实现补齐寄存器、flags 和栈契约
-
-桩入口: `injected recovery body`
-
-返回: `None`
-
-重定位: 无

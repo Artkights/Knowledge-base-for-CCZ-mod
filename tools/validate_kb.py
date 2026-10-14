@@ -219,6 +219,9 @@ def main() -> int:
         entity_type = document["entityType"]
         for item in document["entries"]:
             owner = item.get("id", path.name)
+            version_root = path.relative_to(ROOT).parts[0]
+            if version_root in {"6.5", "6.6"} and item.get("status") != "canonical":
+                error(errors, f"{owner} unresolved status must live under research/, not {version_root}/data")
             item_profile = item.get("profile")
             if entity_type != "engine-profile" and item_profile and item_profile not in profiles:
                 error(errors, f"{owner} references unknown profile {item_profile}")
