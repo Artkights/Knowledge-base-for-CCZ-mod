@@ -87,6 +87,22 @@
       "sha256": "B2E810F1B0389A63B6E132DD1A4FCA9C59B056F73CEE06FE76D523B96DA3C76C"
     },
     {
+      "id": "shared.00.07",
+      "path": "00-共性知识/07-源码级制作与安全写回规则.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "common-rules",
+      "title": "源码级制作与安全写回规则",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/CCZModStudio/Core/DifferentialWriteTransaction.cs"
+      ],
+      "related": [],
+      "sha256": "02815A8F359B47954817317FAB577EDE34818B5CC5F9CE69B2ADA7B184CBC170"
+    },
+    {
       "id": "shared.00.readme",
       "path": "00-共性知识/README.md",
       "version": [
@@ -98,7 +114,7 @@
       "evidenceLevel": "source-reviewed",
       "sourceRefs": [],
       "related": [],
-      "sha256": "C14DD1965E3B4CFA74279E8B7EF207804A6E1F1742634123B48852002A79629E"
+      "sha256": "DEF6C9AEC93F6F7711B18DB46A8BA63FA389175A3FEF4390D87AFF30FE6A55F3"
     },
     {
       "id": "shared.00.00",
@@ -258,7 +274,7 @@
         "工具整合包/本地知识库/09-版本与外部资料/6X版本差异与适配.md"
       ],
       "related": [],
-      "sha256": "C392DF838BFC7192DA093844A648A50BF7B8C81229ECC74E3306DA73519C1A7A"
+      "sha256": "6339C1BF421291465B4DA022E376C15123C070723C0DC0A8C571D19E522BC1FA"
     },
     {
       "id": "shared.00.90",
@@ -386,7 +402,7 @@
         "工具整合包/本地知识库/00-总览与规范/更新记录.md"
       ],
       "related": [],
-      "sha256": "E1CD6BDEE8E15D4B9E65F3B22180F9E276FF8B9D7144AA71ECC8BA67727B3469"
+      "sha256": "798A76F67204AB0377384BC60420C56A4E7F3FC5861C48E42063397982604100"
     },
     {
       "id": "shared.00.readme",
@@ -1584,7 +1600,7 @@
         "工具整合包/本地知识库/07-数据表与资源/地形编辑.md"
       ],
       "related": [],
-      "sha256": "775A9026F06B3291B2B0DD7EFD187739DA272A89B0692435553F8AD456D92C06"
+      "sha256": "888C40AFA6F7428E047DCB15CF856406BED727662A68B8E2A8E309FBB12BADA4"
     },
     {
       "id": "6.5.6.5.04",
@@ -2080,7 +2096,7 @@
         "工具整合包/本地知识库/06-项目与工具链/旧扳手源码专项-功勋引擎特效战场.md"
       ],
       "related": [],
-      "sha256": "7077AA14B4316AD467147A45575524C3B61AB0A9A57918A3E8F5C345A4DEDF94"
+      "sha256": "3555837B36DA0D3756A25F95233109BD998712FF31A4B8A5A11F7521FA41DCE4"
     },
     {
       "id": "6.5.6.5.06",
@@ -2096,7 +2112,7 @@
         "工具整合包/本地知识库/06-项目与工具链/旧扳手调试器源码对照.md"
       ],
       "related": [],
-      "sha256": "8BABB58871F950B42E220EA28163BB99D69DCA8C8206446AA325C5A3F5838E5D"
+      "sha256": "B3226AC63642A4D8CEB46ADCDAEAA70B443B493E334A7EB8F587D154A6A10FA8"
     },
     {
       "id": "6.5.6.5.06.agent",
@@ -2144,7 +2160,7 @@
         "工具整合包/本地知识库/06-项目与工具链/模型上下文协议接入.md"
       ],
       "related": [],
-      "sha256": "02E36ED5C7D7567E210CF488E5C2C0A1EFCBD657C42985594BA7C57B6711CE6C"
+      "sha256": "6687EED4B385F56E17A7501EE67A53653271E9E1B72CF9C873ED8261CE62196B"
     },
     {
       "id": "6.5.6.5.06",
@@ -3187,22 +3203,6 @@
       "sha256": "659427CD85436440AF138686CE14244710623E123F17DCABB116EBDEAC884ECC"
     },
     {
-      "id": "6.6.6.6.06.pl.6.6",
-      "path": "6.6/06-工具与验证/PL天气补丁迁移与复刻版6.6山贼实现方案.md",
-      "version": [
-        "6.6"
-      ],
-      "topic": "tools-validation",
-      "title": "PL 天气补丁迁移与复刻版 6.6 山贼实现方案",
-      "status": "canonical",
-      "evidenceLevel": "local-or-test-evidence",
-      "sourceRefs": [
-        "工具整合包/本地知识库/06-项目与工具链/PL天气补丁迁移与复刻版6.6山贼实现方案.md"
-      ],
-      "related": [],
-      "sha256": "F441D724FE7484CA112457CD19A8E2E05DE64909086BEB222C18499780ED5D32"
-    },
-    {
       "id": "6.6.6.6.06.star6.6.cmf",
       "path": "6.6/06-工具与验证/Star6.6引擎CMF人工地址清单.md",
       "version": [
@@ -3232,7 +3232,23 @@
         "工具整合包/本地知识库/09-版本与外部资料/复刻版6.6山贼基底身份与静态分析总览.md"
       ],
       "related": [],
-      "sha256": "9FE45E75B56DFDF36A4C10C964CF88840517786E77A1D86E0CE4DF22017E317E"
+      "sha256": "74747752F70F5959230D3DD43FD7EFC3A113399DC252C7845663D55DA729F817"
+    },
+    {
+      "id": "6.6.6.6.06.6.6",
+      "path": "6.6/06-工具与验证/小暗补丁6.6源码复用指南.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "tools-validation",
+      "title": "小暗补丁 6.6 源码复用指南",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "老版游戏制作工具/v0.7/小暗补丁6.6/源码/EngineLayout.cpp"
+      ],
+      "related": [],
+      "sha256": "06D1FAF33283CE50AE9545282DB584C028CD98EA7AC9A7633AE5B094ADC73B9C"
     },
     {
       "id": "6.6.6.6.06.6.6",
@@ -3248,7 +3264,7 @@
         "工具整合包/本地知识库/06-项目与工具链/曹操传6.6扳手适配与自动回归验证.md"
       ],
       "related": [],
-      "sha256": "214CC58DC591F985110659C579FA6954FEE737865BB7F124AFB9E65758A8D03D"
+      "sha256": "F0EB463F82894A73398D1FB9F430B231C95B3FD39E4DE15DC03A2683A676AEEB"
     },
     {
       "id": "6.6.6.6.90.readme",
@@ -3276,7 +3292,7 @@
       "evidenceLevel": "source-reviewed",
       "sourceRefs": [],
       "related": [],
-      "sha256": "B23AB6C0D53281538D93882F1C89C0A1409AD7BCE4CBDDFFDD054736BBE4FE61"
+      "sha256": "AEC2DBE03EE1061F4C6FACD7668309B861867E0439B2851ED9445ED36B0B5044"
     },
     {
       "id": "archive.90.corrections",
@@ -3290,7 +3306,7 @@
       "evidenceLevel": "source-reviewed",
       "sourceRefs": [],
       "related": [],
-      "sha256": "6D2000269FDD57F9E9F25A018BAC4F66B691D32F11195F1735128188110EC023"
+      "sha256": "A443D6C40E61AEB36241BE96C035C7908F6782FA7FFBCE4942156CEBFD866410"
     },
     {
       "id": "archive.90.excluded.sources",
@@ -3318,7 +3334,7 @@
       "evidenceLevel": "source-reviewed",
       "sourceRefs": [],
       "related": [],
-      "sha256": "C7A92FDC89675B53C9E1DA2828AD4CBC3C58BA18402BE9456A8EDB41EB4699EA"
+      "sha256": "5BE28C35818F151D65C569F1207162A8611072C231FA00185DBEBE4FBE8C20C7"
     },
     {
       "id": "shared.contributing",
@@ -3346,7 +3362,7 @@
       "evidenceLevel": "source-reviewed",
       "sourceRefs": [],
       "related": [],
-      "sha256": "E6112F14EEDD255C464C8904E1684229C0F0280F692244757B07F6962B5F4C10"
+      "sha256": "B9C586116624B69FCB038EDF97E532146471DF37EA1FDD048C41710B16D4DD22"
     },
     {
       "id": "shared.notice",

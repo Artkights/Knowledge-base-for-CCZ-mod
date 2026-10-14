@@ -3,8 +3,9 @@
 Read in this order:
 
 1. 00-共性知识/README.md
-2. Select one version: 6.5/README.md, 6.5pl/README.md, or 6.6/README.md
-3. Use index.json to find canonical topic entries
-4. Use 90-来源归档 only for evidence and provenance
+2. 00-共性知识/07-源码级制作与安全写回规则.md for source-derived patches or writes
+3. Select one version: 6.5/README.md, 6.5pl/README.md, or 6.6/README.md
+4. Use index.json to find canonical topic entries
+5. Use 90-来源归档/source-manifest.csv only for evidence and provenance
 
 Never apply an address, resource offset, table layout, or injection rule across versions without an explicit evidence entry.

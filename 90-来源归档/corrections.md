@@ -8,5 +8,9 @@
 | 8.14 特效屏蔽范围边界是 `0040F1E8` | 真实外层邻格边界为 `004253A9`；`0040F1E8` 是内部谓词循环 | `8.14-绝对反击Ekd5.exe` 静态调用链；只适用于对应 SHA 样本 |
 | `0047FD13` 是 no-return 入口 | 后续静态审阅已修正该误判 | 复刻版 6.6 山贼静态分析证据；其它样本需独立确认 |
 | 本机绝对路径可作为团队操作入口 | 公开正文只保留仓库相对路径或 `<LOCAL_PATH>` 占位符 | 发布前路径与敏感信息扫描 |
+| `工具整合包/PL天气补丁6.6` 可作为正式实现依据 | 该目录是未完成的独立迁移试验，已从正式入口降级为 `deprecated`，只保留来源追溯 | 用户确认、目录实现边界与指定 v0.7 源码复核；影响旧天气迁移页面 |
+| “小暗补丁 6.6 v0.7” 是天气补丁 | 指定源码实际是加速补丁：20 导出音频代理、虚拟时钟/IAT、引擎加速、配置及安装器；源码无天气/雨/雪/覆盖层逻辑 | `EngineLayout.cpp`、`Engine.cpp`、`GearNtKe.cpp`、`Proxy.cpp` 与测试；影响 6.6 工具指南 |
+| `ProjectVersionGuardService` 会按表版本或核心文件尺寸自动阻断保存 | 当前两个 `Ensure*ForWrite` 方法为空实现，只保留历史尺寸参考；`ProjectDetector` 的跨版本阻断文字也是诊断而非全路径强制门禁 | `ProjectVersionGuardService.cs`、`ProjectDetector.cs`；所有写入必须按具体服务复核 |
+| 严格事务、Python `direct_write` 与字段级 `DirectUnrestricted` 属于同一安全级别 | 三者保证不同：严格事务比较/复读/回滚；`direct_write` 顺序直写且不整体回滚；`DirectUnrestricted` 绕过多项证据门禁并标记 `UnverifiedDirect` | `process_memory.py`、`EffectWriteDecisionService.cs`、`DifferentialWriteTransaction.cs` |
 
 未能由当前版本样本、源码、复读、烟测或实机证据确认的冲突不会升级为正式规则。
