@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "entityType": "engine-profile",
+  "profile": null,
+  "entries": [
+    {
+      "id": "profile.ccz61.legacy",
+      "title": "曹操传 6.1 Python 扳手历史画像",
+      "versions": [
+        "6.1"
+      ],
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": null,
+      "layoutFamily": "classic-0x24",
+      "addressPolicy": "历史 Oracle；没有样本 SHA，不得直接移植到 6.5/6.6。",
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "profile.ccz62.legacy",
+      "title": "曹操传 6.2 Python 扳手历史画像",
+      "versions": [
+        "6.2"
+      ],
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": null,
+      "layoutFamily": "classic-0x24",
+      "addressPolicy": "历史 Oracle；没有样本 SHA，不得直接移植到 6.5/6.6。",
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "profile.ccz63.legacy",
+      "title": "曹操传 6.3 Python 扳手历史画像",
+      "versions": [
+        "6.3"
+      ],
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": null,
+      "layoutFamily": "classic-0x24",
+      "addressPolicy": "历史 Oracle；没有样本 SHA，不得直接移植到 6.5/6.6。",
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "profile.ccz63mp.legacy",
+      "title": "曹操传 6.3mp Python 扳手历史画像",
+      "versions": [
+        "6.3mp"
+      ],
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": null,
+      "layoutFamily": "classic-0x24",
+      "addressPolicy": "历史 Oracle；没有样本 SHA，不得直接移植到 6.5/6.6。",
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "profile.ccz64.legacy",
+      "title": "曹操传 6.4 Python 扳手历史画像",
+      "versions": [
+        "6.4"
+      ],
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": null,
+      "layoutFamily": "expanded-0x30",
+      "addressPolicy": "历史 Oracle；没有样本 SHA，不得直接移植到 6.5/6.6。",
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    }
+  ]
+}

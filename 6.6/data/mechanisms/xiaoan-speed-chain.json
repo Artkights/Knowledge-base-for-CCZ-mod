@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz66.xiaoan.fixture.25d",
+  "entries": [
+    {
+      "id": "mechanism.66.xiaoan.super-s",
+      "title": "小暗 S 超级加速等待链",
+      "aliases": [
+        "小暗 S 加速",
+        "Super S"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.66.xiaoan.wait-wrapper",
+          "role": "公共等待循环"
+        },
+        {
+          "order": 2,
+          "entity": "fn.66.xiaoan.native-stage",
+          "role": "检查原生阶段是否完成"
+        },
+        {
+          "order": 3,
+          "entity": "fn.66.xiaoan.message-pump",
+          "role": "未完成时处理窗口消息"
+        },
+        {
+          "order": 4,
+          "entity": "patch.66.xiaoan.wait-call",
+          "role": "仅对白名单调用者路由到 SuperYieldBridge"
+        },
+        {
+          "order": 5,
+          "entity": "patch.66.xiaoan.extended-display",
+          "role": "跳过扩展显示延迟"
+        }
+      ],
+      "safeReturnAddresses": [
+        "0x00401F6F",
+        "0x00401FAE",
+        "0x00403096",
+        "0x004030CC",
+        "0x0040D43F",
+        "0x0041DB77",
+        "0x00421A20",
+        "0x00423981",
+        "0x00423C63",
+        "0x004249F7",
+        "0x0042C537",
+        "0x0042C6BC",
+        "0x004371B1",
+        "0x0043721C",
+        "0x00453777",
+        "0x0045380B",
+        "0x004549DA"
+      ],
+      "callerSemantics": "列表是 CALL 返回地址（call-site+5），不是函数入口；R 专用等待调用者明确排除。",
+      "state": [
+        "global.66.xiaoan.native-super-busy",
+        "global.66.xiaoan.phase",
+        "global.66.xiaoan.speed"
+      ],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.engine",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "mechanism.66.xiaoan.phase-delay",
+      "title": "原生三阶段延迟计算",
+      "aliases": [
+        "阶段加速公式",
+        "StageDelay"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "global.66.xiaoan.phase",
+          "role": "读取 uint8 阶段索引；仅 0..2 有效"
+        },
+        {
+          "order": 2,
+          "entity": "global.66.xiaoan.phase-table",
+          "role": "读取 value = phaseTable[phase]"
+        },
+        {
+          "order": 3,
+          "entity": "global.66.xiaoan.phase-counter",
+          "role": "value<=50 时递增并按 50 回绕"
+        },
+        {
+          "order": 4,
+          "entity": "fn.66.xiaoan.sleep",
+          "role": "调用 Sleep(delay)"
+        },
+        {
+          "order": 5,
+          "entity": "fn.66.xiaoan.deadline-check",
+          "role": "speed 低字节为 0 时额外调用"
+        }
+      ],
+      "algorithm": [
+        "value > 50: delay = value - 50",
+        "value <= 50: counter = counter + 1; delay = (counter < value ? 1 : 0)",
+        "counter >= 50: counter = counter - 50",
+        "Sleep(delay); if ((speed & 0xFF) == 0) deadline(); return 1"
+      ],
+      "state": [
+        "global.66.xiaoan.phase",
+        "global.66.xiaoan.phase-table",
+        "global.66.xiaoan.phase-counter",
+        "global.66.xiaoan.speed"
+      ],
+      "sourceRefs": [
+        "src.xiaoan.engine"
+      ]
+    }
+  ]
+}

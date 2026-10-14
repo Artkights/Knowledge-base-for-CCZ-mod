@@ -1,24 +1,26 @@
-﻿# 曹操传 MOD 多版本知识库
+# 曹操传 MOD 引擎知识库
 
-这是面向团队协作和 AI 检索的曹操传 MOD 知识库。先选择版本，再阅读对应版本入口；来源归档只能用于追溯，不能直接当作写回规则。
+本仓库是一份面向人和机器的二进制技术知识库。结构化 JSON 是唯一事实来源；`reference/` Markdown 全部由工具生成。
 
-## 阅读顺序
+## 什么是有用内容
 
-1. 阅读 `00-共性知识/README.md`，理解证据等级和版本边界。
-2. 选择 `6.5/README.md`、`6.5pl/README.md` 或 `6.6/README.md`。
-3. 进入版本目录中的主题文档，优先使用 `status=canonical` 且证据等级为本地或测试证据的条目。
-4. 遇到冲突时查看 `90-来源归档/corrections.md` 和来源索引。
+能直接支持逆向、制作或自动化查询的内容：已绑定版本画像的 VA/RVA/文件偏移，函数 ABI 与参数，调用链，表基址、步长、字段偏移、编码、空值，文件头和目录项，以及包含旧字节、覆盖长度、桩入口、回跳和重定位的 Hook 配方。
 
-## 版本护栏
+## 什么是无用内容
 
-- `6.5` 是当前加强版 6.5 未加密基底的默认制作知识。
-- `6.5pl` 是独立分支，论坛线索和旧版推断不能当作 6.5 写入规则。
-- `6.6`、`6.6x` 具有独立的表布局、资源边界和特效口径，不能直接套用 6.5 地址。
-- `90-来源归档` 记录出处和排除理由，不是实现规则入口。
+仅介绍源码文件作用、构建/测试过程、发布历史、工具接入、治理约束、重复摘要，或没有样本画像和含义的裸地址。这类内容不进入正式知识树；旧条目的处置见 `sources/cleanup-report.json`。
 
-## 机器入口
+## 读取顺序
 
-- 简明读取路线：`llms.txt`
-- 条目索引：`index.json`
-- 来源清单：`90-来源归档/source-manifest.csv`
-- 贡献规范：`CONTRIBUTING.md`
+1. 选择 `6.5`、`6.5pl`、`6.6` 或 `legacy`。
+2. 读取该版本 `README.md`，再查根目录 `index.json`。
+3. 需要精确事实时读取条目的 `canonicalDataPath`；Markdown 只用于浏览。
+4. `research/` 不属于默认事实，不能直接用于写回。
+
+## 地址规则
+
+每个地址必须声明 `va`、`rva`、`fileOffset`、`pointerSlot` 或 `resolvedRuntimeAddress`。固定地址必须绑定 `profile`；同名函数在不同版本中不得合并。
+
+## 复现
+
+运行 `python tools/query_kb.py "0x004837C2" --version 6.5` 查询完整实体。更新数据后运行 `python tools/build_reference.py`、`python tools/build_index.py` 和 `python tools/validate_kb.py`；生成器在干净克隆中应产生零差异。

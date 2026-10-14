@@ -1,206 +1,309 @@
 from __future__ import annotations
 
 import hashlib
-import csv
 import json
 import re
+import subprocess
 import sys
-from collections import defaultdict
 from pathlib import Path
-from urllib.parse import unquote
 
 
 ROOT = Path(__file__).resolve().parent.parent
-ALLOWED_TOP = {"00-共性知识", "6.5", "6.5pl", "6.6", "90-来源归档", "tools"}
-ALLOWED_ROOT_FILES = {".gitattributes", ".gitignore", "README.md", "llms.txt", "CONTRIBUTING.md", "NOTICE.md", "index.json"}
-FORBIDDEN_EXTENSIONS = {".exe", ".dll", ".pdb", ".bin", ".obj", ".rar", ".zip", ".7z", ".doc", ".docx", ".xlsx", ".htm", ".html", ".log", ".tmp", ".bak"}
-FORBIDDEN_PARTS = {"bin", "obj", "publish", "release", "_buildcheck", ".git-checkout", "__pycache__"}
-SECTIONS = ["结论速览", "适用版本", "已确认事实", "实现/使用方法", "风险与边界", "证据来源", "待验证项"]
-SPECIAL_FILES = {"README.md", "CONTRIBUTING.md", "NOTICE.md", "05-知识条目模板.md", "llms.txt"}
+ALLOWED_TOP = {"6.5", "6.5pl", "6.6", "legacy", "research", "schema", "sources", "tools"}
+ALLOWED_ROOT = {".gitattributes", ".gitignore", "README.md", "llms.txt", "CONTRIBUTING.md", "NOTICE.md", "index.json"}
+FORBIDDEN_EXTENSIONS = {".exe", ".dll", ".pdb", ".bin", ".obj", ".rar", ".zip", ".7z", ".doc", ".docx", ".xls", ".xlsx", ".log", ".bak", ".tmp"}
+FORBIDDEN_PARTS = {"bin", "obj", "build", "publish", "release", "__pycache__"}
+ADDRESS_KINDS = {"va", "rva", "fileOffset", "pointerSlot", "resolvedRuntimeAddress"}
+ENTITY_TYPES = {"engine-profile", "function", "global", "data-structure", "file-format", "patch-recipe", "mechanism"}
+HEX_ADDRESS = re.compile(r"^0x[0-9A-Fa-f]{1,16}$")
+HEX_TOKEN = re.compile(r"^(?:[0-9A-Fa-f]{2}|\?\?)$")
 
 
-def read_bytes(path: Path) -> bytes:
-    return path.read_bytes()
-
-
-def read_text(path: Path) -> str:
-    data = read_bytes(path)
-    if data.startswith(b"\xef\xbb\xbf"):
-        data = data[3:]
-    return data.decode("utf-8", errors="replace")
-
-
-def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for block in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest().upper()
-
-
-def fail(errors: list[str], message: str) -> None:
+def error(errors: list[str], message: str) -> None:
     errors.append(message)
 
 
-def markdown_links(text: str):
-    pattern = re.compile(r"(!?)\[([^\]]+)\]\(([^)]+)\)")
-    in_fence = False
-    for line in text.splitlines():
-        if line.lstrip().startswith("```"):
-            in_fence = not in_fence
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest().upper()
+
+
+def load_json(path: Path, errors: list[str]) -> object | None:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        error(errors, f"invalid JSON {path.relative_to(ROOT).as_posix()}: {exc}")
+        return None
+
+
+def iter_addresses(value: object, trail: str = ""):
+    if isinstance(value, dict):
+        if {"kind", "value", "profile", "evidence"}.issubset(value):
+            yield trail, value
+        for key, child in value.items():
+            yield from iter_addresses(child, f"{trail}.{key}" if trail else key)
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            yield from iter_addresses(child, f"{trail}[{index}]")
+
+
+def validate_address(errors: list[str], owner: str, trail: str, value: dict, profiles: set[str]) -> None:
+    if value.get("kind") not in ADDRESS_KINDS:
+        error(errors, f"{owner}:{trail} invalid address kind {value.get('kind')}")
+    if not HEX_ADDRESS.fullmatch(str(value.get("value", ""))):
+        error(errors, f"{owner}:{trail} invalid hexadecimal address {value.get('value')}")
+    profile = value.get("profile")
+    if not profile or profile not in profiles:
+        error(errors, f"{owner}:{trail} address is not bound to a known profile: {profile}")
+    if value.get("kind") == "resolvedRuntimeAddress" and value.get("evidence") == "version-constant":
+        error(errors, f"{owner}:{trail} runtime observation cannot be a version constant")
+
+
+def validate_fields(errors: list[str], entry: dict) -> None:
+    stride = entry.get("stride")
+    if not isinstance(stride, int) or stride <= 0:
+        error(errors, f"{entry['id']} has invalid stride")
+        return
+    occupied: dict[int, tuple[str, str | None]] = {}
+    names = set()
+    for item in entry.get("fields", []):
+        name = item.get("name")
+        if not name or name in names:
+            error(errors, f"{entry['id']} has duplicate/empty field name {name}")
+        names.add(name)
+        try:
+            offset = int(str(item.get("offset")), 16)
+        except ValueError:
+            error(errors, f"{entry['id']}.{name} has invalid offset")
             continue
-        if in_fence:
+        width = item.get("width")
+        if not isinstance(width, int) or width <= 0 or offset < 0 or offset + width > stride:
+            error(errors, f"{entry['id']}.{name} exceeds stride 0x{stride:X}")
             continue
-        for match in pattern.finditer(line):
-            if line[: match.start()].count("`") % 2 == 1:
+        overlay = item.get("overlay")
+        for byte in range(offset, offset + width):
+            if byte in occupied and not overlay:
+                error(errors, f"{entry['id']}.{name} overlaps {occupied[byte][0]} at 0x{byte:X} without overlay")
+            elif byte in occupied and occupied[byte][1] != overlay:
+                error(errors, f"{entry['id']}.{name} overlay group differs from {occupied[byte][0]}")
+            else:
+                occupied[byte] = (name, overlay)
+
+
+def validate_patch(errors: list[str], entry: dict) -> None:
+    kind = entry.get("kind")
+    if kind == "semantic-locator":
+        for required in ("signature", "extraction", "scanScope", "matchPolicy"):
+            if not entry.get(required):
+                error(errors, f"{entry['id']} semantic locator missing {required}")
+        if entry.get("sites"):
+            error(errors, f"{entry['id']} semantic locator must not invent a fixed patch site")
+        return
+
+    for required in ("kind", "sites"):
+        if required not in entry:
+            error(errors, f"{entry['id']} patch missing {required}")
+    if not entry.get("sites"):
+        error(errors, f"{entry['id']} patch has no sites")
+    for index, site in enumerate(entry.get("sites", [])):
+        length = site.get("overwriteLength")
+        expected = site.get("expectedBytes")
+        if entry.get("status") == "canonical":
+            if not isinstance(length, int) or length <= 0 or not expected:
+                error(errors, f"{entry['id']} canonical patch site {index} is incomplete")
                 continue
-            yield match.groups()
+            tokens = str(expected).split()
+            if len(tokens) != length or any(not HEX_TOKEN.fullmatch(token) for token in tokens):
+                error(errors, f"{entry['id']} site {index} expected bytes do not match overwrite length")
+            replacements = []
+            if site.get("replacementBytes"):
+                replacements.append(site["replacementBytes"])
+            replacements.extend(value.get("bytes") for value in site.get("replacementVariants", []))
+            if not replacements and kind not in {"hook", "call-retarget"}:
+                error(errors, f"{entry['id']} site {index} has no replacement bytes or variants")
+            for replacement in replacements:
+                replacement_tokens = str(replacement).split()
+                if len(replacement_tokens) != length or any(not HEX_TOKEN.fullmatch(token) for token in replacement_tokens):
+                    error(errors, f"{entry['id']} site {index} replacement bytes do not match overwrite length")
+            if site.get("instructionBoundary") is False:
+                if site.get("writeMode") not in {
+                    "function-entry-prefix", "immediate-operand-only",
+                    "instruction-prefix-terminal-transfer", "function-entry-terminal-transfer",
+                } or not site.get("executionEffect"):
+                    error(errors, f"{entry['id']} site {index} has an unexplained partial-instruction write")
+    if kind in {"hook", "call-retarget", "entry-jump"}:
+        stub = entry.get("stub", {})
+        if not isinstance(stub, dict) or not {"entry", "return", "relocations"}.issubset(stub):
+            error(errors, f"{entry['id']} has incomplete stub contract")
+
+
+def validate_generated(errors: list[str]) -> None:
+    watched = [ROOT / "index.json", *sorted(ROOT.glob("*/reference/*.md"))]
+    before = {path: path.read_bytes() for path in watched if path.exists()}
+    for script in ("build_reference.py", "build_index.py"):
+        result = subprocess.run([sys.executable, str(ROOT / "tools" / script)], cwd=ROOT, capture_output=True, text=True)
+        if result.returncode:
+            error(errors, f"{script} failed: {result.stderr.strip() or result.stdout.strip()}")
+            return
+    after_paths = [ROOT / "index.json", *sorted(ROOT.glob("*/reference/*.md"))]
+    after = {path: path.read_bytes() for path in after_paths if path.exists()}
+    if before != after:
+        changed = sorted(path.relative_to(ROOT).as_posix() for path in set(before) | set(after) if before.get(path) != after.get(path))
+        error(errors, "generated artifacts were stale: " + " | ".join(changed))
 
 
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     errors: list[str] = []
-    files = [p for p in ROOT.rglob("*") if p.is_file() and ".git" not in p.parts]
+    files = [path for path in ROOT.rglob("*") if path.is_file() and ".git" not in path.parts]
     for path in files:
         rel = path.relative_to(ROOT).as_posix()
         parts = rel.split("/")
-        if len(parts) == 1 and path.name not in ALLOWED_ROOT_FILES:
-            fail(errors, f"unexpected root file: {rel}")
+        if len(parts) == 1 and path.name not in ALLOWED_ROOT:
+            error(errors, f"unexpected root file: {rel}")
         if len(parts) > 1 and parts[0] not in ALLOWED_TOP:
-            fail(errors, f"unexpected top-level path: {rel}")
+            error(errors, f"unexpected top-level path: {rel}")
         if path.suffix.lower() in FORBIDDEN_EXTENSIONS or any(part.lower() in FORBIDDEN_PARTS for part in parts):
-            fail(errors, f"forbidden artifact: {rel}")
-        if path.suffix.lower() in {".md", ".txt", ".csv"} and not read_bytes(path).startswith(b"\xef\xbb\xbf"):
-            fail(errors, f"missing UTF-8 BOM: {rel}")
-        if path.suffix.lower() in {".md", ".txt", ".csv", ".json"}:
-            text = read_text(path)
-            if re.search(r"(?:[A-Z]:[\\/]|/Users/|/home/|C:/Users/|F:/|D:\\Downloads)", text):
-                fail(errors, f"local absolute path: {rel}")
-            if re.search(r"(?i)(?:BEGIN (?:RSA|OPENSSH|EC) PRIVATE KEY|ghp_[A-Za-z0-9]+|github_pat_[A-Za-z0-9]+)", text):
-                fail(errors, f"secret-like value: {rel}")
-            if path.suffix.lower() == ".md" and path.name not in SPECIAL_FILES and parts[0] not in {"90-来源归档"} and not ("资料与模板" in parts):
-                missing = [section for section in SECTIONS if f"## {section}" not in text]
-                if missing:
-                    fail(errors, f"missing standard sections ({','.join(missing)}): {rel}")
-            if path.suffix.lower() == ".md":
-                for _, label, raw_target in markdown_links(text):
-                    target = raw_target.strip().strip("<>")
-                    if re.match(r"^(?:https?://|mailto:|#)", target, re.IGNORECASE):
-                        continue
-                    target_path = unquote(target.partition("#")[0]).replace("\\", "/")
-                    if target_path and not (path.parent / target_path).exists():
-                        fail(errors, f"broken local link in {rel}: {label} -> {raw_target}")
-    manifest_path = ROOT / "90-来源归档" / "source-manifest.csv"
-    if not manifest_path.exists():
-        fail(errors, "source-manifest.csv is missing")
-    else:
-        with manifest_path.open("r", encoding="utf-8-sig", newline="") as handle:
-            rows = list(csv.DictReader(handle))
-        required = {"sourcePath", "destinationPath", "version", "topic", "evidenceLevel", "status", "sha256", "sourceType", "correctionNote"}
-        if not rows or not required.issubset(rows[0]):
-            fail(errors, "source-manifest.csv schema is invalid")
-        seen_sources = set()
-        canonical_destinations = set()
-        for row in rows:
-            source = row.get("sourcePath", "")
-            destination = row.get("destinationPath", "")
-            status = row.get("status", "")
-            if source in seen_sources:
-                fail(errors, f"duplicate manifest source: {source}")
-            seen_sources.add(source)
-            if status not in {"canonical", "source-only", "unverified", "deprecated", "excluded"}:
-                fail(errors, f"invalid manifest status for {source}: {status}")
-            if not re.fullmatch(r"[0-9A-F]{64}", row.get("sha256", "")):
-                fail(errors, f"invalid manifest hash: {source}")
-            if status in {"canonical", "unverified"}:
-                if not destination or not (ROOT / destination).exists():
-                    fail(errors, f"manifest destination missing: {source} -> {destination}")
-                if destination in canonical_destinations:
-                    fail(errors, f"duplicate canonical destination: {destination}")
-                canonical_destinations.add(destination)
-            elif destination:
-                fail(errors, f"non-published manifest row has destination: {source}")
-    index_path = ROOT / "index.json"
-    if not index_path.exists():
-        fail(errors, "index.json is missing")
-    else:
-        try:
-            index = json.loads(index_path.read_text(encoding="utf-8"))
-            if index.get("schemaVersion") != 1 or not isinstance(index.get("entries"), list):
-                fail(errors, "index.json schema is invalid")
-            else:
-                seen_paths = set()
-                for entry in index["entries"]:
-                    rel = entry.get("path", "")
-                    if rel in seen_paths:
-                        fail(errors, f"duplicate index path: {rel}")
-                    seen_paths.add(rel)
-                    target = ROOT / Path(rel)
-                    if not target.exists():
-                        fail(errors, f"index target missing: {rel}")
-                    elif entry.get("sha256") != sha256(target):
-                        fail(errors, f"index hash mismatch: {rel}")
-                    if entry.get("version") == ["6.5"] and ("6.6" in rel.lower() or "6.5pl" in rel.lower()):
-                        fail(errors, f"version leakage into 6.5: {rel}")
-                public_paths = {
-                    path.relative_to(ROOT).as_posix()
-                    for path in files
-                    if path.suffix.lower() in {".md", ".txt", ".json", ".csv"}
-                    and path.name not in {"index.json", "source-manifest.csv"}
-                }
-                missing_index = sorted(public_paths - seen_paths)
-                if missing_index:
-                    fail(errors, "public files missing from index: " + " | ".join(missing_index))
-        except (OSError, json.JSONDecodeError) as exc:
-            fail(errors, f"index.json cannot be read: {exc}")
-    normalized: dict[str, list[str]] = defaultdict(list)
-    for path in files:
-        if path.suffix.lower() not in {".md", ".txt"}:
-            continue
-        text = re.sub(r"<!--.*?-->", "", read_text(path), flags=re.DOTALL)
-        text = re.sub(r"\s+", " ", text).strip().lower()
-        if text:
-            normalized[hashlib.sha256(text.encode("utf-8")).hexdigest()].append(path.relative_to(ROOT).as_posix())
-    for group in normalized.values():
-        if len(group) > 1:
-            fail(errors, "duplicate normalized documents: " + " | ".join(group))
-    titles: dict[str, list[str]] = defaultdict(list)
-    line_sets: list[tuple[str, set[str]]] = []
-    for path in files:
-        if path.suffix.lower() != ".md" or path.name == "README.md":
-            continue
-        rel = path.relative_to(ROOT).as_posix()
-        text = re.sub(r"<!--.*?-->", "", read_text(path), flags=re.DOTALL)
-        title_match = re.search(r"(?m)^#\s+(.+)$", text)
-        if title_match:
-            titles[title_match.group(1).strip()].append(rel)
-        meaningful = {
-            re.sub(r"\s+", " ", line).strip().lower()
-            for line in text.splitlines()
-            if len(line.strip()) >= 30 and not line.startswith("## ") and "来源文件未随公开知识库发布" not in line
-        }
-        if len(meaningful) >= 8:
-            line_sets.append((rel, meaningful))
-    for title, paths in titles.items():
-        if len(paths) > 1:
-            fail(errors, f"duplicate document title '{title}': " + " | ".join(paths))
-    for index, (left_path, left_lines) in enumerate(line_sets):
-        for right_path, right_lines in line_sets[index + 1 :]:
-            size_ratio = min(len(left_lines), len(right_lines)) / max(len(left_lines), len(right_lines))
-            if size_ratio < 0.9:
+            error(errors, f"forbidden artifact: {rel}")
+        if path.suffix.lower() in {".md", ".txt", ".json", ".py"}:
+            try:
+                text = path.read_text(encoding="utf-8-sig")
+            except UnicodeDecodeError as exc:
+                error(errors, f"not UTF-8: {rel}: {exc}")
                 continue
-            similarity = len(left_lines & right_lines) / len(left_lines | right_lines)
-            if similarity >= 0.92:
-                fail(errors, f"near-duplicate documents ({similarity:.2f}): {left_path} | {right_path}")
+            if path.name != "validate_kb.py" and re.search(r"(?:[A-Z]:[\\/]|/Users/|/home/)", text):
+                error(errors, f"local absolute path: {rel}")
+            if re.search(r"(?i)(?:BEGIN (?:RSA|OPENSSH|EC) PRIVATE KEY|ghp_[A-Za-z0-9]+|github_pat_[A-Za-z0-9]+)", text):
+                error(errors, f"secret-like value: {rel}")
+
+    data_paths = sorted([*ROOT.glob("6.5/data/**/*.json"), *ROOT.glob("6.6/data/**/*.json"), *ROOT.glob("legacy/data/**/*.json")])
+    documents: list[tuple[Path, dict]] = []
+    ids: dict[str, str] = {}
+    profiles: set[str] = set()
+    source_ids: set[str] = set()
+
+    source_document = load_json(ROOT / "sources" / "source-manifest.json", errors)
+    if isinstance(source_document, dict):
+        for item in source_document.get("entries", []):
+            source_id = item.get("id")
+            if not source_id or source_id in source_ids:
+                error(errors, f"duplicate/empty source id: {source_id}")
+            source_ids.add(source_id)
+            if not re.fullmatch(r"[0-9A-F]{64}", str(item.get("sha256", ""))):
+                error(errors, f"invalid source hash: {source_id}")
+            if Path(str(item.get("path", ""))).is_absolute():
+                error(errors, f"source path must be relative: {source_id}")
+
+    for path in data_paths:
+        value = load_json(path, errors)
+        if not isinstance(value, dict):
+            continue
+        entity_type = value.get("entityType")
+        if value.get("schemaVersion") != 1 or entity_type not in ENTITY_TYPES or not isinstance(value.get("entries"), list):
+            error(errors, f"invalid collection envelope: {path.relative_to(ROOT).as_posix()}")
+            continue
+        documents.append((path, value))
+        for item in value["entries"]:
+            entry_id = item.get("id")
+            if not entry_id or entry_id in ids:
+                error(errors, f"duplicate/empty entity id: {entry_id}")
+            else:
+                ids[entry_id] = path.relative_to(ROOT).as_posix()
+            for required in ("title", "status", "evidence", "sourceRefs"):
+                if required not in item:
+                    error(errors, f"{entry_id} missing {required}")
+            if entity_type == "engine-profile":
+                profiles.add(entry_id)
+
+    for path, document in documents:
+        entity_type = document["entityType"]
+        for item in document["entries"]:
+            owner = item.get("id", path.name)
+            item_profile = item.get("profile")
+            if entity_type != "engine-profile" and item_profile and item_profile not in profiles:
+                error(errors, f"{owner} references unknown profile {item_profile}")
+            for trail, value in iter_addresses(item):
+                validate_address(errors, owner, trail, value, profiles)
+            for source_ref in item.get("sourceRefs", []):
+                if source_ref not in source_ids:
+                    error(errors, f"{owner} references unknown source {source_ref}")
+            relations = list(item.get("relations", []))
+            relations.extend(step.get("entity") for step in item.get("steps", []) if step.get("entity"))
+            relations.extend(item.get("pierceBranch", []))
+            relations.extend(item.get("state", []))
+            if item.get("locatorRef"):
+                relations.append(item["locatorRef"])
+            for relation in relations:
+                if relation not in ids:
+                    error(errors, f"{owner} references unknown entity {relation}")
+            if entity_type == "data-structure":
+                validate_fields(errors, item)
+            if entity_type == "patch-recipe":
+                validate_patch(errors, item)
+
+    if list((ROOT / "6.5pl").rglob("*.json")):
+        error(errors, "6.5pl must not contain canonical data until an independent profile is verified")
+
+    cleanup = load_json(ROOT / "sources" / "cleanup-report.json", errors)
+    if not isinstance(cleanup, dict) or cleanup.get("oldIndexedEntryCount") != len(cleanup.get("records", [])):
+        error(errors, "cleanup report does not cover every old indexed entry")
+    elif isinstance(cleanup, dict):
+        for record in cleanup.get("records", []):
+            mapped = record.get("mappedEntities", [])
+            if record.get("action") == "merge-into-entity" and not mapped:
+                error(errors, f"cleanup merge has no mapped entity: {record.get('oldPath')}")
+            for entity_id in mapped:
+                if entity_id not in ids:
+                    error(errors, f"cleanup maps to unknown entity {entity_id}: {record.get('oldPath')}")
+
+    research = load_json(ROOT / "research" / "research-gaps.json", errors)
+    research_ids = {item.get("id") for item in research.get("entries", [])} if isinstance(research, dict) else set()
+
+    index = load_json(ROOT / "index.json", errors)
+    if isinstance(index, dict):
+        if index.get("schemaVersion") != 2 or index.get("canonicalAuthority") != "structured-json":
+            error(errors, "index.json is not the structured schema v2 index")
+        index_ids = [item.get("id") for item in index.get("entries", [])]
+        if set(index_ids) != set(ids) or len(index_ids) != len(ids):
+            error(errors, "index entity set differs from canonical data")
+        if research_ids & set(index_ids):
+            error(errors, "research entries leaked into the default index")
+        for item in index.get("canonicalFiles", []):
+            target = ROOT / item.get("path", "")
+            if not target.exists() or item.get("sha256") != sha256(target):
+                error(errors, f"index canonical file hash mismatch: {item.get('path')}")
+        for item in index.get("entries", []):
+            target = ROOT / item.get("canonicalDataPath", "")
+            reference = ROOT / item.get("referencePath", "")
+            if not target.exists() or not reference.exists():
+                error(errors, f"index target/reference missing for {item.get('id')}")
+            if item.get("versions") == ["6.5pl"]:
+                error(errors, f"6.5pl canonical entry is not allowed yet: {item.get('id')}")
+
+    validate_generated(errors)
+
+    required_queries = {
+        "0x004837C2": "fn.65.item-id-to-record",
+        "攻击函数": "mechanism.65.physical-attack-targeting",
+        "E5 格式": "format.e5.indexed-archive",
+        "小暗 S 加速": "mechanism.66.xiaoan.super-s",
+    }
+    searchable = json.dumps(index, ensure_ascii=False) if isinstance(index, dict) else ""
+    for query, expected in required_queries.items():
+        if query not in searchable or expected not in searchable:
+            error(errors, f"required query coverage missing: {query} -> {expected}")
+    structures_text = (ROOT / "6.5" / "reference" / "structures.md").read_text(encoding="utf-8") if (ROOT / "6.5" / "reference" / "structures.md").exists() else ""
+    if "0x004A7B20 + battlefield_id * 0x30 + field_offset" not in structures_text or "`hp` | `0x10`" not in structures_text:
+        error(errors, "tactical HP address formula is not present in the human reference")
+
     if errors:
         print("validation_failed")
-        for error in errors:
-            print(f"- {error}")
+        for item in errors:
+            print("- " + item)
         return 1
-    print(f"validation_ok files={len(files)}")
+    print(f"validation_ok files={len(files)} entities={len(ids)} sources={len(source_ids)} research={len(research_ids)}")
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit(main())

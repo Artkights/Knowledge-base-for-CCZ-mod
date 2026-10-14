@@ -1,11 +1,24 @@
-﻿# CCZ MOD Knowledge Base
-
-Read in this order:
-
-1. 00-共性知识/README.md
-2. 00-共性知识/07-源码级制作与安全写回规则.md for source-derived patches or writes
-3. Select one version: 6.5/README.md, 6.5pl/README.md, or 6.6/README.md
-4. Use index.json to find canonical topic entries
-5. Use 90-来源归档/source-manifest.csv only for evidence and provenance
-
-Never apply an address, resource offset, table layout, or injection rule across versions without an explicit evidence entry.
+# CCZ MOD Engine Knowledge Base
+README.md
+6.5/README.md
+6.5/reference/profiles.md
+6.5/reference/functions.md
+6.5/reference/globals.md
+6.5/reference/structures.md
+6.5/reference/file-formats.md
+6.5/reference/patches.md
+6.5/reference/mechanisms.md
+6.6/README.md
+6.6/reference/profiles.md
+6.6/reference/functions.md
+6.6/reference/globals.md
+6.6/reference/structures.md
+6.6/reference/patches.md
+6.6/reference/mechanisms.md
+6.5pl/README.md
+legacy/README.md
+legacy/reference/profiles.md
+legacy/reference/globals.md
+index.json
+research/research-gaps.json
+sources/source-manifest.json

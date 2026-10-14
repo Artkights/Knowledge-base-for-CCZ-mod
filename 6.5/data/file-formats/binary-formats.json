@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "entityType": "file-format",
+  "profile": null,
+  "entries": [
+    {
+      "id": "format.e5.indexed-archive",
+      "title": "E5 索引资源封包",
+      "aliases": [
+        "E5 格式",
+        "E5 archive"
+      ],
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "magic": null,
+      "endianness": "big for directory fields",
+      "header": {
+        "directoryOffset": "0x110"
+      },
+      "directory": {
+        "entrySize": 12,
+        "entryNumberBase": 1,
+        "trailerLengths": [
+          0,
+          4
+        ],
+        "fourByteTrailerValue": "00000000"
+      },
+      "entryFields": [
+        {
+          "name": "stored_length",
+          "offset": "0x0",
+          "width": 4,
+          "type": "uint32be",
+          "meaning": "封包中实际字节数"
+        },
+        {
+          "name": "decoded_length",
+          "offset": "0x4",
+          "width": 4,
+          "type": "uint32be",
+          "meaning": "解码后字节数"
+        },
+        {
+          "name": "payload_offset",
+          "offset": "0x8",
+          "width": 4,
+          "type": "uint32be",
+          "meaning": "相对文件开头的负载偏移"
+        }
+      ],
+      "semantics": [
+        "stored_length != decoded_length 表示 LS12 压缩",
+        "首项 payload_offset 决定目录项数量",
+        "完全相同的负载范围允许共享；其它相交范围为异常",
+        "未压缩负载可按 BMP/JPG/PNG/RAW 魔数或尺寸识别"
+      ],
+      "sourceRefs": [
+        "src.ccz.e5-parser"
+      ]
+    },
+    {
+      "id": "format.eex.probed-header",
+      "title": "EEX 资源/剧本封包头",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "partial",
+      "evidence": "source-reviewed",
+      "magic": {
+        "offset": "0x00",
+        "bytes": "45 45 58 00",
+        "text": "EEX\\0"
+      },
+      "endianness": "little for probed header fields",
+      "headerFields": [
+        {
+          "name": "version",
+          "offset": "0x4",
+          "width": 2,
+          "type": "uint16le",
+          "meaning": "疑似版本"
+        },
+        {
+          "name": "entry_count",
+          "offset": "0xA",
+          "width": 4,
+          "type": "uint32le",
+          "meaning": "疑似条目数"
+        },
+        {
+          "name": "unknown_0e",
+          "offset": "0xE",
+          "width": 4,
+          "type": "uint32le",
+          "meaning": "待验证"
+        },
+        {
+          "name": "unknown_12",
+          "offset": "0x12",
+          "width": 4,
+          "type": "uint32le",
+          "meaning": "待验证"
+        },
+        {
+          "name": "unknown_16",
+          "offset": "0x16",
+          "width": 4,
+          "type": "uint32le",
+          "meaning": "待验证"
+        },
+        {
+          "name": "unknown_1a",
+          "offset": "0x1A",
+          "width": 4,
+          "type": "uint32le",
+          "meaning": "待验证"
+        }
+      ],
+      "semantics": [
+        "可扫描 GBK NUL 结尾文本作为只读定位线索",
+        "0x0E 之后字段尚不能作为稳定写回规则"
+      ],
+      "sourceRefs": [
+        "src.ccz.eex-reader"
+      ]
+    },
+    {
+      "id": "format.hexzmap.terrain-directory",
+      "title": "Hexzmap 地形目录",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "endianness": "big for directory fields",
+      "header": {
+        "directoryOffset": "0x110"
+      },
+      "directory": {
+        "entrySize": 12
+      },
+      "entryFields": [
+        {
+          "name": "segment_length",
+          "offset": "0x0",
+          "width": 4,
+          "type": "uint32be",
+          "meaning": "存储段长度"
+        },
+        {
+          "name": "decoded_length",
+          "offset": "0x4",
+          "width": 4,
+          "type": "uint32be",
+          "meaning": "解码长度/长度副本"
+        },
+        {
+          "name": "file_offset",
+          "offset": "0x8",
+          "width": 4,
+          "type": "uint32be",
+          "meaning": "段起始文件偏移"
+        }
+      ],
+      "payload": {
+        "terrainDataOffsetWithinSegment": 2,
+        "cellCountRule": "decoded_length - 2 >= map_cell_count",
+        "directEditRule": "segment_length == decoded_length == map_cell_count + 2"
+      },
+      "sourceRefs": [
+        "src.ccz.hexzmap-reader"
+      ]
+    },
+    {
+      "id": "format.item.split-data-star",
+      "title": "6.5/6.6 分段物品表存储",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "endianness": "little",
+      "recordSize": 25,
+      "segments": [
+        {
+          "file": "Data.e5",
+          "offset": 33164,
+          "count": 104
+        },
+        {
+          "file": "Star.e5",
+          "offset": 0,
+          "count": 151
+        }
+      ],
+      "semantics": [
+        "合计 255 条",
+        "6.5 名称区 0x11 字节",
+        "6.6 名称区 0x0F 字节，后续字段位置相应不同"
+      ],
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    }
+  ]
+}

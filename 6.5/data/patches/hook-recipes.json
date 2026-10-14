@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "entityType": "patch-recipe",
+  "profile": "profile.ccz65.unencrypted.f9a",
+  "entries": [
+    {
+      "id": "patch.65.attack-dispatch-hook",
+      "title": "攻击范围分派 Hook",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "hook",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00436511",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "static-verified"
+          },
+          "expectedBytes": "55 8B EC 51 33 C0",
+          "overwriteLength": 6,
+          "instructionBoundary": true
+        }
+      ],
+      "abi": "ECX=runtime-unit; [EBP+08]=center; [EBP+0C..0F]=packed range bytes; callee ret 0x10",
+      "stub": {
+        "entry": "custom attack range dispatcher",
+        "return": "preserve original caller contract",
+        "relocations": [
+          "range pointer table or replacement table"
+        ]
+      },
+      "relations": [
+        "fn.65.attack-dispatch",
+        "mechanism.65.physical-attack-targeting"
+      ],
+      "sourceRefs": [
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "patch.65.attack-selector-call-hook",
+      "title": "攻击选择器 CALL Hook",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "call-retarget",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004553F8",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "static-verified"
+          },
+          "expectedBytes": "E8 14 11 FE FF",
+          "overwriteLength": 5,
+          "instructionBoundary": true
+        }
+      ],
+      "abi": "保持中心坐标、packed range descriptor、mode bit 和调用者栈布局",
+      "stub": {
+        "entry": "replacement selector callee",
+        "return": "0x004553FD",
+        "relocations": [
+          "rel32 target"
+        ]
+      },
+      "relations": [
+        "fn.65.attack-selector",
+        "fn.65.attack-dispatch"
+      ],
+      "sourceRefs": [
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "patch.65.pierce-expand-hook",
+      "title": "穿透扩展 Hook",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "hook",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004364C7",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "static-verified"
+          },
+          "expectedBytes": "55 8B EC 51 51",
+          "overwriteLength": 5,
+          "instructionBoundary": true
+        }
+      ],
+      "abi": "ECX=tactical-unit; 参数含 target battle id、pierce byte、output buffer、filter/fallback",
+      "stub": {
+        "entry": "custom pierce expander",
+        "return": "preserve wrapper return contract",
+        "relocations": []
+      },
+      "relations": [
+        "fn.65.pierce-expand-wrapper"
+      ],
+      "sourceRefs": [
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "patch.65.pierce-dispatch-hook",
+      "title": "穿透几何分派 Hook",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "hook",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00435CE9",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "static-verified"
+          },
+          "expectedBytes": "55 8B EC 51 33 C0 50",
+          "overwriteLength": 7,
+          "instructionBoundary": true
+        }
+      ],
+      "abi": "center coordinate; pierce/effect code; output buffer; filter/fallback",
+      "stub": {
+        "entry": "custom geometry dispatcher",
+        "return": "preserve original callee contract",
+        "relocations": []
+      },
+      "relations": [
+        "fn.65.pierce-geometry-dispatch"
+      ],
+      "sourceRefs": [
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "patch.65.physical-recovery-hook",
+      "title": "物理攻击回复/回 MP 注入入口",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "partial",
+      "evidence": "static-verified",
+      "kind": "hook",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00418335",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "static-verified"
+          },
+          "expectedBytes": null,
+          "overwriteLength": null,
+          "instructionBoundary": false
+        }
+      ],
+      "abi": "待从具体注入实现补齐寄存器、flags 和栈契约",
+      "stub": {
+        "entry": "injected recovery body",
+        "legacyBody": "0x004528FC..0x004529A6",
+        "return": null,
+        "relocations": []
+      },
+      "relations": [
+        "global.65.physical-context"
+      ],
+      "sourceRefs": [
+        "src.ccz.runtime-registry"
+      ]
+    }
+  ]
+}

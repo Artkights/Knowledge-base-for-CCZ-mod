@@ -1,0 +1,812 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz65.unencrypted.f9a",
+  "entries": [
+    {
+      "id": "fn.65.data-id-to-runtime-character",
+      "title": "数据 ID 转人物记录指针",
+      "aliases": [
+        "data_id_to_runtime_character"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004061E4",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "DataId",
+      "returns": "RuntimeCharacter*",
+      "semantics": "将逻辑人物 ID 映射到 0x48 字节运行时人物记录。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.battlefield-id-to-tactical-unit",
+      "title": "战场 ID 转战术单位指针",
+      "aliases": [
+        "battlefield_id_to_tactical_unit"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004061F9",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "BattlefieldUnitId",
+      "returns": "TacticalUnit*",
+      "semantics": "将战场槽 ID 映射到 0x30 字节战术单位记录。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.tactical-unit-to-runtime-character",
+      "title": "战术单位转人物记录指针",
+      "aliases": [
+        "tactical_unit_to_runtime_character"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040658F",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "TacticalUnit*",
+      "returns": "RuntimeCharacter*",
+      "semantics": "读取战术单位 data_id 并映射到人物记录。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.detailed-job-id-to-record",
+      "title": "详细兵种 ID 转记录",
+      "aliases": [
+        "detailed_job_id_to_record"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0041B782",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "DetailedJobId",
+      "returns": "DetailedJobRecord*",
+      "semantics": "返回 0x23 字节详细兵种记录。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.job-family-id-to-terrain-record",
+      "title": "兵种系 ID 转地形记录",
+      "aliases": [
+        "job_family_id_to_terrain_record"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0041B7D4",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "JobFamilyId",
+      "returns": "JobFamilyTerrainRecord*",
+      "semantics": "返回 0x3C 字节兵种系地形记录。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.consumable-item-id-to-count",
+      "title": "消耗品 ID 转数量字节",
+      "aliases": [
+        "consumable_item_id_to_count"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00414F65",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "ItemId",
+      "returns": "uint8*",
+      "semantics": "按 item_id-150 映射到消耗品数量数组。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.item-id-to-record",
+      "title": "物品 ID 转物品记录",
+      "aliases": [
+        "item_id_to_record"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004837C2",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "ItemId",
+      "returns": "ItemRecord*",
+      "semantics": "返回 0x19 字节物品记录；地址查询 0x004837C2 应命中本条。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-id-to-record",
+      "title": "策略 ID 转策略记录",
+      "aliases": [
+        "strategy_id_to_record"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00484002",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "StrategyId",
+      "returns": "StrategyRecord*",
+      "semantics": "返回 0x61 字节策略记录。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.recalculate-character",
+      "title": "人物能力重算",
+      "aliases": [
+        "recalculate_character"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004075DF",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall-or-register-context",
+      "inputs": "ECX=RuntimeCharacter*",
+      "abi": {
+        "registers": {
+          "ECX": "person_record_ptr"
+        },
+        "stackArguments": [
+          "person_record_ptr:u32"
+        ],
+        "calleeCleanup": 4
+      },
+      "returns": "void",
+      "semantics": "按人物基础属性、兵种和装备重算派生能力。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.revive-tactical-unit",
+      "title": "战场复活",
+      "aliases": [
+        "revive_tactical_unit"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004092C7",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "battlefield placement args",
+      "returns": "void",
+      "semantics": "6.5/6.4 战场单位复活入口。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.weather-refresh",
+      "title": "天气刷新",
+      "aliases": [
+        "weather_refresh"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0041D9D1",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "weather context",
+      "returns": "void",
+      "semantics": "刷新天气相关战场状态；Python 扳手仅保留历史调用入口。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.direction-refresh",
+      "title": "战场转向刷新",
+      "aliases": [
+        "direction_refresh"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00457428",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall-or-register-context",
+      "inputs": "ECX=DWORD[0x004B5DF0]",
+      "abi": {
+        "registers": {
+          "ECX": "DWORD[0x004B5DF0]"
+        },
+        "stackArguments": [
+          "direction:u32",
+          "data_id:u32",
+          "flags:u32"
+        ]
+      },
+      "returns": "void",
+      "semantics": "参数依次为 direction、data_id、flags。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.position-refresh",
+      "title": "战场坐标刷新",
+      "aliases": [
+        "position_refresh"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004594DD",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall-or-register-context",
+      "inputs": "ECX=DWORD[0x004B5DF0]",
+      "abi": {
+        "registers": {
+          "ECX": "DWORD[0x004B5DF0]"
+        },
+        "stackArguments": [
+          "direction:u32",
+          "y:u32",
+          "x:u32",
+          "data_id:u32"
+        ]
+      },
+      "returns": "void",
+      "semantics": "参数依次为 direction、y、x、data_id。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.attack-entry",
+      "title": "物理攻击入口",
+      "aliases": [
+        "attack_entry"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043DADA",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "combat context",
+      "returns": "void",
+      "semantics": "进入物理攻击流程并准备范围描述符。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.attack-selector",
+      "title": "攻击范围选择器",
+      "aliases": [
+        "attack_selector"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0045533D",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "attacker/range",
+      "returns": "void",
+      "semantics": "准备中心坐标和 packed range descriptor，在 0x004553F8 调用范围分派。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.attack-dispatch",
+      "title": "攻击范围分派",
+      "aliases": [
+        "attack_dispatch"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00436511",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall-or-register-context",
+      "inputs": "ECX=runtime-unit; stack packed range",
+      "abi": {
+        "registers": {
+          "ECX": "runtime_unit_ptr"
+        },
+        "stackArguments": [
+          "[EBP+08]=center_coordinate",
+          "[EBP+0C..0F]=packed_range_descriptor"
+        ],
+        "calleeCleanup": 16
+      },
+      "returns": "void",
+      "semantics": "读取范围指针表并分派几何展开。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.attack-geometry",
+      "title": "攻击几何展开",
+      "aliases": [
+        "attack_geometry"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00436616",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "center/range segment",
+      "returns": "void",
+      "semantics": "把以 FFFF 终止的两字节相对坐标段展开为地图坐标。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.attack-append-target",
+      "title": "攻击目标追加",
+      "aliases": [
+        "attack_append_target"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00437AFF",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "coordinate/filter",
+      "returns": "void",
+      "semantics": "落地坐标、过滤单位并追加到范围目标缓冲。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.map-unit-lookup",
+      "title": "地图坐标查战场单位",
+      "aliases": [
+        "map_unit_lookup"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00435884",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "x,y",
+      "returns": "BattlefieldUnitId",
+      "semantics": "把地图格坐标映射到战场单位。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.pierce-loader",
+      "title": "穿透值装载",
+      "aliases": [
+        "pierce_loader"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040782D",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "unit/effect",
+      "returns": "uint8",
+      "semantics": "从 0x00407881 穿透值表装载穿透类型。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.combat-context-init",
+      "title": "战斗上下文初始化",
+      "aliases": [
+        "combat_context_init"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00406282",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "attacker/target",
+      "returns": "void",
+      "semantics": "初始化物理上下文并写入穿透范围字段。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.pierce-expand-wrapper",
+      "title": "穿透范围扩展包装器",
+      "aliases": [
+        "pierce_expand_wrapper"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004364C7",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall-or-register-context",
+      "inputs": "ECX=tactical-unit; target/pierce/output/filter",
+      "abi": {
+        "registers": {
+          "ECX": "tactical_unit_ptr"
+        },
+        "stackArguments": [
+          "target_battle_id",
+          "pierce_byte",
+          "output_buffer",
+          "filter_or_fallback_args"
+        ]
+      },
+      "returns": "void",
+      "semantics": "转入 0x00435CE9 按穿透码展开目标。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.pierce-geometry-dispatch",
+      "title": "穿透几何分派",
+      "aliases": [
+        "pierce_geometry_dispatch"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00435CE9",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "center/code/output/filter",
+      "returns": "void",
+      "semantics": "按 0..0x0B 穿透/效果码分派几何。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.pierce-append-target",
+      "title": "穿透目标追加",
+      "aliases": [
+        "pierce_append_target"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00435BF2",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "coordinate/output/filter",
+      "returns": "void",
+      "semantics": "追加穿透/效果范围目标。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.target-consumer",
+      "title": "攻击目标消费与伤害写入",
+      "aliases": [
+        "target_consumer"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004361B1",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "target array/context",
+      "returns": "void",
+      "semantics": "消费目标数组并进入伤害/效果写入。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "fn.65.core-effect-engine",
+      "title": "核心特效引擎",
+      "aliases": [
+        "core_effect_engine"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004101D9",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "effect context",
+      "returns": "result",
+      "semantics": "核心特效分派入口；具体分支仍应按调用点复核。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    }
+  ]
+}

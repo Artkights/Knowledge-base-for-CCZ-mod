@@ -2,83 +2,86 @@ from __future__ import annotations
 
 import hashlib
 import json
-import re
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
-SKIP_NAMES = {"index.json", "source-manifest.csv"}
-SKIP_PARTS = {".git", ".git-checkout", "__pycache__"}
+DATA_PATTERNS = ["6.5/data/**/*.json", "6.6/data/**/*.json", "legacy/data/**/*.json"]
+REFERENCE_FILES = {
+    "engine-profile": "profiles.md", "function": "functions.md", "global": "globals.md",
+    "data-structure": "structures.md", "file-format": "file-formats.md",
+    "patch-recipe": "patches.md", "mechanism": "mechanisms.md",
+}
 
 
 def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for block in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest().upper()
+    return hashlib.sha256(path.read_bytes()).hexdigest().upper()
 
 
-def read_text(path: Path) -> str:
-    data = path.read_bytes()
-    if data.startswith(b"\xef\xbb\xbf"):
-        data = data[3:]
-    return data.decode("utf-8", errors="replace")
+def first_address(entry: dict) -> dict | None:
+    if isinstance(entry.get("address"), dict):
+        return entry["address"]
+    sites = entry.get("sites", [])
+    if sites and isinstance(sites[0].get("address"), dict):
+        return sites[0]["address"]
+    return None
 
 
-def first_heading(text: str, fallback: str) -> str:
-    for line in text.splitlines():
-        if line.startswith("# "):
-            return line[2:].strip()
-    return fallback
+def collect_search_terms(entry: dict) -> list[str]:
+    values: list[str] = [entry["id"], entry["title"], *entry.get("aliases", [])]
+    for key in ("semantics", "indexFormula", "callingConvention", "inputs", "returns", "callerSemantics"):
+        value = entry.get(key)
+        if isinstance(value, str):
+            values.append(value)
+    for _, value in walk(entry):
+        if isinstance(value, dict) and value.get("kind") in {"va", "rva", "fileOffset", "pointerSlot", "resolvedRuntimeAddress"}:
+            values.append(str(value.get("value", "")))
+    for field in entry.get("fields", []):
+        values.extend(str(field.get(key, "")) for key in ("name", "meaning", "offset"))
+    return list(dict.fromkeys(value for value in values if value))
 
 
-def metadata(text: str, key: str, default: str) -> str:
-    match = re.search(rf"<!--\s*{re.escape(key)}:\s*(.*?)\s*-->", text, re.IGNORECASE)
-    return match.group(1).strip() if match else default
+def walk(value: object, trail: str = ""):
+    yield trail, value
+    if isinstance(value, dict):
+        for key, child in value.items():
+            yield from walk(child, f"{trail}.{key}" if trail else key)
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            yield from walk(child, f"{trail}[{index}]")
 
 
 def main() -> None:
     entries = []
-    for path in sorted(ROOT.rglob("*")):
-        if not path.is_file() or path.name in SKIP_NAMES or any(part in SKIP_PARTS for part in path.parts):
-            continue
-        if path.suffix.lower() not in {".md", ".txt", ".json", ".csv"}:
-            continue
+    paths: list[Path] = []
+    for pattern in DATA_PATTERNS:
+        paths.extend(ROOT.glob(pattern))
+    for path in sorted(set(paths)):
+        document = json.loads(path.read_text(encoding="utf-8"))
+        entity_type = document["entityType"]
         rel = path.relative_to(ROOT).as_posix()
-        text = read_text(path) if path.suffix.lower() in {".md", ".txt"} else ""
-        parts = rel.split("/")
-        if parts[0] in {"6.5", "6.5pl", "6.6"}:
-            version = parts[0]
-        elif parts[0] == "00-共性知识":
-            version = "shared"
-        elif parts[0] == "90-来源归档":
-            version = "archive"
-        else:
-            version = "shared"
-        title = first_heading(text, path.stem)
-        topic = metadata(text, "topic", "general")
-        status = metadata(text, "status", "canonical")
-        evidence = metadata(text, "evidence", "source-reviewed")
-        source = metadata(text, "source", "")
-        entry_id = re.sub(r"[^a-z0-9]+", ".", f"{version}.{rel[:-len(path.suffix)]}".lower()).strip(".")
-        entries.append(
-            {
-                "id": entry_id,
-                "path": rel,
-                "version": [version],
-                "topic": topic,
-                "title": title,
-                "status": status,
-                "evidenceLevel": evidence,
-                "sourceRefs": [source] if source else [],
-                "related": [],
-                "sha256": sha256(path),
-            }
-        )
-    payload = {"schemaVersion": 1, "generatedBy": "tools/build_index.py", "entries": entries}
+        version_dir = rel.split("/", 1)[0]
+        reference = f"{version_dir}/reference/{REFERENCE_FILES[entity_type]}"
+        for item in document["entries"]:
+            addr = first_address(item)
+            entries.append({
+                "id": item["id"], "entityType": entity_type, "title": item["title"],
+                "versions": item.get("versions", []), "profile": item.get("profile"),
+                "status": item["status"], "evidence": item["evidence"], "address": addr,
+                "searchTerms": collect_search_terms(item),
+                "canonicalDataPath": rel, "referencePath": reference,
+                "sourceRefs": item.get("sourceRefs", []),
+            })
+    entries.sort(key=lambda item: item["id"])
+    files = sorted({item["canonicalDataPath"] for item in entries})
+    payload = {
+        "schemaVersion": 2, "canonicalAuthority": "structured-json",
+        "generatedBy": "tools/build_index.py", "entityCount": len(entries),
+        "canonicalFiles": [{"path": rel, "sha256": sha256(ROOT / rel)} for rel in files],
+        "entries": entries,
+    }
     (ROOT / "index.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"indexed={len(entries)}")
+    print(f"indexed_entities={len(entries)} canonical_files={len(files)}")
 
 
 if __name__ == "__main__":

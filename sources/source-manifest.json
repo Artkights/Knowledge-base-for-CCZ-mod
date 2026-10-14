@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "src.wrench.profile",
+      "path": "老版游戏制作工具/扳手/engine_profile.py",
+      "sha256": "207FC77FE3EE510A54F96C00A86232966A1873C8D8AF5B7BC0CDA3CA18B05DB1",
+      "sourceType": "first-party-source",
+      "usedFor": "Python 扳手的版本地址、结构、文件物品布局和语义定位规则",
+      "published": false
+    },
+    {
+      "id": "src.wrench.layout",
+      "path": "老版游戏制作工具/扳手/engine_layout.py",
+      "sha256": "012EAEEB0C3DA696DCED19033B90902F5C6E07C2A240B04638BF4C40ACF66823",
+      "sourceType": "first-party-source",
+      "usedFor": "表字段描述模型",
+      "published": false
+    },
+    {
+      "id": "src.xiaoan.layout",
+      "path": "老版游戏制作工具/v0.7/小暗补丁6.6/源码/EngineLayout.cpp",
+      "sha256": "5C451B92EBC909C383EDFF1B7FA2F24B34B25FDB3F6B4C6EF9055FCB963C0E90",
+      "sourceType": "first-party-source",
+      "usedFor": "6.6 加速函数语义签名、站点和操作数提取",
+      "published": false
+    },
+    {
+      "id": "src.xiaoan.engine",
+      "path": "老版游戏制作工具/v0.7/小暗补丁6.6/源码/Engine.cpp",
+      "sha256": "3436BF03EB4195AAE463186F9CA0FC000F6134BD8FF46F61132EAB0F6ED4E642",
+      "sourceType": "first-party-source",
+      "usedFor": "加速站点改写、S 等待桩和阶段数据含义",
+      "published": false
+    },
+    {
+      "id": "src.xiaoan.layout-tests",
+      "path": "老版游戏制作工具/v0.7/小暗补丁6.6/源码/LayoutTests.cpp",
+      "sha256": "2C58C7654511519842F43B0D4F05D1FE03464A796AB9AC2630D7CFD81827EFF0",
+      "sourceType": "first-party-source",
+      "usedFor": "测试样本固定地址与 17 个 S 调用者断言",
+      "published": false
+    },
+    {
+      "id": "src.ccz.runtime-registry",
+      "path": "工具整合包/CCZModStudio/Core/EngineRuntimeSemanticRegistry.cs",
+      "sha256": "EAD8324DE51218D940225059C8B1808C3BA6DB5B92783B412A85CE34B1BC2E81",
+      "sourceType": "first-party-source",
+      "usedFor": "6.5 运行时函数、表基址、步长和字段",
+      "published": false
+    },
+    {
+      "id": "src.ccz.range-profile",
+      "path": "工具整合包/CCZModStudio/Core/RangeEngineVersionProfileService.cs",
+      "sha256": "EDCEF2DC6250C25DD5E151AE23C401381E15DF92BDAC3F3958A53EF8256C3B45",
+      "sourceType": "first-party-source",
+      "usedFor": "6.5 SHA 画像、攻击/穿透函数与 Hook 旧字节",
+      "published": false
+    },
+    {
+      "id": "src.ccz.range-probe",
+      "path": "工具整合包/CCZModStudio/Core/RangeProbePlanService.cs",
+      "sha256": "EFC6639051A943E9667B230BA875D053D003D4FFA776264DADA9A3316F83A08A",
+      "sourceType": "first-party-source",
+      "usedFor": "攻击链断点、上下文字段和调用角色",
+      "published": false
+    },
+    {
+      "id": "src.ccz.e5-parser",
+      "path": "工具整合包/CCZModStudio/Core/E5IndexParser.cs",
+      "sha256": "48303CAA5813E7B9165A6E58666BCFDE321490F0C385CAE2537D6486A30AAF80",
+      "sourceType": "first-party-source",
+      "usedFor": "E5 目录格式与拓扑规则",
+      "published": false
+    },
+    {
+      "id": "src.ccz.eex-reader",
+      "path": "工具整合包/CCZModStudio/Formats/EexArchiveReader.cs",
+      "sha256": "F1356BC2E4861711D94533FE29B93FD36D169A4F5FFA10A3F889C490CE4DD9BA",
+      "sourceType": "first-party-source",
+      "usedFor": "EEX 已探明头字段",
+      "published": false
+    },
+    {
+      "id": "src.ccz.hexzmap-reader",
+      "path": "工具整合包/CCZModStudio/Formats/HexzmapProbeReader.cs",
+      "sha256": "1C4FC6DAE4CFAFEEAB7C5CC379E3171818C250081B6257E71AA542934E9A3F70",
+      "sourceType": "first-party-source",
+      "usedFor": "Hexzmap 目录和地形负载格式",
+      "published": false
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "entityType": "patch-recipe",
+  "profile": "profile.ccz66.xiaoan.fixture.25d",
+  "entries": [
+    {
+      "id": "locator.66.xiaoan.native-super",
+      "title": "原生 Z 加速函数定位器",
+      "signature": "55 8B EC B9 ?? ?? ?? ?? B8 ?? ?? ?? ?? 80 38 00 0F 85 ?? ?? ?? ?? C6 00 01 80 31 01 80 39 01 75 44",
+      "extraction": [
+        "nativeSuper=match",
+        "nativeSuperState=absolute operand at match+4 length1",
+        "nativeSuperBusy=absolute operand at match+9 length1"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "kind": "semantic-locator",
+      "scanScope": "PE32 executable sections of the loaded image",
+      "matchPolicy": "exactly one match",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout"
+      ]
+    },
+    {
+      "id": "locator.66.xiaoan.wait-wrapper",
+      "title": "公共等待包装器定位器",
+      "signature": "55 8B EC E8 ?? ?? ?? ?? 85 C0 75|EB 07 E8 ?? ?? ?? ?? EB F0 5D C3",
+      "extraction": [
+        "wait=match",
+        "waitCall=match+3",
+        "waitBranch=match+10",
+        "nativeStage=CALL target at match+3",
+        "pump=CALL target at match+12"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "kind": "semantic-locator",
+      "scanScope": "PE32 executable sections of the loaded image",
+      "matchPolicy": "exactly one match; accept 0x75 or 0xEB at match+10",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout"
+      ]
+    },
+    {
+      "id": "locator.66.xiaoan.native-stage",
+      "title": "原生阶段函数定位器",
+      "signature": "55 8B EC 0F B7 05 ?? ?? ?? ?? 0F B6 C8 85 C9 75 04 8B C1 EB 04 C1 E8 08 40",
+      "extraction": [
+        "match must equal nativeStage CALL target",
+        "speed=absolute operand at match+6 length2",
+        "phase/phaseTable/phaseCounter from nested phase block",
+        "sleep/deadline from two pacing CALL rel32 targets"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "kind": "semantic-locator",
+      "scanScope": "128 bytes from the nativeStage CALL target in PE32 executable sections",
+      "matchPolicy": "function prologue must start exactly at the resolved nativeStage target",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout"
+      ]
+    },
+    {
+      "id": "locator.66.xiaoan.delay",
+      "title": "通用延迟函数定位器",
+      "signature": "55 8B EC FF 75 08 E8 ?? ?? ?? ?? E8 ?? ?? ?? ?? F7 D8 1B C0 40 85 C0 75 07 E8 ?? ?? ?? ?? EB EB 5D C2 04 00",
+      "extraction": [
+        "delay=match",
+        "CALL at +11 must target deadline",
+        "CALL at +25 must target pump"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "kind": "semantic-locator",
+      "scanScope": "PE32 executable sections of the loaded image",
+      "matchPolicy": "exactly one match and both CALL targets must equal the resolved deadline and pump functions",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout"
+      ]
+    }
+  ]
+}

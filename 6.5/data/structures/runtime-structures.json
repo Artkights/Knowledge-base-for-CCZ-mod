@@ -1,0 +1,856 @@
+{
+  "schemaVersion": 1,
+  "entityType": "data-structure",
+  "profile": "profile.ccz65.unencrypted.f9a",
+  "entries": [
+    {
+      "id": "struct.65.tactical-unit",
+      "title": "战术单位记录",
+      "baseRef": "global.65.tactical-unit-array",
+      "recordCount": 250,
+      "stride": 48,
+      "indexFormula": "0x004A7B20 + battlefield_id * 0x30 + field_offset",
+      "endianness": "little",
+      "encoding": null,
+      "emptyValue": "data_id=0xFFFF",
+      "fields": [
+        {
+          "name": "data_id",
+          "offset": "0x0",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "逻辑人物 ID",
+          "overlay": "data-id-container"
+        },
+        {
+          "name": "data_id_container",
+          "offset": "0x0",
+          "width": 4,
+          "type": "uint32",
+          "meaning": "包含 data_id 的四字节容器",
+          "overlay": "data-id-container"
+        },
+        {
+          "name": "battle_sprite_id",
+          "offset": "0x4",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "战场形象 ID",
+          "overlay": "display-state"
+        },
+        {
+          "name": "packed_display_state",
+          "offset": "0x4",
+          "width": 4,
+          "type": "uint32",
+          "meaning": "包含形象/阵营/坐标的显示状态",
+          "overlay": "display-state"
+        },
+        {
+          "name": "side",
+          "offset": "0x5",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "阵营/敌我",
+          "overlay": "display-state"
+        },
+        {
+          "name": "x",
+          "offset": "0x6",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "地图 X",
+          "overlay": "display-state"
+        },
+        {
+          "name": "y",
+          "offset": "0x7",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "地图 Y",
+          "overlay": "display-state"
+        },
+        {
+          "name": "action",
+          "offset": "0xD",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "行动状态"
+        },
+        {
+          "name": "ai",
+          "offset": "0xE",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "AI 状态"
+        },
+        {
+          "name": "direction",
+          "offset": "0xF",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "朝向"
+        },
+        {
+          "name": "hp",
+          "offset": "0x10",
+          "width": 4,
+          "type": "uint32",
+          "meaning": "当前 HP"
+        },
+        {
+          "name": "mp",
+          "offset": "0x14",
+          "width": 4,
+          "type": "uint32",
+          "meaning": "当前 MP"
+        },
+        {
+          "name": "attributes",
+          "offset": "0x18",
+          "width": 6,
+          "type": "bytes",
+          "meaning": "战场临时属性块"
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.wrench.profile",
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "struct.65.runtime-character",
+      "title": "运行时人物记录",
+      "baseRef": "global.65.runtime-character-pointer",
+      "recordCount": 1024,
+      "stride": 72,
+      "indexFormula": "DWORD[0x004CEA00] + data_id * 0x48 + field_offset",
+      "endianness": "little",
+      "encoding": "GBK for name",
+      "fields": [
+        {
+          "name": "unknown_06",
+          "offset": "0x6",
+          "width": 2,
+          "type": "bytes",
+          "meaning": "未知"
+        },
+        {
+          "name": "name",
+          "offset": "0x8",
+          "width": 8,
+          "type": "fixed-string",
+          "meaning": "人物名",
+          "encoding": "GBK"
+        },
+        {
+          "name": "derived_attack",
+          "offset": "0x11",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "派生攻击"
+        },
+        {
+          "name": "derived_defense",
+          "offset": "0x13",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "派生防御"
+        },
+        {
+          "name": "derived_spirit",
+          "offset": "0x15",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "派生精神"
+        },
+        {
+          "name": "derived_agility",
+          "offset": "0x17",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "派生爆发"
+        },
+        {
+          "name": "derived_morale",
+          "offset": "0x19",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "派生士气"
+        },
+        {
+          "name": "hp_max",
+          "offset": "0x1B",
+          "width": 4,
+          "type": "uint32",
+          "meaning": "最大 HP"
+        },
+        {
+          "name": "mp_max",
+          "offset": "0x1F",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "最大 MP"
+        },
+        {
+          "name": "base_strength",
+          "offset": "0x21",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "基础武力"
+        },
+        {
+          "name": "base_command",
+          "offset": "0x22",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "基础统率"
+        },
+        {
+          "name": "base_intelligence",
+          "offset": "0x23",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "基础智力"
+        },
+        {
+          "name": "base_agility",
+          "offset": "0x24",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "基础敏捷"
+        },
+        {
+          "name": "base_luck",
+          "offset": "0x25",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "基础运气"
+        },
+        {
+          "name": "appearance",
+          "offset": "0x27",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "形象"
+        },
+        {
+          "name": "retreat",
+          "offset": "0x29",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "撤退状态"
+        },
+        {
+          "name": "friendly_flag",
+          "offset": "0x2A",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "友军标志"
+        },
+        {
+          "name": "job",
+          "offset": "0x2B",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "详细兵种 ID"
+        },
+        {
+          "name": "level",
+          "offset": "0x2C",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "等级"
+        },
+        {
+          "name": "experience",
+          "offset": "0x2D",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "经验"
+        },
+        {
+          "name": "weapon",
+          "offset": "0x2E",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "武器 ID"
+        },
+        {
+          "name": "weapon_level",
+          "offset": "0x2F",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "武器等级"
+        },
+        {
+          "name": "weapon_experience",
+          "offset": "0x30",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "武器经验"
+        },
+        {
+          "name": "armor",
+          "offset": "0x31",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "防具 ID"
+        },
+        {
+          "name": "armor_level",
+          "offset": "0x32",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "防具等级"
+        },
+        {
+          "name": "armor_experience",
+          "offset": "0x33",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "防具经验"
+        },
+        {
+          "name": "accessory",
+          "offset": "0x34",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "辅助装备 ID"
+        },
+        {
+          "name": "kills",
+          "offset": "0x35",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "击破数"
+        },
+        {
+          "name": "unknown_44",
+          "offset": "0x44",
+          "width": 2,
+          "type": "bytes",
+          "meaning": "未知"
+        },
+        {
+          "name": "unknown_46",
+          "offset": "0x46",
+          "width": 2,
+          "type": "bytes",
+          "meaning": "未知"
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.wrench.profile",
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "struct.65.item-record",
+      "title": "物品记录",
+      "baseRef": "global.65.item-table",
+      "recordCount": 255,
+      "stride": 25,
+      "indexFormula": "0x004A1140 + item_id * 0x19 + field_offset",
+      "endianness": "little",
+      "encoding": "GBK",
+      "fields": [
+        {
+          "name": "name",
+          "offset": "0x0",
+          "width": 17,
+          "type": "fixed-string",
+          "meaning": "物品名存储区；文本容量 0x10",
+          "encoding": "GBK, NUL-terminated"
+        },
+        {
+          "name": "type",
+          "offset": "0x11",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "物品类型"
+        },
+        {
+          "name": "effect_id",
+          "offset": "0x12",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "装备特效号"
+        },
+        {
+          "name": "price_div_100",
+          "offset": "0x13",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "价格除以 100"
+        },
+        {
+          "name": "icon",
+          "offset": "0x14",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "图标"
+        },
+        {
+          "name": "initial_value",
+          "offset": "0x15",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "初始能力"
+        },
+        {
+          "name": "effect_value",
+          "offset": "0x16",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "特效值"
+        },
+        {
+          "name": "growth",
+          "offset": "0x17",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "成长"
+        },
+        {
+          "name": "gallery",
+          "offset": "0x18",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "宝物图鉴标志"
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.wrench.profile",
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "struct.65.detailed-job-record",
+      "title": "详细兵种记录",
+      "baseRef": "global.65.detailed-job-table",
+      "recordCount": 80,
+      "stride": 35,
+      "indexFormula": "0x004A2A27 + job_id * 0x23 + field_offset",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "movement",
+          "offset": "0x0",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "移动力"
+        },
+        {
+          "name": "attack_range",
+          "offset": "0x1",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "攻击范围 ID"
+        },
+        {
+          "name": "attack_growth",
+          "offset": "0x2",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "攻击成长"
+        },
+        {
+          "name": "defense_growth",
+          "offset": "0x3",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "防御成长"
+        },
+        {
+          "name": "spirit_growth",
+          "offset": "0x4",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "精神成长"
+        },
+        {
+          "name": "agility_growth",
+          "offset": "0x5",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "爆发成长"
+        },
+        {
+          "name": "morale_growth",
+          "offset": "0x6",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "士气成长"
+        },
+        {
+          "name": "hp_growth",
+          "offset": "0x7",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "HP 成长"
+        },
+        {
+          "name": "mp_growth",
+          "offset": "0x8",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "MP 成长"
+        },
+        {
+          "name": "equipment_eligibility",
+          "offset": "0x9",
+          "width": 26,
+          "type": "bytes",
+          "meaning": "可装备类别矩阵"
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.wrench.profile",
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "struct.65.job-family-terrain-record",
+      "title": "兵种系地形记录",
+      "baseRef": "global.65.job-family-terrain-table",
+      "recordCount": 40,
+      "stride": 60,
+      "indexFormula": "0x004A3517 + family_id * 0x3C + field_offset",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "terrain_adaptation",
+          "offset": "0x0",
+          "width": 30,
+          "type": "bytes",
+          "meaning": "30 类地形适应"
+        },
+        {
+          "name": "movement_cost",
+          "offset": "0x1E",
+          "width": 30,
+          "type": "bytes",
+          "meaning": "30 类地形移动消耗"
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.wrench.profile",
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "struct.65.effect-assignment",
+      "title": "6.5 特效分配记录（3+1）",
+      "baseRef": "global.65.effect-pointer",
+      "recordCount": 255,
+      "stride": 8,
+      "indexFormula": "DWORD[0x00500C3B] + effect_id * 8 + field_offset",
+      "endianness": "little",
+      "emptyValue": "角色空值通常为 1024；兵种空值 255；保留样本中的不透明空值",
+      "fields": [
+        {
+          "name": "character_1",
+          "offset": "0x0",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物槽 1"
+        },
+        {
+          "name": "character_2",
+          "offset": "0x2",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物槽 2"
+        },
+        {
+          "name": "character_3",
+          "offset": "0x4",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物槽 3"
+        },
+        {
+          "name": "job_1",
+          "offset": "0x6",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "兵种槽"
+        },
+        {
+          "name": "shared_value",
+          "offset": "0x7",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "本行共享特效值"
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.wrench.profile",
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "struct.65.fatal-assignment",
+      "title": "必杀分配记录",
+      "baseRef": "global.65.fatal-table",
+      "recordCount": 80,
+      "stride": 16,
+      "indexFormula": "0x00511800 + fatal_id * 16 + field_offset",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "character_1",
+          "offset": "0x0",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 1",
+          "overlay": "fatal-slot-1"
+        },
+        {
+          "name": "level_1",
+          "offset": "0x2",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 1 等级",
+          "overlay": "fatal-slot-1"
+        },
+        {
+          "name": "character_2",
+          "offset": "0x3",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 2",
+          "overlay": "fatal-slot-2"
+        },
+        {
+          "name": "level_2",
+          "offset": "0x5",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 2 等级",
+          "overlay": "fatal-slot-2"
+        },
+        {
+          "name": "character_3",
+          "offset": "0x6",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 3",
+          "overlay": "fatal-slot-3"
+        },
+        {
+          "name": "level_3",
+          "offset": "0x8",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 3 等级",
+          "overlay": "fatal-slot-3"
+        },
+        {
+          "name": "character_4",
+          "offset": "0x9",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 4",
+          "overlay": "fatal-slot-4"
+        },
+        {
+          "name": "level_4",
+          "offset": "0xB",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 4 等级",
+          "overlay": "fatal-slot-4"
+        },
+        {
+          "name": "character_5",
+          "offset": "0xC",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 5",
+          "overlay": "fatal-slot-5"
+        },
+        {
+          "name": "level_5",
+          "offset": "0xE",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 5 等级",
+          "overlay": "fatal-slot-5"
+        },
+        {
+          "name": "effect_value",
+          "offset": "0xF",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "必杀特效值"
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.wrench.profile",
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "struct.65.warehouse-record",
+      "title": "仓库记录",
+      "baseRef": "global.65.warehouse",
+      "recordCount": 200,
+      "stride": 3,
+      "indexFormula": "0x004B0783 + slot * 3 + field_offset",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "item_id",
+          "offset": "0x0",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "物品 ID"
+        },
+        {
+          "name": "level",
+          "offset": "0x1",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "等级"
+        },
+        {
+          "name": "experience",
+          "offset": "0x2",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "经验"
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.wrench.profile",
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "struct.65.strategy-record",
+      "title": "策略记录",
+      "baseRef": "global.65.strategy-table",
+      "recordCount": null,
+      "stride": 97,
+      "indexFormula": "0x004A3E77 + strategy_id * 0x61 + field_offset",
+      "endianness": "little",
+      "fields": [],
+      "notes": "本轮只确认基址和步长；字段语义进入研究队列。",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.wrench.profile",
+        "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "struct.65.range-segment",
+      "title": "攻击范围坐标段",
+      "baseRef": "global.65.range-pointer-table",
+      "recordCount": 256,
+      "stride": 4,
+      "indexFormula": "DWORD[0x004D1400 + range_id * 4] 指向 int8 dx,int8 dy 对；0xFFFF 终止",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "delta_x",
+          "offset": "0x0",
+          "width": 1,
+          "type": "int8",
+          "meaning": "相对 X"
+        },
+        {
+          "name": "delta_y",
+          "offset": "0x1",
+          "width": 1,
+          "type": "int8",
+          "meaning": "相对 Y"
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.wrench.profile",
+        "src.ccz.range-profile"
+      ]
+    }
+  ]
+}

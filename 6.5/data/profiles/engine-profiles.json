@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "entityType": "engine-profile",
+  "profile": null,
+  "entries": [
+    {
+      "id": "profile.ccz65.unencrypted.f9a",
+      "title": "曹操传 6.5 未加密标准样本",
+      "aliases": [
+        "6.5-canonical",
+        "ccz65-unencrypted-f9a-range-v1"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "sha256": "F9A357585F4D77C273A8BADD3E4EF4062983CC81D8040C0CB74768FAB7C04F5F"
+      },
+      "addressPolicy": "本画像中的 VA 仅对该 SHA 样本直接成立；派生作品先重跑签名。",
+      "sourceRefs": [
+        "src.ccz.range-profile",
+        "src.ccz.runtime-registry"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz66.xiaoan.fixture.25d",
+  "entries": [
+    {
+      "id": "global.66.xiaoan.native-super-state",
+      "title": "原生超级加速状态",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00500ADB",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "width": 1,
+      "semantics": "0/1 开关状态",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "global.66.xiaoan.native-super-busy",
+      "title": "原生超级加速忙标志",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00500E0C",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "width": 1,
+      "semantics": "防重入忙标志",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "global.66.xiaoan.phase",
+      "title": "当前阶段",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004B3D18",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "width": 1,
+      "semantics": "0..2 阶段索引",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "global.66.xiaoan.speed",
+      "title": "原生速度值",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00500AD8",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "width": 2,
+      "semantics": "nativeStage 读取的 uint16 速度值；低字节为 0 时阶段逻辑会额外调用 deadline-check。",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "global.66.xiaoan.phase-table",
+      "title": "三阶段延迟表",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004750DC",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "width": 3,
+      "semantics": "三个连续 uint8，按 phase 索引。value>50 表示固定 delay=value-50；value<=50 表示 50 次计数周期内前 value-1 次休眠 1 ms、其余为 0 ms。",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "global.66.xiaoan.phase-counter",
+      "title": "阶段计数器",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004750DF",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "width": 1,
+      "semantics": "紧随 phaseTable 的 uint8 计数器；value<=50 时先加 1，达到 50 后减 50 回绕。",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.layout-tests"
+      ]
+    }
+  ]
+}

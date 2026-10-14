@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz66.xiaoan.fixture.25d",
+  "entries": [
+    {
+      "id": "fn.66.xiaoan.wait-wrapper",
+      "title": "公共等待包装器",
+      "aliases": [
+        "S 等待函数",
+        "wait wrapper"
+      ],
+      "address": {
+        "kind": "va",
+        "value": "0x0042C4E5",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "callingConvention": "__cdecl",
+      "inputs": "无显式参数；读取隐式游戏状态",
+      "returns": "EAX=int completion flag",
+      "semantics": "先调用 nativeStage；EAX 非零时返回，EAX 为零时调用消息泵并循环。SiteWaitCall=+3，SiteWaitBranch=+10。",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.engine",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "fn.66.xiaoan.native-stage",
+      "title": "原生阶段加速函数",
+      "aliases": [
+        "nativeStage"
+      ],
+      "address": {
+        "kind": "va",
+        "value": "0x004750E0",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "callingConvention": "__cdecl",
+      "inputs": "无显式参数；读取 speed、phase、phaseTable、phaseCounter",
+      "returns": "EAX=int completion flag",
+      "semantics": "读取 speed、phase、phaseTable、phaseCounter，调用 sleep/deadline 完成阶段节拍。",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.engine",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "fn.66.xiaoan.native-super",
+      "title": "原生 Z 超级加速切换函数",
+      "aliases": [
+        "nativeSuper"
+      ],
+      "address": {
+        "kind": "va",
+        "value": "0x004250E6",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "callingConvention": "__cdecl",
+      "inputs": "无显式参数；读取并写入 native state/busy bytes",
+      "returns": "void",
+      "semantics": "切换原生超级加速站点并维护 state/busy。",
+      "callSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004132E3",
+            "profile": "profile.ccz66.xiaoan.fixture.25d",
+            "evidence": "sample-verified"
+          },
+          "instruction": "E8 ?? ?? ?? ??",
+          "meaning": "Z 键处理分支中的 CALL；rel32 目标必须解析为 0x004250E6，下一地址为 0x004132E8。"
+        }
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.engine",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "fn.66.xiaoan.message-pump",
+      "title": "等待循环消息泵",
+      "aliases": [
+        "pump"
+      ],
+      "address": {
+        "kind": "va",
+        "value": "0x0047EAC4",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "locatorRef": "locator.66.xiaoan.wait-wrapper",
+      "callingConvention": "__cdecl",
+      "inputs": "none",
+      "returns": "void",
+      "semantics": "wait+12 的 CALL rel32 目标；S 加速仍调用它保持消息处理。",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.engine",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "fn.66.xiaoan.deadline-check",
+      "title": "阶段截止判断",
+      "aliases": [
+        "deadline"
+      ],
+      "address": {
+        "kind": "va",
+        "value": "0x0040C19D",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "locatorRef": "locator.66.xiaoan.native-stage",
+      "callingConvention": "__cdecl",
+      "inputs": "implicit clock state",
+      "returns": "EAX=int/bool",
+      "semantics": "nativeStage pacing 块第二个 CALL rel32 目标。",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.engine",
+        "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "fn.66.xiaoan.sleep",
+      "title": "阶段休眠函数",
+      "aliases": [
+        "sleep"
+      ],
+      "address": {
+        "kind": "va",
+        "value": "0x00411195",
+        "profile": "profile.ccz66.xiaoan.fixture.25d",
+        "evidence": "sample-verified"
+      },
+      "locatorRef": "locator.66.xiaoan.native-stage",
+      "callingConvention": "__stdcall",
+      "abi": {
+        "stackArguments": [
+          "duration:uint32"
+        ],
+        "calleeCleanup": 4
+      },
+      "inputs": "duration:uint32",
+      "returns": "void",
+      "semantics": "nativeStage pacing 块第一个 CALL rel32 目标。",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "relations": [],
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.engine",
+        "src.xiaoan.layout-tests"
+      ]
+    }
+  ]
+}

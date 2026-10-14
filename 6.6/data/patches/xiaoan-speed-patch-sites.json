@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "entityType": "patch-recipe",
+  "profile": "profile.ccz66.xiaoan.fixture.25d",
+  "entries": [
+    {
+      "id": "patch.66.xiaoan.dialog",
+      "title": "对白函数立即返回",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "entry-short-circuit",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x0042D5B0", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "55 8B EC E8",
+          "replacementBytes": "C2 0C 00 E8",
+          "overwriteLength": 4,
+          "writeMode": "function-entry-prefix",
+          "instructionBoundary": false,
+          "executionEffect": "RET 0x000C 在入口立即返回；第 4 字节只是不可达填充，不能作为完整指令执行。"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.map-text",
+      "title": "地图文字函数立即返回",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "entry-short-circuit",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x004332A6", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "55 8B EC 6A",
+          "replacementBytes": "C2 10 00 6A",
+          "overwriteLength": 4,
+          "writeMode": "function-entry-prefix",
+          "instructionBoundary": false,
+          "executionEffect": "RET 0x0010 在入口立即返回；第 4 字节只是不可达填充。"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.delay",
+      "title": "通用延迟函数立即返回",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "entry-short-circuit",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x00422DBA", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "55 8B EC",
+          "replacementBytes": "C2 04 00",
+          "overwriteLength": 3,
+          "writeMode": "function-entry",
+          "instructionBoundary": true,
+          "executionEffect": "以 RET 0x0004 替换完整三字节函数序言，立即返回并弹出一个参数。"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.r-wait",
+      "title": "R 流程等待 CALL 空操作化",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "instruction-replacement",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x00429964", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "E8 7C 2B 00 00",
+          "replacementBytes": "90 90 90 90 90",
+          "overwriteLength": 5,
+          "writeMode": "whole-instruction",
+          "instructionBoundary": true,
+          "executionEffect": "删除到公共等待包装器 0x0042C4E5 的 CALL；原 CALL 下一地址为 0x00429969。"
+        }
+      ],
+      "relations": ["fn.66.xiaoan.wait-wrapper"],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.wait-call",
+      "title": "公共等待中的 nativeStage CALL 重定向",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "call-retarget",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x0042C4E8", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "E8 F3 8B 04 00",
+          "replacementBytes": "E8 ?? ?? ?? ??",
+          "overwriteLength": 5,
+          "writeMode": "whole-instruction-rel32",
+          "instructionBoundary": true,
+          "executionEffect": "超级 S 时 CALL 到 SuperYieldBridge；阶段加速时 CALL 到 LegacyPhaseBridge；两者互斥。"
+        }
+      ],
+      "abi": "被调函数为 __cdecl、无显式参数、EAX 返回 int；CALL 后继续执行 0x0042C4ED。",
+      "stub": {
+        "entry": "SuperYieldBridge or LegacyPhaseBridge through a near thunk",
+        "return": "0x0042C4ED",
+        "relocations": ["rel32 = thunk - (0x0042C4E8 + 5)", "near thunk encodes mov eax, absolute32; jmp eax"]
+      },
+      "relations": ["fn.66.xiaoan.wait-wrapper", "fn.66.xiaoan.native-stage", "mechanism.66.xiaoan.super-s"],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.input-modifier",
+      "title": "加速修饰键立即数字段",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "operand-patch",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x00413324", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "10",
+          "replacementVariants": [
+            {"bytes": "10", "meaning": "VK_SHIFT"},
+            {"bytes": "11", "meaning": "VK_CONTROL"}
+          ],
+          "overwriteLength": 1,
+          "writeMode": "immediate-operand-only",
+          "instructionBoundary": false,
+          "executionEffect": "修改 CMP EAX, imm8 的立即数；完整上下文从 0x00413322 起为 83 F8 <key> 75 0F。"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.dialog3",
+      "title": "第三类对白函数立即返回",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "entry-short-circuit",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x0042DB2C", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "55 8B EC 6A",
+          "replacementBytes": "C2 04 00 6A",
+          "overwriteLength": 4,
+          "writeMode": "function-entry-prefix",
+          "instructionBoundary": false,
+          "executionEffect": "RET 0x0004 在入口立即返回；第 4 字节只是不可达填充。"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.extra-delay",
+      "title": "额外延迟分支跳过",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "instruction-replacement",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x00415B40", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "D1 E0",
+          "replacementBytes": "EB 06",
+          "overwriteLength": 2,
+          "writeMode": "whole-instruction",
+          "instructionBoundary": true,
+          "executionEffect": "把 SHL EAX,1 改为 JMP short +6，跳过后续延迟调用准备。"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.wait-branch",
+      "title": "原生超级加速等待分支",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "instruction-replacement",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x0042C4EF", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "75 07",
+          "replacementBytes": "EB 07",
+          "overwriteLength": 2,
+          "writeMode": "whole-instruction",
+          "instructionBoundary": true,
+          "executionEffect": "原生 Z 超级加速把 JNZ +7 改为 JMP +7；小暗接管前会识别并还原这一原生状态。"
+        }
+      ],
+      "relations": ["fn.66.xiaoan.wait-wrapper", "fn.66.xiaoan.native-super"],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.dialog-display",
+      "title": "对白显示延迟调用跳过",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "control-transfer-prefix",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x0042C812", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "E8 29",
+          "replacementBytes": "EB 1D",
+          "overwriteLength": 2,
+          "writeMode": "instruction-prefix-terminal-transfer",
+          "instructionBoundary": false,
+          "executionEffect": "用 JMP short +0x1D 覆盖 CALL 的前两字节；跳转使剩余三个 rel32 字节不可达。"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.extended-display",
+      "title": "扩展显示延迟调用跳过",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "control-transfer-prefix",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x00455CE5", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "E8 56",
+          "replacementBytes": "EB F5",
+          "overwriteLength": 2,
+          "writeMode": "instruction-prefix-terminal-transfer",
+          "instructionBoundary": false,
+          "executionEffect": "用 JMP short -11 覆盖 CALL 的前两字节；跳转使剩余三个 rel32 字节不可达。"
+        }
+      ],
+      "relations": ["mechanism.66.xiaoan.super-s"],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    },
+    {
+      "id": "patch.66.xiaoan.native-super",
+      "title": "原生 Z 切换函数入口重定向",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "kind": "entry-jump",
+      "sites": [
+        {
+          "address": {"kind": "va", "value": "0x004250E6", "profile": "profile.ccz66.xiaoan.fixture.25d", "evidence": "sample-verified"},
+          "expectedBytes": "55 8B EC B9 DB",
+          "replacementBytes": "E9 ?? ?? ?? ??",
+          "overwriteLength": 5,
+          "writeMode": "function-entry-terminal-transfer",
+          "instructionBoundary": false,
+          "executionEffect": "JMP rel32 到 NativeToggleBridge；原序言和 MOV ECX,imm32 的首两字节被覆盖，原函数不再顺序执行。"
+        }
+      ],
+      "abi": "NativeToggleBridge 为 __cdecl、无参数、void；保留原调用者的栈布局。",
+      "stub": {
+        "entry": "NativeToggleBridge through a near thunk",
+        "return": "bridge RET returns directly to the original caller",
+        "relocations": ["rel32 = thunk - (0x004250E6 + 5)", "near thunk encodes mov eax, absolute32; jmp eax"]
+      },
+      "relations": ["fn.66.xiaoan.native-super"],
+      "sourceRefs": ["src.xiaoan.layout", "src.xiaoan.engine", "src.xiaoan.layout-tests"]
+    }
+  ]
+}

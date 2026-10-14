@@ -1,0 +1,751 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.f9a",
+  "entries": [
+    {
+      "id": "global.65.tactical-unit-array",
+      "title": "战术单位数组",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004A7B20",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "0x30 字节记录数组",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.runtime-character-pointer",
+      "title": "运行时人物表指针槽",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "pointerSlot",
+        "value": "0x004CEA00",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 4,
+      "semantics": "解引用后得到 1024×0x48 人物表",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.strategy-table",
+      "title": "策略运行时表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004A3E77",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "0x61 字节记录",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.item-table",
+      "title": "物品运行时表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004A1140",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "255×0x19 字节",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.detailed-job-table",
+      "title": "详细兵种表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004A2A27",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "80×0x23 字节",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.job-family-terrain-table",
+      "title": "兵种系地形表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004A3517",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "40×0x3C 字节",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.consumable-counts",
+      "title": "消耗品数量数组",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00510C80",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 105,
+      "semantics": "item_id 150..254，各 1 字节",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.warehouse",
+      "title": "仓库记录表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004B0783",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 600,
+      "semantics": "200×3 字节",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.money",
+      "title": "金钱",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004B077C",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 4,
+      "semantics": "全局金钱值",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.alignment",
+      "title": "路线/阵营标志",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004B0782",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 1,
+      "semantics": "全局路线标志",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.merit",
+      "title": "人物功勋表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00508000",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "扩展版功勋数据",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.merit-pool",
+      "title": "功勋池",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00505F40",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "功勋相关全局池",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.save-state",
+      "title": "存档状态",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004B0770",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "存档/流程全局状态",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.battle-state",
+      "title": "战场状态",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004B3D08",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "战场流程状态",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.battle-sp",
+      "title": "战场 SP",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00501C00",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "战场 SP 数据",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.job-names",
+      "title": "兵种名称表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x005000D0",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "兵种名称数据",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.effect-pointer",
+      "title": "特效分配表指针槽",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "pointerSlot",
+        "value": "0x00500C3B",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 4,
+      "semantics": "解引用得到 255×8 字节 3+1 特效表",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.exclusive-effect",
+      "title": "专属/套装表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0050E400",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "每特效 16 字节",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.fatal-table",
+      "title": "必杀分配表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00511800",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "80×16 字节",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.bool-variables",
+      "title": "布尔变量位集",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00492FC8",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 512,
+      "semantics": "4096 位，MSB0",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.int-variables",
+      "title": "整数变量数组",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00502000",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 16384,
+      "semantics": "4096×signed int32",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.pointer-variables",
+      "title": "指针变量数组",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00506000",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 1924,
+      "semantics": "481×uint32",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.physical-context",
+      "title": "物理攻击上下文",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004927F0",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "目标、伤害、效果和穿透字段容器",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.strategy-context",
+      "title": "策略上下文",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00497AF8",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "策略结算上下文",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.item-context",
+      "title": "物品上下文",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00497750",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "物品使用上下文",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.range-pointer-table",
+      "title": "范围指针表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004D1400",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 1024,
+      "semantics": "256 个 uint32 范围段指针",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.pierce-value-table",
+      "title": "穿透值表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00407881",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "穿透类型值表",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.range-target-buffer",
+      "title": "范围目标临时缓冲",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004AC748",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "几何展开后的候选目标",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.range-target-write-index",
+      "title": "目标写入索引",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004B2C34",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 4,
+      "semantics": "范围目标缓冲写位置",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.range-target-sentinel",
+      "title": "目标哨兵",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004B2C28",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 4,
+      "semantics": "范围目标终止/状态值",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "global.65.battle-ui-context",
+      "title": "战场 UI this 指针槽",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "pointerSlot",
+        "value": "0x004B5DF0",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "static-verified"
+      },
+      "width": 4,
+      "semantics": "转向和坐标刷新函数的 ECX 来源",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.runtime-registry",
+        "src.ccz.range-profile",
+        "src.wrench.profile"
+      ]
+    }
+  ]
+}

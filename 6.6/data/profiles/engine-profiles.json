@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "entityType": "engine-profile",
+  "profile": null,
+  "entries": [
+    {
+      "id": "profile.ccz66.xiaoan.fixture.25d",
+      "title": "小暗 v0.7 布局测试使用的 6.6 样本",
+      "aliases": [
+        "xiaoan-66-layout-fixture"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "size": 1148928,
+        "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+      },
+      "addressPolicy": "固定 VA 来自该测试样本；其它 6.6/6.6x 作品应使用同条目的 masked signature 和操作数提取规则。",
+      "sourceRefs": [
+        "src.xiaoan.layout",
+        "src.xiaoan.layout-tests"
+      ]
+    }
+  ]
+}

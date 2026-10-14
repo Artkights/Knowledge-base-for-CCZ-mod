@@ -1,0 +1,913 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": null,
+  "entries": [
+    {
+      "id": "legacy.addresses.61",
+      "title": "6.1 Python 扳手历史地址画像",
+      "versions": [
+        "6.1"
+      ],
+      "profile": "profile.ccz61.legacy",
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "addresses": {
+        "battle_units": {
+          "kind": "va",
+          "value": "0x004B2C50",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_pointer": {
+          "kind": "pointerSlot",
+          "value": "0x004CEA00",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_r": {
+          "kind": "va",
+          "value": "0x0050F800",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_s": {
+          "kind": "va",
+          "value": "0x00501000",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_face": {
+          "kind": "va",
+          "value": "0x0050F000",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "merit": {
+          "kind": "va",
+          "value": "0x00508400",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "warehouse": {
+          "kind": "va",
+          "value": "0x004B0783",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "money": {
+          "kind": "va",
+          "value": "0x004B077C",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "alignment": {
+          "kind": "va",
+          "value": "0x004B0782",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "merit_pool": {
+          "kind": "va",
+          "value": "0x00505F40",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "save_state": {
+          "kind": "va",
+          "value": "0x004B0770",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "battle_state": {
+          "kind": "va",
+          "value": "0x004B3D08",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "battle_sp": {
+          "kind": "va",
+          "value": "0x00501C00",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "job_names": {
+          "kind": "va",
+          "value": "0x005000D0",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "item_table": {
+          "kind": "va",
+          "value": "0x004A1140",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "effect_assign": {
+          "kind": "va",
+          "value": "0x005089B0",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "exclusive_set": {
+          "kind": "va",
+          "value": "0x0050E800",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "fatal_table": {
+          "kind": "va",
+          "value": "0x00508800",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "bool_vars": {
+          "kind": "va",
+          "value": "0x00492FC8",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "int_vars": {
+          "kind": "va",
+          "value": "0x00502000",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "ptr_vars": {
+          "kind": "va",
+          "value": "0x00506000",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "recalculate": {
+          "kind": "va",
+          "value": "0x004075DF",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "revive": {
+          "kind": "va",
+          "value": "0x0040930F",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "weather": {
+          "kind": "va",
+          "value": "0x0041D9D1",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "direction_refresh": {
+          "kind": "va",
+          "value": "0x00457428",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        },
+        "position_refresh": {
+          "kind": "va",
+          "value": "0x004594DD",
+          "profile": "profile.ccz61.legacy",
+          "evidence": "legacy-source"
+        }
+      },
+      "layout": {
+        "battleStride": 36,
+        "personStride": 72,
+        "warehouseStride": 3,
+        "itemStride": 25,
+        "effectStride": 8,
+        "fatalStride": 16
+      },
+      "warning": "旧版历史 Oracle；不得与 6.5、6.5pl 或 6.6 合并。",
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "legacy.addresses.62",
+      "title": "6.2 Python 扳手历史地址画像",
+      "versions": [
+        "6.2"
+      ],
+      "profile": "profile.ccz62.legacy",
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "addresses": {
+        "battle_units": {
+          "kind": "va",
+          "value": "0x004B2C50",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_pointer": {
+          "kind": "pointerSlot",
+          "value": "0x004CEA00",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_r": {
+          "kind": "va",
+          "value": "0x0050F800",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_s": {
+          "kind": "va",
+          "value": "0x00501000",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_face": {
+          "kind": "va",
+          "value": "0x0050F000",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "merit": {
+          "kind": "va",
+          "value": "0x00508400",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "warehouse": {
+          "kind": "va",
+          "value": "0x004B0783",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "money": {
+          "kind": "va",
+          "value": "0x004B077C",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "alignment": {
+          "kind": "va",
+          "value": "0x004B0782",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "merit_pool": {
+          "kind": "va",
+          "value": "0x00505F40",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "save_state": {
+          "kind": "va",
+          "value": "0x004B0770",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "battle_state": {
+          "kind": "va",
+          "value": "0x004B3D08",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "battle_sp": {
+          "kind": "va",
+          "value": "0x00501C00",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "job_names": {
+          "kind": "va",
+          "value": "0x005000D0",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "item_table": {
+          "kind": "va",
+          "value": "0x004A1140",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "effect_assign": {
+          "kind": "va",
+          "value": "0x005089B0",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "exclusive_set": {
+          "kind": "va",
+          "value": "0x0050E800",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "fatal_table": {
+          "kind": "va",
+          "value": "0x00508800",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "bool_vars": {
+          "kind": "va",
+          "value": "0x00492FC8",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "int_vars": {
+          "kind": "va",
+          "value": "0x00502000",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "ptr_vars": {
+          "kind": "va",
+          "value": "0x00506000",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "recalculate": {
+          "kind": "va",
+          "value": "0x004075DF",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "revive": {
+          "kind": "va",
+          "value": "0x004092E0",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "weather": {
+          "kind": "va",
+          "value": "0x0041D9D1",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "direction_refresh": {
+          "kind": "va",
+          "value": "0x00457428",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        },
+        "position_refresh": {
+          "kind": "va",
+          "value": "0x004594DD",
+          "profile": "profile.ccz62.legacy",
+          "evidence": "legacy-source"
+        }
+      },
+      "layout": {
+        "battleStride": 36,
+        "personStride": 72,
+        "warehouseStride": 3,
+        "itemStride": 25,
+        "effectStride": 8,
+        "fatalStride": 16
+      },
+      "warning": "旧版历史 Oracle；不得与 6.5、6.5pl 或 6.6 合并。",
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "legacy.addresses.63",
+      "title": "6.3 Python 扳手历史地址画像",
+      "versions": [
+        "6.3"
+      ],
+      "profile": "profile.ccz63.legacy",
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "addresses": {
+        "battle_units": {
+          "kind": "va",
+          "value": "0x004B2C50",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_pointer": {
+          "kind": "pointerSlot",
+          "value": "0x004CEA00",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_r": {
+          "kind": "va",
+          "value": "0x0050F800",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_s": {
+          "kind": "va",
+          "value": "0x00501000",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_face": {
+          "kind": "va",
+          "value": "0x0050F000",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "merit": {
+          "kind": "va",
+          "value": "0x00508400",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "warehouse": {
+          "kind": "va",
+          "value": "0x004B0783",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "money": {
+          "kind": "va",
+          "value": "0x004B077C",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "alignment": {
+          "kind": "va",
+          "value": "0x004B0782",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "merit_pool": {
+          "kind": "va",
+          "value": "0x00505F40",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "save_state": {
+          "kind": "va",
+          "value": "0x004B0770",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "battle_state": {
+          "kind": "va",
+          "value": "0x004B3D08",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "battle_sp": {
+          "kind": "va",
+          "value": "0x00501C00",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "job_names": {
+          "kind": "va",
+          "value": "0x005000D0",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "item_table": {
+          "kind": "va",
+          "value": "0x004A1140",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "effect_assign": {
+          "kind": "va",
+          "value": "0x005089B0",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "exclusive_set": {
+          "kind": "va",
+          "value": "0x0050E400",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "fatal_table": {
+          "kind": "va",
+          "value": "0x00508800",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "bool_vars": {
+          "kind": "va",
+          "value": "0x00492FC8",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "int_vars": {
+          "kind": "va",
+          "value": "0x00502000",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "ptr_vars": {
+          "kind": "va",
+          "value": "0x00506000",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "recalculate": {
+          "kind": "va",
+          "value": "0x004075DF",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "revive": {
+          "kind": "va",
+          "value": "0x004092E0",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "weather": {
+          "kind": "va",
+          "value": "0x0041D9D1",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "direction_refresh": {
+          "kind": "va",
+          "value": "0x00457428",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        },
+        "position_refresh": {
+          "kind": "va",
+          "value": "0x004594DD",
+          "profile": "profile.ccz63.legacy",
+          "evidence": "legacy-source"
+        }
+      },
+      "layout": {
+        "battleStride": 36,
+        "personStride": 72,
+        "warehouseStride": 3,
+        "itemStride": 25,
+        "effectStride": 8,
+        "fatalStride": 16
+      },
+      "warning": "旧版历史 Oracle；不得与 6.5、6.5pl 或 6.6 合并。",
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "legacy.addresses.63mp",
+      "title": "6.3mp Python 扳手历史地址画像",
+      "versions": [
+        "6.3mp"
+      ],
+      "profile": "profile.ccz63mp.legacy",
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "addresses": {
+        "battle_units": {
+          "kind": "va",
+          "value": "0x004B2C50",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_pointer": {
+          "kind": "pointerSlot",
+          "value": "0x004CEA00",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_r": {
+          "kind": "va",
+          "value": "0x0050F800",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_s": {
+          "kind": "va",
+          "value": "0x00501000",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_face": {
+          "kind": "va",
+          "value": "0x0050F000",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "merit": {
+          "kind": "va",
+          "value": "0x00508400",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "warehouse": {
+          "kind": "va",
+          "value": "0x004B0783",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "money": {
+          "kind": "va",
+          "value": "0x004B077C",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "alignment": {
+          "kind": "va",
+          "value": "0x004B0782",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "merit_pool": {
+          "kind": "va",
+          "value": "0x00505F40",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "save_state": {
+          "kind": "va",
+          "value": "0x004B0770",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "battle_state": {
+          "kind": "va",
+          "value": "0x004B3D08",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "battle_sp": {
+          "kind": "va",
+          "value": "0x00501C00",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "job_names": {
+          "kind": "va",
+          "value": "0x005000D0",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "item_table": {
+          "kind": "va",
+          "value": "0x004A1140",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "effect_assign": {
+          "kind": "va",
+          "value": "0x005089B0",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "exclusive_set": {
+          "kind": "va",
+          "value": "0x0050E400",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "fatal_table": {
+          "kind": "va",
+          "value": "0x00508800",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "bool_vars": {
+          "kind": "va",
+          "value": "0x00492FC8",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "int_vars": {
+          "kind": "va",
+          "value": "0x00502000",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "ptr_vars": {
+          "kind": "va",
+          "value": "0x00506000",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "recalculate": {
+          "kind": "va",
+          "value": "0x004075DF",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "revive": {
+          "kind": "va",
+          "value": "0x004092E0",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "weather": {
+          "kind": "va",
+          "value": "0x0041D9D1",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "direction_refresh": {
+          "kind": "va",
+          "value": "0x00457428",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        },
+        "position_refresh": {
+          "kind": "va",
+          "value": "0x004594DD",
+          "profile": "profile.ccz63mp.legacy",
+          "evidence": "legacy-source"
+        }
+      },
+      "layout": {
+        "battleStride": 36,
+        "personStride": 72,
+        "warehouseStride": 3,
+        "itemStride": 25,
+        "effectStride": 8,
+        "fatalStride": 16
+      },
+      "warning": "旧版历史 Oracle；不得与 6.5、6.5pl 或 6.6 合并。",
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "legacy.addresses.64",
+      "title": "6.4 Python 扳手历史地址画像",
+      "versions": [
+        "6.4"
+      ],
+      "profile": "profile.ccz64.legacy",
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "addresses": {
+        "battle_units": {
+          "kind": "va",
+          "value": "0x004A7B20",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_pointer": {
+          "kind": "pointerSlot",
+          "value": "0x004CEA00",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_r": {
+          "kind": "va",
+          "value": "0x0050F800",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_s": {
+          "kind": "va",
+          "value": "0x00501000",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "person_face": {
+          "kind": "va",
+          "value": "0x0050F000",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "merit": {
+          "kind": "va",
+          "value": "0x00508000",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "warehouse": {
+          "kind": "va",
+          "value": "0x004B0783",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "money": {
+          "kind": "va",
+          "value": "0x004B077C",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "alignment": {
+          "kind": "va",
+          "value": "0x004B0782",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "merit_pool": {
+          "kind": "va",
+          "value": "0x00505F40",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "save_state": {
+          "kind": "va",
+          "value": "0x004B0770",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "battle_state": {
+          "kind": "va",
+          "value": "0x004B3D08",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "battle_sp": {
+          "kind": "va",
+          "value": "0x00501C00",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "job_names": {
+          "kind": "va",
+          "value": "0x005000D0",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "item_table": {
+          "kind": "va",
+          "value": "0x004A1140",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "effect_assign": {
+          "kind": "va",
+          "value": "0x00508998",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "exclusive_set": {
+          "kind": "va",
+          "value": "0x0050E400",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "fatal_table": {
+          "kind": "va",
+          "value": "0x00511800",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "bool_vars": {
+          "kind": "va",
+          "value": "0x00492FC8",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "int_vars": {
+          "kind": "va",
+          "value": "0x00502000",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "ptr_vars": {
+          "kind": "va",
+          "value": "0x00506000",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "recalculate": {
+          "kind": "va",
+          "value": "0x004075DF",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "revive": {
+          "kind": "va",
+          "value": "0x004092C7",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "weather": {
+          "kind": "va",
+          "value": "0x0041D9D1",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "direction_refresh": {
+          "kind": "va",
+          "value": "0x00457428",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "position_refresh": {
+          "kind": "va",
+          "value": "0x004594DD",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        },
+        "consumable_counts": {
+          "kind": "va",
+          "value": "0x00510C80",
+          "profile": "profile.ccz64.legacy",
+          "evidence": "legacy-source"
+        }
+      },
+      "layout": {
+        "battleStride": 48,
+        "personStride": 72,
+        "warehouseStride": 3,
+        "itemStride": 25,
+        "effectStride": 8,
+        "fatalStride": 16
+      },
+      "warning": "旧版历史 Oracle；不得与 6.5、6.5pl 或 6.6 合并。",
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "entityType": "data-structure",
+  "profile": "profile.ccz66.xiaoan.fixture.25d",
+  "entries": [
+    {
+      "id": "struct.66.effect-assignment",
+      "title": "6.6 特效分配记录（4+2）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "baseRef": null,
+      "recordCount": 255,
+      "stride": 16,
+      "indexFormula": "DWORD[resolved effect pointer slot] + effect_id * 0x10 + field_offset",
+      "endianness": "little",
+      "emptyValue": "人物规范空值 1024；兵种空值 255；实机读取时保留每槽不透明空值",
+      "fields": [
+        {
+          "name": "character_1",
+          "offset": "0x0",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 1",
+          "overlay": "c1"
+        },
+        {
+          "name": "character_value_1",
+          "offset": "0x2",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 1 特效值",
+          "overlay": "c1"
+        },
+        {
+          "name": "character_2",
+          "offset": "0x3",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 2",
+          "overlay": "c2"
+        },
+        {
+          "name": "character_value_2",
+          "offset": "0x5",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 2 特效值",
+          "overlay": "c2"
+        },
+        {
+          "name": "character_3",
+          "offset": "0x6",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 3",
+          "overlay": "c3"
+        },
+        {
+          "name": "character_value_3",
+          "offset": "0x8",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 3 特效值",
+          "overlay": "c3"
+        },
+        {
+          "name": "character_4",
+          "offset": "0x9",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 4",
+          "overlay": "c4"
+        },
+        {
+          "name": "character_value_4",
+          "offset": "0xB",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 4 特效值",
+          "overlay": "c4"
+        },
+        {
+          "name": "job_1",
+          "offset": "0xC",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "兵种 1",
+          "overlay": "j1"
+        },
+        {
+          "name": "job_value_1",
+          "offset": "0xD",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "兵种 1 特效值",
+          "overlay": "j1"
+        },
+        {
+          "name": "job_2",
+          "offset": "0xE",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "兵种 2",
+          "overlay": "j2"
+        },
+        {
+          "name": "job_value_2",
+          "offset": "0xF",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "兵种 2 特效值",
+          "overlay": "j2"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    },
+    {
+      "id": "struct.66.item-record",
+      "title": "6.6 物品记录",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "baseRef": null,
+      "recordCount": 255,
+      "stride": 25,
+      "indexFormula": "split Data.e5/Star.e5 table + item_id*0x19",
+      "endianness": "little",
+      "encoding": "GBK",
+      "fields": [
+        {
+          "name": "name",
+          "offset": "0x0",
+          "width": 15,
+          "type": "fixed-string",
+          "meaning": "名称",
+          "encoding": "GBK, NUL-terminated"
+        },
+        {
+          "name": "icon",
+          "offset": "0xF",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "图标"
+        },
+        {
+          "name": "effect_or_type",
+          "offset": "0x11",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "特效或类型"
+        },
+        {
+          "name": "equipment_effect_or_category",
+          "offset": "0x12",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "装备特效或类别"
+        },
+        {
+          "name": "price",
+          "offset": "0x13",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "价格字段"
+        },
+        {
+          "name": "ability",
+          "offset": "0x15",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "能力"
+        },
+        {
+          "name": "effect_value",
+          "offset": "0x16",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "特效值"
+        },
+        {
+          "name": "growth",
+          "offset": "0x17",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "成长"
+        },
+        {
+          "name": "catalog_flag",
+          "offset": "0x18",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "图鉴/宝物标志"
+        }
+      ],
+      "relations": [
+        "format.item.split-data-star"
+      ],
+      "sourceRefs": [
+        "src.wrench.profile"
+      ]
+    }
+  ]
+}

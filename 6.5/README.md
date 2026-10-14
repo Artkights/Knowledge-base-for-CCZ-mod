@@ -1,9 +1,5 @@
-﻿# 6.5
+# 6.5 引擎知识
 
-当前加强版 6.5 未加密基底的默认制作、写回、剧本、资源和工具知识。
+默认画像为 `profile.ccz65.unencrypted.f9a`，样本 SHA256 为 `F9A357...C04F5F`。固定 VA 只能直接用于该样本；派生作品必须先验证画像。
 
-## 使用边界
-
-- 只使用本目录中带有明确版本和证据标记的条目。
-- 不把本目录的地址、布局或资源编号直接套用到其它版本。
-- 来源索引位于本版本的 `90-来源索引` 目录。
+正式数据位于 `data/`，浏览页位于 `reference/`。建议依次读取 `reference/profiles.md`、`reference/functions.md`、`reference/globals.md`、`reference/structures.md`、`reference/file-formats.md`、`reference/patches.md` 和 `reference/mechanisms.md`。

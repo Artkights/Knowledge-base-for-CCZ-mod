@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.f9a",
+  "entries": [
+    {
+      "id": "mechanism.65.physical-attack-targeting",
+      "title": "物理攻击范围到目标消费调用链",
+      "aliases": [
+        "攻击函数",
+        "攻击链",
+        "attack chain"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.attack-entry",
+          "role": "物理攻击入口"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.attack-selector",
+          "role": "准备中心坐标和 packed range"
+        },
+        {
+          "order": 3,
+          "entity": "fn.65.attack-dispatch",
+          "role": "按范围 ID/段分派"
+        },
+        {
+          "order": 4,
+          "entity": "fn.65.attack-geometry",
+          "role": "展开相对坐标"
+        },
+        {
+          "order": 5,
+          "entity": "fn.65.map-unit-lookup",
+          "role": "坐标转单位"
+        },
+        {
+          "order": 6,
+          "entity": "fn.65.attack-append-target",
+          "role": "过滤并追加目标"
+        },
+        {
+          "order": 7,
+          "entity": "fn.65.target-consumer",
+          "role": "消费目标并写伤害/效果"
+        }
+      ],
+      "state": [
+        "global.65.range-pointer-table",
+        "global.65.range-target-buffer",
+        "global.65.range-target-write-index",
+        "global.65.range-target-sentinel",
+        "global.65.physical-context"
+      ],
+      "pierceBranch": [
+        "fn.65.pierce-loader",
+        "fn.65.combat-context-init",
+        "fn.65.pierce-expand-wrapper",
+        "fn.65.pierce-geometry-dispatch",
+        "fn.65.pierce-append-target",
+        "fn.65.target-consumer"
+      ],
+      "contextOffsets": [
+        {
+          "base": "0x004927F0",
+          "offset": "0x10",
+          "meaning": "目标 ID 数组，0xFF 终止"
+        },
+        {
+          "base": "0x004927F0",
+          "offset": "0x84",
+          "meaning": "HP 伤害数组"
+        },
+        {
+          "base": "0x004927F0",
+          "offset": "0x254",
+          "meaning": "MP/效果数组"
+        },
+        {
+          "base": "0x004927F0",
+          "offset": "0x424",
+          "meaning": "穿透范围字段"
+        }
+      ],
+      "sourceRefs": [
+        "src.ccz.range-profile",
+        "src.ccz.range-probe"
+      ]
+    },
+    {
+      "id": "mechanism.65.id-pointer-conversion",
+      "title": "ID、战术单位和运行时记录转换链",
+      "aliases": [
+        "ID 转指针",
+        "人物索引"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.battlefield-id-to-tactical-unit",
+          "role": "战场 ID 到 0x30 记录"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.tactical-unit-to-runtime-character",
+          "role": "战术记录到 0x48 人物记录"
+        }
+      ],
+      "state": [
+        "global.65.tactical-unit-array",
+        "global.65.runtime-character-pointer"
+      ],
+      "sourceRefs": [
+        "src.ccz.runtime-registry"
+      ]
+    }
+  ]
+}
