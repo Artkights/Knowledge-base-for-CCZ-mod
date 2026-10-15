@@ -6,7 +6,7 @@
 
 ## 战术单位记录
 
-ID: `struct.65.tactical-unit`
+ID: `struct.65.tactical-unit`；状态: `canonical`；证据: `static-verified`
 
 步长: `0x30` (48)
 
@@ -30,7 +30,7 @@ ID: `struct.65.tactical-unit`
 
 ## 运行时人物记录
 
-ID: `struct.65.runtime-character`
+ID: `struct.65.runtime-character`；状态: `canonical`；证据: `static-verified`
 
 步长: `0x48` (72)
 
@@ -71,7 +71,7 @@ ID: `struct.65.runtime-character`
 
 ## 物品记录
 
-ID: `struct.65.item-record`
+ID: `struct.65.item-record`；状态: `canonical`；证据: `static-verified`
 
 步长: `0x19` (25)
 
@@ -91,7 +91,7 @@ ID: `struct.65.item-record`
 
 ## 详细兵种记录
 
-ID: `struct.65.detailed-job-record`
+ID: `struct.65.detailed-job-record`；状态: `canonical`；证据: `static-verified`
 
 步长: `0x23` (35)
 
@@ -112,7 +112,7 @@ ID: `struct.65.detailed-job-record`
 
 ## 兵种系地形记录
 
-ID: `struct.65.job-family-terrain-record`
+ID: `struct.65.job-family-terrain-record`；状态: `canonical`；证据: `static-verified`
 
 步长: `0x3C` (60)
 
@@ -125,7 +125,7 @@ ID: `struct.65.job-family-terrain-record`
 
 ## 6.5 特效分配记录（3+1）
 
-ID: `struct.65.effect-assignment`
+ID: `struct.65.effect-assignment`；状态: `canonical`；证据: `static-verified`
 
 步长: `0x8` (8)
 
@@ -141,7 +141,7 @@ ID: `struct.65.effect-assignment`
 
 ## 必杀分配记录
 
-ID: `struct.65.fatal-assignment`
+ID: `struct.65.fatal-assignment`；状态: `canonical`；证据: `static-verified`
 
 步长: `0x10` (16)
 
@@ -163,7 +163,7 @@ ID: `struct.65.fatal-assignment`
 
 ## 仓库记录
 
-ID: `struct.65.warehouse-record`
+ID: `struct.65.warehouse-record`；状态: `canonical`；证据: `static-verified`
 
 步长: `0x3` (3)
 
@@ -177,7 +177,7 @@ ID: `struct.65.warehouse-record`
 
 ## 策略记录
 
-ID: `struct.65.strategy-record`
+ID: `struct.65.strategy-record`；状态: `canonical`；证据: `static-verified`
 
 步长: `0x61` (97)
 
@@ -187,7 +187,7 @@ ID: `struct.65.strategy-record`
 
 ## 攻击范围坐标段
 
-ID: `struct.65.range-segment`
+ID: `struct.65.range-segment`；状态: `canonical`；证据: `static-verified`
 
 步长: `0x4` (4)
 

@@ -1,0 +1,2298 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "entries": [
+    {
+      "id": "fn.65.effect-dispatch-600000",
+      "title": "特技类型 #1",
+      "aliases": [
+        "600000",
+        "调度函数 600000"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600000",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3420",
+          "meaning": "特技类型 #1"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60002a",
+      "title": "MP恢复 (个人=1B, 装备=01)",
+      "aliases": [
+        "60002A",
+        "调度函数 60002A"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060002A",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3430",
+          "meaning": "MP恢复 (个人=1B, 装备=01)"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600054",
+      "title": "特技类型 #3",
+      "aliases": [
+        "600054",
+        "调度函数 600054"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600054",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3440",
+          "meaning": "特技类型 #3"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60007e",
+      "title": "子类型3",
+      "aliases": [
+        "60007E",
+        "调度函数 60007E"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060007E",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": "3",
+          "edx": "3450",
+          "meaning": "子类型3"
+        },
+        {
+          "al": "4",
+          "edx": "3460",
+          "meaning": "子类型4"
+        },
+        {
+          "al": "5",
+          "edx": "3470",
+          "meaning": "子类型5"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6000c2",
+      "title": "子类型6",
+      "aliases": [
+        "6000C2",
+        "调度函数 6000C2"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006000C2",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": "6",
+          "edx": "3480",
+          "meaning": "子类型6"
+        },
+        {
+          "al": "7",
+          "edx": "3490",
+          "meaning": "子类型7"
+        },
+        {
+          "al": "8",
+          "edx": "34A0",
+          "meaning": "子类型8"
+        },
+        {
+          "al": "9",
+          "edx": "34B0",
+          "meaning": "子类型9"
+        },
+        {
+          "al": "A",
+          "edx": "34C0",
+          "meaning": "子类型A"
+        },
+        {
+          "al": "B",
+          "edx": "34D0",
+          "meaning": "子类型B"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600127",
+      "title": "属性下降 (个人=0C, 装备=5E)",
+      "aliases": [
+        "600127",
+        "调度函数 600127"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600127",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "34E0",
+          "meaning": "属性下降 (个人=0C, 装备=5E)"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600151",
+      "title": "子类型D",
+      "aliases": [
+        "600151",
+        "调度函数 600151"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600151",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": "D",
+          "edx": "34F0",
+          "meaning": "子类型D"
+        },
+        {
+          "al": "E",
+          "edx": "3500",
+          "meaning": "子类型E"
+        },
+        {
+          "al": "F",
+          "edx": "3510",
+          "meaning": "子类型F"
+        },
+        {
+          "al": "10",
+          "edx": "3520",
+          "meaning": "子类型10"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6001a0",
+      "title": "状态特技#1",
+      "aliases": [
+        "6001A0",
+        "调度函数 6001A0"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006001A0",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3530",
+          "meaning": "状态特技#1"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6001ca",
+      "title": "状态特技#2",
+      "aliases": [
+        "6001CA",
+        "调度函数 6001CA"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006001CA",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3540",
+          "meaning": "状态特技#2"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6001f4",
+      "title": "状态特技#3",
+      "aliases": [
+        "6001F4",
+        "调度函数 6001F4"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006001F4",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3550",
+          "meaning": "状态特技#3"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60021e",
+      "title": "状态特技#4",
+      "aliases": [
+        "60021E",
+        "调度函数 60021E"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060021E",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3560",
+          "meaning": "状态特技#4"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600248",
+      "title": "状态特技#5",
+      "aliases": [
+        "600248",
+        "调度函数 600248"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600248",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3570",
+          "meaning": "状态特技#5"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600272",
+      "title": "状态特技#6",
+      "aliases": [
+        "600272",
+        "调度函数 600272"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600272",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3580",
+          "meaning": "状态特技#6"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60029c",
+      "title": "状态特技#7",
+      "aliases": [
+        "60029C",
+        "调度函数 60029C"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060029C",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3590",
+          "meaning": "状态特技#7"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6002c6",
+      "title": "引导攻击 (个人=18, 装备=36)",
+      "aliases": [
+        "6002C6",
+        "调度函数 6002C6"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006002C6",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "35A0",
+          "meaning": "引导攻击 (个人=18, 装备=36)"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6002f0",
+      "title": "状态特技#9",
+      "aliases": [
+        "6002F0",
+        "调度函数 6002F0"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006002F0",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "35B0",
+          "meaning": "状态特技#9"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60031a",
+      "title": "必定暴击 (个人=1A, 装备=29)",
+      "aliases": [
+        "60031A",
+        "调度函数 60031A"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060031A",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "35C0",
+          "meaning": "必定暴击 (个人=1A, 装备=29)"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600344",
+      "title": "特效调度函数 600344",
+      "aliases": [
+        "600344",
+        "调度函数 600344"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600344",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "35D0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60036e",
+      "title": "特效调度函数 60036E",
+      "aliases": [
+        "60036E",
+        "调度函数 60036E"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060036E",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "35E0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600398",
+      "title": "特效调度函数 600398",
+      "aliases": [
+        "600398",
+        "调度函数 600398"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600398",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "35F0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6003c2",
+      "title": "特效调度函数 6003C2",
+      "aliases": [
+        "6003C2",
+        "调度函数 6003C2"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006003C2",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3600",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6003ec",
+      "title": "特效调度函数 6003EC",
+      "aliases": [
+        "6003EC",
+        "调度函数 6003EC"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006003EC",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3610",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600416",
+      "title": "特效调度函数 600416",
+      "aliases": [
+        "600416",
+        "调度函数 600416"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600416",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3620",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600440",
+      "title": "特效调度函数 600440",
+      "aliases": [
+        "600440",
+        "调度函数 600440"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600440",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3630",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60046a",
+      "title": "特效调度函数 60046A",
+      "aliases": [
+        "60046A",
+        "调度函数 60046A"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060046A",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3640",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600494",
+      "title": "特效调度函数 600494",
+      "aliases": [
+        "600494",
+        "调度函数 600494"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600494",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3650",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6004be",
+      "title": "特效调度函数 6004BE",
+      "aliases": [
+        "6004BE",
+        "调度函数 6004BE"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006004BE",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3660",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6004e8",
+      "title": "特效调度函数 6004E8",
+      "aliases": [
+        "6004E8",
+        "调度函数 6004E8"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006004E8",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3670",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600512",
+      "title": "特效调度函数 600512",
+      "aliases": [
+        "600512",
+        "调度函数 600512"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600512",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3680",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60053c",
+      "title": "特效调度函数 60053C",
+      "aliases": [
+        "60053C",
+        "调度函数 60053C"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060053C",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3690",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600566",
+      "title": "特效调度函数 600566",
+      "aliases": [
+        "600566",
+        "调度函数 600566"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600566",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "36A0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600590",
+      "title": "特效调度函数 600590",
+      "aliases": [
+        "600590",
+        "调度函数 600590"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600590",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "36B0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6005ba",
+      "title": "特效调度函数 6005BA",
+      "aliases": [
+        "6005BA",
+        "调度函数 6005BA"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006005BA",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "36C0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6005e4",
+      "title": "特效调度函数 6005E4",
+      "aliases": [
+        "6005E4",
+        "调度函数 6005E4"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006005E4",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "36D0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60060e",
+      "title": "特效调度函数 60060E",
+      "aliases": [
+        "60060E",
+        "调度函数 60060E"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060060E",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "36E0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60064b",
+      "title": "已知调度函数 (个人=2D, 装备=3B)",
+      "aliases": [
+        "60064B",
+        "调度函数 60064B"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060064B",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "36F0",
+          "meaning": "已知调度函数 (个人=2D, 装备=3B)"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600675",
+      "title": "已知调度函数",
+      "aliases": [
+        "600675",
+        "调度函数 600675"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600675",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3700",
+          "meaning": "已知调度函数"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60069f",
+      "title": "特效调度函数 60069F",
+      "aliases": [
+        "60069F",
+        "调度函数 60069F"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060069F",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3710",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6006c9",
+      "title": "特效调度函数 6006C9",
+      "aliases": [
+        "6006C9",
+        "调度函数 6006C9"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006006C9",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3720",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6006f3",
+      "title": "特效调度函数 6006F3",
+      "aliases": [
+        "6006F3",
+        "调度函数 6006F3"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006006F3",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3730",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60071d",
+      "title": "已知调度函数 (个人=32, 装备=44)",
+      "aliases": [
+        "60071D",
+        "调度函数 60071D"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060071D",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3740",
+          "meaning": "已知调度函数 (个人=32, 装备=44)"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600747",
+      "title": "特效调度函数 600747",
+      "aliases": [
+        "600747",
+        "调度函数 600747"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600747",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3750",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600771",
+      "title": "特效调度函数 600771",
+      "aliases": [
+        "600771",
+        "调度函数 600771"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600771",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3760",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60079b",
+      "title": "特效调度函数 60079B",
+      "aliases": [
+        "60079B",
+        "调度函数 60079B"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060079B",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3770",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6007c5",
+      "title": "特效调度函数 6007C5",
+      "aliases": [
+        "6007C5",
+        "调度函数 6007C5"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006007C5",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3780",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6007ef",
+      "title": "特效调度函数 6007EF",
+      "aliases": [
+        "6007EF",
+        "调度函数 6007EF"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006007EF",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3790",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600819",
+      "title": "二次行动 (个人=38, 装备=5A)",
+      "aliases": [
+        "600819",
+        "调度函数 600819"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600819",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "37A0",
+          "meaning": "二次行动 (个人=38, 装备=5A)"
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600843",
+      "title": "特效调度函数 600843",
+      "aliases": [
+        "600843",
+        "调度函数 600843"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600843",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "37B0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60086d",
+      "title": "特效调度函数 60086D",
+      "aliases": [
+        "60086D",
+        "调度函数 60086D"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060086D",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "37C0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600897",
+      "title": "特效调度函数 600897",
+      "aliases": [
+        "600897",
+        "调度函数 600897"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600897",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "37D0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6008c1",
+      "title": "特效调度函数 6008C1",
+      "aliases": [
+        "6008C1",
+        "调度函数 6008C1"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006008C1",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "37E0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6008eb",
+      "title": "特效调度函数 6008EB",
+      "aliases": [
+        "6008EB",
+        "调度函数 6008EB"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006008EB",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "37F0",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600915",
+      "title": "特效调度函数 600915",
+      "aliases": [
+        "600915",
+        "调度函数 600915"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600915",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3800",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-60093f",
+      "title": "特效调度函数 60093F",
+      "aliases": [
+        "60093F",
+        "调度函数 60093F"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0060093F",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3810",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600969",
+      "title": "特效调度函数 600969",
+      "aliases": [
+        "600969",
+        "调度函数 600969"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600969",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3820",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600993",
+      "title": "特效调度函数 600993",
+      "aliases": [
+        "600993",
+        "调度函数 600993"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600993",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3830",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6009bd",
+      "title": "特效调度函数 6009BD",
+      "aliases": [
+        "6009BD",
+        "调度函数 6009BD"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006009BD",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3840",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-6009e7",
+      "title": "特效调度函数 6009E7",
+      "aliases": [
+        "6009E7",
+        "调度函数 6009E7"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x006009E7",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3850",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "fn.65.effect-dispatch-600a11",
+      "title": "特效调度函数 600A11",
+      "aliases": [
+        "600A11",
+        "调度函数 600A11"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00600A11",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "callingConvention": "unknown",
+      "inputs": "AL 可选子类型；单位上下文和四参数桩契约来自调用者",
+      "returns": "EAX=核心特效判定结果（历史文档口径）",
+      "semantics": "按固定 EDX 行偏移或 AL 分支选择特效数据，再进入核心特效判定。",
+      "dispatchBranches": [
+        {
+          "al": null,
+          "edx": "3860",
+          "meaning": ""
+        }
+      ],
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a20f8120e5ac36fb",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    }
+  ]
+}

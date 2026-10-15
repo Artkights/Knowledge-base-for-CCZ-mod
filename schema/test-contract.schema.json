@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CCZ test-contract collection",
+  "type": "object",
+  "required": ["schemaVersion", "entityType", "entries"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "entityType": {"const": "test-contract"},
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "status", "evidence", "sourceRefs", "command", "target", "mutationScope", "assertions", "requiredArtifacts", "failureMeaning"]
+      }
+    }
+  },
+  "additionalProperties": false
+}

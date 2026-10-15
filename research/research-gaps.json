@@ -127,44 +127,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.04c36eea4e297855",
-      "title": "复核旧条目：剧本指令大全：25-35 触发与 R 场景",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/05-剧本与战场/03-25-35触发与R场景.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.0798d37bbce2ad5e",
-      "title": "复核旧条目：核心引擎 - 特技判定系统",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/01-核心引擎/核心引擎.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.0910972e1d209697",
       "title": "复核旧条目：CMF 派生功能矩阵",
       "versions": [
@@ -173,44 +135,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.5/06-工具与验证/CMF派生功能矩阵.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.091b4d06356791ba",
-      "title": "复核旧条目：特效工作台复盘与验收",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/06-工具与验证/特效工作台复盘与验收.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.094abf000c04e97c",
-      "title": "复核旧条目：【star6.5】整形4003控制保底伤害",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【star6.5】整形4003控制保底伤害.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -317,25 +241,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.12db9daf127d25ba",
-      "title": "复核旧条目：【star6.6x】破坏MP攻击",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】破坏MP攻击.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.1348d969c34e801e",
       "title": "复核旧条目：二次行动机制详解",
       "versions": [
@@ -344,63 +249,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.5/03-机制与特效/二次行动.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.1a72d287098f22fe",
-      "title": "复核旧条目：模块化复合特效制作",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/模块化复合特效制作.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.1f1d447d975ea950",
-      "title": "复核旧条目：【Star6.6x】调整强化穿透攻击",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【Star6.6x】调整强化穿透攻击.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.1f327968a406b49d",
-      "title": "复核旧条目：剧本指令大全：36-4B 变量部署",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/05-剧本与战场/04-36-4B变量部署.md",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -507,25 +355,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.2b2bf1f593741b7b",
-      "title": "复核旧条目：【star6.6x】宝物图鉴大小调整",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】宝物图鉴大小调整.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.2bdb27010c494e48",
       "title": "复核旧条目：特效号定位与安全读写：原生表",
       "versions": [
@@ -534,25 +363,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.5/01-核心引擎/特效号定位与安全读写-原生表.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.2be608b1a628860b",
-      "title": "复核旧条目：【star6.6x】逆境减伤",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】逆境减伤.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -583,63 +393,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.2e0af90b44b13763",
-      "title": "复核旧条目：剧本指令大全：70-7B 高级变量与系统",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/05-剧本与战场/07-70-7B高级变量与系统.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.30ece703adf40bd1",
-      "title": "复核旧条目：6.6骑马步兵攻击防御偷袭共5特技",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/6.6骑马步兵攻击防御偷袭共5特技.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.3358d026a5fa0e4e",
-      "title": "复核旧条目：【6.5】殭屍大法（注入版）",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】殭屍大法（注入版）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.38bd33d86f1c6086",
       "title": "复核旧条目：功勋模式与五维功勋",
       "versions": [
@@ -648,25 +401,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.5/03-机制与特效/功勋模式与五维功勋.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.397b2cfb97056d1f",
-      "title": "复核旧条目：【6.5】敌潮逆噬（注入版）",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】敌潮逆噬（注入版）.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -849,44 +583,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.518736e260ba59dc",
-      "title": "复核旧条目：【6.5】策略偷钱（注入版）",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】策略偷钱（注入版）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.53423bb64474f0f0",
-      "title": "复核旧条目：剧本指令大全：14-24 文本音画",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/05-剧本与战场/02-14-24文本音画.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.54a5a66c0c5dcc27",
       "title": "复核旧条目：复刻版6.6山贼状态与更新记录核对",
       "versions": [
@@ -895,25 +591,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.6/03-机制与特效/复刻版6.6山贼状态与更新记录核对.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.54b2fc7fb71225ee",
-      "title": "复核旧条目：【6.5】回mp攻击(注入版)",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】回mp攻击(注入版).txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -944,25 +621,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.56d5012ecd9597b8",
-      "title": "复核旧条目：【star6.6】策略保底&策略限伤",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6】策略保底&策略限伤.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.582ed407a1a89ad4",
       "title": "复核旧条目：复刻版6.6山贼 P0-011 战斗扣减与字段上限补证",
       "versions": [
@@ -971,25 +629,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.6/03-机制与特效/复刻版6.6山贼P0-011战斗扣减与字段上限补证.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.590df7beeba47fef",
-      "title": "复核旧条目：【star6.6x】暴击伤害增幅 K%",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】暴击伤害增幅 K%.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -1096,25 +735,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.6003ea65ce5f6b3e",
-      "title": "复核旧条目：【star6.6x】远距攻击特技化",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】远距攻击特技化.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.61d6b0669aff34ac",
       "title": "复核旧条目：13 剧本与战场制作",
       "versions": [
@@ -1123,25 +743,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.5/05-剧本与战场/剧本与战场制作.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.642886b45da331dc",
-      "title": "复核旧条目：【6.6x】护卫-最终版",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【6.6x】护卫-最终版.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -1180,25 +781,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.6/06-工具与验证/6.6信奈与烈焰加速兼容差异.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.66aacc7e145472ca",
-      "title": "复核旧条目：【6.6x】致死不触发转移伤害",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【6.6x】致死不触发转移伤害.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -1267,44 +849,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.70286c122d3d98c7",
-      "title": "复核旧条目：【6.6xKF】保底全伤害调整LV+N",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【6.6xKF】保底全伤害调整LV+N.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.7368eeb7cfc219d9",
-      "title": "复核旧条目：战场操作自动化与调试流程",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/05-教程指南/战场操作自动化与调试流程.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.7503f6281cd456de",
       "title": "复核旧条目：复刻版6.6山贼 P0-007 初始化、存档与接口槽补证",
       "versions": [
@@ -1313,25 +857,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.6/01-核心引擎/复刻版6.6山贼P0-007初始化与存档补证.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.77c10654d72ce71d",
-      "title": "复核旧条目：【6.5】护卫-最终版",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】护卫-最终版.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -1400,44 +925,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.7d8b034c6cf006ea",
-      "title": "复核旧条目：【star6.6x】连击率特效（包含负面特技）",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】连击率特效（包含负面特技）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.7fda2a91ab068d46",
-      "title": "复核旧条目：6.5 特效注入索引",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/6.5特效注入索引.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.7ff3366a7c8a3485",
       "title": "复核旧条目：特效路径常量扫描与旧工具合并",
       "versions": [
@@ -1457,25 +944,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.80d08ed1e077a963",
-      "title": "复核旧条目：【6.6xKF】攻击-策略-ALL后缀",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【6.6xKF】攻击-策略-ALL后缀.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.8d0e7f9f95bf1347",
       "title": "复核旧条目：复刻版6.6山贼 P0-016 类别映射与字段写入补证",
       "versions": [
@@ -1484,25 +952,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.6/02-数据结构/复刻版6.6山贼P0-016类别映射与字段写入补证.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.8eeb3c8fcd2c1564",
-      "title": "复核旧条目：【Star6.5】强化攻击穿透",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【Star6.5】强化攻击穿透.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -1590,101 +1039,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.93e89196aacf2942",
-      "title": "复核旧条目：【star6.6x】物理免疫",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】物理免疫.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.9779a39ce33015c4",
-      "title": "复核旧条目：【star6.6x】辅助真伤",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】辅助真伤.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.9782f818e821f38c",
-      "title": "复核旧条目：【Star6.6x】附加特技到回合必定失效",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【Star6.6x】附加特技到回合必定失效.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.9f145c7e71e728d8",
-      "title": "复核旧条目：【6.6x KF】修正杀敌加成卡死",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【6.6x KF】修正杀敌加成卡死.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.9f850eaa8be937bf",
-      "title": "复核旧条目：【6.5】多多益善（注入版）",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】多多益善（注入版）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.a01bf20ceacf9494",
       "title": "复核旧条目：曹操传引擎逆向工程入门指南",
       "versions": [
@@ -1704,44 +1058,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.a20f8120e5ac36fb",
-      "title": "复核旧条目：调度函数",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/01-核心引擎/调度函数.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.a283e7c5143c597a",
-      "title": "复核旧条目：【6.6xKF】修复回复周围HP无效",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【6.6xKF】修复回复周围HP无效.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.a35109d36e76828d",
       "title": "复核旧条目：复刻版6.6山贼运行时数据结构",
       "versions": [
@@ -1750,44 +1066,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.6/02-数据结构/复刻版6.6山贼运行时数据结构.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.a39bcbb0b9e02276",
-      "title": "复核旧条目：剧本指令大全：5F-6F 单挑与扩展",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/05-剧本与战场/06-5F-6F单挑与扩展.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.a48d983df5b49468",
-      "title": "复核旧条目：剧本指令大全：4C-5E 战场操作",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/05-剧本与战场/05-4C-5E战场操作.md",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -1837,63 +1115,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.a6f65e5c4325a0f7",
-      "title": "复核旧条目：【6.6x KF】BUG修复",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【6.6x KF】BUG修复.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.a7448b4a92f97ec7",
-      "title": "复核旧条目：本地 Agent 生成可注入特效代码指南",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/06-工具与验证/本地Agent生成可注入特效代码指南.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.a7f795d67fbfaecd",
-      "title": "复核旧条目：【star6.6x】拆分四系增伤，无视策略减伤",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】拆分四系增伤，无视策略减伤.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.aab3bd5ac6c4d4cc",
       "title": "复核旧条目：策略附带随机异常状态 — 注入补丁解析",
       "versions": [
@@ -1902,44 +1123,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.5/03-机制与特效/策略附带随机状态.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.ab8683b2934401f9",
-      "title": "复核旧条目：桩函数",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/01-核心引擎/桩函数.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.b10db802d294dd63",
-      "title": "复核旧条目：人物 R/S 像素形象制作链路",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/04-数据表与资源/人物R-S像素形象制作链路.md",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -1989,25 +1172,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.b41e1ef7698d9b6c",
-      "title": "复核旧条目：【star6.6x】化力为疗+夺锐攻击",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】化力为疗+夺锐攻击.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.b4fcc0c9c8041dea",
       "title": "复核旧条目：格式编码与路径规范",
       "versions": [
@@ -2016,25 +1180,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "00-共性知识/04-格式编码与路径规范.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.b538d55769eb0b8c",
-      "title": "复核旧条目：这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】大杀四方（注入版）.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -2092,25 +1237,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.6/01-核心引擎/复刻版6.6山贼P0-009行动与GetAttack接口补证.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.b9b3f5706176372b",
-      "title": "复核旧条目：【star6.5】无视策略减伤（修复版）",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【star6.5】无视策略减伤（修复版）.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -2217,44 +1343,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.c8efa5e11646ee32",
-      "title": "复核旧条目：剧本指令大全：00-13 结构流程",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/05-剧本与战场/01-00-13结构流程.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.c958756253a7788d",
-      "title": "复核旧条目：【star6.6x】治疗效果特技（包含负面特技）",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】治疗效果特技（包含负面特技）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.cd6154e69082be5f",
       "title": "复核旧条目：6.5pl 待验证",
       "versions": [
@@ -2312,120 +1400,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.d09223af07ba3000",
-      "title": "复核旧条目：剧本指令大全：72 信息传送子功能",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/05-剧本与战场/08-72信息传送子功能.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.d485271ee4a71590",
-      "title": "复核旧条目：【6.5】聚势伐谋（注入版）",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】聚势伐谋（注入版）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.d602c42968b0ff66",
-      "title": "复核旧条目：【6.5】回mp攻击(注入版) (1)",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】回mp攻击(注入版) (1).txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.d7dfa1a7f16d0d21",
-      "title": "复核旧条目：【6.5】盛气凌人（注入版）",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】盛气凌人（注入版）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.d8a080078b2dbe89",
-      "title": "复核旧条目：【star6.6x】策略破坏能力",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】策略破坏能力.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.d8bf47aca205188f",
-      "title": "复核旧条目：【star6.6x】武器精通",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】武器精通.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.d96218488d827913",
       "title": "复核旧条目：21 Tr.e5 与 R 插图",
       "versions": [
@@ -2453,25 +1427,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.5/05-剧本与战场/全剧本指令详解2023归纳.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.da7457091d7a4f0e",
-      "title": "复核旧条目：【star6.6x】能力6档+强化成长",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】能力6档+强化成长.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],
@@ -2559,196 +1514,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.e78c92a131961605",
-      "title": "复核旧条目：【6.6x KF】修改档位",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【6.6x KF】修改档位.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.e821f02f5c6f5f17",
-      "title": "复核旧条目：【star6.6x】连击，反击相关特技",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】连击，反击相关特技.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.e83cc4741f0af366",
-      "title": "复核旧条目：【star6.6x】增减移动力新写法（含地址）",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】增减移动力新写法（含地址）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.e899f90fd0b2aca6",
-      "title": "复核旧条目：v3 修复：1) ebx 替换为 [ebp-08] 栈变量，符合寄存器规范（ebx/es 绝对禁止） 2) 添加遍历循环，支持多目标 3) 用 mov edi,eax 替代 push/pop 正确引用效果值 4) jae 修正 off-by-one",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】噬心毒咒（注入版）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.e9c578987127bed9",
-      "title": "复核旧条目：【star6.6x】穿透攻击特技化",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6x】穿透攻击特技化.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.edd0a288a663ddf6",
-      "title": "复核旧条目：【6.5】信息传送29 根据兵种指定特殊S",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】信息传送29 根据兵种指定特殊S.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.ef421f42b61f8bc3",
-      "title": "复核旧条目：【star6.6】bug修正",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6】bug修正.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.f0258ed937314d7b",
-      "title": "复核旧条目：【star6.5】策略保底&策略限伤",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【star6.5】策略保底&策略限伤.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.f1d4cba29fdb8b2f",
-      "title": "复核旧条目：【star6.6】无视策略减伤",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/【star6.6】无视策略减伤.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.f4f49a0dea9fc687",
-      "title": "复核旧条目：6.6冥想回蓝百分比（注入版）",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/6.6冥想回蓝百分比（注入版）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.f62325b50b590031",
       "title": "复核旧条目：6.5pl",
       "versions": [
@@ -2768,25 +1533,6 @@
       "sourceRefs": []
     },
     {
-      "id": "research.legacy-doc.fc944ad335d5e3a7",
-      "title": "复核旧条目：【6.5】策略冲锋（注入版）",
-      "versions": [
-        "6.5"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.5/03-机制与特效/【6.5】策略冲锋（注入版）.txt",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
       "id": "research.legacy-doc.fe31cd68d221ccd9",
       "title": "复核旧条目：策略动画 / Meff 与 Mcall",
       "versions": [
@@ -2795,25 +1541,6 @@
       "status": "open",
       "evidence": "legacy-document-only",
       "legacyPath": "6.5/04-数据表与资源/策略动画-Meff-Mcall.md",
-      "known": [
-        "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
-      ],
-      "needed": [
-        "从对应一方源码或样本重新提取",
-        "绑定版本画像和样本",
-        "补齐地址种类、结构或 Hook/ABI 后再进入正式索引"
-      ],
-      "sourceRefs": []
-    },
-    {
-      "id": "research.legacy-doc.fff6575df1863400",
-      "title": "复核旧条目：6.6修改記錄整理",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "legacy-document-only",
-      "legacyPath": "6.6/03-机制与特效/6.6修改記錄整理.txt",
       "known": [
         "旧条目已从正式知识树删除；路径和处置决定保留在 cleanup report。"
       ],

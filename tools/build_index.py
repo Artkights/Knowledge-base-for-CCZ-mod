@@ -11,6 +11,9 @@ REFERENCE_FILES = {
     "engine-profile": "profiles.md", "function": "functions.md", "global": "globals.md",
     "data-structure": "structures.md", "file-format": "file-formats.md",
     "patch-recipe": "patches.md", "mechanism": "mechanisms.md",
+    "effect-stub": "effect-stubs.md", "script-command": "script-commands.md",
+    "workflow": "workflows.md", "test-contract": "test-contracts.md",
+    "case-study": "case-studies.md",
 }
 
 
@@ -38,6 +41,16 @@ def collect_search_terms(entry: dict) -> list[str]:
             values.append(str(value.get("value", "")))
     for field in entry.get("fields", []):
         values.extend(str(field.get(key, "")) for key in ("name", "meaning", "offset"))
+    excluded = {"replacementBytes", "expectedBytes", "bytes", "sha256", "sourceRefs"}
+    for trail, value in walk(entry):
+        parts = {part.split("[", 1)[0] for part in trail.split(".")}
+        if (
+            isinstance(value, str)
+            and trail not in {"id", "title", "status", "evidence"}
+            and not (parts & excluded)
+            and len(value) <= 240
+        ):
+            values.append(value)
     return list(dict.fromkeys(value for value in values if value))
 
 
@@ -69,21 +82,25 @@ def main() -> None:
                 "versions": item.get("versions", []), "profile": item.get("profile"),
                 "status": item["status"], "evidence": item["evidence"], "address": addr,
                 "searchTerms": collect_search_terms(item),
-                "canonicalDataPath": rel, "referencePath": reference,
+                "structuredDataPath": rel, "referencePath": reference,
                 "sourceRefs": item.get("sourceRefs", []),
             })
     entries.sort(key=lambda item: item["id"])
-    files = sorted({item["canonicalDataPath"] for item in entries})
+    files = sorted({item["structuredDataPath"] for item in entries})
     payload = {
-        "schemaVersion": 2, "canonicalAuthority": "structured-json",
+        "schemaVersion": 3, "structuredAuthority": "version-data-json",
         "generatedBy": "tools/build_index.py", "entityCount": len(entries),
-        "canonicalFiles": [{"path": rel, "sha256": sha256(ROOT / rel)} for rel in files],
+        "statusCounts": {
+            status: sum(1 for entry in entries if entry["status"] == status)
+            for status in sorted({entry["status"] for entry in entries})
+        },
+        "structuredFiles": [{"path": rel, "sha256": sha256(ROOT / rel)} for rel in files],
         "entries": entries,
     }
     (ROOT / "index.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n"
     )
-    print(f"indexed_entities={len(entries)} canonical_files={len(files)}")
+    print(f"indexed_entities={len(entries)} structured_files={len(files)}")
 
 
 if __name__ == "__main__":

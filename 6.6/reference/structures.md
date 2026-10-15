@@ -6,7 +6,7 @@
 
 ## 6.6 特效分配记录（4+2）
 
-ID: `struct.66.effect-assignment`
+ID: `struct.66.effect-assignment`；状态: `canonical`；证据: `source-reviewed`
 
 步长: `0x10` (16)
 
@@ -29,7 +29,7 @@ ID: `struct.66.effect-assignment`
 
 ## 6.6 物品记录
 
-ID: `struct.66.item-record`
+ID: `struct.66.item-record`；状态: `canonical`；证据: `source-reviewed`
 
 步长: `0x19` (25)
 

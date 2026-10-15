@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CCZ script-command collection",
+  "type": "object",
+  "required": ["schemaVersion", "entityType", "entries"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "entityType": {"const": "script-command"},
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "status", "evidence", "sourceRefs", "opcode", "parameters"]
+      }
+    }
+  },
+  "additionalProperties": false
+}

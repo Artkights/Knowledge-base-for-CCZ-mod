@@ -1,0 +1,480 @@
+{
+  "schemaVersion": 1,
+  "entityType": "workflow",
+  "entries": [
+    {
+      "id": "workflow.65.mod-package-delivery",
+      "title": "ModPackage 自动化交付",
+      "versions": [
+        "6.5"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "goal": "把人物、兵种、物品、资源和 R/S 设计转换为可审计的增量包。",
+      "inputs": [
+        "目标项目画像",
+        "槽位规划",
+        "结构化表更新",
+        "资源和剧本变更"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "冻结版本画像和槽位"
+        },
+        {
+          "order": 2,
+          "action": "生成增量包与清单"
+        },
+        {
+          "order": 3,
+          "action": "静态预览"
+        },
+        {
+          "order": 4,
+          "action": "写测试副本"
+        },
+        {
+          "order": 5,
+          "action": "逐域复读"
+        },
+        {
+          "order": 6,
+          "action": "执行相关烟测"
+        },
+        {
+          "order": 7,
+          "action": "推广或 direct 写入"
+        },
+        {
+          "order": 8,
+          "action": "保存报告和备份"
+        }
+      ],
+      "gates": [
+        "不自动改槽位",
+        "资源未预览不写编号",
+        "剧本非白名单命令必须走完整树",
+        "失败域不得被无关烟测掩盖"
+      ],
+      "outputs": [
+        "变更包",
+        "写前/写后差异",
+        "备份",
+        "复读结果",
+        "烟测结果"
+      ],
+      "rollback": [
+        "恢复备份",
+        "拒绝继续推广",
+        "保留失败报告"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.1323e8245f437c36"
+      ]
+    },
+    {
+      "id": "workflow.65.effect-injection",
+      "title": "引擎特效注入制作",
+      "versions": [
+        "6.5"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "goal": "从特效语义生成可审计的 Hook、桩函数、代码洞和回跳方案。",
+      "inputs": [
+        "目标 EXE 画像",
+        "触发语义",
+        "单位上下文",
+        "特效号和效果值规则"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "确认目标样本和入口"
+        },
+        {
+          "order": 2,
+          "action": "复核调用点 ABI"
+        },
+        {
+          "order": 3,
+          "action": "选择标准桩或内联桩"
+        },
+        {
+          "order": 4,
+          "action": "分配代码洞"
+        },
+        {
+          "order": 5,
+          "action": "计算 CALL/JMP 重定位"
+        },
+        {
+          "order": 6,
+          "action": "记录原字节和覆盖长度"
+        },
+        {
+          "order": 7,
+          "action": "检查冲突"
+        },
+        {
+          "order": 8,
+          "action": "写测试副本"
+        },
+        {
+          "order": 9,
+          "action": "静态复读和实机验证"
+        }
+      ],
+      "gates": [
+        "地址绑定画像",
+        "覆盖完整指令",
+        "旧字节必须匹配",
+        "代码洞不得重叠",
+        "寄存器和栈必须守恒"
+      ],
+      "outputs": [
+        "补丁配方",
+        "参数点",
+        "冲突矩阵",
+        "回滚字节",
+        "验证报告"
+      ],
+      "rollback": [
+        "逆序恢复已写站点",
+        "恢复页保护",
+        "标记样本污染并停止写入"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.a7448b4a92f97ec7"
+      ]
+    },
+    {
+      "id": "workflow.65.effect-workbench-acceptance",
+      "title": "特效工作台复盘与验收",
+      "versions": [
+        "6.5"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "goal": "把特效扫描、能力判定、预览、写入和复读组织为单一可追踪任务。",
+      "inputs": [
+        "目标 EXE",
+        "特效目录",
+        "预期机制",
+        "证据包"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "识别画像"
+        },
+        {
+          "order": 2,
+          "action": "扫描当前安装状态"
+        },
+        {
+          "order": 3,
+          "action": "生成能力矩阵"
+        },
+        {
+          "order": 4,
+          "action": "构建写入预览"
+        },
+        {
+          "order": 5,
+          "action": "核对冲突和参数"
+        },
+        {
+          "order": 6,
+          "action": "应用到测试目标"
+        },
+        {
+          "order": 7,
+          "action": "复读字节和行为"
+        },
+        {
+          "order": 8,
+          "action": "更新证据状态"
+        }
+      ],
+      "gates": [
+        "扫描相似不等于已安装",
+        "静态能力不能自动提升为运行时能力",
+        "任一冲突阻断写入"
+      ],
+      "outputs": [
+        "扫描清单",
+        "能力矩阵",
+        "应用报告",
+        "证据升级记录"
+      ],
+      "rollback": [
+        "按补丁记录恢复原字节",
+        "保留失败时样本和日志"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.091b4d06356791ba"
+      ]
+    },
+    {
+      "id": "workflow.65.r-script-template-clone",
+      "title": "R 剧本模板克隆",
+      "versions": [
+        "6.5"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "goal": "复用成熟 R 剧本的 Scene/Section/Command 布局，仅替换受控文本和人物编号。",
+      "inputs": [
+        "同版本成熟模板",
+        "目标 R 剧本",
+        "文本槽映射",
+        "R 人物映射"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "复读模板结构"
+        },
+        {
+          "order": 2,
+          "action": "导出可见文本槽"
+        },
+        {
+          "order": 3,
+          "action": "建立人物映射"
+        },
+        {
+          "order": 4,
+          "action": "执行写前断言"
+        },
+        {
+          "order": 5,
+          "action": "完整树写测试副本"
+        },
+        {
+          "order": 6,
+          "action": "圆程复读"
+        },
+        {
+          "order": 7,
+          "action": "实机烟测"
+        }
+      ],
+      "gates": [
+        "Scene/Section/Command 数保持一致",
+        "0x72 默认不改",
+        "Section 末尾 0x00 保留",
+        "R 人物编号同场景唯一"
+      ],
+      "outputs": [
+        "目标 EEX",
+        "逐命令结构差异",
+        "文本与人物映射",
+        "实机结果"
+      ],
+      "rollback": [
+        "保留模板副本",
+        "结构不一致时丢弃目标写入"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ccd6059a90c078ed"
+      ]
+    },
+    {
+      "id": "workflow.65.rs-sprite-production",
+      "title": "人物 R/S 像素形象制作",
+      "versions": [
+        "6.5"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "goal": "从角色设定和样例库制作可导入的 R/S 像素资源。",
+      "inputs": [
+        "角色设定",
+        "动作和方向清单",
+        "同类样例",
+        "目标资源尺寸和调色板"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "筛选同构样例"
+        },
+        {
+          "order": 2,
+          "action": "制作代表帧"
+        },
+        {
+          "order": 3,
+          "action": "人工审阅轮廓和装备"
+        },
+        {
+          "order": 4,
+          "action": "扩展动作/方向"
+        },
+        {
+          "order": 5,
+          "action": "校验帧条尺寸"
+        },
+        {
+          "order": 6,
+          "action": "预览 E5 替换"
+        },
+        {
+          "order": 7,
+          "action": "导入测试槽"
+        },
+        {
+          "order": 8,
+          "action": "实机审阅"
+        }
+      ],
+      "gates": [
+        "先代表帧后全套",
+        "不从异构样例拼接关键部位",
+        "编号映射必须复读"
+      ],
+      "outputs": [
+        "帧条",
+        "样例和选择理由",
+        "图号映射",
+        "审阅结论"
+      ],
+      "rollback": [
+        "恢复资源备份",
+        "保留上一版通过审阅的帧条"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.b10db802d294dd63"
+      ]
+    },
+    {
+      "id": "workflow.65.map-terrain-publish",
+      "title": "地图底图与 Hexzmap 同步发布",
+      "versions": [
+        "6.5"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "goal": "保持视觉地图、地形格和剧本坐标一致。",
+      "inputs": [
+        "Map JPG",
+        "Hexzmap 块",
+        "地图槽",
+        "部署和触发坐标"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "确认地图槽和尺寸"
+        },
+        {
+          "order": 2,
+          "action": "校验 Hexzmap 格数"
+        },
+        {
+          "order": 3,
+          "action": "检查必经格和触发格"
+        },
+        {
+          "order": 4,
+          "action": "同步发布底图与地形"
+        },
+        {
+          "order": 5,
+          "action": "复读关键坐标"
+        },
+        {
+          "order": 6,
+          "action": "运行一致性烟测"
+        },
+        {
+          "order": 7,
+          "action": "实机寻路验证"
+        }
+      ],
+      "gates": [
+        "不得新增无 Hexzmap 绑定的地图号",
+        "视觉道路不等于地形可通行",
+        "部署/增援/Boss 邻接格必须可站立"
+      ],
+      "outputs": [
+        "地图资源",
+        "地形块",
+        "坐标审计",
+        "一致性报告"
+      ],
+      "rollback": [
+        "恢复地图和 Hexzmap 两份备份，禁止只回滚其中一份"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.1323e8245f437c36"
+      ]
+    },
+    {
+      "id": "workflow.65.automated-battle-debug",
+      "title": "战场自动化与调试",
+      "versions": [
+        "6.5"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "goal": "用稳定触发、快照和复读定位战场脚本或引擎行为。",
+      "inputs": [
+        "可复现关卡",
+        "触发事件",
+        "目标单位和坐标",
+        "预期状态变化"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "冻结测试存档和随机条件"
+        },
+        {
+          "order": 2,
+          "action": "记录写前单位状态"
+        },
+        {
+          "order": 3,
+          "action": "执行单一触发"
+        },
+        {
+          "order": 4,
+          "action": "采集脚本/内存结果"
+        },
+        {
+          "order": 5,
+          "action": "对比预期字段"
+        },
+        {
+          "order": 6,
+          "action": "缩小到命令或函数入口"
+        },
+        {
+          "order": 7,
+          "action": "重复验证"
+        }
+      ],
+      "gates": [
+        "一次只改变一个变量",
+        "失败必须区分脚本、资源、地形和引擎层",
+        "自动化结果需人工画面复核"
+      ],
+      "outputs": [
+        "最小复现步骤",
+        "状态快照",
+        "地址/命令定位",
+        "回归用例"
+      ],
+      "rollback": [
+        "恢复测试存档和测试副本"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.7368eeb7cfc219d9"
+      ]
+    }
+  ]
+}

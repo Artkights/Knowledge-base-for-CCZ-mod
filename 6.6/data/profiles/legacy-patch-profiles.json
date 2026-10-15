@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "entityType": "engine-profile",
+  "entries": [
+    {
+      "id": "profile.ccz66x.legacy-patch-family",
+      "title": "6.6/6.6x 历史注入补丁族",
+      "aliases": [
+        "6.6x legacy patch family",
+        "Star6.6x",
+        "6.6xKF"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": null,
+      "addressPolicy": "仅用于保存历史补丁中的地址和值；没有精确样本 SHA 和原字节，不得自动写入。",
+      "sourceRefs": [
+        "src.history.9b8abf5.12db9daf127d25ba",
+        "src.history.9b8abf5.1f1d447d975ea950",
+        "src.history.9b8abf5.2b2bf1f593741b7b",
+        "src.history.9b8abf5.2be608b1a628860b",
+        "src.history.9b8abf5.30ece703adf40bd1",
+        "src.history.9b8abf5.56d5012ecd9597b8",
+        "src.history.9b8abf5.590df7beeba47fef",
+        "src.history.9b8abf5.6003ea65ce5f6b3e",
+        "src.history.9b8abf5.642886b45da331dc",
+        "src.history.9b8abf5.66aacc7e145472ca",
+        "src.history.9b8abf5.70286c122d3d98c7",
+        "src.history.9b8abf5.7d8b034c6cf006ea",
+        "src.history.9b8abf5.80d08ed1e077a963",
+        "src.history.9b8abf5.93e89196aacf2942",
+        "src.history.9b8abf5.9779a39ce33015c4",
+        "src.history.9b8abf5.9782f818e821f38c",
+        "src.history.9b8abf5.9f145c7e71e728d8",
+        "src.history.9b8abf5.a283e7c5143c597a",
+        "src.history.9b8abf5.a6f65e5c4325a0f7",
+        "src.history.9b8abf5.a7f795d67fbfaecd",
+        "src.history.9b8abf5.b41e1ef7698d9b6c",
+        "src.history.9b8abf5.c958756253a7788d",
+        "src.history.9b8abf5.d8a080078b2dbe89",
+        "src.history.9b8abf5.d8bf47aca205188f",
+        "src.history.9b8abf5.da7457091d7a4f0e",
+        "src.history.9b8abf5.e78c92a131961605",
+        "src.history.9b8abf5.e821f02f5c6f5f17",
+        "src.history.9b8abf5.e83cc4741f0af366",
+        "src.history.9b8abf5.e9c578987127bed9",
+        "src.history.9b8abf5.ef421f42b61f8bc3",
+        "src.history.9b8abf5.f1d4cba29fdb8b2f",
+        "src.history.9b8abf5.f4f49a0dea9fc687",
+        "src.history.9b8abf5.fff6575df1863400"
+      ]
+    }
+  ]
+}

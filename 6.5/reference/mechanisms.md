@@ -6,7 +6,7 @@
 
 ## 物理攻击范围到目标消费调用链
 
-ID: `mechanism.65.physical-attack-targeting`
+ID: `mechanism.65.physical-attack-targeting`；状态: `canonical`；证据: `static-verified`
 
 1. `fn.65.attack-entry`：物理攻击入口
 2. `fn.65.attack-selector`：准备中心坐标和 packed range
@@ -20,7 +20,7 @@ ID: `mechanism.65.physical-attack-targeting`
 
 ## ID、战术单位和运行时记录转换链
 
-ID: `mechanism.65.id-pointer-conversion`
+ID: `mechanism.65.id-pointer-conversion`；状态: `canonical`；证据: `static-verified`
 
 1. `fn.65.battlefield-id-to-tactical-unit`：战场 ID 到 0x30 记录
 2. `fn.65.tactical-unit-to-runtime-character`：战术记录到 0x48 人物记录

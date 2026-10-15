@@ -1,0 +1,2096 @@
+{
+  "schemaVersion": 1,
+  "entityType": "patch-recipe",
+  "entries": [
+    {
+      "id": "patch.65.legacy-edd0a288a663",
+      "title": "信息传送29 根据大兵种号指定S",
+      "aliases": [
+        "【6.5】信息传送29 根据兵种指定特殊S"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0047D953",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "CF 94 42 00",
+          "overwriteLength": 4,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "信息传送29 根据大兵种号指定S"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004294CF",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "55 8B EC FF 75 08 E8 8A D9 FF FF 3D 00 04 00 00 73 4C 42 01 55 08 50 50 E8 F8 CC FD FF E8 1B 2A FE FF 50 FF 75 08 E8 6A D9 FF FF 42 01 55 08 50 FF 75 08 E8 5D D9 FF FF 85 D2 74 22 42 01 55 08 83 F8 28 73 EB 39 45 F8 75 E6 8B 55 FC 8B 45 F4 D1 E2 66 89 82 00 10 50 00 E8 23 55 FE FF 8B E5 5D C2 04 00",
+          "overwriteLength": 100,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "信息传送29 根据大兵种号指定S"
+        }
+      ],
+      "semantics": "信息传送29 根据大兵种号指定S",
+      "notes": [
+        "信息传送29 根据大兵种号指定S"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0047D953",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "CF 94 42 00",
+          "overwriteLength": 4,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "信息传送29 根据大兵种号指定S"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.edd0a288a663ddf6",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-e899f90fd0b2",
+      "title": "【噬心毒咒 v3】策略攻击伤害结算后，遍历所有受击目标，概率使其陷入随机异常状态（中毒/麻痹/禁咒/混乱），概率由特效值%控制",
+      "aliases": [
+        "【6.5】噬心毒咒（注入版）"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004259AF",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 73 4C FF FF",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "v3 修复：1) ebx 替换为 [ebp-08] 栈变量，符合寄存器规范（ebx/es 绝对禁止） 2) 添加遍历循环，支持多目标 3) 用 mov edi,eax 替代 push/pop 正确引用效果值 4) jae 修正 off-by-one"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041A627",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "8B 4D FC 90 90 90 90 90 90 90 90 90 90 90 90 90 0F B6 49 01 E8 B9 BB FE FF 6A 00 6A 01 6A 00 68 C0 00 00 00 E8 89 5B FF FF 85 C0 0F 84 77 00 00 00 57 89 C7 C7 45 F8 00 00 00 00 8B 4D FC 8B 45 F8 0F B6 54 01 0D 80 FA FF 74 5C 83 BC 81 08 01 00 00 01 7C 49 6A 64 E8 90 54 06 00 39 F8 73 3E 8B 4D FC 8B 45 F8 0F B6 4C 01 0D E8 62 BB FE FF 6A 04 E8 75 54 06 00 8A 51 1E 83 F8 00 74 19 83 F8 01 74 0A 83 F8 02 74 0A 80 CA 03 EB 0D 80 CA C0 EB 08 80 CA 30 EB 03 80 CA 0C 88 51 1E FF 45 F8 83 7D F8 73 7C 94 5F 8B 4D FC E8 57 88 00 00 E9 D8 B2 00 00",
+          "overwriteLength": 181,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "v3 修复：1) ebx 替换为 [ebp-08] 栈变量，符合寄存器规范（ebx/es 绝对禁止） 2) 添加遍历循环，支持多目标 3) 用 mov edi,eax 替代 push/pop 正确引用效果值 4) jae 修正 off-by-one"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041A645",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略随机状态宝物号（00-7F）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041A647",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "C0",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略随机状态个人号（00-7F）"
+        }
+      ],
+      "semantics": "【噬心毒咒 v3】策略攻击伤害结算后，遍历所有受击目标，概率使其陷入随机异常状态（中毒/麻痹/禁咒/混乱），概率由特效值%控制",
+      "notes": [
+        "【噬心毒咒 v3】策略攻击伤害结算后，遍历所有受击目标，概率使其陷入随机异常状态（中毒/麻痹/禁咒/混乱），概率由特效值%控制",
+        "v3 修复：1) ebx 替换为 [ebp-08] 栈变量，符合寄存器规范（ebx/es 绝对禁止） 2) 添加遍历循环，支持多目标 3) 用 mov edi,eax 替代 push/pop 正确引用效果值 4) jae 修正 off-by-one",
+        "策略随机状态宝物号（00-7F）",
+        "策略随机状态个人号（00-7F）"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041A645",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略随机状态宝物号（00-7F）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041A647",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "C0",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略随机状态个人号（00-7F）"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.e899f90fd0b2aca6",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ],
+      "conflicts": [
+        "与策略偷钱形成历史链式 Hook；必须复核回跳是否仍落到下一补丁入口。"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-d602c42968b0",
+      "title": "【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。",
+      "aliases": [
+        "【6.5】回mp攻击(注入版) (1)"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00418335",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 C2 A5 03 00",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004528FC",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "8B 4D AC 6A 00 6A 01 6A 00 68 AD 00 00 00 E8 CA D8 FB FF 85 C0 74 67 8B 4D 08 36 8B 89 84 00 00 00 83 F9 00 74 58 50 51 E8 B0 31 FD FF 8B 4D A4 E8 5E 3C FB FF 0F B7 49 1F 8B 55 A4 36 8B 52 14 2B CA 3B C1 7F 02 EB 02 8B C1 8B D0 6B D2 02 8B C8 2B CA 8B 55 08 50 6A 00 6A 00 6A 00 6A 00 51 6A 00 FF 32 FF 32 B9 00 01 00 00 E8 1A E0 FF FF 8B 95 34 FF FF FF 8B 45 D4 36 01 42 14 59 8B 45 F4 85 C0 E9 B6 59 FC FF",
+          "overwriteLength": 136,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00452904",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "回mp攻击宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00452906",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "AD",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "回mp攻击个人号"
+        }
+      ],
+      "semantics": "【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。",
+      "notes": [
+        "【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。",
+        "回mp攻击宝物号",
+        "回mp攻击个人号"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00452904",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "回mp攻击宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00452906",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "AD",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "回mp攻击个人号"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.d602c42968b0ff66",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ],
+      "conflicts": [
+        "两个版本使用同一 Hook 和代码区，只能二选一。"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-54b2fc7fb712",
+      "title": "【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。",
+      "aliases": [
+        "【6.5】回mp攻击(注入版)"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00418335",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 C2 A5 03 00 90 90",
+          "overwriteLength": 7,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004528FC",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "8B 4D AC 6A 00 6A 01 6A 00 68 AD 00 00 00 E8 CA D8 FB FF 85 C0 74 67 8B 4D 08 36 8B 89 84 00 00 00 83 F9 00 74 58 50 51 E8 B0 31 FD FF 8B 4D A4 E8 5E 3C FB FF EB 57 90 90 90 90 90 90 90 90 90 2B CA 3B C1 7F 02 EB 02 8B C1 8B D0 6B D2 02 8B C8 2B CA 8B 55 08 50 6A 00 6A 00 6A 00 6A 00 51 6A 00 FF 32 FF 32 B9 00 01 00 00 E8 1A E0 FF FF 8B 95 34 FF FF FF 8B 45 D4 36 01 42 14 59 8B 45 F4 85 C0 0F 84 CC 59 FC FF E9 B0 59 FC FF 50 E8 FF 48 FB FF 51 33 D2 8B 4D 08 8A 11 8B CA E8 5A 38 FB FF 36 8B 51 14 59 58 EB 8C",
+          "overwriteLength": 171,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00452904",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "回mp攻击宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00452906",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "AD",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "回mp攻击个人号"
+        }
+      ],
+      "semantics": "【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。",
+      "notes": [
+        "【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。",
+        "回mp攻击宝物号",
+        "回mp攻击个人号"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00452904",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "回mp攻击宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00452906",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "AD",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "回mp攻击个人号"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.54b2fc7fb71225ee",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ],
+      "conflicts": [
+        "两个版本使用同一 Hook 和代码区，只能二选一。"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-9f850eaa8be9",
+      "title": "【多多益善】：周围友军每多一名则加一格攻击范围（当到这一类攻击范围极限则不再增加），可与远距攻击叠加并且发动时无视四象征罗",
+      "aliases": [
+        "【6.5】多多益善（注入版）"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043F936",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 E1 23 00 00",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【多多益善】：周围友军每多一名则加一格攻击范围（当到这一类攻击范围极限则不再增加），可与远距攻击叠加并且发动时无视四象征罗"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00441D1C",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "8B 4D FC 50 6A 01 6A 01 6A 00 68 B3 00 00 00 E8 A9 E4 FC FF 85 C0 0F 84 30 01 00 00 6A 02 8B 4D FC E8 CE 49 FC FF 3C 01 75 04 6A 04 EB 02 6A 05 8B 4D FC E8 F6 9E FD FF 83 F8 01 0F 84 0B 01 00 00 50 8B 45 F0 83 F8 00 75 0A B8 01 00 00 00 E9 E7 00 00 00 83 F8 01 75 0A B8 06 00 00 00 E9 D8 00 00 00 83 F8 02 75 0A B8 03 00 00 00 E9 C9 00 00 00 83 F8 03 75 0A B8 04 00 00 00 E9 BA 00 00 00 83 F8 05 75 0A B8 13 00 00 00 E9 AB 00 00 00 83 F8 06 75 0A B8 0C 00 00 00 E9 9C 00 00 00 83 F8 07 75 0A B8 08 00 00 00 E9 8D 00 00 00 83 F8 09 75 0A B8 1F 00 00 00 E9 7E 00 00 00 83 F8 0C 75 0A B8 0D 00 00 00 EB 72 90 90 90 83 F8 0E 75 0A B8 0F 00 00 00 EB 63 90 90 90 83 F8 10 75 07 B8 11 00 00 00 EB 54 83 F8 11 75 07 B8 12 00 00 00 EB 48 83 F8 15 75 07 B8 16 00 00 00 EB 3C 83 F8 17 75 07 B8 18 00 00 00 EB 30 83 F8 19 75 07 B8 1A 00 00 00 EB 24 83 F8 1B 75 07 B8 1C 00 00 00 EB 18 83 F8 1C 75 07 B8 1D 00 00 00 EB 0C 83 F8 1E 75 07 B8 1F 00 00 00 EB 00 8B 4D EC 3B 4D E8 7D 0C 83 45 EC 01 E9 F9 FE FF FF 8B 45 F0 88 45 F8 58 6A 04 E9 C5 DA FF FF",
+          "overwriteLength": 346,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【多多益善】：周围友军每多一名则加一格攻击范围（当到这一类攻击范围极限则不再增加），可与远距攻击叠加并且发动时无视四象征罗"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00441D25",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "多多益善宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00441D27",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B3",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "多多益善个人号"
+        }
+      ],
+      "semantics": "【多多益善】：周围友军每多一名则加一格攻击范围（当到这一类攻击范围极限则不再增加），可与远距攻击叠加并且发动时无视四象征罗",
+      "notes": [
+        "【多多益善】：周围友军每多一名则加一格攻击范围（当到这一类攻击范围极限则不再增加），可与远距攻击叠加并且发动时无视四象征罗",
+        "多多益善宝物号",
+        "多多益善个人号"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00441D25",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "多多益善宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00441D27",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B3",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "多多益善个人号"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.9f850eaa8be937bf",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-b538d55769eb",
+      "title": "【大杀四方】：击杀敌人后可再次行动（物理/策略均有效），每回合限触发N次（N为特效值），不可叠加",
+      "aliases": [
+        "【6.5】大杀四方（注入版）"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004037FF",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E8 1C FD 0C 00",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00420F97",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E8 84 26 0B 00",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0044AF8F",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 6C 86 08 00",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00412D79",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "90 90",
+          "overwriteLength": 2,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00412D7B",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 D0 07 0C 00",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004D3500",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "6A 00 6A 01 68 00 00 00 00 68 C1 00 00 00 E8 C6 CC F3 FF C3",
+          "overwriteLength": 20,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004D3520",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "55 8B EC 51 8B F8 E8 90 FF FF FF 8B 4D FC 8B 49 0C 8B F9 E8 C8 FF FF FF 85 C0 74 10 0F B6 D0 8A 47 24 24 7F 3A C2 73 04 80 4F 24 80 59 C9 C3",
+          "overwriteLength": 47,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004D3620",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "55 89 E5 51 89 C7 E8 90 FE FF FF 8B 4D FC 8B 49 08 89 CF E8 C8 FE FF FF 85 C0 74 10 0F B6 D0 8A 47 24 24 7F 38 D0 73 04 80 4F 24 80 59 C9 C3",
+          "overwriteLength": 47,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004D3590",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "55 8B EC 51 0F B6 4D 08 E8 5C 2C F3 FF F6 41 24 80 74 2B 80 61 24 7F 8A 41 0C 3C 02 75 20 FE 41 24 6A 06 E8 D8 30 F3 FF 68 88 00 00 00 6A 06 FF 71 04 E8 E3 B0 F6 FF 83 C4 0C B0 01 EB 02 32 C0 59 8B E5 5D C2 04 00",
+          "overwriteLength": 71,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004D3600",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "C6 41 24 00 0F B6 45 DC C6 80 00 8B 50 00 00 E9 83 79 F7 FF",
+          "overwriteLength": 20,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004D3550",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "0F B6 55 08 80 BA 00 8B 50 00 00 75 0E E8 13 DC F4 FF 85 C0 74 05 E9 1E F8 F3 FF FF 75 08 E8 1D 00 00 00 84 C0 74 0A B8 01 00 00 00 E9 2F F8 F3 FF 33 C0 E9 28 F8 F3 FF",
+          "overwriteLength": 56,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004D350A",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "C1",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "大杀四方个人特技号（默认 40h=64）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004D3505",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "大杀四方装备特技号（默认 54h=84）"
+        }
+      ],
+      "semantics": "【大杀四方】：击杀敌人后可再次行动（物理/策略均有效），每回合限触发N次（N为特效值），不可叠加",
+      "notes": [
+        "【大杀四方】：击杀敌人后可再次行动（物理/策略均有效），每回合限触发N次（N为特效值），不可叠加",
+        "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下",
+        "大杀四方个人特技号（默认 40h=64）",
+        "大杀四方装备特技号（默认 54h=84）"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00412D79",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "90 90",
+          "overwriteLength": 2,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004D350A",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "C1",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "大杀四方个人特技号（默认 40h=64）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004D3505",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "大杀四方装备特技号（默认 54h=84）"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.b538d55769eb0b8c",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-77c10654d72c",
+      "title": "九宫范围内的友军被攻击时，目标强制转为自己，目标被围攻时无效。（和先手触发的时机相同，例如，奋战或[连击]不会触发先手，这个也无法触发）",
+      "aliases": [
+        "【6.5】护卫-最终版"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004105C8",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E8 CB A4 00 00 90 85 C0 74 02 87 D1 52 51",
+          "overwriteLength": 14,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "特效值≠1 护卫者必须在敌人攻击范围内才能触发"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043ACA2",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E8 F1 FD FD FF 90 90 90 90",
+          "overwriteLength": 9,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "特效值≠1 护卫者必须在敌人攻击范围内才能触发"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043DB3E",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E8 55 CF FD FF 90 90 90 90 90 90 90 90 85 C0 74 02 87 CA",
+          "overwriteLength": 19,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "特效值≠1 护卫者必须在敌人攻击范围内才能触发"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00410F23",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E8 94 9B 00 00",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "特效值≠1 护卫者必须在敌人攻击范围内才能触发"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AA98",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "8B 54 24 FC 8B 4C 24 F0 8B 49 04 C3 55 8B EC 6A 01 6A 01 68 00 00 00 00 68 D1 00 00 00 E8 1F 57 FF FF 5D C3 55 8B EC 6A 00 51 E8 32 B7 FE FF 51 33 C0 50 50 B8 11 7C 41 00 39 45 10 74 7F E8 C9 FF FF FF 85 C0 75 76 6A 00 6A 01 6A 01 6A 02 8B 4D F4 E8 05 E7 FE FF 8B 45 FC 8A 88 48 C7 4A 00 80 F9 FF 74 58 3A 4D F8 74 4E E8 F2 B6 FE FF 89 4D EC 6A 08 E8 D7 94 00 00 85 C0 75 3B 8B 4D EC E8 87 FF FF FF 85 C0 74 2F 3C 01 74 1A 8B 4D 18 E8 93 4D 02 00 8B 4D EC FF 71 04 FF 75 18 E8 F5 7F FF FF 85 C0 74 11 8B 4D EC 8B 41 10 3B 45 F0 76 06 89 45 F0 89 4D F4 FF 45 FC EB 9A 8B 4D F4 8B 45 18 89 45 08 83 7D F0 00 74 37 8A 41 04 88 45 14 FF 75 08 51 E8 36 78 00 00 C6 05 FC 5E 50 00 01 8B 4D F4 0F B6 41 04 50 68 E0 AF 41 00 E8 D1 EA 03 00 8B 4D F4 51 FF 75 08 E8 11 78 00 00 8B 4D F4 8B E5 5D C3",
+          "overwriteLength": 263,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "特效值≠1 护卫者必须在敌人攻击范围内才能触发"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AFE0",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "D0 DD C9 CB CE E1 D6 F7 A3 A1 00",
+          "overwriteLength": 11,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "护卫触发提示语（用UE去改，长短无所谓，必须00结尾）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AAAC",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AAB1",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "D1",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "特技号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AAE4",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "01",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "生效范围（等同攻击范围序号，0=4向 1=8向）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AB79",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "01",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "是否说话（00不说话/01说话）"
+        }
+      ],
+      "semantics": "九宫范围内的友军被攻击时，目标强制转为自己，目标被围攻时无效。（和先手触发的时机相同，例如，奋战或[连击]不会触发先手，这个也无法触发）",
+      "notes": [
+        "九宫范围内的友军被攻击时，目标强制转为自己，目标被围攻时无效。（和先手触发的时机相同，例如，奋战或[连击]不会触发先手，这个也无法触发）",
+        "混乱时无效",
+        "特效值≠1 护卫者必须在敌人攻击范围内才能触发",
+        "护卫触发提示语（用UE去改，长短无所谓，必须00结尾）",
+        "宝物号",
+        "特技号",
+        "生效范围（等同攻击范围序号，0=4向 1=8向）",
+        "是否说话（00不说话/01说话）"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AAAC",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AAB1",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "D1",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "特技号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AAE4",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "01",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "生效范围（等同攻击范围序号，0=4向 1=8向）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AB79",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "01",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "是否说话（00不说话/01说话）"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.77c10654d72ce71d",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ],
+      "conflicts": [
+        "6.5 护卫代码区与僵尸大法历史代码区重叠；应用前必须重排或合并。"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-397b2cfb9705",
+      "title": "【敌潮逆噬】：拥有特效者周围敌军全能力下降周围敌军人数*K%，K为特效值",
+      "aliases": [
+        "【6.5】敌潮逆噬（注入版）"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043CB4C",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 B6 07 00 00",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【敌潮逆噬】：拥有特效者周围敌军全能力下降周围敌军人数*K%，K为特效值"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D307",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "6A 00 6A 01 6A 00 68 B4 00 00 00 E8 C2 2E FD FF 84 C0 0F 84 87 00 00 00 8B 4D F0 8A 51 06 8B 4D FC 38 51 06 76 0B 8A 51 06 8B 4D F0 2A 51 06 EB 03 2A 51 06 80 FA 01 77 66 8B 4D F0 8A 51 07 8B 4D FC 38 51 07 76 0B 8A 51 07 8B 4D F0 2A 51 07 EB 03 2A 51 07 80 FA 01 77 45 8B 4D FC 80 79 05 02 74 0B 8B 4D F0 80 79 05 02 75 33 EB 09 8B 4D F0 80 79 05 02 74 28 8B 4D FC 50 E8 89 93 FC FF 3C 01 75 04 6A 05 EB 02 6A 04 8B 4D FC E8 B1 E8 FD FF 8B 8D 4C F9 FF FF 0F AF C1 29 45 F8 58 8B 4D FC E9 A3 F7 FF FF",
+          "overwriteLength": 167,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【敌潮逆噬】：拥有特效者周围敌军全能力下降周围敌军人数*K%，K为特效值"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D30C",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "敌潮逆噬宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D30E",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B4",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "敌潮逆噬个人号"
+        }
+      ],
+      "semantics": "【敌潮逆噬】：拥有特效者周围敌军全能力下降周围敌军人数*K%，K为特效值",
+      "notes": [
+        "【敌潮逆噬】：拥有特效者周围敌军全能力下降周围敌军人数*K%，K为特效值",
+        "敌潮逆噬宝物号",
+        "敌潮逆噬个人号"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D30C",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "敌潮逆噬宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D30E",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B4",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "敌潮逆噬个人号"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.397b2cfb97056d1f",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-3358d026a5fa",
+      "title": "【殭屍大法】：拥有mp防御时生效，当将损失mp大于当前hp时，按当前hp扣mp",
+      "aliases": [
+        "【6.5】殭屍大法（注入版）"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00406006",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 F5 4A 01 00 90",
+          "overwriteLength": 6,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【殭屍大法】：拥有mp防御时生效，当将损失mp大于当前hp时，按当前hp扣mp"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AB00",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "8B 4D E0 6A 01 6A 01 6A 00 68 B2 00 00 00 E8 C6 56 FF FF 85 C0 74 0E 8B 4D E0 8B 49 10 39 4D DC 72 03 89 4D DC 8B 4D DC 8B 55 FC E9 DB B4 FE FF",
+          "overwriteLength": 48,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【殭屍大法】：拥有mp防御时生效，当将损失mp大于当前hp时，按当前hp扣mp"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AB08",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "殭屍大法宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AB0A",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B2",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "殭屍大法个人号"
+        }
+      ],
+      "semantics": "【殭屍大法】：拥有mp防御时生效，当将损失mp大于当前hp时，按当前hp扣mp",
+      "notes": [
+        "【殭屍大法】：拥有mp防御时生效，当将损失mp大于当前hp时，按当前hp扣mp",
+        "殭屍大法宝物号",
+        "殭屍大法个人号"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AB08",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "殭屍大法宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AB0A",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B2",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "殭屍大法个人号"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.3358d026a5fa0e4e",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-d7dfa1a7f16d",
+      "title": "【盛气凌人】：暴击时使攻击目标全部6项属性各降1档，个人号BF，装备号00（无法通过装备获取）",
+      "aliases": [
+        "【6.5】盛气凌人（注入版）"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00472D92",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 10 FC FD FF 90",
+          "overwriteLength": 6,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【盛气凌人】：暴击时使攻击目标全部6项属性各降1档，个人号BF，装备号00（无法通过装备获取）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004529A7",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B8 F0 27 49 00 83 B8 04 06 00 00 00 74 34 8B 4D F8 6A 01 6A 01 6A 00 68 BF 00 00 00 E8 11 D8 FB FF 85 C0 74 1D C7 45 FC 00 00 00 00 6A 00 FF 75 FC 8B 4D 0C E8 41 6E FB FF FF 45 FC 83 7D FC 06 7C EA 89 EC 5D C2 08 00",
+          "overwriteLength": 72,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【盛气凌人】：暴击时使攻击目标全部6项属性各降1档，个人号BF，装备号00（无法通过装备获取）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004529BD",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "盛气凌人装备号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004529BF",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "BF",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "盛气凌人个人号"
+        }
+      ],
+      "semantics": "【盛气凌人】：暴击时使攻击目标全部6项属性各降1档，个人号BF，装备号00（无法通过装备获取）",
+      "notes": [
+        "【盛气凌人】：暴击时使攻击目标全部6项属性各降1档，个人号BF，装备号00（无法通过装备获取）",
+        "盛气凌人装备号",
+        "盛气凌人个人号"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004529BD",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "盛气凌人装备号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004529BF",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "BF",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "盛气凌人个人号"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.d7dfa1a7f16d0d21",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-518736e260ba",
+      "title": "【策略偷钱】我军或友军策略攻击我军可以获得等同策略伤害的金钱，敌军策略攻击我军会减少等同策略伤害的金钱",
+      "aliases": [
+        "【6.5】策略偷钱（注入版）"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004259B4",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 EE 4B FF FF 90 90 90 90",
+          "overwriteLength": 9,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【策略偷钱】我军或友军策略攻击我军可以获得等同策略伤害的金钱，敌军策略攻击我军会减少等同策略伤害的金钱"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041A5A7",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "8B 4D FC 83 B9 08 01 00 00 01 7C 66 0F B6 49 01 E8 3D BC FE FF 6A 01 6A 01 6A 00 68 AA 00 00 00 E8 0D 5C FF FF 85 C0 74 49 3E 8B 4D FC 0F B6 49 0D E8 1C BC FE FF 3E 8B 45 FC 8B 80 08 01 00 00 6B C0 01 BA 7C 07 4B 00 80 79 05 02 72 18 8B 0A 03 C8 81 F9 3F 42 0F 00 73 04 01 02 EB 14 C7 02 3F 42 0F 00 EB 0C 39 02 76 04 29 02 EB 04 33 C0 89 02 8B 4D FC 8B 81 50 05 00 00 E9 92 B3 00 00",
+          "overwriteLength": 128,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【策略偷钱】我军或友军策略攻击我军可以获得等同策略伤害的金钱，敌军策略攻击我军会减少等同策略伤害的金钱"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041A5C1",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略偷钱宝物号（00-7F）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041A5C3",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "AA",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略偷钱个人号（00-7F）"
+        }
+      ],
+      "semantics": "【策略偷钱】我军或友军策略攻击我军可以获得等同策略伤害的金钱，敌军策略攻击我军会减少等同策略伤害的金钱",
+      "notes": [
+        "【策略偷钱】我军或友军策略攻击我军可以获得等同策略伤害的金钱，敌军策略攻击我军会减少等同策略伤害的金钱",
+        "策略偷钱宝物号（00-7F）",
+        "策略偷钱个人号（00-7F）"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041A5C1",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略偷钱宝物号（00-7F）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041A5C3",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "AA",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略偷钱个人号（00-7F）"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.518736e260ba59dc",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-fc944ad335d5",
+      "title": "【策略冲锋】：策略伤害增加策略攻击前移动步数*K*1%，K为特效值",
+      "aliases": [
+        "【6.5】策略冲锋（注入版）"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043C2B0",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 B5 9C 00 00",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【策略冲锋】：策略伤害增加策略攻击前移动步数*K*1%，K为特效值"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00445F6A",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "3E 8B 4D F0 6A 00 6A 01 6A 00 68 B0 00 00 00 E8 5B A2 FC FF 85 C0 74 1A 0F B6 0D 48 0C 50 00 85 C9 74 0F 0F AF C1 FF 75 FC 50 E8 40 FB FD FF 01 45 FC E9 14 63 FF FF",
+          "overwriteLength": 55,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【策略冲锋】：策略伤害增加策略攻击前移动步数*K*1%，K为特效值"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00445F73",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略冲锋宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00445F75",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B0",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略冲锋个人号"
+        }
+      ],
+      "semantics": "【策略冲锋】：策略伤害增加策略攻击前移动步数*K*1%，K为特效值",
+      "notes": [
+        "【策略冲锋】：策略伤害增加策略攻击前移动步数*K*1%，K为特效值",
+        "策略冲锋宝物号",
+        "策略冲锋个人号"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00445F73",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略冲锋宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00445F75",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B0",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策略冲锋个人号"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.fc944ad335d5e3a7",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-d485271ee4a7",
+      "title": "【聚势伐谋】：策略伤害增加（被策略攻击者周围同阵营人数+1（被策略攻击者））*K%，K为特效值",
+      "aliases": [
+        "【6.5】聚势伐谋（注入版）"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043C2B5",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 B2 9E 00 00",
+          "overwriteLength": 5,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【聚势伐谋】：策略伤害增加（被策略攻击者周围同阵营人数+1（被策略攻击者））*K%，K为特效值"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0044616C",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "3E 8B 4D F0 6A 00 6A 01 6A 00 68 B1 00 00 00 E8 59 A0 FC FF 85 C0 74 2E 50 8B 4D 08 E8 83 05 FC FF 3C 01 75 04 6A 04 EB 02 6A 05 8B 4D 08 E8 AB 5A FD FF 8B 4D DC 0F AF C1 FF 75 FC 50 E8 2B F9 FD FF 01 45 FC 58 E9 03 61 FF FF",
+          "overwriteLength": 75,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "【聚势伐谋】：策略伤害增加（被策略攻击者周围同阵营人数+1（被策略攻击者））*K%，K为特效值"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00446175",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "聚势伐谋宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00446177",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B1",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "聚势伐谋个人号"
+        }
+      ],
+      "semantics": "【聚势伐谋】：策略伤害增加（被策略攻击者周围同阵营人数+1（被策略攻击者））*K%，K为特效值",
+      "notes": [
+        "【聚势伐谋】：策略伤害增加（被策略攻击者周围同阵营人数+1（被策略攻击者））*K%，K为特效值",
+        "聚势伐谋宝物号",
+        "聚势伐谋个人号"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00446175",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "聚势伐谋宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00446177",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "B1",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "聚势伐谋个人号"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.d485271ee4a71590",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-8eeb3c8fcd2c",
+      "title": "宝物-个人",
+      "aliases": [
+        "【Star6.5】强化攻击穿透"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00407831",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "90 90 90 90 90 90 90 90 90 B8 9A 0E 50 00 80 38 02 75 11 8A 48 01 E8 CC 70 01 00 E8 D6 D5 07 00 84 C0 75 28 6A 05 6A 00 6A 33 8B 4D FC E8 B0 53 00 00 85 C0 75 0E 8B 4D FC E8 A1 ED FF FF 8A 80 81 78 40 00 8B 4D FC E8 D2 31 01 00",
+          "overwriteLength": 76,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "历史注入块"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AA4F",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "55 8B EC 50 33 C0 38 05 DC 5F 50 00 75 20 6A 00 6A 03 6A 00 68 DD 00 00 00 E8 22 A7 00 00 8B 4D FC 85 C0 74 08 8A 81 81 AA 41 00 EB 01 91 8B E5 5D C3 04 02 03 08 07 0B 06 05 06 01 0A 0B",
+          "overwriteLength": 62,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "历史注入块"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AA62",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "宝物-个人"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AA64",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "DD",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "宝物-个人"
+        }
+      ],
+      "semantics": "宝物-个人",
+      "notes": [
+        "宝物-个人"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AA62",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "宝物-个人"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041AA64",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "DD",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "宝物-个人"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.8eeb3c8fcd2c1564",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-094abf000c04",
+      "title": "整形变量4003=X，则攻击造成的最小伤害=攻击力*X%，会吃增伤特技和暴击的加成，对敌我双方皆有效。",
+      "aliases": [
+        "【star6.5】整形4003控制保底伤害"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043BD58",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 A5 13 00 00 90 90 90 90 90 90 90 90 90 90 90",
+          "overwriteLength": 16,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "整形变量4003=X，则攻击造成的最小伤害=攻击力*X%，会吃增伤特技和暴击的加成，对敌我双方皆有效。"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D102",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E8 97 29 04 00 83 C4 08 85 C0 75 01 40 89 45 FC FF 75 E0 FF 75 FC E8 08 00 00 00 89 45 FC E9 43 EC FF FF 55 8B EC 8B 45 0C 0F B6 0D 8C 5E 50 00 85 C9 74 12 0F AF C8 8B C1 B9 64 00 00 00 99 F7 F9 3B 45 08 7D 03 8B 45 08 5D C2 08 00",
+          "overwriteLength": 77,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "整形变量4003=X，则攻击造成的最小伤害=攻击力*X%，会吃增伤特技和暴击的加成，对敌我双方皆有效。"
+        }
+      ],
+      "semantics": "整形变量4003=X，则攻击造成的最小伤害=攻击力*X%，会吃增伤特技和暴击的加成，对敌我双方皆有效。",
+      "notes": [
+        "整形变量4003=X，则攻击造成的最小伤害=攻击力*X%，会吃增伤特技和暴击的加成，对敌我双方皆有效。"
+      ],
+      "parameterSites": [],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.094abf000c04e97c",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-b9b3f5706176",
+      "title": "无视【减少策略伤害X%】的效果",
+      "aliases": [
+        "【star6.5】无视策略减伤（修复版）"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043C242",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "8B 4D F0 E8 73 9B FC FF 85 C0 0F 84 90 0E 00 00 EB 18",
+          "overwriteLength": 18,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "无视【减少策略伤害X%】的效果"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043C266",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "0F 84 76 0E 00 00 E9 65 0E 00 00 90 90 90",
+          "overwriteLength": 14,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "无视【减少策略伤害X%】的效果"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D0D6",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "50 FF 75 FC E8 FA 89 FE FF 01 45 FC 6A 01 6A 01 6A 00 68 EF 00 00 00 8B 4D F0 E8 E4 30 FD FF 85 C0 0F 84 74 F1 FF FF E9 9E F1 FF FF",
+          "overwriteLength": 44,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "无视【减少策略伤害X%】的效果"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D0E7",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "（宝物号#16进制）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D0E9",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "EF",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "（特技号#16进制）"
+        }
+      ],
+      "semantics": "无视【减少策略伤害X%】的效果",
+      "notes": [
+        "无视【减少策略伤害X%】的效果",
+        "（宝物号#16进制）",
+        "（特技号#16进制）"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D0E7",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "（宝物号#16进制）"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D0E9",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "EF",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "（特技号#16进制）"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.b9b3f5706176372b",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    },
+    {
+      "id": "patch.65.legacy-f0258ed93731",
+      "title": "策伤保底，造成策略的伤害不小于N，设置N=16-30时为百分比，其他数值为固定值，如果本次伤害本就大于保底数值，则会增伤20%",
+      "aliases": [
+        "【star6.5】策略保底&策略限伤"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-patch-bytes",
+      "kind": "legacy-injection",
+      "versionVariant": "6.5",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043C2D5",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E9 4E 02 00 00 90 90 90",
+          "overwriteLength": 8,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "同时存在时限制伤害优先级更高，且这两个伤害都会被策略暴击所增幅"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043C528",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "E8 7D 67 FD FF 89 45 FC FF 75 0C FF 75 08 FF 75 F0 FF 75 FC E8 6D 0E 00 00 89 45 FC E9 91 FD FF FF",
+          "overwriteLength": 33,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "同时存在时限制伤害优先级更高，且这两个伤害都会被策略暴击所增幅"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D3AE",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "55 8B EC 6A 00 6A 01 6A 2F 68 D4 00 00 00 8B 4D 0C E8 15 2E FD FF 85 C0 74 30 50 83 F8 10 72 16 83 F8 1F 73 11 8B 4D 14 E8 88 9E FC FF FF 75 FC 50 E8 F5 86 FE FF 39 45 08 72 12 6A 14 FF 75 08 E8 E6 86 FE FF 01 45 08 EB 06 8B 45 08 89 45 08 6A 00 6A 01 6A 00 68 D5 00 00 00 8B 4D 10 E8 C8 2D FD FF 85 C0 74 31 50 89 45 FC 83 F8 10 72 16 83 F8 1F 73 11 8B 4D 14 E8 38 9E FC FF FF 75 FC 50 E8 A5 86 FE FF 39 45 08 73 10 6A 14 FF 75 08 E8 96 86 FE FF 29 45 08 8B 45 08 8B E5 5D C2 10 00",
+          "overwriteLength": 161,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "同时存在时限制伤害优先级更高，且这两个伤害都会被策略暴击所增幅"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D3B6",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策伤保底宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D3B8",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "FF",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策伤保底特技号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D403",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策伤限制宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D405",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "FF",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策伤限制特技号"
+        }
+      ],
+      "semantics": "策伤保底，造成策略的伤害不小于N，设置N=16-30时为百分比，其他数值为固定值，如果本次伤害本就大于保底数值，则会增伤20%",
+      "notes": [
+        "策伤保底，造成策略的伤害不小于N，设置N=16-30时为百分比，其他数值为固定值，如果本次伤害本就大于保底数值，则会增伤20%",
+        "策伤限制，受到策略的伤害不大于N，设置特效值16-30时为百分比，其余范围为固定值，如果本次伤害本就小于限制数值，则会减少20%",
+        "同时存在时限制伤害优先级更高，且这两个伤害都会被策略暴击所增幅",
+        "策伤保底宝物号",
+        "策伤保底特技号",
+        "策伤限制宝物号",
+        "策伤限制特技号"
+      ],
+      "parameterSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D3B6",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策伤保底宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D3B8",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "FF",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策伤保底特技号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D403",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "00",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策伤限制宝物号"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043D405",
+            "profile": "profile.ccz65.unencrypted.f9a",
+            "evidence": "legacy-structured"
+          },
+          "replacementBytes": "FF",
+          "overwriteLength": 1,
+          "writeMode": "legacy-od-block",
+          "instructionBoundary": null,
+          "role": "策伤限制特技号"
+        }
+      ],
+      "writePolicy": "只保存历史替换字节；缺少原字节、精确样本身份或指令边界时不得自动应用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.f0258ed937314d7b",
+        "src.history.9b8abf5.7fda2a91ab068d46"
+      ]
+    }
+  ]
+}

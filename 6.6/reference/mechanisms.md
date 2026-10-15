@@ -6,7 +6,7 @@
 
 ## 小暗 S 超级加速等待链
 
-ID: `mechanism.66.xiaoan.super-s`
+ID: `mechanism.66.xiaoan.super-s`；状态: `canonical`；证据: `sample-verified`
 
 1. `fn.66.xiaoan.wait-wrapper`：公共等待循环
 2. `fn.66.xiaoan.native-stage`：检查原生阶段是否完成
@@ -22,7 +22,7 @@ S 等待白名单返回地址：
 
 ## 原生三阶段延迟计算
 
-ID: `mechanism.66.xiaoan.phase-delay`
+ID: `mechanism.66.xiaoan.phase-delay`；状态: `canonical`；证据: `source-reviewed`
 
 1. `global.66.xiaoan.phase`：读取 uint8 阶段索引；仅 0..2 有效
 2. `global.66.xiaoan.phase-table`：读取 value = phaseTable[phase]

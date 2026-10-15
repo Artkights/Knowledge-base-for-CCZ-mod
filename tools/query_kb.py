@@ -9,8 +9,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def canonical_entity(summary: dict, cache: dict[str, dict]) -> dict:
-    path = summary["canonicalDataPath"]
+def structured_entity(summary: dict, cache: dict[str, dict]) -> dict:
+    path = summary.get("structuredDataPath", summary.get("canonicalDataPath"))
+    if not path:
+        raise KeyError(f"index entry has no data path: {summary.get('id')}")
     if path not in cache:
         cache[path] = json.loads((ROOT / path).read_text(encoding="utf-8"))
     return next(item for item in cache[path]["entries"] if item["id"] == summary["id"])
@@ -37,10 +39,13 @@ def score(summary: dict, query: str) -> int:
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    parser = argparse.ArgumentParser(description="Query canonical CCZ engine entities.")
+    parser = argparse.ArgumentParser(description="Query structured CCZ engine and production knowledge.")
     parser.add_argument("query", help="Entity ID, address, title, alias, field, or semantic text")
     parser.add_argument("--version", help="Require an exact version, for example 6.5, 6.5pl, or 6.6")
     parser.add_argument("--limit", type=int, default=10)
+    parser.add_argument("--status", choices=("canonical", "candidate", "legacy-reference"))
+    parser.add_argument("--entity-type")
+    parser.add_argument("--canonical-only", action="store_true")
     parser.add_argument("--include-research", action="store_true")
     args = parser.parse_args()
 
@@ -49,12 +54,19 @@ def main() -> int:
     for summary in index["entries"]:
         if args.version and args.version not in summary.get("versions", []):
             continue
+        if args.canonical_only and summary.get("status") != "canonical":
+            continue
+        if args.status and summary.get("status") != args.status:
+            continue
+        if args.entity_type and summary.get("entityType") != args.entity_type:
+            continue
         value = score(summary, args.query)
         if value:
             ranked.append((value, summary))
-    ranked.sort(key=lambda pair: (-pair[0], pair[1]["id"]))
+    status_order = {"canonical": 0, "candidate": 1, "legacy-reference": 2}
+    ranked.sort(key=lambda pair: (-pair[0], status_order.get(pair[1].get("status"), 9), pair[1]["id"]))
     cache: dict[str, dict] = {}
-    results = [{"score": value, "summary": summary, "entity": canonical_entity(summary, cache)} for value, summary in ranked[: max(0, args.limit)]]
+    results = [{"score": value, "summary": summary, "entity": structured_entity(summary, cache)} for value, summary in ranked[: max(0, args.limit)]]
 
     research_results = []
     if args.include_research:

@@ -2,70 +2,6 @@
   "schemaVersion": 1,
   "entries": [
     {
-      "id": "src.wrench.profile",
-      "path": "老版游戏制作工具/扳手/engine_profile.py",
-      "sha256": "207FC77FE3EE510A54F96C00A86232966A1873C8D8AF5B7BC0CDA3CA18B05DB1",
-      "sourceType": "first-party-source",
-      "usedFor": "Python 扳手的版本地址、结构、文件物品布局和语义定位规则",
-      "published": false
-    },
-    {
-      "id": "src.wrench.layout",
-      "path": "老版游戏制作工具/扳手/engine_layout.py",
-      "sha256": "012EAEEB0C3DA696DCED19033B90902F5C6E07C2A240B04638BF4C40ACF66823",
-      "sourceType": "first-party-source",
-      "usedFor": "表字段描述模型",
-      "published": false
-    },
-    {
-      "id": "src.xiaoan.layout",
-      "path": "老版游戏制作工具/v0.7/小暗补丁6.6/源码/EngineLayout.cpp",
-      "sha256": "5C451B92EBC909C383EDFF1B7FA2F24B34B25FDB3F6B4C6EF9055FCB963C0E90",
-      "sourceType": "first-party-source",
-      "usedFor": "6.6 加速函数语义签名、站点和操作数提取",
-      "published": false
-    },
-    {
-      "id": "src.xiaoan.engine",
-      "path": "老版游戏制作工具/v0.7/小暗补丁6.6/源码/Engine.cpp",
-      "sha256": "3436BF03EB4195AAE463186F9CA0FC000F6134BD8FF46F61132EAB0F6ED4E642",
-      "sourceType": "first-party-source",
-      "usedFor": "加速站点改写、S 等待桩和阶段数据含义",
-      "published": false
-    },
-    {
-      "id": "src.xiaoan.layout-tests",
-      "path": "老版游戏制作工具/v0.7/小暗补丁6.6/源码/LayoutTests.cpp",
-      "sha256": "2C58C7654511519842F43B0D4F05D1FE03464A796AB9AC2630D7CFD81827EFF0",
-      "sourceType": "first-party-source",
-      "usedFor": "测试样本固定地址与 17 个 S 调用者断言",
-      "published": false
-    },
-    {
-      "id": "src.ccz.runtime-registry",
-      "path": "工具整合包/CCZModStudio/Core/EngineRuntimeSemanticRegistry.cs",
-      "sha256": "EAD8324DE51218D940225059C8B1808C3BA6DB5B92783B412A85CE34B1BC2E81",
-      "sourceType": "first-party-source",
-      "usedFor": "6.5 运行时函数、表基址、步长和字段",
-      "published": false
-    },
-    {
-      "id": "src.ccz.range-profile",
-      "path": "工具整合包/CCZModStudio/Core/RangeEngineVersionProfileService.cs",
-      "sha256": "EDCEF2DC6250C25DD5E151AE23C401381E15DF92BDAC3F3958A53EF8256C3B45",
-      "sourceType": "first-party-source",
-      "usedFor": "6.5 SHA 画像、攻击/穿透函数与 Hook 旧字节",
-      "published": false
-    },
-    {
-      "id": "src.ccz.range-probe",
-      "path": "工具整合包/CCZModStudio/Core/RangeProbePlanService.cs",
-      "sha256": "EFC6639051A943E9667B230BA875D053D003D4FFA776264DADA9A3316F83A08A",
-      "sourceType": "first-party-source",
-      "usedFor": "攻击链断点、上下文字段和调用角色",
-      "published": false
-    },
-    {
       "id": "src.ccz.e5-parser",
       "path": "工具整合包/CCZModStudio/Core/E5IndexParser.cs",
       "sha256": "48303CAA5813E7B9165A6E58666BCFDE321490F0C385CAE2537D6486A30AAF80",
@@ -87,6 +23,800 @@
       "sha256": "1C4FC6DAE4CFAFEEAB7C5CC379E3171818C250081B6257E71AA542934E9A3F70",
       "sourceType": "first-party-source",
       "usedFor": "Hexzmap 目录和地形负载格式",
+      "published": false
+    },
+    {
+      "id": "src.ccz.range-probe",
+      "path": "工具整合包/CCZModStudio/Core/RangeProbePlanService.cs",
+      "sha256": "EFC6639051A943E9667B230BA875D053D003D4FFA776264DADA9A3316F83A08A",
+      "sourceType": "first-party-source",
+      "usedFor": "攻击链断点、上下文字段和调用角色",
+      "published": false
+    },
+    {
+      "id": "src.ccz.range-profile",
+      "path": "工具整合包/CCZModStudio/Core/RangeEngineVersionProfileService.cs",
+      "sha256": "EDCEF2DC6250C25DD5E151AE23C401381E15DF92BDAC3F3958A53EF8256C3B45",
+      "sourceType": "first-party-source",
+      "usedFor": "6.5 SHA 画像、攻击/穿透函数与 Hook 旧字节",
+      "published": false
+    },
+    {
+      "id": "src.ccz.runtime-registry",
+      "path": "工具整合包/CCZModStudio/Core/EngineRuntimeSemanticRegistry.cs",
+      "sha256": "EAD8324DE51218D940225059C8B1808C3BA6DB5B92783B412A85CE34B1BC2E81",
+      "sourceType": "first-party-source",
+      "usedFor": "6.5 运行时函数、表基址、步长和字段",
+      "published": false
+    },
+    {
+      "id": "src.history.9b8abf5.04c36eea4e297855",
+      "path": "history/9b8abf5/6.5/05-剧本与战场/03-25-35触发与R场景.md",
+      "sha256": "2C4F310C4BC9C2A02F93A37BA4657A60DE44F13D3A1D0EBDB4E5A18AB2880187",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 剧本操作码、参数槽和风险边界",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/05-剧本与战场/03-25-35触发与R场景.md"
+    },
+    {
+      "id": "src.history.9b8abf5.0798d37bbce2ad5e",
+      "path": "history/9b8abf5/6.5/01-核心引擎/核心引擎.md",
+      "sha256": "19AB5CA1E6EC4EF08E0E1CBFD3FF5BB46E7C265A65066DA55287833BC628D165",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 双渠道特效判定语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/01-核心引擎/核心引擎.md"
+    },
+    {
+      "id": "src.history.9b8abf5.091b4d06356791ba",
+      "path": "history/9b8abf5/6.5/06-工具与验证/特效工作台复盘与验收.md",
+      "sha256": "EFC638649C0BC8A003AA89200094B09D1C82F0CDCC74759FAA901EAB0635B4E3",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "制作工作流、验证门禁和复用案例",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/06-工具与验证/特效工作台复盘与验收.md"
+    },
+    {
+      "id": "src.history.9b8abf5.094abf000c04e97c",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【star6.5】整形4003控制保底伤害.txt",
+      "sha256": "F8EAC185A6B8D8FFDB6C0E96B2B2A323276C37C9D02246C2E7C1D34D05DE0A34",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【star6.5】整形4003控制保底伤害.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.12db9daf127d25ba",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】破坏MP攻击.txt",
+      "sha256": "520074EBD0D95D65B78A88D6BB74778729F1A17A1E41FA11EB5DF38F3F2CB5A4",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】破坏MP攻击.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.1323e8245f437c36",
+      "path": "history/9b8abf5/6.5/06-工具与验证/自动化MOD制作.md",
+      "sha256": "EC5FD99D1C743C4ADD0FF7E816347397363ED4D295955C120A6D0C45BA5870DC",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "制作工作流、验证门禁和复用案例",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/06-工具与验证/自动化MOD制作.md"
+    },
+    {
+      "id": "src.history.9b8abf5.1a72d287098f22fe",
+      "path": "history/9b8abf5/6.5/03-机制与特效/模块化复合特效制作.md",
+      "sha256": "C07A5036D6577FE885203F9C8091B59B5A0FB3D328381BA90E7FF1F369CA5702",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "制作工作流、验证门禁和复用案例",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/模块化复合特效制作.md"
+    },
+    {
+      "id": "src.history.9b8abf5.1f1d447d975ea950",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【Star6.6x】调整强化穿透攻击.txt",
+      "sha256": "030DBE33CF466071FBF3E5989CC9106EC62E9ECAFA2B9EB51CB9108155E4946C",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【Star6.6x】调整强化穿透攻击.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.1f327968a406b49d",
+      "path": "history/9b8abf5/6.5/05-剧本与战场/04-36-4B变量部署.md",
+      "sha256": "CA08B9FA00B0F1554F37A5C0FA0FD57E30E0921B8107FA4BC12BB49FB157A7DC",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 剧本操作码、参数槽和风险边界",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/05-剧本与战场/04-36-4B变量部署.md"
+    },
+    {
+      "id": "src.history.9b8abf5.2b2bf1f593741b7b",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】宝物图鉴大小调整.txt",
+      "sha256": "C232A76813B9961EAA9EA8726C1530D795F9BE67E58E13416E948D0CBAA80A51",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】宝物图鉴大小调整.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.2be608b1a628860b",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】逆境减伤.txt",
+      "sha256": "0F79EA7AD0407D1588EA029C33B0153AAA9A8BF26C044D7656B87D8F93A9655F",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】逆境减伤.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.2e0af90b44b13763",
+      "path": "history/9b8abf5/6.5/05-剧本与战场/07-70-7B高级变量与系统.md",
+      "sha256": "6E334CE718AF4D0EC04649A8058B8225049F117AE0A292E6A636F0053D1167FA",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 剧本操作码、参数槽和风险边界",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/05-剧本与战场/07-70-7B高级变量与系统.md"
+    },
+    {
+      "id": "src.history.9b8abf5.30ece703adf40bd1",
+      "path": "history/9b8abf5/6.6/03-机制与特效/6.6骑马步兵攻击防御偷袭共5特技.txt",
+      "sha256": "37AF2A0C0DCFE243BA77C52682D5530DA7568BD6F03501F351FF2A818098FFC4",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/6.6骑马步兵攻击防御偷袭共5特技.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.3358d026a5fa0e4e",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】殭屍大法（注入版）.txt",
+      "sha256": "EF19547F1268F118A7453517358D00C58218EF6E84F3B5F31DEC3C3E010AAFA3",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】殭屍大法（注入版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.397b2cfb97056d1f",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】敌潮逆噬（注入版）.txt",
+      "sha256": "B7B56201BB6E5AF3A792CFC62C926D14C38BC890ADC75A4E97A66E1060EA3F55",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】敌潮逆噬（注入版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.42463b294f25b54e",
+      "path": "history/9b8abf5/6.6/03-机制与特效/6.6x功勋吃果双开.txt",
+      "sha256": "77C428CD07494C76C8F79FE092BF113AB47D879B6410FA4E5C8BD4A3B5D00889",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/6.6x功勋吃果双开.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.518736e260ba59dc",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】策略偷钱（注入版）.txt",
+      "sha256": "7303450FC2A7094D2FEAC5544195D9CD7296B504B5395C4F9A696299D9A94883",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】策略偷钱（注入版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.53423bb64474f0f0",
+      "path": "history/9b8abf5/6.5/05-剧本与战场/02-14-24文本音画.md",
+      "sha256": "B13CEFF81E7029A191FC3D2CE3F6F6B14D93B1B89F11786EEB0EB4690183FBCC",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 剧本操作码、参数槽和风险边界",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/05-剧本与战场/02-14-24文本音画.md"
+    },
+    {
+      "id": "src.history.9b8abf5.54b2fc7fb71225ee",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】回mp攻击(注入版).txt",
+      "sha256": "3D3F27D12F8C5AD36F7CCFC162E56A0FFE47AAF91F28A38D0BE86A6A23AA0BDB",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】回mp攻击(注入版).txt"
+    },
+    {
+      "id": "src.history.9b8abf5.56d5012ecd9597b8",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6】策略保底&策略限伤.txt",
+      "sha256": "2A62C1ED4C6269F331827946E47C99BFF3546F3A238A63C30AEE3007D8C3A405",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6】策略保底&策略限伤.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.590df7beeba47fef",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】暴击伤害增幅 K%.txt",
+      "sha256": "BDC07F1E0B3D292E3787FBBDCD350F65BC3BE2ABE6501CD5B73B9FA1028E23DC",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】暴击伤害增幅 K%.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.6003ea65ce5f6b3e",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】远距攻击特技化.txt",
+      "sha256": "DB7B61B006BCD7698BAA67FBF0F6F184F969272824C990ED94EEA11597282701",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】远距攻击特技化.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.642886b45da331dc",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【6.6x】护卫-最终版.txt",
+      "sha256": "F7641C5B757F35E8CE1DFDA3B99B3CB5F88402B4442688F3E11E3A1DAD975F6F",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【6.6x】护卫-最终版.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.66aacc7e145472ca",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【6.6x】致死不触发转移伤害.txt",
+      "sha256": "27E607E7E097F4547A2B43424F707D99DCF2DBD05F71AC426D19A66BFBA30281",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【6.6x】致死不触发转移伤害.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.70286c122d3d98c7",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【6.6xKF】保底全伤害调整LV+N.txt",
+      "sha256": "C8FC9BE1CC63F011EFB070625BD6B8FCAFAB65FB5126BB7AD7A67633E8D82339",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【6.6xKF】保底全伤害调整LV+N.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.7368eeb7cfc219d9",
+      "path": "history/9b8abf5/6.5/05-教程指南/战场操作自动化与调试流程.md",
+      "sha256": "FBED6C22D29FC9690F0BFB6EB90BD8D44C2B0079A67BC7EF8B9C5CC2BDDBD66B",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "制作工作流、验证门禁和复用案例",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/05-教程指南/战场操作自动化与调试流程.md"
+    },
+    {
+      "id": "src.history.9b8abf5.77c10654d72ce71d",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】护卫-最终版.txt",
+      "sha256": "00F4B807D17A8B131A42055A1E11A396DAD859AD8CC7D7D90344938F0D2E0E23",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】护卫-最终版.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.7d8b034c6cf006ea",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】连击率特效（包含负面特技）.txt",
+      "sha256": "80D12177FCE58EC1BF71E421697591218B18C977DD8034349698D278DF9D34F2",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】连击率特效（包含负面特技）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.7fda2a91ab068d46",
+      "path": "history/9b8abf5/6.5/03-机制与特效/6.5特效注入索引.md",
+      "sha256": "58757000BB4F774DBF8A9742DEF8B76E20A3CE41FDDC8C00E7420B61CA9D80C2",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 注入效果语义、代码区、参数点和冲突关系",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/6.5特效注入索引.md"
+    },
+    {
+      "id": "src.history.9b8abf5.80d08ed1e077a963",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【6.6xKF】攻击-策略-ALL后缀.txt",
+      "sha256": "1D036185C82CD3EAF863AF876F9677B51CB524C3AE82B66BEFB0FFEB25F544CD",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【6.6xKF】攻击-策略-ALL后缀.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.8eeb3c8fcd2c1564",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【Star6.5】强化攻击穿透.txt",
+      "sha256": "22B614A03BE0C1CEE62290BAEE18FC6819EC184ACBE3B9DC149ACC71FDF8E7FF",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【Star6.5】强化攻击穿透.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.93e89196aacf2942",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】物理免疫.txt",
+      "sha256": "AB582B9695CB9B9D7EE4604CCC0FEBE1F54C36AEC74EF193A050831F80666284",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】物理免疫.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.9779a39ce33015c4",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】辅助真伤.txt",
+      "sha256": "2C59DF09685DAF698E8B1E7F65BC8D14288D6A4C560ED7299AD1AC9C9FDB419F",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】辅助真伤.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.9782f818e821f38c",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【Star6.6x】附加特技到回合必定失效.txt",
+      "sha256": "BD138147CC5F301AF71C6FF415B35672A0C2C6235C8880E3F543936AF6FD4600",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【Star6.6x】附加特技到回合必定失效.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.9bf86fa0fc659fb0",
+      "path": "history/9b8abf5/6.5/06-工具与验证/验证与烟测.md",
+      "sha256": "BD9C635985212C55D45B1CF65F06A1CE33EE716B03A016B5CBA44224A2AC1A36",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "制作工作流、验证门禁和复用案例",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/06-工具与验证/验证与烟测.md"
+    },
+    {
+      "id": "src.history.9b8abf5.9f145c7e71e728d8",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【6.6x KF】修正杀敌加成卡死.txt",
+      "sha256": "98D7A7DA7613AAA28A70C82369CA67348EA8D914FE1191BB44FB6AA07653BDD1",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【6.6x KF】修正杀敌加成卡死.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.9f850eaa8be937bf",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】多多益善（注入版）.txt",
+      "sha256": "5FEBA7BF7180E7B5F83D9E577FABF68AEE3F1F311CCF70A490DAB9E4F8C50EBF",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】多多益善（注入版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.a20f8120e5ac36fb",
+      "path": "history/9b8abf5/6.5/01-核心引擎/调度函数.md",
+      "sha256": "FCAA737CBB21599AF6180CB164842BC8F12D63960C1204F722AD7BAB0ABFEDF3",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 特效调度函数、AL 分支和 EDX 表偏移",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/01-核心引擎/调度函数.md"
+    },
+    {
+      "id": "src.history.9b8abf5.a283e7c5143c597a",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【6.6xKF】修复回复周围HP无效.txt",
+      "sha256": "A855D779DD138CA8C1D24BF625B98617EFC6B67FBBEA593AE6E26C27CA37F125",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【6.6xKF】修复回复周围HP无效.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.a39bcbb0b9e02276",
+      "path": "history/9b8abf5/6.5/05-剧本与战场/06-5F-6F单挑与扩展.md",
+      "sha256": "F71D725557D91733DFFE93692D70F8578BB6F08692DC235E1AD5F745FBF53040",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 剧本操作码、参数槽和风险边界",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/05-剧本与战场/06-5F-6F单挑与扩展.md"
+    },
+    {
+      "id": "src.history.9b8abf5.a48d983df5b49468",
+      "path": "history/9b8abf5/6.5/05-剧本与战场/05-4C-5E战场操作.md",
+      "sha256": "6018290BB76696087FB146F35ECD8638630EFD8FADFD1B25EDC36B8FA78E1BD1",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 剧本操作码、参数槽和风险边界",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/05-剧本与战场/05-4C-5E战场操作.md"
+    },
+    {
+      "id": "src.history.9b8abf5.a6f65e5c4325a0f7",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【6.6x KF】BUG修复.txt",
+      "sha256": "9E730CD413002C7428CECD0249F388F7B30B39A7323DFEC8F0BD5E6425503D97",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【6.6x KF】BUG修复.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.a7448b4a92f97ec7",
+      "path": "history/9b8abf5/6.5/06-工具与验证/本地Agent生成可注入特效代码指南.md",
+      "sha256": "6C78455017BD73AB1D068FF372F232F0444DEBDF9C6A5D670D2B211C93B7B014",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "制作工作流、验证门禁和复用案例",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/06-工具与验证/本地Agent生成可注入特效代码指南.md"
+    },
+    {
+      "id": "src.history.9b8abf5.a7f795d67fbfaecd",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】拆分四系增伤，无视策略减伤.txt",
+      "sha256": "753D1136BD548F0F1B351E3C66B387CAC5DBC4BA5AD3D551CC246D5D0B9F0943",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】拆分四系增伤，无视策略减伤.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.ab8683b2934401f9",
+      "path": "history/9b8abf5/6.5/01-核心引擎/桩函数.md",
+      "sha256": "F2D0F767B232584ACC384A0E5E4D422E60B5A39E85331BA378C6476BC7B7658A",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 标准桩、内联桩和四参数特效判定契约",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/01-核心引擎/桩函数.md"
+    },
+    {
+      "id": "src.history.9b8abf5.b10db802d294dd63",
+      "path": "history/9b8abf5/6.5/04-数据表与资源/人物R-S像素形象制作链路.md",
+      "sha256": "0E2E6501AC8387E949110400354625E54EEC4AC212618907024E526F7C13C44E",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "制作工作流、验证门禁和复用案例",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/04-数据表与资源/人物R-S像素形象制作链路.md"
+    },
+    {
+      "id": "src.history.9b8abf5.b41e1ef7698d9b6c",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】化力为疗+夺锐攻击.txt",
+      "sha256": "D7DEEC6A1056B0F382CD8E1657570EADCB8BEB11A79227918F99386D4A852549",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】化力为疗+夺锐攻击.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.b538d55769eb0b8c",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】大杀四方（注入版）.txt",
+      "sha256": "DCA30BAD2F42A56B0ABF384AC60D68AC2C4A8FF1613DA61CC0153FB3BAC775B9",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】大杀四方（注入版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.b9b3f5706176372b",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【star6.5】无视策略减伤（修复版）.txt",
+      "sha256": "17B4A94BFC78309235EFD70AFEB85EC8ECF8DFA7A7F90140E36B3E3F605B7A24",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【star6.5】无视策略减伤（修复版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.c8efa5e11646ee32",
+      "path": "history/9b8abf5/6.5/05-剧本与战场/01-00-13结构流程.md",
+      "sha256": "22C5FDC3343E9A581738DDB37CE61B9A0080AE4BD3F7B2122F30938F45147C33",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 剧本操作码、参数槽和风险边界",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/05-剧本与战场/01-00-13结构流程.md"
+    },
+    {
+      "id": "src.history.9b8abf5.c958756253a7788d",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】治疗效果特技（包含负面特技）.txt",
+      "sha256": "697BBD3F8F071BACDBBB5C8E527CDAA9F346B7D37939BEC6E529681F33564DA5",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】治疗效果特技（包含负面特技）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.ccd6059a90c078ed",
+      "path": "history/9b8abf5/6.5/05-剧本与战场/R剧本模板克隆复用规范.md",
+      "sha256": "922184EBA701506D50840E3D954A45C8991C11119A2A00F970025D4D4FCD17F1",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "制作工作流、验证门禁和复用案例",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/05-剧本与战场/R剧本模板克隆复用规范.md"
+    },
+    {
+      "id": "src.history.9b8abf5.cd86af1616506ec6",
+      "path": "history/9b8abf5/6.6/03-机制与特效/6.6修改装备自动升级后价格.txt",
+      "sha256": "43B22C05A06719572BAB80034A37AA81F51BCFE9C164C6B632956001007A9AC8",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/6.6修改装备自动升级后价格.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.d09223af07ba3000",
+      "path": "history/9b8abf5/6.5/05-剧本与战场/08-72信息传送子功能.md",
+      "sha256": "D1022A2F755F4CF83B617BBC878D843B1E587E14F6009968E253F504404CAF9F",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "0x72 信息传送子功能和 6.6 扩展参数候选",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/05-剧本与战场/08-72信息传送子功能.md"
+    },
+    {
+      "id": "src.history.9b8abf5.d485271ee4a71590",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】聚势伐谋（注入版）.txt",
+      "sha256": "539C636B2F7BCABAF277BD007747A6DF42C5EBAD63DFBB06C40D22FF8E6D6355",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】聚势伐谋（注入版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.d4b96c9ec5ce45ba",
+      "path": "history/9b8abf5/6.5/07-制作案例/刘备6.4-RS模板学习.md",
+      "sha256": "834676E83982D59BE00234C8519E5D841C026C9F22C41B9DD8E2774C62792FA6",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "制作工作流、验证门禁和复用案例",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/07-制作案例/刘备6.4-RS模板学习.md"
+    },
+    {
+      "id": "src.history.9b8abf5.d602c42968b0ff66",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】回mp攻击(注入版) (1).txt",
+      "sha256": "12151D2F7ECE519DD57FFA4918CD8EDB9957B61B820B16ED7C68BCF1790B5A5F",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】回mp攻击(注入版) (1).txt"
+    },
+    {
+      "id": "src.history.9b8abf5.d7dfa1a7f16d0d21",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】盛气凌人（注入版）.txt",
+      "sha256": "22A63C8DB22BD4F2C74680E5EA34ECF14234890378D41E175EAFF0692D584B6C",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】盛气凌人（注入版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.d8a080078b2dbe89",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】策略破坏能力.txt",
+      "sha256": "572F76789D01C94E084EE14B685D73023FF7D0A38E193FB1B37AD375AD34C9CC",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】策略破坏能力.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.d8bf47aca205188f",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】武器精通.txt",
+      "sha256": "1036E55C937CAC34A8CAAA92061996BDBA1B4C5E4371B1FAA9501AE707C08EA6",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】武器精通.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.da7457091d7a4f0e",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】能力6档+强化成长.txt",
+      "sha256": "A393455CEFEF9F19D0B9377B651187276CC3B1786E35A67293E1E1180B8550B4",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】能力6档+强化成长.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.e78c92a131961605",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【6.6x KF】修改档位.txt",
+      "sha256": "4184A0FF539E4A95C25FE5B9C502A404C515B6B5D41B8F4FFAE1DF0BE7B5B116",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【6.6x KF】修改档位.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.e821f02f5c6f5f17",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】连击，反击相关特技.txt",
+      "sha256": "739FE4121EBB94A8A99A22E58EDD7DF4E9FB45CC261A4FE1D5DAD1F8874A177E",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】连击，反击相关特技.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.e83cc4741f0af366",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】增减移动力新写法（含地址）.txt",
+      "sha256": "22CC37B8FFFF787BD8CFA66103899B513DD78E68BCC9FD727D04A2C896B9F24E",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】增减移动力新写法（含地址）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.e899f90fd0b2aca6",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】噬心毒咒（注入版）.txt",
+      "sha256": "E9D90ABE69E8AFDD80EC304B9F4EE912E08345A2C027DF9C32879E7A0930F131",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】噬心毒咒（注入版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.e9c578987127bed9",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6x】穿透攻击特技化.txt",
+      "sha256": "BAD678ABE78A12211DA274E3750D2F1413C76A3265C9FCB2345714B47A14EA05",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6x】穿透攻击特技化.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.edd0a288a663ddf6",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】信息传送29 根据兵种指定特殊S.txt",
+      "sha256": "497ED71D22114A54529B8A08689889AB2A43A3EB1504075362BF277DC8717476",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】信息传送29 根据兵种指定特殊S.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.ef421f42b61f8bc3",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6】bug修正.txt",
+      "sha256": "40B8629CD51FF4250FE39BF7934121EE91B226AA39FCC4C97427616B5ECE41A6",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6】bug修正.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.f0258ed937314d7b",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【star6.5】策略保底&策略限伤.txt",
+      "sha256": "F92E2A02EBA5764088CD531CFD8E342C8FAC84E8D12F70B356D6222C7E5777C4",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【star6.5】策略保底&策略限伤.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.f1d4cba29fdb8b2f",
+      "path": "history/9b8abf5/6.6/03-机制与特效/【star6.6】无视策略减伤.txt",
+      "sha256": "345682582727773AA7A8E6E6F4E418D5CA7040E8B1E987E6021E2847269704D5",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/【star6.6】无视策略减伤.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.f4f49a0dea9fc687",
+      "path": "history/9b8abf5/6.6/03-机制与特效/6.6冥想回蓝百分比（注入版）.txt",
+      "sha256": "53C7A745433AAF07BC227C08D88E043ADBC9CE5D3D8782A90B69ECD69D1B437C",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/6.6冥想回蓝百分比（注入版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.fc944ad335d5e3a7",
+      "path": "history/9b8abf5/6.5/03-机制与特效/【6.5】策略冲锋（注入版）.txt",
+      "sha256": "46E7D52A43709CE9E07B0DA76A8A90D70014DE3FF6573361EC45573E447D67CE",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.5 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.5/03-机制与特效/【6.5】策略冲锋（注入版）.txt"
+    },
+    {
+      "id": "src.history.9b8abf5.fff6575df1863400",
+      "path": "history/9b8abf5/6.6/03-机制与特效/6.6修改記錄整理.txt",
+      "sha256": "2A5CFD31D318318F6EA4B046BA4E865AB63C92E14B935B5E471AD9E248343D33",
+      "sourceType": "historical-knowledge-record",
+      "usedFor": "6.6 历史引擎注入替换块、参数点和注释语义",
+      "published": false,
+      "gitCommit": "9b8abf5",
+      "gitPath": "6.6/03-机制与特效/6.6修改記錄整理.txt"
+    },
+    {
+      "id": "src.wrench.layout",
+      "path": "老版游戏制作工具/扳手/engine_layout.py",
+      "sha256": "012EAEEB0C3DA696DCED19033B90902F5C6E07C2A240B04638BF4C40ACF66823",
+      "sourceType": "first-party-source",
+      "usedFor": "表字段描述模型",
+      "published": false
+    },
+    {
+      "id": "src.wrench.profile",
+      "path": "老版游戏制作工具/扳手/engine_profile.py",
+      "sha256": "207FC77FE3EE510A54F96C00A86232966A1873C8D8AF5B7BC0CDA3CA18B05DB1",
+      "sourceType": "first-party-source",
+      "usedFor": "Python 扳手的版本地址、结构、文件物品布局和语义定位规则",
+      "published": false
+    },
+    {
+      "id": "src.xiaoan.engine",
+      "path": "老版游戏制作工具/v0.7/小暗补丁6.6/源码/Engine.cpp",
+      "sha256": "3436BF03EB4195AAE463186F9CA0FC000F6134BD8FF46F61132EAB0F6ED4E642",
+      "sourceType": "first-party-source",
+      "usedFor": "加速站点改写、S 等待桩和阶段数据含义",
+      "published": false
+    },
+    {
+      "id": "src.xiaoan.layout",
+      "path": "老版游戏制作工具/v0.7/小暗补丁6.6/源码/EngineLayout.cpp",
+      "sha256": "5C451B92EBC909C383EDFF1B7FA2F24B34B25FDB3F6B4C6EF9055FCB963C0E90",
+      "sourceType": "first-party-source",
+      "usedFor": "6.6 加速函数语义签名、站点和操作数提取",
+      "published": false
+    },
+    {
+      "id": "src.xiaoan.layout-tests",
+      "path": "老版游戏制作工具/v0.7/小暗补丁6.6/源码/LayoutTests.cpp",
+      "sha256": "2C58C7654511519842F43B0D4F05D1FE03464A796AB9AC2630D7CFD81827EFF0",
+      "sourceType": "first-party-source",
+      "usedFor": "测试样本固定地址与 17 个 S 调用者断言",
       "published": false
     }
   ]

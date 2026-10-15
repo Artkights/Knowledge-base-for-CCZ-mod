@@ -1,0 +1,926 @@
+{
+  "schemaVersion": 1,
+  "entityType": "effect-stub",
+  "entries": [
+    {
+      "id": "stub.65.standard-4210d0",
+      "title": "引导攻击标准特效桩",
+      "aliases": [
+        "引导攻击",
+        "4210D0"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x004210D0",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "standard-dispatch",
+      "contract": {
+        "registers": {
+          "ECX": "单位上下文"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "boolean",
+        "stacking": false,
+        "equipmentEffectId": 54,
+        "personalEffectId": 24,
+        "dispatcher": "0x006002C6",
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "候选桩契约；写入前复核目标样本原字节、调度目标和调用约定。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.standard-421106",
+      "title": "MP恢复标准特效桩",
+      "aliases": [
+        "MP恢复",
+        "421106"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00421106",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "standard-dispatch",
+      "contract": {
+        "registers": {
+          "ECX": "单位上下文"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "value",
+        "stacking": true,
+        "equipmentEffectId": 27,
+        "personalEffectId": 1,
+        "dispatcher": "0x0060002A",
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "候选桩契约；写入前复核目标样本原字节、调度目标和调用约定。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.standard-421175",
+      "title": "二次行动标准特效桩",
+      "aliases": [
+        "二次行动",
+        "421175"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00421175",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "standard-dispatch",
+      "contract": {
+        "registers": {
+          "ECX": "单位上下文"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "boolean",
+        "stacking": false,
+        "equipmentEffectId": 90,
+        "personalEffectId": 56,
+        "dispatcher": "0x00600819",
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "候选桩契约；写入前复核目标样本原字节、调度目标和调用约定。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-472c41",
+      "title": "随机状态攻击内联特效桩",
+      "aliases": [
+        "★ 随机状态攻击",
+        "472C41"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00472C41",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "boolean",
+        "stacking": false,
+        "equipmentEffectId": 94,
+        "personalEffectId": 11,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-4259af",
+      "title": "策略附带随机异常状态内联特效桩",
+      "aliases": [
+        "★ 策略附带随机异常状态",
+        "4259AF"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x004259AF",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "value",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 192,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-472d5f",
+      "title": "攻击附带属性下降内联特效桩",
+      "aliases": [
+        "攻击附带属性下降",
+        "472D5F"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00472D5F",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "boolean",
+        "stacking": false,
+        "equipmentEffectId": 94,
+        "personalEffectId": 12,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-4528ff",
+      "title": "回MP攻击内联特效桩",
+      "aliases": [
+        "回MP攻击",
+        "4528FF"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x004528FF",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "value",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 173,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-41a5bc",
+      "title": "策略偷钱内联特效桩",
+      "aliases": [
+        "策略偷钱",
+        "41A5BC"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0041A5BC",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "boolean",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 170,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-445f6d",
+      "title": "策略冲锋内联特效桩",
+      "aliases": [
+        "策略冲锋",
+        "445F6D"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00445F6D",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "value",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 176,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-446170",
+      "title": "聚势伐谋内联特效桩",
+      "aliases": [
+        "聚势伐谋",
+        "446170"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00446170",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "value",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 177,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-41ab03",
+      "title": "殭屍大法内联特效桩",
+      "aliases": [
+        "殭屍大法",
+        "41AB03"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0041AB03",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "boolean",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 178,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-441d1f",
+      "title": "多多益善内联特效桩",
+      "aliases": [
+        "多多益善",
+        "441D1F"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x00441D1F",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "boolean",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 179,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-43d307",
+      "title": "敌潮逆噬内联特效桩",
+      "aliases": [
+        "敌潮逆噬",
+        "43D307"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0043D307",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "value",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 180,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-4529b5",
+      "title": "盛气凌人内联特效桩",
+      "aliases": [
+        "盛气凌人",
+        "4529B5"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x004529B5",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "boolean",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 191,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-4d3500",
+      "title": "大杀四方内联特效桩",
+      "aliases": [
+        "大杀四方",
+        "4D3500"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x004D3500",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "value",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 193,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-43d0e2",
+      "title": "无视策略减伤内联特效桩",
+      "aliases": [
+        "无视策略减伤",
+        "43D0E2"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0043D0E2",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "boolean",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 239,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-43d3ae",
+      "title": "策略保底内联特效桩",
+      "aliases": [
+        "策略保底",
+        "43D3AE"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0043D3AE",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "value",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 255,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-43d3f9",
+      "title": "策略限伤内联特效桩",
+      "aliases": [
+        "策略限伤",
+        "43D3F9"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0043D3F9",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "value",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 255,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.inline-4072ca",
+      "title": "辅助五维特技加成内联特效桩",
+      "aliases": [
+        "辅助五维特技加成",
+        "4072CA"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x004072CA",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "inline-core-call",
+      "contract": {
+        "registers": {
+          "ECX": "单位指针"
+        },
+        "pushOrder": [
+          "effectValueFlag",
+          "stackingFlag",
+          "equipmentEffectId",
+          "personalEffectId"
+        ],
+        "effectValueMode": "value",
+        "stacking": false,
+        "equipmentEffectId": 0,
+        "personalEffectId": 190,
+        "coreFunction": "fn.65.core-effect-engine"
+      },
+      "writePolicy": "地址表示历史补丁中的桩位置，不等于未修改基底的可写代码洞。",
+      "relations": [
+        "fn.65.core-effect-engine"
+      ],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9",
+        "src.history.9b8abf5.0798d37bbce2ad5e"
+      ]
+    },
+    {
+      "id": "stub.65.special-41aa98",
+      "title": "护卫特殊判定桩",
+      "aliases": [
+        "护卫",
+        "41AA98"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0041AA98",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "special-wrapper",
+      "semantics": "大段目标改写逻辑，内部调用包装/范围判断",
+      "contract": {
+        "equipmentEffectId": 0,
+        "personalEffectId": 209
+      },
+      "writePolicy": "不是通用四参数内联桩，必须按完整函数上下文处理。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9"
+      ]
+    },
+    {
+      "id": "stub.65.special-41aa4f",
+      "title": "强化攻击穿透特殊判定桩",
+      "aliases": [
+        "强化攻击穿透",
+        "41AA4F"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "address": {
+        "kind": "va",
+        "value": "0x0041AA4F",
+        "profile": "profile.ccz65.unencrypted.f9a",
+        "evidence": "legacy-structured"
+      },
+      "stubStyle": "special-wrapper",
+      "semantics": "调用 42518F 包装判定，返回穿透映射结果",
+      "contract": {
+        "equipmentEffectId": 0,
+        "personalEffectId": 221
+      },
+      "writePolicy": "不是通用四参数内联桩，必须按完整函数上下文处理。",
+      "relations": [],
+      "sourceRefs": [
+        "src.history.9b8abf5.ab8683b2934401f9"
+      ]
+    }
+  ]
+}

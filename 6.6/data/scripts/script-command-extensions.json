@@ -1,0 +1,827 @@
+{
+  "schemaVersion": 1,
+  "entityType": "script-command",
+  "entries": [
+    {
+      "id": "script.66.opcode-72-sub-02",
+      "title": "人物/部队传送扩展",
+      "aliases": [
+        "72-2",
+        "6.6 信息传送 2"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 2,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=2",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "人物/部队",
+          "type": "人物/部队编号",
+          "meaning": "目标人物或战场部队候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "阵营",
+          "type": "阵营/行动方",
+          "meaning": "6.6 补充的阵营/行动方参数。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "参数A",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "参数B",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 2；补充阵营参数后用于定位人物、部队或战场对象。",
+        "- 风险：0x72 子类型模板只解释第一参数后的候选槽，不证明完整命令长度；阵营枚举需结合实机和旧工具核对。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-03",
+      "title": "人物/部队测试扩展",
+      "aliases": [
+        "72-3",
+        "6.6 信息传送 3"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 3,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=3",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "人物/部队",
+          "type": "人物/部队编号",
+          "meaning": "目标人物或战场部队候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "阵营",
+          "type": "阵营/行动方",
+          "meaning": "6.6 补充的阵营/行动方参数。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "比较方式",
+          "type": "比较符",
+          "meaning": "条件比较方式候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "成立后跳转",
+          "type": "分支/跳转目标",
+          "meaning": "条件成立后的流程候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 3；补充阵营参数后用于人物/部队条件测试。",
+        "- 风险：阵营、比较方式和跳转目标需结合上下文确认，不能只按单行推断。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-05",
+      "title": "复合人物/兵种/特效",
+      "aliases": [
+        "72-5",
+        "6.6 信息传送 5"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 5,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=5",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "人物位1",
+          "type": "人物/部队编号",
+          "meaning": "人物/部队槽 1。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "人物位2",
+          "type": "人物/部队编号",
+          "meaning": "人物/部队槽 2。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "人物位3",
+          "type": "人物/部队编号",
+          "meaning": "人物/部队槽 3。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "人物位4",
+          "type": "人物/部队编号",
+          "meaning": "人物/部队槽 4。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P6",
+          "name": "兵种位1",
+          "type": "数值/枚举",
+          "meaning": "兵种/职业编号候选；请跳到兵种表核对名称。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P7",
+          "name": "兵种位2",
+          "type": "数值/枚举",
+          "meaning": "兵种/职业编号候选；请跳到兵种表核对名称。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P8",
+          "name": "独立特效值",
+          "type": "数值/枚举",
+          "meaning": "独立特效值候选，不与人物/兵种槽合并解释。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 5；按 4 人物位、2 兵种位和独立特效值解释。",
+        "- 风险：该模板来自 6.6 适配记录，字段仍需用基准作品、旧工具和实机验证。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-12",
+      "title": "DT动态图",
+      "aliases": [
+        "72-12",
+        "6.6 信息传送 12"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 12,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=12",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "DT图号",
+          "type": "数值/枚举",
+          "meaning": "E5\\DT.e5 图号或字段值候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "X坐标",
+          "type": "X 坐标/目标",
+          "meaning": "显示 X 坐标候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "Y坐标",
+          "type": "Y 坐标/目标",
+          "meaning": "显示 Y 坐标候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "显示方式",
+          "type": "数值/枚举",
+          "meaning": "层级、透明或播放方式候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 12；关联 E5\\DT.e5 动态图资源。",
+        "- 风险：DT.e5 图号、坐标和等待方式需结合演出画面核对。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-14",
+      "title": "6.6演出扩展",
+      "aliases": [
+        "72-14",
+        "6.6 信息传送 14"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 14,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=14",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "资源/对象编号",
+          "type": "数值/枚举",
+          "meaning": "资源、对象或局部枚举候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "X坐标/目标",
+          "type": "X 坐标/目标",
+          "meaning": "位置或目标候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "Y坐标/参数",
+          "type": "Y 坐标/目标",
+          "meaning": "位置或参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "显示/等待标志",
+          "type": "布尔/开关标志",
+          "meaning": "是否等待、是否显示或是否刷新候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 14；用于扩展剧情/战场演出参数候选。",
+        "- 风险：子类型 14 的实参含义仍需结合基准作品样例核对。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-28",
+      "title": "6.6演出扩展",
+      "aliases": [
+        "72-28",
+        "6.6 信息传送 28"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 28,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=28",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "资源/对象编号",
+          "type": "数值/枚举",
+          "meaning": "资源、对象或局部枚举候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "参数A",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "参数B",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "显示/等待标志",
+          "type": "布尔/开关标志",
+          "meaning": "是否等待、是否显示或是否刷新候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 28；用于新版资源或演出控制候选。",
+        "- 风险：需结合发布贴变化、本地基准作品和实机画面核对。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-30",
+      "title": "6.6演出扩展",
+      "aliases": [
+        "72-30",
+        "6.6 信息传送 30"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 30,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=30",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "资源/对象编号",
+          "type": "数值/枚举",
+          "meaning": "资源、对象或局部枚举候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "参数A",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "参数B",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "显示/等待标志",
+          "type": "布尔/开关标志",
+          "meaning": "是否等待、是否显示或是否刷新候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 30；用于新版资源或演出控制候选。",
+        "- 风险：需结合发布贴变化、本地基准作品和实机画面核对。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-31",
+      "title": "U_select命令图标",
+      "aliases": [
+        "72-31",
+        "6.6 信息传送 31"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 31,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=31",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "命令图标编号",
+          "type": "数值/枚举",
+          "meaning": "U_select.e5 #31 内的命令图标编号或切片候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "X坐标",
+          "type": "X 坐标/目标",
+          "meaning": "显示 X 坐标候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "Y坐标",
+          "type": "Y 坐标/目标",
+          "meaning": "显示 Y 坐标候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "显示方式",
+          "type": "数值/枚举",
+          "meaning": "显示、隐藏、层级或等待候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 31；关联 E5\\U_select.e5 #31 命令图标槽。",
+        "- 风险：U_select.e5 #31 是命令图标资源，具体切片和脚本字段仍需实机核对。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-32",
+      "title": "DT动态图扩展",
+      "aliases": [
+        "72-32",
+        "6.6 信息传送 32"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 32,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=32",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "DT图号",
+          "type": "数值/枚举",
+          "meaning": "E5\\DT.e5 图号或字段值候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "X坐标",
+          "type": "X 坐标/目标",
+          "meaning": "显示 X 坐标候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "Y坐标",
+          "type": "Y 坐标/目标",
+          "meaning": "显示 Y 坐标候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "显示方式",
+          "type": "数值/枚举",
+          "meaning": "层级、透明或播放方式候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 32；关联 E5\\DT.e5 动态图资源。",
+        "- 风险：DT.e5 图号、坐标和等待方式需结合演出画面核对。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-34",
+      "title": "6.6演出扩展",
+      "aliases": [
+        "72-34",
+        "6.6 信息传送 34"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 34,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=34",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "参数A",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "参数B",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "参数C",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "显示/等待标志",
+          "type": "布尔/开关标志",
+          "meaning": "是否等待、是否显示或是否刷新候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 34；新版脚本扩展功能候选。",
+        "- 风险：发布贴未提供完整参数表，当前只作只读槽位提示。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-35",
+      "title": "6.6演出扩展",
+      "aliases": [
+        "72-35",
+        "6.6 信息传送 35"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 35,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=35",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "参数A",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "参数B",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "参数C",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "显示/等待标志",
+          "type": "布尔/开关标志",
+          "meaning": "是否等待、是否显示或是否刷新候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 35；新版脚本扩展功能候选。",
+        "- 风险：发布贴未提供完整参数表，当前只作只读槽位提示。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    },
+    {
+      "id": "script.66.opcode-72-sub-36",
+      "title": "6.6演出扩展",
+      "aliases": [
+        "72-36",
+        "6.6 信息传送 36"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "legacy-structured",
+      "opcode": "0x72",
+      "subcommand": 36,
+      "category": "information-transfer-extension",
+      "parameters": [
+        {
+          "slot": "P1",
+          "name": "子类型=36",
+          "type": "数值/枚举",
+          "meaning": "0x72 的二级功能号。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P2",
+          "name": "参数A",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P3",
+          "name": "参数B",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P4",
+          "name": "参数C",
+          "type": "数值/枚举",
+          "meaning": "子功能参数候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        },
+        {
+          "slot": "P5",
+          "name": "显示/等待标志",
+          "type": "布尔/开关标志",
+          "meaning": "是否等待、是否显示或是否刷新候选。",
+          "risk": "按模板解释仍需结合上下文核对。",
+          "confidence": "candidate"
+        }
+      ],
+      "notes": [
+        "- 用途：6.6 修正版 0x72 子类型 36；新版脚本扩展功能候选。",
+        "- 风险：发布贴未提供完整参数表，当前只作只读槽位提示。",
+        "- `信奈的野望12关版（密码nobuna）` 的正式 R/S 统计为 `13/12`，R 中 `0x72`=168、选择 `0x12`=60、分支 `0x13`=173；这些计数只证明信号密度，不证明每个子类型的等待语义。",
+        "- `烈焰同盟6.6x（新修版）黄线完结+红线5关` 的正式 R/S 统计为 `70/68`，R `0x72`=382，S `0x31`=582、`0x32`=345、`0x72`=1124，并且 Mcall 资源高度拆分。删除整个 S 等待路径可能同时跳过资源切换、绘制和消息泵，不能按普通表现延时处理。",
+        "- 上述两个作品都缺少山贼样本中的顶层 `ExtendData.dll`，其资源回调和运行时依赖必须单独取证。",
+        "- 在未取得运行时命中、调用者和资源就绪证据前，未知 `0x72`、选择框 `0x12`、分支 `0x13`、R 文字、动态图和资源加载等待一律保持高风险只读状态；不得把它们加入自动跳过白名单。",
+        "- 详细文件指纹、公共加速地址和证据等级见 `09-版本与外部资料/6.6信奈与烈焰加速兼容差异.md`。本补充不改变 6.5 写入规则，也不改变现有补丁。"
+      ],
+      "writePolicy": "6.6/6.6x 只读参数候选，必须用目标作品脚本样本复核。",
+      "sourceRefs": [
+        "src.history.9b8abf5.d09223af07ba3000"
+      ]
+    }
+  ]
+}

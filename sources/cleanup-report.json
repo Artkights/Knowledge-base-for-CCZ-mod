@@ -2,10 +2,11 @@
   "schemaVersion": 1,
   "oldIndexedEntryCount": 215,
   "decisionCounts": {
-    "delete-no-technical-value": 50,
-    "research-gap": 144,
+    "delete-no-technical-value": 46,
     "merge-into-entity": 17,
-    "retain-technical": 4
+    "research-gap": 77,
+    "retain-technical": 4,
+    "structured-candidate": 71
   },
   "definitions": {
     "useful": "可直接回答地址、ABI、调用关系、结构步长、字段偏移、编码、文件目录、索引公式或完整 Hook/桩配方，并绑定版本画像与证据。",
@@ -291,15 +292,61 @@
       "oldPath": "6.5/01-核心引擎/核心引擎.md",
       "oldTitle": "核心引擎 - 特技判定系统",
       "oldId": "6.5.6.5.01",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "stub.65.inline-4072ca",
+        "stub.65.inline-41a5bc",
+        "stub.65.inline-41ab03",
+        "stub.65.inline-4259af",
+        "stub.65.inline-43d0e2",
+        "stub.65.inline-43d307",
+        "stub.65.inline-43d3ae",
+        "stub.65.inline-43d3f9",
+        "stub.65.inline-441d1f",
+        "stub.65.inline-445f6d",
+        "stub.65.inline-446170",
+        "stub.65.inline-4528ff",
+        "stub.65.inline-4529b5",
+        "stub.65.inline-472c41",
+        "stub.65.inline-472d5f",
+        "stub.65.inline-4d3500",
+        "stub.65.special-41aa4f",
+        "stub.65.special-41aa98",
+        "stub.65.standard-4210d0",
+        "stub.65.standard-421106",
+        "stub.65.standard-421175"
+      ]
     },
     {
       "oldPath": "6.5/01-核心引擎/桩函数.md",
       "oldTitle": "桩函数",
       "oldId": "6.5.6.5.01",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "stub.65.inline-4072ca",
+        "stub.65.inline-41a5bc",
+        "stub.65.inline-41ab03",
+        "stub.65.inline-4259af",
+        "stub.65.inline-43d0e2",
+        "stub.65.inline-43d307",
+        "stub.65.inline-43d3ae",
+        "stub.65.inline-43d3f9",
+        "stub.65.inline-441d1f",
+        "stub.65.inline-445f6d",
+        "stub.65.inline-446170",
+        "stub.65.inline-4528ff",
+        "stub.65.inline-4529b5",
+        "stub.65.inline-472c41",
+        "stub.65.inline-472d5f",
+        "stub.65.inline-4d3500",
+        "stub.65.special-41aa4f",
+        "stub.65.special-41aa98",
+        "stub.65.standard-4210d0",
+        "stub.65.standard-421106",
+        "stub.65.standard-421175"
+      ]
     },
     {
       "oldPath": "6.5/01-核心引擎/特效号定位与安全读写-原生表.md",
@@ -333,8 +380,69 @@
       "oldPath": "6.5/01-核心引擎/调度函数.md",
       "oldTitle": "调度函数",
       "oldId": "6.5.6.5.01",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "fn.65.effect-dispatch-600000",
+        "fn.65.effect-dispatch-60002a",
+        "fn.65.effect-dispatch-600054",
+        "fn.65.effect-dispatch-60007e",
+        "fn.65.effect-dispatch-6000c2",
+        "fn.65.effect-dispatch-600127",
+        "fn.65.effect-dispatch-600151",
+        "fn.65.effect-dispatch-6001a0",
+        "fn.65.effect-dispatch-6001ca",
+        "fn.65.effect-dispatch-6001f4",
+        "fn.65.effect-dispatch-60021e",
+        "fn.65.effect-dispatch-600248",
+        "fn.65.effect-dispatch-600272",
+        "fn.65.effect-dispatch-60029c",
+        "fn.65.effect-dispatch-6002c6",
+        "fn.65.effect-dispatch-6002f0",
+        "fn.65.effect-dispatch-60031a",
+        "fn.65.effect-dispatch-600344",
+        "fn.65.effect-dispatch-60036e",
+        "fn.65.effect-dispatch-600398",
+        "fn.65.effect-dispatch-6003c2",
+        "fn.65.effect-dispatch-6003ec",
+        "fn.65.effect-dispatch-600416",
+        "fn.65.effect-dispatch-600440",
+        "fn.65.effect-dispatch-60046a",
+        "fn.65.effect-dispatch-600494",
+        "fn.65.effect-dispatch-6004be",
+        "fn.65.effect-dispatch-6004e8",
+        "fn.65.effect-dispatch-600512",
+        "fn.65.effect-dispatch-60053c",
+        "fn.65.effect-dispatch-600566",
+        "fn.65.effect-dispatch-600590",
+        "fn.65.effect-dispatch-6005ba",
+        "fn.65.effect-dispatch-6005e4",
+        "fn.65.effect-dispatch-60060e",
+        "fn.65.effect-dispatch-60064b",
+        "fn.65.effect-dispatch-600675",
+        "fn.65.effect-dispatch-60069f",
+        "fn.65.effect-dispatch-6006c9",
+        "fn.65.effect-dispatch-6006f3",
+        "fn.65.effect-dispatch-60071d",
+        "fn.65.effect-dispatch-600747",
+        "fn.65.effect-dispatch-600771",
+        "fn.65.effect-dispatch-60079b",
+        "fn.65.effect-dispatch-6007c5",
+        "fn.65.effect-dispatch-6007ef",
+        "fn.65.effect-dispatch-600819",
+        "fn.65.effect-dispatch-600843",
+        "fn.65.effect-dispatch-60086d",
+        "fn.65.effect-dispatch-600897",
+        "fn.65.effect-dispatch-6008c1",
+        "fn.65.effect-dispatch-6008eb",
+        "fn.65.effect-dispatch-600915",
+        "fn.65.effect-dispatch-60093f",
+        "fn.65.effect-dispatch-600969",
+        "fn.65.effect-dispatch-600993",
+        "fn.65.effect-dispatch-6009bd",
+        "fn.65.effect-dispatch-6009e7",
+        "fn.65.effect-dispatch-600a11"
+      ]
     },
     {
       "oldPath": "6.5/02-数据结构/6.4-6.5运行时静态数据表地址.md",
@@ -392,127 +500,230 @@
       "oldPath": "6.5/03-机制与特效/6.5特效注入索引.md",
       "oldTitle": "6.5 特效注入索引",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-094abf000c04",
+        "patch.65.legacy-3358d026a5fa",
+        "patch.65.legacy-397b2cfb9705",
+        "patch.65.legacy-518736e260ba",
+        "patch.65.legacy-54b2fc7fb712",
+        "patch.65.legacy-77c10654d72c",
+        "patch.65.legacy-8eeb3c8fcd2c",
+        "patch.65.legacy-9f850eaa8be9",
+        "patch.65.legacy-b538d55769eb",
+        "patch.65.legacy-b9b3f5706176",
+        "patch.65.legacy-d485271ee4a7",
+        "patch.65.legacy-d602c42968b0",
+        "patch.65.legacy-d7dfa1a7f16d",
+        "patch.65.legacy-e899f90fd0b2",
+        "patch.65.legacy-edd0a288a663",
+        "patch.65.legacy-f0258ed93731",
+        "patch.65.legacy-fc944ad335d5",
+        "patch.66.legacy-12db9daf127d",
+        "patch.66.legacy-1f1d447d975e",
+        "patch.66.legacy-2b2bf1f59374",
+        "patch.66.legacy-2be608b1a628",
+        "patch.66.legacy-30ece703adf4",
+        "patch.66.legacy-56d5012ecd95",
+        "patch.66.legacy-590df7beeba4",
+        "patch.66.legacy-6003ea65ce5f",
+        "patch.66.legacy-642886b45da3",
+        "patch.66.legacy-66aacc7e1454",
+        "patch.66.legacy-70286c122d3d",
+        "patch.66.legacy-7d8b034c6cf0",
+        "patch.66.legacy-80d08ed1e077",
+        "patch.66.legacy-93e89196aacf",
+        "patch.66.legacy-9779a39ce330",
+        "patch.66.legacy-9782f818e821",
+        "patch.66.legacy-9f145c7e71e7",
+        "patch.66.legacy-a283e7c5143c",
+        "patch.66.legacy-a6f65e5c4325",
+        "patch.66.legacy-a7f795d67fbf",
+        "patch.66.legacy-b41e1ef7698d",
+        "patch.66.legacy-c958756253a7",
+        "patch.66.legacy-d8a080078b2d",
+        "patch.66.legacy-d8bf47aca205",
+        "patch.66.legacy-da7457091d7a",
+        "patch.66.legacy-e78c92a13196",
+        "patch.66.legacy-e821f02f5c6f",
+        "patch.66.legacy-e83cc4741f0a",
+        "patch.66.legacy-e9c578987127",
+        "patch.66.legacy-ef421f42b61f",
+        "patch.66.legacy-f1d4cba29fdb",
+        "patch.66.legacy-f4f49a0dea9f",
+        "patch.66.legacy-fff6575df186"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】信息传送29 根据兵种指定特殊S.txt",
       "oldTitle": "【6.5】信息传送29 根据兵种指定特殊S",
       "oldId": "6.5.6.5.03.6.5.29.s",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-edd0a288a663"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】噬心毒咒（注入版）.txt",
       "oldTitle": "v3 修复：1) ebx 替换为 [ebp-08] 栈变量，符合寄存器规范（ebx/es 绝对禁止） 2) 添加遍历循环，支持多目标 3) 用 mov edi,eax 替代 push/pop 正确引用效果值 4) jae 修正 off-by-one",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-e899f90fd0b2"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】回mp攻击(注入版) (1).txt",
       "oldTitle": "【6.5】回mp攻击(注入版) (1)",
       "oldId": "6.5.6.5.03.6.5.mp.1",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-d602c42968b0"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】回mp攻击(注入版).txt",
       "oldTitle": "【6.5】回mp攻击(注入版)",
       "oldId": "6.5.6.5.03.6.5.mp",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-54b2fc7fb712"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】多多益善（注入版）.txt",
       "oldTitle": "【6.5】多多益善（注入版）",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-9f850eaa8be9"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】大杀四方（注入版）.txt",
       "oldTitle": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-b538d55769eb"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】护卫-最终版.txt",
       "oldTitle": "【6.5】护卫-最终版",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-77c10654d72c"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】敌潮逆噬（注入版）.txt",
       "oldTitle": "【6.5】敌潮逆噬（注入版）",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-397b2cfb9705"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】殭屍大法（注入版）.txt",
       "oldTitle": "【6.5】殭屍大法（注入版）",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-3358d026a5fa"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】盛气凌人（注入版）.txt",
       "oldTitle": "【6.5】盛气凌人（注入版）",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-d7dfa1a7f16d"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】策略偷钱（注入版）.txt",
       "oldTitle": "【6.5】策略偷钱（注入版）",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-518736e260ba"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】策略冲锋（注入版）.txt",
       "oldTitle": "【6.5】策略冲锋（注入版）",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-fc944ad335d5"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【6.5】聚势伐谋（注入版）.txt",
       "oldTitle": "【6.5】聚势伐谋（注入版）",
       "oldId": "6.5.6.5.03.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-d485271ee4a7"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【Star6.5】强化攻击穿透.txt",
       "oldTitle": "【Star6.5】强化攻击穿透",
       "oldId": "6.5.6.5.03.star6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-8eeb3c8fcd2c"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【star6.5】整形4003控制保底伤害.txt",
       "oldTitle": "【star6.5】整形4003控制保底伤害",
       "oldId": "6.5.6.5.03.star6.5.4003",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-094abf000c04"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【star6.5】无视策略减伤（修复版）.txt",
       "oldTitle": "【star6.5】无视策略减伤（修复版）",
       "oldId": "6.5.6.5.03.star6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-b9b3f5706176"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/【star6.5】策略保底&策略限伤.txt",
       "oldTitle": "【star6.5】策略保底&策略限伤",
       "oldId": "6.5.6.5.03.star6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.65.legacy-f0258ed93731"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/二次行动.md",
@@ -585,8 +796,11 @@
       "oldPath": "6.5/03-机制与特效/模块化复合特效制作.md",
       "oldTitle": "模块化复合特效制作",
       "oldId": "6.5.6.5.03",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "case.65.mp-recovery-effect-pilot"
+      ]
     },
     {
       "oldPath": "6.5/03-机制与特效/物理攻击.md",
@@ -712,8 +926,11 @@
       "oldPath": "6.5/04-数据表与资源/人物R-S像素形象制作链路.md",
       "oldTitle": "人物 R/S 像素形象制作链路",
       "oldId": "6.5.6.5.04.r.s",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "workflow.65.rs-sprite-production"
+      ]
     },
     {
       "oldPath": "6.5/04-数据表与资源/人物R-S像素形象提示词模板.md",
@@ -831,64 +1048,254 @@
       "oldPath": "6.5/05-剧本与战场/01-00-13结构流程.md",
       "oldTitle": "剧本指令大全：00-13 结构流程",
       "oldId": "6.5.6.5.05.01.00.13",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "script.65.opcode-00",
+        "script.65.opcode-01",
+        "script.65.opcode-02",
+        "script.65.opcode-03",
+        "script.65.opcode-04",
+        "script.65.opcode-05",
+        "script.65.opcode-06",
+        "script.65.opcode-07",
+        "script.65.opcode-08",
+        "script.65.opcode-09",
+        "script.65.opcode-0a",
+        "script.65.opcode-0b",
+        "script.65.opcode-0c",
+        "script.65.opcode-0d",
+        "script.65.opcode-0e",
+        "script.65.opcode-0f",
+        "script.65.opcode-10",
+        "script.65.opcode-11",
+        "script.65.opcode-12",
+        "script.65.opcode-13"
+      ]
     },
     {
       "oldPath": "6.5/05-剧本与战场/02-14-24文本音画.md",
       "oldTitle": "剧本指令大全：14-24 文本音画",
       "oldId": "6.5.6.5.05.02.14.24",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "script.65.opcode-14",
+        "script.65.opcode-15",
+        "script.65.opcode-16",
+        "script.65.opcode-17",
+        "script.65.opcode-18",
+        "script.65.opcode-19",
+        "script.65.opcode-1a",
+        "script.65.opcode-1b",
+        "script.65.opcode-1c",
+        "script.65.opcode-1d",
+        "script.65.opcode-1e",
+        "script.65.opcode-1f",
+        "script.65.opcode-20",
+        "script.65.opcode-21",
+        "script.65.opcode-22",
+        "script.65.opcode-23",
+        "script.65.opcode-24"
+      ]
     },
     {
       "oldPath": "6.5/05-剧本与战场/03-25-35触发与R场景.md",
       "oldTitle": "剧本指令大全：25-35 触发与 R 场景",
       "oldId": "6.5.6.5.05.03.25.35.r",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "script.65.opcode-25",
+        "script.65.opcode-26",
+        "script.65.opcode-27",
+        "script.65.opcode-28",
+        "script.65.opcode-29",
+        "script.65.opcode-2a",
+        "script.65.opcode-2b",
+        "script.65.opcode-2c",
+        "script.65.opcode-2d",
+        "script.65.opcode-2e",
+        "script.65.opcode-2f",
+        "script.65.opcode-30",
+        "script.65.opcode-31",
+        "script.65.opcode-32",
+        "script.65.opcode-33",
+        "script.65.opcode-34",
+        "script.65.opcode-35"
+      ]
     },
     {
       "oldPath": "6.5/05-剧本与战场/04-36-4B变量部署.md",
       "oldTitle": "剧本指令大全：36-4B 变量部署",
       "oldId": "6.5.6.5.05.04.36.4b",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "script.65.opcode-36",
+        "script.65.opcode-37",
+        "script.65.opcode-38",
+        "script.65.opcode-39",
+        "script.65.opcode-3a",
+        "script.65.opcode-3b",
+        "script.65.opcode-3c",
+        "script.65.opcode-3d",
+        "script.65.opcode-3e",
+        "script.65.opcode-3f",
+        "script.65.opcode-40",
+        "script.65.opcode-41",
+        "script.65.opcode-42",
+        "script.65.opcode-43",
+        "script.65.opcode-44",
+        "script.65.opcode-45",
+        "script.65.opcode-46",
+        "script.65.opcode-47",
+        "script.65.opcode-48",
+        "script.65.opcode-49",
+        "script.65.opcode-4a",
+        "script.65.opcode-4b"
+      ]
     },
     {
       "oldPath": "6.5/05-剧本与战场/05-4C-5E战场操作.md",
       "oldTitle": "剧本指令大全：4C-5E 战场操作",
       "oldId": "6.5.6.5.05.05.4c.5e",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "script.65.opcode-4c",
+        "script.65.opcode-4d",
+        "script.65.opcode-4e",
+        "script.65.opcode-4f",
+        "script.65.opcode-50",
+        "script.65.opcode-51",
+        "script.65.opcode-52",
+        "script.65.opcode-53",
+        "script.65.opcode-54",
+        "script.65.opcode-55",
+        "script.65.opcode-56",
+        "script.65.opcode-57",
+        "script.65.opcode-58",
+        "script.65.opcode-59",
+        "script.65.opcode-5a",
+        "script.65.opcode-5b",
+        "script.65.opcode-5c",
+        "script.65.opcode-5d",
+        "script.65.opcode-5e"
+      ]
     },
     {
       "oldPath": "6.5/05-剧本与战场/06-5F-6F单挑与扩展.md",
       "oldTitle": "剧本指令大全：5F-6F 单挑与扩展",
       "oldId": "6.5.6.5.05.06.5f.6f",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "script.65.opcode-5f",
+        "script.65.opcode-60",
+        "script.65.opcode-61",
+        "script.65.opcode-62",
+        "script.65.opcode-63",
+        "script.65.opcode-64",
+        "script.65.opcode-65",
+        "script.65.opcode-66",
+        "script.65.opcode-67",
+        "script.65.opcode-68",
+        "script.65.opcode-69",
+        "script.65.opcode-6a",
+        "script.65.opcode-6b",
+        "script.65.opcode-6c",
+        "script.65.opcode-6d",
+        "script.65.opcode-6e",
+        "script.65.opcode-6f"
+      ]
     },
     {
       "oldPath": "6.5/05-剧本与战场/07-70-7B高级变量与系统.md",
       "oldTitle": "剧本指令大全：70-7B 高级变量与系统",
       "oldId": "6.5.6.5.05.07.70.7b",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "script.65.opcode-70",
+        "script.65.opcode-71",
+        "script.65.opcode-72",
+        "script.65.opcode-73",
+        "script.65.opcode-74",
+        "script.65.opcode-75",
+        "script.65.opcode-76",
+        "script.65.opcode-77",
+        "script.65.opcode-78",
+        "script.65.opcode-79",
+        "script.65.opcode-7a",
+        "script.65.opcode-7b"
+      ]
     },
     {
       "oldPath": "6.5/05-剧本与战场/08-72信息传送子功能.md",
       "oldTitle": "剧本指令大全：72 信息传送子功能",
       "oldId": "6.5.6.5.05.08.72",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "script.65.opcode-72-sub-00",
+        "script.65.opcode-72-sub-01",
+        "script.65.opcode-72-sub-02",
+        "script.65.opcode-72-sub-03",
+        "script.65.opcode-72-sub-04",
+        "script.65.opcode-72-sub-05",
+        "script.65.opcode-72-sub-06",
+        "script.65.opcode-72-sub-07",
+        "script.65.opcode-72-sub-08",
+        "script.65.opcode-72-sub-09",
+        "script.65.opcode-72-sub-10",
+        "script.65.opcode-72-sub-11",
+        "script.65.opcode-72-sub-12",
+        "script.65.opcode-72-sub-13",
+        "script.65.opcode-72-sub-14",
+        "script.65.opcode-72-sub-15",
+        "script.65.opcode-72-sub-16",
+        "script.65.opcode-72-sub-17",
+        "script.65.opcode-72-sub-18",
+        "script.65.opcode-72-sub-19",
+        "script.65.opcode-72-sub-20",
+        "script.65.opcode-72-sub-21",
+        "script.65.opcode-72-sub-22",
+        "script.65.opcode-72-sub-23",
+        "script.65.opcode-72-sub-24",
+        "script.65.opcode-72-sub-25",
+        "script.65.opcode-72-sub-26",
+        "script.65.opcode-72-sub-27",
+        "script.65.opcode-72-sub-28",
+        "script.65.opcode-72-sub-29",
+        "script.65.opcode-72-sub-30",
+        "script.65.opcode-72-sub-31",
+        "script.65.opcode-72-sub-32",
+        "script.65.opcode-72-sub-33",
+        "script.66.opcode-72-sub-02",
+        "script.66.opcode-72-sub-03",
+        "script.66.opcode-72-sub-05",
+        "script.66.opcode-72-sub-12",
+        "script.66.opcode-72-sub-14",
+        "script.66.opcode-72-sub-28",
+        "script.66.opcode-72-sub-30",
+        "script.66.opcode-72-sub-31",
+        "script.66.opcode-72-sub-32",
+        "script.66.opcode-72-sub-34",
+        "script.66.opcode-72-sub-35",
+        "script.66.opcode-72-sub-36"
+      ]
     },
     {
       "oldPath": "6.5/05-剧本与战场/R剧本模板克隆复用规范.md",
       "oldTitle": "R剧本模板克隆复用规范",
       "oldId": "6.5.6.5.05.r",
-      "action": "delete-no-technical-value",
-      "reason": "仅含导航、流程、状态、工具介绍或治理说明，不是可复用二进制知识。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "case.65.anxi-r01-template-clone",
+        "workflow.65.r-script-template-clone"
+      ]
     },
     {
       "oldPath": "6.5/05-剧本与战场/Tr-e5-R插图.md",
@@ -950,8 +1357,11 @@
       "oldPath": "6.5/05-教程指南/战场操作自动化与调试流程.md",
       "oldTitle": "战场操作自动化与调试流程",
       "oldId": "6.5.6.5.05",
-      "action": "research-gap",
-      "reason": "标题显示可能含技术结论，但本轮无法从三套一方源码绑定完整证据，移出正式知识树。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "workflow.65.automated-battle-debug"
+      ]
     },
     {
       "oldPath": "6.5/06-工具与验证/02-6.5布局.md",
@@ -1015,8 +1425,11 @@
       "oldPath": "6.5/06-工具与验证/本地Agent生成可注入特效代码指南.md",
       "oldTitle": "本地 Agent 生成可注入特效代码指南",
       "oldId": "6.5.6.5.06.agent",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "workflow.65.effect-injection"
+      ]
     },
     {
       "oldPath": "6.5/06-工具与验证/模型上下文协议接入.md",
@@ -1029,8 +1442,11 @@
       "oldPath": "6.5/06-工具与验证/特效工作台复盘与验收.md",
       "oldTitle": "特效工作台复盘与验收",
       "oldId": "6.5.6.5.06",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "workflow.65.effect-workbench-acceptance"
+      ]
     },
     {
       "oldPath": "6.5/06-工具与验证/联网资料索引-曹操传模组6.5.md",
@@ -1043,8 +1459,14 @@
       "oldPath": "6.5/06-工具与验证/自动化MOD制作.md",
       "oldTitle": "自动化 MOD 制作",
       "oldId": "6.5.6.5.06.mod",
-      "action": "delete-no-technical-value",
-      "reason": "未发现可直接复用的地址、ABI、字段、格式或完整补丁配方。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "case.65.anxi-data-package",
+        "case.65.anxi-quote-package",
+        "workflow.65.map-terrain-publish",
+        "workflow.65.mod-package-delivery"
+      ]
     },
     {
       "oldPath": "6.5/06-工具与验证/跨设备迁移.md",
@@ -1057,8 +1479,34 @@
       "oldPath": "6.5/06-工具与验证/验证与烟测.md",
       "oldTitle": "06 验证与烟测",
       "oldId": "6.5.6.5.06",
-      "action": "delete-no-technical-value",
-      "reason": "仅含导航、流程、状态、工具介绍或治理说明，不是可复用二进制知识。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "test.65.smoke-ability-tier-patch-smoke",
+        "test.65.smoke-battlefield-unit-status-write-smoke",
+        "test.65.smoke-e5-image-replace-smoke",
+        "test.65.smoke-effect-package-smoke",
+        "test.65.smoke-exclusive-set-smoke",
+        "test.65.smoke-global-numeric-discovery-smoke",
+        "test.65.smoke-global-numeric-evidence-smoke",
+        "test.65.smoke-global-numeric-query-smoke",
+        "test.65.smoke-global-numeric-write-smoke",
+        "test.65.smoke-legacy-all-smoke",
+        "test.65.smoke-legacy-e5s-smoke",
+        "test.65.smoke-legacy-mfc-dialog-smoke",
+        "test.65.smoke-legacy-scenario-depth-smoke",
+        "test.65.smoke-map-terrain-consistency-smoke",
+        "test.65.smoke-role-default-equipment-smoke",
+        "test.65.smoke-rs-deployment-write-smoke",
+        "test.65.smoke-rs-smoke",
+        "test.65.smoke-rs-text-write-smoke",
+        "test.65.smoke-rs-write-smoke",
+        "test.65.smoke-shop-smoke",
+        "test.65.smoke-standalone-golden-samples-smoke",
+        "test.65.smoke-standalone-semantic-smoke",
+        "test.65.smoke-strict-playable-preview-smoke",
+        "test.65.smoke-write"
+      ]
     },
     {
       "oldPath": "6.5/07-制作案例/人工智能垂域S形象模型-延期计划.md",
@@ -1071,8 +1519,12 @@
       "oldPath": "6.5/07-制作案例/刘备6.4-RS模板学习.md",
       "oldTitle": "刘备 6.4 R/S 模板学习",
       "oldId": "6.5.6.5.07.6.4.rs",
-      "action": "delete-no-technical-value",
-      "reason": "仅含导航、流程、状态、工具介绍或治理说明，不是可复用二进制知识。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "case.65.anxi-r01-template-clone",
+        "case.65.liu-bei-rs-template"
+      ]
     },
     {
       "oldPath": "6.5/90-来源索引/README.md",
@@ -1204,232 +1656,331 @@
       "oldPath": "6.6/03-机制与特效/6.6修改記錄整理.txt",
       "oldTitle": "6.6修改記錄整理",
       "oldId": "6.6.6.6.03.6.6",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-fff6575df186"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/6.6冥想回蓝百分比（注入版）.txt",
       "oldTitle": "6.6冥想回蓝百分比（注入版）",
       "oldId": "6.6.6.6.03.6.6",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-f4f49a0dea9f"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/6.6骑马步兵攻击防御偷袭共5特技.txt",
       "oldTitle": "6.6骑马步兵攻击防御偷袭共5特技",
       "oldId": "6.6.6.6.03.6.6.5",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-30ece703adf4"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【6.6x KF】BUG修复.txt",
       "oldTitle": "【6.6x KF】BUG修复",
       "oldId": "6.6.6.6.03.6.6x.kf.bug",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-a6f65e5c4325"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【6.6x KF】修改档位.txt",
       "oldTitle": "【6.6x KF】修改档位",
       "oldId": "6.6.6.6.03.6.6x.kf",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-e78c92a13196"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【6.6x KF】修正杀敌加成卡死.txt",
       "oldTitle": "【6.6x KF】修正杀敌加成卡死",
       "oldId": "6.6.6.6.03.6.6x.kf",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-9f145c7e71e7"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【6.6xKF】保底全伤害调整LV+N.txt",
       "oldTitle": "【6.6xKF】保底全伤害调整LV+N",
       "oldId": "6.6.6.6.03.6.6xkf.lv.n",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-70286c122d3d"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【6.6xKF】修复回复周围HP无效.txt",
       "oldTitle": "【6.6xKF】修复回复周围HP无效",
       "oldId": "6.6.6.6.03.6.6xkf.hp",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-a283e7c5143c"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【6.6xKF】攻击-策略-ALL后缀.txt",
       "oldTitle": "【6.6xKF】攻击-策略-ALL后缀",
       "oldId": "6.6.6.6.03.6.6xkf.all",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-80d08ed1e077"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【6.6x】护卫-最终版.txt",
       "oldTitle": "【6.6x】护卫-最终版",
       "oldId": "6.6.6.6.03.6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-642886b45da3"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【6.6x】致死不触发转移伤害.txt",
       "oldTitle": "【6.6x】致死不触发转移伤害",
       "oldId": "6.6.6.6.03.6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-66aacc7e1454"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】化力为疗+夺锐攻击.txt",
       "oldTitle": "【star6.6x】化力为疗+夺锐攻击",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-b41e1ef7698d"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】增减移动力新写法（含地址）.txt",
       "oldTitle": "【star6.6x】增减移动力新写法（含地址）",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-e83cc4741f0a"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】宝物图鉴大小调整.txt",
       "oldTitle": "【star6.6x】宝物图鉴大小调整",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-2b2bf1f59374"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】拆分四系增伤，无视策略减伤.txt",
       "oldTitle": "【star6.6x】拆分四系增伤，无视策略减伤",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-a7f795d67fbf"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】暴击伤害增幅 K%.txt",
       "oldTitle": "【star6.6x】暴击伤害增幅 K%",
       "oldId": "6.6.6.6.03.star6.6x.k",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-590df7beeba4"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】武器精通.txt",
       "oldTitle": "【star6.6x】武器精通",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-d8bf47aca205"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】治疗效果特技（包含负面特技）.txt",
       "oldTitle": "【star6.6x】治疗效果特技（包含负面特技）",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-c958756253a7"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】物理免疫.txt",
       "oldTitle": "【star6.6x】物理免疫",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-93e89196aacf"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】破坏MP攻击.txt",
       "oldTitle": "【star6.6x】破坏MP攻击",
       "oldId": "6.6.6.6.03.star6.6x.mp",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-12db9daf127d"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】穿透攻击特技化.txt",
       "oldTitle": "【star6.6x】穿透攻击特技化",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-e9c578987127"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】策略破坏能力.txt",
       "oldTitle": "【star6.6x】策略破坏能力",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-d8a080078b2d"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】能力6档+强化成长.txt",
       "oldTitle": "【star6.6x】能力6档+强化成长",
       "oldId": "6.6.6.6.03.star6.6x.6",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-da7457091d7a"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【Star6.6x】调整强化穿透攻击.txt",
       "oldTitle": "【Star6.6x】调整强化穿透攻击",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-1f1d447d975e"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】辅助真伤.txt",
       "oldTitle": "【star6.6x】辅助真伤",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-9779a39ce330"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】远距攻击特技化.txt",
       "oldTitle": "【star6.6x】远距攻击特技化",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-6003ea65ce5f"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】连击率特效（包含负面特技）.txt",
       "oldTitle": "【star6.6x】连击率特效（包含负面特技）",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-7d8b034c6cf0"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】连击，反击相关特技.txt",
       "oldTitle": "【star6.6x】连击，反击相关特技",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-e821f02f5c6f"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6x】逆境减伤.txt",
       "oldTitle": "【star6.6x】逆境减伤",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-2be608b1a628"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【Star6.6x】附加特技到回合必定失效.txt",
       "oldTitle": "【Star6.6x】附加特技到回合必定失效",
       "oldId": "6.6.6.6.03.star6.6x",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-9782f818e821"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6】bug修正.txt",
       "oldTitle": "【star6.6】bug修正",
       "oldId": "6.6.6.6.03.star6.6.bug",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-ef421f42b61f"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6】无视策略减伤.txt",
       "oldTitle": "【star6.6】无视策略减伤",
       "oldId": "6.6.6.6.03.star6.6",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-f1d4cba29fdb"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/【star6.6】策略保底&策略限伤.txt",
       "oldTitle": "【star6.6】策略保底&策略限伤",
       "oldId": "6.6.6.6.03.star6.6",
-      "action": "research-gap",
-      "reason": "包含潜在技术信息，但尚未完整绑定画像、ABI、原字节或字段证据；不得视为已合并。"
+      "action": "structured-candidate",
+      "reason": "历史技术内容已提炼为结构化候选；进入默认索引但不具备自动写回资格。",
+      "mappedEntities": [
+        "patch.66.legacy-56d5012ecd95"
+      ]
     },
     {
       "oldPath": "6.6/03-机制与特效/复刻版6.6山贼P0-010行动数值与战场结果补证.md",
@@ -1587,5 +2138,5 @@
       "reason": "入口文件重写，只保留数据模型、查询方式和贡献约定。"
     }
   ],
-  "coverageRule": "merge-into-entity 必须列出当前存在的 mappedEntities；其余技术候选进入 research queue。"
+  "coverageRule": "正式事实使用 canonical；历史技术内容可进入 structured-candidate；其余候选保留在 research。"
 }

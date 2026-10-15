@@ -6,9 +6,9 @@
 
 ## E5 索引资源封包
 
-ID: `format.e5.indexed-archive`
+ID: `format.e5.indexed-archive`；状态: `canonical`；证据: `source-reviewed`
 
-状态: `canonical`；字节序: `big for directory fields`
+字节序: `big for directory fields`
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
@@ -23,9 +23,9 @@ ID: `format.e5.indexed-archive`
 
 ## EEX 文件识别魔数
 
-ID: `format.eex.probed-header`
+ID: `format.eex.probed-header`；状态: `canonical`；证据: `source-reviewed`
 
-状态: `canonical`；字节序: `not applicable to the verified magic`
+字节序: `not applicable to the verified magic`
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
@@ -35,9 +35,9 @@ ID: `format.eex.probed-header`
 
 ## Hexzmap 地形目录
 
-ID: `format.hexzmap.terrain-directory`
+ID: `format.hexzmap.terrain-directory`；状态: `canonical`；证据: `source-reviewed`
 
-状态: `canonical`；字节序: `big for directory fields`
+字节序: `big for directory fields`
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
@@ -48,9 +48,9 @@ ID: `format.hexzmap.terrain-directory`
 
 ## 6.5/6.6 分段物品表存储
 
-ID: `format.item.split-data-star`
+ID: `format.item.split-data-star`；状态: `canonical`；证据: `source-reviewed`
 
-状态: `canonical`；字节序: `little`
+字节序: `little`
 
 - 合计 255 条
 - 6.5 名称区 0x11 字节

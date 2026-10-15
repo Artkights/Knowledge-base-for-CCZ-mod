@@ -14,7 +14,12 @@ ALLOWED_ROOT = {".gitattributes", ".gitignore", "README.md", "llms.txt", "CONTRI
 FORBIDDEN_EXTENSIONS = {".exe", ".dll", ".pdb", ".bin", ".obj", ".rar", ".zip", ".7z", ".doc", ".docx", ".xls", ".xlsx", ".log", ".bak", ".tmp"}
 FORBIDDEN_PARTS = {"bin", "obj", "build", "publish", "release", "__pycache__"}
 ADDRESS_KINDS = {"va", "rva", "fileOffset", "pointerSlot", "resolvedRuntimeAddress"}
-ENTITY_TYPES = {"engine-profile", "function", "global", "data-structure", "file-format", "patch-recipe", "mechanism"}
+ENTITY_TYPES = {
+    "engine-profile", "function", "global", "data-structure", "file-format",
+    "patch-recipe", "mechanism", "effect-stub", "script-command", "workflow",
+    "test-contract", "case-study",
+}
+STATUSES = {"canonical", "candidate", "legacy-reference"}
 HEX_ADDRESS = re.compile(r"^0x[0-9A-Fa-f]{1,16}$")
 HEX_TOKEN = re.compile(r"^(?:[0-9A-Fa-f]{2}|\?\?)$")
 
@@ -107,8 +112,12 @@ def validate_patch(errors: list[str], entry: dict) -> None:
     for index, site in enumerate(entry.get("sites", [])):
         length = site.get("overwriteLength")
         expected = site.get("expectedBytes")
-        if entry.get("status") == "canonical":
-            if not isinstance(length, int) or length <= 0 or not expected:
+        status = entry.get("status")
+        if not isinstance(length, int) or length <= 0:
+            error(errors, f"{entry['id']} patch site {index} has invalid overwrite length")
+            continue
+        if status == "canonical":
+            if not expected:
                 error(errors, f"{entry['id']} canonical patch site {index} is incomplete")
                 continue
             tokens = str(expected).split()
@@ -130,10 +139,86 @@ def validate_patch(errors: list[str], entry: dict) -> None:
                     "instruction-prefix-terminal-transfer", "function-entry-terminal-transfer",
                 } or not site.get("executionEffect"):
                     error(errors, f"{entry['id']} site {index} has an unexplained partial-instruction write")
+        elif status == "candidate":
+            if expected:
+                tokens = str(expected).split()
+                if len(tokens) != length or any(not HEX_TOKEN.fullmatch(token) for token in tokens):
+                    error(errors, f"{entry['id']} candidate site {index} expected bytes do not match overwrite length")
+            replacements = []
+            if site.get("replacementBytes"):
+                replacements.append(site["replacementBytes"])
+            replacements.extend(value.get("bytes") for value in site.get("replacementVariants", []))
+            if not replacements:
+                error(errors, f"{entry['id']} candidate site {index} has no historical replacement bytes")
+            for replacement in replacements:
+                tokens = str(replacement).split()
+                if len(tokens) != length or any(not HEX_TOKEN.fullmatch(token) for token in tokens):
+                    error(errors, f"{entry['id']} candidate site {index} replacement bytes do not match overwrite length")
+            if not expected and "不得自动" not in str(entry.get("writePolicy", "")):
+                error(errors, f"{entry['id']} candidate without expected bytes must explicitly forbid automatic writes")
     if kind in {"hook", "call-retarget", "entry-jump"}:
         stub = entry.get("stub", {})
         if not isinstance(stub, dict) or not {"entry", "return", "relocations"}.issubset(stub):
             error(errors, f"{entry['id']} has incomplete stub contract")
+
+
+def validate_script_command(errors: list[str], entry: dict, keys: set[tuple[str, str, object]]) -> None:
+    opcode = str(entry.get("opcode", ""))
+    if not re.fullmatch(r"0x[0-9A-Fa-f]{2}", opcode):
+        error(errors, f"{entry['id']} has invalid script opcode {opcode}")
+    subcommand = entry.get("subcommand")
+    if subcommand is not None and (not isinstance(subcommand, int) or subcommand < 0):
+        error(errors, f"{entry['id']} has invalid subcommand {subcommand}")
+    for version in entry.get("versions", []):
+        key = (str(version), opcode.upper(), subcommand)
+        if key in keys:
+            error(errors, f"duplicate script command key: {key}")
+        keys.add(key)
+    slots: list[int] = []
+    for parameter in entry.get("parameters", []):
+        match = re.fullmatch(r"P([1-9][0-9]*)", str(parameter.get("slot", "")))
+        if not match:
+            error(errors, f"{entry['id']} has invalid parameter slot {parameter.get('slot')}")
+            continue
+        slots.append(int(match.group(1)))
+        for required in ("name", "type", "meaning"):
+            if not parameter.get(required):
+                error(errors, f"{entry['id']}.{parameter.get('slot')} missing {required}")
+    if slots != sorted(set(slots)):
+        error(errors, f"{entry['id']} parameter slots are duplicated or out of order")
+
+
+def validate_effect_stub(errors: list[str], entry: dict) -> None:
+    if not isinstance(entry.get("address"), dict) or not entry.get("profile"):
+        error(errors, f"{entry['id']} effect stub must bind an address and profile")
+    if entry.get("stubStyle") in {"standard-dispatch", "inline-core-call"}:
+        expected = ["effectValueFlag", "stackingFlag", "equipmentEffectId", "personalEffectId"]
+        if entry.get("contract", {}).get("pushOrder") != expected:
+            error(errors, f"{entry['id']} has an invalid four-argument push order")
+
+
+def validate_workflow(errors: list[str], entry: dict) -> None:
+    orders = [step.get("order") for step in entry.get("steps", [])]
+    if orders != list(range(1, len(orders) + 1)):
+        error(errors, f"{entry['id']} workflow steps are not contiguous from 1")
+    for required in ("goal", "inputs", "steps", "gates", "outputs", "rollback"):
+        if not entry.get(required):
+            error(errors, f"{entry['id']} workflow missing {required}")
+
+
+def validate_test_contract(errors: list[str], entry: dict) -> None:
+    command = str(entry.get("command", ""))
+    if not command or re.search(r"(?:[A-Z]:[\\/]|/Users/|/home/)", command):
+        error(errors, f"{entry['id']} test command is empty or contains an absolute path")
+    for required in ("target", "mutationScope", "assertions", "requiredArtifacts", "failureMeaning"):
+        if not entry.get(required):
+            error(errors, f"{entry['id']} test contract missing {required}")
+
+
+def validate_case_study(errors: list[str], entry: dict) -> None:
+    for required in ("objective", "inputs", "procedure", "outcome", "reusableLessons"):
+        if not entry.get(required):
+            error(errors, f"{entry['id']} case study missing {required}")
 
 
 def validate_generated(errors: list[str]) -> None:
@@ -181,6 +266,13 @@ def main() -> int:
     ids: dict[str, str] = {}
     profiles: set[str] = set()
     source_ids: set[str] = set()
+    script_keys: set[tuple[str, str, object]] = set()
+
+    for entity_type in ENTITY_TYPES:
+        schema_path = ROOT / "schema" / f"{entity_type}.schema.json"
+        schema = load_json(schema_path, errors)
+        if not isinstance(schema, dict) or schema.get("properties", {}).get("entityType", {}).get("const") != entity_type:
+            error(errors, f"missing or mismatched schema for {entity_type}")
 
     source_document = load_json(ROOT / "sources" / "source-manifest.json", errors)
     if isinstance(source_document, dict):
@@ -212,6 +304,8 @@ def main() -> int:
             for required in ("title", "status", "evidence", "sourceRefs"):
                 if required not in item:
                     error(errors, f"{entry_id} missing {required}")
+            if item.get("status") not in STATUSES:
+                error(errors, f"{entry_id} has unsupported status {item.get('status')}")
             if entity_type == "engine-profile":
                 profiles.add(entry_id)
 
@@ -220,8 +314,10 @@ def main() -> int:
         for item in document["entries"]:
             owner = item.get("id", path.name)
             version_root = path.relative_to(ROOT).parts[0]
-            if version_root in {"6.5", "6.6"} and item.get("status") != "canonical":
-                error(errors, f"{owner} unresolved status must live under research/, not {version_root}/data")
+            if version_root in {"6.5", "6.6"} and item.get("status") == "legacy-reference":
+                error(errors, f"{owner} legacy-reference status must live under legacy/data")
+            if version_root == "legacy" and item.get("status") != "legacy-reference":
+                error(errors, f"{owner} in legacy/data must use legacy-reference status")
             item_profile = item.get("profile")
             if entity_type != "engine-profile" and item_profile and item_profile not in profiles:
                 error(errors, f"{owner} references unknown profile {item_profile}")
@@ -243,6 +339,16 @@ def main() -> int:
                 validate_fields(errors, item)
             if entity_type == "patch-recipe":
                 validate_patch(errors, item)
+            if entity_type == "script-command":
+                validate_script_command(errors, item, script_keys)
+            if entity_type == "effect-stub":
+                validate_effect_stub(errors, item)
+            if entity_type == "workflow":
+                validate_workflow(errors, item)
+            if entity_type == "test-contract":
+                validate_test_contract(errors, item)
+            if entity_type == "case-study":
+                validate_case_study(errors, item)
 
     if list((ROOT / "6.5pl").rglob("*.json")):
         error(errors, "6.5pl must not contain canonical data until an independent profile is verified")
@@ -251,32 +357,47 @@ def main() -> int:
     if not isinstance(cleanup, dict) or cleanup.get("oldIndexedEntryCount") != len(cleanup.get("records", [])):
         error(errors, "cleanup report does not cover every old indexed entry")
     elif isinstance(cleanup, dict):
+        counts: dict[str, int] = {}
         for record in cleanup.get("records", []):
+            action = record.get("action")
+            counts[action] = counts.get(action, 0) + 1
             mapped = record.get("mappedEntities", [])
-            if record.get("action") == "merge-into-entity" and not mapped:
+            if action in {"merge-into-entity", "structured-candidate"} and not mapped:
                 error(errors, f"cleanup merge has no mapped entity: {record.get('oldPath')}")
             for entity_id in mapped:
                 if entity_id not in ids:
                     error(errors, f"cleanup maps to unknown entity {entity_id}: {record.get('oldPath')}")
+        if cleanup.get("decisionCounts") != dict(sorted(counts.items())):
+            error(errors, "cleanup decisionCounts does not match records")
 
     research = load_json(ROOT / "research" / "research-gaps.json", errors)
     research_ids = {item.get("id") for item in research.get("entries", [])} if isinstance(research, dict) else set()
 
     index = load_json(ROOT / "index.json", errors)
     if isinstance(index, dict):
-        if index.get("schemaVersion") != 2 or index.get("canonicalAuthority") != "structured-json":
-            error(errors, "index.json is not the structured schema v2 index")
+        if index.get("schemaVersion") != 3 or index.get("structuredAuthority") != "version-data-json":
+            error(errors, "index.json is not the structured schema v3 index")
         index_ids = [item.get("id") for item in index.get("entries", [])]
         if set(index_ids) != set(ids) or len(index_ids) != len(ids):
-            error(errors, "index entity set differs from canonical data")
+            error(errors, "index entity set differs from structured data")
         if research_ids & set(index_ids):
             error(errors, "research entries leaked into the default index")
-        for item in index.get("canonicalFiles", []):
+        actual_status_counts = {
+            status: sum(1 for path, document in documents for entry in document["entries"] if entry.get("status") == status)
+            for status in sorted({entry.get("status") for path, document in documents for entry in document["entries"]})
+        }
+        if index.get("statusCounts") != actual_status_counts:
+            error(errors, "index statusCounts differs from structured data")
+        indexed_files = {item.get("path") for item in index.get("structuredFiles", [])}
+        actual_files = {path.relative_to(ROOT).as_posix() for path, _ in documents}
+        if indexed_files != actual_files:
+            error(errors, "index structuredFiles differs from structured data files")
+        for item in index.get("structuredFiles", []):
             target = ROOT / item.get("path", "")
             if not target.exists() or item.get("sha256") != sha256(target):
-                error(errors, f"index canonical file hash mismatch: {item.get('path')}")
+                error(errors, f"index structured file hash mismatch: {item.get('path')}")
         for item in index.get("entries", []):
-            target = ROOT / item.get("canonicalDataPath", "")
+            target = ROOT / item.get("structuredDataPath", item.get("canonicalDataPath", ""))
             reference = ROOT / item.get("referencePath", "")
             if not target.exists() or not reference.exists():
                 error(errors, f"index target/reference missing for {item.get('id')}")
@@ -290,6 +411,10 @@ def main() -> int:
         "攻击函数": "mechanism.65.physical-attack-targeting",
         "E5 格式": "format.e5.indexed-archive",
         "小暗 S 加速": "mechanism.66.xiaoan.super-s",
+        "0x004210D0": "stub.65.standard-4210d0",
+        "0x14": "script.65.opcode-14",
+        "ModPackage 自动化交付": "workflow.65.mod-package-delivery",
+        "--rs-write-smoke": "test.65.smoke-rs-write-smoke",
     }
     searchable = json.dumps(index, ensure_ascii=False) if isinstance(index, dict) else ""
     for query, expected in required_queries.items():
