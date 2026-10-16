@@ -87,6 +87,25 @@
       "sourceRefs": [
         "src.wrench.profile"
       ]
+    },
+    {
+      "id": "profile.ccz62.star175.modifier.legacy",
+      "title": "star175 6.2 EXE/Imsg 修改器历史画像",
+      "versions": [
+        "6.2"
+      ],
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": null,
+      "layoutFamily": "star175-6.x-unknown-sample",
+      "addressPolicy": "论坛修改器记录的旧地址和字节仅作迁移参照；没有精确 EXE SHA、原字节和指令边界，不得自动写入 6.5/6.6。6.0、6.1、6.2 修改器必须按版本分别使用。",
+      "sourceRefs": [
+        "src.forum.star175.296955",
+        "src.forum.star175.296955.p2",
+        "src.forum.star175.296955.p3"
+      ]
     }
   ]
 }

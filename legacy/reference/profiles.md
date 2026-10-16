@@ -11,3 +11,4 @@
 | `profile.ccz63.legacy` | 6.3 | `-` | `legacy-reference` | `source-reviewed` |
 | `profile.ccz63mp.legacy` | 6.3mp | `-` | `legacy-reference` | `source-reviewed` |
 | `profile.ccz64.legacy` | 6.4 | `-` | `legacy-reference` | `source-reviewed` |
+| `profile.ccz62.star175.modifier.legacy` | 6.2 | `-` | `legacy-reference` | `source-reviewed` |

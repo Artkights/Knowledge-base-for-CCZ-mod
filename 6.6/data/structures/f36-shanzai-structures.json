@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "entityType": "data-structure",
+  "profile": "profile.ccz66.shanzai.guoqing.f36",
+  "entries": [
+    {
+      "id": "struct.66.f36.character-record",
+      "title": "F36 人物运行时记录",
+      "aliases": ["CharacterRecord", "0x48 人物记录"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "baseRef": "global.66.f36.character-pointer-slot",
+      "recordCount": 1024,
+      "stride": 72,
+      "indexFormula": "DWORD[0x004CEA00] + data_id * 0x48 + field_offset",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "record_key_low12",
+          "offset": "0x0",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "当前转换函数使用的记录键低 12 位"
+        },
+        {
+          "name": "job_id",
+          "offset": "0x2B",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "当前样本转换链读取的兵种字段"
+        }
+      ],
+      "relations": ["global.66.f36.character-pointer-slot"],
+      "sourceRefs": ["src.ccz.f36.static-report"]
+    },
+    {
+      "id": "struct.66.f36.battle-unit-record",
+      "title": "F36 战场单位记录",
+      "aliases": ["BattleUnit", "0x30 战场单位记录"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "baseRef": null,
+      "recordCount": 250,
+      "stride": 48,
+      "indexFormula": "0x004A7B20 + battlefield_id * 0x30 + field_offset",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "data_id_or_unit_key",
+          "offset": "0x0",
+          "width": 4,
+          "type": "uint32",
+          "meaning": "当前 0043E4D6 转换循环解引用并比较的首字段；具体编码仍需运行时确认"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.ccz.f36.static-report", "src.forum.godtype.194034"]
+    },
+    {
+      "id": "struct.66.f36.item-record",
+      "title": "F36 物品记录",
+      "aliases": ["ItemRecord", "0x19 物品记录"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "baseRef": null,
+      "recordCount": 255,
+      "stride": 25,
+      "indexFormula": "0x0049F820 + item_id * 0x19 + field_offset",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "name",
+          "offset": "0x0",
+          "width": 15,
+          "type": "fixed-string",
+          "meaning": "名称；编码和终止规则需按资源样本复读"
+        },
+        {
+          "name": "icon",
+          "offset": "0xF",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "图标编号"
+        },
+        {
+          "name": "effect_value",
+          "offset": "0x16",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "特效值候选字段"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.ccz.f36.static-report"]
+    },
+    {
+      "id": "struct.66.f36.strategy-record",
+      "title": "F36 策略记录",
+      "aliases": ["StrategyRecord", "0x61 策略记录"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "baseRef": null,
+      "recordCount": 256,
+      "stride": 97,
+      "indexFormula": "0x004A3E77 + strategy_id * 0x61 + field_offset",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "opaque_strategy_payload",
+          "offset": "0x0",
+          "width": 97,
+          "type": "opaque-bytes",
+          "meaning": "记录步长已由静态乘法确认；字段语义仍需逐项复核"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.ccz.f36.static-report"]
+    }
+  ]
+}

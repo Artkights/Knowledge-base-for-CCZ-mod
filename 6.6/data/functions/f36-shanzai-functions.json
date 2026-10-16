@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz66.shanzai.guoqing.f36",
+  "entries": [
+    {
+      "id": "fn.66.f36.data-id-to-character-record",
+      "title": "F36 Data 号到人物记录",
+      "aliases": ["0x004061E4"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004061E4",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "__stdcall",
+      "inputs": "[EBP+0x8] 的 16 位 Data 号；调用者随后使用 ECX",
+      "returns": "ECX = DWORD[0x004CEA00] + (input & 0xFFFF) * 0x48；RET 4 清理栈参数",
+      "semantics": "当前样本中可复核的 0x48 人物记录定位入口。EAX 及 EFLAGS 不作为稳定返回契约。",
+      "relations": ["struct.66.f36.character-record"],
+      "sourceRefs": ["src.ccz.f36.static-report"]
+    },
+    {
+      "id": "fn.66.f36.battlefield-id-to-unit-record",
+      "title": "F36 战场编号到单位记录",
+      "aliases": ["0x004061F9"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004061F9",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "register-context",
+      "inputs": "CL 中的战场编号",
+      "returns": "ECX = 0x004A7B20 + (CL & 0xFF) * 0x30；RET 不清理栈",
+      "semantics": "当前样本中可复核的战场单位记录定位入口。",
+      "relations": ["struct.66.f36.battle-unit-record"],
+      "sourceRefs": ["src.ccz.f36.static-report"]
+    },
+    {
+      "id": "fn.66.f36.item-id-to-record",
+      "title": "F36 物品号到物品记录",
+      "aliases": ["0x004837C2"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004837C2",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "register-context",
+      "inputs": "ECX 中的物品号",
+      "returns": "ECX = 0x0049F820 + item_id * 0x19",
+      "semantics": "当前样本中可复核的物品记录定位入口。",
+      "relations": ["struct.66.f36.item-record"],
+      "sourceRefs": ["src.ccz.f36.static-report"]
+    },
+    {
+      "id": "fn.66.f36.strategy-id-to-record",
+      "title": "F36 策略号到策略记录",
+      "aliases": ["0x00484002"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00484002",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "register-context",
+      "inputs": "ECX 中的策略号",
+      "returns": "ECX = 0x004A3E77 + strategy_id * 0x61",
+      "semantics": "当前样本中可复核的策略记录定位入口。",
+      "relations": ["struct.66.f36.strategy-record"],
+      "sourceRefs": ["src.ccz.f36.static-report"]
+    },
+    {
+      "id": "fn.66.f36.data-id-to-battlefield-id",
+      "title": "F36 Data 号到战场编号循环",
+      "aliases": ["0x0043E4D6", "AL=0xFF 未找到"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043E4D6",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "__cdecl-like-stack-input",
+      "inputs": "[EBP+0x8] 目标 Data/记录键；内部遍历战场编号 0..0xF9",
+      "returns": "EAX = 命中的编号，未命中时 EAX = 0xFF；当前代码没有 RET n",
+      "semantics": "静态控制流证明了 0xFF 未命中哨兵和 004061F9 单位遍历；参数实际命名仍需动态样本确认。",
+      "relations": ["struct.66.f36.battle-unit-record"],
+      "sourceRefs": ["src.ccz.f36.static-report", "src.forum.godtype.194034"]
+    },
+    {
+      "id": "fn.66.f36.record-pointer-to-battlefield-id",
+      "title": "F36 记录指针到战场编号候选",
+      "aliases": ["0x00477ADC", "旧教程 00477ADC"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "candidate",
+      "evidence": "static-candidate",
+      "address": {
+        "kind": "va",
+        "value": "0x00477ADC",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "__fastcall-candidate",
+      "inputs": "ECX/param_1 指向记录；内部调用 00482715 取首字低 12 位",
+      "returns": "控制流会遍历单位并在未命中时设置 AL=0xFF，但当前样本的最终寄存器返回契约尚未闭环",
+      "semantics": "保留为迁移候选；不可直接套用旧教程的 AL/ECX 解释。",
+      "relations": ["struct.66.f36.character-record", "struct.66.f36.battle-unit-record"],
+      "sourceRefs": ["src.ccz.f36.static-report", "src.forum.godtype.194034"]
+    },
+    {
+      "id": "fn.66.f36.record-pointer-to-battlefield-id-alt",
+      "title": "F36 记录值到战场编号候选二",
+      "aliases": ["0x004796DC", "EAX=0xFFFF 未命中"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004796DC",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "__cdecl-like-stack-input",
+      "inputs": "[EBP+0x8] 比较值；内部遍历单位并调用 0045F670",
+      "returns": "EAX = 命中编号；无命中路径以预压入的 0xFFFF 返回",
+      "semantics": "当前指令序列支持 0xFFFF 哨兵和单位遍历，但输入值的业务命名仍需动态确认。",
+      "relations": ["struct.66.f36.battle-unit-record"],
+      "sourceRefs": ["src.ccz.f36.static-report", "src.forum.godtype.194034"]
+    }
+  ]
+}

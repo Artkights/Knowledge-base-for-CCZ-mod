@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "entityType": "workflow",
+  "entries": [
+    {
+      "id": "workflow.66.f36.ollydbg-migration-validation",
+      "title": "F36 OllyDbg 旧地址迁移与验证",
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "goal": "把旧版 OllyDbg 教程中的方法和地址线索迁移为可审计的 F36 静态事实或待验证候选。",
+      "inputs": [
+        "F36 Ekd5.exe 测试副本",
+        "SHA256、PE 区段和静态报告",
+        "旧教程和相邻版本修改器资料",
+        "可恢复备份"
+      ],
+      "steps": [
+        {"order": 1, "action": "固定文件 SHA256、大小、ImageBase、入口和代码区段"},
+        {"order": 2, "action": "把论坛绝对地址登记为旧版线索，并标注来源版本"},
+        {"order": 3, "action": "按步长、常量、机器码和交叉引用搜索当前函数入口"},
+        {"order": 4, "action": "记录参数寄存器、栈偏移、返回寄存器、RET 清理和哨兵"},
+        {"order": 5, "action": "将结构锚点、函数入口、上下文基址和旧补丁分别建档"},
+        {"order": 6, "action": "对每个拟写站点补齐原字节、覆盖长度、指令边界、回跳和冲突"},
+        {"order": 7, "action": "只在测试副本上做静态复读，再用断点采集正负运行时样本"},
+        {"order": 8, "action": "保存后重开文件，复读字节和哈希并输出回滚报告"}
+      ],
+      "gates": [
+        "画像不匹配时禁止沿用 VA",
+        "地址落在指令中间时禁止编辑",
+        "runtime_verified=false 时只能发布静态事实或 candidate",
+        "没有 expectedBytes、ABI 和回滚数据时禁止自动写回",
+        "旧版代码洞和主动双击注入点必须重新确认所有权"
+      ],
+      "outputs": [
+        "版本画像",
+        "结构/函数 JSON 实体",
+        "旧版候选对照",
+        "待验证问题单",
+        "静态/动态验证报告和备份"
+      ],
+      "rollback": [
+        "恢复测试副本",
+        "删除未通过门禁的补丁预览",
+        "保留原字节、失败样本和冲突记录"
+      ],
+      "sourceRefs": [
+        "src.forum.godtype.194034",
+        "src.ccz.f36.exe",
+        "src.ccz.f36.static-report"
+      ]
+    }
+  ]
+}

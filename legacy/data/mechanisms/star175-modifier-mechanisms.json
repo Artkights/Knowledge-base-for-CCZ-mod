@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz62.star175.modifier.legacy",
+  "entries": [
+    {
+      "id": "legacy.mechanism.62.star175.strategy-instant-kill",
+      "title": "6.2 策略秒杀属于策略伤害计算分支",
+      "aliases": ["0x0043C022", "海啸", "眩晕"],
+      "versions": ["6.2"],
+      "profile": "profile.ccz62.star175.modifier.legacy",
+      "status": "legacy-reference",
+      "evidence": "legacy-structured",
+      "summary": "论坛回复明确说明没有独立的策略秒杀函数；原版海啸、眩晕是在策略伤害计算中追加判断，满足条件时直接以目标当前 HP 作为伤害。",
+      "addresses": [
+        {
+          "kind": "va",
+          "value": "0x0043C022",
+          "profile": "profile.ccz62.star175.modifier.legacy",
+          "evidence": "legacy-source"
+        },
+        {
+          "kind": "va",
+          "value": "0x0043C039",
+          "profile": "profile.ccz62.star175.modifier.legacy",
+          "evidence": "legacy-source"
+        },
+        {
+          "kind": "va",
+          "value": "0x0043C0CD",
+          "profile": "profile.ccz62.star175.modifier.legacy",
+          "evidence": "legacy-source"
+        }
+      ],
+      "migrationRule": "地址只属于原帖所称 6.2 版本；当前 F36 样本必须重新搜索策略伤害函数、分支条件和目标 HP 写回，不得直接移植。",
+      "relations": [],
+      "sourceRefs": ["src.forum.star175.296955.p2"]
+    },
+    {
+      "id": "legacy.mechanism.62.star175.weather-gear-rewrite",
+      "title": "6.2 策略天气与四神装备限制已重写",
+      "aliases": ["0x0040EACB", "0x0041FF87", "0x0041FFF1"],
+      "versions": ["6.2"],
+      "profile": "profile.ccz62.star175.modifier.legacy",
+      "status": "legacy-reference",
+      "evidence": "legacy-structured",
+      "summary": "回复给出 6.2 策略天气限制和四神装备/天气检查的关键位置，并指出 star175 已将策略天气限制简写，不能再像旧版一样逐策略控制。",
+      "addresses": [
+        {
+          "kind": "va",
+          "value": "0x0040EACB",
+          "profile": "profile.ccz62.star175.modifier.legacy",
+          "evidence": "legacy-source"
+        },
+        {
+          "kind": "va",
+          "value": "0x0041FF87",
+          "profile": "profile.ccz62.star175.modifier.legacy",
+          "evidence": "legacy-source"
+        },
+        {
+          "kind": "va",
+          "value": "0x0041FFF1",
+          "profile": "profile.ccz62.star175.modifier.legacy",
+          "evidence": "legacy-source"
+        }
+      ],
+      "migrationRule": "6.0、6.1、6.2 地址不能混用；策略天气部分若要迁移，先按新函数重新建立签名和分支语义。",
+      "relations": [],
+      "sourceRefs": ["src.forum.star175.296955.p2", "src.forum.star175.296955.p3"]
+    },
+    {
+      "id": "legacy.mechanism.62.star175.modifier-compatibility",
+      "title": "star175 修改器的版本和工具兼容门禁",
+      "versions": ["6.0", "6.1", "6.2"],
+      "profile": "profile.ccz62.star175.modifier.legacy",
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "summary": "修改器按 EXE/Imsg 和版本分发；6.0 与 6.1 地址会变化，6.2 需要更新后的 CM 数据。修改界面禁用某项表示目标 EXE 不支持该项，不是需要猜密码或强行写入。",
+      "compatibilityRules": [
+        "6.0 EXE 使用 6.0 修改器，6.1 EXE 使用 6.1 修改器，不能交叉使用",
+        "5.8-6.0 只有在读取后显示正常时才可暂认为地址一致，仍需目标样本验证",
+        "6.2 显示无匹配数据时先升级 CheatMaker 版本并关闭占用 EXE 的程序",
+        "修改数值显示成功但游戏无变化时，先核对 EXE 版本、最新版修改器和实际功能开关",
+        "Windows 运行库和 CM 版本是工具前置条件，不构成引擎地址证据"
+      ],
+      "relations": [],
+      "sourceRefs": ["src.forum.star175.296955", "src.forum.star175.296955.p2", "src.forum.star175.296955.p3"]
+    }
+  ]
+}

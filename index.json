@@ -2,11 +2,11 @@
   "schemaVersion": 3,
   "structuredAuthority": "version-data-json",
   "generatedBy": "tools/build_index.py",
-  "entityCount": 458,
+  "entityCount": 482,
   "statusCounts": {
-    "candidate": 337,
-    "canonical": 111,
-    "legacy-reference": 10
+    "candidate": 341,
+    "canonical": 126,
+    "legacy-reference": 15
   },
   "structuredFiles": [
     {
@@ -66,12 +66,24 @@
       "sha256": "209E0F5793D3A5F4BBB82CE7535564B897D46255CFF74329D5A0718241476174"
     },
     {
+      "path": "6.6/data/functions/f36-shanzai-functions.json",
+      "sha256": "90314D8957D0BB8F4011E6BF8F162D478E074C571DB42D64C5A8177D46A4D707"
+    },
+    {
       "path": "6.6/data/functions/xiaoan-speed-functions.json",
       "sha256": "995B8A19309A79C9870824357D2F989DE587AB56DB99F6E1FBFD7F15F81637A4"
     },
     {
+      "path": "6.6/data/globals/f36-shanzai-globals.json",
+      "sha256": "E365FF06ABED30C6ABDA72C698DB2F1E6956A2E72CC6A954862532C6182EE27A"
+    },
+    {
       "path": "6.6/data/globals/xiaoan-speed-globals.json",
       "sha256": "E26340B3684CE704237AF969F30E13719429C84979E6D0CA45450E0600A4C88E"
+    },
+    {
+      "path": "6.6/data/mechanisms/f36-shanzai-ollydbg-research.json",
+      "sha256": "9FC7811B747AA8BC9DF1216C4FC9C12F7277E2182E89CB635777E53F1FABE731"
     },
     {
       "path": "6.6/data/mechanisms/xiaoan-speed-chain.json",
@@ -91,7 +103,7 @@
     },
     {
       "path": "6.6/data/profiles/engine-profiles.json",
-      "sha256": "6838F01630DA375F70633C2D9211B971B53EC00E5714668572CBABBC7D8CC129"
+      "sha256": "6F4533E8A327DE6D01F632E7E7FC77DDB1D09B8A7CDFAA33A1CE79CF592FC88C"
     },
     {
       "path": "6.6/data/profiles/legacy-patch-profiles.json",
@@ -102,16 +114,32 @@
       "sha256": "34C5049C46A7E88E804531AE9F1E6C4F734C7AF8DDFFD184F9BF443FD2697A9A"
     },
     {
+      "path": "6.6/data/structures/f36-shanzai-structures.json",
+      "sha256": "A4DE399ECCAC7C1A79E8510C2BF50CC047F408F9131C8FDCB24BE75EF0058E03"
+    },
+    {
       "path": "6.6/data/structures/runtime-structures.json",
       "sha256": "702357553C5670F5B87326641A17DD6BC7C3FE28310EDC9CF1E9B399F3A3ADBF"
+    },
+    {
+      "path": "6.6/data/workflows/f36-ollydbg-validation.json",
+      "sha256": "4491B21376F3F3EE575D484F4F2EC93042C6BD6DF2BC7F76726614D2F46DD041"
     },
     {
       "path": "legacy/data/globals/legacy-addresses.json",
       "sha256": "45A13B2DAAA9BA67B0FF9122A6C1F37CE06B9CE1A09AC3BDE49F504F2FD7E68C"
     },
     {
+      "path": "legacy/data/mechanisms/star175-modifier-mechanisms.json",
+      "sha256": "0BA0EB2ED24D4B10315B3C7B7D95F83D43A2318405085CBCE7A2E80141E6167F"
+    },
+    {
+      "path": "legacy/data/patches/star175-modifier-candidates.json",
+      "sha256": "CA8EE89E3174FA5C00FEAECE92079299E8414BFD7555FCD908DA7EA777D17B28"
+    },
+    {
       "path": "legacy/data/profiles/legacy-profiles.json",
-      "sha256": "F9431DDF73DF1E0D155514B243A5AEBCA54D8FB4821C3A2BF584D86724CE9C19"
+      "sha256": "C249B9CC34C1CC0EC7437D73FF98E4280BA4EDD2C92B7EE422D1DE1589427C56"
     }
   ],
   "entries": [
@@ -3701,6 +3729,265 @@
       ]
     },
     {
+      "id": "fn.66.f36.battlefield-id-to-unit-record",
+      "entityType": "function",
+      "title": "F36 战场编号到单位记录",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004061F9",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "fn.66.f36.battlefield-id-to-unit-record",
+        "F36 战场编号到单位记录",
+        "0x004061F9",
+        "当前样本中可复核的战场单位记录定位入口。",
+        "register-context",
+        "CL 中的战场编号",
+        "ECX = 0x004A7B20 + (CL & 0xFF) * 0x30；RET 不清理栈",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "va",
+        "static-verified",
+        "struct.66.f36.battle-unit-record"
+      ],
+      "structuredDataPath": "6.6/data/functions/f36-shanzai-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
+    },
+    {
+      "id": "fn.66.f36.data-id-to-battlefield-id",
+      "entityType": "function",
+      "title": "F36 Data 号到战场编号循环",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043E4D6",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "fn.66.f36.data-id-to-battlefield-id",
+        "F36 Data 号到战场编号循环",
+        "0x0043E4D6",
+        "AL=0xFF 未找到",
+        "静态控制流证明了 0xFF 未命中哨兵和 004061F9 单位遍历；参数实际命名仍需动态样本确认。",
+        "__cdecl-like-stack-input",
+        "[EBP+0x8] 目标 Data/记录键；内部遍历战场编号 0..0xF9",
+        "EAX = 命中的编号，未命中时 EAX = 0xFF；当前代码没有 RET n",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "va",
+        "static-verified",
+        "struct.66.f36.battle-unit-record"
+      ],
+      "structuredDataPath": "6.6/data/functions/f36-shanzai-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "fn.66.f36.data-id-to-character-record",
+      "entityType": "function",
+      "title": "F36 Data 号到人物记录",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004061E4",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "fn.66.f36.data-id-to-character-record",
+        "F36 Data 号到人物记录",
+        "0x004061E4",
+        "当前样本中可复核的 0x48 人物记录定位入口。EAX 及 EFLAGS 不作为稳定返回契约。",
+        "__stdcall",
+        "[EBP+0x8] 的 16 位 Data 号；调用者随后使用 ECX",
+        "ECX = DWORD[0x004CEA00] + (input & 0xFFFF) * 0x48；RET 4 清理栈参数",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "va",
+        "static-verified",
+        "struct.66.f36.character-record"
+      ],
+      "structuredDataPath": "6.6/data/functions/f36-shanzai-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
+    },
+    {
+      "id": "fn.66.f36.item-id-to-record",
+      "entityType": "function",
+      "title": "F36 物品号到物品记录",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004837C2",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "fn.66.f36.item-id-to-record",
+        "F36 物品号到物品记录",
+        "0x004837C2",
+        "当前样本中可复核的物品记录定位入口。",
+        "register-context",
+        "ECX 中的物品号",
+        "ECX = 0x0049F820 + item_id * 0x19",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "va",
+        "static-verified",
+        "struct.66.f36.item-record"
+      ],
+      "structuredDataPath": "6.6/data/functions/f36-shanzai-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
+    },
+    {
+      "id": "fn.66.f36.record-pointer-to-battlefield-id",
+      "entityType": "function",
+      "title": "F36 记录指针到战场编号候选",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "candidate",
+      "evidence": "static-candidate",
+      "address": {
+        "kind": "va",
+        "value": "0x00477ADC",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "fn.66.f36.record-pointer-to-battlefield-id",
+        "F36 记录指针到战场编号候选",
+        "0x00477ADC",
+        "旧教程 00477ADC",
+        "保留为迁移候选；不可直接套用旧教程的 AL/ECX 解释。",
+        "__fastcall-candidate",
+        "ECX/param_1 指向记录；内部调用 00482715 取首字低 12 位",
+        "控制流会遍历单位并在未命中时设置 AL=0xFF，但当前样本的最终寄存器返回契约尚未闭环",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "va",
+        "static-verified",
+        "struct.66.f36.character-record",
+        "struct.66.f36.battle-unit-record"
+      ],
+      "structuredDataPath": "6.6/data/functions/f36-shanzai-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "fn.66.f36.record-pointer-to-battlefield-id-alt",
+      "entityType": "function",
+      "title": "F36 记录值到战场编号候选二",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004796DC",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "fn.66.f36.record-pointer-to-battlefield-id-alt",
+        "F36 记录值到战场编号候选二",
+        "0x004796DC",
+        "EAX=0xFFFF 未命中",
+        "当前指令序列支持 0xFFFF 哨兵和单位遍历，但输入值的业务命名仍需动态确认。",
+        "__cdecl-like-stack-input",
+        "[EBP+0x8] 比较值；内部遍历单位并调用 0045F670",
+        "EAX = 命中编号；无命中路径以预压入的 0xFFFF 返回",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "va",
+        "static-verified",
+        "struct.66.f36.battle-unit-record"
+      ],
+      "structuredDataPath": "6.6/data/functions/f36-shanzai-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "fn.66.f36.strategy-id-to-record",
+      "entityType": "function",
+      "title": "F36 策略号到策略记录",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00484002",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "fn.66.f36.strategy-id-to-record",
+        "F36 策略号到策略记录",
+        "0x00484002",
+        "当前样本中可复核的策略记录定位入口。",
+        "register-context",
+        "ECX 中的策略号",
+        "ECX = 0x004A3E77 + strategy_id * 0x61",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "va",
+        "static-verified",
+        "struct.66.f36.strategy-record"
+      ],
+      "structuredDataPath": "6.6/data/functions/f36-shanzai-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
+    },
+    {
       "id": "fn.66.xiaoan.deadline-check",
       "entityType": "function",
       "title": "阶段截止判断",
@@ -5133,6 +5420,137 @@
       ]
     },
     {
+      "id": "global.66.f36.character-pointer-slot",
+      "entityType": "global",
+      "title": "F36 人物表指针槽",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "pointerSlot",
+        "value": "0x004CEA00",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "global.66.f36.character-pointer-slot",
+        "F36 人物表指针槽",
+        "0x004CEA00",
+        "人物记录数组的运行时指针槽；当前记录步长为 0x48。",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "pointerSlot",
+        "static-verified"
+      ],
+      "structuredDataPath": "6.6/data/globals/f36-shanzai-globals.json",
+      "referencePath": "6.6/reference/globals.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
+    },
+    {
+      "id": "global.66.f36.item-context",
+      "entityType": "global",
+      "title": "F36 物品使用上下文基址",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00497750",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "global.66.f36.item-context",
+        "F36 物品使用上下文基址",
+        "0x00497750",
+        "当前样本中被道具使用代码直接引用的上下文基址；字段语义不能从基址引用单独推出。",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "va",
+        "static-verified"
+      ],
+      "structuredDataPath": "6.6/data/globals/f36-shanzai-globals.json",
+      "referencePath": "6.6/reference/globals.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "global.66.f36.physical-context",
+      "entityType": "global",
+      "title": "F36 物理攻击上下文基址",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004927F0",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "global.66.f36.physical-context",
+        "F36 物理攻击上下文基址",
+        "0x004927F0",
+        "当前样本中被多处直接引用的物理攻击上下文；旧教程字段名、数组容量和时序尚未逐项动态确认。",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "va",
+        "static-verified"
+      ],
+      "structuredDataPath": "6.6/data/globals/f36-shanzai-globals.json",
+      "referencePath": "6.6/reference/globals.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "global.66.f36.strategy-context",
+      "entityType": "global",
+      "title": "F36 策略上下文基址",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00497AF8",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "searchTerms": [
+        "global.66.f36.strategy-context",
+        "F36 策略上下文基址",
+        "0x00497AF8",
+        "当前样本中被策略结算代码直接引用的上下文基址；偏移字段和策略效果生命周期保持待动态验证。",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "va",
+        "static-verified"
+      ],
+      "structuredDataPath": "6.6/data/globals/f36-shanzai-globals.json",
+      "referencePath": "6.6/reference/globals.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
       "id": "global.66.xiaoan.native-super-busy",
       "entityType": "global",
       "title": "原生超级加速忙标志",
@@ -5597,6 +6015,148 @@
       ]
     },
     {
+      "id": "legacy.mechanism.62.star175.modifier-compatibility",
+      "entityType": "mechanism",
+      "title": "star175 修改器的版本和工具兼容门禁",
+      "versions": [
+        "6.0",
+        "6.1",
+        "6.2"
+      ],
+      "profile": "profile.ccz62.star175.modifier.legacy",
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "legacy.mechanism.62.star175.modifier-compatibility",
+        "star175 修改器的版本和工具兼容门禁",
+        "6.0",
+        "6.1",
+        "6.2",
+        "profile.ccz62.star175.modifier.legacy",
+        "修改器按 EXE/Imsg 和版本分发；6.0 与 6.1 地址会变化，6.2 需要更新后的 CM 数据。修改界面禁用某项表示目标 EXE 不支持该项，不是需要猜密码或强行写入。",
+        "6.0 EXE 使用 6.0 修改器，6.1 EXE 使用 6.1 修改器，不能交叉使用",
+        "5.8-6.0 只有在读取后显示正常时才可暂认为地址一致，仍需目标样本验证",
+        "6.2 显示无匹配数据时先升级 CheatMaker 版本并关闭占用 EXE 的程序",
+        "修改数值显示成功但游戏无变化时，先核对 EXE 版本、最新版修改器和实际功能开关",
+        "Windows 运行库和 CM 版本是工具前置条件，不构成引擎地址证据"
+      ],
+      "structuredDataPath": "legacy/data/mechanisms/star175-modifier-mechanisms.json",
+      "referencePath": "legacy/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.forum.star175.296955",
+        "src.forum.star175.296955.p2",
+        "src.forum.star175.296955.p3"
+      ]
+    },
+    {
+      "id": "legacy.mechanism.62.star175.strategy-instant-kill",
+      "entityType": "mechanism",
+      "title": "6.2 策略秒杀属于策略伤害计算分支",
+      "versions": [
+        "6.2"
+      ],
+      "profile": "profile.ccz62.star175.modifier.legacy",
+      "status": "legacy-reference",
+      "evidence": "legacy-structured",
+      "address": null,
+      "searchTerms": [
+        "legacy.mechanism.62.star175.strategy-instant-kill",
+        "6.2 策略秒杀属于策略伤害计算分支",
+        "0x0043C022",
+        "海啸",
+        "眩晕",
+        "0x0043C039",
+        "0x0043C0CD",
+        "6.2",
+        "profile.ccz62.star175.modifier.legacy",
+        "论坛回复明确说明没有独立的策略秒杀函数；原版海啸、眩晕是在策略伤害计算中追加判断，满足条件时直接以目标当前 HP 作为伤害。",
+        "va",
+        "legacy-source",
+        "地址只属于原帖所称 6.2 版本；当前 F36 样本必须重新搜索策略伤害函数、分支条件和目标 HP 写回，不得直接移植。"
+      ],
+      "structuredDataPath": "legacy/data/mechanisms/star175-modifier-mechanisms.json",
+      "referencePath": "legacy/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.forum.star175.296955.p2"
+      ]
+    },
+    {
+      "id": "legacy.mechanism.62.star175.weather-gear-rewrite",
+      "entityType": "mechanism",
+      "title": "6.2 策略天气与四神装备限制已重写",
+      "versions": [
+        "6.2"
+      ],
+      "profile": "profile.ccz62.star175.modifier.legacy",
+      "status": "legacy-reference",
+      "evidence": "legacy-structured",
+      "address": null,
+      "searchTerms": [
+        "legacy.mechanism.62.star175.weather-gear-rewrite",
+        "6.2 策略天气与四神装备限制已重写",
+        "0x0040EACB",
+        "0x0041FF87",
+        "0x0041FFF1",
+        "6.2",
+        "profile.ccz62.star175.modifier.legacy",
+        "回复给出 6.2 策略天气限制和四神装备/天气检查的关键位置，并指出 star175 已将策略天气限制简写，不能再像旧版一样逐策略控制。",
+        "va",
+        "legacy-source",
+        "6.0、6.1、6.2 地址不能混用；策略天气部分若要迁移，先按新函数重新建立签名和分支语义。"
+      ],
+      "structuredDataPath": "legacy/data/mechanisms/star175-modifier-mechanisms.json",
+      "referencePath": "legacy/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.forum.star175.296955.p2",
+        "src.forum.star175.296955.p3"
+      ]
+    },
+    {
+      "id": "legacy.patch.62.star175.limit-bypass-bytes",
+      "entityType": "patch-recipe",
+      "title": "6.2 四神限制与修筑金钱的旧 CM 字节候选",
+      "versions": [
+        "6.2"
+      ],
+      "profile": "profile.ccz62.star175.modifier.legacy",
+      "status": "legacy-reference",
+      "evidence": "legacy-patch-bytes",
+      "address": {
+        "kind": "fileOffset",
+        "value": "0x0001F393",
+        "profile": "profile.ccz62.star175.modifier.legacy",
+        "evidence": "legacy-source"
+      },
+      "searchTerms": [
+        "legacy.patch.62.star175.limit-bypass-bytes",
+        "6.2 四神限制与修筑金钱的旧 CM 字节候选",
+        "1F393 EB 4B",
+        "1F3EA EB 45",
+        "DF1D E8 03",
+        "14298 E8 03",
+        "0x0001F393",
+        "0x0001F3EA",
+        "0x0000DF1D",
+        "0x00014298",
+        "6.2",
+        "profile.ccz62.star175.modifier.legacy",
+        "legacy-CMF-byte-edit",
+        "star175 6.2",
+        "fileOffset",
+        "legacy-source",
+        "取消四神装备限制",
+        "取消四神天气限制",
+        "修筑消耗金钱候选值 1000",
+        "仅保存论坛给出的旧替换字节。原字节、精确样本、指令边界和文件偏移语义均未由当前样本闭环，禁止自动应用；迁移前必须先做版本画像、字节匹配和反汇编边界检查。"
+      ],
+      "structuredDataPath": "legacy/data/patches/star175-modifier-candidates.json",
+      "referencePath": "legacy/reference/patches.md",
+      "sourceRefs": [
+        "src.forum.star175.296955.p2"
+      ]
+    },
+    {
       "id": "locator.66.xiaoan.delay",
       "entityType": "patch-recipe",
       "title": "通用延迟函数定位器",
@@ -5808,6 +6368,105 @@
       "sourceRefs": [
         "src.ccz.range-profile",
         "src.ccz.range-probe"
+      ]
+    },
+    {
+      "id": "mechanism.66.f36.ollydbg-migration",
+      "entityType": "mechanism",
+      "title": "从旧 OllyDbg 地址迁移到 F36 样本",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "mechanism.66.f36.ollydbg-migration",
+        "从旧 OllyDbg 地址迁移到 F36 样本",
+        "godtype 教程迁移流程",
+        "版本地址差异护栏",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "旧教程适合学习 x86 调试方法和调用关系推理，不适合作为 F36 的固定补丁表。地址必须先绑定 SHA，再用原字节、完整指令边界、调用约定和交叉引用重定位。",
+        "fn.66.f36.data-id-to-character-record",
+        "先确认人物记录步长和指针槽",
+        "fn.66.f36.battlefield-id-to-unit-record",
+        "再确认战场单位记录入口和寄存器契约",
+        "fn.66.f36.data-id-to-battlefield-id",
+        "最后用遍历函数核对哨兵和边界",
+        "目标 Ekd5.exe SHA256、大小和 PE 映射",
+        "旧教程地址或机器码片段",
+        "当前样本静态指令和直接引用报告",
+        "可回滚测试副本",
+        "固定样本身份，记录 SHA256、ImageBase、区段和入口",
+        "把旧地址降级为搜索种子，不把地址本身当作语义",
+        "优先搜索步长、常量、原字节和调用形状，确认完整指令边界",
+        "沿调用者和被调用者复核参数位置、寄存器返回、栈清理和 EFLAGS",
+        "分别建立静态事实、旧版参照和未闭环假设，禁止混写",
+        "只有在测试副本上记录 expectedBytes、覆盖长度、回跳和冲突后才生成写回候选",
+        "静态复读后用正负运行时样本验证字段时序、哨兵和行为",
+        "保存后重新打开并复读字节、哈希、跳转落点和未改区域",
+        "F36 样本与其它 6.6 文件 SHA 不同则重新定位",
+        "地址落在另一条指令中时停止，不向中间字节写入",
+        "没有原字节、指令边界、ABI 或回滚信息时保持只读",
+        "静态报告 runtime_verified=false 时不得宣称实机行为已验证",
+        "画像记录",
+        "结构/函数实体",
+        "地址迁移对照表",
+        "待验证队列",
+        "可回滚静态审计报告",
+        "丢弃未通过门禁的写回预览",
+        "恢复测试副本备份",
+        "保留失败分支和原字节记录，不叠加未知补丁"
+      ],
+      "structuredDataPath": "6.6/data/mechanisms/f36-shanzai-ollydbg-research.json",
+      "referencePath": "6.6/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.forum.godtype.194034",
+        "src.ccz.f36.static-report",
+        "src.ccz.f36.exe"
+      ]
+    },
+    {
+      "id": "mechanism.66.f36.sp-accumulation-layout",
+      "entityType": "mechanism",
+      "title": "F36 SP 累积代码与旧 00410FFF 补丁的偏移差异",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": null,
+      "searchTerms": [
+        "mechanism.66.f36.sp-accumulation-layout",
+        "F36 SP 累积代码与旧 00410FFF 补丁的偏移差异",
+        "00411000",
+        "SHR EDX",
+        "Star 引擎 SP 累积",
+        "0x00411000",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "论坛回复给出的旧 Star 引擎代码从 00410FFF 开始；F36 中对应指令从 00411000 开始，且当前条件跳转序列为 CMP CL,2 / JL。该差异证明旧补丁不能按地址直接写入。",
+        "0x00411000: MOV EDX,[EBP+0x8]",
+        "0x00411003: CMP CL,0x2",
+        "0x00411006: JL 0x0041100C",
+        "0x00411008: SHR EDX,1",
+        "0x0041100C: SHR EDX,2",
+        "0x0041100F: CMP DWORD PTR [EBP+0x8],0",
+        "当前序列：MOV EDX,[EBP+8] -> CMP CL,2 -> JL 0041100C -> SHR EDX,1 / SHR EDX,2",
+        "旧回复候选：把 00410FFF 和 00411003 附近的 SHR 改为 XOR EDX,EDX，并在 00411005 补 NOP",
+        "迁移结论：先以完整指令和当前原字节重定位；没有 F36 expectedBytes 时保持只读",
+        "旧回复将 00410FFF/00411003 的 SHR 改为 XOR EDX,EDX，并补 NOP；该替换没有 F36 原字节、覆盖边界或运行时验证，不得用于当前样本。",
+        "va",
+        "static-verified"
+      ],
+      "structuredDataPath": "6.6/data/mechanisms/f36-shanzai-ollydbg-research.json",
+      "referencePath": "6.6/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.forum.godtype.194034",
+        "src.ccz.f36.static-report"
       ]
     },
     {
@@ -8865,6 +9524,34 @@
       ]
     },
     {
+      "id": "profile.ccz62.star175.modifier.legacy",
+      "entityType": "engine-profile",
+      "title": "star175 6.2 EXE/Imsg 修改器历史画像",
+      "versions": [
+        "6.2"
+      ],
+      "profile": null,
+      "status": "legacy-reference",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "profile.ccz62.star175.modifier.legacy",
+        "star175 6.2 EXE/Imsg 修改器历史画像",
+        "6.2",
+        "0x00400000",
+        "x86-pe32",
+        "star175-6.x-unknown-sample",
+        "论坛修改器记录的旧地址和字节仅作迁移参照；没有精确 EXE SHA、原字节和指令边界，不得自动写入 6.5/6.6。6.0、6.1、6.2 修改器必须按版本分别使用。"
+      ],
+      "structuredDataPath": "legacy/data/profiles/legacy-profiles.json",
+      "referencePath": "legacy/reference/profiles.md",
+      "sourceRefs": [
+        "src.forum.star175.296955",
+        "src.forum.star175.296955.p2",
+        "src.forum.star175.296955.p3"
+      ]
+    },
+    {
       "id": "profile.ccz63.legacy",
       "entityType": "engine-profile",
       "title": "曹操传 6.3 Python 扳手历史画像",
@@ -8969,6 +9656,37 @@
       "sourceRefs": [
         "src.ccz.range-profile",
         "src.ccz.runtime-registry"
+      ]
+    },
+    {
+      "id": "profile.ccz66.shanzai.guoqing.f36",
+      "entityType": "engine-profile",
+      "title": "复刻版 6.6 山贼国庆版 F36 静态验证样本",
+      "versions": [
+        "6.6"
+      ],
+      "profile": null,
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": null,
+      "searchTerms": [
+        "profile.ccz66.shanzai.guoqing.f36",
+        "复刻版 6.6 山贼国庆版 F36 静态验证样本",
+        "F36F9A3D06F3C4E5",
+        "6.6-shanzai-guoqing-f36",
+        "6.6",
+        "0x00400000",
+        "x86-pe32",
+        "Ekd5.exe",
+        "固定 VA 只对该 SHA 样本成立；本条目只有静态证据，实际战斗行为和写回可用性仍需动态验证。其它 6.6/6.6x 作品必须重新做签名、原字节和调用约定核对。"
+      ],
+      "structuredDataPath": "6.6/data/profiles/engine-profiles.json",
+      "referencePath": "6.6/reference/profiles.md",
+      "sourceRefs": [
+        "src.ccz.f36.exe",
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034",
+        "src.history.local.godtype-f36-synthesis"
       ]
     },
     {
@@ -17061,6 +17779,143 @@
       ]
     },
     {
+      "id": "struct.66.f36.battle-unit-record",
+      "entityType": "data-structure",
+      "title": "F36 战场单位记录",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": null,
+      "searchTerms": [
+        "struct.66.f36.battle-unit-record",
+        "F36 战场单位记录",
+        "BattleUnit",
+        "0x30 战场单位记录",
+        "0x004A7B20 + battlefield_id * 0x30 + field_offset",
+        "data_id_or_unit_key",
+        "当前 0043E4D6 转换循环解引用并比较的首字段；具体编码仍需运行时确认",
+        "0x0",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "little",
+        "uint32"
+      ],
+      "structuredDataPath": "6.6/data/structures/f36-shanzai-structures.json",
+      "referencePath": "6.6/reference/structures.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "struct.66.f36.character-record",
+      "entityType": "data-structure",
+      "title": "F36 人物运行时记录",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": null,
+      "searchTerms": [
+        "struct.66.f36.character-record",
+        "F36 人物运行时记录",
+        "CharacterRecord",
+        "0x48 人物记录",
+        "DWORD[0x004CEA00] + data_id * 0x48 + field_offset",
+        "record_key_low12",
+        "当前转换函数使用的记录键低 12 位",
+        "0x0",
+        "job_id",
+        "当前样本转换链读取的兵种字段",
+        "0x2B",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "global.66.f36.character-pointer-slot",
+        "little",
+        "uint16",
+        "uint8"
+      ],
+      "structuredDataPath": "6.6/data/structures/f36-shanzai-structures.json",
+      "referencePath": "6.6/reference/structures.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
+    },
+    {
+      "id": "struct.66.f36.item-record",
+      "entityType": "data-structure",
+      "title": "F36 物品记录",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": null,
+      "searchTerms": [
+        "struct.66.f36.item-record",
+        "F36 物品记录",
+        "ItemRecord",
+        "0x19 物品记录",
+        "0x0049F820 + item_id * 0x19 + field_offset",
+        "name",
+        "名称；编码和终止规则需按资源样本复读",
+        "0x0",
+        "icon",
+        "图标编号",
+        "0xF",
+        "effect_value",
+        "特效值候选字段",
+        "0x16",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "little",
+        "fixed-string",
+        "uint8"
+      ],
+      "structuredDataPath": "6.6/data/structures/f36-shanzai-structures.json",
+      "referencePath": "6.6/reference/structures.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
+    },
+    {
+      "id": "struct.66.f36.strategy-record",
+      "entityType": "data-structure",
+      "title": "F36 策略记录",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": null,
+      "searchTerms": [
+        "struct.66.f36.strategy-record",
+        "F36 策略记录",
+        "StrategyRecord",
+        "0x61 策略记录",
+        "0x004A3E77 + strategy_id * 0x61 + field_offset",
+        "opaque_strategy_payload",
+        "记录步长已由静态乘法确认；字段语义仍需逐项复核",
+        "0x0",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "little",
+        "opaque-bytes"
+      ],
+      "structuredDataPath": "6.6/data/structures/f36-shanzai-structures.json",
+      "referencePath": "6.6/reference/structures.md",
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
+    },
+    {
       "id": "struct.66.item-record",
       "entityType": "data-structure",
       "title": "6.6 物品记录",
@@ -19014,6 +19869,57 @@
       "referencePath": "6.5/reference/workflows.md",
       "sourceRefs": [
         "src.history.9b8abf5.b10db802d294dd63"
+      ]
+    },
+    {
+      "id": "workflow.66.f36.ollydbg-migration-validation",
+      "entityType": "workflow",
+      "title": "F36 OllyDbg 旧地址迁移与验证",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "workflow.66.f36.ollydbg-migration-validation",
+        "F36 OllyDbg 旧地址迁移与验证",
+        "6.6",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "把旧版 OllyDbg 教程中的方法和地址线索迁移为可审计的 F36 静态事实或待验证候选。",
+        "F36 Ekd5.exe 测试副本",
+        "SHA256、PE 区段和静态报告",
+        "旧教程和相邻版本修改器资料",
+        "可恢复备份",
+        "固定文件 SHA256、大小、ImageBase、入口和代码区段",
+        "把论坛绝对地址登记为旧版线索，并标注来源版本",
+        "按步长、常量、机器码和交叉引用搜索当前函数入口",
+        "记录参数寄存器、栈偏移、返回寄存器、RET 清理和哨兵",
+        "将结构锚点、函数入口、上下文基址和旧补丁分别建档",
+        "对每个拟写站点补齐原字节、覆盖长度、指令边界、回跳和冲突",
+        "只在测试副本上做静态复读，再用断点采集正负运行时样本",
+        "保存后重开文件，复读字节和哈希并输出回滚报告",
+        "画像不匹配时禁止沿用 VA",
+        "地址落在指令中间时禁止编辑",
+        "runtime_verified=false 时只能发布静态事实或 candidate",
+        "没有 expectedBytes、ABI 和回滚数据时禁止自动写回",
+        "旧版代码洞和主动双击注入点必须重新确认所有权",
+        "版本画像",
+        "结构/函数 JSON 实体",
+        "旧版候选对照",
+        "待验证问题单",
+        "静态/动态验证报告和备份",
+        "恢复测试副本",
+        "删除未通过门禁的补丁预览",
+        "保留原字节、失败样本和冲突记录"
+      ],
+      "structuredDataPath": "6.6/data/workflows/f36-ollydbg-validation.json",
+      "referencePath": "6.6/reference/workflows.md",
+      "sourceRefs": [
+        "src.forum.godtype.194034",
+        "src.ccz.f36.exe",
+        "src.ccz.f36.static-report"
       ]
     }
   ]

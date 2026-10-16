@@ -26,6 +26,33 @@
         "src.xiaoan.layout",
         "src.xiaoan.layout-tests"
       ]
+    },
+    {
+      "id": "profile.ccz66.shanzai.guoqing.f36",
+      "title": "复刻版 6.6 山贼国庆版 F36 静态验证样本",
+      "aliases": [
+        "F36F9A3D06F3C4E5",
+        "6.6-shanzai-guoqing-f36"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "static-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "size": 1148928,
+        "sha256": "F36F9A3D06F3C4E52F32320FAE4633D0EADC9B7863F410EA7532B3C45E2ABF88"
+      },
+      "addressPolicy": "固定 VA 只对该 SHA 样本成立；本条目只有静态证据，实际战斗行为和写回可用性仍需动态验证。其它 6.6/6.6x 作品必须重新做签名、原字节和调用约定核对。",
+      "sourceRefs": [
+        "src.ccz.f36.exe",
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034",
+        "src.history.local.godtype-f36-synthesis"
+      ]
     }
   ]
 }

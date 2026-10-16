@@ -2,7 +2,58 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.6/data/structures/runtime-structures.json`
+结构化事实来源：`6.6/data/structures/f36-shanzai-structures.json`、`6.6/data/structures/runtime-structures.json`
+
+## F36 人物运行时记录
+
+ID: `struct.66.f36.character-record`；状态: `canonical`；证据: `static-verified`
+
+步长: `0x48` (72)
+
+索引公式: `DWORD[0x004CEA00] + data_id * 0x48 + field_offset`
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `record_key_low12` | `0x0` | 2 | `uint16` | 当前转换函数使用的记录键低 12 位 |
+| `job_id` | `0x2B` | 1 | `uint8` | 当前样本转换链读取的兵种字段 |
+
+## F36 战场单位记录
+
+ID: `struct.66.f36.battle-unit-record`；状态: `canonical`；证据: `static-verified`
+
+步长: `0x30` (48)
+
+索引公式: `0x004A7B20 + battlefield_id * 0x30 + field_offset`
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `data_id_or_unit_key` | `0x0` | 4 | `uint32` | 当前 0043E4D6 转换循环解引用并比较的首字段；具体编码仍需运行时确认 |
+
+## F36 物品记录
+
+ID: `struct.66.f36.item-record`；状态: `canonical`；证据: `static-verified`
+
+步长: `0x19` (25)
+
+索引公式: `0x0049F820 + item_id * 0x19 + field_offset`
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `name` | `0x0` | 15 | `fixed-string` | 名称；编码和终止规则需按资源样本复读 |
+| `icon` | `0xF` | 1 | `uint8` | 图标编号 |
+| `effect_value` | `0x16` | 1 | `uint8` | 特效值候选字段 |
+
+## F36 策略记录
+
+ID: `struct.66.f36.strategy-record`；状态: `canonical`；证据: `static-verified`
+
+步长: `0x61` (97)
+
+索引公式: `0x004A3E77 + strategy_id * 0x61 + field_offset`
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `opaque_strategy_payload` | `0x0` | 97 | `opaque-bytes` | 记录步长已由静态乘法确认；字段语义仍需逐项复核 |
 
 ## 6.6 特效分配记录（4+2）
 

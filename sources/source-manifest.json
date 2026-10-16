@@ -818,6 +818,70 @@
       "sourceType": "first-party-source",
       "usedFor": "测试样本固定地址与 17 个 S 调用者断言",
       "published": false
+    },
+    {
+      "id": "src.forum.godtype.194034",
+      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=194034",
+      "sha256": "057F7E0E117C8375EB759CA8C9FE563053BB1F742956A68249CA03C9E7D5E28F",
+      "sourceType": "web-forum-thread",
+      "usedFor": "godtype OllyDbg 教程三页正文、回复和版本迁移方法",
+      "published": false
+    },
+    {
+      "id": "src.forum.godtype.194034.offline",
+      "path": "制作区帖子备份/godtype/如何使用Ollydbg修改曹操传引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "sha256": "B1C8460D0427A206CC92F3DD4F3959C8F69F89141B66B2702D0ADE378638021A",
+      "sourceType": "web-forum-offline-backup",
+      "usedFor": "主帖离线复核和论坛分页正文备份",
+      "published": false
+    },
+    {
+      "id": "src.history.local.godtype-f36-synthesis",
+      "path": "工具整合包/本地知识库/09-版本与外部资料/godtype-OllyDbg教程与复刻版6.6山贼验证.md",
+      "sha256": "C47AE5FA71DCC128BD112B201304106173CAB9BCB0994A2C98D03B3E7C1E0762",
+      "sourceType": "local-knowledge-synthesis",
+      "usedFor": "上一轮对话形成的论坛三页归纳、F36 静态验证和迁移边界",
+      "published": false
+    },
+    {
+      "id": "src.forum.star175.296955",
+      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=296955",
+      "sha256": "02CEB06B365C9604F1E6A325EA596FBE1AE99B9FA8A0767D9190A02E56122E7D",
+      "sourceType": "web-forum-thread",
+      "usedFor": "star175 EXE/Imsg 修改器 6.0 兼容边界和策略修改讨论",
+      "published": false
+    },
+    {
+      "id": "src.forum.star175.296955.p2",
+      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=296955&page=2",
+      "sha256": "0F30B66805F2B2058BA456F560D5B038132E5155F1E7A70E591DD41A7C4B5509",
+      "sourceType": "web-forum-thread-page",
+      "usedFor": "star175 修改器第 2 页策略天气、四神限制和 CM 运行库回复",
+      "published": false
+    },
+    {
+      "id": "src.forum.star175.296955.p3",
+      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=296955&page=3",
+      "sha256": "4860DE289BB4C3981AE1BDEBDCC2F44F1F13D0A53932CBD8B35B8871B4508A3D",
+      "sourceType": "web-forum-thread-page",
+      "usedFor": "star175 修改器第 3 页版本和工具兼容性回复",
+      "published": false
+    },
+    {
+      "id": "src.ccz.f36.exe",
+      "path": "基底/复刻版6.6山贼 国庆/Ekd5.exe",
+      "sha256": "F36F9A3D06F3C4E52F32320FAE4633D0EADC9B7863F410EA7532B3C45E2ABF88",
+      "sourceType": "sample-binary",
+      "usedFor": "复刻版 6.6 山贼国庆版静态验证目标",
+      "published": false
+    },
+    {
+      "id": "src.ccz.f36.static-report",
+      "path": "CCZModStudio_Reports/StaticAnalysis/F36F9A3D06F3C4E5-5bb3c09c1661fd3a/delivery-audit.json",
+      "sha256": "F8325232154C3745CF32687830AEC259DFFD18D6EE5C221ED8A8AA675F137A48",
+      "sourceType": "static-analysis-report",
+      "usedFor": "F36 样本指令、函数、交叉引用和静态验证边界",
+      "published": false
     }
   ]
 }

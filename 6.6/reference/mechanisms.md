@@ -2,7 +2,26 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.6/data/mechanisms/xiaoan-speed-chain.json`
+结构化事实来源：`6.6/data/mechanisms/f36-shanzai-ollydbg-research.json`、`6.6/data/mechanisms/xiaoan-speed-chain.json`
+
+## 从旧 OllyDbg 地址迁移到 F36 样本
+
+ID: `mechanism.66.f36.ollydbg-migration`；状态: `candidate`；证据: `source-reviewed`
+
+1. `fn.66.f36.data-id-to-character-record`：先确认人物记录步长和指针槽
+2. `fn.66.f36.battlefield-id-to-unit-record`：再确认战场单位记录入口和寄存器契约
+3. `fn.66.f36.data-id-to-battlefield-id`：最后用遍历函数核对哨兵和边界
+
+## F36 SP 累积代码与旧 00410FFF 补丁的偏移差异
+
+ID: `mechanism.66.f36.sp-accumulation-layout`；状态: `candidate`；证据: `static-verified`
+
+
+计算规则：
+
+- `当前序列：MOV EDX,[EBP+8] -> CMP CL,2 -> JL 0041100C -> SHR EDX,1 / SHR EDX,2`
+- `旧回复候选：把 00410FFF 和 00411003 附近的 SHR 改为 XOR EDX,EDX，并在 00411005 补 NOP`
+- `迁移结论：先以完整指令和当前原字节重定位；没有 F36 expectedBytes 时保持只读`
 
 ## 小暗 S 超级加速等待链
 

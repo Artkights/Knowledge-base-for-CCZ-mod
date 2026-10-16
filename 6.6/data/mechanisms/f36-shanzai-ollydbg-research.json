@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz66.shanzai.guoqing.f36",
+  "entries": [
+    {
+      "id": "mechanism.66.f36.ollydbg-migration",
+      "title": "从旧 OllyDbg 地址迁移到 F36 样本",
+      "aliases": ["godtype 教程迁移流程", "版本地址差异护栏"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "summary": "旧教程适合学习 x86 调试方法和调用关系推理，不适合作为 F36 的固定补丁表。地址必须先绑定 SHA，再用原字节、完整指令边界、调用约定和交叉引用重定位。",
+      "steps": [
+        {"order": 1, "entity": "fn.66.f36.data-id-to-character-record", "role": "先确认人物记录步长和指针槽"},
+        {"order": 2, "entity": "fn.66.f36.battlefield-id-to-unit-record", "role": "再确认战场单位记录入口和寄存器契约"},
+        {"order": 3, "entity": "fn.66.f36.data-id-to-battlefield-id", "role": "最后用遍历函数核对哨兵和边界"}
+      ],
+      "inputs": [
+        "目标 Ekd5.exe SHA256、大小和 PE 映射",
+        "旧教程地址或机器码片段",
+        "当前样本静态指令和直接引用报告",
+        "可回滚测试副本"
+      ],
+      "procedure": [
+        {"order": 1, "action": "固定样本身份，记录 SHA256、ImageBase、区段和入口"},
+        {"order": 2, "action": "把旧地址降级为搜索种子，不把地址本身当作语义"},
+        {"order": 3, "action": "优先搜索步长、常量、原字节和调用形状，确认完整指令边界"},
+        {"order": 4, "action": "沿调用者和被调用者复核参数位置、寄存器返回、栈清理和 EFLAGS"},
+        {"order": 5, "action": "分别建立静态事实、旧版参照和未闭环假设，禁止混写"},
+        {"order": 6, "action": "只有在测试副本上记录 expectedBytes、覆盖长度、回跳和冲突后才生成写回候选"},
+        {"order": 7, "action": "静态复读后用正负运行时样本验证字段时序、哨兵和行为"},
+        {"order": 8, "action": "保存后重新打开并复读字节、哈希、跳转落点和未改区域"}
+      ],
+      "gates": [
+        "F36 样本与其它 6.6 文件 SHA 不同则重新定位",
+        "地址落在另一条指令中时停止，不向中间字节写入",
+        "没有原字节、指令边界、ABI 或回滚信息时保持只读",
+        "静态报告 runtime_verified=false 时不得宣称实机行为已验证"
+      ],
+      "outputs": [
+        "画像记录",
+        "结构/函数实体",
+        "地址迁移对照表",
+        "待验证队列",
+        "可回滚静态审计报告"
+      ],
+      "rollback": [
+        "丢弃未通过门禁的写回预览",
+        "恢复测试副本备份",
+        "保留失败分支和原字节记录，不叠加未知补丁"
+      ],
+      "relations": [
+        "fn.66.f36.data-id-to-character-record",
+        "fn.66.f36.battlefield-id-to-unit-record",
+        "fn.66.f36.data-id-to-battlefield-id"
+      ],
+      "sourceRefs": ["src.forum.godtype.194034", "src.ccz.f36.static-report", "src.ccz.f36.exe"]
+    },
+    {
+      "id": "mechanism.66.f36.sp-accumulation-layout",
+      "title": "F36 SP 累积代码与旧 00410FFF 补丁的偏移差异",
+      "aliases": ["00411000", "SHR EDX", "Star 引擎 SP 累积"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "论坛回复给出的旧 Star 引擎代码从 00410FFF 开始；F36 中对应指令从 00411000 开始，且当前条件跳转序列为 CMP CL,2 / JL。该差异证明旧补丁不能按地址直接写入。",
+      "currentSequence": [
+        "0x00411000: MOV EDX,[EBP+0x8]",
+        "0x00411003: CMP CL,0x2",
+        "0x00411006: JL 0x0041100C",
+        "0x00411008: SHR EDX,1",
+        "0x0041100C: SHR EDX,2",
+        "0x0041100F: CMP DWORD PTR [EBP+0x8],0"
+      ],
+      "algorithm": [
+        "当前序列：MOV EDX,[EBP+8] -> CMP CL,2 -> JL 0041100C -> SHR EDX,1 / SHR EDX,2",
+        "旧回复候选：把 00410FFF 和 00411003 附近的 SHR 改为 XOR EDX,EDX，并在 00411005 补 NOP",
+        "迁移结论：先以完整指令和当前原字节重定位；没有 F36 expectedBytes 时保持只读"
+      ],
+      "oldExternalCandidate": "旧回复将 00410FFF/00411003 的 SHR 改为 XOR EDX,EDX，并补 NOP；该替换没有 F36 原字节、覆盖边界或运行时验证，不得用于当前样本。",
+      "addresses": [
+        {
+          "kind": "va",
+          "value": "0x00411000",
+          "profile": "profile.ccz66.shanzai.guoqing.f36",
+          "evidence": "static-verified"
+        }
+      ],
+      "relations": [],
+      "sourceRefs": ["src.forum.godtype.194034", "src.ccz.f36.static-report"]
+    }
+  ]
+}

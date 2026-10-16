@@ -1592,6 +1592,75 @@
       "sourceRefs": [
         "src.ccz.eex-reader"
       ]
+    },
+    {
+      "id": "research.66.f36.context-field-semantics",
+      "title": "F36 三类战斗上下文偏移和生命周期动态复核",
+      "versions": [
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "static-base-only",
+      "known": [
+        "0x004927F0、0x00497AF8、0x00497750 在 F36 中有直接代码引用",
+        "旧教程把 0x004927F0+0x60C/0x610 描述为挨打动作横纵位移，但该字段语义未在 F36 实机闭环",
+        "静态报告 runtime_verified=false，不能用基址引用代替字段行为证据"
+      ],
+      "needed": [
+        "按物理攻击、策略、道具、失败、反击和多目标场景采集断点前后值",
+        "确认数组容量、字段宽度、清零时机和嵌套攻击生命周期",
+        "为每个可写字段补齐运行时证据和回滚约束"
+      ],
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "research.66.f36.conversion-return-contracts",
+      "title": "F36 记录指针转换函数的业务参数和返回寄存器",
+      "versions": [
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "static-candidate",
+      "known": [
+        "0x00477ADC 会遍历单位、调用 0x00482715 取记录首字低 12 位，并存在 AL=0xFF 路径",
+        "0x004796DC 预压入 0xFFFF，遍历单位并调用 0x0045F670 后比较输入值",
+        "静态反编译没有形成足够稳定的最终寄存器返回和业务命名"
+      ],
+      "needed": [
+        "用已知在场和不在场 Data/人物记录分别命中两个入口",
+        "记录 ECX、EAX、AL、栈清理和调用者后续使用的真实契约",
+        "确认 AL=0xFF 与 EAX=0xFFFF 是否分别为当前版本稳定哨兵"
+      ],
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "research.66.f36.damage-display-candidate",
+      "title": "F36 伤害数字显示候选调用链",
+      "versions": [
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "forum-counterexample",
+      "known": [
+        "论坛第 3 页给出 0x0044FB16、0x0044FB66 两段候选代码",
+        "原作者明确表示两段代码对伤害显示貌似没有作用",
+        "本轮没有启动游戏或复现该行为"
+      ],
+      "needed": [
+        "在 F36 测试副本中对普通伤害、策略伤害、治疗和无效行动分别断点",
+        "区分数值计算、显示队列和动画播放三个调用阶段",
+        "只有完成正负样本闭环后才建立函数或 Hook 实体"
+      ],
+      "sourceRefs": [
+        "src.forum.godtype.194034",
+        "src.ccz.f36.exe"
+      ]
     }
   ]
 }

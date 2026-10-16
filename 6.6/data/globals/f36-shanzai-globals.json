@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz66.shanzai.guoqing.f36",
+  "entries": [
+    {
+      "id": "global.66.f36.physical-context",
+      "title": "F36 物理攻击上下文基址",
+      "aliases": ["0x004927F0"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004927F0",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "当前样本中被多处直接引用的物理攻击上下文；旧教程字段名、数组容量和时序尚未逐项动态确认。",
+      "relations": [],
+      "sourceRefs": ["src.ccz.f36.static-report", "src.forum.godtype.194034"]
+    },
+    {
+      "id": "global.66.f36.strategy-context",
+      "title": "F36 策略上下文基址",
+      "aliases": ["0x00497AF8"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00497AF8",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "当前样本中被策略结算代码直接引用的上下文基址；偏移字段和策略效果生命周期保持待动态验证。",
+      "relations": [],
+      "sourceRefs": ["src.ccz.f36.static-report", "src.forum.godtype.194034"]
+    },
+    {
+      "id": "global.66.f36.item-context",
+      "title": "F36 物品使用上下文基址",
+      "aliases": ["0x00497750"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00497750",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "width": 0,
+      "semantics": "当前样本中被道具使用代码直接引用的上下文基址；字段语义不能从基址引用单独推出。",
+      "relations": [],
+      "sourceRefs": ["src.ccz.f36.static-report", "src.forum.godtype.194034"]
+    },
+    {
+      "id": "global.66.f36.character-pointer-slot",
+      "title": "F36 人物表指针槽",
+      "aliases": ["0x004CEA00"],
+      "versions": ["6.6"],
+      "profile": "profile.ccz66.shanzai.guoqing.f36",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "pointerSlot",
+        "value": "0x004CEA00",
+        "profile": "profile.ccz66.shanzai.guoqing.f36",
+        "evidence": "static-verified"
+      },
+      "width": 4,
+      "semantics": "人物记录数组的运行时指针槽；当前记录步长为 0x48。",
+      "relations": [],
+      "sourceRefs": ["src.ccz.f36.static-report"]
+    }
+  ]
+}
