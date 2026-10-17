@@ -31,17 +31,25 @@ ID: `struct.66.f36.battle-unit-record`；状态: `canonical`；证据: `static-v
 
 ## F36 物品记录
 
-ID: `struct.66.f36.item-record`；状态: `canonical`；证据: `static-verified`
+ID: `struct.66.f36.item-record`；状态: `canonical`；证据: `sample-verified`
 
 步长: `0x19` (25)
 
-索引公式: `0x0049F820 + item_id * 0x19 + field_offset`
+索引公式: `0x0049F820 + item_id * 0x19 + field_offset（ID 0..254 有效；255 为 FF-End 哨兵）`
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
-| `name` | `0x0` | 15 | `fixed-string` | 名称；编码和终止规则需按资源样本复读 |
+| `name` | `0x0` | 15 | `fixed-string` | 名称 |
 | `icon` | `0xF` | 1 | `uint8` | 图标编号 |
-| `effect_value` | `0x16` | 1 | `uint8` | 特效值候选字段 |
+| `reserved_0x10` | `0x10` | 1 | `uint8` | 预留；本样本未发现读写者 |
+| `effect_code` | `0x11` | 1 | `uint8` | 类型/实际特效号；辅助品与道具段取此字节（回复类：0x1A=回复 HP、0x1B=回复 MP） |
+| `equip_effect` | `0x12` | 1 | `uint8` | 武器/防具特效号（0xFF=无特效）；辅助品恒为 2、消耗品恒为 3 的类别标记 |
+| `price_raw` | `0x13` | 1 | `uint8` | 价格原始值，显示价格 = 本值 × 100；0xFF 表示不出售 |
+| `effect_class` | `0x14` | 1 | `uint8` | 装备效果类号（0..8）；经 0x0040678E 解码，249/255 物品不参与（解码为 0xFF） |
+| `value` | `0x15` | 1 | `uint8` | 效果值：装备为能力值，回复类道具为回复量 |
+| `value_aux` | `0x16` | 1 | `uint8` | 附加数值/特效值 |
+| `growth` | `0x17` | 1 | `uint8` | 成长 |
+| `catalog_flag` | `0x18` | 1 | `uint8` | 图鉴/宝物标志 |
 
 ## F36 策略记录
 

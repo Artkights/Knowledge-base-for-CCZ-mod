@@ -2,10 +2,10 @@
   "schemaVersion": 3,
   "structuredAuthority": "version-data-json",
   "generatedBy": "tools/build_index.py",
-  "entityCount": 482,
+  "entityCount": 488,
   "statusCounts": {
     "candidate": 341,
-    "canonical": 126,
+    "canonical": 132,
     "legacy-reference": 15
   },
   "structuredFiles": [
@@ -70,12 +70,20 @@
       "sha256": "90314D8957D0BB8F4011E6BF8F162D478E074C571DB42D64C5A8177D46A4D707"
     },
     {
+      "path": "6.6/data/functions/shanzai-item-functions.json",
+      "sha256": "01B6AF6A01B2630B3467BA75CC512FFB9B89F67E8099441262EA32E0A197C117"
+    },
+    {
       "path": "6.6/data/functions/xiaoan-speed-functions.json",
       "sha256": "995B8A19309A79C9870824357D2F989DE587AB56DB99F6E1FBFD7F15F81637A4"
     },
     {
       "path": "6.6/data/globals/f36-shanzai-globals.json",
       "sha256": "E365FF06ABED30C6ABDA72C698DB2F1E6956A2E72CC6A954862532C6182EE27A"
+    },
+    {
+      "path": "6.6/data/globals/shanzai-item-globals.json",
+      "sha256": "F6DAB937792F97895C445D9CF2B45BB9567504247A196D9AF0945187D04DAB32"
     },
     {
       "path": "6.6/data/globals/xiaoan-speed-globals.json",
@@ -103,7 +111,7 @@
     },
     {
       "path": "6.6/data/profiles/engine-profiles.json",
-      "sha256": "6F4533E8A327DE6D01F632E7E7FC77DDB1D09B8A7CDFAA33A1CE79CF592FC88C"
+      "sha256": "7999E1CBE9D565BA1E7D4E296A314310B1F300E06CC80B3EF5B46169F5914BCA"
     },
     {
       "path": "6.6/data/profiles/legacy-patch-profiles.json",
@@ -115,7 +123,7 @@
     },
     {
       "path": "6.6/data/structures/f36-shanzai-structures.json",
-      "sha256": "A4DE399ECCAC7C1A79E8510C2BF50CC047F408F9131C8FDCB24BE75EF0058E03"
+      "sha256": "846BCAE9F3D9C6C7DB57B541E9053376F27FA68E733CC447A576531E03953CEC"
     },
     {
       "path": "6.6/data/structures/runtime-structures.json",
@@ -3729,6 +3737,45 @@
       ]
     },
     {
+      "id": "fn.66.equip-effect-slot-scan",
+      "entityType": "function",
+      "title": "6.6 装备槽特效判定",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004079DA",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "fn.66.equip-effect-slot-scan",
+        "6.6 装备槽特效判定",
+        "0x004079DA",
+        "0x00407AED",
+        "装备特效判定",
+        "遍历 3 个装备槽：槽 2（辅助品）用 0x0043AD20 读物品 +0x11；槽 0/1（武器/防具）用 0x0043AD29 读 +0x14；与目标特效号比较，命中即返回 1。姊妹入口 0x00407AED（RET 8）在命中后经 0x0041DD72 读 +0x15 效果值。",
+        "__stdcall",
+        "[EBP+0x8] 目标特效号（本入口 RET 4）",
+        "EAX = 1 命中 / 0 未命中",
+        "6.6",
+        "profile.ccz66.shanzai.work.aa0f",
+        "va",
+        "sample-verified",
+        "struct.66.f36.item-record",
+        "fn.66.item-effect-class-decode"
+      ],
+      "structuredDataPath": "6.6/data/functions/shanzai-item-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe"
+      ]
+    },
+    {
       "id": "fn.66.f36.battlefield-id-to-unit-record",
       "entityType": "function",
       "title": "F36 战场编号到单位记录",
@@ -3985,6 +4032,121 @@
       "referencePath": "6.6/reference/functions.md",
       "sourceRefs": [
         "src.ccz.f36.static-report"
+      ]
+    },
+    {
+      "id": "fn.66.item-effect-class-decode",
+      "entityType": "function",
+      "title": "6.6 物品装备效果类号解码",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040678E",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "fn.66.item-effect-class-decode",
+        "6.6 物品装备效果类号解码",
+        "0x0040678E",
+        "+0x14 类号解码",
+        "读物品 +0x14：等于 0x5C 返回 9；等于 0xFE 返回 10；(值−0x20) ≤ 8 时查 0x004067C5 映射表（0,1,2,3,4,5,6,8,7）；其余返回 0xFF。",
+        "__stdcall",
+        "[EBP+0x8] 物品 ID",
+        "AL = 0..10，或 0xFF 表示不参与；RET 4",
+        "6.6",
+        "profile.ccz66.shanzai.work.aa0f",
+        "va",
+        "sample-verified",
+        "global.66.item-effect-class-dispatch"
+      ],
+      "structuredDataPath": "6.6/data/functions/shanzai-item-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe"
+      ]
+    },
+    {
+      "id": "fn.66.item-record-index",
+      "entityType": "function",
+      "title": "6.6 物品记录定位",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004837C2",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "fn.66.item-record-index",
+        "6.6 物品记录定位",
+        "0x004837C2",
+        "物品表索引",
+        "item-table-index",
+        "运行时物品行基址。ID 0..254 为有效物品，255 为 FF-End 哨兵行。磁盘侧分段：ID 0..103 取 Data.e5 的 0x818C + ID*0x19，ID 104..254 取 Star.e5 的 (ID-104)*0x19。",
+        "register-context",
+        "ECX = 物品 ID（0..255）",
+        "ECX = 0x0049F820 + ECX * 0x19；无栈清理",
+        "6.6",
+        "profile.ccz66.shanzai.work.aa0f",
+        "va",
+        "sample-verified",
+        "struct.66.f36.item-record"
+      ],
+      "structuredDataPath": "6.6/data/functions/shanzai-item-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.ccz.shanzai.item.table-report"
+      ]
+    },
+    {
+      "id": "fn.66.item-restore-hpmp",
+      "entityType": "function",
+      "title": "6.6 恢复 HP/MP 道具的恢复量计算",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043C44A",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "fn.66.item-restore-hpmp",
+        "6.6 恢复 HP/MP 道具的恢复量计算",
+        "0x0043C44A",
+        "回复道具恢复量",
+        "按特效号分支：0x1A 回复 HP、0x1B 回复 MP、0x28 为第三类。上限走 0x407263（总 HP）/0x40728F（总 MP）链，当前值取单位 +0x10；效果值由 0x0041DD72 读物品 +0x15。",
+        "__stdcall",
+        "[EBP+0x8] 物品 ID（word）；[EBP+0xC] 受用者单位指针",
+        "EAX = min(效果值, 上限 − 当前值)；效果值为 0xFF 时直接取 上限 − 当前值（全恢复）；RET 8",
+        "6.6",
+        "profile.ccz66.shanzai.work.aa0f",
+        "va",
+        "sample-verified",
+        "struct.66.f36.item-record",
+        "fn.66.item-record-index"
+      ],
+      "structuredDataPath": "6.6/data/functions/shanzai-item-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.ccz.shanzai.item.restore-report"
       ]
     },
     {
@@ -5548,6 +5710,42 @@
       "sourceRefs": [
         "src.ccz.f36.static-report",
         "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "global.66.item-effect-class-dispatch",
+      "entityType": "global",
+      "title": "6.6 装备效果类号分发表",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00430000",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "global.66.item-effect-class-dispatch",
+        "6.6 装备效果类号分发表",
+        "0x00430000",
+        "item-effect-class-dispatch",
+        "6.6",
+        "profile.ccz66.shanzai.work.aa0f",
+        "va",
+        "sample-verified",
+        "function-pointer-table",
+        "8 项 VA 表，类 0..7 依次为 0x0040715A / 0x0040718F / 0x004071C4 / 0x004071F9 / 0x0040722E / 0x00407263 / 0x0040728F / 0x004072BB；类 8 = 0x00407FAA 不在表内（其返回值为类号 + 100）。",
+        "静态常量表，启动期不变；由 0x0040678E 的解码结果索引。",
+        "fn.66.item-effect-class-decode"
+      ],
+      "structuredDataPath": "6.6/data/globals/shanzai-item-globals.json",
+      "referencePath": "6.6/reference/globals.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe"
       ]
     },
     {
@@ -9687,6 +9885,35 @@
         "src.ccz.f36.static-report",
         "src.forum.godtype.194034",
         "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
+      "id": "profile.ccz66.shanzai.work.aa0f",
+      "entityType": "engine-profile",
+      "title": "复刻版 6.6 山贼工作样本（原地补丁修订态）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": null,
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": null,
+      "searchTerms": [
+        "profile.ccz66.shanzai.work.aa0f",
+        "复刻版 6.6 山贼工作样本（原地补丁修订态）",
+        "AA0F15B849D223F8",
+        "6.6-shanzai-work-aa0f",
+        "6.6",
+        "0x00400000",
+        "x86-pe32",
+        "Ekd5.exe",
+        "与 F36 基线同尺寸（1148928 B），差异来自原地字节补丁；本画像下的固定 VA 只对该 SHA 成立。其它 6.6/6.6x 作品必须按条目 aliases 中记录的原字节签名与操作数重新核对后才能套用。"
+      ],
+      "structuredDataPath": "6.6/data/profiles/engine-profiles.json",
+      "referencePath": "6.6/reference/profiles.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.ccz.shanzai.item.table-report"
       ]
     },
     {
@@ -17855,33 +18082,65 @@
       ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "canonical",
-      "evidence": "static-verified",
+      "evidence": "sample-verified",
       "address": null,
       "searchTerms": [
         "struct.66.f36.item-record",
         "F36 物品记录",
         "ItemRecord",
         "0x19 物品记录",
-        "0x0049F820 + item_id * 0x19 + field_offset",
+        "0x0049F820 物品表",
+        "item-66-15-v1",
+        "0x0049F820 + item_id * 0x19 + field_offset（ID 0..254 有效；255 为 FF-End 哨兵）",
         "name",
-        "名称；编码和终止规则需按资源样本复读",
+        "名称",
         "0x0",
         "icon",
         "图标编号",
         "0xF",
-        "effect_value",
-        "特效值候选字段",
+        "reserved_0x10",
+        "预留；本样本未发现读写者",
+        "0x10",
+        "effect_code",
+        "类型/实际特效号；辅助品与道具段取此字节（回复类：0x1A=回复 HP、0x1B=回复 MP）",
+        "0x11",
+        "equip_effect",
+        "武器/防具特效号（0xFF=无特效）；辅助品恒为 2、消耗品恒为 3 的类别标记",
+        "0x12",
+        "price_raw",
+        "价格原始值，显示价格 = 本值 × 100；0xFF 表示不出售",
+        "0x13",
+        "effect_class",
+        "装备效果类号（0..8）；经 0x0040678E 解码，249/255 物品不参与（解码为 0xFF）",
+        "0x14",
+        "value",
+        "效果值：装备为能力值，回复类道具为回复量",
+        "0x15",
+        "value_aux",
+        "附加数值/特效值",
         "0x16",
+        "growth",
+        "成长",
+        "0x17",
+        "catalog_flag",
+        "图鉴/宝物标志",
+        "0x18",
         "6.6",
         "profile.ccz66.shanzai.guoqing.f36",
         "little",
         "fixed-string",
-        "uint8"
+        "GBK, NUL-terminated",
+        "uint8",
+        "format.item.split-data-star",
+        "fn.66.item-record-index",
+        "fn.66.item-restore-hpmp",
+        "GBK"
       ],
       "structuredDataPath": "6.6/data/structures/f36-shanzai-structures.json",
       "referencePath": "6.6/reference/structures.md",
       "sourceRefs": [
-        "src.ccz.f36.static-report"
+        "src.ccz.f36.static-report",
+        "src.ccz.shanzai.item.table-report"
       ]
     },
     {

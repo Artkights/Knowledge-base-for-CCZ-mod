@@ -882,6 +882,30 @@
       "sourceType": "static-analysis-report",
       "usedFor": "F36 样本指令、函数、交叉引用和静态验证边界",
       "published": false
+    },
+    {
+      "id": "src.ccz.shanzai.work.aa0f.exe",
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "AA0F15B849D223F8A74ACB107CA7D0F9E2164DCAACC963C6B940DA2D245EF4E1",
+      "sourceType": "sample-binary",
+      "usedFor": "本轮物品行布局与道具恢复链的现读复核目标",
+      "published": false
+    },
+    {
+      "id": "src.ccz.shanzai.item.table-report",
+      "path": "工具整合包/本地知识库/07-数据表与资源/宝物物品设定.md",
+      "sha256": "DBCA7B523A23E906EB1D73B11CE6AB12F8918A7203F91CDFBC9CC634BBCECC73",
+      "sourceType": "local-knowledge-synthesis",
+      "usedFor": "物品行 11 字段与 255 行穷举复核结论",
+      "published": false
+    },
+    {
+      "id": "src.ccz.shanzai.item.restore-report",
+      "path": "工具整合包/本地知识库/03-机制详解/恢复HP-MP道具恢复量计算-6.6已定位.md",
+      "sha256": "D1BDD2E5B708D8C763EF2C335A93EAA1CF3AB95E7DCF9E04CC5C81CFE2A86C95",
+      "sourceType": "local-knowledge-synthesis",
+      "usedFor": "道具恢复量公式、特效号分支与数据侧互证",
+      "published": false
     }
   ]
 }

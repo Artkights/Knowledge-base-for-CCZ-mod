@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "entries": [
+    {
+      "id": "fn.66.item-record-index",
+      "title": "6.6 物品记录定位",
+      "aliases": [
+        "0x004837C2",
+        "物品表索引",
+        "item-table-index"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004837C2",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "sample-verified"
+      },
+      "callingConvention": "register-context",
+      "inputs": "ECX = 物品 ID（0..255）",
+      "returns": "ECX = 0x0049F820 + ECX * 0x19；无栈清理",
+      "semantics": "运行时物品行基址。ID 0..254 为有效物品，255 为 FF-End 哨兵行。磁盘侧分段：ID 0..103 取 Data.e5 的 0x818C + ID*0x19，ID 104..254 取 Star.e5 的 (ID-104)*0x19。",
+      "relations": [
+        "struct.66.f36.item-record"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.ccz.shanzai.item.table-report"
+      ]
+    },
+    {
+      "id": "fn.66.item-restore-hpmp",
+      "title": "6.6 恢复 HP/MP 道具的恢复量计算",
+      "aliases": [
+        "0x0043C44A",
+        "回复道具恢复量"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043C44A",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "sample-verified"
+      },
+      "callingConvention": "__stdcall",
+      "inputs": "[EBP+0x8] 物品 ID（word）；[EBP+0xC] 受用者单位指针",
+      "returns": "EAX = min(效果值, 上限 − 当前值)；效果值为 0xFF 时直接取 上限 − 当前值（全恢复）；RET 8",
+      "semantics": "按特效号分支：0x1A 回复 HP、0x1B 回复 MP、0x28 为第三类。上限走 0x407263（总 HP）/0x40728F（总 MP）链，当前值取单位 +0x10；效果值由 0x0041DD72 读物品 +0x15。",
+      "relations": [
+        "struct.66.f36.item-record",
+        "fn.66.item-record-index"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.ccz.shanzai.item.restore-report"
+      ]
+    },
+    {
+      "id": "fn.66.item-effect-class-decode",
+      "title": "6.6 物品装备效果类号解码",
+      "aliases": [
+        "0x0040678E",
+        "+0x14 类号解码"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040678E",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "sample-verified"
+      },
+      "callingConvention": "__stdcall",
+      "inputs": "[EBP+0x8] 物品 ID",
+      "returns": "AL = 0..10，或 0xFF 表示不参与；RET 4",
+      "semantics": "读物品 +0x14：等于 0x5C 返回 9；等于 0xFE 返回 10；(值−0x20) ≤ 8 时查 0x004067C5 映射表（0,1,2,3,4,5,6,8,7）；其余返回 0xFF。",
+      "relations": [
+        "global.66.item-effect-class-dispatch"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe"
+      ]
+    },
+    {
+      "id": "fn.66.equip-effect-slot-scan",
+      "title": "6.6 装备槽特效判定",
+      "aliases": [
+        "0x004079DA",
+        "0x00407AED",
+        "装备特效判定"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004079DA",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "sample-verified"
+      },
+      "callingConvention": "__stdcall",
+      "inputs": "[EBP+0x8] 目标特效号（本入口 RET 4）",
+      "returns": "EAX = 1 命中 / 0 未命中",
+      "semantics": "遍历 3 个装备槽：槽 2（辅助品）用 0x0043AD20 读物品 +0x11；槽 0/1（武器/防具）用 0x0043AD29 读 +0x14；与目标特效号比较，命中即返回 1。姊妹入口 0x00407AED（RET 8）在命中后经 0x0041DD72 读 +0x15 效果值。",
+      "relations": [
+        "struct.66.f36.item-record",
+        "fn.66.item-effect-class-decode"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe"
+      ]
+    }
+  ]
+}

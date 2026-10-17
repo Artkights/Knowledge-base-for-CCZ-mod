@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.6/data/globals/f36-shanzai-globals.json`、`6.6/data/globals/xiaoan-speed-globals.json`
+结构化事实来源：`6.6/data/globals/f36-shanzai-globals.json`、`6.6/data/globals/shanzai-item-globals.json`、`6.6/data/globals/xiaoan-speed-globals.json`
 
 | 全局量 | 地址 | 宽度 | 含义 | 状态/证据 |
 |---|---|---|---|---|
@@ -10,6 +10,7 @@
 | `global.66.f36.strategy-context` F36 策略上下文基址 | `0x00497AF8` (va) | 0 | 当前样本中被策略结算代码直接引用的上下文基址；偏移字段和策略效果生命周期保持待动态验证。 | `canonical` / `static-verified` |
 | `global.66.f36.item-context` F36 物品使用上下文基址 | `0x00497750` (va) | 0 | 当前样本中被道具使用代码直接引用的上下文基址；字段语义不能从基址引用单独推出。 | `canonical` / `static-verified` |
 | `global.66.f36.character-pointer-slot` F36 人物表指针槽 | `0x004CEA00` (pointerSlot) | 4 | 人物记录数组的运行时指针槽；当前记录步长为 0x48。 | `canonical` / `static-verified` |
+| `global.66.item-effect-class-dispatch` 6.6 装备效果类号分发表 | `0x00430000` (va) | 32 | - | `canonical` / `sample-verified` |
 | `global.66.xiaoan.native-super-state` 原生超级加速状态 | `0x00500ADB` (va) | 1 | 0/1 开关状态 | `canonical` / `sample-verified` |
 | `global.66.xiaoan.native-super-busy` 原生超级加速忙标志 | `0x00500E0C` (va) | 1 | 防重入忙标志 | `canonical` / `sample-verified` |
 | `global.66.xiaoan.phase` 当前阶段 | `0x004B3D18` (va) | 1 | 0..2 阶段索引 | `canonical` / `sample-verified` |

@@ -6,8 +6,13 @@
     {
       "id": "struct.66.f36.character-record",
       "title": "F36 人物运行时记录",
-      "aliases": ["CharacterRecord", "0x48 人物记录"],
-      "versions": ["6.6"],
+      "aliases": [
+        "CharacterRecord",
+        "0x48 人物记录"
+      ],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "canonical",
       "evidence": "static-verified",
@@ -32,14 +37,23 @@
           "meaning": "当前样本转换链读取的兵种字段"
         }
       ],
-      "relations": ["global.66.f36.character-pointer-slot"],
-      "sourceRefs": ["src.ccz.f36.static-report"]
+      "relations": [
+        "global.66.f36.character-pointer-slot"
+      ],
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
     },
     {
       "id": "struct.66.f36.battle-unit-record",
       "title": "F36 战场单位记录",
-      "aliases": ["BattleUnit", "0x30 战场单位记录"],
-      "versions": ["6.6"],
+      "aliases": [
+        "BattleUnit",
+        "0x30 战场单位记录"
+      ],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "canonical",
       "evidence": "static-verified",
@@ -58,20 +72,30 @@
         }
       ],
       "relations": [],
-      "sourceRefs": ["src.ccz.f36.static-report", "src.forum.godtype.194034"]
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
     },
     {
       "id": "struct.66.f36.item-record",
       "title": "F36 物品记录",
-      "aliases": ["ItemRecord", "0x19 物品记录"],
-      "versions": ["6.6"],
+      "aliases": [
+        "ItemRecord",
+        "0x19 物品记录",
+        "0x0049F820 物品表",
+        "item-66-15-v1"
+      ],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "canonical",
-      "evidence": "static-verified",
+      "evidence": "sample-verified",
       "baseRef": null,
       "recordCount": 255,
       "stride": 25,
-      "indexFormula": "0x0049F820 + item_id * 0x19 + field_offset",
+      "indexFormula": "0x0049F820 + item_id * 0x19 + field_offset（ID 0..254 有效；255 为 FF-End 哨兵）",
       "endianness": "little",
       "fields": [
         {
@@ -79,7 +103,8 @@
           "offset": "0x0",
           "width": 15,
           "type": "fixed-string",
-          "meaning": "名称；编码和终止规则需按资源样本复读"
+          "meaning": "名称",
+          "encoding": "GBK, NUL-terminated"
         },
         {
           "name": "icon",
@@ -89,21 +114,90 @@
           "meaning": "图标编号"
         },
         {
-          "name": "effect_value",
+          "name": "reserved_0x10",
+          "offset": "0x10",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "预留；本样本未发现读写者"
+        },
+        {
+          "name": "effect_code",
+          "offset": "0x11",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "类型/实际特效号；辅助品与道具段取此字节（回复类：0x1A=回复 HP、0x1B=回复 MP）"
+        },
+        {
+          "name": "equip_effect",
+          "offset": "0x12",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "武器/防具特效号（0xFF=无特效）；辅助品恒为 2、消耗品恒为 3 的类别标记"
+        },
+        {
+          "name": "price_raw",
+          "offset": "0x13",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "价格原始值，显示价格 = 本值 × 100；0xFF 表示不出售"
+        },
+        {
+          "name": "effect_class",
+          "offset": "0x14",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "装备效果类号（0..8）；经 0x0040678E 解码，249/255 物品不参与（解码为 0xFF）"
+        },
+        {
+          "name": "value",
+          "offset": "0x15",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "效果值：装备为能力值，回复类道具为回复量"
+        },
+        {
+          "name": "value_aux",
           "offset": "0x16",
           "width": 1,
           "type": "uint8",
-          "meaning": "特效值候选字段"
+          "meaning": "附加数值/特效值"
+        },
+        {
+          "name": "growth",
+          "offset": "0x17",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "成长"
+        },
+        {
+          "name": "catalog_flag",
+          "offset": "0x18",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "图鉴/宝物标志"
         }
       ],
-      "relations": [],
-      "sourceRefs": ["src.ccz.f36.static-report"]
+      "relations": [
+        "format.item.split-data-star",
+        "fn.66.item-record-index",
+        "fn.66.item-restore-hpmp"
+      ],
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.ccz.shanzai.item.table-report"
+      ],
+      "encoding": "GBK"
     },
     {
       "id": "struct.66.f36.strategy-record",
       "title": "F36 策略记录",
-      "aliases": ["StrategyRecord", "0x61 策略记录"],
-      "versions": ["6.6"],
+      "aliases": [
+        "StrategyRecord",
+        "0x61 策略记录"
+      ],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "canonical",
       "evidence": "static-verified",
@@ -122,7 +216,9 @@
         }
       ],
       "relations": [],
-      "sourceRefs": ["src.ccz.f36.static-report"]
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
     }
   ]
 }
