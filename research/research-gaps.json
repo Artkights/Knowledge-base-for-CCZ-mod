@@ -1661,6 +1661,85 @@
         "src.forum.godtype.194034",
         "src.ccz.f36.exe"
       ]
+    },
+    {
+      "id": "research.shared.strategy-animation-secondary-composition",
+      "title": "Meff/Mcall 辅助图层、混合与游戏播放时序",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "source-reviewed-partial",
+      "known": [
+        "20字节记录区、主平面索引、RAW8/嵌入BMP边界和附加palette可由源码/多样本识别。",
+        "部分播放记录+4参数非零时消费者读取次平面；record+3参与百分比透明混合调用链。两者不能简化为普通overlay；编辑器按已确认的位置/透明度预览，原场景背景和特殊辅助遮罩保留。",
+        "Weather的216×50四帧循环已有精确样本静态消费者证据，但完整游戏调用间隔/混合行为尚未运行时追踪。",
+        "6.5消费者将header+4除50得到tick；编辑器可观察的毫秒预览间隔不代表完整游戏线程调度。"
+      ],
+      "needed": [
+        "为不同Meff/Mcall样本绑定EXE消费者与记录+2、+4、+8..+19的坐标/透明/混合参数语义。",
+        "在隔离游戏运行中逐帧对比主/辅助平面、palette切换、循环/声音与时钟；不能用编辑器能解码代替游戏实际合成验收。",
+        "发现未知计数布局时保留原始载荷并以诊断降级，未确认前不开放辅助层参数写入。"
+      ],
+      "sourceRefs": [
+        "src.data-manager.image-animation",
+        "src.data-manager.image-weather-evidence",
+        "src.data-manager.image-animation-consumer-evidence",
+        "src.data-manager.image-animation-mixer-evidence",
+        "src.data-manager.image-animation-thread-evidence",
+        "src.data-manager.image-pixel-mix-evidence",
+        "src.data-manager.image-color-mix-evidence"
+      ]
+    },
+    {
+      "id": "research.shared.hybrid-raw-item-icon-geometry",
+      "title": "厚黑6.6混合资源 RAW Item.e5 几何与消费者",
+      "versions": [
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "sample-structure-only",
+      "known": [
+        "精确SHA样本A99DDD69的PE固定版本FilePrivatePart=6，尽管本地化文本为1,0,0,1，资源仍可使用Itemicon.dll。",
+        "E5/Item.e5具有126条RAW载荷，106条1024字节、20条1026字节；缺少标准图头，不应从总字节数或偶数条目推出63对图标。",
+        "当前已验证Itemicon.dll可读取171对16/32图片，作为资源选择回退；未知RAW原件保留。"
+      ],
+      "needed": [
+        "追踪对应EXE实际打开RAW Item的消费者、宽高、附加2字节含义、配对和透明规则。",
+        "绑定原始容器/样本SHA并提供逐项像素或游戏预览闭环，在此之前不开放该RAW图标读写或自动迁移转换。"
+      ],
+      "sourceRefs": [
+        "src.data-manager.hybrid-icon-evidence",
+        "src.data-manager.image-profile",
+        "src.data-manager.image-codec-tests"
+      ]
+    },
+    {
+      "id": "research.shared.consumable-effect-consumers",
+      "title": "消耗品 0x1A–0x3D 分发表、参数消费与效果闭环",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "labels-and-sample-bytes-without-per-effect-runtime",
+      "known": [
+        "独立目录覆盖36个编号；用户标签、编辑器源码与样本原始字节已分别登记。",
+        "6.5 Star.e5 的25个消耗品样本可核对实际特效号及+0x15/+0x16参数原值，但样本名称不能独立证明执行行为。",
+        "原请求重复写0x28；目录采用0x28恢复SP，0x2B MP上升为仙酒样本支持的推定。"
+      ],
+      "needed": [
+        "对精确SHA的6.5/6.6目标EXE分别定位消耗品分发表，登记每个编号的入口、调用契约及参数宽度、单位和上下限。",
+        "用正负样本验证0x28恢复SP与0x2B MP上升，记录前后状态及副作用，不能仅凭目录名称消解冲突。",
+        "区分0x2C–0x30和0x35–0x39的数字显示策略与真实行为；补齐0x31–0x34及0x3A–0x3D的目标、技能/策略ID和材料消费规则。",
+        "逐编号完成静态消费者或运行时闭环后更新既有目录证据，不能把整个候选目录一次性升级为运行时事实。"
+      ],
+      "sourceRefs": [
+        "src.items.consumable-catalog",
+        "src.items.user-confirmation",
+        "src.items.byte-evidence"
+      ]
     }
   ]
 }

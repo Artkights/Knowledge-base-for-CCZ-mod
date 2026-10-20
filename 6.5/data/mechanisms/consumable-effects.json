@@ -1,0 +1,658 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.f9a",
+  "entries": [
+    {
+      "id": "mechanism.shared.consumable-effect-namespace",
+      "title": "消耗品独立特效目录 0x1A–0x3D 与证据分层",
+      "aliases": [
+        "消耗品特效",
+        "道具特效号",
+        "ConsumableItemEffectCatalogService",
+        "ConsumableEffectCatalog",
+        "0x28 恢复SP",
+        "0x2B MP上升",
+        "0x3D 装备升级"
+      ],
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "candidate",
+      "evidence": "editor-source-reviewed-user-labels-and-sample-supported-inference",
+      "namespace": {
+        "kind": "consumable-effect-byte",
+        "minimum": "0x1A",
+        "maximum": "0x3D",
+        "count": 36,
+        "storageWidth": 1,
+        "meaning": "消耗品实际特效号的目录命名空间，与装备特效名称目录分开；同一数值不得自动套用装备特效名称。"
+      },
+      "scope": {
+        "usage": "用于当前数据管理器的消耗品下拉标签、检索、数字保留和候选语义提示。",
+        "profileBoundary": "6.5 与 6.6 共享此候选标签目录，不共享物品表固定地址、名称布局或类别/实际特效号的物理绑定；必须先按目标 Profile 和 Codec 确认类别及实际效果字段。",
+        "runtimeVerification": "本实体未收录逐编号 EXE 分发表、调用约定、参数消费或游戏内运行结果。编辑器目录中的 Confirmed 只表示目录命中，不能解释为 runtime-verified。"
+      },
+      "effects": [
+        {
+          "id": "0x1A",
+          "value": 26,
+          "name": "恢复生命",
+          "meaning": "目录描述为按效果值恢复 HP；具体参数消费仍需目标基底验证。",
+          "evidence": "editor-source-reviewed-sample-and-fixed-name-table-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 消耗品样本及 6.6 Ekd5 固定名称表。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 150,
+              "name": "恢复用豆",
+              "sourceRef": "src.items.byte-evidence"
+            },
+            {
+              "itemId": 151,
+              "name": "恢复用麦",
+              "sourceRef": "src.items.byte-evidence"
+            },
+            {
+              "itemId": 152,
+              "name": "恢复用米",
+              "sourceRef": "src.items.byte-evidence"
+            },
+            {
+              "itemId": 170,
+              "name": "粟",
+              "sourceRef": "src.items.byte-evidence"
+            },
+            {
+              "itemId": 171,
+              "name": "麦",
+              "sourceRef": "src.items.byte-evidence"
+            },
+            {
+              "itemId": 172,
+              "name": "精粮",
+              "sourceRef": "src.items.byte-evidence"
+            },
+            {
+              "itemId": 173,
+              "name": "空闲",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x1B",
+          "value": 27,
+          "name": "恢复 MP",
+          "meaning": "目录描述为按效果值恢复 MP；具体参数消费仍需目标基底验证。",
+          "evidence": "editor-source-reviewed-sample-and-fixed-name-table-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 消耗品样本及 6.6 Ekd5 固定名称表。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 153,
+              "name": "神秘水",
+              "sourceRef": "src.items.byte-evidence"
+            },
+            {
+              "itemId": 154,
+              "name": "神秘酒",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x1C",
+          "value": 28,
+          "name": "治疗混乱",
+          "meaning": "解除混乱状态的目录标签。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 消耗品样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 156,
+              "name": "兴奋剂",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x1D",
+          "value": 29,
+          "name": "治疗中毒",
+          "meaning": "解除中毒状态的目录标签。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 消耗品样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 155,
+              "name": "解毒药",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x1E",
+          "value": 30,
+          "name": "治疗麻痹",
+          "meaning": "解除麻痹状态的目录标签。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 消耗品样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 157,
+              "name": "膏药",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x1F",
+          "value": 31,
+          "name": "治疗禁咒",
+          "meaning": "解除禁咒或封锁状态的目录标签。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 消耗品样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 158,
+              "name": "止咳药",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x20",
+          "value": 32,
+          "name": "恢复异常状态",
+          "meaning": "解除异常状态的目录标签；具体状态集合未在本实体验证。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 159,
+              "name": "万能药",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x21",
+          "value": 33,
+          "name": "武力上升",
+          "meaning": "提升武力的目录标签。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 161,
+              "name": "武力果",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x22",
+          "value": 34,
+          "name": "统率上升",
+          "meaning": "提升统率的目录标签。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 162,
+              "name": "统帅果",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x23",
+          "value": 35,
+          "name": "智力上升",
+          "meaning": "提升智力的目录标签。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 163,
+              "name": "智力果",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x24",
+          "value": 36,
+          "name": "敏捷上升",
+          "meaning": "提升敏捷的目录标签。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 164,
+              "name": "敏捷果",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x25",
+          "value": 37,
+          "name": "运气上升",
+          "meaning": "提升运气的目录标签。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 165,
+              "name": "好运果",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x26",
+          "value": 38,
+          "name": "增加经验",
+          "meaning": "按效果值增加经验的目录描述；单位和边界需另核对。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 166,
+              "name": "经验果",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x27",
+          "value": 39,
+          "name": "兵种进阶",
+          "meaning": "印绶或兵种进阶的目录标签。",
+          "evidence": "editor-source-reviewed-sample-and-fixed-name-table-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 样本及 6.6 Ekd5 固定名称表。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 160,
+              "name": "印绶",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x28",
+          "value": 40,
+          "name": "恢复SP",
+          "meaning": "恢复 SP 的用户标签；具体参数消费未核对。",
+          "evidence": "user-label-confirmed-conflict-preserved",
+          "provenance": "用户同时把 0x28 写为恢复SP和MP上升；按请求中的恢复SP标签及已有目录实施，另将MP上升候选归于0x2B，冲突原文保存在来源。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x29",
+          "value": 41,
+          "name": "获得功勋",
+          "meaning": "按效果值增加功勋的目录描述；具体参数消费未核对。",
+          "evidence": "editor-source-reviewed-sample-reported",
+          "provenance": "目录源码引用 6.5 Star.e5 样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 169,
+              "name": "功勋书",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x2A",
+          "value": 42,
+          "name": "HP上升",
+          "meaning": "提升 HP 的用户标签；目录描述为永久提升，运行时持久性尚需核对。",
+          "evidence": "user-label-confirmed-editor-sample-reported",
+          "provenance": "用户明确给出0x2A=HP上升；目录源码另引用6.5 Star.e5仙桃样本。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog",
+            "src.items.user-confirmation"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 167,
+              "name": "仙桃",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x2B",
+          "value": 43,
+          "name": "MP上升",
+          "meaning": "MP上升的候选映射；目录描述为永久提升，运行时持久性尚需核对。",
+          "evidence": "sample-supported-inference",
+          "provenance": "原请求将0x28重复写为MP上升；编辑器结合已有0x2B仙酒样本线索及连续编号，推定MP上升应归于0x2B。用户没有明确确认0x2B；不能沿用源码将其统称为用户确认的表述。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog",
+            "src.items.user-confirmation"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 168,
+              "name": "仙酒",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        },
+        {
+          "id": "0x2C",
+          "value": 44,
+          "name": "2C道具号",
+          "meaning": "按十六进制编号显示；不推导该编号对应的实际游戏操作。",
+          "evidence": "user-display-label-confirmed",
+          "provenance": "用户要求2C–30按各自道具号显示。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x2D",
+          "value": 45,
+          "name": "2D道具号",
+          "meaning": "按十六进制编号显示；不推导该编号对应的实际游戏操作。",
+          "evidence": "user-display-label-confirmed",
+          "provenance": "用户要求2C–30按各自道具号显示。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x2E",
+          "value": 46,
+          "name": "2E道具号",
+          "meaning": "按十六进制编号显示；不推导该编号对应的实际游戏操作。",
+          "evidence": "user-display-label-confirmed",
+          "provenance": "用户要求2C–30按各自道具号显示。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x2F",
+          "value": 47,
+          "name": "2F道具号",
+          "meaning": "按十六进制编号显示；不推导该编号对应的实际游戏操作。",
+          "evidence": "user-display-label-confirmed",
+          "provenance": "用户要求2C–30按各自道具号显示。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x30",
+          "value": 48,
+          "name": "30道具号",
+          "meaning": "按十六进制编号显示；不推导该编号对应的实际游戏操作。",
+          "evidence": "user-display-label-confirmed",
+          "provenance": "用户要求2C–30按各自道具号显示。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x31",
+          "value": 49,
+          "name": "单挑",
+          "meaning": "单挑类道具的用户标签；目标选择和参数语义未核对。",
+          "evidence": "user-label-confirmed",
+          "provenance": "用户明确给出0x31=单挑。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x32",
+          "value": 50,
+          "name": "学会策略",
+          "meaning": "学习策略的用户标签；策略ID所在字段和边界未在本实体确认。",
+          "evidence": "user-label-confirmed",
+          "provenance": "用户明确给出0x32=学会策略。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x33",
+          "value": 51,
+          "name": "使用策略",
+          "meaning": "使用策略的用户标签；策略ID、目标及消耗规则未在本实体确认。",
+          "evidence": "user-label-confirmed",
+          "provenance": "用户明确给出0x33=使用策略。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x34",
+          "value": 52,
+          "name": "附加技能",
+          "meaning": "附加技能的用户标签；技能ID和持续规则未在本实体确认。",
+          "evidence": "user-label-confirmed",
+          "provenance": "用户明确给出0x34=附加技能。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x35",
+          "value": 53,
+          "name": "35道具号",
+          "meaning": "按十六进制编号显示；不推导该编号对应的实际游戏操作。",
+          "evidence": "user-display-label-confirmed",
+          "provenance": "用户要求35–39按各自道具号显示。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x36",
+          "value": 54,
+          "name": "36道具号",
+          "meaning": "按十六进制编号显示；不推导该编号对应的实际游戏操作。",
+          "evidence": "user-display-label-confirmed",
+          "provenance": "用户要求35–39按各自道具号显示。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x37",
+          "value": 55,
+          "name": "37道具号",
+          "meaning": "按十六进制编号显示；不推导该编号对应的实际游戏操作。",
+          "evidence": "user-display-label-confirmed",
+          "provenance": "用户要求35–39按各自道具号显示。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x38",
+          "value": 56,
+          "name": "38道具号",
+          "meaning": "按十六进制编号显示；不推导该编号对应的实际游戏操作。",
+          "evidence": "user-display-label-confirmed",
+          "provenance": "用户要求35–39按各自道具号显示。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x39",
+          "value": 57,
+          "name": "39道具号",
+          "meaning": "按十六进制编号显示；不推导该编号对应的实际游戏操作。",
+          "evidence": "user-display-label-confirmed",
+          "provenance": "用户要求35–39按各自道具号显示。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x3A",
+          "value": 58,
+          "name": "任务物品",
+          "meaning": "任务物品的用户标签；任务检查条件未在本实体确认。",
+          "evidence": "user-label-confirmed",
+          "provenance": "用户明确给出0x3A=任务物品。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x3B",
+          "value": 59,
+          "name": "合成材料",
+          "meaning": "合成材料的用户标签；合成消费链未在本实体确认。",
+          "evidence": "user-label-confirmed",
+          "provenance": "用户明确给出0x3B=合成材料。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x3C",
+          "value": 60,
+          "name": "工具物品",
+          "meaning": "工具物品的用户标签；具体工具行为未在本实体确认。",
+          "evidence": "user-label-confirmed",
+          "provenance": "用户明确给出0x3C=工具物品。",
+          "sourceRefs": [
+            "src.items.user-confirmation",
+            "src.items.consumable-catalog"
+          ]
+        },
+        {
+          "id": "0x3D",
+          "value": 61,
+          "name": "装备升级",
+          "meaning": "装备升级的目录标签；升级等级、装备能力及参数模式需目标基底验证。",
+          "evidence": "editor-source-reviewed-sample-and-fixed-name-table-reported",
+          "provenance": "目录源码引用6.5 Star.e5装备升级书及6.6 Ekd5固定名称表。",
+          "sourceRefs": [
+            "src.items.byte-evidence",
+            "src.items.consumable-catalog"
+          ],
+          "sampleItems": [
+            {
+              "itemId": 174,
+              "name": "装备升级书",
+              "sourceRef": "src.items.byte-evidence"
+            }
+          ]
+        }
+      ],
+      "unknownPolicy": "目录范围外或尚未确认的编号保留原始数值，并显示“未确认道具特效 0xXX”；不得用装备特效名称补全，也不得自动改写未知编号或参数。数字道具号标签只是保留编号的显示策略。",
+      "provenanceNotes": [
+        "0x1A–0x27、0x29、0x3D 的来源是现有目录源码及其指向的6.5样本/6.6固定名称表线索。本轮未把这些线索提升为逐效果的运行时验证。",
+        "0x28、0x2A、0x31–0x34、0x3A–0x3C 为本轮用户提供的标签；0x2C–0x30、0x35–0x39 为用户指定的数字显示标签。",
+        "0x2B=MP上升为有仙酒样本线索支持的冲突消解推定。原请求重复写了0x28，不应在知识库中伪称用户明确给出0x2B。",
+        "6.5与6.6共用候选标签目录，不等于各基底共享实际特效字节位置或参数行为。实际特效号必须由类别感知Codec读取，效果参数必须依据独立物理/消费者证据解释。"
+      ],
+      "writePolicy": "允许作为编辑器目录显示、人工检索和候选语义提示；禁止仅凭目录标签或源码Confirmed标记自动写入游戏特效号、参数或补丁。人工物理编辑仍需目标Profile/Codec、字段范围、原始字节保留、差异白名单和保存后复读门禁；新增游戏语义应先补目标消费者或运行时证据。",
+      "relations": [
+        "format.data-manager.item-codecs",
+        "profile.ccz65.unencrypted.f9a",
+        "profile.ccz66.data-manager.standard",
+        "profile.ccz66.shanzai.guoqing.f36",
+        "struct.65.item-category-semantics",
+        "struct.66.item-category-semantics"
+      ],
+      "sourceRefs": [
+        "src.items.byte-evidence",
+        "src.items.consumable-catalog",
+        "src.items.user-confirmation"
+      ]
+    }
+  ]
+}

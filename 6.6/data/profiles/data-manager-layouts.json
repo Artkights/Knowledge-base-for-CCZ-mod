@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "entityType": "engine-profile",
+  "entries": [
+    {
+      "id": "profile.ccz66.data-manager.standard",
+      "title": "6.6 标准布局（15 字节物品） 数据编辑画像",
+      "versions": [
+        "6.6"
+      ],
+      "aliases": [
+        "ccz-6.6",
+        "66-standard-v1",
+        "66-standard-v1"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed-sample-fingerprints",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "size": 1130496,
+        "sha256": "34B810EE790F4BAA70EBF60AA286AA7BD246A2C17B425B36BD3825B36BA2D6DA"
+      },
+      "sampleFingerprints": [
+        {
+          "sampleId": "曹操传6.6-V7.16",
+          "fileLengths": {
+            "Data.e5": 61379,
+            "Star.e5": 6359,
+            "Ekd5.exe": 1130496,
+            "Imsg.e5": 501400
+          },
+          "sha256": {
+            "Data.e5": "7FCDC8654256CD8D985E160689D5141FFFC10B14A32A8BD2B2CFA069B1F8C68A",
+            "Star.e5": "201B4BE3D7183A215A28F54D74C4D3A86CA150B21DEAB5A2F3DB08686B185D55",
+            "Ekd5.exe": "34B810EE790F4BAA70EBF60AA286AA7BD246A2C17B425B36BD3825B36BA2D6DA",
+            "Imsg.e5": "D47770DA9028EA22881216CD662F71BA08BF49685F593DB069062D965BFD6428"
+          }
+        },
+        {
+          "sampleId": "新改曹操传6.6修正版",
+          "fileLengths": {
+            "Data.e5": 61379,
+            "Star.e5": 6359,
+            "Ekd5.exe": 1130496,
+            "Imsg.e5": 501400
+          },
+          "sha256": {
+            "Data.e5": "8B89067B87265277B1EB872569A14F67D158D1E37B4032F6E7460806EF5743BF",
+            "Star.e5": "991E2032C87C000FA66F34C5D85F90932057E00EC8E60FCDA9F21430D64E1822",
+            "Ekd5.exe": "4A4FD8DDBF83E5F0B769D1B97BF8F6E6431C3AB42892024A354228212D3D06A4",
+            "Imsg.e5": "4784E7B3F1DE192E63537E70B146DB3799A61542EDBC91056869BAF76066CE08"
+          }
+        },
+        {
+          "sampleId": "清儿吕布传",
+          "fileLengths": {
+            "Data.e5": 61379,
+            "Star.e5": 6359,
+            "Ekd5.exe": 1413120,
+            "Imsg.e5": 501400
+          },
+          "sha256": {
+            "Data.e5": "512F9B07547ABD739FFA67265D3DC6819B56B8D63AA61ACF93202D34BFAA2C63",
+            "Star.e5": "018CABF3376833891F9A1C9112BD1FC8419D14618382FF545578BF682EA800A9",
+            "Ekd5.exe": "88EC708A24718868090F70256D09086E83C92FAB0613C7B8D3742EF974D3564D",
+            "Imsg.e5": "69E26C8274FAB9EFF33A21A2534B2861DF3987BDCCC73B568BFCB5C1F002C838"
+          }
+        },
+        {
+          "sampleId": "烈焰同盟6.6x",
+          "fileLengths": {
+            "Data.e5": 61379,
+            "Star.e5": 10200,
+            "Ekd5.exe": 1173504,
+            "Imsg.e5": 501400
+          },
+          "sha256": {
+            "Data.e5": "AF8CE2DB83AA018A18534FB47C87AF5307F6FB4F7A3E49F636F1BDA8D3AA52C2",
+            "Star.e5": "6FBF137C9D2F5CB9884747B59FE5D82A68096B34B762E65496E2BF1ABB7AC3C9",
+            "Ekd5.exe": "D4C6EA15A527C62283CAEADEFAC112109D0B5D63D66AD25BE1D1FD2413EF6EE2",
+            "Imsg.e5": "38CFAF608F90619A0BA5ACFE6E1AB71D0E35244FCEFC725FD86436C58B84CE27"
+          }
+        },
+        {
+          "sampleId": "复刻版6.6山贼",
+          "fileLengths": {
+            "Data.e5": 61379,
+            "Star.e5": 6359,
+            "Ekd5.exe": 1148928,
+            "Imsg.e5": 857117
+          },
+          "sha256": {
+            "Data.e5": "C4B57DD0A9DC3EF2A7FE4D6A36EEAF0F7EDEA06BF2F6407B1A8AE3252E5807CE",
+            "Star.e5": "0F196332ECF2E845EA1D93AC2E7762DAADBACC0EBF802CCE697BB1C06BAE6EB9",
+            "Ekd5.exe": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A",
+            "Imsg.e5": "A959F248DF6EF5518280EAFEBB5970B318662FA64D354AFFCF23504938146464"
+          }
+        },
+        {
+          "sampleId": "复刻版6.6山贼国庆",
+          "fileLengths": {
+            "Data.e5": 61379,
+            "Star.e5": 6359,
+            "Ekd5.exe": 1148928,
+            "Imsg.e5": 857117
+          },
+          "sha256": {
+            "Data.e5": "6341D98825B5C2B466DC9817870FDDC084834EC006765EC1C97113CC16E5C6BC",
+            "Star.e5": "AA3D4F925C5D7A64759A7F9CDC40EE2DFDCDBDCDEAE086AE436CAF24490C7ED2",
+            "Ekd5.exe": "A34635474CDBBA4AB4844A599D7A3346CE3276C45EB4D1EE7F3D3A8D65D45EEC",
+            "Imsg.e5": "13D5D6112B254B47028C60CF2AC13388DC752C31BBD203E4261E62D20D525E2E"
+          }
+        }
+      ],
+      "addressPolicy": "画像识别与字段证据分开：匹配样本不能自动证明继承表；每张表仍检查 capability、文件边界、消费签名及字段策略。VA 必须按目标 PE 节映射为 fileOffset。",
+      "writePolicy": "仅支持匹配样本或通过逐项布局门禁的衍生项目；不把 6.5 偏移无条件套入 6.6。",
+      "sourceRefs": [
+        "src.data-manager.profile66",
+        "src.data-manager.registry",
+        "src.data-manager.augmentation"
+      ]
+    },
+    {
+      "id": "profile.ccz66.data-manager.17byte",
+      "title": "6.6 兼容布局（17 字节物品） 数据编辑画像",
+      "versions": [
+        "6.6"
+      ],
+      "aliases": [
+        "ccz-6.6",
+        "66-legacy-data-v1",
+        "66-legacy-data-v1"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed-sample-fingerprints",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "size": 1130496,
+        "sha256": "A99DDD6971669D4847444F91B9ED211CD205107E1074528CCEDB86E360FC1282"
+      },
+      "sampleFingerprints": [
+        {
+          "sampleId": "厚黑6.6",
+          "fileLengths": {
+            "Data.e5": 61379,
+            "Star.e5": 6359,
+            "Ekd5.exe": 1130496,
+            "Imsg.e5": 450000
+          },
+          "sha256": {
+            "Data.e5": "608A7E1D75EA0F179DABB850C66CF236FF9E55EB4A323F0CB213A92E7BF6FDDA",
+            "Star.e5": "32D1D6B82D26C0ADF841E5BD746760EBA602CF2B579671E36AA60974AFE98766",
+            "Ekd5.exe": "A99DDD6971669D4847444F91B9ED211CD205107E1074528CCEDB86E360FC1282",
+            "Imsg.e5": "ECE53215506167C5E53F0A39092392813BBB30D5F06337A393B73D9DD3FA3545"
+          }
+        }
+      ],
+      "addressPolicy": "画像识别与字段证据分开：匹配样本不能自动证明继承表；每张表仍检查 capability、文件边界、消费签名及字段策略。VA 必须按目标 PE 节映射为 fileOffset。",
+      "writePolicy": "仅支持匹配样本或通过逐项布局门禁的衍生项目；不把 6.5 偏移无条件套入 6.6。",
+      "sourceRefs": [
+        "src.data-manager.profile66",
+        "src.data-manager.registry",
+        "src.data-manager.augmentation"
+      ]
+    },
+    {
+      "id": "profile.ccz66.data-manager.old-shanzhai",
+      "title": "6.6 旧山贼布局（1,146,880 字节 EXE） 数据编辑画像",
+      "versions": [
+        "6.6"
+      ],
+      "aliases": [
+        "ccz-6.6",
+        "66-shanzhai-legacy",
+        "66-standard-v1"
+      ],
+      "status": "candidate",
+      "evidence": "length-only-source-record",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": null,
+      "sampleFingerprints": [
+        {
+          "sampleId": "旧工具登记山贼样本",
+          "fileLengths": {
+            "Ekd5.exe": 1146880
+          }
+        }
+      ],
+      "addressPolicy": "画像识别与字段证据分开：匹配样本不能自动证明继承表；每张表仍检查 capability、文件边界、消费签名及字段策略。VA 必须按目标 PE 节映射为 fileOffset。",
+      "writePolicy": "不得自动写入；取得完整原样样本和独立布局证据前仅作手动布局候选。",
+      "sourceRefs": [
+        "src.data-manager.profile66",
+        "src.data-manager.registry",
+        "src.data-manager.augmentation"
+      ]
+    }
+  ]
+}

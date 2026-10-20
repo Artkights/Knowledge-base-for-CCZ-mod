@@ -133,7 +133,7 @@
       "baseRef": null,
       "recordCount": 255,
       "stride": 25,
-      "indexFormula": "split Data.e5/Star.e5 table + item_id*0x19",
+      "indexFormula": "Data.e5 + 0x818C + item_id*0x19 for 0..103; Star.e5 + (item_id-104)*0x19 for 104..254; ID255 reserved",
       "endianness": "little",
       "encoding": "GBK",
       "fields": [
@@ -171,28 +171,28 @@
           "offset": "0x13",
           "width": 1,
           "type": "uint8",
-          "meaning": "价格字段"
+          "meaning": "价格单位100，255不可买卖。"
         },
         {
           "name": "ability",
           "offset": "0x15",
           "width": 1,
           "type": "uint8",
-          "meaning": "能力"
+          "meaning": "普通装备初始属性；辅助特效值；消耗品参数低字节；按类别解释。"
         },
         {
           "name": "effect_value",
           "offset": "0x16",
           "width": 1,
           "type": "uint8",
-          "meaning": "特效值"
+          "meaning": "普通装备特效值；辅助保留；消耗品参数高字节。运行时该字段消费仍按原静态证据边界，不推广为所有类别通用效果值。"
         },
         {
           "name": "growth",
           "offset": "0x17",
           "width": 1,
           "type": "uint8",
-          "meaning": "成长"
+          "meaning": "普通装备成长；辅助适用兵种；消耗品保留。"
         },
         {
           "name": "catalog_flag",
@@ -203,9 +203,12 @@
         }
       ],
       "relations": [
-        "format.item.split-data-star"
+        "format.item.split-data-star",
+        "struct.66.item-category-semantics"
       ],
       "sourceRefs": [
+        "src.items.byte-evidence",
+        "src.items.semantic-resolver",
         "src.wrench.profile"
       ]
     }

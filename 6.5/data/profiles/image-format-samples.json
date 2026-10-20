@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "entityType": "engine-profile",
+  "entries": [
+    {
+      "id": "profile.ccz65.weather-reviewed.3890",
+      "title": "6.5 天气与动画消费者静态复核样本 3890CC32",
+      "versions": [
+        "6.5"
+      ],
+      "status": "canonical",
+      "evidence": "static-verified",
+      "imageBase": "0x400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "size": 1196032,
+        "sha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+        "relativePath": "基底/加强版6.5未加密版/Ekd5.exe"
+      },
+      "addressPolicy": "仅用于该精确SHA样本的天气/动画消费者地址；不授予其它派生版地址，也不是完整游戏播放时序实测。",
+      "sourceRefs": [
+        "src.data-manager.image-weather-evidence",
+        "src.data-manager.image-animation-consumer-evidence",
+        "src.data-manager.image-animation-mixer-evidence",
+        "src.data-manager.image-animation-thread-evidence",
+        "src.data-manager.image-pixel-mix-evidence",
+        "src.data-manager.image-color-mix-evidence"
+      ]
+    },
+    {
+      "id": "profile.ccz66.weather-reviewed.2594",
+      "title": "6.6 天气格式静态复核样本 25947111",
+      "versions": [
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "static-verified",
+      "imageBase": "0x400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "size": 1132032,
+        "sha256": "2594711168EA58258E40F3D804BF982DC376B58711C8E562EBE6B16E87A56B82",
+        "relativePath": "基底/曹操传6.6-V10.1 【解压密码：66】/复刻版6.6/Ekd5.exe"
+      },
+      "addressPolicy": "仅用于该精确SHA样本的天气消费者地址；不授予其它派生版地址，也不是完整游戏播放时序实测。",
+      "sourceRefs": [
+        "src.data-manager.image-weather-evidence"
+      ]
+    }
+  ]
+}

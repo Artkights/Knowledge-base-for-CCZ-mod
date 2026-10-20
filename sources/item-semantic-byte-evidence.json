@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "observationDate": "2026-10-20",
+  "evidence": "sample-byte-observed",
+  "sample66": {
+    "profile": "profile.ccz66.shanzai.guoqing.f36",
+    "relativePath": "基底/复刻版6.6山贼 国庆",
+    "files": [
+      {
+        "name": "Data.e5",
+        "length": 61379,
+        "sha256": "F4BC3764D613C8B8F03D54C814184251A7D41EBC34DF6753029BC313AD29F851"
+      },
+      {
+        "name": "Star.e5",
+        "length": 6359,
+        "sha256": "B3921D1765911E52508149E712C6F86D5CD9A1352DB30618176CE3E4BEA2A7C0"
+      },
+      {
+        "name": "Ekd5.exe",
+        "length": 1148928,
+        "sha256": "F36F9A3D06F3C4E52F32320FAE4633D0EADC9B7863F410EA7532B3C45E2ABF88"
+      },
+      {
+        "name": "Imsg.e5",
+        "length": 857117,
+        "sha256": "A847EBF6DBE084B4A545976F0D32A44A071B88DDE73D2A80C2999210D24E4100"
+      }
+    ],
+    "accessoryCases": [
+      {
+        "itemId": 154,
+        "name": "天毒珠",
+        "fileOffset": "0x4E2",
+        "rawRowHex": "CC EC B6 BE D6 E9 00 00 00 00 00 00 00 00 00 99 00 74 02 FF 5B 01 00 06 01",
+        "actualEffectId": 116,
+        "categoryMarker": 2,
+        "effectValue": 1,
+        "reserved16": 0,
+        "suitableJob": 6,
+        "jobName": "侠客",
+        "price": 255,
+        "gallery": 1
+      },
+      {
+        "itemId": 156,
+        "name": "太平要术",
+        "fileOffset": "0x514",
+        "rawRowHex": "CC AB C6 BD D2 AA CA F5 00 00 00 00 00 00 00 93 00 1F 02 FF 5D 05 00 00 01",
+        "actualEffectId": 31,
+        "categoryMarker": 2,
+        "effectValue": 5,
+        "reserved16": 0,
+        "suitableJob": 0,
+        "jobName": "君主",
+        "price": 255,
+        "gallery": 1
+      },
+      {
+        "itemId": 157,
+        "name": "天毒珠（仿）",
+        "fileOffset": "0x52D",
+        "rawRowHex": "CC EC B6 BE D6 E9 A3 A8 B7 C2 A3 A9 00 00 00 99 00 3D 02 FF 5E 3C 00 06 01",
+        "actualEffectId": 61,
+        "categoryMarker": 2,
+        "effectValue": 60,
+        "reserved16": 0,
+        "suitableJob": 6,
+        "jobName": "侠客",
+        "price": 255,
+        "gallery": 1
+      },
+      {
+        "itemId": 149,
+        "name": "左氏春秋",
+        "fileOffset": "0x465",
+        "rawRowHex": "D7 F3 CA CF B4 BA C7 EF 00 00 00 00 00 00 00 B7 00 20 02 FF C6 16 00 FF 01",
+        "actualEffectId": 32,
+        "categoryMarker": 2,
+        "effectValue": 22,
+        "reserved16": 0,
+        "suitableJob": 255,
+        "jobName": "所有兵种",
+        "price": 255,
+        "gallery": 1
+      },
+      {
+        "itemId": 139,
+        "name": "凌风赤兔",
+        "fileOffset": "0x36B",
+        "rawRowHex": "C1 E8 B7 E7 B3 E0 CD C3 00 00 00 00 00 00 00 7C 00 29 02 FF 6C 07 00 1B 01",
+        "actualEffectId": 41,
+        "categoryMarker": 2,
+        "effectValue": 7,
+        "reserved16": 0,
+        "suitableJob": 27,
+        "jobName": "上将",
+        "price": 255,
+        "gallery": 1
+      }
+    ]
+  },
+  "sample65": {
+    "profile": "profile.ccz65.unencrypted.f9a",
+    "relativePath": "基底/加强版6.5未加密版",
+    "file": "Star.e5",
+    "length": 6359,
+    "sha256": "2F357A35E4E9A40493E7AAFC154BF1FB0FAE4DA35BD06D43F460A8B9D2CE6C69",
+    "consumableCases": [
+      {
+        "itemId": 150,
+        "name": "恢复用豆",
+        "actualEffectId": "0x1A",
+        "parameter": 60,
+        "rawRowHex": "BB D6 B8 B4 D3 C3 B6 B9 00 00 00 00 00 00 00 00 00 1A 03 01 57 3C 00 00 00"
+      },
+      {
+        "itemId": 151,
+        "name": "恢复用麦",
+        "actualEffectId": "0x1A",
+        "parameter": 120,
+        "rawRowHex": "BB D6 B8 B4 D3 C3 C2 F3 00 00 00 00 00 00 00 00 00 1A 03 04 58 78 00 00 00"
+      },
+      {
+        "itemId": 152,
+        "name": "恢复用米",
+        "actualEffectId": "0x1A",
+        "parameter": 300,
+        "rawRowHex": "BB D6 B8 B4 D3 C3 C3 D7 00 00 00 00 00 00 00 00 00 1A 03 14 59 2C 01 00 00"
+      },
+      {
+        "itemId": 153,
+        "name": "神秘水",
+        "actualEffectId": "0x1B",
+        "parameter": 30,
+        "rawRowHex": "C9 F1 C3 D8 CB AE 00 00 00 00 00 00 00 00 00 00 00 1B 03 05 5A 1E 00 00 00"
+      },
+      {
+        "itemId": 154,
+        "name": "神秘酒",
+        "actualEffectId": "0x1B",
+        "parameter": 80,
+        "rawRowHex": "C9 F1 C3 D8 BE C6 00 00 00 00 00 00 00 00 00 00 00 1B 03 0C 5B 50 00 00 00"
+      },
+      {
+        "itemId": 155,
+        "name": "解毒药",
+        "actualEffectId": "0x1D",
+        "parameter": 0,
+        "rawRowHex": "BD E2 B6 BE D2 A9 00 00 00 00 00 00 00 00 00 00 00 1D 03 03 5C 00 00 00 00"
+      },
+      {
+        "itemId": 156,
+        "name": "兴奋剂",
+        "actualEffectId": "0x1C",
+        "parameter": 0,
+        "rawRowHex": "D0 CB B7 DC BC C1 00 00 00 00 00 00 00 00 00 00 00 1C 03 03 5D 00 00 00 00"
+      },
+      {
+        "itemId": 157,
+        "name": "膏药",
+        "actualEffectId": "0x1E",
+        "parameter": 0,
+        "rawRowHex": "B8 E0 D2 A9 00 00 00 00 00 00 00 00 00 00 00 00 00 1E 03 03 5E 00 00 00 00"
+      },
+      {
+        "itemId": 158,
+        "name": "止咳药",
+        "actualEffectId": "0x1F",
+        "parameter": 0,
+        "rawRowHex": "D6 B9 BF C8 D2 A9 00 00 00 00 00 00 00 00 00 00 00 1F 03 03 5F 00 00 00 00"
+      },
+      {
+        "itemId": 159,
+        "name": "万能药",
+        "actualEffectId": "0x20",
+        "parameter": 0,
+        "rawRowHex": "CD F2 C4 DC D2 A9 00 00 00 00 00 00 00 00 00 00 00 20 03 0A 60 00 00 00 00"
+      },
+      {
+        "itemId": 160,
+        "name": "印绶",
+        "actualEffectId": "0x27",
+        "parameter": 0,
+        "rawRowHex": "D3 A1 E7 B7 00 00 00 00 00 00 00 00 00 00 00 00 00 27 03 14 61 00 00 00 00"
+      },
+      {
+        "itemId": 161,
+        "name": "武力果",
+        "actualEffectId": "0x21",
+        "parameter": 1,
+        "rawRowHex": "CE E4 C1 A6 B9 FB 00 00 00 00 00 00 00 00 00 00 00 21 03 FF 62 01 00 00 00"
+      },
+      {
+        "itemId": 162,
+        "name": "统帅果",
+        "actualEffectId": "0x22",
+        "parameter": 1,
+        "rawRowHex": "CD B3 CB A7 B9 FB 00 00 00 00 00 00 00 00 00 00 00 22 03 FF 64 01 00 00 00"
+      },
+      {
+        "itemId": 163,
+        "name": "智力果",
+        "actualEffectId": "0x23",
+        "parameter": 1,
+        "rawRowHex": "D6 C7 C1 A6 B9 FB 00 00 00 00 00 00 00 00 00 00 00 23 03 FF 63 01 00 00 00"
+      },
+      {
+        "itemId": 164,
+        "name": "敏捷果",
+        "actualEffectId": "0x24",
+        "parameter": 2,
+        "rawRowHex": "C3 F4 BD DD B9 FB 00 00 00 00 00 00 00 00 00 00 00 24 03 FF 65 02 00 00 00"
+      },
+      {
+        "itemId": 165,
+        "name": "好运果",
+        "actualEffectId": "0x25",
+        "parameter": 1,
+        "rawRowHex": "BA C3 D4 CB B9 FB 00 00 00 00 00 00 00 00 00 00 00 25 03 FF 66 01 00 00 00"
+      },
+      {
+        "itemId": 166,
+        "name": "经验果",
+        "actualEffectId": "0x26",
+        "parameter": 200,
+        "rawRowHex": "BE AD D1 E9 B9 FB 00 00 00 00 00 00 00 00 00 00 00 26 03 FF 67 C8 00 00 00"
+      },
+      {
+        "itemId": 167,
+        "name": "仙桃",
+        "actualEffectId": "0x2A",
+        "parameter": 20,
+        "rawRowHex": "CF C9 CC D2 00 00 00 00 00 00 00 00 00 00 00 00 00 2A 03 FF 8C 14 00 00 00"
+      },
+      {
+        "itemId": 168,
+        "name": "仙酒",
+        "actualEffectId": "0x2B",
+        "parameter": 5,
+        "rawRowHex": "CF C9 BE C6 00 00 00 00 00 00 00 00 00 00 00 00 00 2B 03 FF 8D 05 00 00 00"
+      },
+      {
+        "itemId": 169,
+        "name": "功勋书",
+        "actualEffectId": "0x29",
+        "parameter": 200,
+        "rawRowHex": "B9 A6 D1 AB CA E9 00 00 00 00 00 00 00 00 00 00 00 29 03 64 7D C8 00 00 00"
+      },
+      {
+        "itemId": 170,
+        "name": "粟",
+        "actualEffectId": "0x1A",
+        "parameter": 40,
+        "rawRowHex": "CB DA 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 1A 03 FF 57 28 00 00 00"
+      },
+      {
+        "itemId": 171,
+        "name": "麦",
+        "actualEffectId": "0x1A",
+        "parameter": 70,
+        "rawRowHex": "C2 F3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 1A 03 FF 58 46 00 00 00"
+      },
+      {
+        "itemId": 172,
+        "name": "精粮",
+        "actualEffectId": "0x1A",
+        "parameter": 80,
+        "rawRowHex": "BE AB C1 B8 00 00 00 00 00 00 00 00 00 00 00 00 00 1A 03 00 59 50 00 00 00"
+      },
+      {
+        "itemId": 173,
+        "name": "空闲",
+        "actualEffectId": "0x1A",
+        "parameter": 0,
+        "rawRowHex": "BF D5 CF D0 00 00 00 00 00 00 00 00 00 00 00 00 00 1A 03 00 00 00 00 00 00"
+      },
+      {
+        "itemId": 174,
+        "name": "装备升级书",
+        "actualEffectId": "0x3D",
+        "parameter": 0,
+        "rawRowHex": "D7 B0 B1 B8 C9 FD BC B6 CA E9 00 00 00 00 00 00 00 3D 03 00 00 00 00 00 00"
+      }
+    ]
+  },
+  "limits": [
+    "原始字节可证明偏移和值；业务名称另有用户确认及旧工具源码佐证。",
+    "编辑器保存/CSV复读可证明文件读写一致，不等同于每种效果的游戏内运行时验证。",
+    "F36当前数据文件哈希与历史A346/AA3D样本不同，不覆盖历史指纹，不归入仅有长度的old-shanzhai画像。"
+  ]
+}

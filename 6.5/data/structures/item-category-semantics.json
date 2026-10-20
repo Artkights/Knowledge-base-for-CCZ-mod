@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "entityType": "data-structure",
+  "entries": [
+    {
+      "id": "struct.65.item-category-semantics",
+      "title": "6.5 宝物按类别解释与字段读写契约",
+      "aliases": [
+        "辅助特殊效果值",
+        "适用兵种",
+        "适合兵种",
+        "图鉴勾选框",
+        "255表示不可买卖",
+        "0x15",
+        "0x17"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "legacy-source-reviewed-sample-bytes-editor-roundtrip",
+      "stride": 25,
+      "indexFormula": "row = Data.e5[0x818C + ID*25] for 0<=ID<=103; row = Star.e5[(ID-104)*25] for 104<=ID<=254; field = row + field_offset",
+      "endianness": "little",
+      "encoding": "GBK；名称宽度和图标位置按目标Codec，不从类别推断",
+      "fields": [
+        {
+          "name": "类型或实际特效",
+          "offset": "0x11",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "普通武器/防具为装备类型；辅助/消耗品为实际特效号。6.6动态Codec以原始+0x12是否2/3决定逻辑列映射。"
+        },
+        {
+          "name": "特效或类别标记",
+          "offset": "0x12",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "普通武器/防具为装备特效号；辅助=2、消耗品=3类别标记，不得显示成枪许可或普通装备特效。"
+        },
+        {
+          "name": "价格",
+          "offset": "0x13",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "价格单位100；255表示不可买卖。辅助+0x17是适用兵种，不是价格。"
+        },
+        {
+          "name": "初始属性或辅助效果或参数低字节",
+          "offset": "0x15",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "武器/防具=初始属性；辅助=特殊效果值；消耗品=LE UInt16参数低字节。原CSV列名初始能力。"
+        },
+        {
+          "name": "装备效果或保留或参数高字节",
+          "offset": "0x16",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "武器/防具=特殊效果值；辅助=空/保留；消耗品=参数高字节。原CSV列名装备特效值。"
+        },
+        {
+          "name": "成长或适用兵种或保留",
+          "offset": "0x17",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "武器/防具=能力成长；辅助=适用兵种系ID（255=所有兵种）；消耗品=空/保留。原CSV列名能力成长。"
+        },
+        {
+          "name": "图鉴",
+          "offset": "0x18",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "图鉴标记。勾选框主动修改写0/1，未主动修改的非零原值保持；不在只读浏览时归一化。"
+        }
+      ],
+      "relations": [
+        "format.data-manager.item-codecs",
+        "format.item.split-data-star",
+        "mechanism.shared.consumable-effect-namespace"
+      ],
+      "notes": [
+        "本实体说明类别语义；物理文件基址、名称/图标布局和每个Variant的写入门禁由既有物理表实体负责。",
+        "分类先读取本项目System.ini的DefID/AssID（缺失时70/109），再结合ID区段、当前草稿和Codec类别标记，不能按特效号大小臆测类别。",
+        "辅助适用兵种的0..39是兵种系编号，名称来自当前项目；它不是detailed-job-growth的26个普通装备许可列。",
+        "业务名称可变，CSV继续使用原物理列名；固定6.5与动态6.6不能靠相同列名直接复制字节。",
+        "同表跨类别切换必须更新布局和选项；摘要从草稿按原始类别标记选地址，不能只读OriginalFileBytes。"
+      ],
+      "writeGates": [
+        "源文件SHA、Profile/Variant、25字节行边界和字段范围均通过后，只对主动修改字段生成补丁。",
+        "已知图鉴/辅助适用兵种/参数可编辑；空或保留字节只在明确的原始字段入口编辑，未修改必须原样保持。",
+        "6.6名称布局的Preserve字节仍不开放普通字段编辑；类别变化不自动改写保留字节。",
+        "保存前草稿可整体撤回；保存后按相同Codec复读并逐字节限制变更范围，失败回滚；本契约不证明游戏内效果已经运行。"
+      ],
+      "sourceRefs": [
+        "src.data-manager.item-types",
+        "src.data-manager.codecs",
+        "src.items.semantic-resolver",
+        "src.items.legacy-equipment",
+        "src.items.legacy-consumable",
+        "src.items.semantic-tests",
+        "src.items.user-confirmation",
+        "src.items.byte-evidence"
+      ]
+    }
+  ]
+}

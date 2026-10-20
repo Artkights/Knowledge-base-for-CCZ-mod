@@ -12,3 +12,5 @@
 4. `workflows.md`、`test-contracts.md`、`case-studies.md`。
 
 使用 `python tools/query_kb.py "查询词" --version 6.5` 可同时检索正式事实和候选；增加 `--canonical-only` 只返回正式事实。
+
+宝物读写从 [structures.md](reference/structures.md) 中的 `struct.65.item-category-semantics` 开始，结合 [file-formats.md](reference/file-formats.md) 中的 `format.data-manager.item-codecs` 核对类别、物理偏移与 CSV 列名。消耗品目录见 [mechanisms.md](reference/mechanisms.md) 中的 `mechanism.shared.consumable-effect-namespace`；标签、样本原值与游戏运行时证据分别记录，目录整体仍为候选。小型字节证据见 [item-semantic-byte-evidence.json](../sources/item-semantic-byte-evidence.json)，回归步骤见 [test-contracts.md](reference/test-contracts.md)。
