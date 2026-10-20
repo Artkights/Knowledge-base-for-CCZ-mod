@@ -101,6 +101,29 @@ def render_structures(entries: list[tuple[Path, dict]]) -> list[str]:
     lines: list[str] = []
     for _, item in entries:
         lines.extend([f"## {item['title']}", "", f"ID: `{item['id']}`；状态: `{item['status']}`；证据: `{item['evidence']}`", "", f"步长: `0x{item['stride']:X}` ({item['stride']})", "", f"索引公式: `{item.get('indexFormula', '-')}`", ""])
+        if item.get("fileName"):
+            lines.extend([f"存储：`{item['fileName']}`；起点：{fmt_address(item.get('address'))}；记录数：`{item.get('recordCount', '-')}`；ID 起点：`{item.get('beginId', '-')}`；结束偏移（不含）：`{item.get('endOffsetExclusive', '-')}`。", ""])
+        if item.get("capability"):
+            lines.extend([f"能力：`{item['capability']}`；Codec：`{item.get('recordCodec', '-')}`；字节序：`{item.get('endianness', '-')}`；编码：`{item.get('encoding', '-')}`。", ""])
+        for note in item.get("notes", []):
+            lines.append(f"- {note}")
+        if item.get("notes"):
+            lines.append("")
+        if item.get("writeGates"):
+            lines.extend(["写入门禁：", ""])
+            lines.extend(f"- {value}" for value in item["writeGates"])
+            lines.append("")
+        if item.get("rowSemantics"):
+            lines.extend(["| 属性行 ID | 名称 | 值语义 | 语义来源 |", "|---:|---|---|---|"])
+            for row in item["rowSemantics"]:
+                values = "；".join(f"{value['id']}：{value['name']}" for value in row.get("values", [])) or "未在此确认"
+                lines.append(f"| {row['rowId']} | {md_cell(row['name'])} | {md_cell(values)} | `{row['evidence']}` |")
+            lines.append("")
+        if item.get("sampleBoundaries"):
+            lines.extend(["| 样本 | 文件字节数 | 区域在边界内 | 文件 SHA256 |", "|---|---:|---|---|"])
+            for sample in item["sampleBoundaries"]:
+                lines.append(f"| {md_cell(sample.get('sampleId'))} | {md_cell(sample.get('fileLength'))} | {md_cell(sample.get('fits'))} | `{sample.get('sha256') or '-'}` |")
+            lines.append("")
         fields = item.get("fields", [])
         if not fields:
             lines.extend(["字段尚未解析，见研究队列。", ""])
@@ -109,6 +132,11 @@ def render_structures(entries: list[tuple[Path, dict]]) -> list[str]:
         for value in fields:
             lines.append(f"| `{value['name']}` | `{value['offset']}` | {value['width']} | `{value['type']}` | {md_cell(value['meaning'])} |")
         lines.append("")
+        if item.get("sampleCases"):
+            lines.extend(["样本字段复核：", "", "| ID | 名称 | 特效值 +0x15 | 适用兵种 +0x17 | 价格 +0x13 | 图鉴 +0x18 |", "|---:|---|---:|---|---:|---:|"])
+            for sample in item["sampleCases"]:
+                lines.append(f"| {sample['itemId']} | {md_cell(sample['name'])} | {sample['effectValue']} | {sample['suitableJob']}：{md_cell(sample['jobName'])} | {sample['price']} | {sample['gallery']} |")
+            lines.append("")
     return lines
 
 
@@ -116,14 +144,49 @@ def render_formats(entries: list[tuple[Path, dict]]) -> list[str]:
     lines: list[str] = []
     for _, item in entries:
         lines.extend([f"## {item['title']}", "", f"ID: `{item['id']}`；状态: `{item['status']}`；证据: `{item['evidence']}`", "", f"字节序: `{item.get('endianness', '-')}`", ""])
-        fields = item.get("entryFields", item.get("headerFields", []))
-        if fields:
+        if item.get("indexFormula"):
+            lines.extend([f"索引公式: `{item['indexFormula']}`", ""])
+        if item.get("entrySize") is not None:
+            lines.extend([f"每条解压大小: `{item['entrySize']}` 字节。", ""])
+        if item.get("frameWidth") is not None:
+            lines.extend([f"帧几何: `{item['frameWidth']}×{item.get('frameHeight', '?')}`；帧数: `{item.get('frameCount', '?')}`；条带: `{item.get('stripWidth', '?')}×{item.get('stripHeight', '?')}`。", ""])
+        files = item.get("files", [])
+        for value in files:
+            if isinstance(value, str):
+                lines.append(f"- 文件：`{value}`")
+            elif isinstance(value, dict):
+                name = value.get("name", value.get("file", "?"))
+                details = []
+                if value.get("width") is not None:
+                    details.append(f"{value['width']}×{value.get('height', '?')}")
+                if value.get("frameCount") is not None:
+                    details.append(f"{value['frameCount']}帧，每帧{value.get('frameWidth', '?')}×{value.get('frameHeight', '?')}")
+                if value.get("recordCount") is not None:
+                    details.append(f"{value['recordCount']}条")
+                if value.get("recordSize") is not None:
+                    details.append(f"记录{value['recordSize']}字节")
+                lines.append(f"- 文件：`{name}`" + ("；" + "；".join(details) if details else ""))
+        if files:
+            lines.append("")
+        for label, fields in (("目录项字段", item.get("entryFields", [])),
+                              ("头记录字段", item.get("headerFields", [])),
+                              ("播放记录字段", item.get("recordFields", []))):
+            if not fields:
+                continue
+            lines.extend([f"{label}：", ""])
             lines.extend(["| 字段 | 偏移 | 宽度 | 类型 | 含义 |", "|---|---:|---:|---|---|"])
             for value in fields:
                 lines.append(f"| `{value['name']}` | `{value['offset']}` | {value['width']} | `{value['type']}` | {md_cell(value['meaning'])} |")
             lines.append("")
+        for consumer in item.get("consumers", []):
+            lines.extend([f"消费者画像：`{consumer.get('profile', '?')}`；定位：{fmt_address(consumer.get('address'))}；文件位置：{fmt_address(consumer.get('fileAddress'))}；样本SHA256：`{consumer.get('sampleSha256', '-')}`。", ""])
+            for anchor in consumer.get("anchors", []):
+                lines.append(f"- `{anchor.get('meaning', '-')}`：文件 `{anchor.get('fileOffset', '-')}` / VA `{anchor.get('va', '-')}`；原字节 `{anchor.get('expectedBytes', '-')}`。")
+            lines.append("")
         for fact in item.get("semantics", []):
             lines.append(f"- {fact}")
+        if item.get("writePolicy"):
+            lines.extend(["", "写入策略：" + str(item["writePolicy"])])
         lines.append("")
     return lines
 
@@ -193,6 +256,24 @@ def render_mechanisms(entries: list[tuple[Path, dict]]) -> list[str]:
             lines.extend(["", "计算规则：", ""])
             for value in item["algorithm"]:
                 lines.append(f"- `{value}`")
+        for key in ("scope", "namespace"):
+            value = item.get(key)
+            if isinstance(value, dict):
+                if lines[-1] != "":
+                    lines.append("")
+                lines.extend(f"- {label}：{md_cell(detail)}" for label, detail in value.items())
+        if item.get("effects"):
+            lines.extend(["", "| 特效号 | 十进制 | 名称 | 含义 | 证据 | 6.5 字节样本 |", "|---|---:|---|---|---|---|"])
+            for effect in item["effects"]:
+                samples = "; ".join(f"{sample['itemId']}：{sample['name']}" for sample in effect.get("sampleItems", [])) or "—"
+                lines.append(f"| `{effect['id']}` | {effect['value']} | {md_cell(effect['name'])} | {md_cell(effect['meaning'])} | `{effect['evidence']}` | {md_cell(samples)} |")
+        for key in ("provenanceNotes", "unknownPolicy"):
+            value = item.get(key, [])
+            if value and lines[-1] != "":
+                lines.append("")
+            lines.extend(f"- {md_cell(note)}" for note in (value if isinstance(value, list) else [value]))
+        if item.get("writePolicy"):
+            lines.extend(["", "写入策略：" + md_cell(item["writePolicy"])])
         lines.append("")
     return lines
 
@@ -271,7 +352,7 @@ def render_test_contracts(entries: list[tuple[Path, dict]]) -> list[str]:
         lines.extend(f"- {value}" for value in item.get("assertions", []))
         lines.extend(["", "必需产物：", ""])
         lines.extend(f"- {value}" for value in item.get("requiredArtifacts", []))
-        lines.extend(["", f"失败含义：{item.get('failureMeaning', '-')} ", ""])
+        lines.extend(["", f"失败含义：{item.get('failureMeaning', '-')}" , ""])
     return lines
 
 

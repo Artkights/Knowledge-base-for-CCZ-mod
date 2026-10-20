@@ -1,0 +1,387 @@
+{
+  "schemaVersion": 1,
+  "entityType": "workflow",
+  "entries": [
+    {
+      "id": "workflow.data-manager.physical-csv-roundtrip",
+      "title": "物理表 CSV 导入导出与写后复读",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.f9a",
+      "status": "canonical",
+      "evidence": "source-reviewed-tests",
+      "goal": "让每个底层物理表生成可重新导入当前打开项目的 CSV，并通过字段级补丁保护未拆字节。",
+      "inputs": [
+        "项目根目录和检测出的 Profile/Variant",
+        "单个物理 TableKey CSV 或业务页批量草稿",
+        "源文件 SHA-256"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "检测 Profile/Variant、文件长度、源 SHA 和当前布局 revision；拒绝元数据不匹配的 CSV。"
+        },
+        {
+          "order": 2,
+          "action": "按 UTF-8 BOM、UTF-16 LE/BE、GBK 和 RFC4180 解析；检查稳定 ID、复合键、未知列、重复 ID、只读列和数值边界。"
+        },
+        {
+          "order": 3,
+          "action": "使用当前 RecordCodec 和专用名称池/辅助分组服务把逻辑字段映射为字段级补丁，保留 Preserve、RawHex、槽尾和未拆字段。"
+        },
+        {
+          "order": 4,
+          "action": "将所有相关物理文件加入一个 WorkspaceTransaction 草稿；预览冲突和 SHA 变化后一次提交。"
+        },
+        {
+          "order": 5,
+          "action": "临时文件原子替换，按同一 Codec 重新读取字段、复读关联表和验证 SHA；失败恢复全部目标文件与历史快照。"
+        }
+      ],
+      "gates": [
+        "Variant 必须与 CSV 元数据一致",
+        "只读/不可用表不得自动写入",
+        "跨表业务页禁止只提交部分关联文件",
+        "未知数值可保留并显示证据状态，不能静默转换"
+      ],
+      "outputs": [
+        "每个物理表独立 CSV",
+        "字段级补丁和 SHA 审计记录",
+        "写后复读结果和可撤回历史"
+      ],
+      "rollback": [
+        "提交前保留目标文件和 SHA 快照",
+        "任何复读或边界失败恢复本次所有文件，源项目不修改"
+      ],
+      "sourceRefs": [
+        "src.data-manager.csv",
+        "src.data-manager.transaction",
+        "src.data-manager.workspace",
+        "src.data-manager.test-csv"
+      ]
+    },
+    {
+      "id": "workflow.data-manager.cross-profile-migration",
+      "title": "一键迁移源基底到目标基底",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "goal": "将源基底数据表、专用二进制结构与全量已支持 E5/DLL/Face/Tou/R/S/图标/动画/地图/场景/配置和音视频资源迁移到目标；后台预览、可取消审阅、事务回滚，保留目标引擎并逐项报告格式/消费者限制。",
+      "inputs": [
+        "源目录（第一选择）",
+        "目标目录（第二选择）",
+        "双方 Profile/Variant、文件 SHA、E5/DLL 资源目录"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "在后台任务探测源/目标 Profile、Variant、文件边界、E5/DLL 位图资源、R/S/策略消费者和证据 SHA；UI 线程仅节流显示阶段进度，不在控件中逐条构造数十万差异行。"
+        },
+        {
+          "order": 2,
+          "action": "按 TableKey+逻辑 ID+字段生成字段级和资源级差异；跨 Variant 通过目标 Codec/逻辑字段映射，禁止复制源物理偏移。特效名称池保留目标词汇并完全跳过，特效号/值/分配槽仍迁移。DLL 小/大图按已验证配对转换为目标 E5 2N+1/2N+2 并逐像素复读。扩展物品 ID256..511 在目标缺少消费者/加载器时合为一条整段 Ignored，不能伪装为图标或逐行可写记录。"
+        },
+        {
+          "order": 3,
+          "action": "虚拟化差异审阅表，默认全部跳过；按文件/逻辑模块或稀疏索引选择覆盖、合并、跳过。筛选和批量选择只操作索引，不循环 DataGridView.Rows；Ignored 整段仅作诊断、不可选，Incompatible 保留具体原因和目标原值。"
+        },
+        {
+          "order": 4,
+          "action": "在目标卷临时副本执行字段补丁、专用结构写回和资源转换；节流报告预览/复制/校验进度，支持取消。进入“提交目标”或“回滚”后屏蔽取消，避免半提交。"
+        },
+        {
+          "order": 5,
+          "action": "验证临时副本结构、字段、资源尺寸/像素、Profile/Variant、SHA 和历史；备份目标核心文件与资源，逐文件原子替换并写后复读。历史决策按连续 ID 区间和合并 ByteChunk 压缩，仍保留完整前后字节恢复能力。"
+        },
+        {
+          "order": 6,
+          "action": "已选择项目若缺失文件、格式转换不兼容、目标 SHA 改变或边界/复读失败，则停止并从备份反向原子恢复目标，清理临时文件和未提交历史。Ignored 整段与主动跳过项目不参与写入；四张拓展表可物理迁移但独立报告目标运行时能力，不以复制文件宣称游戏功能已生效。源目录始终只读且 SHA 不变。"
+        }
+      ],
+      "gates": [
+        "源目录必须只读；源/目标在预览后重新校验 SHA 和 Profile/Variant",
+        "未验证 R/S 区域、不可转换 DLL/E5、未知引擎 EXE/插件 DLL 或缺少目标消费者的已请求功能列为 Incompatible；扩展物品 ID256..511 缺少加载器/消费者则整段 Ignored。两类诊断均不可选择覆盖，不能假报告已在游戏生效。",
+        "资源转换仅允许已验证的 Itemicon.dll→E5/ Mgcicon.dll→E5 文件名配对；8bpp palette index0、24bpp透明规则、不透明目标透明色和多语言差异均须通过检查",
+        "虚拟差异视图不得因筛选/批量编辑丢失或误选行；用户关闭对话框不能绕过提交/回滚保护",
+        "目标每个 Codec/资源边界、临时副本复读、原子替换和最终 SHA 必须通过",
+        "资源发现递归使用扩展名白名单 .e5/.dll/.exe/.ini/.eex/.jpg/.jpeg/.png/.bmp/.gif/.ico/.webp/.tif/.tiff/.avi/.mp4/.dat/.bin/.map/.wav/.mp3/.ogg/.mid/.midi/.wma/.flac，以及无扩展名 SETTINGE5；逐个完整文件比较 SHA，不以 UI 预览数量裁切。",
+        "点开头的工具历史/备份/Git 目录、重解析点和不在白名单的存档 .e5s/.exs 不迁移；物理表仅排除工作区实际解析出的路径，不按文件名误排除其它目录同名图像档案。根目录 6400/51200 字节 Item/Itemmsg 由扩展 DATA 专用服务识别，不能当普通资源。",
+        "根目录/E5 同名有效资源按目标既有路径对齐，不创建遮蔽副本；源或目标存在多个有效候选时报告冲突。已知图片 DLL 为 Itemicon/Mgcicon/Tou/Cmdicon/Mapatr；未知 EXE/DLL 不作为普通资源覆盖目标引擎。",
+        "头像数据必须以 UInt16LE 迁移并保持大于255的值；兵种 S 图库逻辑0..239与人物 S=0默认、1..32特殊三转、33+单转使用独立命名空间，不能按相同数字错配。"
+      ],
+      "outputs": [
+        "源/目标 Profile 与文件库存",
+        "字段级/逻辑记录级/资源级差异预览及逐项决策",
+        "目标备份、临时副本、转换候选和 SHA/复读报告",
+        "压缩迁移历史、回滚报告；成功时目标数据/资源可重新打开读取",
+        "Ignored 整段日志与 Unmapped/运行时能力诊断分开，保持特效名称池为目标词汇"
+      ],
+      "rollback": [
+        "任何文件或资源失败时，提交期间反向原子恢复全部已替换目标文件和历史 manifest",
+        "删除临时目标/转换候选；保留备份供诊断；源目录文件、SHA 和资源始终不变"
+      ],
+      "sourceRefs": [
+        "src.data-manager.atomic-item-migration",
+        "src.data-manager.effect-migration",
+        "src.data-manager.extended-item-migration",
+        "src.data-manager.image-bindings",
+        "src.data-manager.image-migration-converter",
+        "src.data-manager.image-s-map",
+        "src.data-manager.item-migration",
+        "src.data-manager.main-form",
+        "src.data-manager.migration",
+        "src.data-manager.migration-commit",
+        "src.data-manager.migration-field-isolation",
+        "src.data-manager.migration-models",
+        "src.data-manager.migration-path-safety",
+        "src.data-manager.migration-progress-ui",
+        "src.data-manager.migration-resource-converter",
+        "src.data-manager.migration-review-ui",
+        "src.data-manager.native-migration",
+        "src.data-manager.profile65",
+        "src.data-manager.test-image-migration",
+        "src.data-manager.test-migration-field-isolation",
+        "src.data-manager.test-migration-isolation",
+        "src.data-manager.test-migration-selection",
+        "src.data-manager.test-migration-ui",
+        "src.data-manager.test-native-migration",
+        "src.data-manager.test-real-migration",
+        "src.data-manager.test-resource-migration",
+        "src.data-manager.test-save-bulk"
+      ]
+    },
+    {
+      "id": "workflow.data-manager.image-resource-transaction",
+      "title": "形象资源新增替换删除与引用警告",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "goal": "在统一形象设定页复刻形象管理器的资源预览和增删改，并把资源修改集中在资源事务。",
+      "inputs": [
+        "资源类别和逻辑 ID",
+        "素材文件或替换帧",
+        "当前资源目录和已用物理 ID"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "后台读取缓存的资源目录和文件指纹，按中文资源类别列出 R/S、头像/Tou、宝物/策略图标、大小动画、攻击/穿透范围、场景/地图/其他图片；同名根目录扩展 DATA 不作为图像档案，真正双档案冲突必须提示。 Meff 的索引、缩略图、点击播放、间隔读取和原生平面读取统一经过专用动画包读取；不能只凭可枚举或代表帧成功判定图库播放通过。"
+        },
+        {
+          "order": 2,
+          "action": "校验资源 Codec、E5 配对、帧尺寸和 S job/turn 映射；DLL→E5 仅走已验证转换器并逐像素检查透明规则、尺寸和语言，资源新增/替换/删除前生成引用警告。"
+        },
+        {
+          "order": 3,
+          "action": "建立资源 before/after SHA 和字节快照；普通可追加资源默认追加，Item/Mtem 小大配对共同处理、孤立尾前插入完整对。兵种 S 固定槽仅原位导入/替换或清空 mov/atk/spc，不物理删除、不前移、不追加到人物库；其它可重排资源不自动修改 Data、策略、脚本或地图引用。"
+        },
+        {
+          "order": 4,
+          "action": "在资源事务中原子提交 E5/DLL/目录帧，统一历史视图记录来源；失败时按 SHA 反向恢复，显式失效 Catalog/缩略图/动画缓存。"
+        }
+      ],
+      "gates": [
+        "资源文件必须通过有效图像档案几何校验；根目录扩展 Item.e5 不能遮蔽 E5/Item.e5，真双图片冲突不得随机选择",
+        "Item.e5 与 Mtem.e5 逻辑 N 均必须同时具有物理 #2N+1/#2N+2；转换/编辑不得丢小图或只更新大图",
+        "R/S 未通过消费者和 PE 映射证据时只读预览；资源编号变化仅显示外部引用警告",
+        "提交后尺寸、帧、像素、SHA 和历史复读通过",
+        "兵种 S 逻辑0..239固定槽清空必须保持三档案条目数、后续 stored bytes和全部编号；仅支持已验证RAW/8bpp BMP像素索引清空，未知格式拒绝。人物 S 追加与兵种固定槽编辑严格分开。",
+        "Meff 非零四字节目录尾部仅在 Meff 专用入口兼容，普通 E5 仍严格拒绝；执行 test.data-manager.animation-preview-ui 覆盖点击后50ms间隔和原生平面，源SHA不变。预览兼容不自动授予损坏索引或未知资源写入权限。"
+      ],
+      "outputs": [
+        "资源预览/变更结果",
+        "引用警告",
+        "可回滚资源快照和历史"
+      ],
+      "rollback": [
+        "资源事务失败时原子恢复 before 快照"
+      ],
+      "sourceRefs": [
+        "src.data-manager.image-adapter",
+        "src.data-manager.image-catalog",
+        "src.data-manager.image-codecs",
+        "src.data-manager.image-dll-archive",
+        "src.data-manager.image-dll-codec",
+        "src.data-manager.image-e5",
+        "src.data-manager.image-grid",
+        "src.data-manager.image-migration-converter",
+        "src.data-manager.image-mutation",
+        "src.data-manager.image-pixel-editor",
+        "src.data-manager.image-profile",
+        "src.data-manager.image-rs-import",
+        "src.data-manager.image-s-map",
+        "src.data-manager.test-image-migration",
+        "src.data-manager.test-resource-bindings",
+        "src.data-manager.test-resource-migration",
+        "src.items.meff-gallery-codec",
+        "src.items.meff-player",
+        "src.data-manager.image-animation-preview-ui-tests",
+        "src.items.meff-preview-report"
+      ],
+      "relations": [
+        "test.data-manager.animation-preview-ui"
+      ]
+    },
+    {
+      "id": "workflow.data-manager.single-executable-publish",
+      "title": "WinForms 依赖系统 .NET 8 的单 EXE 轻量发布与内置资源",
+      "aliases": [
+        "SingleFileWinX64",
+        "PublishSingleFile",
+        "SelfContained=false",
+        "framework-dependent"
+      ],
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "goal": "分发仅含一个 EXE 的 Windows x64 应用，由目标系统提供 .NET 8 Windows Desktop Runtime，并在用户项目保存数据、资源与历史。",
+      "inputs": [
+        ".NET 8 SDK 与当前 Release 源码；目标机已安装 .NET 8 Windows Desktop Runtime（Windows x64）",
+        "DataManager.App及引用的Core/Images/ImageManager.Core",
+        "嵌入Profile JSON、内置帮助、Doro-white.ico与SingleFileWinX64.pubxml；全新且不含历史 runtime 文件的发布输出目录"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "构建当前 Release 源码，执行所需 console 回归；检查发布 Profile 为 win-x64、SelfContained=false、PublishSingleFile=true、UseAppHost=true，禁用裁剪/ReadyToRun及native/all-content自解压。"
+        },
+        {
+          "order": 2,
+          "action": "在包含 data管理器/ 的源工作区根执行 dotnet publish data管理器/src/DataManager.App/DataManager.App.csproj --configuration Release -p:PublishProfile=SingleFileWinX64 --output <new-publish-directory>；输出到新目录，避免历史自包含 runtime 残留。"
+        },
+        {
+          "order": 3,
+          "action": "验证仅有 data管理器.exe，记录版本/大小/SHA-256，不携带 runtime、DLL、独立 PDB 或旁置配置/帮助；核对 Profile/帮助和图标嵌入资源，ApplicationIcon 与窗口图标使用同一 ICO。"
+        },
+        {
+          "order": 4,
+          "action": "在已记录 Runtime 版本的 Windows x64 环境，从独立目录启动 EXE；按 test.data-manager.single-executable-publish 检查启动和资源。可另用 --verify-bundle <report-json> <sample-root> 生成只读报告，放在样本外并复核源 SHA。",
+          "entity": "test.data-manager.single-executable-publish"
+        },
+        {
+          "order": 5,
+          "action": "报告明确写明需要 .NET 8 Windows Desktop Runtime（Windows x64）。将本机已安装Runtime的启动结果、尚未执行的独立干净系统/无Runtime测试分别记录，不引用旧自包含报告证明当前包免安装。"
+        }
+      ],
+      "gates": [
+        "禁止PublishTrimmed，WinForms/反射/资源发现未做裁剪闭环。",
+        "发布目录单 EXE 与系统 Runtime 前置条件必须同时成立；发现 coreclr/hostfxr/hostpolicy 或旧 runtime DLL 时换全新输出复核，不宣称自包含。",
+        "项目数据、资源、导出、备份、历史继续在项目目录，应用只读目录不得阻止编辑可写项目。",
+        "本机已有 Runtime 的启动成功只覆盖该环境；未安装 Runtime 的提示/干净 OS 未实测须明确标注，不虚构启动成功。"
+      ],
+      "outputs": [
+        "单个data管理器.exe，独立记录文件版本/大小/SHA256及完整发布文件清单",
+        "framework-dependent 配置、嵌入资源/图标检查和 Runtime/OS/架构对应的实际启动结果",
+        "可复现发布命令及必需安装 .NET 8 Windows Desktop Runtime（Windows x64）的说明"
+      ],
+      "rollback": [
+        "发布不改游戏目录；保留上一发布版，启动或烟测失败时使用上一产物。"
+      ],
+      "sourceRefs": [
+        "src.data-manager.publish-single-file",
+        "src.data-manager.image-built-in-help",
+        "src.data-manager.image-help-document",
+        "src.data-manager.main-form",
+        "src.data-manager.test-ui-presentation",
+        "src.data-manager.bundle-verification",
+        "src.items.publish-report"
+      ]
+    },
+    {
+      "id": "workflow.data-manager.item-category-editing",
+      "title": "按宝物类别编辑辅助与消耗品并以 CSV/字节隔离验收",
+      "aliases": [
+        "辅助特效值",
+        "适用兵种下拉",
+        "图鉴勾选框",
+        "255表示不可买卖"
+      ],
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed-tests-and-recorded-local-regression",
+      "goal": "从已识别的物理 Codec 和类别语义生成可编辑业务字段，保持 CSV 物理列名与相邻原始字节，并以临时副本复读控制写入风险。",
+      "inputs": [
+        "项目根目录、精确 Profile/Variant、当前 System.ini DefID/AssID、源文件 SHA-256",
+        "待编辑 TableKey/物品 ID、当前行原始字节及工作区草稿；物理布局引用 format.data-manager.item-codecs",
+        "对应 struct.65.item-category-semantics 或 struct.66.item-category-semantics；消耗品目录引用 mechanism.shared.consumable-effect-namespace，未确认效果保留数字和证据状态"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "记录样本身份、数据 SHA、表边界和当前 Codec；区分准确 EXE 画像与编辑器可用的布局 Variant。F36 山贼国庆五例绑定 profile.ccz66.shanzai.guoqing.f36，强制兼容Variant不改变样本身份。",
+          "entity": "format.data-manager.item-codecs"
+        },
+        {
+          "order": 2,
+          "action": "按当前版本结构和类别构造业务字段：武器/防具保留初始属性、特效值和成长；辅助使用特效值与适用兵种；消耗品显示独立道具效果号及参数低/高字节。复用已有结构实体，不把所有物理列重解释为通用装备属性。"
+        },
+        {
+          "order": 3,
+          "action": "图鉴采用勾选写入0/1，适用兵种采用保留未知值的下拉，价格显示255表示不可买卖；原始保留字段集中显示其物理位置。通过当前 Codec 把UI及CSV导入值覆盖到草稿，切换同表不同类别时重建布局，回访记录恢复草稿。"
+        },
+        {
+          "order": 4,
+          "action": "先在临时副本执行 test.data-manager.item-semantic-editing：核对真实五例、类别切换、当前草稿、CSV旧列名及目标字节隔离；不把测试中的受控编辑直接应用到原始基底。",
+          "entity": "test.data-manager.item-semantic-editing"
+        },
+        {
+          "order": 5,
+          "action": "实际编辑提交前输出字段级差异，核对类别相关目标字节与源 SHA；使用现有工作区事务原子保存、复读当前 Codec 字段并比较非目标字节，CSV导出/回导验证无意外差异。"
+        },
+        {
+          "order": 6,
+          "action": "输出物理写回与业务显示验收，另列游戏内消费者未验证部分；消耗品名称目录或可编辑保留值不等同于游戏参数功能已确认。"
+        }
+      ],
+      "gates": [
+        "Profile/Variant、System.ini边界和物理表几何必须一致；固定地址不得跨画像套用。",
+        "使用物理旧列名CSV，不把特殊效果值或适用兵种业务别名写成新的物理字段；未知值保留数字，不自动归零或转成其它类别。",
+        "保存前磁盘及基线不变；保存后只有审阅的字段字节变化，跨类别切换不得残留旧控件或产生浏览草稿。",
+        "图鉴主动编辑写0/1；辅助适用兵种与兵种装备许可是独立机制，不合并写回。无明确意义的原始字段即使可编辑也须显示证据限制。",
+        "真实回归依赖样本存在与当前哈希；F36五例成功不能升级历史old-shanzhai未知画像，也不证明游戏内运行语义。"
+      ],
+      "outputs": [
+        "类别正确的宝物编辑草稿、字段级补丁/目标字节清单",
+        "物理列兼容CSV、限定目标字节的整文件复读、源SHA与工作区历史",
+        "真实五例/合成类别回归结果及未确认游戏消费者的独立诊断"
+      ],
+      "rollback": [
+        "提交前保留全部关联文件内容/SHA及工作区历史快照；任何边界、源SHA、Codec复读或非目标字节比较失败都拒绝提交或恢复整个事务。",
+        "回归只改临时副本，结束删除；原始基底不参与受控测试编辑，保留截图/日志供定位。"
+      ],
+      "relations": [
+        "format.data-manager.item-codecs",
+        "struct.65.item-category-semantics",
+        "struct.66.item-category-semantics",
+        "mechanism.shared.consumable-effect-namespace",
+        "test.data-manager.item-semantic-editing",
+        "workflow.data-manager.physical-csv-roundtrip"
+      ],
+      "sourceRefs": [
+        "src.items.semantic-resolver",
+        "src.items.business-ui",
+        "src.items.business-compact-ui",
+        "src.items.semantic-tests",
+        "src.items.semantic-report",
+        "src.items.byte-evidence",
+        "src.data-manager.codecs",
+        "src.data-manager.csv",
+        "src.data-manager.transaction"
+      ]
+    }
+  ]
+}

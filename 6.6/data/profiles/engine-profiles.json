@@ -51,7 +51,30 @@
         "src.ccz.f36.exe",
         "src.ccz.f36.static-report",
         "src.forum.godtype.194034",
-        "src.history.local.godtype-f36-synthesis"
+        "src.history.local.godtype-f36-synthesis",
+        "src.items.byte-evidence"
+      ],
+      "companionDataFiles": [
+        {
+          "name": "Data.e5",
+          "length": 61379,
+          "sha256": "F4BC3764D613C8B8F03D54C814184251A7D41EBC34DF6753029BC313AD29F851"
+        },
+        {
+          "name": "Star.e5",
+          "length": 6359,
+          "sha256": "B3921D1765911E52508149E712C6F86D5CD9A1352DB30618176CE3E4BEA2A7C0"
+        },
+        {
+          "name": "Ekd5.exe",
+          "length": 1148928,
+          "sha256": "F36F9A3D06F3C4E52F32320FAE4633D0EADC9B7863F410EA7532B3C45E2ABF88"
+        },
+        {
+          "name": "Imsg.e5",
+          "length": 857117,
+          "sha256": "A847EBF6DBE084B4A545976F0D32A44A071B88DDE73D2A80C2999210D24E4100"
+        }
       ]
     }
   ]

@@ -6,8 +6,13 @@
     {
       "id": "struct.66.f36.character-record",
       "title": "F36 人物运行时记录",
-      "aliases": ["CharacterRecord", "0x48 人物记录"],
-      "versions": ["6.6"],
+      "aliases": [
+        "CharacterRecord",
+        "0x48 人物记录"
+      ],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "canonical",
       "evidence": "static-verified",
@@ -32,14 +37,23 @@
           "meaning": "当前样本转换链读取的兵种字段"
         }
       ],
-      "relations": ["global.66.f36.character-pointer-slot"],
-      "sourceRefs": ["src.ccz.f36.static-report"]
+      "relations": [
+        "global.66.f36.character-pointer-slot"
+      ],
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
     },
     {
       "id": "struct.66.f36.battle-unit-record",
       "title": "F36 战场单位记录",
-      "aliases": ["BattleUnit", "0x30 战场单位记录"],
-      "versions": ["6.6"],
+      "aliases": [
+        "BattleUnit",
+        "0x30 战场单位记录"
+      ],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "canonical",
       "evidence": "static-verified",
@@ -58,13 +72,21 @@
         }
       ],
       "relations": [],
-      "sourceRefs": ["src.ccz.f36.static-report", "src.forum.godtype.194034"]
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
     },
     {
       "id": "struct.66.f36.item-record",
       "title": "F36 物品记录",
-      "aliases": ["ItemRecord", "0x19 物品记录"],
-      "versions": ["6.6"],
+      "aliases": [
+        "ItemRecord",
+        "0x19 物品记录"
+      ],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "canonical",
       "evidence": "static-verified",
@@ -93,17 +115,28 @@
           "offset": "0x16",
           "width": 1,
           "type": "uint8",
-          "meaning": "特效值候选字段"
+          "meaning": "普通装备特效值；辅助保留；消耗品参数高字节。运行时该字段消费仍按原静态证据边界，不推广为所有类别通用效果值。"
         }
       ],
-      "relations": [],
-      "sourceRefs": ["src.ccz.f36.static-report"]
+      "relations": [
+        "struct.66.item-category-semantics"
+      ],
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.items.byte-evidence",
+        "src.items.semantic-resolver"
+      ]
     },
     {
       "id": "struct.66.f36.strategy-record",
       "title": "F36 策略记录",
-      "aliases": ["StrategyRecord", "0x61 策略记录"],
-      "versions": ["6.6"],
+      "aliases": [
+        "StrategyRecord",
+        "0x61 策略记录"
+      ],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "canonical",
       "evidence": "static-verified",
@@ -122,7 +155,9 @@
         }
       ],
       "relations": [],
-      "sourceRefs": ["src.ccz.f36.static-report"]
+      "sourceRefs": [
+        "src.ccz.f36.static-report"
+      ]
     }
   ]
 }

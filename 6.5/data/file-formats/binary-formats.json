@@ -166,12 +166,18 @@
         }
       ],
       "semantics": [
-        "合计 255 条",
-        "6.5 名称区 0x11 字节",
-        "6.6 名称区 0x0F 字节，后续字段位置相应不同"
+        "合计 255 条，逻辑 ID 0..254；Data.e5 +33164 保存 0..103，Star.e5 +0 保存 104..254，均 25 字节。",
+        "6.5 和 6.6 17 字节兼容 Variant 名称区 0x11 字节、图标为 +0x14；6.6 标准/旧山贼候选 Variant 名称区 0x0F 字节、图标为 +0x0F，+0x10/+0x14 是 Preserve 原始字节。各 Variant 的图标字段统一名为图标、类型 UInt8、字段策略 Editable。",
+        "图标值 N 从 0 开始，对应 E5/Item.e5 的小图 #2N+1 与大图 #2N+2；不能将逻辑图标号、1 起始 E5 图号和版本内字节偏移混用。",
+        "6.6 15 字节记录 +0x11/+0x12 的类型/特效动态语义与原始类别标记有关，必须使用目标 Codec，不能按字段名固定偏移迁移。"
       ],
       "sourceRefs": [
-        "src.wrench.profile"
+        "src.wrench.profile",
+        "src.data-manager.profile65",
+        "src.data-manager.profile66",
+        "src.data-manager.codecs",
+        "src.data-manager.studio-item-layout",
+        "src.data-manager.studio-icon-mapping"
       ]
     }
   ]

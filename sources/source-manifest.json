@@ -18,6 +18,22 @@
       "published": false
     },
     {
+      "id": "src.ccz.f36.exe",
+      "path": "基底/复刻版6.6山贼 国庆/Ekd5.exe",
+      "sha256": "F36F9A3D06F3C4E52F32320FAE4633D0EADC9B7863F410EA7532B3C45E2ABF88",
+      "sourceType": "sample-binary",
+      "usedFor": "复刻版 6.6 山贼国庆版静态验证目标",
+      "published": false
+    },
+    {
+      "id": "src.ccz.f36.static-report",
+      "path": "CCZModStudio_Reports/StaticAnalysis/F36F9A3D06F3C4E5-5bb3c09c1661fd3a/delivery-audit.json",
+      "sha256": "F8325232154C3745CF32687830AEC259DFFD18D6EE5C221ED8A8AA675F137A48",
+      "sourceType": "static-analysis-report",
+      "usedFor": "F36 样本指令、函数、交叉引用和静态验证边界",
+      "published": false
+    },
+    {
       "id": "src.ccz.hexzmap-reader",
       "path": "工具整合包/CCZModStudio/Formats/HexzmapProbeReader.cs",
       "sha256": "1C4FC6DAE4CFAFEEAB7C5CC379E3171818C250081B6257E71AA542934E9A3F70",
@@ -47,6 +63,1022 @@
       "sha256": "EAD8324DE51218D940225059C8B1808C3BA6DB5B92783B412A85CE34B1BC2E81",
       "sourceType": "first-party-source",
       "usedFor": "6.5 运行时函数、表基址、步长和字段",
+      "published": false
+    },
+    {
+      "id": "src.data-manager.atomic-item-migration",
+      "path": "data管理器/src/DataManager.Core/Migration/AtomicItemMigrationMapper.cs",
+      "sha256": "E49B6D78BBE8456B38645A57BBBBD57E7F2E326A92456CE1E87052F610F31C2F",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.attribute-reader",
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryTableReader.cs",
+      "sha256": "B101E1AC8749326EDA442FF5315153F4461F3407A7CE5A95C4DC41210D0D7E48",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.augmentation",
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileAugmentationService.cs",
+      "sha256": "5345F4985F0F2D24A4242DB550A7CA5839F515FF606B0AC76B9DE46B807FF4F9",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.bundle-final-report",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/单EXE最终隔离验收.json",
+      "sha256": "7469B03E248200C86BCA54E8C4FA7C90ED2316888E65857E3DBD1A09B69D91FA",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.bundle-verification",
+      "path": "data管理器/src/DataManager.App/BundleVerification.cs",
+      "sha256": "976F6ABB38D93191B76E463ECC2605C0BFCA9020FD0E0772A8BA4F211A32121C",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.business",
+      "path": "data管理器/src/DataManager.Core/Domain/BusinessDataService.cs",
+      "sha256": "6FE531B41DD090B377FCAA90C613AF4616CA0BF6D7BEF2F1CD06877EE3282EF2",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.byte-chunk-merger",
+      "path": "data管理器/src/DataManager.Core/Binary/ByteChunkMerger.cs",
+      "sha256": "4C79EA923AF35FE2A541C8699095382BEE1D34277B9FF0FFA9FBC33BA1BF1985",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.codecs",
+      "path": "data管理器/src/DataManager.Core/Binary/RecordCodecs.cs",
+      "sha256": "518EB9471C73A9875B4E99FCA6BAAD040D5CCD2009F33BFD72C91D805C7DC791",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.csv",
+      "path": "data管理器/src/DataManager.Core/Csv/CsvService.cs",
+      "sha256": "2E261CCAC09FEAB084A10A1BC5F1DB1FDD2CDEB67D9E3D0307EA56C3EF3E08DF",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.csv-labels",
+      "path": "data管理器/src/DataManager.Core/Csv/CsvDisplayNameRegistry.cs",
+      "sha256": "2D9E6E57C6A102AA0A339F9F6BFE9EB397C1F58C4539E382260365128EF0ED66",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.data-history",
+      "path": "data管理器/src/DataManager.Core/History/HistoryStore.cs",
+      "sha256": "0DE7622B55837911185F5AF0D088C7883B8C80FD17E7566F9CE8C3EF8E28638B",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.effect-migration",
+      "path": "data管理器/src/DataManager.Core/Migration/ClassEffectMigrationMapper.cs",
+      "sha256": "F01C5457B487348AFD3F8E98CAA610E951F68C1DF30087EB30198499A6BB0687",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.embedded-probe",
+      "path": "data管理器/src/DataManager.Core/Profiles/EmbeddedEngineLayoutProbe.cs",
+      "sha256": "E2FC5F40AFA35A110C6C5CC3BC5E982F3BA7B44A51FB139B68F893850F8A0117",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.extended-item-migration",
+      "path": "data管理器/src/DataManager.Core/Migration/ExtendedItemMigrationMapper.cs",
+      "sha256": "4A6627777EE9EA5ED74F2042DA4617313665F26909C097D07D5225D163DE5019",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.groups",
+      "path": "data管理器/src/DataManager.Core/Domain/AccessoryJobGroupService.cs",
+      "sha256": "E713D4138A745049C3FCCF9BD6FFA2149E1CAB348D4AC64B48DECEF27EA6B0B5",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.history-models",
+      "path": "data管理器/src/DataManager.Core/Models/HistoryModels.cs",
+      "sha256": "CED8814FA7C9F04789DFA02EF5AFFE961BC39DF7DBACED166B79B0E678E53D38",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.hybrid-icon-evidence",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/混合版RAW图标证据.json",
+      "sha256": "A078BE0EE99548156BFC33DF2E79320F5033004DF448E108617823BFC77BC3AE",
+      "sourceType": "static-audit",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.hybrid-icon-log",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/混合版图标与版本-专项诊断.log",
+      "sha256": "8E6CC8A4E04C59811D2D8AB91A94F11A5EF3132D7CA8E188922A9BC598E0CF9E",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-acceptance-summary",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/图片协议验收摘要.json",
+      "sha256": "E4061D0DD71EEAD24CFD2880578CEAE7444074EA7C53F861C85235BDA419270A",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-adapter",
+      "path": "data管理器/src/DataManager.Images/ResourceCatalogAdapter.cs",
+      "sha256": "52DA2C94AC2E4DF89EBB434D98A69F7379342A9C24E2757F1CA3B7FAD14BD436",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-animation",
+      "path": "形象管理器/src/ImageManager.Core/StrategyAnimationCodec.cs",
+      "sha256": "5A112C2DD4D736D41F683F58DA4AAE48FC08BB6AAFFF5205F8CB872C19B938AA",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-animation-consumer-evidence",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/6.5-动画消费者-402537-402e50.txt",
+      "sha256": "72590AC6E176C0C76ECD349BB5082888647AA8B2246C0661A69DFB9100A3A7E5",
+      "sourceType": "static-audit",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-animation-dialog",
+      "path": "形象管理器/src/ImageManager.App/PreviewDialogs.cs",
+      "sha256": "DC333B4BD8928285035766F28CAC440079940B4256DC109BFE149ED1FFBAD4C2",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-animation-mixer-evidence",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/6.5-动画混合-417024-417380.txt",
+      "sha256": "0B481913943F6E5B46DF00FB996724E5E1D77AE0216DED25401792A4E174FB01",
+      "sourceType": "static-audit",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-animation-preview-ui-tests",
+      "path": "data管理器/src/DataManager.Tests/AnimationPreviewUiTests.cs",
+      "sha256": "3BB9C0D89CEEF1A6BEE7225AC42828A83C51B670D34DB4C948D1FA310EFA724A",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-animation-thread-evidence",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/6.5-动画线程-41295c-412a30.txt",
+      "sha256": "FE8805CE5809650B63900F75C653EABCE92D70FF7E3BE33DCB7B8BCAFC19366E",
+      "sourceType": "static-audit",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-animation-ui65-log",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/动画界面-6.5专项.log",
+      "sha256": "1ADAF53571858F4B9DFD46E46E7FA74418FA9531E99EC585D6C42766849AE275",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-animation-ui66-log",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/动画界面-6.6专项.log",
+      "sha256": "1ADAF53571858F4B9DFD46E46E7FA74418FA9531E99EC585D6C42766849AE275",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-atlas-dialog-log",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/参考图后台取消UI.log",
+      "sha256": "8A22E5E2BF6AFCDDCB9B583159C61FD6DAB82CFE7972CA3D41F9799946B48527",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-atlas-import-dialog",
+      "path": "形象管理器/src/ImageManager.App/AiAtlasImportDialog.cs",
+      "sha256": "67AC7079D6DC871199CF26273B83A378BADB15B2CC0B1C3323C802E452EB6CB6",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-atlas-import-ui-tests",
+      "path": "data管理器/src/DataManager.Tests/AtlasImportDialogTests.cs",
+      "sha256": "782215975383E04E42CC83374DC3BED04A597CE657BB2A91A1066F3096FF7193",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-atlas-models",
+      "path": "形象管理器/src/ImageManager.Core/Models.cs",
+      "sha256": "BA4A1447E862F0E777605FCE2BFDAF387EF787B9D0E9E8D6632BEE1D6BEC98EB",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-atlas-normalizer",
+      "path": "形象管理器/src/ImageManager.Core/AiAtlasNormalizer.cs",
+      "sha256": "837B4C42BF3555E6C0ACF18A9F6150355D2DC47842732E1CE1A52BB9689ED373",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-bindings",
+      "path": "data管理器/src/DataManager.Images/ResourceCatalogAdapter.Bindings.cs",
+      "sha256": "FC1EDD4679132C8A174C6BBEEE87A6A5006A5A194DC11571E0D5346424DD1D66",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-bmp-payload",
+      "path": "形象管理器/src/ImageManager.Core/BmpPayloadService.cs",
+      "sha256": "049DDFA8BA3F5108CA85B781E98D283831D9D2DB0F73396C6162866FF6C05C48",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-built-in-help",
+      "path": "形象管理器/src/ImageManager.App/BuiltInDocumentation.cs",
+      "sha256": "3F5C8036F22FD7747EE31C8B47965ADFD0FDFBFB022A62E8E4428D1988D08E07",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-catalog",
+      "path": "形象管理器/src/ImageManager.Core/ImageCatalogService.cs",
+      "sha256": "F04A64A5947409651081FE80637E1A7472E1DF28744D228EF7E7194476B68C69",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-codec-diagnostics",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/图片编解码-专项诊断.log",
+      "sha256": "E3C70CC187765DEE462FA5E806BE63E6450596B049C28DC09A48AA047356C12C",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-codec-report",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/BMP-天气-动画核心专项报告.md",
+      "sha256": "92CE6EAE5D081EB61C7F8256436F69DF6D28475BE4BAA6D60E053E0346176BF3",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-codec-tests",
+      "path": "形象管理器/src/ImageManager.CodecTests/Program.cs",
+      "sha256": "0143E40132EA2D2B5C241264D9C69C26E5F4A29E04575836D858684ED0CA64CB",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-codecs",
+      "path": "形象管理器/src/ImageManager.Core/ResourceCodecs.cs",
+      "sha256": "A5021E8A4DF39F803E2DC9D342C2F74B51E2A75117DB6C84D6CA797B2AC09BDF",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-color-mix-evidence",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/6.5-颜色混合-415a64-415bed.txt",
+      "sha256": "0CD4CC75F6177F57083293C28D6DA952789FB1AC7086A3D110CF1E5D216C8E35",
+      "sourceType": "static-audit",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-dll-archive",
+      "path": "形象管理器/src/ImageManager.Core/DllBitmapArchive.cs",
+      "sha256": "0D4707273474F353089B9707D1C76475E7C3EE4F6B1BA88D2BBE4384F98D33D2",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-dll-codec",
+      "path": "形象管理器/src/ImageManager.Core/DllBitmapResourceCodec.cs",
+      "sha256": "A309D705BE81D6E1DF35D615ADED3347160A526B5B53A920F7011588742E81CA",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-e5",
+      "path": "形象管理器/src/ImageManager.Core/E5Archive.cs",
+      "sha256": "95CEDC5624AAFB03815ECF5B207918EDDF78AD3AE7E0FAF92F128483EF8FC6D8",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-exchange-tests",
+      "path": "形象管理器/src/ImageManager.Tests/RsExchangeAndAtlasTests.cs",
+      "sha256": "CF05A8DC11AF7360E62F603208D1334B0CEC01B156191F320710D3C15B6F5DD3",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-face-payload",
+      "path": "形象管理器/src/ImageManager.Core/FacePayloadService.cs",
+      "sha256": "C7C4EDB6B7D038007AEC04E14DD31F4C28E2DE45054FF20E7D65C79536F258EE",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-grid",
+      "path": "形象管理器/src/ImageManager.App/ImageGridPage.cs",
+      "sha256": "C96C535A1018B69E4D413F6E2E3212896DA4F0663C8D2772A81FEE0EAA970A4D",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-help-document",
+      "path": "形象管理器/docs/一体化管理器使用说明.md",
+      "sha256": "D6655636A2FB1626FABBF348A71E046CFBF8392495CF1F4092652A8FC370E585",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-history",
+      "path": "形象管理器/src/ImageManager.Core/HistoryService.cs",
+      "sha256": "CB73CC9AB365EB5A479A427DA301EE7119910468E4736A552FD9EF637E07C6BA",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-integrated-panel",
+      "path": "data管理器/src/DataManager.Images/IntegratedResourcePanel.cs",
+      "sha256": "887CDF8CC29D70FBE2C3D5393087FD4C4991D081EFF6C2E6C150933A2899D3E9",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-item-icon-derivation",
+      "path": "形象管理器/src/ImageManager.Core/ItemIconDerivationService.cs",
+      "sha256": "BE428ED89002F86051019B5AE056D626BFC74EBB4522FD6BB52D38603F86F162",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-migration-converter",
+      "path": "data管理器/src/DataManager.Images/ImageMigrationResourceConverter.cs",
+      "sha256": "D6BAE888B0114FC9AB708C3C504D15556615604E6379857B6A8FC2595AEA7181",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-mutation",
+      "path": "形象管理器/src/ImageManager.Core/ImageMutationService.cs",
+      "sha256": "8A5054FC480ABDA5E8882BE9B30BB22F9EAD64CDF1F8088E2A563091A0958E04",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-palette",
+      "path": "形象管理器/src/ImageManager.Core/PaletteService.cs",
+      "sha256": "133497EFEAD31551C1155F67CCB5C5620FFDDDC5B6EEFAEB3AAC95CE641ADA0E",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-pixel-editor",
+      "path": "形象管理器/src/ImageManager.App/PixelEditorDialog.cs",
+      "sha256": "DF111F4B862708FFCA060B2E424BB7E3AF5661B7AA393D6ED7C25F0E762E1FA3",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-pixel-mix-evidence",
+      "path": "data管理器/验证/图片交换与单文件验收-20261018/6.5-像素混合-40690c-406d20.txt",
+      "sha256": "B1A40A1437F28D6DA20B4B2B19D8C4A97FFD103FF38D9F2A002799AF84FE0D8B",
+      "sourceType": "static-audit",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-preview-layout",
+      "path": "形象管理器/src/ImageManager.App/PreviewImageLayout.cs",
+      "sha256": "102E144D306BEAF99F16E279100C6EF5EC1CF98C17A3591C00FDBDCBB5EAADA8",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-profile",
+      "path": "形象管理器/src/ImageManager.Core/ProjectProfileService.cs",
+      "sha256": "B71B8CA03113ABC6DF2BCFBB1B88B9F018CB454117B986B70F81D20D313BB828",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-reference-atlas",
+      "path": "形象管理器/src/ImageManager.Core/ReferenceAtlasService.cs",
+      "sha256": "84E273998B6352058C9308B7650BE3652C613A066E72A8B88BD269146CAEFE61",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-reference-context",
+      "path": "形象管理器/src/ImageManager.Core/ReferenceAtlasContext.cs",
+      "sha256": "86BA3ACEC31F41F25B36A4314F26D7641B76EC674AD0B8292E4D96A97BFDB34A",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-reference-layout",
+      "path": "形象管理器/src/ImageManager.Core/ReferenceAtlasLayoutPlanner.cs",
+      "sha256": "0FAB084D6E60B1EB94952CD300F18F93FD0F4A9994BD440923266B3363A6AE94",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-rendering",
+      "path": "形象管理器/src/ImageManager.Core/ImageRendering.cs",
+      "sha256": "D2DCB4225E2A69771EC89580EA6B85A0EEDEBAD2E3BDFF59F2C788860CBAF08D",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-rs-import",
+      "path": "形象管理器/src/ImageManager.Core/RsImportService.cs",
+      "sha256": "23C8C761F2501F9F215D519CD5BFA7E6C946349F453EA00B814046B21D287AB1",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-s-map",
+      "path": "形象管理器/src/ImageManager.Core/SPhysicalMappingService.cs",
+      "sha256": "EC5C904BD09EB0EE50FD3AAAA6EEE93813FF58034F25B250742F03DB01C06325",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-selection-appearance",
+      "path": "形象管理器/src/ImageManager.App/SelectionAppearance.cs",
+      "sha256": "115E1E00821D5E025EFDDAAF4226BD229725343A50F8B2AA9814F9FFC7D6C96D",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-source-labels",
+      "path": "data管理器/src/DataManager.Images/ResourceDisplayNames.cs",
+      "sha256": "EBE3A61269CA8F0D78FE114539D011F9715101DA09E8D58B719F56BF787C37E4",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-special-codecs",
+      "path": "形象管理器/src/ImageManager.Core/SpecialResourceCodecs.cs",
+      "sha256": "30CDB0279E73A9CCCDB0F897508B7C89217550D0B805D86404232897AE851CE0",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-strip-exchange",
+      "path": "形象管理器/src/ImageManager.Core/RsStripExchangeService.cs",
+      "sha256": "E4840F08F093532B7B3235D42CBBD4824945E48C79C289C4D3ECAA60D4079EC6",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-test-runner",
+      "path": "形象管理器/src/ImageManager.Tests/Program.cs",
+      "sha256": "939F4CB7F77CC91ACD114F591B9D2B6B69957534A20EA621BCB9CB9D56F1BC11",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.image-weather-evidence",
+      "path": "data管理器/验证/图片协议修复/weather-consumer-evidence.json",
+      "sha256": "B6FC4F987411D03313DD3A7D6A20BB3FBCE9423C99F78C3B5F6FD12B0743AD80",
+      "sourceType": "static-audit",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.item-migration",
+      "path": "data管理器/src/DataManager.Core/Migration/ItemMigrationMapper.cs",
+      "sha256": "D8F1E1697F5BB5C9810079FA70554718E43B0BD41805DE53EB93F98CEDD298B3",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.item-types",
+      "path": "data管理器/src/DataManager.Core/Domain/ItemTypeService.cs",
+      "sha256": "F4E686C9538F45F6114564C85D701DB20F42D4E7FB1A08166CE69060EB022911",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.layout-collector",
+      "path": "data管理器/验证/本轮逆向/inspect_66_layouts.py",
+      "sha256": "EAE3C004B93ED6B94575396698B07F29564032332C99DD80C1B4AEEC6660F99E",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.layout-evidence",
+      "path": "data管理器/验证/本轮逆向/66-layout-scan.json",
+      "sha256": "44E34529BD50E709953686FE6FE0588FFB02CE8CEFC1D096F4F6AA76A0791A43",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.main-form",
+      "path": "data管理器/src/DataManager.App/MainForm.cs",
+      "sha256": "675F3AE5791E84DBDC66C5EEB0BFA05E0CE4A1C595F5278BDE688C62CC5F15DA",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.migration",
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationService.cs",
+      "sha256": "27AE42A7C6E8D47D02CC5094C640B01588247DC5B58050F0BBCDFE5CB1B49035",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.migration-commit",
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationCommitCoordinator.cs",
+      "sha256": "90A45928B010650FD856CED705EF387760F0166FE7154045B7339712FF20966D",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.migration-field-isolation",
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationFieldIsolation.cs",
+      "sha256": "D1693F318F52F42D8E9042EC2F0BE4F47C82934A6407CA572932505A6ECE6A8F",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.migration-models",
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationModels.cs",
+      "sha256": "6415F920F8B2BEE92E00AC5F9CC59BA6219C7D5C2BD1325A58BA914D9DB61DC2",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.migration-path-safety",
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationPathSafety.cs",
+      "sha256": "19427245ECE8E80959D8FDDF9B862230209B6443759CCC35B9754D9ACB8CF5F7",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.migration-progress-ui",
+      "path": "data管理器/src/DataManager.App/MigrationProgressDialog.cs",
+      "sha256": "9D39BA42CD33C468B3846DC80BB3EC5EBC82EE88F2126F7C36D7E90986E684A0",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.migration-resource-converter",
+      "path": "data管理器/src/DataManager.Core/Migration/IMigrationResourceConverter.cs",
+      "sha256": "3B9712E7DF7B891DC313B91D2D1FD068EA974D3F64ADBBF5B61AA25D893CD82D",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.migration-review-ui",
+      "path": "data管理器/src/DataManager.App/MigrationReviewDialog.cs",
+      "sha256": "0925F1240AC42B19479E9B29E03E453F630FE9B07C6EECA447AD9B54453F511E",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.name-pool",
+      "path": "data管理器/src/DataManager.Core/Domain/EffectNamePoolService.cs",
+      "sha256": "774111833A972B521F1B299971559E10A72D317577044CCF4E489314E4A0B1D4",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.native-migration",
+      "path": "data管理器/src/DataManager.Core/Migration/SpecialStructureMigrationDiagnostics.cs",
+      "sha256": "6A93921CF076B3D9704494BF4EF877875FE3D35BC842808A052DC2681390801F",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.offline-checker",
+      "path": "data管理器/验证/check-layout-knowledge.py",
+      "sha256": "98D3F13B17E0F3C2C89007FB98BD06C747A2661D7FF5A7C97B258180B6554197",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.old-hex-tables",
+      "path": "工具整合包/CCZModStudio/Assets/ConfigTable/HexTable.xml",
+      "sha256": "51FDCADBE4CB39E1B68550ECCEBFCF3F87B38E755DA036542FD33790154BE7BE",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.profile65",
+      "path": "data管理器/config/profiles/ccz-6.5.json",
+      "sha256": "6FA7F8797E03AB2B7A16D6F78D77A4E57494BCB3988BFB3660A71CA4480D5BD2",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.profile66",
+      "path": "data管理器/config/profiles/ccz-6.6.json",
+      "sha256": "03C52A5DB59ADC43902BBBD8F6C6C785856E0EB75BBDA9437970302288E313D7",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.publish-single-file",
+      "path": "data管理器/src/DataManager.App/Properties/PublishProfiles/SingleFileWinX64.pubxml",
+      "sha256": "8A8C615A2626840A9C2F98C325366C094E53C1BDD68CB0D86E5F89F16B34B2A6",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.quotes",
+      "path": "data管理器/src/DataManager.Core/Domain/PersonQuoteService.cs",
+      "sha256": "2CB7116E5444D0B2E6644C0564846BA3965B3DE79A11A27B85C6D2548BB94A54",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.registry",
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileRegistry.cs",
+      "sha256": "8F1CD4CACC23E473A5F8ACF9B5D813AA701DD2D999AE50893FF5AC87A246A6EB",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.resource-history",
+      "path": "data管理器/src/DataManager.Images/ResourceHistoryAdapter.cs",
+      "sha256": "D395F62EDAFA9293C5D50213959CF6FCBA5FBA5CA0079AECFD2FB60D77F69C61",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.studio-icon-mapping",
+      "path": "工具整合包/CCZModStudio/Core/ItemIconMappingService.cs",
+      "sha256": "15C42BDCFFD6EAEF156CB2D366D449603F451A40C99DDD6569F114EB23E4ACA8",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.studio-item-layout",
+      "path": "工具整合包/CCZModStudio/Core/Ccz66ItemLayoutService.cs",
+      "sha256": "C0AB9A7976BA06BC7FD85E516A14EF1323C9ECF226339550E8262261E3EA045A",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.table-writer",
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryTableWriter.cs",
+      "sha256": "2F1587BB9B18AC941AE1B47F02E64D6110BEDDE100CBF1657C942BEBE8C0C788",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-assignment",
+      "path": "data管理器/src/DataManager.Tests/AssignmentEvidenceTests.cs",
+      "sha256": "8B69A2435E584E88CD6058B4E88F56024B260FC705799389DDAD84E45AFC9DA1",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-business-write",
+      "path": "data管理器/src/DataManager.Tests/BusinessTableWriteTests.cs",
+      "sha256": "ED380C663DE41DC32ED4848244A3BCFD5779E8E146BA619FF3D2C406290EC93B",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-csv",
+      "path": "data管理器/src/DataManager.Tests/CsvTests.cs",
+      "sha256": "181CA39A0AA5FD76FBB54A78E04202CEAD40C16D399315152D3D30C694FCDB2A",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-image-migration",
+      "path": "data管理器/src/DataManager.Tests/ImageMigrationConversionTests.cs",
+      "sha256": "602F180511B15A06BD3B7783AE086088626169DF6D143AAE7D294E6F71F8978F",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-item-icon-append",
+      "path": "data管理器/src/DataManager.Tests/ItemIconAppendTests.cs",
+      "sha256": "05AC1A231CAD10B26FD0A02493BB18939F0A873DE6E85D694CF196C34ED4EACD",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-item-migration",
+      "path": "data管理器/src/DataManager.Tests/ItemMigrationTests.cs",
+      "sha256": "D906DDE7DD524C330BFC2E21600D585DA2BBEDBC1E6573DF22071FED6F480179",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-migration-field-isolation",
+      "path": "data管理器/src/DataManager.Tests/MigrationFieldIsolationPerformanceTests.cs",
+      "sha256": "6232F1D08F105268B349E4C4E7067E79ED68874CC458706873B46AEC3F4F8905",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-migration-isolation",
+      "path": "data管理器/src/DataManager.Tests/MigrationIsolationTests.cs",
+      "sha256": "3E39A381B086E1DD4EC0534BC4AF15B2C6DD7B01B9A60E681930A29F58C2A35E",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-migration-readonly",
+      "path": "data管理器/src/DataManager.Tests/ReadonlyResourceRollbackTests.cs",
+      "sha256": "F3F0C3CB6E2B8E0BCE964435CC075E791EA0F3E156F535A76BF3C34B9CDF9F13",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-migration-selection",
+      "path": "data管理器/src/DataManager.Tests/MigrationSelectionContractTests.cs",
+      "sha256": "5271CD3D17A7EEB2D153E0BFE271D32381AD3B7B3B9B5CF2506846A1F2AC2E44",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-migration-ui",
+      "path": "data管理器/src/DataManager.Tests/MigrationUiTests.cs",
+      "sha256": "165E630BE348D648359566A8E90D050533E2BB3FF1FE9449B54079DC2F3C86A3",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-native-migration",
+      "path": "data管理器/src/DataManager.Tests/NativeStructureMigrationTests.cs",
+      "sha256": "C737D7A282D776A97AC7EE79257E7BAD8196A32B73FF5B4B9C5DCD549A020948",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-profile-write",
+      "path": "data管理器/src/DataManager.Tests/ProfileWriteTests.cs",
+      "sha256": "CAAD809DE64FAE5E76FA1C94C498F2D9EE9E12A296D2746AE3D994A63A388A52",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-quotes",
+      "path": "data管理器/src/DataManager.Tests/PersonQuoteTests.cs",
+      "sha256": "20113237D68740203BBCD942C6875FFB5F63B257FB77DCFC34DD76EFEEA6B1FF",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-real-migration",
+      "path": "data管理器/src/DataManager.Tests/RealProjectMigrationTests.cs",
+      "sha256": "2F57B049B48C4AD659298A0354B810ADFD861F36875ADC652F09BE3730C50E46",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-resource-bindings",
+      "path": "data管理器/src/DataManager.Tests/ResourceBindingMappingTests.cs",
+      "sha256": "994805CA9813B9FA818F46A0DEA80523A687AACDAE708B2C5A9B25BB80E25624",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-resource-migration",
+      "path": "data管理器/src/DataManager.Tests/MigrationResourceTests.cs",
+      "sha256": "26E386E991565F8D15EE1FBCB5C068EEA64C14E4E3048386FBEE3581EE28B302",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-runner",
+      "path": "data管理器/src/DataManager.Tests/Program.cs",
+      "sha256": "83094F54BE423317121D69D07FA7191F2392070B28BE61789CC6D596F98CE314",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-save-bulk",
+      "path": "data管理器/src/DataManager.Tests/SaveBulkPerformanceTests.cs",
+      "sha256": "3F108C0AC5926DE198FDC2FFBA05BDBEA2EC20FDF2087137849EE3D1B3EB5FB7",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.test-ui-presentation",
+      "path": "data管理器/src/DataManager.Tests/UiPresentationTests.cs",
+      "sha256": "4BBA9F78CF5ED4C0D56146AD3EA902427B318EEC91E23FB63B4CD2A023C10416",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.transaction",
+      "path": "data管理器/src/DataManager.Core/Editing/WorkspaceBinaryTransaction.cs",
+      "sha256": "A4591A7EC03CA5532FE62D3F3577EC1CC3A3E7FE021F7B6625353278254DE723",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.unified-history",
+      "path": "data管理器/src/DataManager.App/UnifiedHistoryService.cs",
+      "sha256": "0D2A6F516A5D6F8F6064F2F414C02ADEC140D3E004B65391CD8A116EEBCEFC27",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.user-attribute-enums",
+      "path": "sources/data-manager-user-confirmed-enums.md",
+      "sha256": "F7BF7F1D79F23E427B0C808DF1814ACC3B4356C28D085544EC38BA288186550C",
+      "sourceType": "user-confirmation",
+      "published": true,
+      "usedFor": "用户确认的兵种系属性枚举名称；不是逆向或引擎运行时验证证据"
+    },
+    {
+      "id": "src.data-manager.values",
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryValueCodec.cs",
+      "sha256": "47EA9B5BB89282B32FA2825B4D394923F41C60B215CA5D5228E34233AFBF36D8",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager.workspace",
+      "path": "data管理器/src/DataManager.Core/Editing/ProjectWorkspace.cs",
+      "sha256": "935A496BEE908B8EDBE14DBC48F67E52715515749FAEC5CFE44A8C79B7A21A91",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.forum.godtype.194034",
+      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=194034",
+      "sha256": "057F7E0E117C8375EB759CA8C9FE563053BB1F742956A68249CA03C9E7D5E28F",
+      "sourceType": "web-forum-thread",
+      "usedFor": "godtype OllyDbg 教程三页正文、回复和版本迁移方法",
+      "published": false
+    },
+    {
+      "id": "src.forum.godtype.194034.offline",
+      "path": "制作区帖子备份/godtype/如何使用Ollydbg修改曹操传引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "sha256": "B1C8460D0427A206CC92F3DD4F3959C8F69F89141B66B2702D0ADE378638021A",
+      "sourceType": "web-forum-offline-backup",
+      "usedFor": "主帖离线复核和论坛分页正文备份",
+      "published": false
+    },
+    {
+      "id": "src.forum.star175.296955",
+      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=296955",
+      "sha256": "02CEB06B365C9604F1E6A325EA596FBE1AE99B9FA8A0767D9190A02E56122E7D",
+      "sourceType": "web-forum-thread",
+      "usedFor": "star175 EXE/Imsg 修改器 6.0 兼容边界和策略修改讨论",
+      "published": false
+    },
+    {
+      "id": "src.forum.star175.296955.p2",
+      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=296955&page=2",
+      "sha256": "0F30B66805F2B2058BA456F560D5B038132E5155F1E7A70E591DD41A7C4B5509",
+      "sourceType": "web-forum-thread-page",
+      "usedFor": "star175 修改器第 2 页策略天气、四神限制和 CM 运行库回复",
+      "published": false
+    },
+    {
+      "id": "src.forum.star175.296955.p3",
+      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=296955&page=3",
+      "sha256": "4860DE289BB4C3981AE1BDEBDCC2F44F1F13D0A53932CBD8B35B8871B4508A3D",
+      "sourceType": "web-forum-thread-page",
+      "usedFor": "star175 修改器第 3 页版本和工具兼容性回复",
       "published": false
     },
     {
@@ -780,6 +1812,126 @@
       "gitPath": "6.6/03-机制与特效/6.6修改記錄整理.txt"
     },
     {
+      "id": "src.history.local.godtype-f36-synthesis",
+      "path": "工具整合包/本地知识库/09-版本与外部资料/godtype-OllyDbg教程与复刻版6.6山贼验证.md",
+      "sha256": "C47AE5FA71DCC128BD112B201304106173CAB9BCB0994A2C98D03B3E7C1E0762",
+      "sourceType": "local-knowledge-synthesis",
+      "usedFor": "上一轮对话形成的论坛三页归纳、F36 静态验证和迁移边界",
+      "published": false
+    },
+    {
+      "id": "src.items.business-compact-ui",
+      "path": "data管理器/src/DataManager.App/BusinessEditorPanel.Compact.cs",
+      "sha256": "760BD07E768007A1FFD55D144901758E0DCC6DF37544D1BBE436173032A5B805",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.business-ui",
+      "path": "data管理器/src/DataManager.App/BusinessEditorPanel.cs",
+      "sha256": "B9BBA990D8EF6B5D6C11C575FDF05F445D94FD4248FAA53E5394A7810538675C",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.byte-evidence",
+      "path": "sources/item-semantic-byte-evidence.json",
+      "sha256": "2FC8854CEDAF445D141350D23ABEE3F4C8E31A21C050B3BFE6DA41CB13EA9E2E",
+      "sourceType": "sample-byte-audit",
+      "published": true,
+      "usedFor": "本轮用户命名来源与独立原始字节，区分标签/样本/运行时证据"
+    },
+    {
+      "id": "src.items.consumable-catalog",
+      "path": "data管理器/src/DataManager.Core/Domain/ConsumableItemEffectCatalogService.cs",
+      "sha256": "A464EAB9159BD4B4582BFE6A48A2810FE88E44ED28B79DF07B5C0683410B77C0",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.legacy-consumable",
+      "path": "老版游戏制作工具/CCZ-ExtendModifier-main/ExtendModifier/ExtendModifierDAOJU.cpp",
+      "sha256": "D3F93B8BEFA12B8A6631C05908EB87BDE617FA0C502731BF936D4329359C3EBA",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.legacy-equipment",
+      "path": "老版游戏制作工具/CCZ-ExtendModifier-main/ExtendModifier/ExtendModifierZHUANGBEI.cpp",
+      "sha256": "A7D5F2203ED2FA20C9A3444C3A4F16E750781AF898645FA8FF3AFB6E789D793A",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.meff-gallery-codec",
+      "path": "形象管理器/src/ImageManager.Core/StrategyAnimationResourceCodec.cs",
+      "sha256": "A5F913BA2AB6434764FD6CB0B48C4FB0A0FB0A7E0454F9E0CC698545B15A43AD",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.meff-player",
+      "path": "形象管理器/src/ImageManager.App/SelectedAnimationPreview.cs",
+      "sha256": "926629B5A4CC957063299C4C742DE9D858D5225E60D8D9BCE288D057057D43DF",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.meff-preview-report",
+      "path": "data管理器/验证/2026-10-20-Meff图库点击播放修复.md",
+      "sha256": "8B5625FEEC60DF369EEBCD430EC992E146CD523E571711DC6855A466BD865150",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.publish-report",
+      "path": "data管理器/验证/2026-10-20-单文件发布验收.md",
+      "sha256": "205FE4623CA0364495E7D4117C5178CC57026DC2B5FAA9D7B2F03B1AFA158D84",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.semantic-report",
+      "path": "data管理器/验证/2026-10-20-宝物读写修复/验收报告.md",
+      "sha256": "74726761DDBFB9D1FE67A05DA4266B60DAFC5B20867BA6AE7ED2C73795FFBDED",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.semantic-resolver",
+      "path": "data管理器/src/DataManager.Core/Domain/ItemSemanticResolver.cs",
+      "sha256": "245A3336E1B5187806B22E8FBB4B8B2FEA2C3EB34EBA93F7F6C2547204B42AC7",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.semantic-tests",
+      "path": "data管理器/src/DataManager.Tests/ItemSemanticEditingTests.cs",
+      "sha256": "B556A23AE3052F86568CC665CE64A1BCD6A108C281FDD455370CD6308F75889E",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "类别感知宝物读写、独立消耗品目录与可复现回归；不扩大游戏消费者证据"
+    },
+    {
+      "id": "src.items.user-confirmation",
+      "path": "sources/item-consumable-user-confirmation.md",
+      "sha256": "F62A4C23AB8232DA21B9673CFDAF4640AA0ABECE44341544A0F3A54C326795A2",
+      "sourceType": "user-confirmation",
+      "published": true,
+      "usedFor": "本轮用户命名来源与独立原始字节，区分标签/样本/运行时证据"
+    },
+    {
       "id": "src.wrench.layout",
       "path": "老版游戏制作工具/扳手/engine_layout.py",
       "sha256": "012EAEEB0C3DA696DCED19033B90902F5C6E07C2A240B04638BF4C40ACF66823",
@@ -817,70 +1969,6 @@
       "sha256": "2C58C7654511519842F43B0D4F05D1FE03464A796AB9AC2630D7CFD81827EFF0",
       "sourceType": "first-party-source",
       "usedFor": "测试样本固定地址与 17 个 S 调用者断言",
-      "published": false
-    },
-    {
-      "id": "src.forum.godtype.194034",
-      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=194034",
-      "sha256": "057F7E0E117C8375EB759CA8C9FE563053BB1F742956A68249CA03C9E7D5E28F",
-      "sourceType": "web-forum-thread",
-      "usedFor": "godtype OllyDbg 教程三页正文、回复和版本迁移方法",
-      "published": false
-    },
-    {
-      "id": "src.forum.godtype.194034.offline",
-      "path": "制作区帖子备份/godtype/如何使用Ollydbg修改曹操传引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
-      "sha256": "B1C8460D0427A206CC92F3DD4F3959C8F69F89141B66B2702D0ADE378638021A",
-      "sourceType": "web-forum-offline-backup",
-      "usedFor": "主帖离线复核和论坛分页正文备份",
-      "published": false
-    },
-    {
-      "id": "src.history.local.godtype-f36-synthesis",
-      "path": "工具整合包/本地知识库/09-版本与外部资料/godtype-OllyDbg教程与复刻版6.6山贼验证.md",
-      "sha256": "C47AE5FA71DCC128BD112B201304106173CAB9BCB0994A2C98D03B3E7C1E0762",
-      "sourceType": "local-knowledge-synthesis",
-      "usedFor": "上一轮对话形成的论坛三页归纳、F36 静态验证和迁移边界",
-      "published": false
-    },
-    {
-      "id": "src.forum.star175.296955",
-      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=296955",
-      "sha256": "02CEB06B365C9604F1E6A325EA596FBE1AE99B9FA8A0767D9190A02E56122E7D",
-      "sourceType": "web-forum-thread",
-      "usedFor": "star175 EXE/Imsg 修改器 6.0 兼容边界和策略修改讨论",
-      "published": false
-    },
-    {
-      "id": "src.forum.star175.296955.p2",
-      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=296955&page=2",
-      "sha256": "0F30B66805F2B2058BA456F560D5B038132E5155F1E7A70E591DD41A7C4B5509",
-      "sourceType": "web-forum-thread-page",
-      "usedFor": "star175 修改器第 2 页策略天气、四神限制和 CM 运行库回复",
-      "published": false
-    },
-    {
-      "id": "src.forum.star175.296955.p3",
-      "path": "https://www.xycq.org.cn/forum/viewthread.php?tid=296955&page=3",
-      "sha256": "4860DE289BB4C3981AE1BDEBDCC2F44F1F13D0A53932CBD8B35B8871B4508A3D",
-      "sourceType": "web-forum-thread-page",
-      "usedFor": "star175 修改器第 3 页版本和工具兼容性回复",
-      "published": false
-    },
-    {
-      "id": "src.ccz.f36.exe",
-      "path": "基底/复刻版6.6山贼 国庆/Ekd5.exe",
-      "sha256": "F36F9A3D06F3C4E52F32320FAE4633D0EADC9B7863F410EA7532B3C45E2ABF88",
-      "sourceType": "sample-binary",
-      "usedFor": "复刻版 6.6 山贼国庆版静态验证目标",
-      "published": false
-    },
-    {
-      "id": "src.ccz.f36.static-report",
-      "path": "CCZModStudio_Reports/StaticAnalysis/F36F9A3D06F3C4E5-5bb3c09c1661fd3a/delivery-audit.json",
-      "sha256": "F8325232154C3745CF32687830AEC259DFFD18D6EE5C221ED8A8AA675F137A48",
-      "sourceType": "static-analysis-report",
-      "usedFor": "F36 样本指令、函数、交叉引用和静态验证边界",
       "published": false
     }
   ]
