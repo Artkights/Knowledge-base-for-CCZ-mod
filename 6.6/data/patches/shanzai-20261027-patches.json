@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "entityType": "patch-recipe",
+  "profile": "profile.ccz66.shanzai.work.1b25",
+  "entries": [
+    {
+      "id": "patch.66.equip-ability-row",
+      "title": "6.6 装备页一行显示 7 个属性（call 重定向到 helper）",
+      "aliases": [
+        "0x00476FB6",
+        "0x004D2568",
+        "装备页属性行",
+        "equip-ability-row",
+        "7 属性紧凑显示"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "candidate",
+      "evidence": "sample-verified",
+      "kind": "instruction-replacement",
+      "goal": "让 166 武将情报·装备页的一行显示攻击/防御/精神/爆发/士气/HP/MP 七个独立属性，而不是只显示单一属性。",
+      "sites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00476FB6",
+            "profile": "profile.ccz66.shanzai.work.1b25",
+            "evidence": "sample-verified"
+          },
+          "expectedBytes": "E8 0D B0 FE FF",
+          "replacementBytes": "E8 AD B5 05 00",
+          "overwriteLength": 5,
+          "instructionBoundary": true,
+          "writeMode": "whole-instruction",
+          "originalTarget": "0x00461FC8",
+          "replacementTarget": "0x004D2568",
+          "executionEffect": "5 字节整条 call 替换为 5 字节 call，不改指令边界；原目标 0x00461FC8 是 ret 0x10 形态（0x00462048 现读 `C2 10 00 90`），helper 必须保持同一契约。"
+        }
+      ],
+      "helperLayout": {
+        "entry": "0x004D2568",
+        "holeSpanAtImplementation": "0x4D2568..0x4D2700（408 字节，实现时为全 00；洞前是 leave/ret 函数尾，洞后 0x4D2700 现读 `55 8B EC` 为下一函数序言）",
+        "shortNameTable": "0x4D25F0（攻/防/精/反/士/血/蓝，3 字节/项）",
+        "formatString": "0x4D2610（%s%u 加空格）",
+        "textApi": "0x004862C0 经 IAT 反查 = wsprintfA；cdecl 下最后 push 的参数才是目标缓冲（参数 1），写反会把格式串当输出缓冲。"
+      },
+      "fallback": "helper 保留原路径降级：magic（0x4D0560）不等于 0xAA55，或该物品 7 个值全为 0，则原样转交 0x461FC8 ⇒ 单独打本补丁时行为与原版完全一致。",
+      "runtimeObservations": [
+        "表全 0 时控件 1401 显示「攻击 +75」",
+        "给 itemID=41 写 (75,65,30,20,10,5,3) 后 1401 = 攻75 防65 精30 反20 士10 血5 蓝3，188px 宽内不截断",
+        "166 运行期控件尺寸：1401/1402/1403 = 188×15（武器/护具/辅助属性行），1391-1393 = 188×15（名称），1416/1417 = 229×15（特殊效果），1500 = 220×150 且文本含换行"
+      ],
+      "writePolicy": "禁止自动写入。本样本 0x00476FB6 现读仍是原字节 `E8 0D B0 FE FF`（补丁未生效），且 0x004D2568 起现已不是全 00 空洞（现读 `55 8B EC 53 56 57 83 EC 04 C6 45 FC 00 FF 75 14`，并以 `C2 10 00` 收尾）⇒ 洞在本样本不可直接复用，落地前必须重新判洞并核对前像。",
+      "conflict": "实现时的洞起点 0x004D2568 在本次复核样本（1B256D98…，1148928 字节）已被可执行字节占用（现读 `55 8B EC 53 56 57 83 EC …`，并以 `C2 10 00` 收尾）；同日另一并发构建 164AF7C2…（1149952 字节）布局也与实现时不同 ⇒ 落地前必须重新判洞。",
+      "notes": "来源为本地页 `03-机制详解/装备页7属性紧凑显示-实现与实测.md`（2026-10-27 实现并实测）。写盘时间线（本地记录）：2B279F3F…652A 基底 → 7610C55D…9178（+属性表）→ 0A0AB342…0E04（显示 v1）→ 64496F11…2AB7（显示 v2 加全零回退）。本次只做静态前像复核，未写任何 EXE。",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.equip-display"
+      ]
+    }
+  ]
+}

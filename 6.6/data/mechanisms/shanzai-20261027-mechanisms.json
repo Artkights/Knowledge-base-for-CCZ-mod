@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz66.shanzai.work.1b25",
+  "entries": [
+    {
+      "id": "mechanism.66.qi.judgement",
+      "title": "6.6 集气模式（4018）判定链：双门、两套公式与必中",
+      "aliases": [
+        "集气模式",
+        "4018 集气",
+        "闪避暴击连击判定",
+        "qi-judgement"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "global.66.qi.gate-switch",
+          "role": "先查第一道门 [0x505FDC]==0，再查第二道门 [0x505EC8]==1；任一不满足回原版随机路径"
+        },
+        {
+          "order": 2,
+          "entity": "global.66.qi.pool",
+          "role": "按 模式%16 定位集气字节，按 战场编号 定位单位 4 字节组"
+        },
+        {
+          "order": 3,
+          "entity": "fn.66.qi.gate-check",
+          "role": "按 模式&1 选攻击方/防守方公式，返回值即是否触发"
+        }
+      ],
+      "algorithm": [
+        "门：([0x505FDC]==0) AND ([0x505EC8]==1) 才走集气；否则 call 0x43786B 原版随机",
+        "攻击方（模式&1==0）：池 + 本次值 >= 100 ⇒ 返回 1 且 池 -= 100",
+        "防守方（模式&1==1）：池 + 100 - 传入值 < 100 ⇒ 闪避触发；等价于 池 += (100 - 命中率)",
+        "命中率被钳在 [25,100]（0x0043B4E3 `B8 19 00 00 00` 下限 25）；命中率 >= 100 时 0x0043B526 `73 0C` 跳过集气判定，池不再上涨 ⇒ 必中",
+        "连击免写回：0x00428814 `cmp [ebp+0xC],0` 且 0x0042881A `cmp byte [0x492DF8],1` ⇒ 模式 0 且连击进行中时本次不改连击池",
+        "必中点另有两处：0x0043B60A `cmp byte [0x500E9B],0`（非零即必中）、0x0043B4E8 起 21 字节 NOP 后的块（4018 + [0x4B3D18]==0 + 攻击者 unit+5==0 ⇒ 命中率置 0x64）"
+      ],
+      "consumerSites": [
+        "0x00406130",
+        "0x0043B52F",
+        "0x00405EDD",
+        "0x0040CAAB",
+        "0x004131CF",
+        "0x00445D3A",
+        "0x00428925"
+      ],
+      "callerSemantics": "前 4 个是实战判定入口；后 3 个是预览侧读者。0x00428925 现读 `55 8B EC 8B 45 14 D1 E8 FF 75 10 FF 75 0C 6A 01 8B 4D 08 FF 14 85 61 89 42 00`，用 [ebp+0x14]>>1 索引跳转表 0x00428961（现读 `00 B6 43 00 30 B7 43 00` = 0x43B600 物理命中 / 0x43B730 策略命中）。",
+      "state": [
+        "global.66.qi.pool",
+        "global.66.qi.gate-switch"
+      ],
+      "notes": "字节证据于 2026-10-27 在本画像样本现读（双门、B2 0C、连击免写回、跳转表、25 下限、73 0C 跳过、必中点全部命中）。公式语义与模式取值来自本地页 `03-机制详解/集气模式-闪避暴击连击.md`，该页另记 2026-10-14 探针实机命中 822 次；本次未重跑实机。",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.qi"
+      ]
+    }
+  ]
+}

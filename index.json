@@ -2,10 +2,10 @@
   "schemaVersion": 3,
   "structuredAuthority": "version-data-json",
   "generatedBy": "tools/build_index.py",
-  "entityCount": 488,
+  "entityCount": 501,
   "statusCounts": {
-    "candidate": 341,
-    "canonical": 132,
+    "candidate": 344,
+    "canonical": 142,
     "legacy-reference": 15
   },
   "structuredFiles": [
@@ -66,8 +66,16 @@
       "sha256": "209E0F5793D3A5F4BBB82CE7535564B897D46255CFF74329D5A0718241476174"
     },
     {
+      "path": "6.6/data/file-formats/shanzai-20261027-file-formats.json",
+      "sha256": "1161EB672E76F6387BC7006971741EBAEC47BAFAA64CF02DB95183A7C83A7FAD"
+    },
+    {
       "path": "6.6/data/functions/f36-shanzai-functions.json",
       "sha256": "90314D8957D0BB8F4011E6BF8F162D478E074C571DB42D64C5A8177D46A4D707"
+    },
+    {
+      "path": "6.6/data/functions/shanzai-20261027-functions.json",
+      "sha256": "85BB2007B57F8E74B03A0E3F18ADC0D3B64F7E9F41DC74575141381A3DA940B2"
     },
     {
       "path": "6.6/data/functions/shanzai-item-functions.json",
@@ -82,6 +90,10 @@
       "sha256": "E365FF06ABED30C6ABDA72C698DB2F1E6956A2E72CC6A954862532C6182EE27A"
     },
     {
+      "path": "6.6/data/globals/shanzai-20261027-globals.json",
+      "sha256": "AE73D6F1648E9D9B2EC266A8DF0913C75D31C0177D8C8C2064549D4E00A3235E"
+    },
+    {
       "path": "6.6/data/globals/shanzai-item-globals.json",
       "sha256": "F6DAB937792F97895C445D9CF2B45BB9567504247A196D9AF0945187D04DAB32"
     },
@@ -94,12 +106,20 @@
       "sha256": "9FC7811B747AA8BC9DF1216C4FC9C12F7277E2182E89CB635777E53F1FABE731"
     },
     {
+      "path": "6.6/data/mechanisms/shanzai-20261027-mechanisms.json",
+      "sha256": "12B34EFAE5C110EFBF6875447ED40B46AB5F882CEDB284300E2421F1D5645AB5"
+    },
+    {
       "path": "6.6/data/mechanisms/xiaoan-speed-chain.json",
       "sha256": "11142366AB2F0AD17B0011D444F82CF68DC102E075FA5C671C983D63A74B1E12"
     },
     {
       "path": "6.6/data/patches/legacy-effect-injections.json",
       "sha256": "E99E15AFD248AC4DEDF62174B1989C739573F6180365DE99F1412BFD20B0862C"
+    },
+    {
+      "path": "6.6/data/patches/shanzai-20261027-patches.json",
+      "sha256": "D28BE391307EE2709B9E868C335AD9E637B3D7D2886B51014058E498EFFAC741"
     },
     {
       "path": "6.6/data/patches/xiaoan-semantic-locators.json",
@@ -111,7 +131,7 @@
     },
     {
       "path": "6.6/data/profiles/engine-profiles.json",
-      "sha256": "7999E1CBE9D565BA1E7D4E296A314310B1F300E06CC80B3EF5B46169F5914BCA"
+      "sha256": "5AF78FA130BE87D8AE26954EB9540AE9D5C1403D49AF8F5D8B9EB194E799A49A"
     },
     {
       "path": "6.6/data/profiles/legacy-patch-profiles.json",
@@ -3737,6 +3757,47 @@
       ]
     },
     {
+      "id": "fn.66.effect-value.transform",
+      "entityType": "function",
+      "title": "6.6 效果值类型码换算（两级查表）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004200F5",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "fn.66.effect-value.transform",
+        "6.6 效果值类型码换算（两级查表）",
+        "0x004200F5",
+        "效果值换算",
+        "effect-value-transform",
+        "把「类型码」解释成对数值的换算，而不是效果值本身。已现读分支：类型码 0x00 ⇒ `ecx *= (dl+1)`；0x32 ⇒ `ecx *= 2`；0x33 ⇒ cl==4 时 cl+=3；0x36/0x42/0x46 ⇒ `ecx += 1`；0x72 ⇒ `ecx *= 3/4`；其它 ⇒ 索引 = 类型码 − 0x1A（须 < 7）查表 A，表 A[索引] < 7 时 `ecx *= 1.5`，且 dl >= 0x12 时再取表 B[索引] 与 0xFE 比较。档位判定两处现读：0x0042010D `80 FA 10 72`（cmp dl,0x10）、0x00420155 `80 FA 12 72`（cmp dl,0x12）。入口现读 `55 8B EC 0F B6 D2`。",
+        "__stdcall",
+        "ECX = 效果结构指针（数值字节在 [ECX]，类型码字节在 [ECX-2]）；DL = 档位参数（两处调用点分别传 [EBP+0xC] / [EBP+0x10]）。",
+        "ECX/EAX 为换算后的值；具体返回口径随类型码分支。",
+        "本地页记录 5 处调用点：0x407B46 / 0x407CAD / 0x461EAF / 0x46218A / 0x465EBC；公共换算函数，不得假定只服务某一类数据。",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "va",
+        "sample-verified",
+        "global.66.effect-value.type-table",
+        "global.66.effect-value.value-table"
+      ],
+      "structuredDataPath": "6.6/data/functions/shanzai-20261027-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.effectvalue"
+      ]
+    },
+    {
       "id": "fn.66.equip-effect-slot-scan",
       "entityType": "function",
       "title": "6.6 装备槽特效判定",
@@ -4035,6 +4096,47 @@
       ]
     },
     {
+      "id": "fn.66.item-desc.lookup",
+      "entityType": "function",
+      "title": "6.6 取道具说明（200 字节定长）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040BF56",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "fn.66.item-desc.lookup",
+        "6.6 取道具说明（200 字节定长）",
+        "0x0040BF56",
+        "0x0040BFBD",
+        "道具说明读取",
+        "item-desc-lookup",
+        "0x0040BFBD 先 `cmp al,0x50`，ID >= 0x50 直接不取（跳 0x40BFD5）；否则 `add eax,0x15E` 得到内存索引再调用本函数。本函数序言现读 `55 8B EC`（0x0040BF56），主体 `68 C8 00 00 00 FF 75 08 8B 4D 0C`（push 200 / push buf / mov ecx,[ebp+0xC]），随后 `69 C9 C8 00 00 00` 与 `B9 BC E4 4A 00 E8 0F D2 00 00`（imul / mov ecx,0x004AE4BC / call 0x00419184）拷贝 200 字节，再 `mov byte [edx+0xC8],0`。存储体是全局对象 0x004AE4BC。",
+        "__stdcall",
+        "[EBP+0x8] = 目标缓冲；[EBP+0xC] = 内存索引（= 道具 ID + 0x15E）。外层入口 0x0040BFBD 收道具 ID：`55 8B EC 8B 45 0C 3C 50 73 0E`。",
+        "无返回值；向目标缓冲写 200 字节并在 [buf+0xC8] 补 0 字节。",
+        "本地页记录 0x40BF56 共 10 处调用者（前 4 个同在 0x40BFxx 家族：0x40BFD0 / 0x40BFF7 / 0x40C027 / 0x40C0E7）；本次只现读函数体，未重做调用者普查。",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "va",
+        "sample-verified",
+        "format.66.imsg.item-desc"
+      ],
+      "structuredDataPath": "6.6/data/functions/shanzai-20261027-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.itemdesc"
+      ]
+    },
+    {
       "id": "fn.66.item-effect-class-decode",
       "entityType": "function",
       "title": "6.6 物品装备效果类号解码",
@@ -4147,6 +4249,92 @@
       "sourceRefs": [
         "src.ccz.shanzai.work.aa0f.exe",
         "src.ccz.shanzai.item.restore-report"
+      ]
+    },
+    {
+      "id": "fn.66.qi.gate-check",
+      "entityType": "function",
+      "title": "6.6 集气判定（双门 + 攻防两套公式）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004287A8",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "fn.66.qi.gate-check",
+        "6.6 集气判定（双门 + 攻防两套公式）",
+        "0x004287A8",
+        "集气判定函数",
+        "qi-gate-check",
+        "4018 分流",
+        "先过两道门：0x004287BA `cmp byte [0x505FDC],0` 与 0x0042882C `cmp byte [0x505EC8],1`；两条都满足才走集气，否则转原版随机路径（本地页记为 call 0x43786B）。攻击方公式：池 + 本次值 >= 100 即触发并扣 100；防守方公式：池 + 100 - 传入值 < 100 即闪避触发，等价于池每挨一次打上涨（100 - 命中率），命中率 100 时永不满池（实现「必中」）。模式编码实测：字节号 = 模式%16（0 连击 / 1 物理闪避 / 2 物理暴击 / 19 策略闪避），上下文 = 模式/16（0 物理 / 1 策略），攻防 = 模式&1。0x004287D7 为 `B2 0C`（mov dl,0xC，策略取上下文 12，不是 13）。连击免写回：0x00428814 `cmp [ebp+0xC],0` 且 0x0042881A `cmp byte [0x492DF8],1` 时跳过写回。",
+        "__stdcall",
+        "[EBP+0x8] = 模式值（模式%16 = 集气字节号，模式/16 = 上下文，模式&1 = 攻/防）；[EBP+0xC] = 本次值；ECX/EDX 为策略路径上下文。",
+        "EAX = 1 触发 / 0 未触发；攻击方触发时把该字节池减 100。",
+        "四个调用者为实战判定（连击 / 物理闪避 / 物理暴击 / 策略暴击）；预览侧另有 0x004131CF / 0x00445D3A / 0x00428925 三个读者，预览与实战共用率函数但不共用值。",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "va",
+        "sample-verified",
+        "0x00406130",
+        "0x0043B52F",
+        "0x00405EDD",
+        "0x0040CAAB",
+        "global.66.qi.pool",
+        "global.66.qi.gate-switch",
+        "mechanism.66.qi.judgement"
+      ],
+      "structuredDataPath": "6.6/data/functions/shanzai-20261027-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.qi"
+      ]
+    },
+    {
+      "id": "fn.66.surround-count",
+      "entityType": "function",
+      "title": "6.6 周边人数统计（九宫格）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0041BC4A",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "fn.66.surround-count",
+        "6.6 周边人数统计（九宫格）",
+        "0x0041BC4A",
+        "周边人数",
+        "surround-count",
+        "范围是九宫格 X-1..X+1 × Y-1..Y+1 且含中心格，所以自己属于被统计的阵营组时会被算进去。入口 0x0041BC4A 现读为 `55 8B EC 80 79 0E 07 74 14 80 3D 18 3D 4B 00 00 74 0B`：先看 [unit+0x0E]==7（玩家可控）取单位表坐标，否则看 [0x4B3D18] 后经 0x407BF6 取动态坐标；0x0041BC87 `6A 01 FF 75 08 B9 08 3D 4B 00` 用 mode=1、上下文 0x4B3D08 调 0x428DF1 扫描，逐格经 0x435884 坐标转 slot、0x4061F9 slot 转记录；0x0041BC98 `C2 04 00` 收尾。",
+        "__stdcall",
+        "ECX = 单位记录指针；[EBP+0x8] = side 取值（0..3 精确阵营、4 我方组、5 敌方组、6 全部）。",
+        "EAX = 命中人数；函数 `ret 4`，结果不落内存（无全局变量）。",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "va",
+        "sample-verified",
+        "global.66.surround.target-list"
+      ],
+      "structuredDataPath": "6.6/data/functions/shanzai-20261027-functions.json",
+      "referencePath": "6.6/reference/functions.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.surround"
       ]
     },
     {
@@ -4382,6 +4570,54 @@
         "src.xiaoan.layout",
         "src.xiaoan.engine",
         "src.xiaoan.layout-tests"
+      ]
+    },
+    {
+      "id": "format.66.imsg.item-desc",
+      "entityType": "file-format",
+      "title": "6.6 Imsg.e5 道具说明区（200 字节定长）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": null,
+      "searchTerms": [
+        "format.66.imsg.item-desc",
+        "6.6 Imsg.e5 道具说明区（200 字节定长）",
+        "Imsg.e5",
+        "道具说明",
+        "item description 200 bytes",
+        "0x5BB30",
+        "说明槽号 = 道具 ID + 68；fileOffset = 0x5BB30 + (道具 ID + 68) * 200",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "little-endian（本区无多字节字段，仅文本）",
+        "GBK，单条内首个 0x00 之前为有效文本；空条 = 未写说明",
+        "全表 256 条（道具 ID 0..255），本地实测 191 条非空；ID 0 = 铁剑",
+        "该条 200 字节内首个字节即 0x00",
+        "运行期由全局对象 0x004AE4BC 承接；引擎取说明走 0x0040BFBD（ID >= 0x50 直接不取）→ 0x0040BF56（push 200 / imul ecx,ecx,200 / call 0x00419184 拷贝 / 补结尾 0）。",
+        "铁剑",
+        "0x5F050",
+        "铁剑罢了",
+        "亮银枪",
+        "0x5F370",
+        "在你眼里什么样的男人才算高级。",
+        "桦木弓",
+        "0x5F500",
+        "帅吗宝贝",
+        "虬龙剑",
+        "0x5FA78",
+        "效果一：同心协力N",
+        "文件层规则与锚点来自本地页 `07-数据表与资源/道具说明槽-物品记录0x14与Imsg.md`（该页注明 100% 命中 256 条穷举中的 191 条非空）；引擎侧函数体本次在画像样本现读一致。Imsg.e5 本身未随样本进仓库，只在本地页与工具里留有结论。",
+        "fn.66.item-desc.lookup"
+      ],
+      "structuredDataPath": "6.6/data/file-formats/shanzai-20261027-file-formats.json",
+      "referencePath": "6.6/reference/file-formats.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.itemdesc"
       ]
     },
     {
@@ -5582,6 +5818,80 @@
       ]
     },
     {
+      "id": "global.66.effect-value.type-table",
+      "entityType": "global",
+      "title": "6.6 效果值类型码表 A（类别/档位）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004CB6BA",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "global.66.effect-value.type-table",
+        "6.6 效果值类型码表 A（类别/档位）",
+        "0x004CB6BA",
+        "类型码表A",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "va",
+        "sample-verified",
+        "byte-array",
+        "7 项字节表，现读 `04 05 04 04 01 04 02`。由 0x004200F5 用「类型码 − 0x1A（须 < 7）」索引；表项 < 7 时对数值乘 1.5。",
+        "静态常量表，启动期不变。",
+        "fn.66.effect-value.transform"
+      ],
+      "structuredDataPath": "6.6/data/globals/shanzai-20261027-globals.json",
+      "referencePath": "6.6/reference/globals.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.effectvalue"
+      ]
+    },
+    {
+      "id": "global.66.effect-value.value-table",
+      "entityType": "global",
+      "title": "6.6 效果值类型码表 B（字节值表）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "candidate",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004CB5CA",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "global.66.effect-value.value-table",
+        "6.6 效果值类型码表 B（字节值表）",
+        "0x004CB5CA",
+        "类型码表B",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "va",
+        "sample-verified",
+        "byte-array",
+        "较长字节值表，本样本现读前 48 字节为 `32 14 23 16 06 1E 28 28 24 1C 1C 28 3C 05 02 01 04 41 73 37 03 16 01 03 0D 01 05 2D FE 32 28 0F 14 FE 1C 1C 32 23 FE FE 10 37 10 5A AB 01 03 03`。dl >= 0x12 时由同一索引取值并与 0xFE 比较。表长未确定（至少 48 字节有值），0xFE 的确切含义（疑「无值/无效」）未定。",
+        "静态常量表，启动期不变；长度与边界待补证，因此本条为候选。",
+        "fn.66.effect-value.transform"
+      ],
+      "structuredDataPath": "6.6/data/globals/shanzai-20261027-globals.json",
+      "referencePath": "6.6/reference/globals.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.effectvalue"
+      ]
+    },
+    {
       "id": "global.66.f36.character-pointer-slot",
       "entityType": "global",
       "title": "F36 人物表指针槽",
@@ -5746,6 +6056,121 @@
       "referencePath": "6.6/reference/globals.md",
       "sourceRefs": [
         "src.ccz.shanzai.work.aa0f.exe"
+      ]
+    },
+    {
+      "id": "global.66.qi.gate-switch",
+      "entityType": "global",
+      "title": "6.6 集气分流开关（4018 与前置门）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00505EC8",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "global.66.qi.gate-switch",
+        "6.6 集气分流开关（4018 与前置门）",
+        "0x00505EC8",
+        "0x00505FDC",
+        "4018",
+        "集气开关",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "va",
+        "sample-verified",
+        "int32-flag",
+        "整型变量 4018 = 0x505EC8，集气判定第二道门（须 == 1）；相邻 0x505FDC 是第一道门（须 == 0 才继续）。集气在装的真条件 = [0x505FDC]==0 且 [0x505EC8]==1，任一不满足即回原版随机路径。该变量同址二义：它同时是我方回合「我方必中」开关，改它会同时开/关两件事。",
+        "运行期由用户在游戏内设置/脚本写入；静态样本里三处开关均为初值 0（本次现读 0x505FDC / 0x505EC8 / 0x505EC4 全 00）。",
+        "fn.66.qi.gate-check"
+      ],
+      "structuredDataPath": "6.6/data/globals/shanzai-20261027-globals.json",
+      "referencePath": "6.6/reference/globals.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.qi"
+      ]
+    },
+    {
+      "id": "global.66.qi.pool",
+      "entityType": "global",
+      "title": "6.6 集气池数组",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004930C8",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "global.66.qi.pool",
+        "6.6 集气池数组",
+        "0x004930C8",
+        "集气池",
+        "qi-pool",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "va",
+        "sample-verified",
+        "byte-array[250][4]",
+        "单字节数组，总长 1000 字节 = 250 单位 × 4 字节。索引 = 0x4930C8 + 战场编号×4 + 字节号；字节 0 = 连击、字节 1 = 物理闪避、字节 2 = 暴击、字节 3 = 策略闪避。",
+        "初始化在 0x0041225A：现读 `FF 35 C4 5E 50 00 68 E8 03 00 00 68 C8 30 49 00 E8 A4 DA 06 00`，即 push [0x505EC4]、push 1000、push 0x4930C8 后调用填充；初值 = 整型 4017 = [0x505EC4]。",
+        "mechanism.66.qi.judgement"
+      ],
+      "structuredDataPath": "6.6/data/globals/shanzai-20261027-globals.json",
+      "referencePath": "6.6/reference/globals.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.qi"
+      ]
+    },
+    {
+      "id": "global.66.surround.target-list",
+      "entityType": "global",
+      "title": "6.6 周边目标 slot 列表与引导目标数",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "candidate",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00500EA5",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "global.66.surround.target-list",
+        "6.6 周边目标 slot 列表与引导目标数",
+        "0x00500EA5",
+        "0x00500E9C",
+        "周边目标列表",
+        "引导链目标数",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "va",
+        "sample-verified",
+        "byte-array-ff-terminated",
+        "0x500EA5 起为「周边目标 slot 列表」，0xFF 终止、无计数变量（奋战 0x4363F1 / 引导 0x4212F1 共用）；0x500E9C 是引导链目标数（独立 byte），不是周边人数；相邻 0x500E9A 是阶段/列表标志的 1 字节槽（写入侧有 byte/word 混用，word 只覆盖 0x500E9A~0x500E9B），0x500E9D 是 byte 目标数组（FF 终止）。四者相邻但不构成 dword 结构。",
+        "运行期按招式生成/复用；静态样本里本次现读 0x500EA5 = `FF` 后接 0（空列表哨兵）。"
+      ],
+      "structuredDataPath": "6.6/data/globals/shanzai-20261027-globals.json",
+      "referencePath": "6.6/reference/globals.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.surround"
       ]
     },
     {
@@ -6665,6 +7090,55 @@
       "sourceRefs": [
         "src.forum.godtype.194034",
         "src.ccz.f36.static-report"
+      ]
+    },
+    {
+      "id": "mechanism.66.qi.judgement",
+      "entityType": "mechanism",
+      "title": "6.6 集气模式（4018）判定链：双门、两套公式与必中",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": null,
+      "searchTerms": [
+        "mechanism.66.qi.judgement",
+        "6.6 集气模式（4018）判定链：双门、两套公式与必中",
+        "集气模式",
+        "4018 集气",
+        "闪避暴击连击判定",
+        "qi-judgement",
+        "前 4 个是实战判定入口；后 3 个是预览侧读者。0x00428925 现读 `55 8B EC 8B 45 14 D1 E8 FF 75 10 FF 75 0C 6A 01 8B 4D 08 FF 14 85 61 89 42 00`，用 [ebp+0x14]>>1 索引跳转表 0x00428961（现读 `00 B6 43 00 30 B7 43 00` = 0x43B600 物理命中 / 0x43B730 策略命中）。",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "global.66.qi.gate-switch",
+        "先查第一道门 [0x505FDC]==0，再查第二道门 [0x505EC8]==1；任一不满足回原版随机路径",
+        "global.66.qi.pool",
+        "按 模式%16 定位集气字节，按 战场编号 定位单位 4 字节组",
+        "fn.66.qi.gate-check",
+        "按 模式&1 选攻击方/防守方公式，返回值即是否触发",
+        "门：([0x505FDC]==0) AND ([0x505EC8]==1) 才走集气；否则 call 0x43786B 原版随机",
+        "攻击方（模式&1==0）：池 + 本次值 >= 100 ⇒ 返回 1 且 池 -= 100",
+        "防守方（模式&1==1）：池 + 100 - 传入值 < 100 ⇒ 闪避触发；等价于 池 += (100 - 命中率)",
+        "命中率被钳在 [25,100]（0x0043B4E3 `B8 19 00 00 00` 下限 25）；命中率 >= 100 时 0x0043B526 `73 0C` 跳过集气判定，池不再上涨 ⇒ 必中",
+        "连击免写回：0x00428814 `cmp [ebp+0xC],0` 且 0x0042881A `cmp byte [0x492DF8],1` ⇒ 模式 0 且连击进行中时本次不改连击池",
+        "必中点另有两处：0x0043B60A `cmp byte [0x500E9B],0`（非零即必中）、0x0043B4E8 起 21 字节 NOP 后的块（4018 + [0x4B3D18]==0 + 攻击者 unit+5==0 ⇒ 命中率置 0x64）",
+        "0x00406130",
+        "0x0043B52F",
+        "0x00405EDD",
+        "0x0040CAAB",
+        "0x004131CF",
+        "0x00445D3A",
+        "0x00428925",
+        "字节证据于 2026-10-27 在本画像样本现读（双门、B2 0C、连击免写回、跳转表、25 下限、73 0C 跳过、必中点全部命中）。公式语义与模式取值来自本地页 `03-机制详解/集气模式-闪避暴击连击.md`，该页另记 2026-10-14 探针实机命中 822 次；本次未重跑实机。"
+      ],
+      "structuredDataPath": "6.6/data/mechanisms/shanzai-20261027-mechanisms.json",
+      "referencePath": "6.6/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.qi"
       ]
     },
     {
@@ -7633,6 +8107,58 @@
       "referencePath": "6.5/reference/patches.md",
       "sourceRefs": [
         "src.ccz.range-profile"
+      ]
+    },
+    {
+      "id": "patch.66.equip-ability-row",
+      "entityType": "patch-recipe",
+      "title": "6.6 装备页一行显示 7 个属性（call 重定向到 helper）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "candidate",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00476FB6",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "searchTerms": [
+        "patch.66.equip-ability-row",
+        "6.6 装备页一行显示 7 个属性（call 重定向到 helper）",
+        "0x00476FB6",
+        "0x004D2568",
+        "装备页属性行",
+        "equip-ability-row",
+        "7 属性紧凑显示",
+        "6.6",
+        "profile.ccz66.shanzai.work.1b25",
+        "instruction-replacement",
+        "让 166 武将情报·装备页的一行显示攻击/防御/精神/爆发/士气/HP/MP 七个独立属性，而不是只显示单一属性。",
+        "va",
+        "sample-verified",
+        "whole-instruction",
+        "0x00461FC8",
+        "5 字节整条 call 替换为 5 字节 call，不改指令边界；原目标 0x00461FC8 是 ret 0x10 形态（0x00462048 现读 `C2 10 00 90`），helper 必须保持同一契约。",
+        "0x4D2568..0x4D2700（408 字节，实现时为全 00；洞前是 leave/ret 函数尾，洞后 0x4D2700 现读 `55 8B EC` 为下一函数序言）",
+        "0x4D25F0（攻/防/精/反/士/血/蓝，3 字节/项）",
+        "0x4D2610（%s%u 加空格）",
+        "0x004862C0 经 IAT 反查 = wsprintfA；cdecl 下最后 push 的参数才是目标缓冲（参数 1），写反会把格式串当输出缓冲。",
+        "helper 保留原路径降级：magic（0x4D0560）不等于 0xAA55，或该物品 7 个值全为 0，则原样转交 0x461FC8 ⇒ 单独打本补丁时行为与原版完全一致。",
+        "表全 0 时控件 1401 显示「攻击 +75」",
+        "给 itemID=41 写 (75,65,30,20,10,5,3) 后 1401 = 攻75 防65 精30 反20 士10 血5 蓝3，188px 宽内不截断",
+        "166 运行期控件尺寸：1401/1402/1403 = 188×15（武器/护具/辅助属性行），1391-1393 = 188×15（名称），1416/1417 = 229×15（特殊效果），1500 = 220×150 且文本含换行",
+        "禁止自动写入。本样本 0x00476FB6 现读仍是原字节 `E8 0D B0 FE FF`（补丁未生效），且 0x004D2568 起现已不是全 00 空洞（现读 `55 8B EC 53 56 57 83 EC 04 C6 45 FC 00 FF 75 14`，并以 `C2 10 00` 收尾）⇒ 洞在本样本不可直接复用，落地前必须重新判洞并核对前像。",
+        "实现时的洞起点 0x004D2568 在本次复核样本（1B256D98…，1148928 字节）已被可执行字节占用（现读 `55 8B EC 53 56 57 83 EC …`，并以 `C2 10 00` 收尾）；同日另一并发构建 164AF7C2…（1149952 字节）布局也与实现时不同 ⇒ 落地前必须重新判洞。",
+        "来源为本地页 `03-机制详解/装备页7属性紧凑显示-实现与实测.md`（2026-10-27 实现并实测）。写盘时间线（本地记录）：2B279F3F…652A 基底 → 7610C55D…9178（+属性表）→ 0A0AB342…0E04（显示 v1）→ 64496F11…2AB7（显示 v2 加全零回退）。本次只做静态前像复核，未写任何 EXE。"
+      ],
+      "structuredDataPath": "6.6/data/patches/shanzai-20261027-patches.json",
+      "referencePath": "6.6/reference/patches.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.equip-display"
       ]
     },
     {
@@ -9885,6 +10411,33 @@
         "src.ccz.f36.static-report",
         "src.forum.godtype.194034",
         "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
+      "id": "profile.ccz66.shanzai.work.1b25",
+      "entityType": "engine-profile",
+      "title": "复刻版 6.6 山贼工作样本（2026-10-27 现读态）",
+      "versions": [
+        "6.6"
+      ],
+      "profile": null,
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": null,
+      "searchTerms": [
+        "profile.ccz66.shanzai.work.1b25",
+        "复刻版 6.6 山贼工作样本（2026-10-27 现读态）",
+        "1B256D9822A59503",
+        "6.6-shanzai-work-164a",
+        "6.6",
+        "0x00400000",
+        "x86-pe32",
+        "Ekd5.exe"
+      ],
+      "structuredDataPath": "6.6/data/profiles/engine-profiles.json",
+      "referencePath": "6.6/reference/profiles.md",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe"
       ]
     },
     {

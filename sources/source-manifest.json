@@ -906,6 +906,54 @@
       "sourceType": "local-knowledge-synthesis",
       "usedFor": "道具恢复量公式、特效号分支与数据侧互证",
       "published": false
+    },
+    {
+      "id": "src.ccz.shanzai.work.1b25.exe",
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "1B256D9822A59503652BFEFEDC82DA1BBEF3570550EAD53B9916656D4A70A010",
+      "sourceType": "sample-binary",
+      "usedFor": "2026-10-27 集气判定、周边人数、道具说明、效果值换算与装备页补丁的现读复核目标",
+      "published": false
+    },
+    {
+      "id": "src.ccz.shanzai.kb.qi",
+      "path": "工具整合包/本地知识库/03-机制详解/集气模式-闪避暴击连击.md",
+      "sha256": "5F396EF27690FCB54BE7B7F130B237C624B8F91D056FA8C096B790DA9E04CB0F",
+      "sourceType": "local-knowledge-synthesis",
+      "usedFor": "集气池结构、双门、两套公式、模式编码、消费者清单与必中点",
+      "published": false
+    },
+    {
+      "id": "src.ccz.shanzai.kb.surround",
+      "path": "工具整合包/本地知识库/03-机制详解/周边人数-九宫格与阵营组.md",
+      "sha256": "BDD5C5F4D14AEEF6EBAD7C079AAD1881E0EA931BADDFBC54407F84F8FDDF725F",
+      "sourceType": "local-knowledge-synthesis",
+      "usedFor": "周边人数函数契约、side 取值、九宫格范围与周边目标列表",
+      "published": false
+    },
+    {
+      "id": "src.ccz.shanzai.kb.itemdesc",
+      "path": "工具整合包/本地知识库/07-数据表与资源/道具说明槽-物品记录0x14与Imsg.md",
+      "sha256": "C8254C4F06B7D9D69A777BC14146432B87DF9D8561E8D38D8E3C2AD9C84CED9B",
+      "sourceType": "local-knowledge-synthesis",
+      "usedFor": "Imsg.e5 道具说明 200 字节定长规则、锚点与引擎侧取说明链",
+      "published": false
+    },
+    {
+      "id": "src.ccz.shanzai.kb.effectvalue",
+      "path": "工具整合包/本地知识库/03-机制详解/效果值-类型码与两级查表.md",
+      "sha256": "6DD29A484C2DFAE44F07AB371C0EA2C13CD5D296C0AF09377F984F882AAC43FB",
+      "sourceType": "local-knowledge-synthesis",
+      "usedFor": "效果值类型码分支表、表 A / 表 B 字节与调用点",
+      "published": false
+    },
+    {
+      "id": "src.ccz.shanzai.kb.equip-display",
+      "path": "工具整合包/本地知识库/03-机制详解/装备页7属性紧凑显示-实现与实测.md",
+      "sha256": "888E21D8461FACB94AFBD40C4FC54116F38982CFD0C7E70CE6469E9977FFA43A",
+      "sourceType": "local-knowledge-synthesis",
+      "usedFor": "装备页 7 属性补丁的站点、helper 布局、降级策略与运行期控件尺寸",
+      "published": false
     }
   ]
 }

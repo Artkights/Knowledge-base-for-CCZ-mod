@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.6/data/mechanisms/f36-shanzai-ollydbg-research.json`、`6.6/data/mechanisms/xiaoan-speed-chain.json`
+结构化事实来源：`6.6/data/mechanisms/f36-shanzai-ollydbg-research.json`、`6.6/data/mechanisms/shanzai-20261027-mechanisms.json`、`6.6/data/mechanisms/xiaoan-speed-chain.json`
 
 ## 从旧 OllyDbg 地址迁移到 F36 样本
 
@@ -22,6 +22,23 @@ ID: `mechanism.66.f36.sp-accumulation-layout`；状态: `candidate`；证据: `s
 - `当前序列：MOV EDX,[EBP+8] -> CMP CL,2 -> JL 0041100C -> SHR EDX,1 / SHR EDX,2`
 - `旧回复候选：把 00410FFF 和 00411003 附近的 SHR 改为 XOR EDX,EDX，并在 00411005 补 NOP`
 - `迁移结论：先以完整指令和当前原字节重定位；没有 F36 expectedBytes 时保持只读`
+
+## 6.6 集气模式（4018）判定链：双门、两套公式与必中
+
+ID: `mechanism.66.qi.judgement`；状态: `canonical`；证据: `sample-verified`
+
+1. `global.66.qi.gate-switch`：先查第一道门 [0x505FDC]==0，再查第二道门 [0x505EC8]==1；任一不满足回原版随机路径
+2. `global.66.qi.pool`：按 模式%16 定位集气字节，按 战场编号 定位单位 4 字节组
+3. `fn.66.qi.gate-check`：按 模式&1 选攻击方/防守方公式，返回值即是否触发
+
+计算规则：
+
+- `门：([0x505FDC]==0) AND ([0x505EC8]==1) 才走集气；否则 call 0x43786B 原版随机`
+- `攻击方（模式&1==0）：池 + 本次值 >= 100 ⇒ 返回 1 且 池 -= 100`
+- `防守方（模式&1==1）：池 + 100 - 传入值 < 100 ⇒ 闪避触发；等价于 池 += (100 - 命中率)`
+- `命中率被钳在 [25,100]（0x0043B4E3 `B8 19 00 00 00` 下限 25）；命中率 >= 100 时 0x0043B526 `73 0C` 跳过集气判定，池不再上涨 ⇒ 必中`
+- `连击免写回：0x00428814 `cmp [ebp+0xC],0` 且 0x0042881A `cmp byte [0x492DF8],1` ⇒ 模式 0 且连击进行中时本次不改连击池`
+- `必中点另有两处：0x0043B60A `cmp byte [0x500E9B],0`（非零即必中）、0x0043B4E8 起 21 字节 NOP 后的块（4018 + [0x4B3D18]==0 + 攻击者 unit+5==0 ⇒ 命中率置 0x64）`
 
 ## 小暗 S 超级加速等待链
 
