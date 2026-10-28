@@ -257,7 +257,12 @@ def validate_sources(errors: list[str], document: dict, root: Path = ROOT) -> se
             if not target.is_file() or not target.resolve().is_relative_to(root.resolve()):
                 error(errors, f"source snapshot missing or outside repository: {source_id}")
             elif expected != sha256(target):
-                error(errors, f"source snapshot hash mismatch: {source_id}")
+                # Git's text checkout may normalize CRLF/LF on Windows. A
+                # snapshot may therefore carry a stable LF digest in addition
+                # to its original/source digest; both must be explicit.
+                normalized = hashlib.sha256(target.read_bytes().replace(b"\r\n", b"\n")).hexdigest().upper()
+                if verification.get("normalizedSha256") != normalized:
+                    error(errors, f"source snapshot hash mismatch: {source_id}")
             if kind == "repository-snapshot" and expected != item.get("sha256") and not verification.get("reason"):
                 error(errors, f"derived source snapshot requires original-byte limitation: {source_id}")
         elif kind == "remote-git":

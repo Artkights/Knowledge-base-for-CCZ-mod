@@ -12,7 +12,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/48303caa5813e7b9165a.txt",
         "sha256": "48303CAA5813E7B9165A6E58666BCFDE321490F0C385CAE2537D6486A30AAF80",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "48303CAA5813E7B9165A6E58666BCFDE321490F0C385CAE2537D6486A30AAF80"
       }
     },
     {
@@ -26,7 +27,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/f1356bc2e4861711d945.txt",
         "sha256": "09BF98CD735754981C143915CC35531506EF316C346F002A19691E1AE2FA4D81",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "09BF98CD735754981C143915CC35531506EF316C346F002A19691E1AE2FA4D81"
       }
     },
     {
@@ -52,7 +54,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/f8325232154c3745cf32.txt",
         "sha256": "F8325232154C3745CF32687830AEC259DFFD18D6EE5C221ED8A8AA675F137A48",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "3197A6F37F3F7C66533B666F74AAA6133539922A5ADC80931000816D11686362"
       }
     },
     {
@@ -66,7 +69,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/1c4fc6dae4cfafeeab7c.txt",
         "sha256": "1C4FC6DAE4CFAFEEAB7C5CC379E3171818C250081B6257E71AA542934E9A3F70",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "0656AA036CF1B2EA8DA1C9F79FA0A18562AA2B67B0C75D7BA3656AB4E9B97FB3"
       }
     },
     {
@@ -80,7 +84,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/efc6639051a943e9667b.txt",
         "sha256": "EFC6639051A943E9667B230BA875D053D003D4FFA776264DADA9A3316F83A08A",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "EFC6639051A943E9667B230BA875D053D003D4FFA776264DADA9A3316F83A08A"
       }
     },
     {
@@ -94,7 +99,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/edcef2dc6250c25dd5e1.txt",
         "sha256": "EDCEF2DC6250C25DD5E151AE23C401381E15DF92BDAC3F3958A53EF8256C3B45",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "EDCEF2DC6250C25DD5E151AE23C401381E15DF92BDAC3F3958A53EF8256C3B45"
       }
     },
     {
@@ -286,7 +292,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/7469b03e248200c86bca.txt",
         "sha256": "32D10D6C5A5D4DE8072249A82CE839A9B07753E8DC7BB8693BDACE45BB0ED278",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "B3ECF96196FF0AD13ECF4B3B9D1F4909C12C01F836DD38D17DB82C4226F36966"
       }
     },
     {
@@ -513,7 +520,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/a078be0ee99548156bfc.txt",
         "sha256": "A078BE0EE99548156BFC33DF2E79320F5033004DF448E108617823BFC77BC3AE",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "A078BE0EE99548156BFC33DF2E79320F5033004DF448E108617823BFC77BC3AE"
       }
     },
     {
@@ -527,7 +535,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/8e6cc8a4e04c59811d2d.txt",
         "sha256": "8E6CC8A4E04C59811D2D8AB91A94F11A5EF3132D7CA8E188922A9BC598E0CF9E",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "1FB1D50B756F3752FA196765D267C184E84F84A5DCD78DC043668B5C98E87BBA"
       }
     },
     {
@@ -541,7 +550,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/e4061d0dd71eead24cfd.txt",
         "sha256": "E4061D0DD71EEAD24CFD2880578CEAE7444074EA7C53F861C85235BDA419270A",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "E4061D0DD71EEAD24CFD2880578CEAE7444074EA7C53F861C85235BDA419270A"
       }
     },
     {
@@ -593,7 +603,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/72590ac6e176c0c76ecd.txt",
         "sha256": "D4BA281D2FF577C529A4124EA67B31558F624A6652215B4FB12A7746F8F38805",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "56A485C752747FD0034EB35E50BA2D0E2EF994F1F763AA3E2FAD993BF7D54FDF"
       }
     },
     {
@@ -623,7 +634,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/0b481913943f6e5b46df.txt",
         "sha256": "5BA688FD8DC0D248CAC26FE800FD0175E24F2599DA1EEAC5FF845251E8A41456",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "9B2DF8539760BD41006BC7C33182C6218F7204F33446F834D9444FAF3F28E0B4"
       }
     },
     {
@@ -656,7 +668,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/fe8805ce5809650b6390.txt",
         "sha256": "EB7A3AF16A80D3C38573C036C3EC4B5E9860B907E6F42C2A2059EABBC163D84C",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "469F01D58C0E9A16539B211BDCC54B49BCBA92189E8014DD6EDDCEE38BB689BB"
       }
     },
     {
@@ -670,7 +683,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/1adaf53571858f4b9dfd.txt",
         "sha256": "1ADAF53571858F4B9DFD46E46E7FA74418FA9531E99EC585D6C42766849AE275",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "4227EBDC6B3D1E747382A3EDC22F45396185D8197E6AE06F9A53D1C42EC810F6"
       }
     },
     {
@@ -684,7 +698,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/1adaf53571858f4b9dfd.txt",
         "sha256": "1ADAF53571858F4B9DFD46E46E7FA74418FA9531E99EC585D6C42766849AE275",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "4227EBDC6B3D1E747382A3EDC22F45396185D8197E6AE06F9A53D1C42EC810F6"
       }
     },
     {
@@ -698,7 +713,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/8a22e5e2bf6afcddcb9b.txt",
         "sha256": "8A22E5E2BF6AFCDDCB9B583159C61FD6DAB82CFE7972CA3D41F9799946B48527",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "DE35DBA54E3C42E741B5256C13E2A5B560752443E10FFA71DAE871DA4CF25C14"
       }
     },
     {
@@ -858,7 +874,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/e3c70cc187765dee462f.txt",
         "sha256": "E3C70CC187765DEE462FA5E806BE63E6450596B049C28DC09A48AA047356C12C",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "2C2F2848046E622454BA1A09059F4FF3E5AD0DAB9A9DFEABA6CC44672FAB38FC"
       }
     },
     {
@@ -872,7 +889,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/92ce6eae5d081eb61c7f.txt",
         "sha256": "92CE6EAE5D081EB61C7F8256436F69DF6D28475BE4BAA6D60E053E0346176BF3",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "92CE6EAE5D081EB61C7F8256436F69DF6D28475BE4BAA6D60E053E0346176BF3"
       }
     },
     {
@@ -924,7 +942,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/0cd4cc75f6177f570832.txt",
         "sha256": "AD84D4F57DC03C94E2E7786CAF620BABF492D395DE17F151B64500D0502C6513",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "CA5D50E05684DC75EDBE1107B9B22B7224DA495A33C95E4E556B51FB7263486D"
       }
     },
     {
@@ -1198,7 +1217,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/b1a40a1437f28d6da20b.txt",
         "sha256": "44840116A5067BCBC7EE3CE676F86EF94195E7B84576EE7F44B3F0BA604A6156",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "44840116A5067BCBC7EE3CE676F86EF94195E7B84576EE7F44B3F0BA604A6156"
       }
     },
     {
@@ -1444,7 +1464,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/b6fc4f987411d03313dd.txt",
         "sha256": "B6FC4F987411D03313DD3A7D6A20BB3FBCE9423C99F78C3B5F6FD12B0743AD80",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "B6FC4F987411D03313DD3A7D6A20BB3FBCE9423C99F78C3B5F6FD12B0743AD80"
       }
     },
     {
@@ -1493,7 +1514,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/eae3c004b93ed6b94575.txt",
         "sha256": "EAE3C004B93ED6B94575396698B07F29564032332C99DD80C1B4AEEC6660F99E",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "EAE3C004B93ED6B94575396698B07F29564032332C99DD80C1B4AEEC6660F99E"
       }
     },
     {
@@ -1507,7 +1529,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/44e34529bd50e7099536.txt",
         "sha256": "44E34529BD50E709953686FE6FE0588FFB02CE8CEFC1D096F4F6AA76A0791A43",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "47B1B841A8DDAB61B8EC5D21F0CCF27CEFCDE19ACDE9ED5747B72299F8BF18AE"
       }
     },
     {
@@ -1712,7 +1735,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/98d3f13b17e0f3c2c890.txt",
         "sha256": "98D3F13B17E0F3C2C89007FB98BD06C747A2661D7FF5A7C97B258180B6554197",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "98D3F13B17E0F3C2C89007FB98BD06C747A2661D7FF5A7C97B258180B6554197"
       }
     },
     {
@@ -1726,7 +1750,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/51fdcadbe4cb39e1b685.txt",
         "sha256": "51FDCADBE4CB39E1B68550ECCEBFCF3F87B38E755DA036542FD33790154BE7BE",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "1F6D1AD250D371C4C18A68A8F5DADC65AC840DD5B8732827C83C888C7CF8D3CB"
       }
     },
     {
@@ -2319,7 +2344,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/c7cba4d6c9d34b0005aa.txt",
         "sha256": "C7CBA4D6C9D34B0005AAC6E5E11FCF1DBDB118C9F767DC96271D13EF36CA2710",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "C7CBA4D6C9D34B0005AAC6E5E11FCF1DBDB118C9F767DC96271D13EF36CA2710"
       }
     },
     {
@@ -2333,7 +2359,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/44fc522bb09449c48761.txt",
         "sha256": "44FC522BB09449C487617CA2CEB177419DDEF30D568DE47E9A2B8EB618643CD7",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "F05D6B73B0EFD40EBDFD56978425C55954B69C3326FC9EA4EB94E41DA5F9557A"
       }
     },
     {
@@ -2363,7 +2390,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/32d609af3b258e40f999.txt",
         "sha256": "32D609AF3B258E40F999AD638F64B29AD33681C1C097224C90E1374075B29249",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "E8F048F0048BE863E6C6258C56647DEBD0620632EC570E2192C7B27EF34FE613"
       }
     },
     {
@@ -2377,7 +2405,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/33653ce1d0f00b827d27.txt",
         "sha256": "33653CE1D0F00B827D275D0B48E9698FA2DAD028E6ABA14E1EC2DC137771CE40",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "33653CE1D0F00B827D275D0B48E9698FA2DAD028E6ABA14E1EC2DC137771CE40"
       }
     },
     {
@@ -2407,7 +2436,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/621fcc2a60f582837e16.txt",
         "sha256": "621FCC2A60F582837E16C9BAFE6814BC70575A4ACBAB09C9533C978641143CBB",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "621FCC2A60F582837E16C9BAFE6814BC70575A4ACBAB09C9533C978641143CBB"
       }
     },
     {
@@ -2421,7 +2451,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/13f7d981b0246575ad06.txt",
         "sha256": "13F7D981B0246575AD068B1BF3CB751BC7548BA999785B62993F9462846CBF03",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "2A47E93D6AB534F7748D0DBC5C06DE9C94B5DCA4330D207D866FDDF67C063B28"
       }
     },
     {
@@ -2467,7 +2498,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/7e7143de7ee29e5df129.txt",
         "sha256": "7E7143DE7EE29E5DF1293751C9ED818C050C02DAE385981A1A268EE45FAE7366",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "87C0D3BE482E81FC069EB0BECE59BFA1D70E4378C91F78051A91F9F0AF8BBAAA"
       }
     },
     {
@@ -2481,7 +2513,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/233c1304673d3d69921c.txt",
         "sha256": "233C1304673D3D69921C83CA6563E78D9CA5CD93945AB2A5A89B1DD6814846CB",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "3E636683CE6D489DB6F769C15EA488432FD7063C527841D95EF88562398E91A0"
       }
     },
     {
@@ -2527,7 +2560,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/9918741d58cd71157e9c.txt",
         "sha256": "9918741D58CD71157E9C14345367E4DD7D512E042EF385E6A3EB03B4A550E316",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "F52C4648C0E4EF849B5CE5A76AE78027F27BE04A4E98C3A9CDC2F1439E86630D"
       }
     },
     {
@@ -2541,7 +2575,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/cbe142caf0251c4db89e.txt",
         "sha256": "CBE142CAF0251C4DB89E8AA9C41DC1AC12D4B3D905D39ED49F50BF5A42BFC864",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "CBE142CAF0251C4DB89E8AA9C41DC1AC12D4B3D905D39ED49F50BF5A42BFC864"
       }
     },
     {
@@ -2619,7 +2654,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/f7ba933174338eafbe90.txt",
         "sha256": "7CD81618982C7011344DBB122497AB5A7EB24C341EFE88D35AFEBB98C1968E0A",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "5996958A51BC6748251A260685B882A75F962A26715B5DC70100110A9895166D"
       }
     },
     {
@@ -2633,7 +2669,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/40af35f85682b804de31.txt",
         "sha256": "40AF35F85682B804DE31D04C01FF9B75F695A0B8F54A79F770C1EDFDD151001D",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "5D9E50D5021976040EBEC396D169D6AE5C532E87031C5C0517A4C257516A6E0E"
       }
     },
     {
@@ -2679,7 +2716,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/964ebe5ed35b90850ef8.txt",
         "sha256": "964EBE5ED35B90850EF85C55E3303C54D5EBDA290A688940099C67A2DB913949",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "964EBE5ED35B90850EF85C55E3303C54D5EBDA290A688940099C67A2DB913949"
       }
     },
     {
@@ -2721,7 +2759,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/e51d6d790b6e7d0c59bd.txt",
         "sha256": "E51D6D790B6E7D0C59BD37EADFACEC067175010431CBC14F30DD67B25115E60A",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "E51D6D790B6E7D0C59BD37EADFACEC067175010431CBC14F30DD67B25115E60A"
       },
       "originalPathNotation": "../data管理器/验证/2026-10-27-引擎三子页与分配池/知识归档/6.4-6.5活动表-精确字节证据.json"
     },
@@ -2736,7 +2775,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/2c9407146ea54ce28435.txt",
         "sha256": "EC50365F48778C56B07CE1AE4C5CC3478FC5942A02DAA1987387C6561EE2EAC3",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "D243BF6DFFDFC695DF5F868A029F86B663F98CC9804C8CCF85C3E87C36F205E6"
       },
       "originalPathNotation": "../data管理器/验证/2026-10-27-引擎三子页与分配池/验收报告.md"
     },
@@ -2751,7 +2791,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/974440c7cb7825ecd83f.txt",
         "sha256": "974440C7CB7825ECD83F74234FF08F159BF8D4FAE960371C6E17ACFA9F695BB5",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "974440C7CB7825ECD83F74234FF08F159BF8D4FAE960371C6E17ACFA9F695BB5"
       },
       "originalPathNotation": "../data管理器/src/DataManager.Tests/EffectAssignmentLayoutTests.cs"
     },
@@ -2766,7 +2807,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/45dd31c94cb2bbb7a2e6.txt",
         "sha256": "45DD31C94CB2BBB7A2E6A8824955DDBD371ECA51AD5B588F5FCF4BA08287EDA5",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "49C69107C816730C8862FE5695A17C2622068C6B684AF046A8B388ECD0970D60"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/UI/加强版6.5未加密版/UI验收结果.txt"
     },
@@ -2781,7 +2823,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/45dd31c94cb2bbb7a2e6.txt",
         "sha256": "45DD31C94CB2BBB7A2E6A8824955DDBD371ECA51AD5B588F5FCF4BA08287EDA5",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "49C69107C816730C8862FE5695A17C2622068C6B684AF046A8B388ECD0970D60"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/UI/复刻版6.6山贼 国庆/UI验收结果.txt"
     },
@@ -2796,7 +2839,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/65557a11faabc91bd5cd.txt",
         "sha256": "65557A11FAABC91BD5CD0C3E67E1AFCD19AA1F2DDA1479448A6F41CFCC4855A0",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "65557A11FAABC91BD5CD0C3E67E1AFCD19AA1F2DDA1479448A6F41CFCC4855A0"
       },
       "originalPathNotation": "../data管理器/验证/2026-10-27-引擎三子页与分配池/知识归档/最终界面证据清单.json"
     },
@@ -2811,7 +2855,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/45dd31c94cb2bbb7a2e6.txt",
         "sha256": "45DD31C94CB2BBB7A2E6A8824955DDBD371ECA51AD5B588F5FCF4BA08287EDA5",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "49C69107C816730C8862FE5695A17C2622068C6B684AF046A8B388ECD0970D60"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/UI/洗隋/UI验收结果.txt"
     },
@@ -2826,7 +2871,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/b8cd0fed2f7ce4c39f23.txt",
         "sha256": "B8CD0FED2F7CE4C39F2333F147B5882EE6A5AC9D3C596A191EB262323FB9F67A",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "EEC6B46800C54ABA42C89299D9EF7F34461B783F9DAC1BDEDC60CD05C867BDBD"
       },
       "originalPathNotation": "../data管理器/验证/2026-10-27-引擎三子页与分配池/装备37-开关恢复消费者.json"
     },
@@ -2854,7 +2900,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/68ef6e23011c6f9dfdbd.txt",
         "sha256": "68EF6E23011C6F9DFDBDD227F6B904AC2EB4CED5629E6DA3A5F26915774E76A9",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "E5ED0A2F214E1B7B3D7C431A90749617382B0E509116F130A51F3AEDAC56BFA3"
       },
       "originalPathNotation": "../data管理器/验证/2026-10-27-引擎三子页与分配池/静态复核-ABI与活动表.json"
     },
@@ -2882,7 +2929,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/2dd3f87dcd5e74ba8d0e.txt",
         "sha256": "2DD3F87DCD5E74BA8D0ECA0F118D8EED9F629F60FA8F6458AF05B34EBAD1FCCF",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "2DD3F87DCD5E74BA8D0ECA0F118D8EED9F629F60FA8F6458AF05B34EBAD1FCCF"
       },
       "originalPathNotation": "../data管理器/验证/2026-10-27-引擎三子页与分配池/知识归档/已完成测试来源清单.json"
     },
@@ -2897,7 +2945,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/58aa991189e31d63414d.txt",
         "sha256": "58AA991189E31D63414DCF9E9E70C43318FC8E3031F25B7AB4A5F28B5D442243",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "4F4414A3FCCD5FB7C9522EFF13C279B73FA498F694BEDBF3B8302DB45FB254F8"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/engine-effect-contracts-6.5.log"
     },
@@ -2912,7 +2961,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/86dbe531f16b711c0ec4.txt",
         "sha256": "86DBE531F16B711C0EC4B9151C583FE632C7CEBC20365602C7B3EA9EE522AE3A",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "86DBE531F16B711C0EC4B9151C583FE632C7CEBC20365602C7B3EA9EE522AE3A"
       },
       "originalPathNotation": "../data管理器/验证/2026-10-27-引擎三子页与分配池/知识归档/冻结Core-App来源清单.json"
     },
@@ -2927,7 +2977,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/484610490f686f3a19fc.txt",
         "sha256": "484610490F686F3A19FC110FC91BA39E5CD9AD5681A94182735EF3EB62E0FDCB",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "3AC7150E4A0768E6C120CB2B63C3744A71679529267489C12D05B7E282A830BE"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/effect-binding-groups.log"
     },
@@ -2942,7 +2993,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/97b4bcdb2ffd41e5eca8.txt",
         "sha256": "97B4BCDB2FFD41E5ECA8FE7C9D94C717B5CCA2C7A1FD57955D08BE2FC08325AB",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "953D9C976ADDC73957373BEE089DFD381DFE843F714363733BBB1B695B2FCA15"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/effect-assignment-layouts.log"
     },
@@ -2957,7 +3009,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/57288b686834415c5b56.txt",
         "sha256": "57288B686834415C5B56FD6C90F1C26E0BF6332E7DBF24FE4F984A64CD53AD23",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "8D71A1764AED625BAD4C43CE800A790A3C209C4A97604646B5BA1227110C0BB5"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/engine-effect-native.log"
     },
@@ -2972,7 +3025,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/21e2a8a3a3ad3294c866.txt",
         "sha256": "3B919E13BBB1870547AC51AE8CB0FB6C34B012AA734096B28E7ED8007C63D462",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "61EADD8287D6AE456AC30805939B4EF61C920DC6D3DD8AF2DAE269553E61E64A"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/发布清单.json"
     },
@@ -2987,7 +3041,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/e0aed7df803130657076.txt",
         "sha256": "E0AED7DF80313065707699ACDA99C6083045B4C36259734091B6FD6BA66E10FC",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "DB3E07A949CCB60F113F528B86989BF1AE39D76BD5576887589A61BDF9DE734D"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/最终扫描确定性.log"
     },
@@ -3002,7 +3057,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/627bfba95bd73b2268d1.txt",
         "sha256": "627BFBA95BD73B2268D1D5B76607A4E9D478992DDE99A1B8753B2985DE372D5F",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "627BFBA95BD73B2268D1D5B76607A4E9D478992DDE99A1B8753B2985DE372D5F"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/验收报告.md"
     },
@@ -3017,7 +3073,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/05796e618ef1c42a948d.txt",
         "sha256": "05796E618EF1C42A948DF7D5C10D86D1E65B3B38AE1B5EF9C9D973683BEF96D3",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "3495D957BD6A64B2FAC7154C1887CFF79DFBB8F55D993B43C1CA72BE726D1C96"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/three-base-assignments.log"
     },
@@ -3032,7 +3089,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/9aeea36b2a7d5b37b40f.txt",
         "sha256": "9AEEA36B2A7D5B37B40FB2EB7505CA933D770FDE977ADC1170BD4D473B9D9747",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "59F4C799E11C21FCA537C79482F7A9A89B6784A4AA2C28C502000CF22C2D899F"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/engine-effect-write-国庆.log"
     },
@@ -3047,7 +3105,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/3bc1f0d7ac7d02c63dc7.txt",
         "sha256": "3BC1F0D7AC7D02C63DC73C2C69D7E257565542A536105ADCCE4068505E72A221",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "E7753C8A11516E9949DA49A2738702E7A3F1E661989EA2D7AB52B42E49A294FC"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/operand-sharing-safety.log"
     },
@@ -3062,7 +3121,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/d1a0951db7abeacbc570.txt",
         "sha256": "D1A0951DB7ABEACBC570ABCE9B7EC0323363C5727DBC6F68C39ECBD913C3EFDA",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "D1A0951DB7ABEACBC570ABCE9B7EC0323363C5727DBC6F68C39ECBD913C3EFDA"
       },
       "originalPathNotation": "../data管理器/src/DataManager.Tests/OperandSharingSafetyTests.cs"
     },
@@ -3077,7 +3137,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/6a32c644b08ee0573dff.txt",
         "sha256": "7EFFF40C23741214773AF56F720265CEC7706CA3CF36A6882E1FEB8B0FAD659C",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "9F105A6FE371004538CD63E14771B2A745EB845FE807AE90B58F489FAA246342"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/发布程序只读验收.json"
     },
@@ -3092,7 +3153,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/84a1fd1ea77b162f25d4.txt",
         "sha256": "7D24B392CBB0B3440C430536801FE8D066064E6228C9CDB910B8090B1A2BA558",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "F864721240D8988C88998B008E7DD7BFA70F2C8AFD96C06BFF46C262D402B488"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/发布程序资源与界面验收.json"
     },
@@ -3107,7 +3169,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/b2d222ffd5cd18a84202.txt",
         "sha256": "B2D222FFD5CD18A84202EAA291BE07C42EB6C6F14EC9ADEF2BE908A4C1D2DB0E",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "1A4AA9421350BDC571CC4724C72AFBC14E9FE080E1A2BFC7DC7F3DC05313BEBF"
       },
       "originalPathNotation": "../data管理器/验证/引擎扫描性能等价-20261027/说明刷新完整报告等价.log"
     },
@@ -3122,7 +3185,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/1719549bb2b992daf80e.txt",
         "sha256": "1719549BB2B992DAF80E6531758D2521A7124B86D388089FA59328AA42D5D8F3",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "6778D8D8ADE3C37ED616CA20AA09F96E1628B01FEE676820408B4F8BB0E41F3F"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/UI/生命周期/扫描生命周期结果.txt"
     },
@@ -3137,7 +3201,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/ed1cbe5889ee3b66a7b0.txt",
         "sha256": "ED1CBE5889EE3B66A7B040DE9332E48E032F068BBFFD4071A35F10DF95D8122B",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "3D907048E12528106A7331CC8746D50CCF79F118D264EC4C7B8FD80C3AA60917"
       },
       "originalPathNotation": "../data管理器/验证/引擎扫描性能等价-20261027/metrics.ndjson"
     },
@@ -3152,7 +3217,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/a359440e8b9bac984639.txt",
         "sha256": "A359440E8B9BAC984639151B1FBB706F513A78DA8716900D5BE2FC6797F14A40",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "89BD2AAE94DAF524307C36512461487EA7EBDFCFE9EC81EF4B746CB3EE94B94E"
       },
       "originalPathNotation": "../data管理器/验证/引擎扫描性能等价-20261027/performance-source-manifest.json"
     },
@@ -3167,7 +3233,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/43e1be5f856e75a20e86.txt",
         "sha256": "43E1BE5F856E75A20E86A310CBC3D87D3DC49AB8C35032C227F4B8F04CF23E23",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "F87D31D84DDD6DAADF11B7729F1608E1304967E2321717A8F2BA1B5499871C04"
       },
       "originalPathNotation": "../data管理器/验证/引擎扫描性能等价-20261027/summary.json"
     },
@@ -3182,7 +3249,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/06dd4258bc28a171e209.txt",
         "sha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E"
       },
       "originalPathNotation": "../data管理器/src/DataManager.Tests/ThreeBaseAssignmentTests.cs"
     },
@@ -3197,7 +3265,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/43e2372f8efb0eb66e60.txt",
         "sha256": "43E2372F8EFB0EB66E60683EAF0287D135828A9A0D56CBD5DF94B226E1E7E18B",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "AFD6B4CBC7FAEBCE2ACFAA82AA440615889434AD3163B6C8EEAAB6AF85095BC5"
       },
       "originalPathNotation": "../data管理器/验证/三基底扫描与分配-20261027/UI/输入管线回归结果.txt"
     },
@@ -4402,7 +4471,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/a5f913ba2ab6434764fd.txt",
         "sha256": "A5F913BA2AB6434764FD6CB0B48C4FB0A0FB0A7E0454F9E0CC698545B15A43AD",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "D8BDB66E041E0721DF162D60129F6BAC9793D73E015D4AB961E4FB646AA1C36C"
       }
     },
     {
@@ -4432,7 +4502,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/8b5625feec60df369eeb.txt",
         "sha256": "8B5625FEEC60DF369EEBCD430EC992E146CD523E571711DC6855A466BD865150",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "8B5625FEEC60DF369EEBCD430EC992E146CD523E571711DC6855A466BD865150"
       }
     },
     {
@@ -4446,7 +4517,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/205fe4623ca0364495e7.txt",
         "sha256": "205FE4623CA0364495E7D4117C5178CC57026DC2B5FAA9D7B2F03B1AFA158D84",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "205FE4623CA0364495E7D4117C5178CC57026DC2B5FAA9D7B2F03B1AFA158D84"
       }
     },
     {
@@ -4460,7 +4532,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/74726761ddbfb9d1fe67.txt",
         "sha256": "74726761DDBFB9D1FE67A05DA4266B60DAFC5B20867BA6AE7ED2C73795FFBDED",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "74726761DDBFB9D1FE67A05DA4266B60DAFC5B20867BA6AE7ED2C73795FFBDED"
       }
     },
     {
@@ -4516,7 +4589,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/a97858456c18ea8fb259.txt",
         "sha256": "5AC6A03832E8A7C99DB7072859AE8139661829195E4A8A08C23E2A04E2270309",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "5AC6A03832E8A7C99DB7072859AE8139661829195E4A8A08C23E2A04E2270309"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4531,7 +4605,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/977fabe044a6792de930.txt",
         "sha256": "7DEFF34C371EEDBE9AFF214DE19D546B57FEECFA9D514350BD6828B01E256F70",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "7DEFF34C371EEDBE9AFF214DE19D546B57FEECFA9D514350BD6828B01E256F70"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4546,7 +4621,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/e6fbb75f69eb36e068ab.txt",
         "sha256": "D95576BE474E208BE228B6CD849ACA0F18B7C2313814EED78D761568D306EF7E",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "D95576BE474E208BE228B6CD849ACA0F18B7C2313814EED78D761568D306EF7E"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4561,7 +4637,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/4bbbb49d04caa4b5c5ee.txt",
         "sha256": "18B822378057FFB05022DD74FC9CF81F29708DF13F1D612D8606439E3790D53A",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "18B822378057FFB05022DD74FC9CF81F29708DF13F1D612D8606439E3790D53A"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4576,7 +4653,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/8f7e6da56b35aa2d5a5a.txt",
         "sha256": "82E1EDCA1F3D1336C06D4144E51BCE499101AACDAB7285D69FAB36971D4D4FF9",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "82E1EDCA1F3D1336C06D4144E51BCE499101AACDAB7285D69FAB36971D4D4FF9"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4591,7 +4669,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/4004031d549c6a9cc996.txt",
         "sha256": "83A70E695FB4F852DFA1ADDF8F08A627D10791134A81EA6804BBC00EF228C73E",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "9B07F5CF260F7ADC44B5A801350469497D42F3D2C429FDC04E5C394A235AB502"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4606,7 +4685,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/a6a552e4affa51861825.txt",
         "sha256": "BE3E1C6DB0D4C4998FBDA82ADDC7AABB547E1CCF89F5C137DD635AE57C6E182B",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "67BBB8E2EA3AB92D5AA531086A874E55A287242751D8911F38F17333ED399591"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4621,7 +4701,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/39cc2a4a1579e6116a58.txt",
         "sha256": "39CC2A4A1579E6116A585D9E17A04D81E0EDF73211174C5184FFE7D0C398316F",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "39CC2A4A1579E6116A585D9E17A04D81E0EDF73211174C5184FFE7D0C398316F"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4649,7 +4730,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/c5ad9c1d3e8f42c5d8a6.txt",
         "sha256": "EBCE9FD984BE8A3AB711147A10E03CDF4D3A7DE669D0F107591DDE969B10B8E4",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "EBCE9FD984BE8A3AB711147A10E03CDF4D3A7DE669D0F107591DDE969B10B8E4"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4664,7 +4746,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/3d1874002459acbec204.txt",
         "sha256": "D9AA65CD5403E871705D75348D75D62D9E0CABCDA0B7AEE1D64ADB9459A1C40E",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "50653199BFDB3F0256B6FE2D27ADCF71F7E4201B084D814869CABFAC18DB9136"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4696,7 +4779,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/450ee0ca98c615332b40.txt",
         "sha256": "F8D29BF23B151B6D22F04857A87BF981EAE1B7E1E941FB99913B6073AC5A9753",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "F8D29BF23B151B6D22F04857A87BF981EAE1B7E1E941FB99913B6073AC5A9753"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4711,7 +4795,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/256e3073db85456d1ed9.txt",
         "sha256": "64C713E5B49AEB94CA2A6FCE17B703557A96C9F8A3726BD7C23FD70328B5869A",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "64C713E5B49AEB94CA2A6FCE17B703557A96C9F8A3726BD7C23FD70328B5869A"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4726,7 +4811,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/d3af9005f592fc9565a1.txt",
         "sha256": "37889C6BB3BC591E6B2C5A0D82523520FB0E110E68981B29F2AAB32C91FE0770",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "37889C6BB3BC591E6B2C5A0D82523520FB0E110E68981B29F2AAB32C91FE0770"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4741,7 +4827,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/e02dfae09040c52be4f8.txt",
         "sha256": "767D2F861ED7B674BC0FDE4349A05761B493A2FD3C62BD1BC1B7550659B222C7",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "767D2F861ED7B674BC0FDE4349A05761B493A2FD3C62BD1BC1B7550659B222C7"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4756,7 +4843,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/9cca982cf22ac010bf22.txt",
         "sha256": "CB81FF75009EEDE9C5D565DF3399F5D3B51901ED21B35FEEFD5F668875B3105B",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "CB81FF75009EEDE9C5D565DF3399F5D3B51901ED21B35FEEFD5F668875B3105B"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4771,7 +4859,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/ef6fe1073fc64ecfd246.txt",
         "sha256": "1724690C5C414DC153BA682EACB1D20F8F7DC9A07A3CA8C83B93142952382519",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "E8BA20BA4D58D0D203104A4586E4CF0773F16E3A441D542515D62AFFDA6DE1DE"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4786,7 +4875,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/8cab8c416a0c71b5607a.txt",
         "sha256": "D48F8B27588AEA62143EC1290113FA7623821B82B0E1E02016D527BD2BABB920",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "F1DF92C0E0CB34AA942756198781CB58634A084C70B2B1990DDD6F222D5AD89B"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -4801,7 +4891,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/3bba919c8225391aa1c1.txt",
         "sha256": "08408C94ADABF46F2EB055F50694FD5649F9F1B327189B2119975D7871510CF2",
-        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。"
+        "reason": "读取时原件SHA256完全匹配。快照仅去除UTF-8 BOM和本机绝对路径；快照哈希独立于原件哈希，逐字节复核仍需原件。",
+        "normalizedSha256": "08408C94ADABF46F2EB055F50694FD5649F9F1B327189B2119975D7871510CF2"
       },
       "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。",
       "sourceType": "local-knowledge-document",
@@ -5214,7 +5305,8 @@
         "kind": "repository-snapshot",
         "snapshotPath": "sources/evidence/207fc77fe3ee510a54f9.txt",
         "sha256": "207FC77FE3EE510A54F96C00A86232966A1873C8D8AF5B7BC0CDA3CA18B05DB1",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。"
+        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
+        "normalizedSha256": "207FC77FE3EE510A54F96C00A86232966A1873C8D8AF5B7BC0CDA3CA18B05DB1"
       }
     },
     {
