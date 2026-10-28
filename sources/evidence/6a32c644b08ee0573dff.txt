@@ -1,0 +1,977 @@
+{
+  "Schema": "ccz.bundle-verification.v1",
+  "Timestamp": "2026-10-27T15:12:36.9152489+08:00",
+  "BuildVersion": "1.2026.1027.25+15a8984bf59bef82ec466f80e3e2be2386b55572",
+  "ReadOnly": true,
+  "Scope": "FullBundle",
+  "Runtime": {
+    "Framework": ".NET 8.0.8",
+    "Version": "8.0.8",
+    "OS": "Microsoft Windows 10.0.22621",
+    "ProcessArchitecture": "X64",
+    "Executable": "<source-workspace>",
+    "BaseDirectory": "<source-workspace>",
+    "WorkingDirectory": "<source-workspace>",
+    "DotnetRoot": null,
+    "MultilevelLookup": null
+  },
+  "NativeRuntimeModules": [
+    {
+      "ModuleName": "hostpolicy.dll",
+      "FileName": "<source-workspace>"
+    },
+    {
+      "ModuleName": "coreclr.dll",
+      "FileName": "<source-workspace>"
+    }
+  ],
+  "SelectedProjectRoot": "<source-workspace>",
+  "Checks": [
+    {
+      "Name": "嵌入 Profile",
+      "Success": true,
+      "ElapsedMs": 96,
+      "Result": {
+        "EmbeddedFiles": [
+          {
+            "Name": "DataManager.Core.Profiles.ccz-6.4.json",
+            "Bytes": 6475,
+            "Sha256": "7E7143DE7EE29E5DF1293751C9ED818C050C02DAE385981A1A268EE45FAE7366"
+          },
+          {
+            "Name": "DataManager.Core.Profiles.ccz-6.5.json",
+            "Bytes": 37460,
+            "Sha256": "8FD880D538BC021D231AA8E8FD601CC3266962CDE59A585C73C07B73F644CD09"
+          },
+          {
+            "Name": "DataManager.Core.Profiles.ccz-6.6.json",
+            "Bytes": 20715,
+            "Sha256": "6AABB1BE5A4657A6933E403CFA187D7D7F68178F80BDC667F6202DDB0B92A1E5"
+          }
+        ],
+        "Profiles": [
+          {
+            "Id": "ccz-6.4",
+            "Variants": [
+              {
+                "Id": "64-xisui-v1",
+                "Tables": 47
+              }
+            ]
+          },
+          {
+            "Id": "ccz-6.5",
+            "Variants": [
+              {
+                "Id": "65-standard-v1",
+                "Tables": 47
+              }
+            ]
+          },
+          {
+            "Id": "ccz-6.6",
+            "Variants": [
+              {
+                "Id": "66-standard-v1",
+                "Tables": 48
+              },
+              {
+                "Id": "66-legacy-data-v1",
+                "Tables": 48
+              },
+              {
+                "Id": "66-shanzhai-legacy",
+                "Tables": 48
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "Name": "嵌入使用说明",
+      "Success": true,
+      "ElapsedMs": 1,
+      "Result": {
+        "Characters": 7474,
+        "Sha256": "F559329E25017BDB064B0449ACA671D330DE23B57676F2E136927A1B8002F5B6"
+      }
+    },
+    {
+      "Name": "嵌入旧版调色板",
+      "Success": true,
+      "ElapsedMs": 0,
+      "Result": {
+        "Name": "ImageManager.Core.Palettes.tsb",
+        "Bytes": 1024,
+        "Sha256": "2B3DE857DB6E4A07C553F33034F80553D2A47A8440BE42D825EF7E39ADEC3682"
+      }
+    },
+    {
+      "Name": "项目物理表只读打开",
+      "Success": true,
+      "ElapsedMs": 351,
+      "Result": {
+        "ProfileId": "ccz-6.5",
+        "VariantId": "65-standard-v1",
+        "LayoutRevision": "48E24F801C4A94DC",
+        "Tables": 50,
+        "ReadableTables": 41,
+        "IsDirty": false
+      }
+    },
+    {
+      "Name": "人物形象原生存档布局与只读同步准备",
+      "Success": true,
+      "ElapsedMs": 150,
+      "Result": {
+        "Verified": true,
+        "ROffset": 59392,
+        "SOffset": 0,
+        "PrefixLength": 196608,
+        "Evidence": "独立 PE 消费者证据：人物指针/72、S 人物 ID<1024、R/S UInt16 和 0/33 分支；原生四段 WriteFile 与 seek(0)/ReadFile 同指向 VA 0x00501000、长 0x30000；人物段版本 5 生成/检查已核对。E5S R=+0xE800、S=+0x0，各 1024×UInt16；EXE R=+0xE1000、S=+0xD2800。",
+        "PreparedGroups": [
+          {
+            "SaveRelativePath": "SV\\SV001.E5S",
+            "Files": [
+              {
+                "RelativePath": "SV\\SV001.E5S",
+                "ExpectedFileHash": "B4DB2DFF10B686956FCBA40F83240BFD2CEF60292F18F60639B640BA4A162ECC"
+              }
+            ]
+          },
+          {
+            "SaveRelativePath": "SV\\SV002.E5S",
+            "Files": [
+              {
+                "RelativePath": "SV\\SV002.E5S",
+                "ExpectedFileHash": "FF9E22FF6C635D38FA0ADF38A5CDDF50EBEFFE8C85E50CA7FD9C422ACDB6621A"
+              }
+            ]
+          },
+          {
+            "SaveRelativePath": "SV\\SV003.E5S",
+            "Files": [
+              {
+                "RelativePath": "SV\\SV003.E5S",
+                "ExpectedFileHash": "E3D8743F740AF08D35169B097FF701F2B57665B30DD2522D676A8889EFE73F16"
+              }
+            ]
+          },
+          {
+            "SaveRelativePath": "SV\\SV004.E5S",
+            "Files": [
+              {
+                "RelativePath": "SV\\SV004.E5S",
+                "ExpectedFileHash": "873B41AC422BAD4D18BF910E2134DC2ACE369071714439BB5DF4A16C7A281487"
+              },
+              {
+                "RelativePath": "patch\\xiaoan65\\save-index\\SV004.stats",
+                "ExpectedFileHash": "9F74613E22B378A062FA445505F8BEEB5F630C1B3B59F0B17A02FFFC25959105"
+              }
+            ]
+          },
+          {
+            "SaveRelativePath": "SV\\SV902.E5S",
+            "Files": [
+              {
+                "RelativePath": "SV\\SV902.E5S",
+                "ExpectedFileHash": "B3F5AF07D0B92EBA9E5C874CECEEAC0B3B77EAB0F8110A259F2BEA3A7EB30FCA"
+              },
+              {
+                "RelativePath": "patch\\xiaoan65\\save-index\\SV902.stats",
+                "ExpectedFileHash": "1237291A5FC6DF49B712625A1E7C8E4BD61F824D52D0F003DDF8AF12FB5E99DF"
+              }
+            ]
+          },
+          {
+            "SaveRelativePath": "SV\\SV941.E5S",
+            "Files": [
+              {
+                "RelativePath": "SV\\SV941.E5S",
+                "ExpectedFileHash": "EA78B8DCB4C6D680FDF05D150F471BEFBA28FC14B45DFC945F165A421157CD57"
+              },
+              {
+                "RelativePath": "patch\\xiaoan65\\save-index\\SV941.stats",
+                "ExpectedFileHash": "46F0A2BD1374E6BE1CF218DCB7AA9D2C29180B9BC7975AB8A49371B22156C5C5"
+              }
+            ]
+          }
+        ],
+        "UnchangedSaves": 1,
+        "SkippedSaves": 0,
+        "Diagnostics": [],
+        "Committed": false
+      }
+    },
+    {
+      "Name": "精简模块与程序侧历史目录",
+      "Success": true,
+      "ElapsedMs": 102,
+      "Result": {
+        "Modules": [
+          "人物",
+          "兵种系",
+          "兵种",
+          "策略",
+          "宝物",
+          "商店",
+          "拓展数据"
+        ],
+        "ProjectName": "加强版6.5未加密版",
+        "HistoryRoot": "<source-workspace>",
+        "DataHistory": "<source-workspace>",
+        "ImageHistory": "<source-workspace>",
+        "MigrationBackups": "<source-workspace>",
+        "BaseDirectory": "<source-workspace>",
+        "WorkingDirectory": "<source-workspace>"
+      }
+    },
+    {
+      "Name": "业务工作簿依赖与只读往返",
+      "Success": true,
+      "ElapsedMs": 1464,
+      "Result": {
+        "Workbooks": [
+          {
+            "Page": "Persons",
+            "Path": "<source-workspace>",
+            "Bytes": 267392,
+            "ChangedCells": 0,
+            "Sha256": "55DCF1C3136AF2E10E916B1FC25CE5B98289D8BA2636453783910D9F85EC3B69"
+          },
+          {
+            "Page": "Items",
+            "Path": "<source-workspace>",
+            "Bytes": 80883,
+            "ChangedCells": 0,
+            "Sha256": "16D2C4512E0F9800B5DA55D872FB7F9A3797D093B9408DA6F0F0EB10BE19ED86"
+          }
+        ],
+        "IsDirty": false
+      }
+    },
+    {
+      "Name": "图片资源目录",
+      "Success": true,
+      "ElapsedMs": 108,
+      "Result": {
+        "Version": "Ccz65",
+        "Resources": 26,
+        "PreviewableResources": 25,
+        "Kinds": {
+          "RComposite": 1,
+          "SComposite": 1,
+          "FaceComposite": 1,
+          "DllBitmap": 3,
+          "E5Indexed": 7,
+          "PmapSpecial": 1,
+          "WeatherSpecial": 1,
+          "MapPair": 1,
+          "McallAnimation": 9,
+          "MarkRaw": 1
+        }
+      }
+    },
+    {
+      "Name": "S 图库物理图号、人物紧凑编号与三阵营第0帧",
+      "Success": true,
+      "ElapsedMs": 243,
+      "Result": {
+        "ArchivePhysicalCounts": {
+          "Unit_mov.e5": 556,
+          "Unit_atk.e5": 556,
+          "Unit_spc.e5": 556
+        },
+        "CommonPhysicalCount": 556,
+        "UnpairedTailSlots": {
+          "Unit_mov.e5": 0,
+          "Unit_atk.e5": 0,
+          "Unit_spc.e5": 0
+        },
+        "JobImageSlots": 240,
+        "CharacterImages": 316,
+        "CharacterPickerOptions": 253,
+        "CheckedJobMappings": 80,
+        "Boundaries": [
+          {
+            "ImageNumber": 1,
+            "LogicalId": 1,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "0BDAD279C86904A7FB4233166B0F6C20F763841FEFDFE2E9C8A39960A990EC2D",
+              "atk": "7468E5F92B81E1E692447CB99CEF478594AA698C66050140C1427B5276C85508",
+              "spc": "0330E0E0D540FD05CB462ED6B15DD2EBA283A0697AC01EE2E2941F88F1435066"
+            }
+          },
+          {
+            "ImageNumber": 2,
+            "LogicalId": 2,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "AD0525E2B541CD90015B01F9C55D6300E462CA6BF91336BE0691E20B9DF4850C",
+              "atk": "47716A3B3AD8D2F3D7450F8447DB6054ADA19A890E43005403835078ABAFF2C1",
+              "spc": "2FF7B567E271654DD8EA28150D28D018F484A08604D77FD4D81C5A556DABEC20"
+            }
+          },
+          {
+            "ImageNumber": 3,
+            "LogicalId": 3,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "0075D0AD1A136B411C3AFF244823D906E9CEC5856E43F935840265C506EA0D28",
+              "atk": "376471A488F28202871B9D8A3892C0039A798B50ACE2AA951FCDADA93A981F0F",
+              "spc": "2513BDA8C1B2C3753844C4C37D43E662CB460CE900657357B865896104ACB13A"
+            }
+          },
+          {
+            "ImageNumber": 4,
+            "LogicalId": 4,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "0BDAD279C86904A7FB4233166B0F6C20F763841FEFDFE2E9C8A39960A990EC2D",
+              "atk": "7468E5F92B81E1E692447CB99CEF478594AA698C66050140C1427B5276C85508",
+              "spc": "0330E0E0D540FD05CB462ED6B15DD2EBA283A0697AC01EE2E2941F88F1435066"
+            }
+          },
+          {
+            "ImageNumber": 7,
+            "LogicalId": 7,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "0BDAD279C86904A7FB4233166B0F6C20F763841FEFDFE2E9C8A39960A990EC2D",
+              "atk": "7468E5F92B81E1E692447CB99CEF478594AA698C66050140C1427B5276C85508",
+              "spc": "0330E0E0D540FD05CB462ED6B15DD2EBA283A0697AC01EE2E2941F88F1435066"
+            }
+          },
+          {
+            "ImageNumber": 10,
+            "LogicalId": 10,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "A5B50B60A06B3381780AA1FB126514EE63C2451B1DE022966BC9ED084B3E61C8",
+              "atk": "976EE668F5E5411AA36D61CDFD35BDAA044D832169D0CB0BB524CA8EC8720FAC",
+              "spc": "5B8EF43C64A48523F34706EEDF473F2C5F9DD7D2142E73C79795D49D36A5FE92"
+            }
+          },
+          {
+            "ImageNumber": 178,
+            "LogicalId": 178,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "8C345A0EF5934249189E46B1C835D3B4DA1A130B2CDC29E7B95E27DFC7DFEE06",
+              "atk": "58EDD5A2A931C9F4228A8FF215B138CD3ABC2EB96936D38DFEFFA3F1F846C371",
+              "spc": "693F2F6E4F05E32259CD941F214B9A52E59CD3D6F3748F93895827290D01E86D"
+            }
+          },
+          {
+            "ImageNumber": 180,
+            "LogicalId": 180,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "22CCF87F5F1C560F8075623C7366131965B03143DF775955841885064C52E763",
+              "atk": "E1A4E79AA4665F66D1C723B00E32C37033B74142DBE87475C115107BA9C1934D",
+              "spc": "0DE65EE1FBFB377E38C92C4226F8CCADBCB33AA69EF8D1915BEEBD1331A78180"
+            }
+          },
+          {
+            "ImageNumber": 181,
+            "LogicalId": 181,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "32C1403874F5C85E0545A702C6C77C337E1E028068B4B43919C011A8CDCC483F",
+              "atk": "988EF2699870DF82E1E88940DE2412B127725C1451E5B607AB40923B507F29F1",
+              "spc": "7CF0F2F6ED0B501FC3DDB5EF37A9F39D447E9E78FC12EE2AD9959D35533EB72E"
+            }
+          },
+          {
+            "ImageNumber": 183,
+            "LogicalId": 183,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "05BD56ED92E987EA057A1EBB2588619D7C0B66FBED5FC6059FED6C9D3B2EDF16",
+              "atk": "892C4CDF961521664BA589435EA494E089358CEBDFE07194CA7731E1A84911AB",
+              "spc": "A1DA3CB928B32D407F1DB7379AF27A95D514089FB7713B20443FFB3A0AE6F11D"
+            }
+          },
+          {
+            "ImageNumber": 238,
+            "LogicalId": 238,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "FC10397A741A82A744DFB10EA07615E1C58414DBC551D7FDE189BA7802769D86",
+              "atk": "D3417996DC12973950CDBEFEBBD6CFB1A83EA05829DC74C1B113498250A9FAA7",
+              "spc": "2D72970EB53107F3B9E31318C43A6DA0BB1D7E92A7464F0CB897A2CA3388F41E"
+            }
+          },
+          {
+            "ImageNumber": 240,
+            "LogicalId": 240,
+            "Mode": "Job",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "4C34A616BC7B274EBA2DC245A0BCAAF6287BA3DF740ED201B079E555A1E2B4B2",
+              "atk": "5E3D22E39505294EEB2151D0B2BBBDFDD655817C06F0311AD4CC0548D4C6B23A",
+              "spc": "D354AD2D381420DBC7CD9DB598571CCEBAF4B762EF6971A73EE2B333F71AAFCC"
+            }
+          },
+          {
+            "ImageNumber": 241,
+            "LogicalId": 241,
+            "Mode": "Person",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "A7A34D000F50647373BDD9700731E31C7AA09DAC3EF9C202BF50E4B185EE4BB4",
+              "atk": "12A39DF55A11309B67E0A9B86F5B4A774FF494BC169493464C60928A9C23D2D0",
+              "spc": "F03682499EC21E78D839320A2C262A399358F66AA75DE133E69B639FCECE0671"
+            }
+          },
+          {
+            "ImageNumber": 242,
+            "LogicalId": 242,
+            "Mode": "Person",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "24BBD2B8D061AD09F916F3A25B1486CF416830B0CE2B8FA25C48FED7941ACA6A",
+              "atk": "B181EB6DB44E13B089D3CB009F09C61C4E7ACFD85DEE0ADC072B8822B6D4A046",
+              "spc": "2F6D61A12B3FEA2145CBA67051A78C6B8105870D41FBF41EB72F24581630FB55"
+            }
+          },
+          {
+            "ImageNumber": 243,
+            "LogicalId": 243,
+            "Mode": "Person",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "E1CD46038DB4DD81D8A829B3E8259579806A6928A294C012463CDE1EBF9BA94B",
+              "atk": "5307E2898DEA8C29C94FFCB400F31BD9C30D26FFA03F954ED959BE56134E920E",
+              "spc": "6634913C21171CFABF62402A963F69A3E0D1C8A6B38017B75C0A11DD8958096C"
+            }
+          },
+          {
+            "ImageNumber": 556,
+            "LogicalId": 556,
+            "Mode": "Person",
+            "Frames": 28,
+            "FirstFrameSha256": {
+              "mov": "7EFFB03B2067B73F1171A6151AFA1A7F85EBD79CC907BBDEAA4528B464EF5460",
+              "atk": "5EC051F552CE46922924464B30EF25610C13047808BC25A846446B8F5DF87B3F",
+              "spc": "A761DAC97F4CDEA96CA251552F149BE5E406FC1A56AFE88E99150E485E41A049"
+            }
+          }
+        ],
+        "CharacterFirstFrames": [
+          {
+            "SId": 1,
+            "ImageNumber": 241,
+            "FirstFrameSha256": "A7A34D000F50647373BDD9700731E31C7AA09DAC3EF9C202BF50E4B185EE4BB4"
+          },
+          {
+            "SId": 2,
+            "ImageNumber": 244,
+            "FirstFrameSha256": "E7BE945D5AC6510191661871423BD717D48BCCDBA1C726AF76DD77EBF9BF29D7"
+          },
+          {
+            "SId": 32,
+            "ImageNumber": 334,
+            "FirstFrameSha256": "1801EC2C259ED537C756ADAC0C709F42915D8C6CF3D0DB94686E2784908303D5"
+          },
+          {
+            "SId": 33,
+            "ImageNumber": 337,
+            "FirstFrameSha256": "D4F0CB8DE5B183408836D23E3153AAA854B930C2ED8B2D72817027B24BDDAAD4"
+          }
+        ],
+        "JobFirstFrames": [
+          {
+            "JobId": 0,
+            "FactionIndex": 0,
+            "ImageNumber": 1,
+            "FirstFrameSha256": "0BDAD279C86904A7FB4233166B0F6C20F763841FEFDFE2E9C8A39960A990EC2D"
+          },
+          {
+            "JobId": 0,
+            "FactionIndex": 1,
+            "ImageNumber": 2,
+            "FirstFrameSha256": "AD0525E2B541CD90015B01F9C55D6300E462CA6BF91336BE0691E20B9DF4850C"
+          },
+          {
+            "JobId": 0,
+            "FactionIndex": 2,
+            "ImageNumber": 3,
+            "FirstFrameSha256": "0075D0AD1A136B411C3AFF244823D906E9CEC5856E43F935840265C506EA0D28"
+          },
+          {
+            "JobId": 1,
+            "FactionIndex": 0,
+            "ImageNumber": 4,
+            "FirstFrameSha256": "0BDAD279C86904A7FB4233166B0F6C20F763841FEFDFE2E9C8A39960A990EC2D"
+          },
+          {
+            "JobId": 1,
+            "FactionIndex": 1,
+            "ImageNumber": 5,
+            "FirstFrameSha256": "AD0525E2B541CD90015B01F9C55D6300E462CA6BF91336BE0691E20B9DF4850C"
+          },
+          {
+            "JobId": 1,
+            "FactionIndex": 2,
+            "ImageNumber": 6,
+            "FirstFrameSha256": "0075D0AD1A136B411C3AFF244823D906E9CEC5856E43F935840265C506EA0D28"
+          },
+          {
+            "JobId": 2,
+            "FactionIndex": 0,
+            "ImageNumber": 7,
+            "FirstFrameSha256": "0BDAD279C86904A7FB4233166B0F6C20F763841FEFDFE2E9C8A39960A990EC2D"
+          },
+          {
+            "JobId": 2,
+            "FactionIndex": 1,
+            "ImageNumber": 8,
+            "FirstFrameSha256": "AD0525E2B541CD90015B01F9C55D6300E462CA6BF91336BE0691E20B9DF4850C"
+          },
+          {
+            "JobId": 2,
+            "FactionIndex": 2,
+            "ImageNumber": 9,
+            "FirstFrameSha256": "0075D0AD1A136B411C3AFF244823D906E9CEC5856E43F935840265C506EA0D28"
+          },
+          {
+            "JobId": 3,
+            "FactionIndex": 0,
+            "ImageNumber": 10,
+            "FirstFrameSha256": "A5B50B60A06B3381780AA1FB126514EE63C2451B1DE022966BC9ED084B3E61C8"
+          },
+          {
+            "JobId": 3,
+            "FactionIndex": 1,
+            "ImageNumber": 11,
+            "FirstFrameSha256": "1B771AE93674AC30C2BFD9425C95E2FC4DAA9BA5F3D2D01690495D9F4A74341C"
+          },
+          {
+            "JobId": 3,
+            "FactionIndex": 2,
+            "ImageNumber": 12,
+            "FirstFrameSha256": "F68AEB31326FE485F377FAB9F516FEDF9223F280FCED7B0E468C79822A9FF792"
+          },
+          {
+            "JobId": 59,
+            "FactionIndex": 0,
+            "ImageNumber": 178,
+            "FirstFrameSha256": "8C345A0EF5934249189E46B1C835D3B4DA1A130B2CDC29E7B95E27DFC7DFEE06"
+          },
+          {
+            "JobId": 59,
+            "FactionIndex": 1,
+            "ImageNumber": 179,
+            "FirstFrameSha256": "2C7D0F84751858E7A231C90FC35D33F5BBAF307861BCFFA9456E3C0E431DF179"
+          },
+          {
+            "JobId": 59,
+            "FactionIndex": 2,
+            "ImageNumber": 180,
+            "FirstFrameSha256": "22CCF87F5F1C560F8075623C7366131965B03143DF775955841885064C52E763"
+          },
+          {
+            "JobId": 60,
+            "FactionIndex": 0,
+            "ImageNumber": 181,
+            "FirstFrameSha256": "32C1403874F5C85E0545A702C6C77C337E1E028068B4B43919C011A8CDCC483F"
+          },
+          {
+            "JobId": 60,
+            "FactionIndex": 1,
+            "ImageNumber": 182,
+            "FirstFrameSha256": "20C346DB4A292D2DA4640934BC9DA7E7F55EE679107DE5A0C0C776FB75B4EAC1"
+          },
+          {
+            "JobId": 60,
+            "FactionIndex": 2,
+            "ImageNumber": 183,
+            "FirstFrameSha256": "05BD56ED92E987EA057A1EBB2588619D7C0B66FBED5FC6059FED6C9D3B2EDF16"
+          },
+          {
+            "JobId": 79,
+            "FactionIndex": 0,
+            "ImageNumber": 238,
+            "FirstFrameSha256": "FC10397A741A82A744DFB10EA07615E1C58414DBC551D7FDE189BA7802769D86"
+          },
+          {
+            "JobId": 79,
+            "FactionIndex": 1,
+            "ImageNumber": 239,
+            "FirstFrameSha256": "92D5D2834D5913EC10D86C0F56B32A6AB3D87AD9FBEAF89449D120D61F647613"
+          },
+          {
+            "JobId": 79,
+            "FactionIndex": 2,
+            "ImageNumber": 240,
+            "FirstFrameSha256": "4C34A616BC7B274EBA2DC245A0BCAAF6287BA3DF740ED201B079E555A1E2B4B2"
+          }
+        ]
+      }
+    },
+    {
+      "Name": "兵种S标题按详细兵种ID与名称匹配",
+      "Success": true,
+      "ElapsedMs": 127,
+      "Result": {
+        "Jobs": 80,
+        "PhysicalEntries": 240,
+        "FirstLabels": [
+          "0：群雄 我军",
+          "0：群雄 友军",
+          "0：群雄 敌军",
+          "1：英雄 我军",
+          "1：英雄 友军",
+          "1：英雄 敌军"
+        ],
+        "LastLabel": "79：魔王 敌军"
+      }
+    },
+    {
+      "Name": "图片导入候选与物理242隔离（不提交）",
+      "Success": true,
+      "ElapsedMs": 345,
+      "Result": {
+        "PhysicalNumber": 242,
+        "Action": "mov",
+        "UnselectedEntriesUnchanged": true,
+        "SourceFormat": "PNG / 32 位",
+        "OriginalFormat": "RAW8",
+        "OutputFormat": "RAW8",
+        "Notes": "调色板：<source-workspace>",
+        "CandidateFiles": 1,
+        "CandidateFrameSha256": "E3A17A7D1713C03C573F9A3F7DB5661D3F8F1538B5530012C156E07D14D02950",
+        "Committed": false,
+        "Protocol": "raster-file-v1"
+      }
+    },
+    {
+      "Name": "攻击与效果范围逐图解码",
+      "Success": true,
+      "ElapsedMs": 173,
+      "Result": [
+        {
+          "Resource": "Hitarea.e5",
+          "Skipped": false,
+          "Entries": 33,
+          "DecodedEntries": 33,
+          "Boundaries": [
+            {
+              "FieldValue": 0,
+              "PhysicalImageNumber": 1,
+              "Width": 64,
+              "Height": 64,
+              "FirstFrameSha256": "7471D48BEE4E5ED1E2F3370E32F171C598F104A2DE104B4FD5DD02269648B2B8"
+            },
+            {
+              "FieldValue": 32,
+              "PhysicalImageNumber": 33,
+              "Width": 64,
+              "Height": 64,
+              "FirstFrameSha256": "960FA6AD1BAC70A29D0BB5AFF26910E3A6A43908E518051CA089E728121D0781"
+            }
+          ]
+        },
+        {
+          "Resource": "Effarea.e5",
+          "Skipped": false,
+          "Entries": 12,
+          "DecodedEntries": 12,
+          "Boundaries": [
+            {
+              "FieldValue": 0,
+              "PhysicalImageNumber": 1,
+              "Width": 64,
+              "Height": 64,
+              "FirstFrameSha256": "70AD68CAFDD537E03FD0431DB192C7CF3782E86BBFE89E898002FC9A14A8E0D8"
+            },
+            {
+              "FieldValue": 11,
+              "PhysicalImageNumber": 12,
+              "Width": 64,
+              "Height": 64,
+              "FirstFrameSha256": "9D271E584F1B3A230B52E86BFCD0A1B2CC50C3ED52474A131A1928E1B07E8CFC"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Weather 四帧纵向动画",
+      "Success": true,
+      "ElapsedMs": 4,
+      "Result": {
+        "Key": "Weather.e5",
+        "Path": "E5\\Weather.e5",
+        "Frames": 4,
+        "FrameSizes": [
+          "216×50",
+          "216×50",
+          "216×50",
+          "216×50"
+        ],
+        "FirstFrameSha256": "2120081C58712305F253E8785AB21AEBA5B489C2EEEF49E45EC4F13D2970F219"
+      }
+    },
+    {
+      "Name": "Mcall 内嵌真彩 BMP 动画",
+      "Success": false,
+      "ElapsedMs": 1101,
+      "Error": "System.IO.InvalidDataException: 样本中未找到可验证的内嵌真彩 BMP Mcall 动画。\r\n   at DataManager.App.BundleVerification.<>c__DisplayClass0_1.<Run>b__18()\r\n   at DataManager.App.BundleVerification.<>c__DisplayClass0_0.<Run>g__Check|0(String name, Func`1 action)"
+    },
+    {
+      "Name": "主窗口 1280×720 与 1920×1080",
+      "Success": true,
+      "ElapsedMs": 1287,
+      "Result": {
+        "Screenshots": [
+          {
+            "Path": "<source-workspace>",
+            "WindowWidth": 1280,
+            "WindowHeight": 720,
+            "ClientWidth": 1258,
+            "ClientHeight": 664,
+            "Sha256": "DB3F74629670B30DDD85CC85F8F2B73931DD9DBA4B8ACEA7CDAE944E13DB758F"
+          },
+          {
+            "Path": "<source-workspace>",
+            "WindowWidth": 1920,
+            "WindowHeight": 1080,
+            "ClientWidth": 1898,
+            "ClientHeight": 1024,
+            "Sha256": "EECBB4E659087A8617AD758D02306726809F939FC7E7A9502E621F2FF5B09D46"
+          }
+        ],
+        "IsDirty": false,
+        "Font": "Microsoft YaHei UI",
+        "FontPoints": 9,
+        "DeviceDpi": 144,
+        "AutoScaleMode": "Inherit"
+      }
+    },
+    {
+      "Name": "引擎扫描页签 1280×720 与 1920×1080",
+      "Success": true,
+      "ElapsedMs": 5798,
+      "Result": {
+        "Screenshots": [
+          {
+            "Path": "<source-workspace>",
+            "WindowWidth": 1280,
+            "WindowHeight": 720,
+            "ClientWidth": 1258,
+            "ClientHeight": 664,
+            "Sha256": "9EA4D4A84F17F4871F11D7A43ECC55C3E0A6CD169F3531F0261678BDFB12B15C"
+          },
+          {
+            "Path": "<source-workspace>",
+            "WindowWidth": 1920,
+            "WindowHeight": 1080,
+            "ClientWidth": 1898,
+            "ClientHeight": 1024,
+            "Sha256": "4FB568E98109A2232711C89A89B3D8AEFA96EF3380E93AA58322EBA09C3A9256"
+          }
+        ],
+        "IsDirty": false,
+        "Status": "引擎 6.5：特效 256；调用点 181（静态 163，动态 8，未解析 10；内部 1，未归属 17，派生 8（包装 4），表驱动 13，循环展开 5，派生/表驱动独有特效 19，代码洞进入 7，仅死代码 0，未对齐 E8 79，无调用 82）。"
+      }
+    },
+    {
+      "Name": "样本文件 SHA 保持不变",
+      "Success": true,
+      "ElapsedMs": 206,
+      "Result": {
+        "Files": [
+          {
+            "Path": "Data.e5",
+            "Sha256": "638744E07B39A12DB2D807892D1FBC7EA69F7E43CAD2771DAA9003574B92B846"
+          },
+          {
+            "Path": "Star.e5",
+            "Sha256": "2F357A35E4E9A40493E7AAFC154BF1FB0FAE4DA35BD06D43F460A8B9D2CE6C69"
+          },
+          {
+            "Path": "Imsg.e5",
+            "Sha256": "A22C4F12B30F511A62DE8B9AE0C23B7BA41D55FD568B66D4F3544368912D9660"
+          },
+          {
+            "Path": "Ekd5.exe",
+            "Sha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C"
+          },
+          {
+            "Path": "SV\\SV.E5S",
+            "Sha256": "DF3B3E526D4549F7E843351954A838B20865F433C62F66867C93BB440C2FA36C"
+          },
+          {
+            "Path": "SV\\SV001.E5S",
+            "Sha256": "B4DB2DFF10B686956FCBA40F83240BFD2CEF60292F18F60639B640BA4A162ECC"
+          },
+          {
+            "Path": "SV\\SV002.E5S",
+            "Sha256": "FF9E22FF6C635D38FA0ADF38A5CDDF50EBEFFE8C85E50CA7FD9C422ACDB6621A"
+          },
+          {
+            "Path": "SV\\SV003.E5S",
+            "Sha256": "E3D8743F740AF08D35169B097FF701F2B57665B30DD2522D676A8889EFE73F16"
+          },
+          {
+            "Path": "SV\\SV004.E5S",
+            "Sha256": "873B41AC422BAD4D18BF910E2134DC2ACE369071714439BB5DF4A16C7A281487"
+          },
+          {
+            "Path": "SV\\SV901.E5S",
+            "Sha256": "DCACF8C15E6753EC8AE45B967F2F9FED4BF9974117151C601615348E170255F1"
+          },
+          {
+            "Path": "SV\\SV902.E5S",
+            "Sha256": "B3F5AF07D0B92EBA9E5C874CECEEAC0B3B77EAB0F8110A259F2BEA3A7EB30FCA"
+          },
+          {
+            "Path": "SV\\SV941.E5S",
+            "Sha256": "EA78B8DCB4C6D680FDF05D150F471BEFBA28FC14B45DFC945F165A421157CD57"
+          },
+          {
+            "Path": "Pmapobj.e5",
+            "Sha256": "DC6EDBBE6C3E769E91F10F0CA208178E7F8D8D7BE6E85B620AD43433F93C7B88"
+          },
+          {
+            "Path": "Unit_mov.e5",
+            "Sha256": "41FAC6D9714A76F38A761DF7ABC6F16A0FDA0EC48DAF63EFFB1EAA8E1AA250A6"
+          },
+          {
+            "Path": "Unit_atk.e5",
+            "Sha256": "200CA3909C58A68D02D7678A6732B0DAA2D8F4D1C8E441B6C0B5677A78499F8D"
+          },
+          {
+            "Path": "Unit_spc.e5",
+            "Sha256": "06F09A268FBC879EE2375972D4032D09B158B6C70EB8227CED6A27ABC9C0EC9D"
+          },
+          {
+            "Path": "E5\\Face.e5",
+            "Sha256": "484C6BA8765E9478B707BC997D508BD29951C14A1BABE37A17C8325B7664B61A"
+          },
+          {
+            "Path": "Itemicon.dll",
+            "Sha256": "A52F607ADCD270E68C62293430547DCA695D7E66BB11F9DF68E063DCD52767B0"
+          },
+          {
+            "Path": "Mgcicon.dll",
+            "Sha256": "F22EAF7751DAF0153BAC050D9243A911A7E688747B7CBB0C3AD9BF9F16D75568"
+          },
+          {
+            "Path": "Cmdicon.dll",
+            "Sha256": "813F6C5D1C0EFFC0C790F9786F14D88E4EC80B3F1281580C85186CBB5B56B44A"
+          },
+          {
+            "Path": "E5\\Logo.e5",
+            "Sha256": "A91FAA0FBA61236D1B385C879B25EFE0353399CFE1872B49D48D1745CF91CB5C"
+          },
+          {
+            "Path": "E5\\Mmap.e5",
+            "Sha256": "A9679A54FF4372DE263ED00F4F05283057B4982FDCEEF6CF430E78ECC6EDDC67"
+          },
+          {
+            "Path": "E5\\Gate.e5",
+            "Sha256": "C00F17F33ACE41E5D260FA43DCA936904EC6111423DDDD4C53744C9A5E86F07B"
+          },
+          {
+            "Path": "E5\\Pmap.e5",
+            "Sha256": "597B50A9F6024063E6F107959985D2C22922DE93DB26D9A264EA600DBD156C42"
+          },
+          {
+            "Path": "E5\\Hitarea.e5",
+            "Sha256": "8E65B24037A9F99C5BE62B03DDF1C188B957A495ED2C66F7AD8F8588BABEDF97"
+          },
+          {
+            "Path": "E5\\Effarea.e5",
+            "Sha256": "4BEA7D84D40FFAF2A53CC0AFEC05CD1768CA2722C05CE8AC434C30D98B41F168"
+          },
+          {
+            "Path": "E5\\U_select.e5",
+            "Sha256": "27414BAC7EFBFB84FD8DAEC6B88283BCCDF27341E7A5B8647EEF9F8D93782455"
+          },
+          {
+            "Path": "E5\\Weather.e5",
+            "Sha256": "3FFB15D87C68525412EE92B8261A7A18382078EE178473B4EA286A4415E604D5"
+          },
+          {
+            "Path": "E5\\Meff.e5",
+            "Sha256": "2FF4CCD17AFA7FFC14A71E5B0CA14A9662F3656601D680144D3397C8C8333619"
+          },
+          {
+            "Path": "E5\\Spalet.e5",
+            "Sha256": "C03C7950DAD7F09115FB86E0B6B0107D2AC0662344E4D24D3D9D47E72F891336"
+          },
+          {
+            "Path": "E5\\Pmpalet.e5",
+            "Sha256": "88D17212C19A725606957C9C39EC8214254A22CB562B528261C2D7E318B3C5E0"
+          },
+          {
+            "Path": "E5\\Mark.e5",
+            "Sha256": "08B7D1F3E4CA65B643A702F98E0C7635FE623EF7B67FBFD998662E2824937F72"
+          },
+          {
+            "Path": "Hexzmap.e5",
+            "Sha256": "AFDC20FC8D83CB1F431D34C35B331342C54D0FAF5E1F1FEF357941B19C0D6C1F"
+          },
+          {
+            "Path": "E5\\Mcall00.e5",
+            "Sha256": "D124ACA9A1ADFD0F89C7FE96F91F6853645B2BE5E14EBE4108BC189FD1DB88D4"
+          },
+          {
+            "Path": "E5\\Mcall01.e5",
+            "Sha256": "3829204CD6843FB9BFFA6A7D4ECBDDC27D19FBE0CA062E1A1712B28C3A5F5005"
+          },
+          {
+            "Path": "E5\\Mcall02.e5",
+            "Sha256": "2E096B551E0B20ABB21D5712242A78A8052B21B1246893CE9DC6D0DC9A6F758C"
+          },
+          {
+            "Path": "E5\\Mcall03.e5",
+            "Sha256": "944667FDDAAA329636F222470B77E5378D627531CC1FFC21E8022CC2442CB848"
+          },
+          {
+            "Path": "E5\\Mcall04.e5",
+            "Sha256": "95DA2A5234ECA9CF4416F7255B65800DD49229CE348288C20A76E16E519D6830"
+          },
+          {
+            "Path": "E5\\Mcall05.e5",
+            "Sha256": "FE86B9B67F0672CD5812E755E579B5EB49228EEF31702AA0C06606FCC3FB8ADA"
+          },
+          {
+            "Path": "E5\\Mcall06.e5",
+            "Sha256": "C8CF41D36A98FA4E22E3726709A20DA40C3256CA08F8EA8F076EE19ED91E814D"
+          },
+          {
+            "Path": "E5\\Mcall07.e5",
+            "Sha256": "685BDAD491A8FFCC24C1999820EA5E391743F6D1BE184974394BAF82E45ED803"
+          },
+          {
+            "Path": "E5\\Mcall08.e5",
+            "Sha256": "2C7DE17D0D07633CB57BF1780986235D1020E0A5EC59E5401C5B5B228AE4BCC0"
+          }
+        ],
+        "Unchanged": true
+      }
+    }
+  ],
+  "ProjectRoot": "<source-workspace>",
+  "SourceFileCount": 42,
+  "Success": false,
+  "Failures": 1,
+  "ElapsedMs": 11888
+}

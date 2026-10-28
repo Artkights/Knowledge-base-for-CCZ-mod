@@ -1,0 +1,337 @@
+{
+  "Schema": "ccz.bundle-verification.v1",
+  "Timestamp": "2026-10-19T00:11:15.6452598+08:00",
+  "ReadOnly": true,
+  "Runtime": {
+    "Framework": ".NET 8.0.8",
+    "Version": "8.0.8",
+    "OS": "Microsoft Windows 10.0.22621",
+    "ProcessArchitecture": "X64",
+    "Executable": "<source-workspace>",
+    "BaseDirectory": "<source-workspace>",
+    "WorkingDirectory": "<source-workspace>",
+    "DotnetRoot": "<source-workspace>",
+    "MultilevelLookup": "0"
+  },
+  "NativeRuntimeModules": [],
+  "SelectedProjectRoot": "<source-workspace>",
+  "Checks": [
+    {
+      "Name": "嵌入 Profile",
+      "Success": true,
+      "ElapsedMs": 72,
+      "Result": {
+        "EmbeddedFiles": [
+          {
+            "Name": "DataManager.Core.Profiles.ccz-6.5.json",
+            "Bytes": 39042,
+            "Sha256": "25433EFDB2F93356EADFB69314E33632486A9E4E020B82E91C569C261B03C5F4"
+          },
+          {
+            "Name": "DataManager.Core.Profiles.ccz-6.6.json",
+            "Bytes": 26289,
+            "Sha256": "25D415C8522959B37EA63ED3C3CBB6FF87FC283E91D765E4AEB7292733CF86F8"
+          }
+        ],
+        "Profiles": [
+          {
+            "Id": "ccz-6.5",
+            "Variants": [
+              {
+                "Id": "65-standard-v1",
+                "Tables": 48
+              }
+            ]
+          },
+          {
+            "Id": "ccz-6.6",
+            "Variants": [
+              {
+                "Id": "66-standard-v1",
+                "Tables": 49
+              },
+              {
+                "Id": "66-legacy-data-v1",
+                "Tables": 49
+              },
+              {
+                "Id": "66-shanzhai-legacy",
+                "Tables": 49
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "Name": "嵌入使用说明",
+      "Success": true,
+      "ElapsedMs": 1,
+      "Result": {
+        "Characters": 1885,
+        "Sha256": "8B09A6BF521813E1CF88FDFE8C934931EC09EF9624A1450F97E18FF3C5667733"
+      }
+    },
+    {
+      "Name": "嵌入旧版调色板",
+      "Success": true,
+      "ElapsedMs": 0,
+      "Result": {
+        "Name": "ImageManager.Core.Palettes.tsb",
+        "Bytes": 1024,
+        "Sha256": "2B3DE857DB6E4A07C553F33034F80553D2A47A8440BE42D825EF7E39ADEC3682"
+      }
+    },
+    {
+      "Name": "项目物理表只读打开",
+      "Success": true,
+      "ElapsedMs": 260,
+      "Result": {
+        "ProfileId": "ccz-6.6",
+        "VariantId": "66-standard-v1",
+        "LayoutRevision": "6F636077DF568D7C",
+        "Tables": 50,
+        "ReadableTables": 41,
+        "IsDirty": false
+      }
+    },
+    {
+      "Name": "图片资源目录",
+      "Success": true,
+      "ElapsedMs": 112,
+      "Result": {
+        "Version": "Ccz66",
+        "Resources": 28,
+        "PreviewableResources": 27,
+        "Kinds": {
+          "RComposite": 1,
+          "SComposite": 1,
+          "FaceComposite": 1,
+          "E5Indexed": 10,
+          "PmapSpecial": 1,
+          "WeatherSpecial": 1,
+          "DtAnimation": 1,
+          "MapPair": 1,
+          "McallAnimation": 9,
+          "MarkRaw": 1,
+          "DllBitmap": 1
+        }
+      }
+    },
+    {
+      "Name": "Weather 四帧纵向动画",
+      "Success": true,
+      "ElapsedMs": 11,
+      "Result": {
+        "Key": "Weather.e5",
+        "Path": "E5\\Weather.e5",
+        "Frames": 4,
+        "FrameSizes": [
+          "216×50",
+          "216×50",
+          "216×50",
+          "216×50"
+        ],
+        "FirstFrameSha256": "2120081C58712305F253E8785AB21AEBA5B489C2EEEF49E45EC4F13D2970F219"
+      }
+    },
+    {
+      "Name": "Mcall 内嵌真彩 BMP 动画",
+      "Success": true,
+      "ElapsedMs": 111,
+      "Result": {
+        "Key": "Mcall:00",
+        "Path": "E5\\Mcall00.e5",
+        "PayloadFormat": "BMP",
+        "Frames": 25,
+        "Planes": 50,
+        "IntervalMs": 100,
+        "Width": 240,
+        "Height": 240,
+        "Diagnostics": "BMP；记录 26；播放步 25；主/辅助平面 25/25；实际平面 50；240×240；间隔 100ms；保留尾部 0 字节；位置/透明度预览（游戏场景及辅助遮罩保留）",
+        "FirstFrameSha256": "EC9F24B35FA3B051DCCB7509E30FD92148BFE8C8148A5F2900F86D979C23427D"
+      }
+    },
+    {
+      "Name": "主窗口 1280×720 与 1920×1080",
+      "Success": true,
+      "ElapsedMs": 939,
+      "Result": {
+        "Screenshots": [
+          {
+            "Path": "<source-workspace>",
+            "ClientWidth": 1280,
+            "ClientHeight": 720,
+            "Sha256": "A8A7AC60C84C815CEA8A3779BD86FBC19C0FA90A18F436AEFC900B515801E2DE"
+          },
+          {
+            "Path": "<source-workspace>",
+            "ClientWidth": 1920,
+            "ClientHeight": 1080,
+            "Sha256": "F6A73C990FDA93ACDB12A2D067FEB7AA0525C97169A6CA8DB7A57BB61F824B52"
+          }
+        ],
+        "IsDirty": false
+      }
+    },
+    {
+      "Name": "样本文件 SHA 保持不变",
+      "Success": true,
+      "ElapsedMs": 174,
+      "Result": {
+        "Files": [
+          {
+            "Path": "Data.e5",
+            "Sha256": "A04998F61060EE072DFE3FB85F72EB42D529A7CE0A1EDCEB6DC357BD6BDA9E26"
+          },
+          {
+            "Path": "Star.e5",
+            "Sha256": "8E2FB817D952F4B2A7C21F247711720F7CC2A732CEB484C33BB432F9BD8B1060"
+          },
+          {
+            "Path": "Imsg.e5",
+            "Sha256": "FCC28694EB77AFB211658573E7C8A04CEF189FE6D279F5DE638A52DA2B4CB27F"
+          },
+          {
+            "Path": "Ekd5.exe",
+            "Sha256": "2594711168EA58258E40F3D804BF982DC376B58711C8E562EBE6B16E87A56B82"
+          },
+          {
+            "Path": "Pmapobj.e5",
+            "Sha256": "ACEC0CDB2ACA9AD8515FAAE99B297B404D0A97C2BAF224406D6EEA53EE19768C"
+          },
+          {
+            "Path": "Unit_mov.e5",
+            "Sha256": "F717D0846E517D8DE077824EBC7C2C28BC9BAACEC0742C7FF50BDF5D7A269426"
+          },
+          {
+            "Path": "Unit_atk.e5",
+            "Sha256": "86BAB641F5A824DD824E8DC149495AEFE7E4958EE9FCA5203C5C7424E8326DB2"
+          },
+          {
+            "Path": "Unit_spc.e5",
+            "Sha256": "0F368061273DB126FEB571656F57FBDD7207A1012119EDC83FCE6B604577B2A0"
+          },
+          {
+            "Path": "E5\\Face.e5",
+            "Sha256": "3BC47307619CC05ED32660C39B69CB1677F03837CE518940698EECED807297ED"
+          },
+          {
+            "Path": "Cmdicon.dll",
+            "Sha256": "813F6C5D1C0EFFC0C790F9786F14D88E4EC80B3F1281580C85186CBB5B56B44A"
+          },
+          {
+            "Path": "E5\\Item.e5",
+            "Sha256": "6D1E1D2315EEA4A541F0DF70589357A9D1419525860D36BE9BA47D536367F37D"
+          },
+          {
+            "Path": "E5\\Mtem.e5",
+            "Sha256": "5F4E44F078AA1874C6F743C6054ACA2F6B587092BDE300E66487B1E1567F283B"
+          },
+          {
+            "Path": "E5\\Logo.e5",
+            "Sha256": "FA130693AF0D0C6FA34A682C092C53B375D51531B398C0AB0578B5E828651649"
+          },
+          {
+            "Path": "E5\\Mmap.e5",
+            "Sha256": "088D64D563C63844BA8A12F7C8884467F5A18DE22CDCE3DFF2F9EE551AABDB87"
+          },
+          {
+            "Path": "E5\\Gate.e5",
+            "Sha256": "3A9B669E5A044996D4D11ED65D52B4E96EC7E59028D7261C25D6598F2A6A2816"
+          },
+          {
+            "Path": "E5\\Pmap.e5",
+            "Sha256": "99958669A7FCBD1B96A385C29F5CE3EB9CCD235BEF37B0BA935115AF5156B279"
+          },
+          {
+            "Path": "E5\\Hitarea.e5",
+            "Sha256": "8E65B24037A9F99C5BE62B03DDF1C188B957A495ED2C66F7AD8F8588BABEDF97"
+          },
+          {
+            "Path": "E5\\Effarea.e5",
+            "Sha256": "4BEA7D84D40FFAF2A53CC0AFEC05CD1768CA2722C05CE8AC434C30D98B41F168"
+          },
+          {
+            "Path": "E5\\U_select.e5",
+            "Sha256": "99B67E7086BA3BA09AFEEB366A33F9200A58342D70F2C3726B5D055033C9F82C"
+          },
+          {
+            "Path": "E5\\Weather.e5",
+            "Sha256": "3FFB15D87C68525412EE92B8261A7A18382078EE178473B4EA286A4415E604D5"
+          },
+          {
+            "Path": "E5\\Meff.e5",
+            "Sha256": "2FF4CCD17AFA7FFC14A71E5B0CA14A9662F3656601D680144D3397C8C8333619"
+          },
+          {
+            "Path": "E5\\Spalet.e5",
+            "Sha256": "C03C7950DAD7F09115FB86E0B6B0107D2AC0662344E4D24D3D9D47E72F891336"
+          },
+          {
+            "Path": "E5\\Pmpalet.e5",
+            "Sha256": "88D17212C19A725606957C9C39EC8214254A22CB562B528261C2D7E318B3C5E0"
+          },
+          {
+            "Path": "E5\\DT.e5",
+            "Sha256": "2FF4CCD17AFA7FFC14A71E5B0CA14A9662F3656601D680144D3397C8C8333619"
+          },
+          {
+            "Path": "E5\\FB.e5",
+            "Sha256": "9DE13ADD9536FA1EE5A72406350EFAD37F04B06141626DA0F39305369F81D40C"
+          },
+          {
+            "Path": "E5\\Mark.e5",
+            "Sha256": "08B7D1F3E4CA65B643A702F98E0C7635FE623EF7B67FBFD998662E2824937F72"
+          },
+          {
+            "Path": "Hexzmap.e5",
+            "Sha256": "6CB669C22C620C57A51548EE5CDDEACC6B2EFCD281606291A99678EA5789B781"
+          },
+          {
+            "Path": "E5\\Mcall00.e5",
+            "Sha256": "FD7FE1364D991F5B9D5423EF109D056F0C7DD724ACB67DCD6350A85E8D663662"
+          },
+          {
+            "Path": "E5\\Mcall01.e5",
+            "Sha256": "6AF82BDA5BA8C42A0EEA7006435729F3694B2ADCEE8885D7E25B0B0E8F02A107"
+          },
+          {
+            "Path": "E5\\Mcall02.e5",
+            "Sha256": "2E096B551E0B20ABB21D5712242A78A8052B21B1246893CE9DC6D0DC9A6F758C"
+          },
+          {
+            "Path": "E5\\Mcall03.e5",
+            "Sha256": "944667FDDAAA329636F222470B77E5378D627531CC1FFC21E8022CC2442CB848"
+          },
+          {
+            "Path": "E5\\Mcall04.e5",
+            "Sha256": "95DA2A5234ECA9CF4416F7255B65800DD49229CE348288C20A76E16E519D6830"
+          },
+          {
+            "Path": "E5\\Mcall05.e5",
+            "Sha256": "FE86B9B67F0672CD5812E755E579B5EB49228EEF31702AA0C06606FCC3FB8ADA"
+          },
+          {
+            "Path": "E5\\Mcall06.e5",
+            "Sha256": "C8CF41D36A98FA4E22E3726709A20DA40C3256CA08F8EA8F076EE19ED91E814D"
+          },
+          {
+            "Path": "E5\\Mcall07.e5",
+            "Sha256": "685BDAD491A8FFCC24C1999820EA5E391743F6D1BE184974394BAF82E45ED803"
+          },
+          {
+            "Path": "E5\\Mcall08.e5",
+            "Sha256": "2C7DE17D0D07633CB57BF1780986235D1020E0A5EC59E5401C5B5B228AE4BCC0"
+          }
+        ],
+        "Unchanged": true
+      }
+    }
+  ],
+  "ProjectRoot": "<source-workspace>",
+  "SourceFileCount": 36,
+  "Success": true,
+  "Failures": 0,
+  "ElapsedMs": 1885
+}

@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "entityType": "workflow",
+  "entries": [
+    {
+      "id": "workflow.64.consumer-gated-configuration-edit",
+      "title": "6.4逐功能消费者约束下的配置修改与恢复",
+      "versions": [
+        "6.4"
+      ],
+      "profile": "profile.ccz64.xisui.9112",
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager64.guide64",
+        "src.data-manager64.configuration64",
+        "src.data-manager64.augmentation",
+        "src.data-manager64.test64-configuration",
+        "src.data-manager64.test64-compatibility"
+      ],
+      "goal": "在洗隋9112或经过相同完整消费者门禁的副本上，安全修改已证字段，保留其他字节。",
+      "inputs": [
+        "四核心原样样本身份、当前PE节表、6.4 Profile/Variant/LayoutRevision",
+        "人物/兵种许可/撤退/特殊暴击待修改逻辑字段及预期值",
+        "严格GBK文本与逐字段策略"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "记录四核心SHA并创建独立副本；检测ccz-6.4/64-xisui-v1及当前布局修订。"
+        },
+        {
+          "order": 2,
+          "action": "分别核对完整人物、26类许可、撤退、特殊暴击消费链及PE映射；名称池只读，R/S和地形另过其独立门禁。"
+        },
+        {
+          "order": 3,
+          "action": "构建统一草稿，按最终物品原生类型校验默认装备，预览实际字节及跨表影响；失败字段按Preserve或Unavailable处理。"
+        },
+        {
+          "order": 4,
+          "action": "写前核对加载SHA并备份，跨表事务提交后重新打开按当前Codec复读，仅检查允许字段区间改变。"
+        },
+        {
+          "order": 5,
+          "action": "对保存历史执行撤回、重做和再撤回，逐字节比较；保留记录与失败原因。"
+        }
+      ],
+      "gates": [
+        "180×8活动表与180×16名称槽不得混用；个人selector255不是通用安全禁用值。",
+        "修改共享N前列出同一行三个人物和一个兵种影响；名称槽保持只读。",
+        "完整消费者缺失/重复时只关闭相关能力，不能改用父清单猜测。",
+        "固定VA必须经目标PE映射；版号、文件长度及SHA识别不能替代消费链。"
+      ],
+      "outputs": [
+        "版本/样本/布局身份与消费者门禁结果",
+        "统一草稿、实际字节差异和磁盘复读报告",
+        "可恢复备份及保存历史链"
+      ],
+      "rollback": [
+        "任何预提交门禁失败不写盘。",
+        "提交失败按事务恢复所有已写文件；成功后使用相同LayoutRevision的保存历史撤回并逐字节确认。",
+        "跨版本或未知旧修订历史不得强行重放。"
+      ]
+    },
+    {
+      "id": "workflow.64.cross-version-logical-migration",
+      "title": "6.4与6.5/6.6按逻辑字段迁移和字节隔离",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz64.xisui.9112",
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager64.guide64",
+        "src.data-manager64.test64-compatibility",
+        "src.data-manager64.migration"
+      ],
+      "goal": "保留目标版本布局与未修改字节，通过逻辑字段迁移6.4与6.5/6.6的数据。",
+      "inputs": [
+        "源、目标各自已确认的Profile/Variant/LayoutRevision及副本",
+        "待迁移TableKey、ID与逻辑字段",
+        "目标Codec和未映射字段诊断"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "分别识别源/目标版本、字段能力和资源存储，记录SHA；两侧均使用独立副本。"
+        },
+        {
+          "order": 2,
+          "action": "按TableKey、ID、字段对应构建计划，人物R使用UInt16，辅助物品实际效果/类别通过目标Codec处理。"
+        },
+        {
+          "order": 3,
+          "action": "预览无法映射/保留/缺失字段与实际改字节，只提交用户选择且有目标写入证据的字段。"
+        },
+        {
+          "order": 4,
+          "action": "目标事务保存后复读并逐字节验证仅目标字段改变，目标Profile不变，源目录SHA不变。"
+        }
+      ],
+      "gates": [
+        "禁止跨Profile直接导入CSV/XLSX绕过身份校验。",
+        "不能复制6.6类别/特效物理偏移到6.4；原生分类优先级和目标Codec分别验证。",
+        "不能以资源或拓展文件可读写推断6.4已实现游戏内扩展消费者。"
+      ],
+      "outputs": [
+        "逻辑字段迁移计划和未映射诊断",
+        "目标仅字段区间差异、Codec复读及源SHA不变报告"
+      ],
+      "rollback": [
+        "提交前失败不形成部分写入。",
+        "目标提交失败恢复事务备份；成功后按目标布局身份撤回，源副本保持不变。"
+      ]
+    }
+  ]
+}

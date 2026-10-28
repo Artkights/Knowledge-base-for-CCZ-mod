@@ -1,0 +1,1605 @@
+{
+  "id": "ccz-6.4",
+  "version": "6.4",
+  "displayName": "曹操传加强版 6.4",
+  "defaultVariantId": "64-xisui-v1",
+  "variants": [
+    {
+      "id": "64-xisui-v1",
+      "displayName": "6.4 洗隋兼容布局",
+      "layoutId": "64-xisui-v1",
+      "fingerprints": [
+        {
+          "sampleId": "洗隋",
+          "fileLengths": {
+            "Data.e5": 61379,
+            "Star.e5": 6359,
+            "Ekd5.exe": 1162240,
+            "Imsg.e5": 440200
+          },
+          "sha256": {
+            "Data.e5": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF",
+            "Star.e5": "4A201ECC0FA3C315DA077615DE7AE4A90EF4CC61E5D94F119841F906EE4FCD15",
+            "Ekd5.exe": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+            "Imsg.e5": "F3C8AF4FB4673719EAAD819CE44C4D81ADCD3A7FA3DA9A67910D82F501382E74"
+          }
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "key": "persons",
+      "displayName": "人物",
+      "file": "Data.e5",
+      "offset": 396,
+      "rows": 1024,
+      "rowSize": 32,
+      "beginId": 0,
+      "module": "人物",
+      "recordCodecKey": "fixed-record-v1",
+      "verificationLevel": "SourceReviewed",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 13,
+          "kind": "FixedString"
+        },
+        {
+          "name": "头像",
+          "offset": 13,
+          "size": 2,
+          "kind": "UInt16",
+          "policy": "Editable"
+        },
+        {
+          "name": "撤退台词",
+          "offset": 15,
+          "size": 1,
+          "kind": "UInt8",
+          "policy": "Editable"
+        },
+        {
+          "name": "暴击台词",
+          "offset": 16,
+          "size": 1,
+          "kind": "UInt8",
+          "policy": "Editable"
+        },
+        {
+          "name": "Army",
+          "offset": 17,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "names": [
+            "武力",
+            "统帅",
+            "智力",
+            "敏捷",
+            "士气"
+          ],
+          "offset": 18,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "初始HP",
+          "offset": 23,
+          "size": 2,
+          "kind": "UInt16",
+          "maximum": 65535
+        },
+        {
+          "name": "初始MP",
+          "offset": 25,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "兵种",
+          "offset": 26,
+          "size": 1,
+          "kind": "UInt8",
+          "maximum": 79,
+          "referenceTable": "detailed-jobs"
+        },
+        {
+          "name": "级别",
+          "offset": 27,
+          "size": 1,
+          "kind": "UInt8",
+          "policy": "Preserve"
+        },
+        {
+          "name": "经验",
+          "offset": 28,
+          "size": 1,
+          "kind": "UInt8",
+          "policy": "Preserve"
+        },
+        {
+          "name": "保留尾部",
+          "offset": 29,
+          "size": 3,
+          "kind": "RawBytes",
+          "policy": "Preserve"
+        }
+      ],
+      "layoutSource": "6.4 旧 HexTable 与洗隋样本；未证明字段保留原字节"
+    },
+    {
+      "key": "person-biography",
+      "displayName": "人物列传",
+      "file": "Imsg.e5",
+      "offset": 184400,
+      "rows": 1024,
+      "rowSize": 200,
+      "beginId": 0,
+      "module": "人物",
+      "parentKey": "persons",
+      "fields": [
+        {
+          "name": "人物列传",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "items-low",
+      "displayName": "宝物（0-103）",
+      "file": "Data.e5",
+      "offset": 33164,
+      "rows": 104,
+      "rowSize": 25,
+      "beginId": 0,
+      "module": "宝物",
+      "recordCodecKey": "item-65-17-v1",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 17,
+          "kind": "FixedString"
+        },
+        {
+          "name": "宝物类型",
+          "offset": 17,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "装备特效号",
+          "offset": 18,
+          "size": 1,
+          "kind": "UInt8",
+          "referenceTable": "effect-names"
+        },
+        {
+          "name": "价格（/100）",
+          "offset": 19,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "图标",
+          "offset": 20,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "初始能力",
+          "offset": 21,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "装备特效值",
+          "offset": 22,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "能力成长",
+          "offset": 23,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "宝物图鉴",
+          "offset": 24,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "items-high",
+      "displayName": "宝物（104-254）",
+      "file": "Star.e5",
+      "offset": 0,
+      "rows": 151,
+      "rowSize": 25,
+      "beginId": 104,
+      "module": "宝物",
+      "recordCodecKey": "item-65-17-v1",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 17,
+          "kind": "FixedString"
+        },
+        {
+          "name": "宝物类型",
+          "offset": 17,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "装备特效号",
+          "offset": 18,
+          "size": 1,
+          "kind": "UInt8",
+          "referenceTable": "effect-names"
+        },
+        {
+          "name": "价格（/100）",
+          "offset": 19,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "图标",
+          "offset": 20,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "初始能力",
+          "offset": 21,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "装备特效值",
+          "offset": 22,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "能力成长",
+          "offset": 23,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "宝物图鉴",
+          "offset": 24,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "item-description-low",
+      "displayName": "宝物说明（0-103）",
+      "file": "Imsg.e5",
+      "offset": 389200,
+      "rows": 104,
+      "rowSize": 200,
+      "beginId": 0,
+      "module": "宝物",
+      "parentKey": "items-low",
+      "fields": [
+        {
+          "name": "宝物说明",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "item-description-high",
+      "displayName": "宝物说明（104-254）",
+      "file": "Imsg.e5",
+      "offset": 410000,
+      "rows": 151,
+      "rowSize": 200,
+      "beginId": 104,
+      "module": "宝物",
+      "parentKey": "items-high",
+      "fields": [
+        {
+          "name": "宝物说明",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "job-series",
+      "displayName": "兵种系",
+      "file": "Ekd5.exe",
+      "offset": 569360,
+      "rows": 40,
+      "rowSize": 9,
+      "beginId": 0,
+      "module": "兵种系",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 9,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "job-series-terrain",
+      "displayName": "兵种系·地形发挥",
+      "file": "Data.e5",
+      "offset": 43172,
+      "rows": 40,
+      "rowSize": 60,
+      "beginId": 0,
+      "module": "兵种系",
+      "parentKey": "job-series",
+      "fields": [
+        {
+          "names": [
+            "平原",
+            "草原",
+            "树林",
+            "荒地",
+            "山地",
+            "岩山",
+            "山崖",
+            "雪原",
+            "桥梁",
+            "浅滩",
+            "沼泽",
+            "池塘",
+            "小河",
+            "大河",
+            "栅栏",
+            "城墙",
+            "城内",
+            "城门",
+            "城池",
+            "关隘",
+            "鹿砦",
+            "村庄",
+            "兵营",
+            "民居",
+            "宝物库",
+            "水池",
+            "火",
+            "船",
+            "祭坛",
+            "地下"
+          ],
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "job-series-move-cost",
+      "displayName": "兵种系·移动消耗",
+      "file": "Data.e5",
+      "offset": 43202,
+      "rows": 40,
+      "rowSize": 60,
+      "beginId": 0,
+      "module": "兵种系",
+      "parentKey": "job-series",
+      "fields": [
+        {
+          "names": [
+            "平原",
+            "草原",
+            "树林",
+            "荒地",
+            "山地",
+            "岩山",
+            "山崖",
+            "雪原",
+            "桥梁",
+            "浅滩",
+            "沼泽",
+            "池塘",
+            "小河",
+            "大河",
+            "栅栏",
+            "城墙",
+            "城内",
+            "城门",
+            "城池",
+            "关隘",
+            "鹿砦",
+            "村庄",
+            "兵营",
+            "民居",
+            "宝物库",
+            "水池",
+            "火",
+            "船",
+            "祭坛",
+            "地下"
+          ],
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "job-series-counter",
+      "displayName": "兵种系·兵种相克",
+      "file": "Ekd5.exe",
+      "offset": 668288,
+      "rows": 40,
+      "rowSize": 40,
+      "beginId": 0,
+      "module": "兵种系",
+      "parentKey": "job-series",
+      "fields": [
+        {
+          "namePattern": "对兵种系 {0}",
+          "count": 40,
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "job-series-attributes",
+      "displayName": "兵种系·兵种属性",
+      "file": "Ekd5.exe",
+      "offset": 669888,
+      "rows": 8,
+      "rowSize": 40,
+      "beginId": 0,
+      "module": "兵种系",
+      "parentKey": "job-series",
+      "fields": [
+        {
+          "namePattern": "兵种系 {0}",
+          "count": 40,
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "detailed-jobs",
+      "displayName": "兵种",
+      "file": "Ekd5.exe",
+      "offset": 858320,
+      "rows": 80,
+      "rowSize": 9,
+      "beginId": 0,
+      "module": "兵种",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 9,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "detailed-job-description",
+      "displayName": "兵种说明",
+      "file": "Imsg.e5",
+      "offset": 70000,
+      "rows": 80,
+      "rowSize": 200,
+      "beginId": 0,
+      "module": "兵种",
+      "parentKey": "detailed-jobs",
+      "fields": [
+        {
+          "name": "兵种说明",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "detailed-job-growth",
+      "displayName": "兵种成长",
+      "file": "Data.e5",
+      "offset": 40372,
+      "rows": 80,
+      "rowSize": 35,
+      "beginId": 0,
+      "module": "兵种",
+      "parentKey": "detailed-jobs",
+      "fields": [
+        {
+          "names": [
+            "移动力成长",
+            "攻击范围",
+            "攻击成长",
+            "防御成长",
+            "精神成长",
+            "爆发成长",
+            "士气成长",
+            "HP成长",
+            "MP成长"
+          ],
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "保留装备字节",
+          "offset": 9,
+          "size": 26,
+          "kind": "RawBytes",
+          "policy": "Preserve"
+        }
+      ],
+      "verificationLevel": "SourceReviewed",
+      "layoutSource": "6.4 旧 HexTable 与洗隋样本；未证明字段保留原字节"
+    },
+    {
+      "key": "detailed-job-penetration",
+      "displayName": "兵种穿透",
+      "file": "Ekd5.exe",
+      "offset": 27777,
+      "rows": 80,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "兵种",
+      "parentKey": "detailed-jobs",
+      "fields": [
+        {
+          "name": "穿透",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "strategies",
+      "displayName": "策略",
+      "file": "Data.e5",
+      "offset": 45572,
+      "rows": 144,
+      "rowSize": 97,
+      "beginId": 0,
+      "module": "策略",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 11,
+          "kind": "FixedString"
+        },
+        {
+          "names": [
+            "策略类型",
+            "施展对象",
+            "施法范围",
+            "穿透范围",
+            "策略消耗"
+          ],
+          "offset": 11,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "策略图标",
+          "offset": 16,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "namePattern": "兵种{0:D2}学习等级",
+          "count": 80,
+          "offset": 17,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "strategy-description",
+      "displayName": "策略说明",
+      "file": "Imsg.e5",
+      "offset": 0,
+      "rows": 144,
+      "rowSize": 200,
+      "beginId": 0,
+      "module": "策略",
+      "parentKey": "strategies",
+      "fields": [
+        {
+          "name": "策略说明",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "strategy-extension",
+      "displayName": "策略扩展标记",
+      "file": "Ekd5.exe",
+      "offset": 666848,
+      "rows": 144,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "策略",
+      "parentKey": "strategies",
+      "fields": [
+        {
+          "name": "内容",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ],
+      "capability": "Unavailable",
+      "verificationLevel": "InheritedUnverified",
+      "capabilityEvidence": "6.4 旧表未声明该扩展标记；尚无洗隋独立消费者证据，保留对应 EXE 字节。"
+    },
+    {
+      "key": "strategy-damage-type",
+      "displayName": "策略伤害类型",
+      "file": "Ekd5.exe",
+      "offset": 667856,
+      "rows": 144,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "策略",
+      "parentKey": "strategies",
+      "fields": [
+        {
+          "name": "内容",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "strategy-damage-ratio",
+      "displayName": "策略伤害系数",
+      "file": "Ekd5.exe",
+      "offset": 667712,
+      "rows": 144,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "策略",
+      "parentKey": "strategies",
+      "fields": [
+        {
+          "name": "内容",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "strategy-hit-rate",
+      "displayName": "策略命中率",
+      "file": "Ekd5.exe",
+      "offset": 667424,
+      "rows": 144,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "策略",
+      "parentKey": "strategies",
+      "fields": [
+        {
+          "name": "内容",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "strategy-learning",
+      "displayName": "效果索引",
+      "file": "Ekd5.exe",
+      "offset": 667568,
+      "rows": 144,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "策略",
+      "parentKey": "strategies",
+      "fields": [
+        {
+          "name": "内容",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "strategy-battle-ai",
+      "displayName": "战场AI策略限制",
+      "file": "Ekd5.exe",
+      "offset": 667136,
+      "rows": 144,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "策略",
+      "parentKey": "strategies",
+      "fields": [
+        {
+          "name": "内容",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "strategy-training-ai",
+      "displayName": "练武场AI策略限制",
+      "file": "Ekd5.exe",
+      "offset": 667280,
+      "rows": 144,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "策略",
+      "parentKey": "strategies",
+      "fields": [
+        {
+          "name": "内容",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "person-critical-quotes",
+      "displayName": "人物暴击台词",
+      "file": "Imsg.e5",
+      "offset": 140000,
+      "rows": 99,
+      "rowSize": 200,
+      "beginId": 0,
+      "module": "人物",
+      "fields": [
+        {
+          "name": "台词",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "person-retreat-quotes",
+      "displayName": "人物撤退台词",
+      "file": "Imsg.e5",
+      "offset": 440200,
+      "rows": 49,
+      "rowSize": 200,
+      "beginId": 0,
+      "module": "人物",
+      "fields": [
+        {
+          "name": "台词",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ],
+      "capability": "Unavailable",
+      "verificationLevel": "InheritedUnverified",
+      "capabilityEvidence": "洗隋 Imsg.e5 长度恰为 440200；旧撤退区 +440200 的49×200记录不存在，不补齐或猜测偏移。"
+    },
+    {
+      "key": "person-r-assign",
+      "displayName": "人物R形象指定",
+      "file": "Ekd5.exe",
+      "offset": 921600,
+      "rows": 1024,
+      "rowSize": 2,
+      "beginId": 0,
+      "module": "人物",
+      "fields": [
+        {
+          "name": "R形象ID",
+          "offset": 0,
+          "size": 2,
+          "kind": "UInt16",
+          "maximum": 65535
+        }
+      ]
+    },
+    {
+      "key": "person-s-assign",
+      "displayName": "人物S形象指定",
+      "file": "Ekd5.exe",
+      "offset": 862208,
+      "rows": 1024,
+      "rowSize": 2,
+      "beginId": 0,
+      "module": "人物",
+      "fields": [
+        {
+          "name": "S形象ID",
+          "offset": 0,
+          "size": 2,
+          "kind": "UInt16",
+          "maximum": 65535
+        }
+      ]
+    },
+    {
+      "key": "scenario-names",
+      "displayName": "战役名称",
+      "file": "Imsg.e5",
+      "offset": 50000,
+      "rows": 99,
+      "rowSize": 200,
+      "beginId": 0,
+      "module": "商店",
+      "fields": [
+        {
+          "name": "战役名称",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "shops",
+      "displayName": "商店数据",
+      "file": "Data.e5",
+      "offset": 35764,
+      "rows": 128,
+      "rowSize": 36,
+      "beginId": 0,
+      "module": "商店",
+      "fields": [
+        {
+          "name": "开关仓库人物",
+          "offset": 0,
+          "size": 2,
+          "kind": "UInt16",
+          "maximum": 65535,
+          "referenceTable": "persons"
+        },
+        {
+          "name": "买卖物品人物",
+          "offset": 2,
+          "size": 2,
+          "kind": "UInt16",
+          "maximum": 65535,
+          "referenceTable": "persons"
+        },
+        {
+          "namePattern": "装备{0}",
+          "count": 16,
+          "offset": 4,
+          "size": 1,
+          "kind": "UInt8",
+          "maximum": 255,
+          "referenceTable": "items"
+        },
+        {
+          "namePattern": "物品{0}",
+          "count": 16,
+          "offset": 20,
+          "size": 1,
+          "kind": "UInt8",
+          "maximum": 255,
+          "referenceTable": "items"
+        }
+      ]
+    },
+    {
+      "key": "effect-names",
+      "displayName": "兵种特效名称",
+      "file": "Ekd5.exe",
+      "offset": 855392,
+      "rows": 180,
+      "rowSize": 16,
+      "beginId": 0,
+      "module": "拓展数据",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 16,
+          "kind": "FixedString"
+        }
+      ],
+      "capability": "ReadOnly",
+      "capabilityEvidence": "6.5 兵种特效名称原始名称区，行尾可能含额外参数；使用专用名称池解析，物理表只读。",
+      "verificationLevel": "SourceReviewed",
+      "layoutSource": "洗隋 PE 双名称消费者 VA 0x4FF560，180×16"
+    },
+    {
+      "key": "effect-archive",
+      "displayName": "人物特效拓展",
+      "file": "Effect.e5",
+      "offset": 0,
+      "rows": 1024,
+      "rowSize": 1024,
+      "beginId": 0,
+      "module": "拓展数据",
+      "recordCodecKey": "fixed-record-v1",
+      "fields": [
+        {
+          "namePattern": "槽{0}特效号",
+          "count": 256,
+          "offset": 0,
+          "size": 1,
+          "stride": 4,
+          "kind": "UInt8",
+          "maximum": 255
+        },
+        {
+          "namePattern": "槽{0}特效值",
+          "count": 256,
+          "offset": 1,
+          "size": 1,
+          "stride": 4,
+          "kind": "UInt8",
+          "maximum": 255
+        },
+        {
+          "namePattern": "槽{0}经验",
+          "count": 256,
+          "offset": 2,
+          "size": 1,
+          "stride": 4,
+          "kind": "UInt8",
+          "maximum": 255
+        },
+        {
+          "namePattern": "槽{0}剩余回合",
+          "count": 256,
+          "offset": 3,
+          "size": 1,
+          "stride": 4,
+          "kind": "UInt8",
+          "maximum": 255
+        }
+      ]
+    },
+    {
+      "key": "effect-messages",
+      "displayName": "特效成长拓展",
+      "file": "Effectmsg.e5",
+      "offset": 0,
+      "rows": 255,
+      "rowSize": 8,
+      "beginId": 0,
+      "module": "拓展数据",
+      "fields": [
+        {
+          "name": "Enabled",
+          "csvName": "允许特效成长",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "Param1",
+          "csvName": "吃书初始效果值",
+          "offset": 1,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "Param2",
+          "csvName": "效果值成长上限",
+          "offset": 2,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "Param3",
+          "csvName": "临时特效书持续回合",
+          "offset": 3,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "Param4",
+          "csvName": "成长书经验加成",
+          "offset": 4,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "Param5",
+          "csvName": "攻击经验加成",
+          "offset": 5,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "Param6",
+          "csvName": "受击经验加成",
+          "offset": 6,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "Param7",
+          "csvName": "击杀经验加成",
+          "offset": 7,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "strategy-study-extended",
+      "displayName": "策略学习拓展",
+      "file": "MeffStudy.e5",
+      "offset": 0,
+      "rows": 1024,
+      "rowSize": 64,
+      "beginId": 0,
+      "module": "拓展数据",
+      "fields": [
+        {
+          "namePattern": "策略{0}ID",
+          "count": 32,
+          "offset": 0,
+          "size": 1,
+          "stride": 2,
+          "kind": "UInt8",
+          "maximum": 255
+        },
+        {
+          "namePattern": "策略{0}次数",
+          "count": 32,
+          "offset": 1,
+          "size": 1,
+          "stride": 2,
+          "kind": "UInt8",
+          "maximum": 255
+        }
+      ]
+    },
+    {
+      "key": "forge",
+      "displayName": "锻造",
+      "file": "Forge.e5",
+      "offset": 0,
+      "rows": 1024,
+      "rowSize": 64,
+      "beginId": 0,
+      "module": "拓展数据",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 30,
+          "kind": "FixedString"
+        },
+        {
+          "namePattern": "材料{0}ID",
+          "count": 8,
+          "offset": 30,
+          "size": 2,
+          "stride": 3,
+          "kind": "UInt16",
+          "maximum": 65535,
+          "names": [
+            "材料1ID",
+            "材料2ID",
+            "材料3ID",
+            "材料4ID",
+            "材料5ID",
+            "材料6ID",
+            "材料7ID",
+            "材料8ID"
+          ]
+        },
+        {
+          "namePattern": "材料{0}数量",
+          "count": 8,
+          "offset": 32,
+          "size": 1,
+          "stride": 3,
+          "kind": "UInt8",
+          "maximum": 255,
+          "names": [
+            "材料1数量",
+            "材料2数量",
+            "材料3数量",
+            "材料4数量",
+            "材料5数量",
+            "材料6数量",
+            "材料7数量",
+            "材料8数量"
+          ]
+        },
+        {
+          "name": "价格",
+          "offset": 54,
+          "size": 4,
+          "kind": "UInt32",
+          "policy": "Editable",
+          "maximum": 4294967295
+        },
+        {
+          "name": "保留58",
+          "offset": 58,
+          "size": 1,
+          "kind": "RawBytes",
+          "policy": "Preserve"
+        },
+        {
+          "name": "材料项数",
+          "offset": 58,
+          "size": 1,
+          "kind": "UInt8",
+          "maximum": 255
+        },
+        {
+          "name": "保留59",
+          "offset": 59,
+          "size": 1,
+          "kind": "RawBytes",
+          "policy": "Preserve"
+        },
+        {
+          "name": "商店编号",
+          "offset": 59,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "标记",
+          "offset": 60,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "保留61",
+          "offset": 61,
+          "size": 1,
+          "kind": "RawBytes",
+          "policy": "Preserve"
+        },
+        {
+          "name": "剩余次数",
+          "offset": 61,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "strategy-big-animation",
+      "displayName": "策略大动画",
+      "file": "Ekd5.exe",
+      "offset": 668144,
+      "rows": 144,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "策略",
+      "fields": [
+        {
+          "name": "动画ID",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8",
+          "maximum": 255
+        }
+      ]
+    },
+    {
+      "key": "strategy-small-animation",
+      "displayName": "策略小动画",
+      "file": "Ekd5.exe",
+      "offset": 668000,
+      "rows": 144,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "策略",
+      "fields": [
+        {
+          "name": "动画ID",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8",
+          "maximum": 255
+        }
+      ]
+    },
+    {
+      "key": "job-series-accessory-groups",
+      "displayName": "兵种系·辅助装备分组",
+      "file": "Ekd5.exe",
+      "offset": 0,
+      "rows": 1,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "兵种系",
+      "capability": "Unavailable",
+      "capabilityEvidence": "辅助分组不是定长物理表；请在兵种系的辅助分组业务页使用 PE 地址/FF 分隔专用服务及专用 CSV。禁止解码此占位偏移或导出 EXE 文件头。",
+      "fields": [
+        {
+          "name": "Raw",
+          "offset": 0,
+          "size": 1,
+          "kind": "RawBytes",
+          "policy": "Preserve"
+        }
+      ]
+    },
+    {
+      "key": "strategy-terrain-availability",
+      "displayName": "策略施展地形",
+      "file": "Ekd5.exe",
+      "offset": 130764,
+      "rows": 30,
+      "rowSize": 1,
+      "beginId": 0,
+      "module": "策略",
+      "capability": "Unavailable",
+      "capabilityEvidence": "由6.4实际PE消费者与调用方独立探测后开放。",
+      "fields": [
+        {
+          "name": "策略施展地形掩码",
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8",
+          "maximum": 15
+        }
+      ],
+      "verificationLevel": "InheritedUnverified"
+    },
+    {
+      "key": "item-effect-names-low",
+      "displayName": "装备特效名称池（1A-57）",
+      "file": "Ekd5.exe",
+      "offset": 567784,
+      "rows": 1,
+      "rowSize": 885,
+      "beginId": 0,
+      "module": "宝物",
+      "capability": "ReadOnly",
+      "capabilityEvidence": "6.5 GBK 变长名称池，包含槽尾/分隔符，使用专用名称池服务解析。",
+      "fields": [
+        {
+          "name": "RawHex",
+          "offset": 0,
+          "size": 885,
+          "kind": "RawBytes",
+          "policy": "Preserve"
+        }
+      ]
+    },
+    {
+      "key": "item-effect-names-high",
+      "displayName": "装备特效名称池（58-7F）",
+      "file": "Ekd5.exe",
+      "offset": 653312,
+      "rows": 1,
+      "rowSize": 368,
+      "beginId": 0,
+      "module": "宝物",
+      "capability": "ReadOnly",
+      "capabilityEvidence": "6.5 GBK 变长名称池，包含槽尾/分隔符，使用专用名称池服务解析。",
+      "fields": [
+        {
+          "name": "RawHex",
+          "offset": 0,
+          "size": 368,
+          "kind": "RawBytes",
+          "policy": "Preserve"
+        }
+      ]
+    },
+    {
+      "key": "finishing-moves",
+      "displayName": "必杀",
+      "file": "Data.e5",
+      "offset": 59540,
+      "rows": 96,
+      "rowSize": 16,
+      "beginId": 0,
+      "module": "策略",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 11,
+          "kind": "FixedString"
+        },
+        {
+          "name": "图标",
+          "offset": 11,
+          "size": 1,
+          "kind": "RawBytes",
+          "policy": "Preserve"
+        },
+        {
+          "name": "攻击范围",
+          "offset": 12,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "穿透范围",
+          "offset": 13,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "消耗SP",
+          "offset": 14,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ]
+    },
+    {
+      "key": "finishing-move-description",
+      "displayName": "必杀说明",
+      "file": "Imsg.e5",
+      "offset": 28800,
+      "rows": 96,
+      "rowSize": 200,
+      "beginId": 0,
+      "module": "策略",
+      "parentKey": "finishing-moves",
+      "fields": [
+        {
+          "name": "说明",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "item-acquisition-low",
+      "displayName": "物品获取说明（0-103）",
+      "file": "Imsg.e5",
+      "offset": 439800,
+      "rows": 104,
+      "rowSize": 200,
+      "beginId": 0,
+      "module": "宝物",
+      "capability": "Unavailable",
+      "capabilityEvidence": "旧 HexTable.xml 明确 Enable=false；Imsg 6.5 基底长度不足，且区域与物品说明/撤退区重叠。未取得消费代码前禁止读取或写回。",
+      "verificationLevel": "InheritedUnverified",
+      "parentKey": "items-low",
+      "fields": [
+        {
+          "name": "物品获取说明",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "item-acquisition-high",
+      "displayName": "物品获取说明（104-199）",
+      "file": "Imsg.e5",
+      "offset": 460600,
+      "rows": 96,
+      "rowSize": 200,
+      "beginId": 104,
+      "module": "宝物",
+      "capability": "Unavailable",
+      "capabilityEvidence": "旧 HexTable.xml 明确 Enable=false；高段区域与低段获取说明/撤退区存在重叠语义，未取得消费代码前禁止读取或写回。",
+      "verificationLevel": "InheritedUnverified",
+      "parentKey": "items-high",
+      "fields": [
+        {
+          "name": "物品获取说明",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ]
+    },
+    {
+      "key": "items-extended",
+      "displayName": "宝物扩展（256-511）",
+      "file": "Item.e5",
+      "offset": 0,
+      "rows": 256,
+      "rowSize": 25,
+      "beginId": 256,
+      "module": "宝物",
+      "recordCodecKey": "item-65-17-v1",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 17,
+          "kind": "FixedString"
+        },
+        {
+          "name": "宝物类型",
+          "offset": 17,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "装备特效号",
+          "offset": 18,
+          "size": 1,
+          "kind": "UInt8",
+          "referenceTable": "effect-names"
+        },
+        {
+          "name": "价格（/100）",
+          "offset": 19,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "图标",
+          "offset": 20,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "初始能力",
+          "offset": 21,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "装备特效值",
+          "offset": 22,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "能力成长",
+          "offset": 23,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "宝物图鉴",
+          "offset": 24,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ],
+      "verificationLevel": "SourceReviewed"
+    },
+    {
+      "key": "item-description-extended",
+      "displayName": "宝物扩展说明（256-511）",
+      "file": "Itemmsg.e5",
+      "offset": 0,
+      "rows": 256,
+      "rowSize": 200,
+      "beginId": 256,
+      "module": "宝物",
+      "parentKey": "items-extended",
+      "fields": [
+        {
+          "name": "宝物说明",
+          "offset": 0,
+          "size": 200,
+          "kind": "FixedString"
+        }
+      ],
+      "verificationLevel": "SourceReviewed"
+    }
+  ],
+  "modules": [
+    {
+      "key": "人物",
+      "displayName": "人物",
+      "tableKeys": [
+        "persons",
+        "person-biography",
+        "person-critical-quotes",
+        "person-retreat-quotes",
+        "person-r-assign",
+        "person-s-assign"
+      ]
+    },
+    {
+      "key": "兵种系",
+      "displayName": "兵种系",
+      "tableKeys": [
+        "job-series",
+        "job-series-terrain",
+        "job-series-move-cost",
+        "job-series-counter",
+        "job-series-attributes",
+        "job-series-accessory-groups"
+      ]
+    },
+    {
+      "key": "兵种",
+      "displayName": "兵种",
+      "tableKeys": [
+        "detailed-jobs",
+        "detailed-job-description",
+        "detailed-job-growth",
+        "detailed-job-penetration"
+      ]
+    },
+    {
+      "key": "策略",
+      "displayName": "策略",
+      "tableKeys": [
+        "strategies",
+        "strategy-description",
+        "strategy-extension",
+        "strategy-damage-type",
+        "strategy-damage-ratio",
+        "strategy-hit-rate",
+        "strategy-learning",
+        "strategy-battle-ai",
+        "strategy-training-ai",
+        "strategy-big-animation",
+        "strategy-small-animation",
+        "strategy-terrain-availability",
+        "finishing-moves",
+        "finishing-move-description"
+      ]
+    },
+    {
+      "key": "宝物",
+      "displayName": "宝物",
+      "tableKeys": [
+        "items-low",
+        "items-high",
+        "item-description-low",
+        "item-description-high",
+        "items-extended",
+        "item-description-extended",
+        "item-effect-names-low",
+        "item-effect-names-high",
+        "item-acquisition-low",
+        "item-acquisition-high"
+      ]
+    },
+    {
+      "key": "商店",
+      "displayName": "商店",
+      "tableKeys": [
+        "scenario-names",
+        "shops"
+      ]
+    },
+    {
+      "key": "拓展数据",
+      "displayName": "拓展数据",
+      "tableKeys": [
+        "effect-archive",
+        "effect-messages",
+        "strategy-study-extended",
+        "forge"
+      ]
+    }
+  ]
+}

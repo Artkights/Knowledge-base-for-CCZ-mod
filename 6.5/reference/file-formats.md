@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/file-formats/binary-formats.json`、`6.5/data/file-formats/data-manager-formats.json`
+结构化事实来源：`6.5/data/file-formats/binary-formats.json`、`6.5/data/file-formats/data-manager-formats.json`、`6.5/data/file-formats/local-review-20261028.json`
 
 ## E5 索引资源封包
 
@@ -76,12 +76,13 @@ ID: `format.data-manager.item-codecs`；状态: `canonical`；证据: `source-re
 | `名称` | `0x0` | 17 | `bytes` | 6.5/17 字节变体 GBK 定长字段；6.6/15 字节变体为 15 字节 |
 | `图标（15 字节名称布局）` | `0xF` | 1 | `uint8` | 6.6 标准/旧山贼候选布局使用 +0x0F UInt8 图标号；物理字段名统一为图标，字段策略 Editable；+0x10、+0x14 保持 Preserve。 |
 | `图标（17 字节名称布局）` | `0x14` | 1 | `uint8` | 6.5 与 6.6 17 字节兼容 Variant 使用 +0x14 UInt8 图标号；物理字段名统一为图标，字段策略 Editable。 |
-| `类别/特效逻辑字段` | `0x11` | 2 | `uint8-pair` | 6.6 15 字节 Codec 读取原始 +0x12；原始 +0x12 为 2/3 时，宝物类型来自 +0x12、装备特效号来自 +0x11；普通行反向读取。 |
+| `类别/特效逻辑字段` | `0x11` | 2 | `uint8-pair` | 6.6 15 字节 Codec 读取原始 +0x12；原始 +0x11>=26 且原始 +0x12 为 2/3 时，宝物类型来自 +0x12、装备特效号来自 +0x11；普通行反向读取。 |
 | `价格` | `0x13` | 1 | `uint8` | 价格单位100；255表示不可买卖，不能用辅助+0x17替代。 |
 | `类别相关尾部` | `0x15` | 4 | `uint8[4]` | 按类别解释：武器/防具为初始属性、特效值、成长、图鉴；辅助为特效值、保留、适用兵种、图鉴；消耗品为LE参数低/高字节、保留、图鉴。 |
+| `初始能力/特效值/成长/图鉴` | `0x15` | 4 | `uint8[4]` | 连续能力字段；其它字节保留 |
 
 - 物理记录分布在 Data.e5 104 条和 Star.e5 151 条，逻辑 ID 0..254。
-- 6.6 普通装备的装备特效号不能写成 2/3，否则会改变物理类别；辅助/消耗行的宝物类型只能保留类别标记 2/3。
+- 6.6原生类型0..25的普通装备可以保留特效2/3；只有原生类型>=26的行才检查类别2/3与跨Codec边界，禁止隐式切换物理类别；辅助/消耗行的宝物类型只能保留类别标记 2/3。
 - 17 字节与 15 字节迁移只映射已确认逻辑字段；类别不兼容时保留目标记录并报告冲突，不能按偏移整行复制。
 - 图标逻辑值 N 从 0 开始；E5/Item.e5 的小图为物理图号 #2N+1、大图为 #2N+2。字段读写和迁移只处理当前 Variant 的图标字节，不能将 15 字节布局的 +0x14 当作图标写回。
 - UTF-8/UTF-16/GBK CSV 导入必须先按当前 Variant Codec 生成字段补丁，拒绝修改 Preserve/ReadOnly 字段。
@@ -425,3 +426,19 @@ ID: `format.data-manager.face-payload`；状态: `canonical`；证据: `source-r
 - 本条为格式与编辑器Codec证据，不把某个本地化旧版号样本的PE地址泛化为全部6.5/6.6地址。
 
 写入策略：只修改通过标准图片或64×80 RAW8几何验证的目标；保持源编码、调色板、尾部和关联事务。
+
+## E5S存档信息与R/S EEX剧本角色边界
+
+ID: `format.shared.e5s-save-role`；状态: `candidate`；证据: `source-reviewed`
+
+字节序: `本角色实体不声明未解析的E5S全格式`
+
+- 文件：`SV/*.E5S`
+- 文件：`RS/R_*.eex`
+- 文件：`RS/S_*.eex`
+
+- E5S属于存档/索引信息，不能当作R/S剧本或人物图像封包。
+- R/S剧本发现扫描RS/R_*.eex和RS/S_*.eex；EEX魔数另见format.eex.probed-header。列表发现只读文件名、长度和前256字节，选择后后台解析。
+- 人物R/S图像来自Pmapobj/Unit系列等资源；EXE人物指定、存档首段指定与图片载荷分别建模。
+
+写入策略：不据后缀推断可写结构。EEX短写回锁原容量；重建需维护场景/段落/子块长度和76跳转并复读。E5S完整格式和同步必须通过目标消费者、分段长度、尾部校验和原始SHA验证。

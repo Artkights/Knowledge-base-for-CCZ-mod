@@ -26,6 +26,30 @@
         "src.ccz.range-profile",
         "src.ccz.runtime-registry"
       ]
+    },
+    {
+      "id": "profile.ccz65.unencrypted.3890.scan",
+      "title": "6.5操作数来源与分配回归样本3890",
+      "aliases": [
+        "3890CC32"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "sha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+        "size": 1196032
+      },
+      "addressPolicy": "只对精确SHA成立；按PE映射、活动表指针、初始化计数、读取行宽和ABI共同核对，版本号不能代替画像。",
+      "sourceRefs": [
+        "src.dm.engine-validation-20261027",
+        "src.dm.assignment-8byte-static-20261027"
+      ]
     }
   ]
 }

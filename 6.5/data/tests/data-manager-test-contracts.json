@@ -448,12 +448,15 @@
         "图库解码后读取播放间隔必须复用 StrategyAnimationResourceCodec.ReadPackageBytes，不得再次走普通 E5Archive.Open 导致整项预览失败；索引枚举或代表帧解码成功不能替代点击播放验收。",
         "连续选项、切换资源及Dispose取消旧请求；迟到结果不回填新资源，旧Bitmap被释放。",
         "有位移和透明百分比的公共播放画布5×2与原生编辑平面2×1分离，不把位移/alpha烘焙进资源替换。",
-        "所有真实源资源SHA保持不变；本测试不宣称完整游戏场景/特殊辅助遮罩及引擎时钟一致。"
+        "所有真实源资源SHA保持不变；本测试不宣称完整游戏场景/特殊辅助遮罩及引擎时钟一致。",
+        "真实Meff17帧和Mcall25帧自动播放；6.5和6.6各执行一次。"
       ],
       "requiredArtifacts": [
         "同配置预先构建日志；所声明的 6.5/6.6 样本分别运行，console exit code 0 与 ANIMATION_PREVIEW_UI_TESTS_OK",
         "非零尾部合成例的普通 E5 拒绝、Meff 专用点击播放/50ms 间隔/原生平面及 SHA 断言",
-        "实际样本与 Weather/Meff/Mcall 帧数、公共画布/原生平面尺寸、源 SHA；十八州 Meff 修复报告的 SHA 为 E7E6DB63A567053F5A5DF8AD16D09CE42F9818A2CE148AA6F3B4C54E66F85357"
+        "实际样本与 Weather/Meff/Mcall 帧数、公共画布/原生平面尺寸、源 SHA；十八州 Meff 修复报告的 SHA 为 E7E6DB63A567053F5A5DF8AD16D09CE42F9818A2CE148AA6F3B4C54E66F85357",
+        "6.5和6.6专项日志均ANIMATION_PREVIEW_UI_TESTS_OK且退出0",
+        "Weather/Meff/Mcall实际帧数、公共画布/原生平面尺寸、源SHA复核"
       ],
       "failureMeaning": "动态预览拆帧、播放或生命周期错误；失败时不得把缓存/合成画布写回目标资源。",
       "sourceRefs": [

@@ -1,0 +1,36 @@
+# Meff 图库点击播放修复验收（2026-10-20）
+
+## 问题与原因
+
+十八州的 `E5\Meff.e5` 目录可以枚举，策略业务页能够播放小动画，但图库点击条目后显示“E5 目录的四字节尾部不是全零”。
+
+动画 Codec 已使用 `E5Archive.OpenMeff()` 读取非零目录尾部。图库的 `SelectedAnimationPreview` 在成功解码帧后，为取得帧间隔再次使用严格的 `E5Archive.Open()` 读取同一条目，导致已生成的帧被释放并显示错误。因此，仅验证解码器和代表帧不足以覆盖此故障。
+
+## 修改
+
+- 在 `StrategyAnimationResourceCodec` 增加 `ReadPackageBytes(FrameDescriptor)`：图号 0 读取独立 Mcall 包，索引条目读取 Meff 包。
+- 动画 Codec、图库播放器的间隔读取、导出动画包、备用播放和原生平面读取统一经过同一方法。
+- 普通 E5 档案继续严格校验四字节零尾部。
+- 仅改变读取路径，不改动动画载荷、播放顺序、帧尺寸或原始文件。
+
+## 回归验证
+
+`dotnet build data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-restore` 成功，0 警告、0 错误。
+
+`--animation-preview-ui 基底\18州\十八州演义0.2版本`：
+
+- 修改前复现失败：图库 Meff 条目点击后无法播放。
+- 修改后 `ANIMATION_PREVIEW_UI_TESTS_OK`。
+- 合成非零尾部档案：普通 E5 读取仍拒绝；Meff 缩略图、点击后 50ms 自动播放和原生平面读取成功；SHA 不变。
+- 真实十八州 Meff 图库点击播放 17 帧；Mcall00 播放 26 帧。
+- 暂停、下一帧、速度调整、切换资源、取消和迟到结果释放通过。
+- 真实 11 个 Mcall 逐项点击播放通过。
+- 1280×720、1920×1080，字体 100%、125%、150% 的已有动画布局回归通过。
+
+`--animation-representative-frames`：四套基底共 Mcall 38、Meff 240、Weather 20，代表首末播放帧与完整解码像素一致；所有被检查源文件 SHA 不变。
+
+真实样本：`基底\18州\十八州演义0.2版本\E5\Meff.e5`，1,158,833 字节。
+
+检查前后 SHA-256 均为：
+
+`E7E6DB63A567053F5A5DF8AD16D09CE42F9818A2CE148AA6F3B4C54E66F85357`

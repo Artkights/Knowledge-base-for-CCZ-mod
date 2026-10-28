@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Weather216x50四帧静态消费者证据",
+  "readOnly": true,
+  "entries": [
+    {
+      "version": "6.5",
+      "samplePath": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sampleSha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+      "sampleLength": 1196032,
+      "machine": "x86-pe32",
+      "imageBase": "0x400000",
+      "section": ".code",
+      "consumerFileOffset": "0x4976f",
+      "consumerVa": "0x44a36f",
+      "anchors": [
+        {
+          "meaning": "frame-index-times-rgb-stride",
+          "fileOffset": "0x49799",
+          "va": "0x44a399",
+          "expectedBytes": "0F B6 41 18 69 C0 90 7E 00 00"
+        },
+        {
+          "meaning": "frame-dimensions-height-width",
+          "fileOffset": "0x497ae",
+          "va": "0x44a3ae",
+          "expectedBytes": "6A 32 68 D8 00 00 00"
+        },
+        {
+          "meaning": "increment-and-four-frame-wrap",
+          "fileOffset": "0x497c9",
+          "va": "0x44a3c9",
+          "expectedBytes": "FE 41 18 80 61 18 03"
+        }
+      ],
+      "weatherPath": "基底/加强版6.5未加密版/E5/Weather.e5",
+      "weatherSha256": "3FFB15D87C68525412EE92B8261A7A18382078EE178473B4EA286A4415E604D5",
+      "weatherEntryCount": 5,
+      "decodedLengths": [
+        43200
+      ],
+      "decodedFrameGeometry": {
+        "width": 216,
+        "height": 50,
+        "frames": 4,
+        "stripHeight": 200,
+        "bytesPerEntry": 43200,
+        "rgbFrameBytes": 32400
+      },
+      "evidence": "static-verified",
+      "runtimeVerified": false,
+      "limitation": "地址只对该SHA样本成立；未以实机调用追踪验证完整时序、混合方式和播放速率。"
+    },
+    {
+      "version": "6.6",
+      "samplePath": "基底/曹操传6.6-V10.1 【解压密码：66】/复刻版6.6/Ekd5.exe",
+      "sampleSha256": "2594711168EA58258E40F3D804BF982DC376B58711C8E562EBE6B16E87A56B82",
+      "sampleLength": 1132032,
+      "machine": "x86-pe32",
+      "imageBase": "0x400000",
+      "section": ".code",
+      "consumerFileOffset": "0x49799",
+      "consumerVa": "0x44a399",
+      "anchors": [
+        {
+          "meaning": "frame-index-times-rgb-stride",
+          "fileOffset": "0x49799",
+          "va": "0x44a399",
+          "expectedBytes": "0F B6 41 18 69 C0 90 7E 00 00"
+        },
+        {
+          "meaning": "frame-dimensions-height-width",
+          "fileOffset": "0x497ae",
+          "va": "0x44a3ae",
+          "expectedBytes": "6A 32 68 D8 00 00 00"
+        },
+        {
+          "meaning": "increment-and-four-frame-wrap",
+          "fileOffset": "0x497da",
+          "va": "0x44a3da",
+          "expectedBytes": "FE 41 18 80 61 18 03"
+        }
+      ],
+      "weatherPath": "基底/曹操传6.6-V10.1 【解压密码：66】/复刻版6.6/E5/Weather.e5",
+      "weatherSha256": "3FFB15D87C68525412EE92B8261A7A18382078EE178473B4EA286A4415E604D5",
+      "weatherEntryCount": 5,
+      "decodedLengths": [
+        43200
+      ],
+      "decodedFrameGeometry": {
+        "width": 216,
+        "height": 50,
+        "frames": 4,
+        "stripHeight": 200,
+        "bytesPerEntry": 43200,
+        "rgbFrameBytes": 32400
+      },
+      "evidence": "static-verified",
+      "runtimeVerified": false,
+      "limitation": "地址只对该SHA样本成立；未以实机调用追踪验证完整时序、混合方式和播放速率。"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "entries": [
+    {
+      "id": "global.66.item-effect-class-dispatch",
+      "title": "6.6 装备效果类号分发表",
+      "aliases": [
+        "0x00430000",
+        "item-effect-class-dispatch"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00430000",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "sample-verified"
+      },
+      "width": 32,
+      "type": "function-pointer-table",
+      "meaning": "8 项 VA 表，类 0..7 依次为 0x0040715A / 0x0040718F / 0x004071C4 / 0x004071F9 / 0x0040722E / 0x00407263 / 0x0040728F / 0x004072BB；类 8 = 0x00407FAA 不在表内（其返回值为类号 + 100）。",
+      "lifecycle": "静态常量表，启动期不变；由 0x0040678E 的解码结果索引。",
+      "relations": [
+        "fn.66.item-effect-class-decode"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe"
+      ]
+    }
+  ]
+}

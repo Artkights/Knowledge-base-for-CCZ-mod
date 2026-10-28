@@ -1,0 +1,9 @@
+UI_WRITEBACK_HARDENING_TESTS_OK
+命令：DataManager.Tests.dll --ui-writeback-hardening 基底/加强版6.5未加密版
+隔离副本验证，退出码0。
+MULTILINE_NATIVE_TEXT_PRESERVATION_OK CR LF CRLF trailing-spaces 01 1A
+BYTE_TEXT_INPUT_TESTS_OK
+UI_MULTILINE_DISK_ROUNDTRIP_OK CR LF CRLF trailing-spaces 01 1A
+UI_SORT_FILTER_COMMAND_MAPPING_OK Delete selected-batch visible-find-replace undo redo
+UI_HIDDEN_ACCESSORY_DRAFT_SAVE_OK
+本次同时由生命周期测试在真实Application.Run消息循环下开启Control.CheckForIllegalCrossThreadCalls，覆盖切项目与关闭窗口。

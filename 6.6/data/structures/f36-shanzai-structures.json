@@ -41,7 +41,8 @@
         "global.66.f36.character-pointer-slot"
       ],
       "sourceRefs": [
-        "src.ccz.f36.static-report"
+        "src.ccz.f36.static-report",
+        "src.upstream.artkights.b2c.9b18fcfc24c7"
       ]
     },
     {
@@ -74,15 +75,18 @@
       "relations": [],
       "sourceRefs": [
         "src.ccz.f36.static-report",
-        "src.forum.godtype.194034"
+        "src.forum.godtype.194034",
+        "src.upstream.artkights.b2c.9b18fcfc24c7"
       ]
     },
     {
       "id": "struct.66.f36.item-record",
-      "title": "F36 物品记录",
+      "title": "F36 物品记录的运行时消费者视图",
       "aliases": [
         "ItemRecord",
-        "0x19 物品记录"
+        "0x19 物品记录",
+        "0x0049F820 物品表",
+        "item-66-15-v1"
       ],
       "versions": [
         "6.6"
@@ -93,7 +97,7 @@
       "baseRef": null,
       "recordCount": 255,
       "stride": 25,
-      "indexFormula": "0x0049F820 + item_id * 0x19 + field_offset",
+      "indexFormula": "0x0049F820 + item_id * 0x19 + field_offset；ID 0..254有效，255是调用链哨兵，不作为物品记录索引",
       "endianness": "little",
       "fields": [
         {
@@ -101,30 +105,113 @@
           "offset": "0x0",
           "width": 15,
           "type": "fixed-string",
-          "meaning": "名称；编码和终止规则需按资源样本复读"
+          "meaning": "名称；编码和终止规则需按资源样本复读",
+          "encoding": "GBK, NUL-terminated",
+          "writePolicy": "ReadOnly"
         },
         {
           "name": "icon",
           "offset": "0xF",
           "width": 1,
           "type": "uint8",
-          "meaning": "图标编号"
+          "meaning": "图标编号",
+          "writePolicy": "ReadOnly"
         },
         {
-          "name": "effect_value",
+          "name": "reserved_0x10",
+          "offset": "0x10",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "预留；本样本未发现读写者",
+          "writePolicy": "Preserve"
+        },
+        {
+          "name": "effect_code",
+          "offset": "0x11",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "类型/实际特效号；辅助品与道具段取此字节（回复类：0x1A=回复 HP、0x1B=回复 MP）",
+          "writePolicy": "ReadOnly"
+        },
+        {
+          "name": "equip_effect",
+          "offset": "0x12",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "武器/防具特效号（0xFF=无特效）；辅助品恒为 2、消耗品恒为 3 的类别标记",
+          "writePolicy": "ReadOnly"
+        },
+        {
+          "name": "price_raw",
+          "offset": "0x13",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "价格原始值，显示价格 = 本值 × 100；0xFF 表示不出售",
+          "writePolicy": "ReadOnly"
+        },
+        {
+          "name": "effect_class",
+          "offset": "0x14",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "装备效果类号（0..8）；经 0x0040678E 解码，249/255 物品不参与（解码为 0xFF）；运行时读取用途与磁盘Codec保留策略分别成立，不授予业务编辑权限",
+          "writePolicy": "ReadOnly"
+        },
+        {
+          "name": "value",
+          "offset": "0x15",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "效果值：装备为能力值，回复类道具为回复量",
+          "writePolicy": "ReadOnly"
+        },
+        {
+          "name": "value_aux",
           "offset": "0x16",
           "width": 1,
           "type": "uint8",
-          "meaning": "普通装备特效值；辅助保留；消耗品参数高字节。运行时该字段消费仍按原静态证据边界，不推广为所有类别通用效果值。"
+          "meaning": "附加数值/特效值；历史effect_value别名指同一+0x16字节，不是第二物理字段",
+          "writePolicy": "ReadOnly",
+          "aliases": [
+            "effect_value"
+          ]
+        },
+        {
+          "name": "growth",
+          "offset": "0x17",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "成长",
+          "writePolicy": "ReadOnly"
+        },
+        {
+          "name": "catalog_flag",
+          "offset": "0x18",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "图鉴/宝物标志",
+          "writePolicy": "ReadOnly"
         }
       ],
       "relations": [
+        "format.item.split-data-star",
+        "fn.66.item-record-index",
+        "fn.66.item-restore-hpmp",
         "struct.66.item-category-semantics"
       ],
       "sourceRefs": [
         "src.ccz.f36.static-report",
+        "src.ccz.shanzai.item.table-report",
         "src.items.byte-evidence",
-        "src.items.semantic-resolver"
+        "src.items.semantic-resolver",
+        "src.upstream.artkights.b2c.9b18fcfc24c7"
+      ],
+      "encoding": "GBK",
+      "viewKind": "runtime-consumer-view",
+      "writePolicy": "ReadOnly：本实体描述F36运行时读取，不授权修改磁盘Codec的Preserve字段；物理写入必须另行满足对应Variant的字段能力与消费者门禁。",
+      "notes": [
+        "15字节磁盘Codec的+0x10/+0x14保留规则见struct.66.item-category-semantics及对应disk物理表；运行时消费者语义不替代磁盘字段权限。",
+        "来自分支的恢复链、效果类别和数值语义保留为只读消费者视图；未经精确样本与调用点证明的通用化解释不得外推至其他6.6构建。"
       ]
     },
     {
@@ -156,7 +243,8 @@
       ],
       "relations": [],
       "sourceRefs": [
-        "src.ccz.f36.static-report"
+        "src.ccz.f36.static-report",
+        "src.upstream.artkights.b2c.9b18fcfc24c7"
       ]
     }
   ]

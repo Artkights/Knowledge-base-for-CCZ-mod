@@ -30,7 +30,7 @@
           "offset": "0x11",
           "width": 1,
           "type": "uint8",
-          "meaning": "普通武器/防具为装备类型；辅助/消耗品为实际特效号。6.6动态Codec以原始+0x12是否2/3决定逻辑列映射。"
+          "meaning": "普通武器/防具为装备类型；辅助/消耗品为实际特效号。6.6动态Codec以原始+0x11>=26且原始+0x12为2/3的联合条件决定逻辑列映射。"
         },
         {
           "name": "特效或类别标记",
@@ -86,7 +86,8 @@
         "辅助适用兵种的0..39是兵种系编号，名称来自当前项目；它不是detailed-job-growth的26个普通装备许可列。",
         "业务名称可变，CSV继续使用原物理列名；固定6.5与动态6.6不能靠相同列名直接复制字节。",
         "同表跨类别切换必须更新布局和选项；摘要从草稿按原始类别标记选地址，不能只读OriginalFileBytes。",
-        "五例绑定当前F36 EXE与B392 Star数据哈希；测试强制66-shanzhai-legacy仅用于相同Codec的字段回归，不证明旧1146880字节EXE画像可写。"
+        "五例绑定当前F36 EXE与B392 Star数据哈希；测试强制66-shanzhai-legacy仅用于相同Codec的字段回归，不证明旧1146880字节EXE画像可写。",
+        "2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。"
       ],
       "writeGates": [
         "源文件SHA、Profile/Variant、25字节行边界和字段范围均通过后，只对主动修改字段生成补丁。",
@@ -102,7 +103,8 @@
         "src.items.legacy-consumable",
         "src.items.semantic-tests",
         "src.items.user-confirmation",
-        "src.items.byte-evidence"
+        "src.items.byte-evidence",
+        "src.integration.record-codecs-current"
       ],
       "sampleCases": [
         {

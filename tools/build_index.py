@@ -1,20 +1,17 @@
 from __future__ import annotations
 
+import argparse
 import hashlib
+import sys
+sys.dont_write_bytecode = True
 import json
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent.parent
-DATA_PATTERNS = ["6.5/data/**/*.json", "6.6/data/**/*.json", "legacy/data/**/*.json"]
-REFERENCE_FILES = {
-    "engine-profile": "profiles.md", "function": "functions.md", "global": "globals.md",
-    "data-structure": "structures.md", "file-format": "file-formats.md",
-    "patch-recipe": "patches.md", "mechanism": "mechanisms.md",
-    "effect-stub": "effect-stubs.md", "script-command": "script-commands.md",
-    "workflow": "workflows.md", "test-contract": "test-contracts.md",
-    "case-study": "case-studies.md",
-}
+from generated_artifacts import differences, update
+from version_config import DATA_VERSIONS, REFERENCE_FILES, ROOT, data_paths
+
+DATA_PATTERNS = [version + "/data/**/*.json" for version in DATA_VERSIONS]
 
 
 def sha256(path: Path) -> str:
@@ -64,12 +61,9 @@ def walk(value: object, trail: str = ""):
             yield from walk(child, f"{trail}[{index}]")
 
 
-def main() -> None:
+def build_payload() -> dict:
     entries = []
-    paths: list[Path] = []
-    for pattern in DATA_PATTERNS:
-        paths.extend(ROOT.glob(pattern))
-    for path in sorted(set(paths)):
+    for path in data_paths(ROOT):
         document = json.loads(path.read_text(encoding="utf-8"))
         entity_type = document["entityType"]
         rel = path.relative_to(ROOT).as_posix()
@@ -97,11 +91,27 @@ def main() -> None:
         "structuredFiles": [{"path": rel, "sha256": sha256(ROOT / rel)} for rel in files],
         "entries": entries,
     }
-    (ROOT / "index.json").write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n"
-    )
-    print(f"indexed_entities={len(entries)} structured_files={len(files)}")
+    return payload
+
+
+def generated_documents() -> dict[Path, str]:
+    return {ROOT / "index.json": json.dumps(build_payload(), ensure_ascii=False, indent=2) + "\n"}
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Generate the structured knowledge index.")
+    parser.add_argument("--check", action="store_true", help="Report stale output without editing files")
+    args = parser.parse_args()
+    expected = generated_documents()
+    changed = differences(expected)
+    if args.check:
+        for path in changed:
+            print("stale: " + path.relative_to(ROOT).as_posix())
+        return int(bool(changed))
+    update(expected)
+    print(f"indexed_entities={build_payload()['entityCount']}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

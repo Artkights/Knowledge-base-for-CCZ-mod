@@ -1,0 +1,882 @@
+{
+  "schemaVersion": 1,
+  "conflictCount": 145,
+  "pubxmlEvidence": {
+    "path": "data管理器/src/DataManager.App/Properties/PublishProfiles/SingleFileWinX64.pubxml",
+    "sha256": "8A8C615A2626840A9C2F98C325366C094E53C1BDD68CB0D86E5F89F16B34B2A6",
+    "SelfContained": false,
+    "PublishSingleFile": true
+  },
+  "entries": [
+    {
+      "index": 0,
+      "field": "6.5/data/file-formats/data-manager-formats.json.entries[format.data-manager.item-codecs].entryFields[价格].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 1,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[宝物类型].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 2,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[装备特效号].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 3,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[价格（/100）].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 4,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[初始能力].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 5,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[装备特效值].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 6,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[能力成长].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 7,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[宝物图鉴].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 8,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 9,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[宝物类型].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 10,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[装备特效号].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 11,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[价格（/100）].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 12,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[初始能力].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 13,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[装备特效值].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 14,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[能力成长].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 15,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[宝物图鉴].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 16,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.item-description-high].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 17,
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.effect-messages].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 18,
+      "field": "6.5/data/tests/data-manager-test-contracts.json.entries[test.data-manager.single-executable-publish].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 19,
+      "field": "6.5/data/tests/data-manager-test-contracts.json.entries[test.data-manager.single-executable-publish].target",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 20,
+      "field": "6.5/data/tests/data-manager-test-contracts.json.entries[test.data-manager.single-executable-publish].mutationScope",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 21,
+      "field": "6.5/data/tests/data-manager-test-contracts.json.entries[test.data-manager.single-executable-publish].failureMeaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 22,
+      "field": "6.5/data/tests/data-manager-test-contracts.json.entries[test.data-manager.animation-preview-ui].mutationScope",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 23,
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.image-resource-transaction].steps[1].action",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 24,
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 25,
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].goal",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 26,
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].steps[1].action",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 27,
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].steps[2].action",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 28,
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].steps[3].action",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 29,
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].steps[4].action",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 30,
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].steps[5].action",
+      "recommendedResolution": "restore-remote",
+      "reason": "保留codex完整类别/价格/物品ID边界/Meff语义。当前pubxml已核对SelfContained=false；发布条目应完整采用框架依赖契约而非混合步骤。"
+    },
+    {
+      "index": 31,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[宝物类型].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 32,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[装备特效号].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 33,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[价格（/100）].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 34,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[初始能力].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 35,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[装备特效值].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 36,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[能力成长].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 37,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[宝物图鉴].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 38,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 39,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[宝物类型].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 40,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[装备特效号].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 41,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[价格（/100）].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 42,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[初始能力].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 43,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[装备特效值].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 44,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[能力成长].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 45,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[宝物图鉴].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 46,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.item-description-high].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 47,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.effect-messages].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 48,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[宝物类型].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 49,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[装备特效号].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 50,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[价格（/100）].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 51,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[初始能力].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 52,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[装备特效值].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 53,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[能力成长].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 54,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[宝物图鉴].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 55,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 56,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[宝物类型].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 57,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[装备特效号].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 58,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[价格（/100）].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 59,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[初始能力].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 60,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[装备特效值].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 61,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[能力成长].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 62,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[宝物图鉴].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 63,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.item-description-high].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 64,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.effect-messages].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 65,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[宝物类型].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 66,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[装备特效号].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 67,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[价格（/100）].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 68,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[初始能力].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 69,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[装备特效值].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 70,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[能力成长].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 71,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[宝物图鉴].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 72,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 73,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[宝物类型].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 74,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[装备特效号].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 75,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[价格（/100）].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 76,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[初始能力].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 77,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[装备特效值].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 78,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[能力成长].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 79,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[宝物图鉴].meaning",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 80,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.item-description-high].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 81,
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.effect-messages].title",
+      "recommendedResolution": "restore-remote",
+      "reason": "远端是更完整的类别/价格/255保留/扩展语义，local短句遗漏了已有知识。"
+    },
+    {
+      "index": 82,
+      "field": "6.6/data/structures/f36-shanzai-structures.json.entries[struct.66.f36.item-record].evidence",
+      "recommendedResolution": "separate-disk-runtime",
+      "reason": "保留精确F36运行时消费者语义，物理Codec Preserve权限独立；不得覆盖成Editable或混用6929画像。"
+    },
+    {
+      "index": 83,
+      "field": "6.6/data/structures/f36-shanzai-structures.json.entries[struct.66.f36.item-record].indexFormula",
+      "recommendedResolution": "separate-disk-runtime",
+      "reason": "保留精确F36运行时消费者语义，物理Codec Preserve权限独立；不得覆盖成Editable或混用6929画像。"
+    },
+    {
+      "index": 84,
+      "field": "6.6/data/structures/f36-shanzai-structures.json.entries[struct.66.f36.item-record].fields[name].meaning",
+      "recommendedResolution": "separate-disk-runtime",
+      "reason": "保留精确F36运行时消费者语义，物理Codec Preserve权限独立；不得覆盖成Editable或混用6929画像。"
+    },
+    {
+      "index": 85,
+      "field": "sources/source-manifest.json.entries[src.data-manager.attribute-reader].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 86,
+      "field": "sources/source-manifest.json.entries[src.data-manager.augmentation].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 87,
+      "field": "sources/source-manifest.json.entries[src.data-manager.bundle-verification].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 88,
+      "field": "sources/source-manifest.json.entries[src.data-manager.business].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 89,
+      "field": "sources/source-manifest.json.entries[src.data-manager.codecs].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 90,
+      "field": "sources/source-manifest.json.entries[src.data-manager.csv].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 91,
+      "field": "sources/source-manifest.json.entries[src.data-manager.csv-labels].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 92,
+      "field": "sources/source-manifest.json.entries[src.data-manager.data-history].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 93,
+      "field": "sources/source-manifest.json.entries[src.data-manager.groups].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 94,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-adapter].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 95,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-animation].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 96,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-animation-preview-ui-tests].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 97,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-atlas-import-dialog].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 98,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-atlas-import-ui-tests].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 99,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-atlas-models].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 100,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-bindings].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 101,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-bmp-payload].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 102,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-catalog].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 103,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-codec-tests].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 104,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-codecs].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 105,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-dll-archive].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 106,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-dll-codec].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 107,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-e5].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 108,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-exchange-tests].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 109,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-grid].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 110,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-help-document].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 111,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-history].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 112,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-integrated-panel].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 113,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-migration-converter].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 114,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-mutation].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 115,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-palette].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 116,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-pixel-editor].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 117,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-reference-atlas].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 118,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-reference-context].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 119,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-reference-layout].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 120,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-rs-import].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 121,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-s-map].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 122,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-special-codecs].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 123,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-strip-exchange].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 124,
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-test-runner].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 125,
+      "field": "sources/source-manifest.json.entries[src.data-manager.item-types].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 126,
+      "field": "sources/source-manifest.json.entries[src.data-manager.main-form].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 127,
+      "field": "sources/source-manifest.json.entries[src.data-manager.migration].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 128,
+      "field": "sources/source-manifest.json.entries[src.data-manager.migration-commit].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 129,
+      "field": "sources/source-manifest.json.entries[src.data-manager.migration-review-ui].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 130,
+      "field": "sources/source-manifest.json.entries[src.data-manager.name-pool].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 131,
+      "field": "sources/source-manifest.json.entries[src.data-manager.profile65].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 132,
+      "field": "sources/source-manifest.json.entries[src.data-manager.profile66].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 133,
+      "field": "sources/source-manifest.json.entries[src.data-manager.publish-single-file].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 134,
+      "field": "sources/source-manifest.json.entries[src.data-manager.registry].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 135,
+      "field": "sources/source-manifest.json.entries[src.data-manager.resource-history].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 136,
+      "field": "sources/source-manifest.json.entries[src.data-manager.table-writer].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 137,
+      "field": "sources/source-manifest.json.entries[src.data-manager.test-assignment].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 138,
+      "field": "sources/source-manifest.json.entries[src.data-manager.test-resource-bindings].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 139,
+      "field": "sources/source-manifest.json.entries[src.data-manager.test-resource-migration].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 140,
+      "field": "sources/source-manifest.json.entries[src.data-manager.test-runner].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 141,
+      "field": "sources/source-manifest.json.entries[src.data-manager.test-ui-presentation].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 142,
+      "field": "sources/source-manifest.json.entries[src.data-manager.user-attribute-enums].published",
+      "recommendedResolution": "restore-published",
+      "reason": "该用户确认枚举文件在知识库仓库中存在；published应true，仍需校验文件哈希。"
+    },
+    {
+      "index": 143,
+      "field": "sources/source-manifest.json.entries[src.data-manager.values].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    },
+    {
+      "index": 144,
+      "field": "sources/source-manifest.json.entries[src.data-manager.workspace].sha256",
+      "recommendedResolution": "retain-revisions",
+      "reason": "同source ID不同SHA是历史修订而非可丢弃噪声；需保留两个revision与可复核出处，不把本地可找到新版当作旧结论原证据。"
+    }
+  ]
+}

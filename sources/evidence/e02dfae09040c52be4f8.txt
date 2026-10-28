@@ -1,0 +1,8 @@
+# 复刻版6.6山贼 P0-010 行动数值与战场结果补证
+
+证据批次：`CCZModStudio_Reports/StaticAnalysis/6929FE0DB049935E-1dde51d517e37299/semantic-reviews/P0-010/`。
+
+- `0043FB27(this,param_1)` 返回修正后的 BYTE。先依据全局 `DAT_00505E7C`、单位记录 `+5` 对输入做下限提升，再调用 `00478E39`；若其低 BYTE 非零且不大于当前值，则当前值加 5。高 DWORD 仅参与非零判断，不能当作直接属性值。正式属性名和能力档位关系待证。
+- `0042D8BF` 是战场结果/消息绘制处理候选：解析最多三个对象槽，按对象 `+0xC` 状态调用结果处理函数，依据 `param_2` 位掩码清除无效槽，随后消费消息编码并绘制 600×0x164 区域。三个槽的业务角色、位方向和最终结果含义尚未闭环。
+
+证据等级：`0043FB27` 为 `StaticInstructionContractProven`；`0042D8BF` 为 `StaticPartialReview`；业务语义未完成。

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": null,
+  "entries": [
+    {
+      "id": "mechanism.shared.physical-field-binding-groups",
+      "title": "物理定义字段绑定组与跨效果别名联动",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "sourceRefs": [
+        "src.dm.final-groups-results-20261027",
+        "src.dm.final-core-app-source-snapshot-20261027",
+        "src.dm.final-completed-test-source-snapshot-20261027",
+        "src.dm.operand-sharing-safety-source-20261027",
+        "src.dm.operand-sharing-safety-results-20261027",
+        "src.dm.final-three-base-acceptance-20261027"
+      ],
+      "aliases": [
+        "共享绑定组",
+        "partial-consumer",
+        "同一物理字段多效果",
+        "未定位消费者不锁已定位字段"
+      ],
+      "summary": "装备改绑按已证明的物理定义字段分组；多个效果与循环/包装实例引用同一字段时一起转移。已解析装备号而字段未定位者单列；装备号也未知者不算已迁移，已定位组仍可写。",
+      "algorithm": [
+        "以当前EXE及原字节为证据，按操作数文件偏移与宽度分组；组内保存完整调用实例身份、别名效果号和所有已定位消费者。",
+        "循环/表/包装/Nested展开本身不构成禁写理由；仅当实际定义唯一、写计划及原指令宽度已证明时开放该物理字段。",
+        "一个效果号可能有多个独立物理绑定组；同一物理组也可能覆盖多个效果号。宝物池按组展示，兵种活动行只保留一个规范实例。",
+        "分配、转移或卸下一个组时同步全部别名草稿，预览所有共享消费者与宝物；同一字段提出不同目标时拒绝提交。",
+        "已解析装备匹配号而字段未定位的消费者可单列位置及原因；装备号也未知者不算已迁移。部分消费者夹具只证明另一未知消费者不封锁已定位组，不证明未知行一定可见。",
+        "卸下后的FF源字段保留在目录中，安装并复读装备子通道守卫后仍可再次分配；不得把个人selector改成255。",
+        "自动分号保留所有已知只读消费者占用的装备selector，避免新宝物误接入既有效果。",
+        "所有消费者都参与物理来源危险共享检测，包括只读或未解析参数保留的定义链；来源跨装备/个人/模式等不同参数角色时阻断改写，只有装备角色内部共享可按组联动。",
+        "完整MOV EAX,imm32已经定义全部32位，无须先XOR；宽度API按字节比较4。只有完整32位XOR/SUB同寄存器清零证明高位，AX/AL或混合部分寄存器清零不能冒充。"
+      ],
+      "observations": [
+        {
+          "profile": "profile.ccz64.xisui.9112",
+          "bindingGroup": "item:3D5B0:1",
+          "aliasEffects": 8,
+          "callInstances": 18
+        },
+        {
+          "profile": "profile.ccz65.unencrypted.3890.scan",
+          "bindingGroup": "item:4843C:1",
+          "aliasEffects": 5,
+          "callInstances": 7
+        },
+        {
+          "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+          "bindingGroup": "item:4843C:4",
+          "aliasEffects": 5,
+          "callInstances": 7
+        }
+      ],
+      "writePolicy": "只对实际已定位组声明转移范围；同步别名、检测字节重叠及不同目标，统一备份事务后重新扫描并复读全部组成员。",
+      "boundaries": [
+        "观测组ID只属于指定精确样本，不能用偏移或别名数量识别其他构建。",
+        "隔离副本测试证明字段联动和写回边界，不证明战斗中的玩法结算。"
+      ]
+    }
+  ]
+}

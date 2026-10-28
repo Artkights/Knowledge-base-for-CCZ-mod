@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": null,
+  "entries": [
+    {
+      "id": "mechanism.shared.effect-assignment-field-and-selector-contract",
+      "title": "特效字段可写性、共享N与255命名空间",
+      "aliases": [
+        "180x8",
+        "255x8",
+        "255x16",
+        "字段可写不依赖工具实现",
+        "个人255越界",
+        "装备255守卫"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "canonical",
+      "evidence": "static-verified",
+      "sourceRefs": [
+        "src.dm.assignment-8byte-static-20261027",
+        "src.dm.engine-assignment-static-20261027",
+        "src.dm.axe37-consumer-20261027",
+        "src.dm.final-groups-results-20261027",
+        "src.dm.operand-sharing-safety-results-20261027",
+        "src.dm.final-three-base-acceptance-20261027"
+      ],
+      "summary": "同一数值255在物品槽、装备selector、个人selector、兵种槽中有不同契约；字段布局、玩法语义和工具支持状态分别管理。",
+      "algorithm": [
+        "9112洗隋是180x8，3890是255x8，25D及F20C已验证6.6是255x16；F9A的3加1结构保留其独立画像。",
+        "8字节行只有1个兵种槽，整行共享N；16字节行2个兵种槽、每个人物与兵种槽各自N。",
+        "已证明的物理字段可按宽度/边界/原字节直接编辑；未命名效果、没有消费者或管理器尚未实现分配，不等于字段不存在或不可写。",
+        "代码参数编辑仍须唯一来源、完整指令边界、ABI、影响范围和冲突证明；字段可写不能绕过这些条件。",
+        "兵种槽FF为空；槽ID80..254异常占用保留。物品装备位FF代表未装备，与装备记录的effect字段FF不同。",
+        "原始装备匹配器直接比较低字节；只有已安装并复读通过的装备子通道FF守卫才能保证selectorFF未分配，且必须保留个人结果与聚合。",
+        "个人selectorFF不能自动禁用；8字节读取器没有通用FF短路，64有效范围0..179、65为0..254。",
+        "HP/MP原生能力绑定、四参数消费者绑定、人物/兵种活动表、专属/套装表应分别建模，通过共享selector及触发条件展示复合效果。",
+        "代码改绑以物理定义字段组为权限与冲突单位；同组全部别名联动。已知装备号但字段未定位者单列；装备号也未知者不算已迁移，不封锁独立已定位字段。"
+      ],
+      "writePolicy": "先读取物理布局和当前原字节，再建立草稿及影响清单；共享N写入需展示整行全部受影响对象；已经定位的N等UInt8数值字段0..255不能因工具目前仅开放部分命名效果而被错误拒绝；selector和行ID仍遵守各自合法范围。"
+    }
+  ]
+}

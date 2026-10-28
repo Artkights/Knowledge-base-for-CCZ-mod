@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": null,
+  "entries": [
+    {
+      "id": "mechanism.shared.engine-scan-context-cache-equivalence",
+      "title": "三基底扫描上下文缓存与完整输出等价",
+      "aliases": [
+        "冷扫性能n3",
+        "fullreport SHA匹配",
+        "扫描分配减少",
+        "12.494到3.884"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "sourceRefs": [
+        "src.dm.scan-performance-summary-20261027",
+        "src.dm.scan-performance-metrics-20261027",
+        "src.dm.scan-performance-source-snapshot-20261027"
+      ],
+      "summary": "指定性能快照对国庆F20C、6.5的3890、洗隋6.4的9112执行相同扫描，摘要各统计3轮；完整报告逐字节相同，冷扫中位数分别降低68.91%、79.48%、82.82%。另保留36D8的3轮与2.2.0的单轮附加对照。",
+      "algorithm": [
+        "同一次扫描复用PE、指令、函数、跳转与调用图上下文；减少重复分析和中间分配，不减少结果字段或条件枚举。",
+        "先固定每轮EXE SHA和实现源快照；以完整报告文件SHA及逐字节比较证明本次样本的输出一致。",
+        "计量以summary.json声明的3轮摘要为准；原始metrics额外保留初始optimized轮，不能把所有行重新混算成同一中位数。"
+      ],
+      "observations": [
+        {
+          "sample": "复刻版6.6山贼 国庆",
+          "sampleSha256": "F20C583296AD2C167AD0C732655B1F90457AA303DF6E8E15CFAA70A822B6EF19",
+          "baselineRuns": 3,
+          "optimizedRuns": 3,
+          "fixtureRole": "本轮目标",
+          "baselineMetricLines": [
+            1,
+            9,
+            12
+          ],
+          "optimizedMetricLines": [
+            15,
+            18,
+            21
+          ],
+          "rawBaselineRows": 3,
+          "rawOptimizedRows": 4,
+          "baselineMedianMs": 12493.7201,
+          "optimizedMedianMs": 3883.9481,
+          "timeReductionPercent": 68.91,
+          "speedup": 3.22,
+          "allocationReductionPercent": 85.38,
+          "fullReportSha256": "32DAB91E3578A62655F099F0CACE7E705907910C405669F9772409F83D56B12D",
+          "reportBytes": 60587111,
+          "fullReportBytesEqual": true
+        },
+        {
+          "sample": "加强版6.5未加密版",
+          "sampleSha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+          "baselineRuns": 3,
+          "optimizedRuns": 3,
+          "fixtureRole": "本轮目标",
+          "baselineMetricLines": [
+            2,
+            10,
+            13
+          ],
+          "optimizedMetricLines": [
+            16,
+            19,
+            22
+          ],
+          "rawBaselineRows": 3,
+          "rawOptimizedRows": 4,
+          "baselineMedianMs": 11660.5857,
+          "optimizedMedianMs": 2392.9223,
+          "timeReductionPercent": 79.48,
+          "speedup": 4.87,
+          "allocationReductionPercent": 89.95,
+          "fullReportSha256": "AABB74632BBEFC830A2DF6D7A06596CFA6989C766DABD2BB98513F2FEB7ADDF5",
+          "reportBytes": 56335259,
+          "fullReportBytesEqual": true
+        },
+        {
+          "sample": "洗隋",
+          "sampleSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+          "baselineRuns": 3,
+          "optimizedRuns": 3,
+          "fixtureRole": "本轮目标",
+          "baselineMetricLines": [
+            25,
+            26,
+            27
+          ],
+          "optimizedMetricLines": [
+            28,
+            29,
+            30
+          ],
+          "rawBaselineRows": 3,
+          "rawOptimizedRows": 3,
+          "baselineMedianMs": 13532.1023,
+          "optimizedMedianMs": 2324.3812,
+          "timeReductionPercent": 82.82,
+          "speedup": 5.82,
+          "allocationReductionPercent": 91.28,
+          "fullReportSha256": "EB075A97E87A63783BD985542098A3445716413DEAFA4DE444CDD8B5CCEDED6D",
+          "reportBytes": 39930548,
+          "fullReportBytesEqual": true
+        },
+        {
+          "sample": "刘备6.4模组 - 副本",
+          "sampleSha256": "36D8010F01173408A61681DBB5522B17ECD062E72A00D4356F54954C2EF3F046",
+          "baselineRuns": 3,
+          "optimizedRuns": 3,
+          "fixtureRole": "附加6.4 fixture",
+          "baselineMetricLines": [
+            3,
+            11,
+            14
+          ],
+          "optimizedMetricLines": [
+            17,
+            20,
+            23
+          ],
+          "rawBaselineRows": 3,
+          "rawOptimizedRows": 4,
+          "baselineMedianMs": 12372.5388,
+          "optimizedMedianMs": 1979.4096,
+          "timeReductionPercent": 84.0,
+          "speedup": 6.25,
+          "allocationReductionPercent": 91.31,
+          "fullReportSha256": "79779CC746BA66472B76CCFB04E230C98F92A39F4836AE3D19BF0F5F693185B7",
+          "reportBytes": 39930659,
+          "fullReportBytesEqual": true
+        },
+        {
+          "sample": "加强版2.2.0",
+          "sampleSha256": "1D8E83F73E7780C60B0B5DE5277D54490F72472270F727C97753F8E72AE4B381",
+          "baselineRuns": 1,
+          "optimizedRuns": 1,
+          "fixtureRole": "43MB单次观察",
+          "baselineMetricLines": 7,
+          "optimizedMetricLines": 8,
+          "rawBaselineRows": 1,
+          "rawOptimizedRows": 1,
+          "baselineMedianMs": 1250.9378,
+          "optimizedMedianMs": 752.3693,
+          "timeReductionPercent": 39.86,
+          "speedup": 1.66,
+          "allocationReductionPercent": 58.56,
+          "fullReportSha256": "229B7696FAAD1F3BD7E2DD650A9A7EE773F326FA6C09ABDED27F0676FD2462A4",
+          "reportBytes": 198964,
+          "fullReportBytesEqual": true
+        }
+      ],
+      "boundaries": [
+        "洗隋91121D4B与刘备副本36D8010F分别统计，不能交换画像；核心三基底为F20C/3890/9112。",
+        "只证明保存报告对应输入和实现快照的输出等价，不代表游戏动态行为或所有未来样本。",
+        "耗时受环境和进程状态影响；摘要不是跨机器保证。baseline/optimized的源快照和样本身份必须保留。",
+        "加强版2.2.0仅1轮对照，不纳入三基底n3结论。",
+        "共用服务、字段组写回和界面生命周期分别引用独立完成日志；性能输出等价不能代替这些事务与交互结论。"
+      ]
+    }
+  ]
+}

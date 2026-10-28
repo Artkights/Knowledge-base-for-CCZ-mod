@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "scope": "最终已完成引擎、布局、事务、界面、输入与共享操作数安全测试及CLI入口",
+  "fileCount": 18,
+  "files": [
+    {
+      "path": "data管理器/src/DataManager.Tests/ByteTextInputTests.cs",
+      "size": 6857,
+      "sha256": "D8F6BEAF8C6DDFCFAE3347B1BE5DD2E5E3D4E7291606E5B877473FA5F566748F"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EffectAssignmentLayoutTests.cs",
+      "size": 7875,
+      "sha256": "974440C7CB7825ECD83F74234FF08F159BF8D4FAE960371C6E17ACFA9F695BB5"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EffectBindingGroupTests.cs",
+      "size": 6592,
+      "sha256": "E43FF992E2F389ECFF692EA0601F827AC8A3A6D17EC30ADBEE31DAF55F7BA7D4"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EngineAssignmentUiTests.cs",
+      "size": 19098,
+      "sha256": "D55083E7E350F6E768EFA344170815CB11C974F36B7F55DF7E5F7286DC14A754"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EngineEffectAssignmentTests.cs",
+      "size": 16826,
+      "sha256": "87D36B6BC2D5807FA1A3C2534D7F1D4BE717981CB4129C2D0F926CC030D6851F"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EngineEffectContractTests.cs",
+      "size": 9005,
+      "sha256": "FC994735A080FB3E07B7B461E5FAB3BD4F7337EA8DDA31739F765E7288299D80"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EngineEffectEvidenceTests.cs",
+      "size": 54870,
+      "sha256": "C49595D698E452F1C78213F75598ABC996886F315D9C71D9AFCD3BA07C505D76"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EngineEffectReportTextTests.cs",
+      "size": 6880,
+      "sha256": "19C47ED0E1AA7A5EB8BC325809410F35715C1436575A71EBEF2AC6C6AA789E21"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EngineEffectScanPerformanceTests.cs",
+      "size": 3357,
+      "sha256": "E39B3A1550341EB53288BD18198CC60D5BC49ABD8794FC7BADE7C9C13CB4DEF9"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EngineEffectScanTests.cs",
+      "size": 85700,
+      "sha256": "FA98A54E187FE0C7096F7B76D0438A59A00CE19ADAAE03E020C0EC5007D9FBA4"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EngineEffectUiTests.cs",
+      "size": 23665,
+      "sha256": "C7D38F06ACFD60C0C129B93701034E4449549638CB3777E7A8E0E5A57AEACA15"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EngineEffectWriteTests.cs",
+      "size": 31260,
+      "sha256": "2745F6482DA4942579BED15D2AD921EFCEBDC3F35A2F48B125EDB613B8C8B19D"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/EngineScanLifecycleTests.cs",
+      "size": 15563,
+      "sha256": "391AB42C9C7ECDEE248D8FE7394A22081731FC2B699ADD76CAA4FF1F82D4A0DA"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/NativeEffectAdapterTests.cs",
+      "size": 14211,
+      "sha256": "129055C655C4A045207E2EB155F5CCE65F6CDC4F11F9FC7ABB5C8AC0F32B2A58"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/OperandSharingSafetyTests.cs",
+      "size": 10410,
+      "sha256": "D1A0951DB7ABEACBC570ABCE9B7EC0323363C5727DBC6F68C39ECBD913C3EFDA"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/Program.cs",
+      "size": 24327,
+      "sha256": "FFB7120900D367B358635E861DB043F984C777C05AD40EF2BD0F36B4E81B1E77"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/ThreeBaseAssignmentTests.cs",
+      "size": 13251,
+      "sha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E"
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/UiWritebackHardeningTests.cs",
+      "size": 25052,
+      "sha256": "6CD150FC9DE196292A381CB86518511DD266D8E0A4545950B3249BF68BD10B79"
+    }
+  ],
+  "boundary": "最终冻结来源；历史性能测量来源另存，不以当前源码代换。"
+}

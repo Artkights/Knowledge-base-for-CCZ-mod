@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.6/data/patches/legacy-effect-injections.json`、`6.6/data/patches/xiaoan-semantic-locators.json`、`6.6/data/patches/xiaoan-speed-patch-sites.json`
+结构化事实来源：`6.6/data/patches/legacy-effect-injections.json`、`6.6/data/patches/shanzai-20261027-patches.json`、`6.6/data/patches/xiaoan-semantic-locators.json`、`6.6/data/patches/xiaoan-speed-patch-sites.json`
 
 ## 【修改記錄整理】
 
@@ -553,6 +553,19 @@ ID: `patch.66.legacy-56d5012ecd95`；类型: `legacy-injection`；画像: `profi
 | `0x0043D3B8` (va) | `-` | `FF` | legacy-od-block | 1 | - |
 | `0x0043D403` (va) | `-` | `00` | legacy-od-block | 1 | - |
 | `0x0043D405` (va) | `-` | `FF` | legacy-od-block | 1 | - |
+
+## 6.6 装备页一行显示 7 个属性（call 重定向到 helper）
+
+ID: `patch.66.equip-ability-row`；类型: `instruction-replacement`；画像: `profile.ccz66.shanzai.work.1b25`；状态: `candidate`；证据: `sample-verified`
+
+> 历史候选：用于查询、逆向和迁移设计。若站点缺少 `expectedBytes` 或完整指令边界，不得自动写入。
+
+| 地址 | 原字节 | 目标字节 | 写入方式 | 长度 | 完整指令边界 |
+|---|---|---|---|---:|---|
+| `0x00476FB6` (va) | `E8 0D B0 FE FF` | `E8 AD B5 05 00` | whole-instruction | 5 | True |
+
+执行流：5 字节整条 call 替换为 5 字节 call，不改指令边界；原目标 0x00461FC8 是 ret 0x10 形态（0x00462048 现读 `C2 10 00 90`），helper 必须保持同一契约。
+
 
 ## 原生 Z 加速函数定位器
 

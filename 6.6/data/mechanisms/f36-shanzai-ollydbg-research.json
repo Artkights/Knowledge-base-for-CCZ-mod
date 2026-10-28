@@ -6,16 +6,33 @@
     {
       "id": "mechanism.66.f36.ollydbg-migration",
       "title": "从旧 OllyDbg 地址迁移到 F36 样本",
-      "aliases": ["godtype 教程迁移流程", "版本地址差异护栏"],
-      "versions": ["6.6"],
+      "aliases": [
+        "godtype 教程迁移流程",
+        "版本地址差异护栏"
+      ],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "candidate",
       "evidence": "source-reviewed",
       "summary": "旧教程适合学习 x86 调试方法和调用关系推理，不适合作为 F36 的固定补丁表。地址必须先绑定 SHA，再用原字节、完整指令边界、调用约定和交叉引用重定位。",
       "steps": [
-        {"order": 1, "entity": "fn.66.f36.data-id-to-character-record", "role": "先确认人物记录步长和指针槽"},
-        {"order": 2, "entity": "fn.66.f36.battlefield-id-to-unit-record", "role": "再确认战场单位记录入口和寄存器契约"},
-        {"order": 3, "entity": "fn.66.f36.data-id-to-battlefield-id", "role": "最后用遍历函数核对哨兵和边界"}
+        {
+          "order": 1,
+          "entity": "fn.66.f36.data-id-to-character-record",
+          "role": "先确认人物记录步长和指针槽"
+        },
+        {
+          "order": 2,
+          "entity": "fn.66.f36.battlefield-id-to-unit-record",
+          "role": "再确认战场单位记录入口和寄存器契约"
+        },
+        {
+          "order": 3,
+          "entity": "fn.66.f36.data-id-to-battlefield-id",
+          "role": "最后用遍历函数核对哨兵和边界"
+        }
       ],
       "inputs": [
         "目标 Ekd5.exe SHA256、大小和 PE 映射",
@@ -24,14 +41,38 @@
         "可回滚测试副本"
       ],
       "procedure": [
-        {"order": 1, "action": "固定样本身份，记录 SHA256、ImageBase、区段和入口"},
-        {"order": 2, "action": "把旧地址降级为搜索种子，不把地址本身当作语义"},
-        {"order": 3, "action": "优先搜索步长、常量、原字节和调用形状，确认完整指令边界"},
-        {"order": 4, "action": "沿调用者和被调用者复核参数位置、寄存器返回、栈清理和 EFLAGS"},
-        {"order": 5, "action": "分别建立静态事实、旧版参照和未闭环假设，禁止混写"},
-        {"order": 6, "action": "只有在测试副本上记录 expectedBytes、覆盖长度、回跳和冲突后才生成写回候选"},
-        {"order": 7, "action": "静态复读后用正负运行时样本验证字段时序、哨兵和行为"},
-        {"order": 8, "action": "保存后重新打开并复读字节、哈希、跳转落点和未改区域"}
+        {
+          "order": 1,
+          "action": "固定样本身份，记录 SHA256、ImageBase、区段和入口"
+        },
+        {
+          "order": 2,
+          "action": "把旧地址降级为搜索种子，不把地址本身当作语义"
+        },
+        {
+          "order": 3,
+          "action": "优先搜索步长、常量、原字节和调用形状，确认完整指令边界"
+        },
+        {
+          "order": 4,
+          "action": "沿调用者和被调用者复核参数位置、寄存器返回、栈清理和 EFLAGS"
+        },
+        {
+          "order": 5,
+          "action": "分别建立静态事实、旧版参照和未闭环假设，禁止混写"
+        },
+        {
+          "order": 6,
+          "action": "只有在测试副本上记录 expectedBytes、覆盖长度、回跳和冲突后才生成写回候选"
+        },
+        {
+          "order": 7,
+          "action": "静态复读后用正负运行时样本验证字段时序、哨兵和行为"
+        },
+        {
+          "order": 8,
+          "action": "保存后重新打开并复读字节、哈希、跳转落点和未改区域"
+        }
       ],
       "gates": [
         "F36 样本与其它 6.6 文件 SHA 不同则重新定位",
@@ -56,13 +97,24 @@
         "fn.66.f36.battlefield-id-to-unit-record",
         "fn.66.f36.data-id-to-battlefield-id"
       ],
-      "sourceRefs": ["src.forum.godtype.194034", "src.ccz.f36.static-report", "src.ccz.f36.exe"]
+      "sourceRefs": [
+        "src.forum.godtype.194034",
+        "src.ccz.f36.static-report",
+        "src.ccz.f36.exe",
+        "src.upstream.artkights.b2c.2f29150b7df0"
+      ]
     },
     {
       "id": "mechanism.66.f36.sp-accumulation-layout",
       "title": "F36 SP 累积代码与旧 00410FFF 补丁的偏移差异",
-      "aliases": ["00411000", "SHR EDX", "Star 引擎 SP 累积"],
-      "versions": ["6.6"],
+      "aliases": [
+        "00411000",
+        "SHR EDX",
+        "Star 引擎 SP 累积"
+      ],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "candidate",
       "evidence": "static-verified",
@@ -90,7 +142,11 @@
         }
       ],
       "relations": [],
-      "sourceRefs": ["src.forum.godtype.194034", "src.ccz.f36.static-report"]
+      "sourceRefs": [
+        "src.forum.godtype.194034",
+        "src.ccz.f36.static-report",
+        "src.upstream.artkights.b2c.2f29150b7df0"
+      ]
     }
   ]
 }

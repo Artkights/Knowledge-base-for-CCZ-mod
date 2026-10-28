@@ -28,11 +28,11 @@
 
 ## 读取与查询
 
-1. 先选择 `6.5`、`6.5pl`、`6.6` 或 `legacy`，读取相应 `README.md`。
+1. 先选择 `6.4`、`6.5`、`6.5pl`、`6.6` 或 `legacy`，读取相应 `README.md`。`6.4` 当前只覆盖绑定洗隋 `9112` 精确样本的事实；`6.5pl` 保留为无独立画像的研究占位。
 2. 人工浏览 `reference/`；机器先读 `index.json`，再按 `structuredDataPath` 打开完整实体。
 3. 地址检索示例：`python tools/query_kb.py "0x004210D0" --version 6.5`。
 4. 剧本检索示例：`python tools/query_kb.py "0x14" --version 6.5 --entity-type script-command`。
-5. 只接受已验证事实时增加 `--canonical-only`；研究线索需显式增加 `--include-research`。
+5. 只接受已验证事实时增加 `--canonical-only`；研究线索需显式增加 `--include-research`。`--version 6.4`、`--version 6.5pl` 都是有效的版本筛选；后者在独立画像出现前不得返回 canonical 固定地址。
 
 当前数据域包括引擎画像、函数、全局量、数据结构、文件格式、补丁、机制、特效桩、剧本指令、工作流、测试契约和制作案例。`index.json` 提供统一 ID、版本、状态、证据、地址、搜索词、来源和数据路径。
 
@@ -82,6 +82,8 @@ python tools/build_index.py
 python tools/validate_kb.py
 ```
 
-校验器检查实体关系、画像绑定、补丁字节长度、剧本键唯一性、工作流顺序、来源引用、索引哈希、本机路径、敏感信息和生成物是否最新。干净克隆执行上述命令后必须产生零差异。
+校验器检查实体关系、画像绑定、补丁字节长度、剧本键唯一性、工作流顺序、来源引用、来源可复核性契约、索引哈希、本机路径、敏感信息、版本护栏和生成物是否最新。干净克隆执行上述命令后必须产生零差异；需要只读检查时可使用 `python tools/build_reference.py --check`、`python tools/build_index.py --check`。
 
 知识库生成、校验和查询命令在本仓库根目录运行。数据管理器的构建与回归契约则在包含 `data管理器/`、`形象管理器/` 的源工作区运行；先按 `sources/source-manifest.json` 的相对路径和 SHA-256 核对源码版本，再替换契约中的目录占位符。本仓库保留结构化结论与小型字节证据，不分发游戏基底或工具构建产物。
+
+本轮整合回执见 `sources/integration-20261028.json`。它记录 main、三个专题分支和当前本地整合稿的稳定 ID 覆盖、目标路径、状态和规范化实体哈希；历史来源无法随仓库发布时，`sources/source-manifest.json` 的 `verification` 会明确标为 `external-local` 或 `identity-only`，不会把路径存在误写成仓库内证据。

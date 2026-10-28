@@ -1,0 +1,42 @@
+{
+  "schema": "ccz.hybrid-icon-profile-evidence.v1",
+  "readOnly": true,
+  "files": [
+    {
+      "path": "基底/厚黑6.6测（7.9水杯版）/Ekd5.exe",
+      "length": 1130496,
+      "sha256": "A99DDD6971669D4847444F91B9ED211CD205107E1074528CCEDB86E360FC1282"
+    },
+    {
+      "path": "基底/厚黑6.6测（7.9水杯版）/E5/Item.e5",
+      "length": 115997,
+      "sha256": "B4E561A8BD5B594746940AF43AAAD2B4A50AD019326A2994B90CD1A1A02D2767"
+    },
+    {
+      "path": "基底/厚黑6.6测（7.9水杯版）/Itemicon.dll",
+      "length": 627712,
+      "sha256": "1D00379D11296EC06C6F1B38440AD1E5FAE811AC78D637F961DF41F2954FDE31"
+    }
+  ],
+  "e5EntryCount": 126,
+  "decodedLengths": {
+    "1024": 106,
+    "1026": 20
+  },
+  "fixedFilePrivatePart": 6,
+  "localizedFileVersionText": "1,0,0,1",
+  "dllLogicalPairs": 171,
+  "dllSizes": [
+    [
+      16,
+      16
+    ],
+    [
+      32,
+      32
+    ]
+  ],
+  "policy": "RAW Item geometry unverified; do not interpret as 63 icon pairs; use validated Itemicon DLL",
+  "evidence": "source-reviewed-tests",
+  "tests": "--raw-icon-investigation; 8 assertions, six sample version checks"
+}

@@ -38,7 +38,7 @@
 
 - `id` 全库唯一且长期稳定，格式为 `类型.版本.短名`；不能把标题或数组序号当稳定 ID。
 - `title` 应描述技术语义；地址、opcode 和旧名称放入 `aliases`，保证可检索。
-- `versions` 只列实际适用版本；6.5、6.5pl、6.6 不共享固定地址。
+- `versions` 只列实际适用版本；6.4、6.5、6.5pl、6.6 不共享固定地址。
 - 固定地址必须绑定 `profile`；画像至少说明架构、ImageBase、样本身份或明确的候选边界。
 - `evidence` 描述证据本身，例如 `runtime-verified`、`static-verified`、`source-reviewed`、`legacy-structured`、`legacy-patch-bytes`。
 - `sourceRefs` 必须引用 `sources/source-manifest.json` 中存在的记录；来源记录包含相对路径和 SHA256。
@@ -108,3 +108,28 @@ git diff --check
 ```
 
 并至少用 `tools/query_kb.py` 按标题、地址/opcode 和实体类型各查询一次。提交中应包含 JSON、重新生成的参考页、`index.json` 和必要的来源/清理记录；生成器再次运行必须无差异。
+
+## 6. 版本域、来源可用性与持续验证
+
+版本列表统一维护在 `tools/version_config.py`。6.4 是独立事实域，不能因配置继承 6.5 就继承全部地址或写入能力。6.5pl 保留 README、研究队列和现有候选检索；在独立画像验证前不建立数据根或 canonical 地址。
+
+每条来源保留原始 `path`、`sha256`，并增加 `verification`，明确干净克隆能否取得原字节：
+
+- `repository-file`：原 `path` 在仓库内，校验实际文件与原 SHA256。
+- `repository-snapshot`：`snapshotPath` 是仓库内安全相对路径，`sha256` 对应快照真实字节；若是派生快照而非原字节，必须在 `reason` 说明差别。
+- `remote-git`：提供 HTTPS `repository`、完整 40 位 `commit`、仓库相对 `path` 和原始 `sha256`。本地及 CI 离线校验固定提交元数据，不声称本次已联网取得原文。
+- `external-local` 或 `identity-only`：必须在 `reason` 说明未发布、无法取得原字节或仅保存样本身份的限制。
+
+路径必须使用正斜线，不得包含绝对路径、盘符或 `..`。来源存在不等于已验证玩法；静态、工具层烟测和游戏内运行验收必须分别表述。EXE、DLL 和游戏基底只登记身份及哈希。
+
+生成器支持不写入的检查模式，验证器也只在内存中比较生成物：
+
+```text
+python -B tools/build_reference.py --check
+python -B tools/build_index.py --check
+python -B tools/validate_kb.py
+python -B tools/query_smoke.py
+python -B -m unittest discover -s tools/tests -p "test_*.py" -v
+```
+
+CI 执行上述门禁和 `git diff --check`。发现生成物过期时先执行普通生成命令，再审阅并提交生成差异；验证器不会替提交者静默修复。新增或合并分支必须保留逐实体处置回执，以 ID 对照说明保留、合并、拆分、降级或排除理由。

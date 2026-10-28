@@ -70,6 +70,142 @@
       "sourceRefs": []
     },
     {
+      "id": "research.66.autosave-battle-statistics-runtime",
+      "title": "6.6自动档与战斗统计在游戏内的最终结果验收",
+      "versions": [
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "source-reviewed",
+      "known": [
+        "源文档有离线模型与动态定位设计；回复统计改为我方目标最终HP增加量，追加攻击在实际结果段去重。",
+        "本轮不把未绑定完整EXE SHA的回归地址装入通用6.6函数事实。"
+      ],
+      "needed": [
+        "明确每个被测EXE/补丁模块SHA和原字节",
+        "完成自疗/过量/多目标/暴击/取消预览/读档重置的画面内存对照",
+        "注入只读/空间不足/保存中断/索引损坏并保持原生档可用"
+      ],
+      "sourceRefs": [
+        "src.local-review.251bf877d0de22c3"
+      ],
+      "priority": "P1"
+    },
+    {
+      "id": "research.66.f20c.axe16-duel-third-consumer",
+      "title": "F20C无敌大斧第三项斗将N次的独立消费者待证",
+      "versions": [
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "consumer-unverified",
+      "known": [
+        "精确F20C样本物品16装备selector37、原始N50。HP原生路径与个人效果2拥有模式恢复独立引用37已经静态确认。",
+        "用户提到的第三项斗将N次，本轮没有独立已验证消费者或字段映射。文本、名称或同号不能单独证明第三项与37的关系。"
+      ],
+      "needed": [
+        "取得该第三项的独立调用/条件、装备或个人selector、N真实来源和当前精确样本字节证据后，另行建立绑定关系。",
+        "当前不将第三项归为37已证实组合，也不推断必属脚本；剧本专属与套装按既定范围处理。"
+      ],
+      "sourceRefs": [
+        "src.dm.final-three-base-acceptance-20261027",
+        "src.dm.axe37-consumer-20261027"
+      ]
+    },
+    {
+      "id": "research.66.f36.context-field-semantics",
+      "title": "F36 三类战斗上下文偏移和生命周期动态复核",
+      "versions": [
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "static-base-only",
+      "known": [
+        "0x004927F0、0x00497AF8、0x00497750 在 F36 中有直接代码引用",
+        "旧教程把 0x004927F0+0x60C/0x610 描述为挨打动作横纵位移，但该字段语义未在 F36 实机闭环",
+        "静态报告 runtime_verified=false，不能用基址引用代替字段行为证据"
+      ],
+      "needed": [
+        "按物理攻击、策略、道具、失败、反击和多目标场景采集断点前后值",
+        "确认数组容量、字段宽度、清零时机和嵌套攻击生命周期",
+        "为每个可写字段补齐运行时证据和回滚约束"
+      ],
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "research.66.f36.conversion-return-contracts",
+      "title": "F36 记录指针转换函数的业务参数和返回寄存器",
+      "versions": [
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "static-candidate",
+      "known": [
+        "0x00477ADC 会遍历单位、调用 0x00482715 取记录首字低 12 位，并存在 AL=0xFF 路径",
+        "0x004796DC 预压入 0xFFFF，遍历单位并调用 0x0045F670 后比较输入值",
+        "静态反编译没有形成足够稳定的最终寄存器返回和业务命名"
+      ],
+      "needed": [
+        "用已知在场和不在场 Data/人物记录分别命中两个入口",
+        "记录 ECX、EAX、AL、栈清理和调用者后续使用的真实契约",
+        "确认 AL=0xFF 与 EAX=0xFFFF 是否分别为当前版本稳定哨兵"
+      ],
+      "sourceRefs": [
+        "src.ccz.f36.static-report",
+        "src.forum.godtype.194034"
+      ]
+    },
+    {
+      "id": "research.66.f36.damage-display-candidate",
+      "title": "F36 伤害数字显示候选调用链",
+      "versions": [
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "forum-counterexample",
+      "known": [
+        "论坛第 3 页给出 0x0044FB16、0x0044FB66 两段候选代码",
+        "原作者明确表示两段代码对伤害显示貌似没有作用",
+        "本轮没有启动游戏或复现该行为"
+      ],
+      "needed": [
+        "在 F36 测试副本中对普通伤害、策略伤害、治疗和无效行动分别断点",
+        "区分数值计算、显示队列和动画播放三个调用阶段",
+        "只有完成正负样本闭环后才建立函数或 Hook 实体"
+      ],
+      "sourceRefs": [
+        "src.forum.godtype.194034",
+        "src.ccz.f36.exe"
+      ]
+    },
+    {
+      "id": "research.66.shanzai6929.business-and-runtime",
+      "title": "6929/6562静态候选的业务命名、接口安装与动态闭环",
+      "versions": [
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "source-reviewed",
+      "known": [
+        "十批P0静态摘要、四个小ABI和独立模块身份已进入candidate实体。",
+        "原本P0目录统计111与85+14不一致，不能据该导航统计认证审阅数量。"
+      ],
+      "needed": [
+        "重新发布绑定模块SHA的原始字节与完整ABI",
+        "观察DLL加载及WriteProcessMemory成功、接口真实调用",
+        "完成资源字段名称、模式语义、目标容量和实机触发矩阵"
+      ],
+      "sourceRefs": [
+        "src.local-review.77cd13b616d14c1b",
+        "src.local-review.d7dfb5239851df8d",
+        "src.local-review.a37c00c8fdede7c6"
+      ],
+      "priority": "P1"
+    },
+    {
       "id": "research.66.xiaoan-derived-targets",
       "title": "固化小暗 6.6 sleep/deadline/pump/phaseTable 的样本地址",
       "versions": [
@@ -1572,6 +1708,55 @@
       "sourceRefs": []
     },
     {
+      "id": "research.shared.consumable-effect-consumers",
+      "title": "消耗品 0x1A–0x3D 分发表、参数消费与效果闭环",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "labels-and-sample-bytes-without-per-effect-runtime",
+      "known": [
+        "独立目录覆盖36个编号；用户标签、编辑器源码与样本原始字节已分别登记。",
+        "6.5 Star.e5 的25个消耗品样本可核对实际特效号及+0x15/+0x16参数原值，但样本名称不能独立证明执行行为。",
+        "原请求重复写0x28；目录采用0x28恢复SP，0x2B MP上升为仙酒样本支持的推定。"
+      ],
+      "needed": [
+        "对精确SHA的6.5/6.6目标EXE分别定位消耗品分发表，登记每个编号的入口、调用契约及参数宽度、单位和上下限。",
+        "用正负样本验证0x28恢复SP与0x2B MP上升，记录前后状态及副作用，不能仅凭目录名称消解冲突。",
+        "区分0x2C–0x30和0x35–0x39的数字显示策略与真实行为；补齐0x31–0x34及0x3A–0x3D的目标、技能/策略ID和材料消费规则。",
+        "逐编号完成静态消费者或运行时闭环后更新既有目录证据，不能把整个候选目录一次性升级为运行时事实。"
+      ],
+      "sourceRefs": [
+        "src.items.consumable-catalog",
+        "src.items.user-confirmation",
+        "src.items.byte-evidence"
+      ]
+    },
+    {
+      "id": "research.shared.e5s-appearance-runtime-acceptance",
+      "title": "R/S存档同步后的人工读档与未知尾部兼容",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "open",
+      "evidence": "source-reviewed",
+      "known": [
+        "离线同步按变化人物、存档组、索引与统计SHA处理。"
+      ],
+      "needed": [
+        "在各精确画像中完成人工读档观察",
+        "证明未知扩容和旧尾部应跳过而非截断修复",
+        "多编辑器或外部改写冲突不被覆盖"
+      ],
+      "sourceRefs": [
+        "src.local-review.b69907b927fb7718"
+      ],
+      "priority": "P1"
+    },
+    {
       "id": "research.shared.eex-header-fields",
       "title": "解析 EEX 头部与目录字段",
       "versions": [
@@ -1594,72 +1779,48 @@
       ]
     },
     {
-      "id": "research.66.f36.context-field-semantics",
-      "title": "F36 三类战斗上下文偏移和生命周期动态复核",
+      "id": "research.shared.effect-suffix-and-legacy-policy",
+      "title": "原生后缀消费者与旧直写策略的证据边界",
       "versions": [
+        "6.5",
         "6.6"
       ],
       "status": "open",
-      "evidence": "static-base-only",
+      "evidence": "source-reviewed",
       "known": [
-        "0x004927F0、0x00497AF8、0x00497750 在 F36 中有直接代码引用",
-        "旧教程把 0x004927F0+0x60C/0x610 描述为挨打动作横纵位移，但该字段语义未在 F36 实机闭环",
-        "静态报告 runtime_verified=false，不能用基址引用代替字段行为证据"
+        "后缀项目目录为显示元数据；未证明独立原生后缀槽。",
+        "旧文档DirectUnrestricted不等于知识库canonical或自动写回权限。"
       ],
       "needed": [
-        "按物理攻击、策略、道具、失败、反击和多目标场景采集断点前后值",
-        "确认数组容量、字段宽度、清零时机和嵌套攻击生命周期",
-        "为每个可写字段补齐运行时证据和回滚约束"
+        "精确样本下原生显示函数/名称池引用和槽位结构",
+        "旧九概念稿与新类别值语义/聚合器ABI逐项交叉校正"
       ],
       "sourceRefs": [
-        "src.ccz.f36.static-report",
-        "src.forum.godtype.194034"
-      ]
+        "src.local-review.6a87ddb5f3a41178"
+      ],
+      "priority": "P1"
     },
     {
-      "id": "research.66.f36.conversion-return-contracts",
-      "title": "F36 记录指针转换函数的业务参数和返回寄存器",
+      "id": "research.shared.hybrid-raw-item-icon-geometry",
+      "title": "厚黑6.6混合资源 RAW Item.e5 几何与消费者",
       "versions": [
         "6.6"
       ],
       "status": "open",
-      "evidence": "static-candidate",
+      "evidence": "sample-structure-only",
       "known": [
-        "0x00477ADC 会遍历单位、调用 0x00482715 取记录首字低 12 位，并存在 AL=0xFF 路径",
-        "0x004796DC 预压入 0xFFFF，遍历单位并调用 0x0045F670 后比较输入值",
-        "静态反编译没有形成足够稳定的最终寄存器返回和业务命名"
+        "精确SHA样本A99DDD69的PE固定版本FilePrivatePart=6，尽管本地化文本为1,0,0,1，资源仍可使用Itemicon.dll。",
+        "E5/Item.e5具有126条RAW载荷，106条1024字节、20条1026字节；缺少标准图头，不应从总字节数或偶数条目推出63对图标。",
+        "当前已验证Itemicon.dll可读取171对16/32图片，作为资源选择回退；未知RAW原件保留。"
       ],
       "needed": [
-        "用已知在场和不在场 Data/人物记录分别命中两个入口",
-        "记录 ECX、EAX、AL、栈清理和调用者后续使用的真实契约",
-        "确认 AL=0xFF 与 EAX=0xFFFF 是否分别为当前版本稳定哨兵"
+        "追踪对应EXE实际打开RAW Item的消费者、宽高、附加2字节含义、配对和透明规则。",
+        "绑定原始容器/样本SHA并提供逐项像素或游戏预览闭环，在此之前不开放该RAW图标读写或自动迁移转换。"
       ],
       "sourceRefs": [
-        "src.ccz.f36.static-report",
-        "src.forum.godtype.194034"
-      ]
-    },
-    {
-      "id": "research.66.f36.damage-display-candidate",
-      "title": "F36 伤害数字显示候选调用链",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "forum-counterexample",
-      "known": [
-        "论坛第 3 页给出 0x0044FB16、0x0044FB66 两段候选代码",
-        "原作者明确表示两段代码对伤害显示貌似没有作用",
-        "本轮没有启动游戏或复现该行为"
-      ],
-      "needed": [
-        "在 F36 测试副本中对普通伤害、策略伤害、治疗和无效行动分别断点",
-        "区分数值计算、显示队列和动画播放三个调用阶段",
-        "只有完成正负样本闭环后才建立函数或 Hook 实体"
-      ],
-      "sourceRefs": [
-        "src.forum.godtype.194034",
-        "src.ccz.f36.exe"
+        "src.data-manager.hybrid-icon-evidence",
+        "src.data-manager.image-profile",
+        "src.data-manager.image-codec-tests"
       ]
     },
     {
@@ -1690,55 +1851,6 @@
         "src.data-manager.image-animation-thread-evidence",
         "src.data-manager.image-pixel-mix-evidence",
         "src.data-manager.image-color-mix-evidence"
-      ]
-    },
-    {
-      "id": "research.shared.hybrid-raw-item-icon-geometry",
-      "title": "厚黑6.6混合资源 RAW Item.e5 几何与消费者",
-      "versions": [
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "sample-structure-only",
-      "known": [
-        "精确SHA样本A99DDD69的PE固定版本FilePrivatePart=6，尽管本地化文本为1,0,0,1，资源仍可使用Itemicon.dll。",
-        "E5/Item.e5具有126条RAW载荷，106条1024字节、20条1026字节；缺少标准图头，不应从总字节数或偶数条目推出63对图标。",
-        "当前已验证Itemicon.dll可读取171对16/32图片，作为资源选择回退；未知RAW原件保留。"
-      ],
-      "needed": [
-        "追踪对应EXE实际打开RAW Item的消费者、宽高、附加2字节含义、配对和透明规则。",
-        "绑定原始容器/样本SHA并提供逐项像素或游戏预览闭环，在此之前不开放该RAW图标读写或自动迁移转换。"
-      ],
-      "sourceRefs": [
-        "src.data-manager.hybrid-icon-evidence",
-        "src.data-manager.image-profile",
-        "src.data-manager.image-codec-tests"
-      ]
-    },
-    {
-      "id": "research.shared.consumable-effect-consumers",
-      "title": "消耗品 0x1A–0x3D 分发表、参数消费与效果闭环",
-      "versions": [
-        "6.5",
-        "6.6"
-      ],
-      "status": "open",
-      "evidence": "labels-and-sample-bytes-without-per-effect-runtime",
-      "known": [
-        "独立目录覆盖36个编号；用户标签、编辑器源码与样本原始字节已分别登记。",
-        "6.5 Star.e5 的25个消耗品样本可核对实际特效号及+0x15/+0x16参数原值，但样本名称不能独立证明执行行为。",
-        "原请求重复写0x28；目录采用0x28恢复SP，0x2B MP上升为仙酒样本支持的推定。"
-      ],
-      "needed": [
-        "对精确SHA的6.5/6.6目标EXE分别定位消耗品分发表，登记每个编号的入口、调用契约及参数宽度、单位和上下限。",
-        "用正负样本验证0x28恢复SP与0x2B MP上升，记录前后状态及副作用，不能仅凭目录名称消解冲突。",
-        "区分0x2C–0x30和0x35–0x39的数字显示策略与真实行为；补齐0x31–0x34及0x3A–0x3D的目标、技能/策略ID和材料消费规则。",
-        "逐编号完成静态消费者或运行时闭环后更新既有目录证据，不能把整个候选目录一次性升级为运行时事实。"
-      ],
-      "sourceRefs": [
-        "src.items.consumable-catalog",
-        "src.items.user-confirmation",
-        "src.items.byte-evidence"
       ]
     }
   ]

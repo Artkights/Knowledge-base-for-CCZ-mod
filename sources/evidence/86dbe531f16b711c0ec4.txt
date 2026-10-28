@@ -1,0 +1,823 @@
+{
+  "schemaVersion": 1,
+  "scope": "主任务已通知冻结的Core/App源文件",
+  "fileCount": 163,
+  "files": [
+    {
+      "path": "data管理器/src/DataManager.App/ApplicationBootstrap.cs",
+      "size": 257,
+      "sha256": "73C0FBDC4539C5F8D2B9F859FAF78425F9E79DE869590A4D9B34EF382A4D2AFC"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/BatchDialog.cs",
+      "size": 9095,
+      "sha256": "8CBDA790A20B743DE51374C5765C4909750CA20EC7BA5F55421392F9EE0B2CC2"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/BundleVerification.cs",
+      "size": 42277,
+      "sha256": "2E47066DA1EC8F59111205A118E49B0A32504C94DF688464819DC5DA36312E32"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/BusinessEditorPanel.AccessoryGroups.cs",
+      "size": 15996,
+      "sha256": "661AE22E0B13FC4229ED264F1E1ED12D60BAFFFA645471C7459EA55E7659C7AA"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/BusinessEditorPanel.Compact.cs",
+      "size": 45452,
+      "sha256": "AFC08DF9BB0945D28B55417E18BF201295791769B17AAE59FD6679466B272A10"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/BusinessEditorPanel.cs",
+      "size": 70147,
+      "sha256": "08DC1BC0CA614210ECECF1DED34D5530E1558BB365E2AFFD2E5B4CFC0B66253B"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/BusinessEditorPanel.EquipmentTypes.cs",
+      "size": 8929,
+      "sha256": "DDE96563776D9D6B4870EF630EF0F8D125FAEB287B26F2515E487DD05F183716"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/BusinessEditorPanel.Matrices.cs",
+      "size": 18500,
+      "sha256": "247A3462B983A2565C61126183AE80DC11958C8F7ACDCBD6CC9A41AE2983B125"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/BusinessEditorPanel.Pending.cs",
+      "size": 4000,
+      "sha256": "1631BF35396C265463C11BC5556F9906A7763DC82F9940655FB80BCA45EFCA81"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/BusinessEditorPanel.Previews.cs",
+      "size": 14429,
+      "sha256": "CD5764AA6C7CE7B559F12E8378BE513BF6BCF98C4B15EF25B6A571857397258F"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/BusinessEditorPanel.Quotes.cs",
+      "size": 16956,
+      "sha256": "60C6FC2BF6BD1B3E77F50C59F992CA2E5A1712061C441BE9E538602E868F636A"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/ByteLimitedTextBox.cs",
+      "size": 18473,
+      "sha256": "B48D3DCF88ECF7A342829DDB993C5BA1438D401A6D3D376E75CD135DBDEE4024"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/DataManager.App.csproj",
+      "size": 1388,
+      "sha256": "210B7C20DF8E539153EE9FE8195E925BFDA5C9EAD987DCE768F3BB64603BE453"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/EngineAssignmentPanel.cs",
+      "size": 19936,
+      "sha256": "0A5DA5593E6FB66EDA4F7070C72EEF88EE9734F13F7C52609A5E6493A0F89D96"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/EngineEffectCallWriteDialog.cs",
+      "size": 13257,
+      "sha256": "8921936118305EFC7E8E71E394CA574352CB6A19A5A182EABA50AB01E7206772"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/EngineEffectDetailPanel.cs",
+      "size": 44948,
+      "sha256": "DE4797D41D6D9B2A7FDBA616124452BFE733F85E3DC21377C2D171CD472452D3"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/EngineEffectDetailPanel.Layout.cs",
+      "size": 27070,
+      "sha256": "3AB0EE01D47740DCD9BE4813B3592F4A26DFE38895175A5252076C7D25A2E459"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/EngineEffectDetailPanel.Write.cs",
+      "size": 5663,
+      "sha256": "95F89304C83D6CC553AA754529DCAF1D30B966D88910CD4464B92F45824204D6"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/EngineEffectWritePreviewDialog.cs",
+      "size": 6470,
+      "sha256": "CC598526BD300F9A2C6692954A0EE6B2B271EDD8B1FED184A7FA5972A2BDC8EB"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/ExtendBundleVerification.cs",
+      "size": 11056,
+      "sha256": "8536F61A5C849FF96483569AECDC61CA3F7445B6CF8F6AD4732B1A59803679D0"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/ExtendDataEditorPanel.cs",
+      "size": 33893,
+      "sha256": "65E696A8652165ED7A60F79700B649BD47DFC6BBCA379B80E95871B2FE4474A7"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/ExtendDataEditorPanel.Forge.cs",
+      "size": 9002,
+      "sha256": "D2BA955FB6F5D1C929F023FE7530F81FF0F9BE99720A6B132F238645A38297F7"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/FindDialog.cs",
+      "size": 2784,
+      "sha256": "F79B36ABA4BF0A3F346C78792B9E69E63F53198B2B32FAFC162CD79987305920"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/LookupIndexCache.cs",
+      "size": 6554,
+      "sha256": "EC6E877FABCDE22117C4E075042CD92DA61C1201D67B051F78AA24F691E6CEF2"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.Business.cs",
+      "size": 8711,
+      "sha256": "89AF1691F6FD843144AFB14AE0A8403CA5782BB875BDC4A8F51F297879E4EE99"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.cs",
+      "size": 92528,
+      "sha256": "42F3684BAD06EB6217EFE7E5848A1CDA8544A5A61E63D2DF9C4E05A482C397E6"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.EngineAssignments.cs",
+      "size": 24958,
+      "sha256": "2BAADDE4753380058383C76DBEBD7CB1908FE27AAE67FD5A2A66D958484ECFCB"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.EngineAssignmentSelection.cs",
+      "size": 6616,
+      "sha256": "630F6F1C054D602B0F101A8B9475690E46EBE83FBD1B12DDAFDF92A3747B4685"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.EngineScan.cs",
+      "size": 17791,
+      "sha256": "F7EC2827E1A268A799D17A4E09789DD6800D3CD12240169CDD09FD30176ADE5A"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.EngineScan.TestAccess.cs",
+      "size": 1412,
+      "sha256": "1C65512A6635BCF6E3567E928CB4F6E385501EA654CE3903C025765A5365E51D"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.Loading.cs",
+      "size": 7077,
+      "sha256": "24D2F1C9FA57EC3EBE02BCAC554918D1FF949AA12F69E9F9BC64EDA36DC6FED2"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.References.cs",
+      "size": 10151,
+      "sha256": "C4E9A927514F8F0E486D308138F58620AED5533B95AA750DE05E978087FA31B2"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.ResourceNavigation.cs",
+      "size": 117,
+      "sha256": "76D6EAF629725F8F3C769DB8D9F80A97A2199E6A2F3EBCA8D8F12477EB8270E9"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.SImageReferences.cs",
+      "size": 4574,
+      "sha256": "2858D9250A4011585C859F22E8E8DE8136E094C5DBC605AE5970BA62B603B3A2"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MainForm.Workbooks.cs",
+      "size": 8143,
+      "sha256": "7DD840E83E95B78DBFF48F7B2CF024C529EAD60ADE8B803EEB13CEF1C87B2D80"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MigrationProgressDialog.cs",
+      "size": 4800,
+      "sha256": "9D39BA42CD33C468B3846DC80BB3EC5EBC82EE88F2126F7C36D7E90986E684A0"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/MigrationReviewDialog.cs",
+      "size": 10628,
+      "sha256": "0925F1240AC42B19479E9B29E03E453F630FE9B07C6EECA447AD9B54453F511E"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/Modules/ProfileSelection.cs",
+      "size": 3558,
+      "sha256": "F9F494DFCD3951E0DCB074EEA950E92D2063722EAAD8E8AF37F88FCE5D46AFA6"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/Program.cs",
+      "size": 747,
+      "sha256": "DD568A9B4399F6FFD77CD8EB0D84799FDA13923F238531EC08848A1F5126CBB9"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/ProjectLoadDialog.cs",
+      "size": 2786,
+      "sha256": "1DF7D1ADEAF950B4A5436AC118E03C28A69335ED830C33FEF5412FF31E8FCEA7"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/ProjectRootSelectionDialog.cs",
+      "size": 1500,
+      "sha256": "60DCFDF97B06A031B4992A1F05DB962CAFAC9E0CC8F1FF35207949B9BCB0F4D1"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/Properties/AssemblyInfo.cs",
+      "size": 92,
+      "sha256": "1FA36E645B433E55A72C5543048DC7C3A8869A79F8A0BA4D318F31AA58C048AE"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/RangePreviewPicker.cs",
+      "size": 8511,
+      "sha256": "7770E2D179A56626FCF22CE9C2C29FB36413A1DDD566179E54CB9488FA4612E8"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/ResourcePreviewCard.cs",
+      "size": 6856,
+      "sha256": "910511BB3F11166569094006EA3D40FC966FD1AC40AF5A95CA906A21433CD1E3"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/SearchableIdComboBox.cs",
+      "size": 16011,
+      "sha256": "C809D65428A355A932D0BF8179F5D3C5E7AFF6EA11A42B00129C57EF350C110F"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/SImageLocationDialog.cs",
+      "size": 4968,
+      "sha256": "9BFDE68C03E3C201CE4664D114F2775C6BD5EE79C768D1071A62C3D3784F7456"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/SinglePageTabControl.cs",
+      "size": 797,
+      "sha256": "167FB003A7548397BE81229AC3F9AB7FC81F23C98777F7E1048EDF9C64021A67"
+    },
+    {
+      "path": "data管理器/src/DataManager.App/UnifiedHistoryService.cs",
+      "size": 3631,
+      "sha256": "12A539936407CFAF2F2FF8B42BD19A25F1810C1F988D2F03B7A9B9510F1223C0"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Appearance/AppearanceSyncSession.cs",
+      "size": 9197,
+      "sha256": "1BA9CFBFF6B471A59B39F72F7968474A359AF1EFE16AE5C968741A1B62654913"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Appearance/AppearanceSyncUpdates.cs",
+      "size": 4226,
+      "sha256": "194627A636491547C33ADB0BB0924A14459EA69BE184E1E00772909137ED3912"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Appearance/SaveAppearanceFormats.cs",
+      "size": 9786,
+      "sha256": "F0875D726227E1AD35B8D02C8BBF9EC814F2E9530EDF661944CC4CC91C63DFFB"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Appearance/SaveAppearanceSyncModels.cs",
+      "size": 1254,
+      "sha256": "5B976550CA5EB7754A3F9C3F670C1A5385E9A42413676777EE1AF582B4AC020C"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Appearance/SaveAppearanceSyncService.cs",
+      "size": 11276,
+      "sha256": "CFF71F58DEBC30EB3A8A1967632488E99953321D2801BC9470BD2FC75EBA3AC4"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryTableReader.cs",
+      "size": 9751,
+      "sha256": "B101E1AC8749326EDA442FF5315153F4461F3407A7CE5A95C4DC41210D0D7E48"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryTableWriter.cs",
+      "size": 6462,
+      "sha256": "28F7E53032D847F5B9FC6B0EFF302C9B45DE7CF5EBCBE9EEEE00A13A207D06E9"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryValueCodec.cs",
+      "size": 4080,
+      "sha256": "47EA9B5BB89282B32FA2825B4D394923F41C60B215CA5D5228E34233AFBF36D8"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/ByteChunkMerger.cs",
+      "size": 1279,
+      "sha256": "4C79EA923AF35FE2A541C8699095382BEE1D34277B9FF0FFA9FBC33BA1BF1985"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/EncodingService.cs",
+      "size": 4915,
+      "sha256": "ACFC0EB8930F3F9CC3C5A296C245289AF589FB836FC9DBDF53E058171FA52D56"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/HashService.cs",
+      "size": 466,
+      "sha256": "BC5284892C8AA2B272E963FF3DAA0AF84963C5F9E50F7A1918EC8C458BF6836A"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/ProjectFileLocator.cs",
+      "size": 1315,
+      "sha256": "69B86B1585C85D691D62D5C6D1F43E61EA064DB5AD00F841F758845B3D9C3E83"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/ProjectRootLocator.cs",
+      "size": 1875,
+      "sha256": "E72D2F8B5667C2341272939AC6B4BBFF6843A037CCB286FB99F38A58D6F109A5"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/RecordCodecs.cs",
+      "size": 5992,
+      "sha256": "6C3D5950FBA0A4808D0A78ECC0B1B96D420B500C4B51A70DA1A6C621C754773E"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/TextConsumerEvidence.cs",
+      "size": 4594,
+      "sha256": "9E1B24A06B60AB1EDFB3A7519E3EB586201CBAE2F3B6EE2B3A043A93A95CD41A"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/TextFieldConstraints.cs",
+      "size": 6416,
+      "sha256": "28B8E36CF5FE3987D23AA032F6BBF7B934DDA8A698BA2EC00B0D4BBCA5FE5C1E"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Csv/CsvDisplayNameRegistry.cs",
+      "size": 6756,
+      "sha256": "0E3EE4AFDAF041B2AB967E306554141D7279383B0C682FA60F3281713242931A"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Csv/CsvService.cs",
+      "size": 20521,
+      "sha256": "5E6EE7B8BAEDA3EF49F6B91DE293AE7956B6D07AE6F4217FFAB30D117EC082E0"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/DataManager.Core.csproj",
+      "size": 630,
+      "sha256": "0F2EFCDEFB90D2A6CFAF15AA31F12EDE780A0F78FA1D99CAFC0ADEAE0CD898D8"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/AccessoryGroupDraftService.cs",
+      "size": 3934,
+      "sha256": "1479E14B0E904D52DE96023420603FA91583F0E143BEC74231EA79241A017216"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/AccessoryJobGroupCsvService.cs",
+      "size": 4420,
+      "sha256": "376E732169F17853E4D3D339EC990C35A8C1925D6E8757BF50573BA20D815E16"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/AccessoryJobGroupService.cs",
+      "size": 15133,
+      "sha256": "E713D4138A745049C3FCCF9BD6FFA2149E1CAB348D4AC64B48DECEF27EA6B0B5"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/BusinessDataService.cs",
+      "size": 13680,
+      "sha256": "AF3C62D0F51B8CCB44BB270AA978E3B8DD6EC28216BF0842FF628F65EE0FEE4C"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/BusinessPageModels.cs",
+      "size": 1659,
+      "sha256": "586E188EEF3CDC0FD9AAA21CCBB00D5FA327963B097CFD79C106FE88C4667972"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/CompositePageTransaction.cs",
+      "size": 2628,
+      "sha256": "D7B6EB181522E6DA6900825434FA4CD82534149D3B38F452CFE72E421FDE9204"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/ConsumableItemEffectCatalogService.cs",
+      "size": 6297,
+      "sha256": "A464EAB9159BD4B4582BFE6A48A2810FE88E44ED28B79DF07B5C0683410B77C0"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/EffectNamePoolProbe.cs",
+      "size": 6976,
+      "sha256": "5CC886F422B0E83FECED97E2BAEEF1173497353F266AC8F5BB07565EB7A2FA07"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/EffectNamePoolService.cs",
+      "size": 15838,
+      "sha256": "8C8562088CF738757E1FAE33633DE3B5D32EDBDBC7DC37BF9EFD29E98C83B80A"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/EngineEffectReferenceService.cs",
+      "size": 7206,
+      "sha256": "254F83DEB66693FFBE065359EA656BFA7329D625DF5C207EE92F0D8B7365A59E"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/EquipmentTypeCatalogService.cs",
+      "size": 8265,
+      "sha256": "5B621A674005E2D05AB160F7D5EDC27936CFFE3B5676D59E095274E382038864"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/ExtendDataModels.cs",
+      "size": 1831,
+      "sha256": "12C65F3EC7E9EF26F58F3A4ADE60704F3A550D5B61B35BA8DDAFFA598CED0F8C"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/ExtendDataService.cs",
+      "size": 21014,
+      "sha256": "30872B57EBED599E187F6558BEE0B499E43167193C9B8A7708861474027AF87E"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/IdNameSearch.cs",
+      "size": 1667,
+      "sha256": "09B11CA0A2C6085FD8D4F53FCE2CEA9E7B5A7C4DD21915C6D0C813BDD3A6A17D"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/ItemSemanticResolver.cs",
+      "size": 4977,
+      "sha256": "077EC71BB92F0626E823FEE833F02E7204869BD3DC209CCB5A1A2CE912C05E04"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/ItemTypeService.cs",
+      "size": 6525,
+      "sha256": "146508FEF816819015C00BD0F412B2E0F7C7F223445401BF87E910FC1D3534C1"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/PersonEquipmentService.cs",
+      "size": 4165,
+      "sha256": "D0664ACDE8689968BB7DC08D62B319D57C7E83B4B9B434D1DE66D79B2B754125"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/PersonQuoteService.cs",
+      "size": 11497,
+      "sha256": "2CB7116E5444D0B2E6644C0564846BA3965B3DE79A11A27B85C6D2548BB94A54"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/ShopValueValidator.cs",
+      "size": 1054,
+      "sha256": "BB57DE049A903C377ABDB966417D9B3597D4D17E86CB315A248BDA12FD5AE130"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Editing/EditCommandManager.cs",
+      "size": 3006,
+      "sha256": "DB141848DD3CB0A3BC7F853F8C2B4E860E4027017F19996300EF4F13302BA798"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Editing/IWorkspaceDraftParticipant.cs",
+      "size": 490,
+      "sha256": "11844D6C7C4E4CED7FDE290B0B6A7EFE5FF5F112B1CFA4554BB60D63738EA8A7"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Editing/ProjectWorkspace.cs",
+      "size": 57808,
+      "sha256": "DDBC5B3DB85AE2AD81E3FA481156C20A5C96DC57B464E052FA4DFB58F9C04BE6"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Editing/TableSnapshot.cs",
+      "size": 1573,
+      "sha256": "5ABCD328B43B3A31A0A8265F74083A12A85CED89EBD802F1E52681D217A5C878"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Editing/WorkspaceBinaryTransaction.cs",
+      "size": 8562,
+      "sha256": "964EBE5ED35B90850EF85C55E3303C54D5EBDA290A688940099C67A2DB913949"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/History/HistoryStore.cs",
+      "size": 9700,
+      "sha256": "5388F70D0EE2D5ADCD6B559B04E68B20BD82B759F8FB7C1552D54C38EC7579CD"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/History/ProjectHistoryPaths.cs",
+      "size": 5456,
+      "sha256": "202AF4C2E6DCB20DD81E4EDF4D586DC34A9D3428DE8CF8173688CADEB81AF491"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/AtomicItemMigrationMapper.cs",
+      "size": 10486,
+      "sha256": "778C30278DFAFC4999BBF3273C585C8013F5E0EA5EDEE15882C7C8223FBAFC13"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/ExtendedItemMigrationMapper.cs",
+      "size": 8590,
+      "sha256": "4A6627777EE9EA5ED74F2042DA4617313665F26909C097D07D5225D163DE5019"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/IMigrationResourceConverter.cs",
+      "size": 449,
+      "sha256": "3B9712E7DF7B891DC313B91D2D1FD068EA974D3F64ADBBF5B61AA25D893CD82D"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/IMigrationResourceVerifier.cs",
+      "size": 886,
+      "sha256": "C43DC8A8DA828B2F7413D3095B5AD71517488109E4043D5AF83F371749E8316E"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/ItemMigrationMapper.cs",
+      "size": 3020,
+      "sha256": "0B5B18B688A29E1D70882001DC440C3DDCE8182C9B98F6B5BDB67B4740E05D78"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationCommitCoordinator.cs",
+      "size": 34954,
+      "sha256": "26CC7BB87110660CEC8CB0EF681B715EF2A9D72070788F50E1B9E65172B6FACB"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationFieldIsolation.cs",
+      "size": 6425,
+      "sha256": "D1693F318F52F42D8E9042EC2F0BE4F47C82934A6407CA572932505A6ECE6A8F"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationModels.cs",
+      "size": 3677,
+      "sha256": "160AEA16962A530C07BE728D932F1F5A68539F09247FBEB1C57F732B7924D31A"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationPathSafety.cs",
+      "size": 1537,
+      "sha256": "19427245ECE8E80959D8FDDF9B862230209B6443759CCC35B9754D9ACB8CF5F7"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationService.cs",
+      "size": 41579,
+      "sha256": "717D28209E811829646D297E06651AE782A110CB4D157A74062D84918E56AA9B"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/SpecialStructureMigrationDiagnostics.cs",
+      "size": 5907,
+      "sha256": "6A93921CF076B3D9704494BF4EF877875FE3D35BC842808A052DC2681390801F"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/CompositeModels.cs",
+      "size": 619,
+      "sha256": "082E5787435A2A01378C95200B50B9F193A203AA290335337516188D570591D4"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/EffectAssignmentLayout.cs",
+      "size": 2663,
+      "sha256": "94F95C7313A3E9A55C4A94918350F281510851916CFB6F3EE28016876E714F21"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/EngineEffectAssignmentModels.cs",
+      "size": 6550,
+      "sha256": "F291978A53A3F0911908B3670E741824AB91AD781B5434CE449892577CD7290A"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/EngineEffectReferenceModels.cs",
+      "size": 1788,
+      "sha256": "0439D5DF56800AE095455DC75FAA436A95B0D355587082348AAFA083AAE1A036"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/EngineEffectScanModels.cs",
+      "size": 34266,
+      "sha256": "4A6DD49E7141EAFE656786564EDA75B1CEFC7862882B36A2EA786AA354F22626"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/EngineEffectWriteModels.cs",
+      "size": 3738,
+      "sha256": "A87939E92CA67601EE9E0CB4DBF4903C03A03488B56AD48093A7AADBFDFD26B7"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/FieldModels.cs",
+      "size": 2331,
+      "sha256": "50550C266C1E765B6E6FC03A64A100ABA8157ACC2B55FBD6783174C340D62B35"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/HistoryModels.cs",
+      "size": 1454,
+      "sha256": "F3188CDB14D35FD31B43967F0327A02DCB76CA0D62C9973115BDAC696070BE08"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/PreparedBinaryEdit.cs",
+      "size": 456,
+      "sha256": "B5130FEC5AB4C7DDA941193FAAA1BF236345445ACD9AB355CB4F1DBBCE77E44E"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/PreparedFileEdit.cs",
+      "size": 354,
+      "sha256": "164CD1E755B98F78CC910DB465B563544541B9C4635071C2BC82A00E91F57A18"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/ProfileModels.cs",
+      "size": 2574,
+      "sha256": "8BF44607297F491FB50E93CF2295D305EDDA92D5FA6D1FA4FD13D4A5B9638E7B"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/ScannerModels.cs",
+      "size": 1163,
+      "sha256": "284727AD7D3AAD9ABFEEC7548B9A78F4D5322A6E099F44759DC199022D4A5CF0"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/TableDocument.cs",
+      "size": 6800,
+      "sha256": "C056734AC7951F9495D9FFD82FED79AD207004E0B2C954EC3452D760F3D72AC9"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/TableFieldIndex.cs",
+      "size": 617,
+      "sha256": "A3E18E9A718016DF476B204E1DC78F6593448CE0216918761DAEE1611035CA6B"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Models/WorkspaceModels.cs",
+      "size": 1391,
+      "sha256": "51A63CD6B2AD743857DF708BE4D8AE6CFA775CD31250FA1B6B49A694D5812003"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Profiles/Ccz64ConfigurationProbe.cs",
+      "size": 9657,
+      "sha256": "32D609AF3B258E40F999AD638F64B29AD33681C1C097224C90E1374075B29249"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Profiles/EmbeddedEngineLayoutProbe.cs",
+      "size": 13455,
+      "sha256": "E2FC5F40AFA35A110C6C5CC3BC5E982F3BA7B44A51FB139B68F893850F8A0117"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Profiles/LayoutRevisionCompatibility.cs",
+      "size": 13301,
+      "sha256": "F984A2178E38BFD84E76F9852C0C9D164D0FDC702E6F14373B57DF75E7B47619"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileAugmentationService.cs",
+      "size": 27638,
+      "sha256": "F19B562A2055B1E4E7CAB0E02235DE19859F22B7DD9630EA41BFA6219288FE45"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileDetector.cs",
+      "size": 12715,
+      "sha256": "D101559D5E54CA84B9A03446F88D0D056D0BCD7E31A3B412DB279C515ADC6034"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileRegistry.cs",
+      "size": 15635,
+      "sha256": "9918741D58CD71157E9C14345367E4DD7D512E042EF385E6A3EB03B4A550E316"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Profiles/SaveAppearanceLayoutProbe.cs",
+      "size": 17709,
+      "sha256": "1B8EC61598443511D9DCCA8628F15442EE1310E3DB21ED7F9E82864D0C71E55D"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/BaseScanner.cs",
+      "size": 5510,
+      "sha256": "6954225E78128F5063934941F6D7326C753056CC01A5C0A80493AE01EC73A055"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectArgumentAnalyzer.cs",
+      "size": 24301,
+      "sha256": "7F2B3FF9BA38C2D4E8BBA15C89FA01C4AAC20AC5954C3ACD62F857869B6C232B"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectAssignmentService.Bindings.cs",
+      "size": 10721,
+      "sha256": "97DFF2E821E4FD198A0ACAF830BA0FD5EC68AAF19855ED60A58D94301E80D888"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectAssignmentService.cs",
+      "size": 16235,
+      "sha256": "8072CE95D1EC1F3DD088A632E7E130F62F0BAD2DE190931086277015CD86D3AD"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectAssignmentService.Fingerprint.cs",
+      "size": 2070,
+      "sha256": "41B1E9D326683C0EAEA8B629F0ACF9640993A3B6A8707A6D661D03FC0728754B"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectAssignmentService.JobLayout.cs",
+      "size": 10636,
+      "sha256": "D00BA0AEA03559A23ECB8DAEF7F0E5A8959C11C260ECB851031171AEEA99DCFD"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectAssignmentService.Write.cs",
+      "size": 14833,
+      "sha256": "675E8B09137D89BC93C1B66D954DC3A12F155D5FC5D9C77111C59AF3620B9DF0"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectBranchConditionAnalyzer.cs",
+      "size": 70612,
+      "sha256": "75D5AC216277E78D00612709CAC206411165C166DD1D9B23D4B5D76EB719DC35"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectByteContract.cs",
+      "size": 541,
+      "sha256": "685B9357F0572AD18565164752E5932C8AEDE8606CDC35984FE7F06C0260960F"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectCallGraph.cs",
+      "size": 20299,
+      "sha256": "CA85E7DDFE170CBDFC5891F167347D4D9056F63EAB87FD5F21EFE0C77031ABAD"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectDisassembly.cs",
+      "size": 22707,
+      "sha256": "52F2D697A8FD1190E76D7915DDC81AC817A7B464E6C51928F943EE94C121B977"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectFunctionAnalyzer.cs",
+      "size": 24237,
+      "sha256": "3E59781EAD6F919C211BC4F216E9E128D31A3882D1BDACEFE95A964EE5A74F6F"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectFunctionProfile.cs",
+      "size": 3647,
+      "sha256": "996BAE8AB4FD6BC9B6B329D7ACC24C4BDA9B859A3D17D6F9201D02B315CF4E46"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectFunctionRoleAnalyzer.cs",
+      "size": 8277,
+      "sha256": "B45ACA21644378F5E0F3F269A9E1DDA8C51CE6EBD9C02D751A980433BC4A17E3"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectIndirectCallAnalyzer.cs",
+      "size": 15272,
+      "sha256": "BB4C38AC9732F79A67885DBD358D1108679301477C4B924EACD1D6B3B5D3F3B8"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectInstructionMap.cs",
+      "size": 10526,
+      "sha256": "FC5AE0DCB1E5CC5D8229E582DEE4C5BADE5942BAC0D41802CC06DF6BF06BBF93"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectJumpIndex.cs",
+      "size": 3412,
+      "sha256": "FBA02D677525877B7A7DFFF598F0A4B26433EE44EBA02B3AA753176EB9797F2C"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectLayout.cs",
+      "size": 4350,
+      "sha256": "84E5B268C4AC751D4E181552D88CE72F1009DC094F22520F6B48A362695AC5C3"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectLoopAnalyzer.cs",
+      "size": 27786,
+      "sha256": "59D5297902F0CB3042B85D022D22D41B8E2F13A758738D1BCD24E13D72E717B1"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectReportTextService.cs",
+      "size": 2716,
+      "sha256": "78E0B34807015B3456E7454979EC0BFFECCB6EAF12A4FC246FCD2B7D8A17F0BD"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectRootClassifier.cs",
+      "size": 13355,
+      "sha256": "FCA95D015C08B4EE6147D48DFB3B91C1FA984C6DED00BC0EF3C01B6084ECCA56"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectScanContext.cs",
+      "size": 3103,
+      "sha256": "359665DA20CD4B55CD78535777CE1D51E956AC17F0F1BAB0D2C9AFDF4370E7CD"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectScanService.cs",
+      "size": 48882,
+      "sha256": "09E2113C1B269D9BC2EFFF068A0D8A6A4F125561F8247D459EA3D0AB88C21653"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectSlotService.cs",
+      "size": 7865,
+      "sha256": "D88F51518C18253B91C21FDDF183761B4163E028DB5093F4B6DCB31CAEFDE7A1"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectSuffixLabels.cs",
+      "size": 1428,
+      "sha256": "4AD9325217E08A27FF23D9F518CFAF7ADC19B9B97EC4F2B9CC4C4971EEDA3A5B"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectTableAnalyzer.cs",
+      "size": 15979,
+      "sha256": "B059ACF289E442A5A3E8C3865B87C28E99F498DBC006CAC284A09C8C6244F408"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectTransactionService.cs",
+      "size": 4656,
+      "sha256": "C1A65D2A10D6D784A548D7A82B1157515401AA03E579C06AF9AD9BF071D5D9D6"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectTriggerAnalyzer.cs",
+      "size": 5627,
+      "sha256": "8D2B07AADB09D53A96F5C7A0EA465AB59AEC0A6717266E4CE69A88397244BD7F"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectWrapperAnalyzer.cs",
+      "size": 15588,
+      "sha256": "DC3819667EEC7050F4F5236B3E371858785BB77EC13C39BD781E9EEFCE9827EF"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectWriteLock.cs",
+      "size": 2167,
+      "sha256": "B8A0383E478CC41A9CA17CAC21AC88AB5F196B1FC83B068EA9EC7D739EA8AFFD"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectWriteService.cs",
+      "size": 29430,
+      "sha256": "10ACC6DF7DB9B33C04D5F9DBD28773C8FE3E65A512BBEEF60DEEA6A66E674970"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Scanner/NativeEffectAdapter.cs",
+      "size": 31982,
+      "sha256": "1929A862FD845B36DBD242DB755E8615A46A8126C09C0B24C51A0DA0D48D2860"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/TableDefinitions/TableCatalog.cs",
+      "size": 590,
+      "sha256": "D7DD24190F3825D3D40B353A7E89931463D9B88E595CC8564F8A983E40834AF0"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Workbooks/PageDatasetRegistry.cs",
+      "size": 7322,
+      "sha256": "6B782BC1C697D56C0CA2C424BEFA1B4BBE176E20D4A3A7BEEC2852435B3C355A"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Workbooks/PageWorkbookService.cs",
+      "size": 18038,
+      "sha256": "910AFE11DACF6FE3A6F4AF2D59E8808B88126FB4E5517604C4331879C6B5EDAA"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Workbooks/WorkbookModels.cs",
+      "size": 1371,
+      "sha256": "93D89F842711AAC005DE925E71B8353858A871633ADFAF3CCC6F06B65C06F76E"
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Workbooks/WorkbookPackage.cs",
+      "size": 12923,
+      "sha256": "D81076D9422C82061338B46AD94CB2AF4D6F49E827A24E564FF7D3E0011BA706"
+    }
+  ],
+  "boundary": "最终冻结来源；历史性能测量来源另存，不以当前源码代换。"
+}

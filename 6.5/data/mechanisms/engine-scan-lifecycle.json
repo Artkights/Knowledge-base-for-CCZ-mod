@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": null,
+  "entries": [
+    {
+      "id": "mechanism.shared.engine-scan-lifecycle-and-fingerprint",
+      "title": "引擎扫描代次隔离与分层内容指纹缓存",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "sourceRefs": [
+        "src.dm.scan-lifecycle-results-20261027",
+        "src.dm.assignment-ui-inventory-20261027",
+        "src.dm.final-core-app-source-snapshot-20261027",
+        "src.dm.final-completed-test-source-snapshot-20261027",
+        "src.dm.report-text-refresh-results-20261027",
+        "src.dm.final-scan-determinism-results-20261027",
+        "src.dm.final-three-base-acceptance-20261027"
+      ],
+      "aliases": [
+        "扫描取消立即重启",
+        "同mtime内容失效",
+        "旧扫描异常隔离",
+        "11项生命周期"
+      ],
+      "summary": "扫描报告、说明与分配目录按各自内容指纹复用；后台结果另受项目与扫描代次约束，取消或切项目后的旧成功和异常均不能覆盖当前状态。",
+      "algorithm": [
+        "相同EXE与说明内容SHA切换子页复用同一报告和分配目录。缓存命中不能仅依赖路径、长度或mtime。",
+        "取消后允许立即启动新代次；即使项目根目录与SHA相同，旧代次的晚到成功或异常仍被忽略。",
+        "切项目使旧成功和异常失效；控件关闭与切项目在真实Application.Run消息循环及非法跨线程检查下验证。",
+        "EXE同mtime而内容变化使完整结构报告失效；恢复旧SHA可复用已缓存的旧报告。",
+        "Imsg同mtime内容变化只刷新说明：worker、FunctionRoles、IndirectCalls、Wrappers结构集合保留同一引用；恢复SHA重用原报告。",
+        "Data低位与Star高位物品的内存草稿或同mtime外部编辑使分配目录失效；同一引擎结构报告继续复用。"
+      ],
+      "verifiedChecks": [
+        "sameSHA_subpage_report_and_catalog_reuse",
+        "cancel_immediate_restart_and_late_success_ignored",
+        "cancelled_sameRoot_sameSHA_late_failure_ignored",
+        "project_switch_late_success_ignored",
+        "project_switch_late_failure_ignored",
+        "Ekd5.exe_sameMtime_content_invalidation_and_restoredSHA_reuse",
+        "Imsg.e5_sameMtime_content_invalidation_and_restoredSHA_reuse",
+        "items-low_memory_edit_catalog_invalidation",
+        "items-low_sameMtime_external_edit_catalog_invalidation",
+        "items-high_memory_edit_catalog_invalidation",
+        "items-high_sameMtime_external_edit_catalog_invalidation"
+      ],
+      "boundaries": [
+        "该机制说明管理器缓存和异步生命周期，不是游戏引擎的运行时效果缓存。",
+        "11项结果使用临时副本，四个真实核心源文件SHA保持不变。",
+        "Name来自EXE名称槽；Imsg刷新只替换Description及说明槽元数据，不刷新名称。"
+      ]
+    }
+  ]
+}

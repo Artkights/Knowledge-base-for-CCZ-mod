@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+  "entries": [
+    {
+      "id": "mechanism.66.engine-effect-assignment-composition",
+      "title": "引擎特效号、宝物渠道与兵种双槽的复合绑定",
+      "aliases": [
+        "装备37多效果叠加",
+        "无敌大斧HP与回合恢复",
+        "三子页分配池"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "sourceRefs": [
+        "src.dm.engine-validation-20261027",
+        "src.dm.engine-acceptance-20261027",
+        "src.dm.engine-assignment-static-20261027",
+        "src.dm.axe37-consumer-20261027",
+        "src.dm.assignment-acceptance-20261027",
+        "src.dm.assignment-8byte-static-20261027",
+        "src.dm.final-groups-results-20261027",
+        "src.dm.final-writer-results-20261027",
+        "src.dm.final-contracts65-results-20261027",
+        "src.dm.final-core-app-source-snapshot-20261027",
+        "src.dm.final-completed-test-source-snapshot-20261027",
+        "src.dm.final-native-results-20261027",
+        "src.dm.final-three-base-acceptance-20261027",
+        "src.dm.operand-sharing-safety-results-20261027",
+        "src.dm.final-release-manifest-20261027"
+      ],
+      "summary": "业务效果、引擎绑定点、装备特效号和兵种分配槽是四个不同层。装备16无敌大斧使用装备特效号37；HP原生分类与回合恢复消费者分别读取同一装备号37，因此一个宝物设定只显示37但运行时可叠加多个效果。已验证装备FF守卫后，解绑只写装备通道255并保持个人通道；个人selector255不具有通用空值契约。",
+      "composition": [
+        {
+          "effect": "装备号37",
+          "steps": [
+            "物品16的真实装备特效号字段解析为37",
+            "HP消费者按原生能力分类器与装备号37匹配并计算百分比",
+            "0043C749以个人效果2、装备号37、值模式1、聚合模式1调用004101D9；命中返回100，跳过装备N读取",
+            "HP与恢复在各自消费者阶段执行；共享selector形成组合，不需要新建总特效号"
+          ],
+          "result": "一个装备号是共享选择键，不是单一效果枚举；多个消费者共同形成复合特效。",
+          "consumerEvidence": {
+            "recoveryEffectId": 2,
+            "recoveryDisplayName": "破妄归真",
+            "call": {
+              "kind": "va",
+              "value": "0x0043C749",
+              "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+              "evidence": "static-verified"
+            },
+            "pushOrder": [
+              1,
+              1,
+              37,
+              2
+            ],
+            "valueContract": "拥有模式命中返回100；跳过407AED，不读取大斧N50；HP原生路径独立读取N。",
+            "condition": "所在43C72C函数参数[ebp+8]非零才查询；未命中/零参数走普通恢复概率。"
+          }
+        },
+        {
+          "effect": "四参数入口",
+          "abi": [
+            "push效果值模式",
+            "push叠加方式",
+            "push宝物特效号",
+            "push个人/兵种特效号",
+            "ECX=当前单位"
+          ],
+          "rules": [
+            "只把已证明的四参数入口纳入分配池",
+            "00413009是EAX/EDX寄存器聚合契约，不生成四参数项",
+            "同一物理调用地址的表索引、包装桩、循环索引组成完整实例身份"
+          ]
+        },
+        {
+          "effect": "兵种表",
+          "rules": [
+            "每次打开项目从DWORD[00500C3B]读取活动表指针并验证",
+            "国庆样本指向VA00511000，文件偏移0xE2800",
+            "每行16字节，槽位+0x0C/+0x0D与+0x0E/+0x0F为两个兵种ID/独立值",
+            "兵种ID=255才是空槽；空闲数量显示*2/*1/*0，只有*0标红"
+          ]
+        },
+        {
+          "effect": "原生HP/MP",
+          "rules": [
+            "HP与MP是独立能力关系，可同号共存",
+            "适配覆盖武器/防具三处与辅助装备三处真实消费者",
+            "保留其它能力分类、等级换算、百分比和累加",
+            "装备通道255由专用守卫返回未命中，不修改个人通道",
+            "辅助+11<26保持基础类型；低编号装备selector不修改武器/防具类别门槛",
+            "255低字节只在装备子通道短路；外层已保存的个人结果和后续聚合仍执行"
+          ]
+        }
+      ],
+      "writePolicy": {
+        "draftFirst": true,
+        "transaction": "统一候选、备份、SHA、冲突检测、写后重扫；详情255与分配HP/MP联合提交协调唯一适配载荷；变长PE节使用完整文件历史快照",
+        "unknown": "已确认洗隋9112为180x8/一个兵种槽/共享N，3890为255x8/一个兵种槽/共享N；25D与F20C为255x16/两个兵种槽/独立N；其他构建先验证读取链。工具是否已实现某布局单独报告。",
+        "scriptAndSet": "剧本专属与套装特技不进入本轮池",
+        "bindingGroups": "代码改绑以物理定义字段组为权限与冲突单位；同组全部别名联动。已知装备号但字段未定位者单列；装备号也未知者不算已迁移，不封锁独立已定位字段。",
+        "crossRoleSharing": "所有消费者都参与物理来源危险共享检测，包括只读或未解析参数保留的定义链；来源跨装备/个人/模式等不同参数角色时阻断改写，只有装备角色内部共享可按组联动。"
+      },
+      "uiPolicy": {
+        "tabs": [
+          "特效管理",
+          "宝物特效",
+          "兵种特效"
+        ],
+        "columns": [
+          "特效号",
+          "特效名",
+          "特效值",
+          "特效说明"
+        ],
+        "jobSuffix": "按真实槽数显示空槽；8字节表*1/*0，16字节表*2/*1/*0；未知布局显示原因。",
+        "details": "消费者、槽位、来源、影响和不可操作原因在表下详情展示"
+      },
+      "boundaries": [
+        "当前仅HP原生路径和个人效果2拥有模式恢复分别引用37得到独立静态确认；用户提到的第三项斗将N次没有独立已验证消费者/字段映射，不纳入已证实组合，也不推断必属脚本。"
+      ]
+    }
+  ]
+}

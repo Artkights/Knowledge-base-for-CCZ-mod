@@ -6,8 +6,14 @@
     {
       "id": "legacy.mechanism.62.star175.strategy-instant-kill",
       "title": "6.2 策略秒杀属于策略伤害计算分支",
-      "aliases": ["0x0043C022", "海啸", "眩晕"],
-      "versions": ["6.2"],
+      "aliases": [
+        "0x0043C022",
+        "海啸",
+        "眩晕"
+      ],
+      "versions": [
+        "6.2"
+      ],
       "profile": "profile.ccz62.star175.modifier.legacy",
       "status": "legacy-reference",
       "evidence": "legacy-structured",
@@ -34,13 +40,22 @@
       ],
       "migrationRule": "地址只属于原帖所称 6.2 版本；当前 F36 样本必须重新搜索策略伤害函数、分支条件和目标 HP 写回，不得直接移植。",
       "relations": [],
-      "sourceRefs": ["src.forum.star175.296955.p2"]
+      "sourceRefs": [
+        "src.forum.star175.296955.p2",
+        "src.upstream.artkights.b2c.d7f708d979c7"
+      ]
     },
     {
       "id": "legacy.mechanism.62.star175.weather-gear-rewrite",
       "title": "6.2 策略天气与四神装备限制已重写",
-      "aliases": ["0x0040EACB", "0x0041FF87", "0x0041FFF1"],
-      "versions": ["6.2"],
+      "aliases": [
+        "0x0040EACB",
+        "0x0041FF87",
+        "0x0041FFF1"
+      ],
+      "versions": [
+        "6.2"
+      ],
       "profile": "profile.ccz62.star175.modifier.legacy",
       "status": "legacy-reference",
       "evidence": "legacy-structured",
@@ -67,12 +82,20 @@
       ],
       "migrationRule": "6.0、6.1、6.2 地址不能混用；策略天气部分若要迁移，先按新函数重新建立签名和分支语义。",
       "relations": [],
-      "sourceRefs": ["src.forum.star175.296955.p2", "src.forum.star175.296955.p3"]
+      "sourceRefs": [
+        "src.forum.star175.296955.p2",
+        "src.forum.star175.296955.p3",
+        "src.upstream.artkights.b2c.d7f708d979c7"
+      ]
     },
     {
       "id": "legacy.mechanism.62.star175.modifier-compatibility",
       "title": "star175 修改器的版本和工具兼容门禁",
-      "versions": ["6.0", "6.1", "6.2"],
+      "versions": [
+        "6.0",
+        "6.1",
+        "6.2"
+      ],
       "profile": "profile.ccz62.star175.modifier.legacy",
       "status": "legacy-reference",
       "evidence": "source-reviewed",
@@ -85,7 +108,12 @@
         "Windows 运行库和 CM 版本是工具前置条件，不构成引擎地址证据"
       ],
       "relations": [],
-      "sourceRefs": ["src.forum.star175.296955", "src.forum.star175.296955.p2", "src.forum.star175.296955.p3"]
+      "sourceRefs": [
+        "src.forum.star175.296955",
+        "src.forum.star175.296955.p2",
+        "src.forum.star175.296955.p3",
+        "src.upstream.artkights.b2c.d7f708d979c7"
+      ]
     }
   ]
 }

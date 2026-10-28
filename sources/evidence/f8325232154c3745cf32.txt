@@ -1,0 +1,37 @@
+{
+  "status": "partial-static-delivery-not-full-semantic-acceptance",
+  "modules": [
+    {
+      "name": "Ekd5.exe",
+      "sha256": "F36F9A3D06F3C4E52F32320FAE4633D0EADC9B7863F410EA7532B3C45E2ABF88",
+      "functions": 3648,
+      "instructions": 137127,
+      "data": 6065,
+      "indirect_transfers": 2330,
+      "orphan_instructions": 3793,
+      "unknown_bytes": 81964,
+      "decompile_failures": 0,
+      "semantic_reviewed_functions": 0,
+      "file_bytes": 1148928,
+      "classified_bytes": 1148928,
+      "unresolved_indirect": 390,
+      "imported_indirect_candidates": 1940
+    }
+  ],
+  "inputs_count": 444,
+  "inputs_unchanged": true,
+  "file_region_disposition_rate": 1.0,
+  "function_candidates": 3648,
+  "reviewed_functions": 0,
+  "function_review_rate": 0.0,
+  "complete_instruction_contracts": 0,
+  "instruction_contract_rate": 0.0,
+  "complete_business_semantics": 0,
+  "complete_business_semantics_rate": 0,
+  "unknown_file_bytes": 81964,
+  "unresolved_indirect_transfers": 390,
+  "runtime_verified": false,
+  "source_lines": 54131,
+  "source_semantic_disposition_complete": false,
+  "cross_module_import_links": 0
+}

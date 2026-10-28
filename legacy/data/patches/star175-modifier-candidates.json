@@ -6,8 +6,15 @@
     {
       "id": "legacy.patch.62.star175.limit-bypass-bytes",
       "title": "6.2 四神限制与修筑金钱的旧 CM 字节候选",
-      "aliases": ["1F393 EB 4B", "1F3EA EB 45", "DF1D E8 03", "14298 E8 03"],
-      "versions": ["6.2"],
+      "aliases": [
+        "1F393 EB 4B",
+        "1F3EA EB 45",
+        "DF1D E8 03",
+        "14298 E8 03"
+      ],
+      "versions": [
+        "6.2"
+      ],
       "profile": "profile.ccz62.star175.modifier.legacy",
       "status": "legacy-reference",
       "evidence": "legacy-patch-bytes",
@@ -69,7 +76,10 @@
       ],
       "writePolicy": "仅保存论坛给出的旧替换字节。原字节、精确样本、指令边界和文件偏移语义均未由当前样本闭环，禁止自动应用；迁移前必须先做版本画像、字节匹配和反汇编边界检查。",
       "relations": [],
-      "sourceRefs": ["src.forum.star175.296955.p2"]
+      "sourceRefs": [
+        "src.forum.star175.296955.p2",
+        "src.upstream.artkights.b2c.640c2361e856"
+      ]
     }
   ]
 }

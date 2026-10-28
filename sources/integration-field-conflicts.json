@@ -1,0 +1,875 @@
+{
+  "schemaVersion": 1,
+  "conflicts": [
+    {
+      "field": "6.5/data/file-formats/data-manager-formats.json.entries[format.data-manager.item-codecs].entryFields[价格].meaning",
+      "remote": "价格单位100；255表示不可买卖，不能用辅助+0x17替代。",
+      "local": "价格字段，逻辑值按页面单位解释",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[宝物类型].meaning",
+      "remote": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[装备特效号].meaning",
+      "remote": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[价格（/100）].meaning",
+      "remote": "价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。",
+      "local": "价格（/100）；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[初始能力].meaning",
+      "remote": "初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。",
+      "local": "初始能力；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[装备特效值].meaning",
+      "remote": "装备特效值；字段策略 Editable；物理 CSV 列名保留；普通装备为特殊效果值，辅助装备为空/保留，消耗品为效果参数高字节。",
+      "local": "装备特效值；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[能力成长].meaning",
+      "remote": "能力成长；字段策略 Editable；物理 CSV 列名保留；普通装备为能力成长，辅助装备为适用兵种系 ID（255=所有兵种），消耗品为空/保留。",
+      "local": "能力成长；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-low].fields[宝物图鉴].meaning",
+      "remote": "宝物图鉴；字段策略 Editable；图鉴标记；业务页为勾选框，主动修改写入0/1，未修改的原始值保留。",
+      "local": "宝物图鉴；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].title",
+      "remote": "65-standard-v1 宝物（104-254）（items-high 物理表）",
+      "local": "65-standard-v1 宝物（104-255）（items-high 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[宝物类型].meaning",
+      "remote": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[装备特效号].meaning",
+      "remote": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[价格（/100）].meaning",
+      "remote": "价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。",
+      "local": "价格（/100）；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[初始能力].meaning",
+      "remote": "初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。",
+      "local": "初始能力；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[装备特效值].meaning",
+      "remote": "装备特效值；字段策略 Editable；物理 CSV 列名保留；普通装备为特殊效果值，辅助装备为空/保留，消耗品为效果参数高字节。",
+      "local": "装备特效值；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[能力成长].meaning",
+      "remote": "能力成长；字段策略 Editable；物理 CSV 列名保留；普通装备为能力成长，辅助装备为适用兵种系 ID（255=所有兵种），消耗品为空/保留。",
+      "local": "能力成长；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.items-high].fields[宝物图鉴].meaning",
+      "remote": "宝物图鉴；字段策略 Editable；图鉴标记；业务页为勾选框，主动修改写入0/1，未修改的原始值保留。",
+      "local": "宝物图鉴；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.item-description-high].title",
+      "remote": "65-standard-v1 宝物说明（104-254）（item-description-high 物理表）",
+      "local": "65-standard-v1 宝物说明（104-255）（item-description-high 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/structures/data-manager-physical-tables.json.entries[struct.65.disk.65-standard-v1.effect-messages].title",
+      "remote": "65-standard-v1 特效成长拓展（effect-messages 物理表）",
+      "local": "65-standard-v1 特效说明拓展（effect-messages 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/tests/data-manager-test-contracts.json.entries[test.data-manager.single-executable-publish].title",
+      "remote": "依赖系统 .NET 8 的 Windows x64 单 EXE 发布与嵌入资源验收",
+      "local": "自包含单 EXE 发布与无旁文件启动",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/tests/data-manager-test-contracts.json.entries[test.data-manager.single-executable-publish].target",
+      "remote": "framework-dependent WinForms 单 EXE、系统 Windows Desktop Runtime 依赖和嵌入图标/Profile/帮助",
+      "local": "win-x64 自包含 WinForms 单文件发行包、嵌入 Profile/调色板/使用说明和首次启动",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/tests/data-manager-test-contracts.json.entries[test.data-manager.single-executable-publish].mutationScope",
+      "remote": "全新发布目录、样本目录外的验收报告与截图；原始游戏样本只读，编辑仅使用临时副本",
+      "local": "新发布目录和系统原生组件解压缓存；启动后用户明确打开的临时样本副本才可编辑，原始样本保持只读",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/tests/data-manager-test-contracts.json.entries[test.data-manager.single-executable-publish].failureMeaning",
+      "remote": "输出多文件或带入旧 runtime 表示发布目录/配置不符合单 EXE 契约；目标缺少 Desktop Runtime 属于明确的系统前置条件，不应通过重新声明自包含绕过。资源/图标缺失或已满足 Runtime 条件仍不能启动时阻止交付。",
+      "local": "缺少旁文件、错误裁剪或动态加载依赖会导致单独复制 EXE 无法启动、缺少 Profile/调色板或不能打开帮助。",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/tests/data-manager-test-contracts.json.entries[test.data-manager.animation-preview-ui].mutationScope",
+      "remote": "真实基底只读；临时目录生成非零目录尾部 Meff 等合成资源并于结束删除；WinForms 消息循环改变内存控件，源文件 SHA 前后比较",
+      "local": "真实基底只读；WinForms消息循环与合成延迟加载器只改变内存控件；源文件SHA前后比较",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.image-resource-transaction].steps[1].action",
+      "remote": "后台读取缓存的资源目录和文件指纹，按中文资源类别列出 R/S、头像/Tou、宝物/策略图标、大小动画、攻击/穿透范围、场景/地图/其他图片；同名根目录扩展 DATA 不作为图像档案，真正双档案冲突必须提示。 Meff 的索引、缩略图、点击播放、间隔读取和原生平面读取统一经过专用动画包读取；不能只凭可枚举或代表帧成功判定图库播放通过。",
+      "local": "后台读取缓存的资源目录和文件指纹，按中文资源类别列出 R/S、头像/Tou、宝物/策略图标、大小动画、攻击/穿透范围、场景/地图/其他图片；同名根目录扩展 DATA 不作为图像档案，真正双档案冲突必须提示。",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].title",
+      "remote": "WinForms 依赖系统 .NET 8 的单 EXE 轻量发布与内置资源",
+      "local": "WinForms 自包含单 EXE 发布与内置帮助",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].goal",
+      "remote": "分发仅含一个 EXE 的 Windows x64 应用，由目标系统提供 .NET 8 Windows Desktop Runtime，并在用户项目保存数据、资源与历史。",
+      "local": "分发一个可独立启动的Windows x64 EXE，仍在用户项目保存数据、资源与历史。",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].steps[1].action",
+      "remote": "构建当前 Release 源码，执行所需 console 回归；检查发布 Profile 为 win-x64、SelfContained=false、PublishSingleFile=true、UseAppHost=true，禁用裁剪/ReadyToRun及native/all-content自解压。",
+      "local": "构建对应Release源码和自定义console回归，禁止用过期程序集代替当前版本。",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].steps[2].action",
+      "remote": "在包含 data管理器/ 的源工作区根执行 dotnet publish data管理器/src/DataManager.App/DataManager.App.csproj --configuration Release -p:PublishProfile=SingleFileWinX64 --output <new-publish-directory>；输出到新目录，避免历史自包含 runtime 残留。",
+      "local": "以SingleFileWinX64发布Profile生成win-x64 SelfContained+PublishSingleFile，IncludeNativeLibrariesForSelfExtract=true；不裁剪、不启用ReadyToRun、不压缩bundle。",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].steps[3].action",
+      "remote": "验证仅有 data管理器.exe，记录版本/大小/SHA-256，不携带 runtime、DLL、独立 PDB 或旁置配置/帮助；核对 Profile/帮助和图标嵌入资源，ApplicationIcon 与窗口图标使用同一 ICO。",
+      "local": "入口DebugType=embedded，发布集合排除独立PDB；Profile由Core清单资源读取，帮助由Images程序集读取内置UTF-8 Markdown，不依赖旁置docs或JSON。",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].steps[4].action",
+      "remote": "在已记录 Runtime 版本的 Windows x64 环境，从独立目录启动 EXE；按 test.data-manager.single-executable-publish 检查启动和资源。可另用 --verify-bundle <report-json> <sample-root> 生成只读报告，放在样本外并复核源 SHA。",
+      "local": "检查发布目录只有一个EXE；复制至独立中文目录启动，不搜索开发机绝对路径或隐式打开默认游戏。用--verify-bundle <report-json> <sample-root>只读检查嵌入资源、数据表、图片、中文CSV、迁移预览和两种尺寸真实窗体，报告放在样本外并复核源SHA；可设置无效DOTNET_ROOT及关闭多级查找验证bundle依赖。",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.5/data/workflows/data-manager-workflows.json.entries[workflow.data-manager.single-executable-publish].steps[5].action",
+      "remote": "报告明确写明需要 .NET 8 Windows Desktop Runtime（Windows x64）。将本机已安装Runtime的启动结果、尚未执行的独立干净系统/无Runtime测试分别记录，不引用旧自包含报告证明当前包免安装。",
+      "local": "记录产物SHA及测试环境；在没有安装Desktop Runtime的干净Windows环境验证自包含启动后再声明免安装验收。",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[宝物类型].meaning",
+      "remote": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[装备特效号].meaning",
+      "remote": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[价格（/100）].meaning",
+      "remote": "价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。",
+      "local": "价格（/100）；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[初始能力].meaning",
+      "remote": "初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。",
+      "local": "初始能力；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[装备特效值].meaning",
+      "remote": "装备特效值；字段策略 Editable；物理 CSV 列名保留；普通装备为特殊效果值，辅助装备为空/保留，消耗品为效果参数高字节。",
+      "local": "装备特效值；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[能力成长].meaning",
+      "remote": "能力成长；字段策略 Editable；物理 CSV 列名保留；普通装备为能力成长，辅助装备为适用兵种系 ID（255=所有兵种），消耗品为空/保留。",
+      "local": "能力成长；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-low].fields[宝物图鉴].meaning",
+      "remote": "宝物图鉴；字段策略 Editable；图鉴标记；业务页为勾选框，主动修改写入0/1，未修改的原始值保留。",
+      "local": "宝物图鉴；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].title",
+      "remote": "66-standard-v1 宝物（104-254）（items-high 物理表）",
+      "local": "66-standard-v1 宝物（104-255）（items-high 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[宝物类型].meaning",
+      "remote": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[装备特效号].meaning",
+      "remote": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[价格（/100）].meaning",
+      "remote": "价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。",
+      "local": "价格（/100）；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[初始能力].meaning",
+      "remote": "初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。",
+      "local": "初始能力；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[装备特效值].meaning",
+      "remote": "装备特效值；字段策略 Editable；物理 CSV 列名保留；普通装备为特殊效果值，辅助装备为空/保留，消耗品为效果参数高字节。",
+      "local": "装备特效值；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[能力成长].meaning",
+      "remote": "能力成长；字段策略 Editable；物理 CSV 列名保留；普通装备为能力成长，辅助装备为适用兵种系 ID（255=所有兵种），消耗品为空/保留。",
+      "local": "能力成长；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.items-high].fields[宝物图鉴].meaning",
+      "remote": "宝物图鉴；字段策略 Editable；图鉴标记；业务页为勾选框，主动修改写入0/1，未修改的原始值保留。",
+      "local": "宝物图鉴；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.item-description-high].title",
+      "remote": "66-standard-v1 宝物说明（104-254）（item-description-high 物理表）",
+      "local": "66-standard-v1 宝物说明（104-255）（item-description-high 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-standard-v1.effect-messages].title",
+      "remote": "66-standard-v1 特效成长拓展（effect-messages 物理表）",
+      "local": "66-standard-v1 特效说明拓展（effect-messages 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[宝物类型].meaning",
+      "remote": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[装备特效号].meaning",
+      "remote": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[价格（/100）].meaning",
+      "remote": "价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。",
+      "local": "价格（/100）；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[初始能力].meaning",
+      "remote": "初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。",
+      "local": "初始能力；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[装备特效值].meaning",
+      "remote": "装备特效值；字段策略 Editable；物理 CSV 列名保留；普通装备为特殊效果值，辅助装备为空/保留，消耗品为效果参数高字节。",
+      "local": "装备特效值；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[能力成长].meaning",
+      "remote": "能力成长；字段策略 Editable；物理 CSV 列名保留；普通装备为能力成长，辅助装备为适用兵种系 ID（255=所有兵种），消耗品为空/保留。",
+      "local": "能力成长；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-low].fields[宝物图鉴].meaning",
+      "remote": "宝物图鉴；字段策略 Editable；图鉴标记；业务页为勾选框，主动修改写入0/1，未修改的原始值保留。",
+      "local": "宝物图鉴；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].title",
+      "remote": "66-legacy-data-v1 宝物（104-254）（items-high 物理表）",
+      "local": "66-legacy-data-v1 宝物（104-255）（items-high 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[宝物类型].meaning",
+      "remote": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[装备特效号].meaning",
+      "remote": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[价格（/100）].meaning",
+      "remote": "价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。",
+      "local": "价格（/100）；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[初始能力].meaning",
+      "remote": "初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。",
+      "local": "初始能力；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[装备特效值].meaning",
+      "remote": "装备特效值；字段策略 Editable；物理 CSV 列名保留；普通装备为特殊效果值，辅助装备为空/保留，消耗品为效果参数高字节。",
+      "local": "装备特效值；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[能力成长].meaning",
+      "remote": "能力成长；字段策略 Editable；物理 CSV 列名保留；普通装备为能力成长，辅助装备为适用兵种系 ID（255=所有兵种），消耗品为空/保留。",
+      "local": "能力成长；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.items-high].fields[宝物图鉴].meaning",
+      "remote": "宝物图鉴；字段策略 Editable；图鉴标记；业务页为勾选框，主动修改写入0/1，未修改的原始值保留。",
+      "local": "宝物图鉴；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.item-description-high].title",
+      "remote": "66-legacy-data-v1 宝物说明（104-254）（item-description-high 物理表）",
+      "local": "66-legacy-data-v1 宝物说明（104-255）（item-description-high 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-legacy-data-v1.effect-messages].title",
+      "remote": "66-legacy-data-v1 特效成长拓展（effect-messages 物理表）",
+      "local": "66-legacy-data-v1 特效说明拓展（effect-messages 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[宝物类型].meaning",
+      "remote": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[装备特效号].meaning",
+      "remote": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[价格（/100）].meaning",
+      "remote": "价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。",
+      "local": "价格（/100）；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[初始能力].meaning",
+      "remote": "初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。",
+      "local": "初始能力；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[装备特效值].meaning",
+      "remote": "装备特效值；字段策略 Editable；物理 CSV 列名保留；普通装备为特殊效果值，辅助装备为空/保留，消耗品为效果参数高字节。",
+      "local": "装备特效值；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[能力成长].meaning",
+      "remote": "能力成长；字段策略 Editable；物理 CSV 列名保留；普通装备为能力成长，辅助装备为适用兵种系 ID（255=所有兵种），消耗品为空/保留。",
+      "local": "能力成长；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-low].fields[宝物图鉴].meaning",
+      "remote": "宝物图鉴；字段策略 Editable；图鉴标记；业务页为勾选框，主动修改写入0/1，未修改的原始值保留。",
+      "local": "宝物图鉴；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].title",
+      "remote": "66-shanzhai-legacy 宝物（104-254）（items-high 物理表）",
+      "local": "66-shanzhai-legacy 宝物（104-255）（items-high 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[宝物类型].meaning",
+      "remote": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[装备特效号].meaning",
+      "remote": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+      "local": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[价格（/100）].meaning",
+      "remote": "价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。",
+      "local": "价格（/100）；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[初始能力].meaning",
+      "remote": "初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。",
+      "local": "初始能力；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[装备特效值].meaning",
+      "remote": "装备特效值；字段策略 Editable；物理 CSV 列名保留；普通装备为特殊效果值，辅助装备为空/保留，消耗品为效果参数高字节。",
+      "local": "装备特效值；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[能力成长].meaning",
+      "remote": "能力成长；字段策略 Editable；物理 CSV 列名保留；普通装备为能力成长，辅助装备为适用兵种系 ID（255=所有兵种），消耗品为空/保留。",
+      "local": "能力成长；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.items-high].fields[宝物图鉴].meaning",
+      "remote": "宝物图鉴；字段策略 Editable；图鉴标记；业务页为勾选框，主动修改写入0/1，未修改的原始值保留。",
+      "local": "宝物图鉴；字段策略 Editable",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.item-description-high].title",
+      "remote": "66-shanzhai-legacy 宝物说明（104-254）（item-description-high 物理表）",
+      "local": "66-shanzhai-legacy 宝物说明（104-255）（item-description-high 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/data-manager-physical-tables.json.entries[struct.66.disk.66-shanzhai-legacy.effect-messages].title",
+      "remote": "66-shanzhai-legacy 特效成长拓展（effect-messages 物理表）",
+      "local": "66-shanzhai-legacy 特效说明拓展（effect-messages 物理表）",
+      "resolution": "retained remote: newer item codec semantics / framework-dependent publish contract confirmed against current source"
+    },
+    {
+      "field": "6.6/data/structures/f36-shanzai-structures.json.entries[struct.66.f36.item-record].evidence",
+      "remote": "sample-verified",
+      "local": "static-verified",
+      "resolution": "separated runtime consumer view from physical codec permissions; removed duplicate +0x16 field; retained static evidence boundary"
+    },
+    {
+      "field": "6.6/data/structures/f36-shanzai-structures.json.entries[struct.66.f36.item-record].indexFormula",
+      "remote": "0x0049F820 + item_id * 0x19 + field_offset（ID 0..254 有效；255 为 FF-End 哨兵）",
+      "local": "0x0049F820 + item_id * 0x19 + field_offset",
+      "resolution": "separated runtime consumer view from physical codec permissions; removed duplicate +0x16 field; retained static evidence boundary"
+    },
+    {
+      "field": "6.6/data/structures/f36-shanzai-structures.json.entries[struct.66.f36.item-record].fields[name].meaning",
+      "remote": "名称",
+      "local": "名称；编码和终止规则需按资源样本复读",
+      "resolution": "separated runtime consumer view from physical codec permissions; removed duplicate +0x16 field; retained static evidence boundary"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.attribute-reader].sha256",
+      "remote": "B101E1AC8749326EDA442FF5315153F4461F3407A7CE5A95C4DC41210D0D7E48",
+      "local": "35F2CAEEFA7B0CADE20D6493C48AD3C315437DABB04162623408307A4590CC82",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.augmentation].sha256",
+      "remote": "5345F4985F0F2D24A4242DB550A7CA5839F515FF606B0AC76B9DE46B807FF4F9",
+      "local": "221DBC82FDAA74592D0FDF796EE9970CBB4C3C201763D1B329174074F37012FA",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.bundle-verification].sha256",
+      "remote": "976F6ABB38D93191B76E463ECC2605C0BFCA9020FD0E0772A8BA4F211A32121C",
+      "local": "242D57DCB7948CD3F88099F3BA4AEFC475C4D44741DD74CFEDF7C2E103BA3E06",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.business].sha256",
+      "remote": "6FE531B41DD090B377FCAA90C613AF4616CA0BF6D7BEF2F1CD06877EE3282EF2",
+      "local": "66C9B8154358A9B234C6D700DE371C5BA254860EA619174BA1EFFCE6A9820E0B",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.codecs].sha256",
+      "remote": "518EB9471C73A9875B4E99FCA6BAAD040D5CCD2009F33BFD72C91D805C7DC791",
+      "local": "F4383AFB442F53A260183774F922E62875EE3E78282BF5FD2E68DE90FAAAE6A2",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.csv].sha256",
+      "remote": "2E261CCAC09FEAB084A10A1BC5F1DB1FDD2CDEB67D9E3D0307EA56C3EF3E08DF",
+      "local": "8763B2D030F8FC9A784DEAE4695285EBF94FB40AAE391A8A0CE59F20082692F6",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.csv-labels].sha256",
+      "remote": "2D9E6E57C6A102AA0A339F9F6BFE9EB397C1F58C4539E382260365128EF0ED66",
+      "local": "F4EFBE25F991D7B062F84469BDB405C06CF512E87806152106B10C9F6795370A",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.data-history].sha256",
+      "remote": "0DE7622B55837911185F5AF0D088C7883B8C80FD17E7566F9CE8C3EF8E28638B",
+      "local": "390AE4B521029F2DC43A1936EFC1D0866B0F456FB29D39446CEA7DFA7C00998F",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.groups].sha256",
+      "remote": "E713D4138A745049C3FCCF9BD6FFA2149E1CAB348D4AC64B48DECEF27EA6B0B5",
+      "local": "39E481CF22EA8BACC5D27407FF1E497A824751943E3BEB6ED8414ACDF6673650",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-adapter].sha256",
+      "remote": "52DA2C94AC2E4DF89EBB434D98A69F7379342A9C24E2757F1CA3B7FAD14BD436",
+      "local": "A31586BB7F759A1FCD35F069F828CA68F0CD314D5E0C57FF41454177F12FC911",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-animation].sha256",
+      "remote": "5A112C2DD4D736D41F683F58DA4AAE48FC08BB6AAFFF5205F8CB872C19B938AA",
+      "local": "A82AF9DBDB47760E9E014567347AC1D7A8CC4EDBE00C0E0B7E67470FBD9C7F51",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-animation-preview-ui-tests].sha256",
+      "remote": "3BB9C0D89CEEF1A6BEE7225AC42828A83C51B670D34DB4C948D1FA310EFA724A",
+      "local": "F1992E180CCE5DDA192744A37D84338AFAB6327320E7762930EC1124368DC701",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-atlas-import-dialog].sha256",
+      "remote": "67AC7079D6DC871199CF26273B83A378BADB15B2CC0B1C3323C802E452EB6CB6",
+      "local": "B9F9905AB8D4F0E8C1B9C131A28ADFD7CC99E0EC2C88FF5BC92A7328C5D12C2F",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-atlas-import-ui-tests].sha256",
+      "remote": "782215975383E04E42CC83374DC3BED04A597CE657BB2A91A1066F3096FF7193",
+      "local": "1DADB6D73A804E9F389BFC49BD80339223190E0C8B38566FF419CD4B4B450A11",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-atlas-models].sha256",
+      "remote": "BA4A1447E862F0E777605FCE2BFDAF387EF787B9D0E9E8D6632BEE1D6BEC98EB",
+      "local": "6BDBC1689351DE4E703B3B08F0DA83059A102109C98A311D69CDA13AF21184EF",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-bindings].sha256",
+      "remote": "FC1EDD4679132C8A174C6BBEEE87A6A5006A5A194DC11571E0D5346424DD1D66",
+      "local": "AD0907B4A199265AEEDFFF600F6D6ADC62746F02EF68BB29CE223DB0E689B4C5",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-bmp-payload].sha256",
+      "remote": "049DDFA8BA3F5108CA85B781E98D283831D9D2DB0F73396C6162866FF6C05C48",
+      "local": "60E626A4DD09A3EBFE54D0BC45F718C184C41AA605FDC0AD2D2AFF9C2DAF100B",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-catalog].sha256",
+      "remote": "F04A64A5947409651081FE80637E1A7472E1DF28744D228EF7E7194476B68C69",
+      "local": "73AB30707457372DC44016771C91450A7F3FA09EB1EC7F8A98BEA8696C2FC1BE",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-codec-tests].sha256",
+      "remote": "0143E40132EA2D2B5C241264D9C69C26E5F4A29E04575836D858684ED0CA64CB",
+      "local": "8902C33D2B2E4EC00FD75B33C72DFC40B53A0CA058ECEA2A24EF2A0CDFF7C52E",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-codecs].sha256",
+      "remote": "A5021E8A4DF39F803E2DC9D342C2F74B51E2A75117DB6C84D6CA797B2AC09BDF",
+      "local": "94B685FA0EEB3F79F848F431406FF5E9F36CE3067B6A812C0E1708832CA83116",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-dll-archive].sha256",
+      "remote": "0D4707273474F353089B9707D1C76475E7C3EE4F6B1BA88D2BBE4384F98D33D2",
+      "local": "92872660676753CA4D27796F4C91A9150500DF9E094144EEE0673061B262DEEE",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-dll-codec].sha256",
+      "remote": "A309D705BE81D6E1DF35D615ADED3347160A526B5B53A920F7011588742E81CA",
+      "local": "0DFC02FD7DCD31DA7DE66E9F5CEBE4B44F405FF502589DCAE1D94C5B911D3FCE",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-e5].sha256",
+      "remote": "95CEDC5624AAFB03815ECF5B207918EDDF78AD3AE7E0FAF92F128483EF8FC6D8",
+      "local": "06A1406B6194F31A5134C959E74646F0019E985CF9169189B32FA560763DA652",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-exchange-tests].sha256",
+      "remote": "CF05A8DC11AF7360E62F603208D1334B0CEC01B156191F320710D3C15B6F5DD3",
+      "local": "76864D12930408087408665A66BD480CA81BDA0FB45E86F0D36E92348FAF9A83",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-grid].sha256",
+      "remote": "C96C535A1018B69E4D413F6E2E3212896DA4F0663C8D2772A81FEE0EAA970A4D",
+      "local": "B4F87061070298A64F2123CA01DC6B650360B3D2F0FA926D49F6742BAB2472EB",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-help-document].sha256",
+      "remote": "D6655636A2FB1626FABBF348A71E046CFBF8392495CF1F4092652A8FC370E585",
+      "local": "8B09A6BF521813E1CF88FDFE8C934931EC09EF9624A1450F97E18FF3C5667733",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-history].sha256",
+      "remote": "CB73CC9AB365EB5A479A427DA301EE7119910468E4736A552FD9EF637E07C6BA",
+      "local": "3D779191E9B69E9D1C95AA20A197B9BD9A3AEC45CDD85904A65DF0D34AFE3BEB",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-integrated-panel].sha256",
+      "remote": "887CDF8CC29D70FBE2C3D5393087FD4C4991D081EFF6C2E6C150933A2899D3E9",
+      "local": "A5D50D840918B83A5B7FC8AA406A3CC9D7738B7C8558DD9312846665573BB47F",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-migration-converter].sha256",
+      "remote": "D6BAE888B0114FC9AB708C3C504D15556615604E6379857B6A8FC2595AEA7181",
+      "local": "EDF7FB70FA023D0B4C191DF57AEBFA0C3B5CDFEF0F4FA59A736FF8E8CFBEBD2D",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-mutation].sha256",
+      "remote": "8A5054FC480ABDA5E8882BE9B30BB22F9EAD64CDF1F8088E2A563091A0958E04",
+      "local": "C6ED146AC2C6238261E4A7047B85FF6747037D9B61B3007C1F0B1400BFD64FC0",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-palette].sha256",
+      "remote": "133497EFEAD31551C1155F67CCB5C5620FFDDDC5B6EEFAEB3AAC95CE641ADA0E",
+      "local": "88967DF611D47BF2B364DC760C471955B5312E42260041CDB3A77EC4D72BCE7D",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-pixel-editor].sha256",
+      "remote": "DF111F4B862708FFCA060B2E424BB7E3AF5661B7AA393D6ED7C25F0E762E1FA3",
+      "local": "F319C7BB8EB55AF907599B372FDF3013782AB77753791C95F67AC92251CB98CB",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-reference-atlas].sha256",
+      "remote": "84E273998B6352058C9308B7650BE3652C613A066E72A8B88BD269146CAEFE61",
+      "local": "E7F69A3F0BA3792B95346A2BA45064A517BCEA9E6834FD8C16922FD8BDC69D5E",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-reference-context].sha256",
+      "remote": "86BA3ACEC31F41F25B36A4314F26D7641B76EC674AD0B8292E4D96A97BFDB34A",
+      "local": "1B2DA61A44DED7833847829C894E66C85DAD4903CA836838143E0A95DBA58B26",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-reference-layout].sha256",
+      "remote": "0FAB084D6E60B1EB94952CD300F18F93FD0F4A9994BD440923266B3363A6AE94",
+      "local": "05679B2DF7ED16BF25112AF132EC9677EEE7D914B0814AF9DB9214591291F772",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-rs-import].sha256",
+      "remote": "23C8C761F2501F9F215D519CD5BFA7E6C946349F453EA00B814046B21D287AB1",
+      "local": "246B0A1C8D578FA66EA3B3B94F00DA105F998768AD031774AD0780817C9EC0F8",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-s-map].sha256",
+      "remote": "EC5C904BD09EB0EE50FD3AAAA6EEE93813FF58034F25B250742F03DB01C06325",
+      "local": "4BC7F01D436093D9E004FD17561209C7ABE6AC51B349D4B19ED9C2C67F422353",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-special-codecs].sha256",
+      "remote": "30CDB0279E73A9CCCDB0F897508B7C89217550D0B805D86404232897AE851CE0",
+      "local": "C3CEEA459CAD434EE6B2DB915750066856C442EC5253A6739B88AA97D852140F",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-strip-exchange].sha256",
+      "remote": "E4840F08F093532B7B3235D42CBBD4824945E48C79C289C4D3ECAA60D4079EC6",
+      "local": "BCA3E6F254B3D0C54F5477B20A198BE2DB0B59E44644EFD8B4075EC8CAFE9A9F",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.image-test-runner].sha256",
+      "remote": "939F4CB7F77CC91ACD114F591B9D2B6B69957534A20EA621BCB9CB9D56F1BC11",
+      "local": "2927C225134090610F6173499EC4179A29DC42F5B7785BFFC6EAB667E11A2748",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.item-types].sha256",
+      "remote": "F4E686C9538F45F6114564C85D701DB20F42D4E7FB1A08166CE69060EB022911",
+      "local": "18C44085E2E1FE77226B52E62B93544A1209C54908CFDEC137F7FB95DFCC5B81",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.main-form].sha256",
+      "remote": "675F3AE5791E84DBDC66C5EEB0BFA05E0CE4A1C595F5278BDE688C62CC5F15DA",
+      "local": "7AA517493A3ACF502EC58FF29BE5E1EA4795C3E2EA2420ED945FDF5426F59955",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.migration].sha256",
+      "remote": "27AE42A7C6E8D47D02CC5094C640B01588247DC5B58050F0BBCDFE5CB1B49035",
+      "local": "86CC4944569EE37303A7F665F5B684317BD0B1A5538B2DF9AD0F171380489764",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.migration-commit].sha256",
+      "remote": "90A45928B010650FD856CED705EF387760F0166FE7154045B7339712FF20966D",
+      "local": "F457BC27F82C1B7EC0BBC456D9A6C6E63F39C16773B429D5B9A90116133BB4F7",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.migration-review-ui].sha256",
+      "remote": "0925F1240AC42B19479E9B29E03E453F630FE9B07C6EECA447AD9B54453F511E",
+      "local": "ECFDCEB3E0677290149E917FB0859DD75691BE37A5BC69BAF8F21844652858F5",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.name-pool].sha256",
+      "remote": "774111833A972B521F1B299971559E10A72D317577044CCF4E489314E4A0B1D4",
+      "local": "035CCC6E81E22E035850DF80E5605C1E9F997BCF751D56B436A919C495469881",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.profile65].sha256",
+      "remote": "6FA7F8797E03AB2B7A16D6F78D77A4E57494BCB3988BFB3660A71CA4480D5BD2",
+      "local": "25433EFDB2F93356EADFB69314E33632486A9E4E020B82E91C569C261B03C5F4",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.profile66].sha256",
+      "remote": "03C52A5DB59ADC43902BBBD8F6C6C785856E0EB75BBDA9437970302288E313D7",
+      "local": "25D415C8522959B37EA63ED3C3CBB6FF87FC283E91D765E4AEB7292733CF86F8",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.publish-single-file].sha256",
+      "remote": "8A8C615A2626840A9C2F98C325366C094E53C1BDD68CB0D86E5F89F16B34B2A6",
+      "local": "076EE8B1EB398E2CE9B643216FD090B361408F88764CF6702FFAB9E875148C98",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.registry].sha256",
+      "remote": "8F1CD4CACC23E473A5F8ACF9B5D813AA701DD2D999AE50893FF5AC87A246A6EB",
+      "local": "BB4D9575007CED39200BB45E37455309D0D9191B6EF13B76B0920783DE15DC27",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.resource-history].sha256",
+      "remote": "D395F62EDAFA9293C5D50213959CF6FCBA5FBA5CA0079AECFD2FB60D77F69C61",
+      "local": "D26649A1BEEB3293AD39C42DBDE2B11616A6C91A9F16DDBA4DF1C2E02841EB04",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.table-writer].sha256",
+      "remote": "2F1587BB9B18AC941AE1B47F02E64D6110BEDDE100CBF1657C942BEBE8C0C788",
+      "local": "951C303F3B2C20739B680AE64FBD4F09A2A4E9E28817282BCC0A979A50137ED0",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.test-assignment].sha256",
+      "remote": "8B69A2435E584E88CD6058B4E88F56024B260FC705799389DDAD84E45AFC9DA1",
+      "local": "E84D8B7F2CE79088B7DB8422ABCDB11AB75819432389C1E3D8C1BA740AE66456",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.test-resource-bindings].sha256",
+      "remote": "994805CA9813B9FA818F46A0DEA80523A687AACDAE708B2C5A9B25BB80E25624",
+      "local": "09BCE0372B52E43982A21A834ECDA6EB3BF7D75B272B1D466EC2D02C8C3201D5",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.test-resource-migration].sha256",
+      "remote": "26E386E991565F8D15EE1FBCB5C068EEA64C14E4E3048386FBEE3581EE28B302",
+      "local": "F3D46259C3A3666F2029196B1CFBCF3BF045CAF4E72361605EACC0E002D2730C",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.test-runner].sha256",
+      "remote": "83094F54BE423317121D69D07FA7191F2392070B28BE61789CC6D596F98CE314",
+      "local": "3E588A62A4DE37E84332DCD1BB91AFB227761EF115B3E3BC3051BEB2571D52D2",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.test-ui-presentation].sha256",
+      "remote": "4BBA9F78CF5ED4C0D56146AD3EA902427B318EEC91E23FB63B4CD2A023C10416",
+      "local": "16538CA838B94D8C96436CDC6670C3AD35CF958A09E4799CBA909F4141FDF377",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.user-attribute-enums].published",
+      "remote": true,
+      "local": false,
+      "resolution": "preserved published source state from remote branch"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.values].sha256",
+      "remote": "47EA9B5BB89282B32FA2825B4D394923F41C60B215CA5D5228E34233AFBF36D8",
+      "local": "E99325E224C05B9E6B4967C82211C8F8F6FBAAFE85CA52CD073C325F32D36618",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    },
+    {
+      "field": "sources/source-manifest.json.entries[src.data-manager.workspace].sha256",
+      "remote": "935A496BEE908B8EDBE14DBC48F67E52715515749FAEC5CFE44A8C79B7A21A91",
+      "local": "1DDB23F58FA0C9DBA0B21C1C76A97AE21C50BDD45461E8BAA1866CB8F8DBAE9D",
+      "resolution": "local source SHA retained; remote SHA preserved under historicalRevisions for reproducibility"
+    }
+  ]
+}

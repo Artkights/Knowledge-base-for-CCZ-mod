@@ -1,0 +1,5 @@
+PASS direct repeated-register cross-role source preserved; both plans blocked; personal stays unresolved
+PASS wrapper read-only cross-role consumer blocks the shared item immediate
+PASS isolated item writable; direct and wrapper item-only aliases writable with shared marker
+PASS complete MOV EAX immediate writable without XOR; only full32 XOR/SUB prove high bits; partial/no zeroing stays unresolved read-only
+OPERAND_SHARING_SAFETY_TESTS_OK direct-cross-role wrapper-cross-role item-only-sharing full32-immediate partial-zeroing-safety

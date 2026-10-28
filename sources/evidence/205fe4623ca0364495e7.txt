@@ -1,0 +1,48 @@
+# data 管理器单文件发布验收（2026-10-20）
+
+发布 Profile：`src/DataManager.App/Properties/PublishProfiles/SingleFileWinX64.pubxml`
+
+- Runtime：`win-x64`
+- 模式：framework-dependent（`SelfContained=false`）
+- 单文件：`PublishSingleFile=true`、`UseAppHost=true`
+- 裁剪和 ReadyToRun：关闭
+- native/runtime 自解压：关闭
+- 目标机前置条件：.NET 8 Windows Desktop Runtime（Windows x64）
+
+## 结果
+
+本轮使用全新的临时目录：
+
+`data管理器/_publish-hotfix-20261020-5/`
+
+可直接交付的同内容目录为 `data管理器/发布-框架依赖单文件-20261020-5/`，EXE 文件版本为 `1.2026.1020.1`。本次包含宝物读写、消耗品目录和 Meff 图库点击播放修复。
+
+目录文件清单只有：
+
+| 文件 | 大小 |
+|---|---:|
+| `data管理器.exe` | 2,132,961 字节 |
+
+EXE SHA-256：
+
+`0087F77C2F0B406A9E2C581BCA8E29BAAB6EB56C7A880049D9F5BA43407D1B42`
+
+目录中没有 `.dll`、`.deps.json`、`.runtimeconfig.json`、`hostfxr`、`hostpolicy`、`coreclr` 或其他 .NET runtime 文件。EXE 二进制包含嵌入资源名 `DataManager.App.Assets.About.Doro-white.ico`。
+
+图标源、仓库副本和数据管理器项目副本 SHA-256 均为：
+
+`A6BA8BA4BCD2CE2556FB078F508F68D20820A2BF05560704ED41B7713E30E9E1`
+
+图标源为用户指定的 `工具整合包/CCZModStudio/bin/Release/net8.0-windows/win-x64/Assets/About/Doro-white.ico`；项目通过 `<ApplicationIcon>` 设置 EXE 图标，并通过嵌入资源为窗口运行时回退。Windows 运行时在发布的 `data管理器.exe` apphost 上优先读取关联图标，开发/测试宿主则使用嵌入副本，避免把测试宿主图标误带入窗口。
+
+## 本次验证
+
+- Release 解决方案构建：0 警告、0 错误。
+- `--item-semantic-editing .`：山贼国庆五个真实样本、6.5/6.6 类别切换、UI 编辑、草稿解析、限定字节保存和 CSV 往返全部通过。
+- `--item-types 基底/加强版6.5未加密版`：四类 Codec 分类、消耗品目录与真实 6.5 业务 UI 通过。
+- `--core-regression 基底/加强版6.5未加密版`：核心回归通过。
+- `--ui-presentation`：界面绑定与嵌入图标检查通过。
+- Meff 真实十八州图库点击播放、非零尾部合成回归、代表帧矩阵通过，详见同目录 `2026-10-20-Meff图库点击播放修复.md`。
+- 交付 EXE 在当前安装 Windows Desktop Runtime 8.0.8 的 Windows x64 环境启动，成功进入输入空闲并保持运行，检查后关闭本次启动进程；启动后目录仍只有一个 EXE。
+
+没有执行独立虚拟机或卸载运行时的启动验证；本机启动验证不等同于无运行时环境验证。运行依赖为 **.NET 8 Windows Desktop Runtime（Windows x64）**，发布包本身只包含单个 EXE，不包含 .NET 运行时。

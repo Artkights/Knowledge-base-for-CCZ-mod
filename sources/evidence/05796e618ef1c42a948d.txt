@@ -1,0 +1,13 @@
+THREE_BASE_SCAN_OK 洗隋 rows=180 slots=1 elapsedMs=4259
+THREE_BASE_BIND_OK 洗隋 lastRow=179 sharedN=True independentN=PASS personBytes=PASS tableBounds=PASS unparsedWritable=PASS
+THREE_BASE_UNBIND_OK 洗隋 FF=PASS NPreserved=PASS unknownLayoutRejected=PASS elapsedMs=10946
+THREE_BASE_SOURCE_UNCHANGED 洗隋
+THREE_BASE_SCAN_OK 加强版6.5未加密版 rows=255 slots=1 elapsedMs=2484
+THREE_BASE_BIND_OK 加强版6.5未加密版 lastRow=254 sharedN=True independentN=PASS personBytes=PASS tableBounds=PASS unparsedWritable=PASS
+THREE_BASE_UNBIND_OK 加强版6.5未加密版 FF=PASS NPreserved=PASS unknownLayoutRejected=PASS elapsedMs=7852
+THREE_BASE_SOURCE_UNCHANGED 加强版6.5未加密版
+THREE_BASE_SCAN_OK 复刻版6.6山贼 国庆 rows=255 slots=2 elapsedMs=2798
+THREE_BASE_BIND_OK 复刻版6.6山贼 国庆 lastRow=254 sharedN=False independentN=PASS personBytes=PASS tableBounds=PASS unparsedWritable=PASS
+THREE_BASE_UNBIND_OK 复刻版6.6山贼 国庆 FF=PASS NPreserved=PASS unknownLayoutRejected=PASS elapsedMs=8768
+THREE_BASE_SOURCE_UNCHANGED 复刻版6.6山贼 国庆
+THREE_BASE_ASSIGNMENT_TESTS_OK samples=3

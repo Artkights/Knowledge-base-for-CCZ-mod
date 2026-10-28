@@ -428,7 +428,7 @@
           "offset": "0x11",
           "width": 1,
           "type": "uint8",
-          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -436,7 +436,7 @@
           "offset": "0x12",
           "width": 1,
           "type": "uint8",
-          "meaning": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -496,7 +496,8 @@
       "notes": [
         "物理文件布局和运行时内存记录是不同实体。",
         "canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。",
-        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。"
+        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。",
+        "2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。"
       ],
       "sourceRefs": [
         "src.data-manager.profile65",
@@ -506,7 +507,8 @@
         "src.data-manager.values",
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
-        "src.data-manager.studio-icon-mapping"
+        "src.data-manager.studio-icon-mapping",
+        "src.integration.record-codecs-current"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -611,7 +613,7 @@
           "offset": "0x11",
           "width": 1,
           "type": "uint8",
-          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -619,7 +621,7 @@
           "offset": "0x12",
           "width": 1,
           "type": "uint8",
-          "meaning": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -679,7 +681,8 @@
       "notes": [
         "物理文件布局和运行时内存记录是不同实体。",
         "canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。",
-        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。"
+        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。",
+        "2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。"
       ],
       "sourceRefs": [
         "src.data-manager.profile65",
@@ -689,7 +692,8 @@
         "src.data-manager.values",
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
-        "src.data-manager.studio-icon-mapping"
+        "src.data-manager.studio-icon-mapping",
+        "src.integration.record-codecs-current"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -17783,7 +17787,7 @@
           "offset": "0x11",
           "width": 1,
           "type": "uint8",
-          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -17791,7 +17795,7 @@
           "offset": "0x12",
           "width": 1,
           "type": "uint8",
-          "meaning": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable",
           "referenceTable": "effect-names"
         },
@@ -17852,7 +17856,8 @@
       "notes": [
         "物理文件布局和运行时内存记录是不同实体。",
         "canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。",
-        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。"
+        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。",
+        "2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。"
       ],
       "sourceRefs": [
         "src.data-manager.profile65",
@@ -17862,7 +17867,8 @@
         "src.data-manager.values",
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
-        "src.data-manager.studio-icon-mapping"
+        "src.data-manager.studio-icon-mapping",
+        "src.integration.record-codecs-current"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -18430,7 +18436,7 @@
           "offset": "0x11",
           "width": 1,
           "type": "uint8",
-          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -18438,7 +18444,7 @@
           "offset": "0x12",
           "width": 1,
           "type": "uint8",
-          "meaning": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable",
           "referenceTable": "effect-names"
         },
@@ -18499,7 +18505,8 @@
       "notes": [
         "物理文件布局和运行时内存记录是不同实体。",
         "canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。",
-        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。"
+        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。",
+        "2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。"
       ],
       "sourceRefs": [
         "src.data-manager.profile65",
@@ -18509,7 +18516,8 @@
         "src.data-manager.values",
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
-        "src.data-manager.studio-icon-mapping"
+        "src.data-manager.studio-icon-mapping",
+        "src.integration.record-codecs-current"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -18568,7 +18576,7 @@
           "offset": "0x11",
           "width": 1,
           "type": "uint8",
-          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -18576,7 +18584,7 @@
           "offset": "0x12",
           "width": 1,
           "type": "uint8",
-          "meaning": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable",
           "referenceTable": "effect-names"
         },
@@ -18637,7 +18645,8 @@
       "notes": [
         "物理文件布局和运行时内存记录是不同实体。",
         "canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。",
-        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。"
+        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。",
+        "2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。"
       ],
       "sourceRefs": [
         "src.data-manager.profile65",
@@ -18647,7 +18656,8 @@
         "src.data-manager.values",
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
-        "src.data-manager.studio-icon-mapping"
+        "src.data-manager.studio-icon-mapping",
+        "src.integration.record-codecs-current"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -34331,7 +34341,7 @@
           "offset": "0x11",
           "width": 1,
           "type": "uint8",
-          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -34339,7 +34349,7 @@
           "offset": "0x12",
           "width": 1,
           "type": "uint8",
-          "meaning": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable",
           "referenceTable": "effect-names"
         },
@@ -34400,7 +34410,8 @@
       "notes": [
         "物理文件布局和运行时内存记录是不同实体。",
         "canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。",
-        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。"
+        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。",
+        "2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。"
       ],
       "sourceRefs": [
         "src.data-manager.profile65",
@@ -34410,7 +34421,8 @@
         "src.data-manager.values",
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
-        "src.data-manager.studio-icon-mapping"
+        "src.data-manager.studio-icon-mapping",
+        "src.integration.record-codecs-current"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -34936,7 +34948,7 @@
           "offset": "0x11",
           "width": 1,
           "type": "uint8",
-          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -34944,7 +34956,7 @@
           "offset": "0x12",
           "width": 1,
           "type": "uint8",
-          "meaning": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -35005,7 +35017,8 @@
       "notes": [
         "物理文件布局和运行时内存记录是不同实体。",
         "canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。",
-        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。"
+        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。",
+        "2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。"
       ],
       "sourceRefs": [
         "src.data-manager.profile65",
@@ -35015,7 +35028,8 @@
         "src.data-manager.values",
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
-        "src.data-manager.studio-icon-mapping"
+        "src.data-manager.studio-icon-mapping",
+        "src.integration.record-codecs-current"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -35090,7 +35104,7 @@
           "offset": "0x11",
           "width": 1,
           "type": "uint8",
-          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -35098,7 +35112,7 @@
           "offset": "0x12",
           "width": 1,
           "type": "uint8",
-          "meaning": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "装备特效号；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -35159,7 +35173,8 @@
       "notes": [
         "物理文件布局和运行时内存记录是不同实体。",
         "canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。",
-        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。"
+        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。",
+        "2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。"
       ],
       "sourceRefs": [
         "src.data-manager.profile65",
@@ -35169,7 +35184,8 @@
         "src.data-manager.values",
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
-        "src.data-manager.studio-icon-mapping"
+        "src.data-manager.studio-icon-mapping",
+        "src.integration.record-codecs-current"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -50936,7 +50952,7 @@
           "offset": "0x11",
           "width": 1,
           "type": "uint8",
-          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable"
         },
         {
@@ -50944,7 +50960,7 @@
           "offset": "0x12",
           "width": 1,
           "type": "uint8",
-          "meaning": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
+          "meaning": "装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。",
           "writePolicy": "Editable",
           "referenceTable": "effect-names"
         },
@@ -51006,7 +51022,8 @@
       "notes": [
         "物理文件布局和运行时内存记录是不同实体。",
         "canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。",
-        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。"
+        "15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。",
+        "2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。"
       ],
       "sourceRefs": [
         "src.data-manager.profile65",
@@ -51016,7 +51033,8 @@
         "src.data-manager.values",
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
-        "src.data-manager.studio-icon-mapping"
+        "src.data-manager.studio-icon-mapping",
+        "src.integration.record-codecs-current"
       ],
       "relations": [
         "format.item.split-data-star",

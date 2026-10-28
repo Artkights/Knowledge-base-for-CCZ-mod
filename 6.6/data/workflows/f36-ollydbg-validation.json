@@ -5,7 +5,9 @@
     {
       "id": "workflow.66.f36.ollydbg-migration-validation",
       "title": "F36 OllyDbg 旧地址迁移与验证",
-      "versions": ["6.6"],
+      "versions": [
+        "6.6"
+      ],
       "profile": "profile.ccz66.shanzai.guoqing.f36",
       "status": "candidate",
       "evidence": "source-reviewed",
@@ -17,14 +19,38 @@
         "可恢复备份"
       ],
       "steps": [
-        {"order": 1, "action": "固定文件 SHA256、大小、ImageBase、入口和代码区段"},
-        {"order": 2, "action": "把论坛绝对地址登记为旧版线索，并标注来源版本"},
-        {"order": 3, "action": "按步长、常量、机器码和交叉引用搜索当前函数入口"},
-        {"order": 4, "action": "记录参数寄存器、栈偏移、返回寄存器、RET 清理和哨兵"},
-        {"order": 5, "action": "将结构锚点、函数入口、上下文基址和旧补丁分别建档"},
-        {"order": 6, "action": "对每个拟写站点补齐原字节、覆盖长度、指令边界、回跳和冲突"},
-        {"order": 7, "action": "只在测试副本上做静态复读，再用断点采集正负运行时样本"},
-        {"order": 8, "action": "保存后重开文件，复读字节和哈希并输出回滚报告"}
+        {
+          "order": 1,
+          "action": "固定文件 SHA256、大小、ImageBase、入口和代码区段"
+        },
+        {
+          "order": 2,
+          "action": "把论坛绝对地址登记为旧版线索，并标注来源版本"
+        },
+        {
+          "order": 3,
+          "action": "按步长、常量、机器码和交叉引用搜索当前函数入口"
+        },
+        {
+          "order": 4,
+          "action": "记录参数寄存器、栈偏移、返回寄存器、RET 清理和哨兵"
+        },
+        {
+          "order": 5,
+          "action": "将结构锚点、函数入口、上下文基址和旧补丁分别建档"
+        },
+        {
+          "order": 6,
+          "action": "对每个拟写站点补齐原字节、覆盖长度、指令边界、回跳和冲突"
+        },
+        {
+          "order": 7,
+          "action": "只在测试副本上做静态复读，再用断点采集正负运行时样本"
+        },
+        {
+          "order": 8,
+          "action": "保存后重开文件，复读字节和哈希并输出回滚报告"
+        }
       ],
       "gates": [
         "画像不匹配时禁止沿用 VA",
@@ -48,7 +74,8 @@
       "sourceRefs": [
         "src.forum.godtype.194034",
         "src.ccz.f36.exe",
-        "src.ccz.f36.static-report"
+        "src.ccz.f36.static-report",
+        "src.upstream.artkights.b2c.e074e14d2238"
       ]
     }
   ]

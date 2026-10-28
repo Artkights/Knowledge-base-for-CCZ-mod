@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "scope": "布局证据，不代替游戏战斗动态验收",
+  "screenshots": [
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/加强版6.5未加密版/兵种-灰色能力池-1920x1080.png",
+      "size": 159099,
+      "sha256": "91407AEB910F6126985B8C1833D66918810E715AD28AC410439D88C7B7F6C278",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/加强版6.5未加密版/兵种-特效分配-1280x720.png",
+      "size": 95940,
+      "sha256": "EFBCB2FD23FEB13C6AB2D98ABE8810C236DB6CF77E6432EB3D0ED2AE6235B4DC",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/加强版6.5未加密版/兵种-特效分配-1920x1080.png",
+      "size": 171330,
+      "sha256": "DBC7C32302FB3982139379D5D36ABAB52C0C0C49DFFF9583DD53C79D5A97D511",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/加强版6.5未加密版/宝物-特效分配-1280x720.png",
+      "size": 89086,
+      "sha256": "A0F11E1400F199A016DAFB96807689B6F532AB12FC3DD05289F78B782B1EC9F6",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/加强版6.5未加密版/宝物-特效分配-1920x1080.png",
+      "size": 143530,
+      "sha256": "848AD802189EA2CF011E12D189FF95F386AB1B4346F64F82DC64EA64E74E3661",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/复刻版6.6山贼 国庆/兵种-灰色能力池-1920x1080.png",
+      "size": 143124,
+      "sha256": "78ECEC89D17AC956741B517B52CED68C99195EAF10F1F8CCC5F3B79225972624",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/复刻版6.6山贼 国庆/兵种-特效分配-1280x720.png",
+      "size": 91704,
+      "sha256": "69D62928C208FF3230F30E799D47AD219E880A4952F228C6799CDCC8823C3F9B",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/复刻版6.6山贼 国庆/兵种-特效分配-1920x1080.png",
+      "size": 146822,
+      "sha256": "1A6E7A87AB51B50BA65E6A4036A2BDB4AC865B41111005A7F8E3F8D84C0A7B11",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/复刻版6.6山贼 国庆/宝物-特效分配-1280x720.png",
+      "size": 95023,
+      "sha256": "9E5322FBF762D5F6378D2F862F347D918D85978BCA5738503AF7E5CEC395AF2B",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/复刻版6.6山贼 国庆/宝物-特效分配-1920x1080.png",
+      "size": 169933,
+      "sha256": "5207E359558E448999E5DDDB85B79CC7D444C34692396E0A986809249F1D560D",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/洗隋/兵种-灰色能力池-1920x1080.png",
+      "size": 130971,
+      "sha256": "A0E444EA27CAED9F2D2FC24E97CC6BA1CFB6B162EB5D34AC6083A3097002C1D0",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/洗隋/兵种-特效分配-1280x720.png",
+      "size": 92653,
+      "sha256": "A82F17AE29F66C2B3626DA6629135083CCE68EA0B7F5174987BA91CC58D69444",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/洗隋/兵种-特效分配-1920x1080.png",
+      "size": 139316,
+      "sha256": "248D5D6B734C8D302440370D8BD08CD6156DEC426A1A026A1BBA925E8E438D04",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/洗隋/宝物-特效分配-1280x720.png",
+      "size": 89199,
+      "sha256": "16364843B1F1A129190A826959A63BC28675A7907C06D5B083A298C7862E289B",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "data管理器/验证/三基底扫描与分配-20261027/UI/洗隋/宝物-特效分配-1920x1080.png",
+      "size": 134608,
+      "sha256": "DFD2DF32A45BB400092E265F07DF290C7546FE7569D6813E77FCA2413C7BAC01",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "lifecycleChecks": [
+    "sameSHA_subpage_report_and_catalog_reuse",
+    "cancel_immediate_restart_and_late_success_ignored",
+    "cancelled_sameRoot_sameSHA_late_failure_ignored",
+    "project_switch_late_success_ignored",
+    "project_switch_late_failure_ignored",
+    "Ekd5.exe_sameMtime_content_invalidation_and_restoredSHA_reuse",
+    "Imsg.e5_sameMtime_content_invalidation_and_restoredSHA_reuse",
+    "items-low_memory_edit_catalog_invalidation",
+    "items-low_sameMtime_external_edit_catalog_invalidation",
+    "items-high_memory_edit_catalog_invalidation",
+    "items-high_sameMtime_external_edit_catalog_invalidation"
+  ],
+  "lifecycleCount": 11
+}

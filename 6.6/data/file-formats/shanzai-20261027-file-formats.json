@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "entityType": "file-format",
+  "profile": "profile.ccz66.shanzai.work.1b25",
+  "entries": [
+    {
+      "id": "format.66.imsg.item-desc",
+      "title": "6.6 Imsg.e5 道具说明区（200 字节定长）",
+      "aliases": [
+        "Imsg.e5",
+        "道具说明",
+        "item description 200 bytes",
+        "0x5BB30"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "byteOrder": "little-endian（本区无多字节字段，仅文本）",
+      "encoding": "GBK，单条内首个 0x00 之前为有效文本；空条 = 未写说明",
+      "recordSize": 200,
+      "indexFormula": "说明槽号 = 道具 ID + 68；fileOffset = 0x5BB30 + (道具 ID + 68) * 200",
+      "countRule": "全表 256 条（道具 ID 0..255），本地实测 191 条非空；ID 0 = 铁剑",
+      "emptyValue": "该条 200 字节内首个字节即 0x00",
+      "engineSide": "运行期由全局对象 0x004AE4BC 承接；引擎取说明走 0x0040BFBD（ID >= 0x50 直接不取）→ 0x0040BF56（push 200 / imul ecx,ecx,200 / call 0x00419184 拷贝 / 补结尾 0）。",
+      "fileSamples": [
+        {
+          "item": "铁剑",
+          "itemId": 0,
+          "slot": 68,
+          "fileOffset": "0x5F050",
+          "text": "铁剑罢了"
+        },
+        {
+          "item": "亮银枪",
+          "itemId": 4,
+          "slot": 72,
+          "fileOffset": "0x5F370",
+          "text": "在你眼里什么样的男人才算高级。"
+        },
+        {
+          "item": "桦木弓",
+          "itemId": 6,
+          "slot": 74,
+          "fileOffset": "0x5F500",
+          "text": "帅吗宝贝"
+        },
+        {
+          "item": "虬龙剑",
+          "itemId": 13,
+          "slot": 81,
+          "fileOffset": "0x5FA78",
+          "text": "效果一：同心协力N"
+        }
+      ],
+      "notes": "文件层规则与锚点来自本地页 `07-数据表与资源/道具说明槽-物品记录0x14与Imsg.md`（该页注明 100% 命中 256 条穷举中的 191 条非空）；引擎侧函数体本次在画像样本现读一致。Imsg.e5 本身未随样本进仓库，只在本地页与工具里留有结论。",
+      "relations": [
+        "fn.66.item-desc.lookup"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.itemdesc"
+      ]
+    }
+  ]
+}

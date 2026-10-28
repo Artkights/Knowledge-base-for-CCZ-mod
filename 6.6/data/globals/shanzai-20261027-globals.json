@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "entries": [
+    {
+      "id": "global.66.qi.pool",
+      "title": "6.6 集气池数组",
+      "aliases": [
+        "0x004930C8",
+        "集气池",
+        "qi-pool"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004930C8",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "width": 1000,
+      "type": "byte-array[250][4]",
+      "meaning": "单字节数组，总长 1000 字节 = 250 单位 × 4 字节。索引 = 0x4930C8 + 战场编号×4 + 字节号；字节 0 = 连击、字节 1 = 物理闪避、字节 2 = 暴击、字节 3 = 策略闪避。",
+      "lifecycle": "初始化在 0x0041225A：现读 `FF 35 C4 5E 50 00 68 E8 03 00 00 68 C8 30 49 00 E8 A4 DA 06 00`，即 push [0x505EC4]、push 1000、push 0x4930C8 后调用填充；初值 = 整型 4017 = [0x505EC4]。",
+      "relations": [
+        "mechanism.66.qi.judgement"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.qi"
+      ]
+    },
+    {
+      "id": "global.66.qi.gate-switch",
+      "title": "6.6 集气分流开关（4018 与前置门）",
+      "aliases": [
+        "0x00505EC8",
+        "0x00505FDC",
+        "4018",
+        "集气开关"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00505EC8",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "width": 4,
+      "type": "int32-flag",
+      "meaning": "整型变量 4018 = 0x505EC8，集气判定第二道门（须 == 1）；相邻 0x505FDC 是第一道门（须 == 0 才继续）。集气在装的真条件 = [0x505FDC]==0 且 [0x505EC8]==1，任一不满足即回原版随机路径。该变量同址二义：它同时是我方回合「我方必中」开关，改它会同时开/关两件事。",
+      "lifecycle": "运行期由用户在游戏内设置/脚本写入；静态样本里三处开关均为初值 0（本次现读 0x505FDC / 0x505EC8 / 0x505EC4 全 00）。",
+      "relations": [
+        "fn.66.qi.gate-check"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.qi"
+      ]
+    },
+    {
+      "id": "global.66.surround.target-list",
+      "title": "6.6 周边目标 slot 列表与引导目标数",
+      "aliases": [
+        "0x00500EA5",
+        "0x00500E9C",
+        "周边目标列表",
+        "引导链目标数"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "candidate",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00500EA5",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "width": 1,
+      "type": "byte-array-ff-terminated",
+      "meaning": "0x500EA5 起为「周边目标 slot 列表」，0xFF 终止、无计数变量（奋战 0x4363F1 / 引导 0x4212F1 共用）；0x500E9C 是引导链目标数（独立 byte），不是周边人数；相邻 0x500E9A 是阶段/列表标志的 1 字节槽（写入侧有 byte/word 混用，word 只覆盖 0x500E9A~0x500E9B），0x500E9D 是 byte 目标数组（FF 终止）。四者相邻但不构成 dword 结构。",
+      "lifecycle": "运行期按招式生成/复用；静态样本里本次现读 0x500EA5 = `FF` 后接 0（空列表哨兵）。",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.surround"
+      ]
+    },
+    {
+      "id": "global.66.effect-value.type-table",
+      "title": "6.6 效果值类型码表 A（类别/档位）",
+      "aliases": [
+        "0x004CB6BA",
+        "类型码表A"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004CB6BA",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "width": 7,
+      "type": "byte-array",
+      "meaning": "7 项字节表，现读 `04 05 04 04 01 04 02`。由 0x004200F5 用「类型码 − 0x1A（须 < 7）」索引；表项 < 7 时对数值乘 1.5。",
+      "lifecycle": "静态常量表，启动期不变。",
+      "relations": [
+        "fn.66.effect-value.transform"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.effectvalue"
+      ]
+    },
+    {
+      "id": "global.66.effect-value.value-table",
+      "title": "6.6 效果值类型码表 B（字节值表）",
+      "aliases": [
+        "0x004CB5CA",
+        "类型码表B"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.1b25",
+      "status": "candidate",
+      "evidence": "sample-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004CB5CA",
+        "profile": "profile.ccz66.shanzai.work.1b25",
+        "evidence": "sample-verified"
+      },
+      "width": 48,
+      "type": "byte-array",
+      "meaning": "较长字节值表，本样本现读前 48 字节为 `32 14 23 16 06 1E 28 28 24 1C 1C 28 3C 05 02 01 04 41 73 37 03 16 01 03 0D 01 05 2D FE 32 28 0F 14 FE 1C 1C 32 23 FE FE 10 37 10 5A AB 01 03 03`。dl >= 0x12 时由同一索引取值并与 0xFE 比较。表长未确定（至少 48 字节有值），0xFE 的确切含义（疑「无值/无效」）未定。",
+      "lifecycle": "静态常量表，启动期不变；长度与边界待补证，因此本条为候选。",
+      "relations": [
+        "fn.66.effect-value.transform"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.kb.effectvalue"
+      ]
+    }
+  ]
+}

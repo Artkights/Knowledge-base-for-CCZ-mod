@@ -1,0 +1,113 @@
+{
+  "schema": "ccz.image-exchange-acceptance.v1",
+  "date": "2026-10-18",
+  "scope": "editor codecs, isolated mutations, read-only original samples; not full game rendering validation",
+  "codec": {
+    "assertions": 762,
+    "exitCode": 0,
+    "samples": [
+      {
+        "path": "基底/加强版6.5未加密版",
+        "weatherEntries": 5,
+        "animationEntries": 69
+      },
+      {
+        "path": "基底/18州/十八州演义0.2版本",
+        "weatherEntries": 5,
+        "animationEntries": 71
+      },
+      {
+        "path": "基底/曹操传6.6-V10.1 【解压密码：66】/复刻版6.6",
+        "weatherEntries": 5,
+        "animationEntries": 129
+      }
+    ],
+    "diagnostics": "data管理器/验证/图片交换与单文件验收-20261018/图片编解码-专项诊断.log",
+    "report": "data管理器/验证/图片交换与单文件验收-20261018/BMP-天气-动画核心专项报告.md",
+    "assertionsCovered": [
+      "BMP4/8/24/32, CORE12, palette/indices/header/padding/tail preservation",
+      "RAW8 and embedded BMP/PNG animation plane/record boundary and byte-identical no-change rebuild",
+      "record palette/offset/percent preview; original scene and special auxiliary mask remain separate",
+      "Weather 216x50x4 split and index reconstruction",
+      "Weather full-strip and selected-frame commit/history undo/redo in three isolated copies; original source unchanged",
+      "ItemIconDerivation BMP4/BMP8 own palette, bit depth, padding, duplicate indices and tail preservation"
+    ]
+  },
+  "ui": {
+    "exitCode": 0,
+    "sampleVersions": [
+      "6.5",
+      "6.6"
+    ],
+    "clientSizes": [
+      [
+        1280,
+        720
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "checks": [
+      "real MainForm person data binding has no inactive editable-combo full selection after first show, resize, or entity switch",
+      "HP/MP and quote captions fit measured inherited font/DPI width",
+      "no edit draft produced by presentation verification"
+    ]
+  },
+  "migration": {
+    "source": "基底/18州/十八州演义0.2版本",
+    "targetTemplate": "基底/曹操传6.6-V10.1 【解压密码：66】/复刻版6.6",
+    "isolatedTarget": true,
+    "appliedChanges": 600742,
+    "files": 221,
+    "applySeconds": 19.0783052,
+    "originalSourceUnchanged": true,
+    "originalTargetUnchanged": true,
+    "failures": [],
+    "detail": "data管理器/验证/图片交换与单文件验收-20261018/十八州至V10.1迁移/逐项验收结果.json"
+  },
+  "limits": [
+    "No complete game-background/special auxiliary-mask simulation or full engine clock equivalence is claimed",
+    "Standalone EXE passed isolated missing-DOTNET_ROOT verification; no clean OS without Desktop Runtime was tested"
+  ],
+  "animationUi": {
+    "sampleVersions": [
+      "6.5",
+      "6.6"
+    ],
+    "exitCode": 0,
+    "checks": [
+      "Weather has four 216x50 frames; pause, step and speed work",
+      "Meff 17 and Mcall 25 playback frames load and play",
+      "late canceled loads cannot overwrite the active resource; old/disposed Bitmap ownership is released",
+      "native 2x1 editing plane remains distinct from 5x2 positioned/faded preview canvas"
+    ],
+    "logs": [
+      "data管理器/验证/图片交换与单文件验收-20261018/动画界面-6.5专项.log",
+      "data管理器/验证/图片交换与单文件验收-20261018/动画界面-6.6专项.log"
+    ]
+  },
+  "atlasDialogUi": {
+    "exitCode": 0,
+    "checks": [
+      "default nearest-neighbor reconstruction and geometry None",
+      "current second S set contains 28 frames; explicit legacy switch contains 84",
+      "switch and close cancel pending work; late output is ignored/disposed; caller frame ownership remains valid"
+    ],
+    "log": "data管理器/验证/图片交换与单文件验收-20261018/参考图后台取消UI.log"
+  },
+  "singleExecutable": {
+    "relativePath": "data管理器/发布-图片与动画修正版-单文件/data管理器.exe",
+    "bytes": 163208452,
+    "sha256": "DFC81ABBDAE616D242EE3B4A7C2F4F26557B752470FFBD4AAAE84170C6DDD44F",
+    "checksPassed": 9,
+    "isolatedChineseDirectory": true,
+    "dotnetRootAndX64RootMissing": true,
+    "multilevelLookup": "0",
+    "executableReadOnly": true,
+    "onlyExecutableInDirectory": true,
+    "cleanOsWithoutRuntimeTested": false,
+    "detail": "data管理器/验证/图片交换与单文件验收-20261018/单EXE最终隔离验收.json"
+  }
+}

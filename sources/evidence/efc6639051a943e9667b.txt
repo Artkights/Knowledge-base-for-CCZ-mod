@@ -1,0 +1,123 @@
+using System.Security.Cryptography;
+using System.Text.Json;
+using CCZModStudio.Models;
+
+namespace CCZModStudio.Core;
+
+public sealed class RangeProbePlanService
+{
+    private static readonly uint[] Addresses =
+    [
+        0x0040782D, 0x00406282, 0x004109A1, 0x00436511, 0x00436616,
+        0x00437AFF, 0x00435884, 0x004553F8, 0x0043DADA, 0x004364C7,
+        0x00435CE9, 0x00435BF2, 0x004361B1, 0x004064F1, 0x00438AC8,
+        0x00477E20, 0x00410F1C
+    ];
+
+    public RangeProbePlanDocument Build(CczProject project)
+    {
+        var profile = new RangeEngineVersionProfileService().Resolve(project);
+        var breakpoints = Addresses.Select(address => new RangeProbeBreakpoint
+        {
+            Name = ResolveName(address),
+            Address = address,
+            Role = ResolveRole(address),
+            CaptureStackArguments = ["[EBP+08]", "[EBP+0C]", "[EBP+10]", "[EBP+14]", "[EBP+18]", "[EBP+1C]"],
+            CaptureMemory = ResolveMemory(address)
+        }).ToArray();
+        return new RangeProbePlanDocument
+        {
+            EngineProfileId = profile.ProfileId,
+            EngineSha256 = profile.ExeSha256,
+            Breakpoints = breakpoints,
+            MemoryWatchExpressions =
+            [
+                "004927F0+0x10 (目标数组，FF 终止)",
+                "004927F0+0x84 (HP 伤害数组)",
+                "004927F0+0x254 (MP/效果数组)",
+                "004927F0+0x424 (穿透范围)",
+                "004AC748 (范围目标临时数组)",
+                "004B2C34 (目标写指针)",
+                "004B2C28 (目标哨兵)",
+                "004D1400 (原版范围指针表)"
+            ],
+            Scenarios =
+            [
+                "中心攻击者 + 完整矩阵目标：十字",
+                "中心攻击者 + 完整矩阵目标：九宫",
+                "中心攻击者 + 完整矩阵目标：没羽箭",
+                "中心攻击者 + 完整矩阵目标：蛇矛",
+                "地图边缘、无单位格、不可通行地形、最大目标数量",
+                "策略施法范围与穿透范围复用验证",
+                "反击、连击、追击、AI 选点和 UI 受击显示"
+            ]
+        };
+    }
+
+    public RangeProbePlanWriteResult Write(CczProject project, string? outputPath = null)
+    {
+        var plan = Build(project);
+        outputPath ??= Path.Combine(project.WorkspaceRoot, "CCZModStudio_Reports", "RangeProbes", "range-probe-plan.json");
+        Directory.CreateDirectory(Path.GetDirectoryName(outputPath)!);
+        var json = JsonSerializer.Serialize(plan, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(outputPath, json);
+        return new RangeProbePlanWriteResult
+        {
+            Path = outputPath,
+            Sha256 = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(outputPath))),
+            BreakpointCount = plan.Breakpoints.Count,
+            EngineProfileId = plan.EngineProfileId,
+            EngineSha256 = plan.EngineSha256
+        };
+    }
+
+    private static string ResolveName(uint address) => address switch
+    {
+        0x0040782D => "pierce_loader",
+        0x00406282 => "combat_context_init",
+        0x004109A1 => "pierce_wrapper",
+        0x00436511 => "attack_packed_dispatch",
+        0x00436616 => "attack_geometry",
+        0x00437AFF => "attack_append_target",
+        0x00435884 => "map_unit_lookup",
+        0x004553F8 => "attack_selector_call",
+        0x0043DADA => "physical_attack_entry",
+        0x004364C7 => "pierce_expand_wrapper",
+        0x00435CE9 => "pierce_geometry_dispatch",
+        0x00435BF2 => "pierce_append_target",
+        0x004361B1 => "target_consumer",
+        0x004064F1 => "attack_context_start",
+        0x00438AC8 => "pierce_secondary_caller",
+        0x00477E20 => "pierce_ui_candidate",
+        0x00410F1C => "effect_range_candidate",
+        _ => $"address_{address:X8}"
+    };
+
+    private static string ResolveRole(uint address) => address switch
+    {
+        0x0040782D or 0x00406282 or 0x004109A1 => "穿透字段读取与战斗上下文初始化",
+        0x00436511 or 0x00436616 or 0x004553F8 or 0x0043DADA => "攻击范围 packed descriptor 与几何展开",
+        0x00437AFF or 0x00435884 => "坐标落地、单位过滤和目标追加",
+        0x004364C7 or 0x00435CE9 or 0x00435BF2 => "穿透/效果目标扩展候选",
+        0x004361B1 => "目标数组消费与伤害写入",
+        _ => "调用场景分类候选"
+    };
+
+    private static IReadOnlyList<string> ResolveMemory(uint address)
+        => address switch
+        {
+            0x0040782D or 0x00406282 or 0x004109A1 => ["004927F0+0x424", "004927F0+0x10", "004927F0+0x84", "004927F0+0x254"],
+            0x00436511 or 0x00436616 or 0x00437AFF or 0x00435884 => ["004D1400", "004AC748", "004B2C34", "004B2C28", "004B422C", "004B422D"],
+            0x004364C7 or 0x00435CE9 or 0x00435BF2 or 0x004361B1 => ["004927F0+0x10", "004927F0+0x84", "004927F0+0x254", "004927F0+0x424"],
+            _ => ["004927F0", "004AC748"]
+        };
+}
+
+public sealed class RangeProbePlanWriteResult
+{
+    public string Path { get; init; } = string.Empty;
+    public string Sha256 { get; init; } = string.Empty;
+    public string EngineProfileId { get; init; } = string.Empty;
+    public string EngineSha256 { get; init; } = string.Empty;
+    public int BreakpointCount { get; init; }
+}

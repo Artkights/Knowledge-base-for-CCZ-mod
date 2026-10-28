@@ -1,0 +1,427 @@
+"""Read-only Profile/Codec/KB/sample consistency checks; Python stdlib only.
+
+Run from any directory: python data管理器/验证/check-layout-knowledge.py
+Optional: --workspace <source-workspace> --kb <knowledge-base> --report <json-file>
+The report contains relative sample/source paths only. No engine file is written.
+"""
+from __future__ import annotations
+
+import argparse
+import base64
+import hashlib
+import importlib.util
+import json
+import re
+import struct
+import sys
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
+
+def read(path):
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest().upper()
+
+
+class Audit:
+    def __init__(self):
+        self.errors, self.notes, self.samples = [], [], []
+        self.counts = {"variants": 0, "tables": 0, "fields": 0, "sources": 0,
+                       "sampleFiles": 0, "sampleTableBounds": 0, "peConsumers": 0,
+                       "itemIconArchives": 0, "itemIconOrphans": 0, "itemIconUnverified": 0}
+
+    def check(self, condition, message):
+        if not condition:
+            self.errors.append(message)
+
+
+def pe_sections(data):
+    if data[:2] != b"MZ":
+        raise ValueError("missing DOS header")
+    pe = struct.unpack_from("<I", data, 0x3C)[0]
+    if data[pe:pe + 4] != b"PE\0\0":
+        raise ValueError("missing PE header")
+    count, optsize = struct.unpack_from("<H", data, pe + 6)[0], struct.unpack_from("<H", data, pe + 20)[0]
+    opt = pe + 24
+    if struct.unpack_from("<H", data, opt)[0] != 0x10B:
+        raise ValueError("not PE32")
+    base = struct.unpack_from("<I", data, opt + 28)[0]
+    sections = []
+    for i in range(count):
+        pos = opt + optsize + i * 40
+        rva, size, raw, flags = (struct.unpack_from("<I", data, pos + n)[0] for n in (12, 16, 20, 36))
+        if raw + size > len(data):
+            raise ValueError("section outside file")
+        sections.append((rva, size, raw, flags))
+    return base, sections
+
+
+def map_va(base, sections, va, length):
+    hits = [(raw + va - base - rva, flags) for rva, size, raw, flags in sections
+            if va >= base + rva and va + length <= base + rva + size]
+    if len(hits) != 1:
+        raise ValueError("ambiguous/unmapped VA")
+    return hits[0]
+
+
+def to_va(base, sections, offset):
+    hits = [base + rva + offset - raw for rva, size, raw, _ in sections if raw <= offset < raw + size]
+    if len(hits) != 1:
+        raise ValueError("ambiguous/unmapped fileOffset")
+    return hits[0]
+
+
+def signature_hits(data, sections, pattern):
+    tokens = pattern.split()
+    regex = re.compile(b"".join(b"." if t == "??" else re.escape(bytes.fromhex(t)) for t in tokens), re.DOTALL)
+    return [raw + match.start() for _, size, raw, flags in sections if flags & 0x20000000
+            for match in regex.finditer(data[raw:raw + size])]
+
+
+def check_consumers(audit, data, label):
+    base, sections = pe_sections(data)
+    patterns = {
+        "R": ("55 8B EC 51 E8 ?? ?? ?? ?? 0F B7 04 45 ?? ?? ?? ?? 59 5D C3", 13, 2048),
+        "S": ("8B 55 08 D1 E2 0F B7 82 ?? ?? ?? ?? 85 C0 74 18 83 F8 21 73 0C 48 6B C0 03 83 C0 50 03 45 FC EB 0C 05 8F 00 00 00", 8, 2048),
+        "terrain": ("55 8B EC 0F B6 45 08 8A 80 ?? ?? ?? ?? 23 45 0C 5D C2 08 00", 9, 30),
+    }
+    found = {}
+    for key, (pattern, operand, width) in patterns.items():
+        hits = signature_hits(data, sections, pattern)
+        audit.check(len(hits) == 1, f"{label}: {key} consumer matches={len(hits)}")
+        if len(hits) != 1:
+            continue
+        hit = hits[0]
+        va = struct.unpack_from("<I", data, hit + operand)[0]
+        offset, flags = map_va(base, sections, va, width)
+        audit.check(offset + width <= len(data), f"{label}: {key} target boundary")
+        if key in {"R", "S"}:
+            audit.check(bool(flags & 0x80000000), f"{label}: {key} target is not writable section")
+            values = struct.unpack_from("<1024H", data, offset)
+            if not any(values):
+                audit.notes.append(f"{label}: {key} 指定表全零；消费者证明几何，不能以全零表推断实际资源使用。")
+        else:
+            audit.check(max(data[offset:offset + 30]) <= 15, f"{label}: terrain has high-bit values")
+            consumer_va = to_va(base, sections, hit)
+            calls = []
+            for _, size, raw, section_flags in sections:
+                if not section_flags & 0x20000000:
+                    continue
+                cursor = raw
+                while (cursor := data.find(b"\xE8", cursor, raw + size - 4)) >= 0:
+                    if to_va(base, sections, cursor) + 5 + struct.unpack_from("<i", data, cursor + 1)[0] == consumer_va:
+                        calls.append(cursor)
+                    cursor += 1
+            mask_callers = [call for call in calls
+                            if re.search(b"\x3C\x03\x77.", data[max(0, call - 48):call], re.DOTALL)
+                            and b"\xB0\x01\xD3\xE0" in data[max(0, call - 48):call]
+                            and data[call - 4:call] == b"\xFF\x75\xE0\x50"]
+            audit.check(len(calls) >= 2 and bool(mask_callers), f"{label}: terrain lacks independent elemental mask callers")
+        found[key] = {"fileOffset": f"0x{offset:X}", "va": f"0x{va:X}", "width": width}
+        audit.counts["peConsumers"] += 1
+    audit.check(not ("R" in found and "S" in found) or
+                abs(int(found["R"]["fileOffset"], 16) - int(found["S"]["fileOffset"], 16)) >= 2048,
+                f"{label}: R/S table overlap")
+    return found
+
+
+def verify_history_lineage(path, current, expected_sha):
+    """Reconstruct evidence bytes in memory; this is not an engine detection gate."""
+    history = path.parent / ".data管理器历史/manifest.jsonl"
+    if not history.is_file():
+        return None
+    entries = [json.loads(line) for line in history.read_text(encoding="utf-8-sig").splitlines() if line.strip()]
+    data = current
+    operations = []
+    for _ in range(len(entries)):
+        digest = sha(data)
+        if digest == expected_sha:
+            return {"historyFile": ".data管理器历史/manifest.jsonl", "operationIds": operations,
+                    "reconstructedSha256": digest}
+        matches = [(entry, file) for entry in entries if entry.get("Status") == 1
+                   for file in entry.get("Files", [])
+                   if file.get("RelativePath", "").replace("\\", "/").casefold() == path.name.casefold()
+                   and file.get("AfterHash") == digest]
+        if len(matches) != 1:
+            return None
+        entry, file = matches[0]
+        if file.get("FileLength") != len(data) or entry.get("OperationId") in operations:
+            return None
+        reconstructed = bytearray(data)
+        occupied = set()
+        for chunk in file.get("Chunks", []):
+            offset, length = chunk["Offset"], chunk["Length"]
+            old = base64.b64decode(chunk["OldBytes"], validate=True)
+            new = base64.b64decode(chunk["NewBytes"], validate=True)
+            if (offset < 0 or length <= 0 or offset + length > len(data) or len(old) != length
+                    or len(new) != length or data[offset:offset + length] != new
+                    or occupied.intersection(range(offset, offset + length))):
+                return None
+            occupied.update(range(offset, offset + length))
+            reconstructed[offset:offset + length] = old
+        if not occupied or sha(reconstructed) != file.get("BeforeHash"):
+            return None
+        data = bytes(reconstructed)
+        operations.append(entry["OperationId"])
+    if sha(data) == expected_sha:
+        return {"historyFile": ".data管理器历史/manifest.jsonl", "operationIds": operations,
+                "reconstructedSha256": expected_sha}
+    return None
+
+
+def inspect_item_icon_archive(path):
+    """Audit directory and uncompressed standard-image pair evidence read-only.
+
+    Directory parity alone does not prove logical pairing: hybrid E5/Item can
+    contain RAW8 of unknown geometry and must fall back to a verified DLL.
+    """
+    data = path.read_bytes()
+    index, stride = 0x110, 12
+    if len(data) < index + stride:
+        raise ValueError("Item.e5 missing directory")
+    first = struct.unpack_from(">I", data, index + 8)[0]
+    if first <= index or first > len(data):
+        raise ValueError("Item.e5 invalid first payload")
+    region = first - index
+    trailer = region % stride
+    if trailer not in {0, 4} or trailer == 4 and data[first - 4:first] != bytes(4):
+        raise ValueError("Item.e5 invalid directory trailer")
+    count = (region - trailer) // stride
+    if not count:
+        raise ValueError("Item.e5 empty directory")
+    first_entries = []
+    for entry in range(count):
+        stored, decoded, offset = struct.unpack_from(">III", data, index + entry * stride)
+        if not stored or not decoded or offset < first or offset + stored > len(data):
+            raise ValueError(f"Item.e5 invalid entry #{entry + 1}")
+        if entry < 2:
+            first_entries.append((stored, decoded, data[offset:offset + stored]))
+    def standard_size(entry):
+        stored, decoded, payload = entry
+        if stored != decoded:
+            return None
+        if payload[:2] == b"BM" and len(payload) >= 30:
+            dib = struct.unpack_from("<I", payload, 14)[0]
+            if dib == 12:
+                width, height = struct.unpack_from("<HH", payload, 18)
+            elif dib in {40, 52, 56, 108, 124}:
+                width, height = struct.unpack_from("<ii", payload, 18)
+                height = abs(height)
+            else:
+                return None
+            return (width, height) if width > 0 and height > 0 else None
+        if payload[:8] == b"\x89PNG\r\n\x1a\n" and len(payload) >= 24:
+            width, height = struct.unpack_from(">II", payload, 16)
+            return (width, height) if width > 0 and height > 0 else None
+        return None
+    sizes = [standard_size(entry) for entry in first_entries]
+    if len(sizes) != 2 or any(size is None for size in sizes):
+        return {"sha256": sha(data), "physicalEntries": count, "logicalIconCount": None,
+                "logicalIdRange": None, "directoryTrailerLength": trailer,
+                "mapping": None, "pairingVerified": False,
+                "orphanPhysicalImageNumber": None,
+                "orphanPolicy": "directory only; preserve payloads; do not infer pairs or orphan from parity",
+                "diagnostic": "未验证RAW/压缩载荷的图片几何；不能把目录条目数除2视为图标数。按资源Codec验证或回退已验证DLL。"}
+    pairs = count // 2
+    return {"sha256": sha(data), "physicalEntries": count, "logicalIconCount": pairs,
+            "logicalIdRange": [0, pairs - 1] if pairs else [], "directoryTrailerLength": trailer,
+            "mapping": "N -> small #2N+1, large #2N+2; N starts at 0",
+            "pairingVerified": True, "firstPairSizes": sizes,
+            "orphanPhysicalImageNumber": count if count % 2 else None,
+            "orphanPolicy": "preserve raw entry; never drop or pair with appended icon"}
+
+
+def run(workspace, kb):
+    audit = Audit()
+    spec = importlib.util.spec_from_file_location("kb_import", kb / "tools/import_data_manager_facts.py")
+    importer = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(importer)
+    base = read(workspace / importer.SOURCES["profile65"])
+    child = read(workspace / importer.SOURCES["profile66"])
+    manifest = {s["id"]: s for s in read(kb / "sources/source-manifest.json")["entries"]}
+    for key, relative in importer.SOURCES.items():
+        source = workspace / relative
+        entry = manifest.get(importer.source_id(key))
+        audit.check(source.is_file() and entry is not None, f"source missing: {relative}")
+        if source.is_file() and entry is not None:
+            audit.check(entry["path"] == relative and entry["sha256"] == sha(source.read_bytes()), f"source SHA drift: {relative}")
+        audit.counts["sources"] += 1
+    for key, relative in importer.OWNED_SOURCES.items():
+        source = kb / relative
+        entry = manifest.get(importer.source_id(key))
+        audit.check(source.is_file() and entry is not None, f"KB-owned source missing: {relative}")
+        if source.is_file() and entry is not None:
+            audit.check(entry["path"] == relative and entry["sha256"] == sha(source.read_bytes()), f"KB-owned source SHA drift: {relative}")
+        audit.counts["sources"] += 1
+    resolved = {}
+    for version, config in (("6.5", base), ("6.6", child)):
+        entries = read(kb / version / "data/structures/data-manager-physical-tables.json")["entries"]
+        byid = {entry["id"]: entry for entry in entries}
+        expected_count = 0
+        for variant in config["variants"]:
+            audit.counts["variants"] += 1
+            tables = importer.resolve(base, child if version == "6.6" else None, variant)
+            resolved[variant["id"]] = tables
+            for table in tables:
+                identifier = f"struct.{version.replace('.', '')}.disk.{variant['id']}.{table['key']}"
+                entry = byid.get(identifier)
+                audit.check(entry is not None, f"KB table missing: {identifier}")
+                if entry is None:
+                    continue
+                expected_fields = importer.table_entry(table, version, variant, base['variants'][0]['fingerprints'][0])["fields"]
+                audit.check((entry["fileName"], entry["recordCount"], entry["stride"], entry["beginId"]) ==
+                            (table["file"], table["rows"], table["rowSize"], table.get("beginId", 0)), f"geometry drift: {identifier}")
+                if table["key"] != "job-series-accessory-groups":
+                    audit.check(int(entry["address"]["value"], 16) == table["offset"], f"offset drift: {identifier}")
+                audit.check(entry["fields"] == expected_fields, f"field schema drift: {identifier}")
+                audit.check(entry["recordCodec"] == table.get("recordCodecKey", "fixed-record-v1"), f"Codec drift: {identifier}")
+                if table["key"] in {"items-low", "items-high"}:
+                    icon_fields = [field for field in expected_fields if field["name"] == "图标"]
+                    icon_offset = 0x14 if variant["id"] in {"65-standard-v1", "66-legacy-data-v1"} else 0x0F
+                    audit.check(len(icon_fields) == 1 and
+                                (icon_fields[0]["offset"], icon_fields[0]["width"], icon_fields[0]["type"], icon_fields[0]["writePolicy"]) ==
+                                (f"0x{icon_offset:X}", 1, "uint8", "Editable"), f"item icon Variant field drift: {identifier}")
+                    if icon_offset == 0x0F:
+                        for reserved_offset in (0x10, 0x14):
+                            preserved = [field for field in expected_fields if int(field["offset"], 16) <= reserved_offset < int(field["offset"], 16) + field["width"]]
+                            audit.check(len(preserved) == 1 and preserved[0]["writePolicy"] == "Preserve", f"item icon reserved byte opened: {identifier}+0x{reserved_offset:X}")
+                if table["key"] == "job-series-attributes":
+                    audit.check(entry.get("rowSemantics") == importer.table_entry(table, version, variant, base['variants'][0]['fingerprints'][0]).get("rowSemantics"), f"user-confirmed enum drift: {identifier}")
+                audit.check(int(entry["endOffsetExclusive"], 16) == table["offset"] + table["rows"] * table["rowSize"], f"end boundary drift: {identifier}")
+                for field in expected_fields:
+                    audit.check(0 <= int(field["offset"], 16) and int(field["offset"], 16) + field["width"] <= table["rowSize"], f"field outside row: {identifier}:{field['name']}")
+                audit.counts["fields"] += len(expected_fields)
+                audit.counts["tables"] += 1
+                expected_count += 1
+            special = importer.special_quote_entry(version, variant)
+            audit.check(byid.get(special["id"]) == special, f"special quote slot semantics drift: {special['id']}")
+            expected_count += 1
+            audit.counts["tables"] += 1
+            audit.counts["fields"] += 1
+        audit.check(len(entries) == expected_count, f"{version}: unexpected physical table count {len(entries)} != {expected_count}")
+    # Confirm the reviewed source still contains the critical mapping contracts.
+    contracts = {
+        "quotes": ['[specialSlot.Value]', '"人物ID", personId', '["ID"], CultureInfo.InvariantCulture)', 'EmptySpecialPersonId = 1024', '21 + criticalType * 3'],
+        "image-adapter": ['fieldValue + 1', 'info.PhysicalImageNumber', '"Hitarea.e5" : "Effarea.e5"'],
+        "csv-labels": ['IdColumnName = "编号"', 'value.Equals("ID"', '"记录编号"', '"部队原始值"'],
+        "unified-history": ['UnifiedHistoryEntry("数据"', 'UnifiedHistoryEntry("形象"', 'entry.Source == "数据"'],
+        "image-bindings": ['ResourceBindingKind.ItemIcon or ResourceBindingKind.StrategyIcon', 'candidate.Action == "large"', 'DefaultSAsset', 'GetIdOptionsAsync'],
+        "image-mutation": ['itemArchive.Entries.Count / 2 * 2', 'AppendItemPairs(itemArchive, itemPayloads)', 'AppendItemPairs(archive, [pair.Small, pair.Large])', 'insertBeforeDecoded:', '[archive.Entries.Count] = pairedPayloads'],
+        "image-e5": ['insertBeforeDecoded.TryGetValue(entry.ImageNumber', 'ReadStored(entry.ImageNumber), entry.DecodedLength'],
+        "image-grid": ['PictureBoxSizeMode.Zoom', 'PreviewImageLayout.FitImageBounds'],
+    }
+    for key, tokens in contracts.items():
+        text = (workspace / importer.SOURCES[key]).read_text(encoding="utf-8-sig")
+        for token in tokens:
+            audit.check(token in text, f"reviewed source contract drift: {key}: {token}")
+    codecs = (workspace / importer.SOURCES["codecs"]).read_text(encoding="utf-8-sig")
+    for key in ["fixed-record-v1", "item-65-17-v1", "item-66-15-v1", "effect-65-8-v1", "effect-66-16-v1"]:
+        audit.check(f'["{key}"]' in codecs, f"Codec registry missing: {key}")
+    evidence = read(workspace / importer.SOURCES["layout-evidence"])
+    fingerprints = [(variant["id"], fp) for config in (base, child) for variant in config["variants"] for fp in variant.get("fingerprints", [])]
+    resource_samples = []
+    checked_archives = set()
+    for fixture in evidence:
+        relative = fixture["path"].replace("\\", "/")
+        path = workspace / relative
+        audit.check(path.is_file(), f"sample missing: {relative}")
+        if not path.is_file():
+            continue
+        data = path.read_bytes()
+        audit.counts["sampleFiles"] += 1
+        current_sha = sha(data)
+        pristine = current_sha == fixture["sha256"]
+        lineage = None
+        if not pristine:
+            try:
+                lineage = verify_history_lineage(path, data, fixture["sha256"])
+            except (ValueError, KeyError, TypeError) as exc:
+                audit.notes.append(f"{relative}: 历史验证拒绝：{exc}")
+        audit.check(len(data) == fixture["size"] and (pristine or lineage is not None), f"sample evidence SHA drift without verified history: {relative}")
+        if lineage:
+            audit.notes.append(f"{relative}: 当前 EXE SHA={current_sha}，并非原样证据样本；只读反向校验历史补丁可重建原证据 SHA={fixture['sha256']}。此关联仅供离线边界诊断，不授权未知 EXE 自动写回。")
+        consumers = check_consumers(audit, data, relative)
+        for key, target in fixture.get("targets", {}).items():
+            if "sha256" not in target or "offset" not in target:
+                continue
+            start, length = int(target["offset"], 16), target["length"]
+            audit.check(sha(data[start:start + length]) == target["sha256"], f"{relative}: {key} evidence bytes drift")
+        special_values = struct.unpack_from("<21I", data, 0x89C30)
+        audit.check(all(value <= 1024 for value in special_values), f"{relative}: special quote person ID exceeds 1024")
+        candidates = [(variant, fp) for variant, fp in fingerprints if fp.get("sha256", {}).get("Ekd5.exe") == current_sha]
+        original_candidates = [(variant, fp) for variant, fp in fingerprints if fp.get("sha256", {}).get("Ekd5.exe") == fixture["sha256"]]
+        variant = candidates[0][0] if candidates else original_candidates[0][0] if original_candidates and lineage else "66-standard-v1"
+        if not candidates:
+            audit.notes.append(f"{relative}: EXE 不在 Profile 指纹中；仅依赖独立消费者证据做离线边界校验，不宣称自动识别版本。")
+        inspected = 0
+        for table in resolved[variant]:
+            if table.get("capability") == "Unavailable":
+                continue
+            file = path.parent / table["file"]
+            if not file.is_file():
+                continue
+            end = table["offset"] + table["rows"] * table["rowSize"]
+            in_bounds = end <= file.stat().st_size
+            if not in_bounds:
+                audit.notes.append(f"{relative}: {table['key']} 超过当前文件边界，应由工作区拒绝加载。")
+            audit.counts["sampleTableBounds"] += 1
+            inspected += 1
+        audit.samples.append({"path": relative, "sha256": current_sha, "evidenceOriginalSha256": fixture["sha256"],
+                              "pristineSampleMatched": pristine, "historyLineageVerified": lineage is not None,
+                              "historyLineage": lineage, "variantForBoundaryCheck": variant,
+                              "executableFingerprintMatched": bool(candidates), "physicalTableBoundsChecked": inspected,
+                              "specialCriticalSlotExamples": [{"slot": slot, "personId": person, "ImsgOffset": 140000 + slot * 200}
+                                                              for slot, person in enumerate(special_values) if person < 1024][:3],
+                              "consumers": consumers})
+        archive = path.parent / "E5/Item.e5"
+        if archive.is_file() and archive not in checked_archives:
+            checked_archives.add(archive)
+            archive_relative = archive.relative_to(workspace).as_posix()
+            try:
+                resource = {"path": archive_relative, **inspect_item_icon_archive(archive)}
+                resource_samples.append(resource)
+                audit.counts["itemIconArchives"] += 1
+                if not resource["pairingVerified"]:
+                    audit.counts["itemIconUnverified"] += 1
+                    audit.notes.append(f"{archive_relative}: {resource['physicalEntries']} 个物理条目；{resource['diagnostic']}")
+                if resource["orphanPhysicalImageNumber"] is not None:
+                    audit.counts["itemIconOrphans"] += 1
+                    audit.notes.append(f"{archive_relative}: {resource['physicalEntries']} 个物理条目，{resource['logicalIconCount']} 对完整宝物图标；末尾 #{resource['orphanPhysicalImageNumber']} 为孤立条目，保持原样。")
+            except (ValueError, struct.error) as exc:
+                audit.check(False, f"{archive_relative}: {exc}")
+    # No canonical writable claim for disabled legacy acquisition tables.
+    for tables in resolved.values():
+        for table in tables:
+            if table["key"].startswith("item-acquisition"):
+                audit.check(table.get("capability") == "Unavailable", f"disabled legacy acquisition table opened: {table['key']}")
+    return {"schemaVersion": 1, "result": "passed" if not audit.errors else "failed", "counts": audit.counts,
+            "errors": audit.errors, "diagnostics": audit.notes, "samples": audit.samples, "itemIconResources": resource_samples,
+            "scope": "只读静态布局/消费者/SHA 一致性；不代替引擎运行时实测，也不授权候选布局写回。"}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--workspace", type=Path, default=Path(__file__).resolve().parents[2])
+    parser.add_argument("--kb", type=Path)
+    parser.add_argument("--report", type=Path)
+    args = parser.parse_args()
+    workspace = args.workspace.resolve()
+    result = run(workspace, (args.kb or workspace / "_github-kb-target").resolve())
+    if args.report:
+        args.report.parent.mkdir(parents=True, exist_ok=True)
+        args.report.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"layout_knowledge_{result['result']} " + " ".join(f"{k}={v}" for k, v in result["counts"].items()))
+    for message in result["errors"]:
+        print("ERROR " + message)
+    print(f"diagnostics={len(result['diagnostics'])}")
+    return 0 if result["result"] == "passed" else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

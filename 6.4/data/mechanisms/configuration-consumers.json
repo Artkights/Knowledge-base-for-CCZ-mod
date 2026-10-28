@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "entries": [
+    {
+      "id": "mechanism.64.native-item-category-priority",
+      "title": "洗隋6.4原生装备分类优先级与磁盘/运行时字段",
+      "versions": [
+        "6.4"
+      ],
+      "profile": "profile.ccz64.xisui.9112",
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager64.configuration64",
+        "src.data-manager64.consumers64",
+        "src.data-manager64.guide64"
+      ],
+      "summary": "物品ID、物理类型、物理效果字段与运行时类别是不同对象。洗隋先按类型0..19判武器、20..25判防具，只有类型>=26才读取运行时类别标记；普通类型的效果字节2/3不会改变此优先级。",
+      "algorithm": [
+        "磁盘记录25字节，物理+0x11类型复制到运行时+0x11；物理+0x12复制到运行时+0x14。",
+        "运行时+0x11 <20 => 武器；20<=类型<26 => 防具；类型>=26 => 回退读取运行时+0x14类别标记。",
+        "默认装备筛选按上述分类，不能按物品ID分段或INI DefID/AssID判断；255只表示默认装备ID为空。"
+      ],
+      "notes": [
+        "构造器VA0x0041FECC..0x0041FF0F；类别函数VA0x0040B444..0x0040B460。",
+        "这里记录消费者读取语义，不授予任意更改类别字节的写回能力；修改仍须目标Codec、字段策略、类型和事务门禁。"
+      ],
+      "boundaries": [
+        "仅绑定洗隋9112精确消费者；不能将6.6名称长度或15字节Codec规则当作6.4磁盘格式。"
+      ]
+    }
+  ]
+}

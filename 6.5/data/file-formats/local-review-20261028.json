@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "entityType": "file-format",
+  "profile": null,
+  "entries": [
+    {
+      "id": "format.shared.e5s-save-role",
+      "title": "E5S存档信息与R/S EEX剧本角色边界",
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.local-review.db2fa3c834c5e5c1",
+        "src.local-review.b69907b927fb7718"
+      ],
+      "aliases": [
+        ".E5S",
+        "R_*.eex",
+        "S_*.eex",
+        "存档信息不是R/S剧本"
+      ],
+      "endianness": "本角色实体不声明未解析的E5S全格式",
+      "files": [
+        "SV/*.E5S",
+        "RS/R_*.eex",
+        "RS/S_*.eex"
+      ],
+      "semantics": [
+        "E5S属于存档/索引信息，不能当作R/S剧本或人物图像封包。",
+        "R/S剧本发现扫描RS/R_*.eex和RS/S_*.eex；EEX魔数另见format.eex.probed-header。列表发现只读文件名、长度和前256字节，选择后后台解析。",
+        "人物R/S图像来自Pmapobj/Unit系列等资源；EXE人物指定、存档首段指定与图片载荷分别建模。"
+      ],
+      "writePolicy": "不据后缀推断可写结构。EEX短写回锁原容量；重建需维护场景/段落/子块长度和76跳转并复读。E5S完整格式和同步必须通过目标消费者、分段长度、尾部校验和原始SHA验证。"
+    }
+  ]
+}

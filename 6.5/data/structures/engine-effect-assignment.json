@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "entityType": "data-structure",
+  "profile": null,
+  "entries": [
+    {
+      "id": "struct.65.3890.active-effect-assignment",
+      "title": "加强版6.5未加密3890活动特效表3加1与共享N",
+      "aliases": [
+        "255x8",
+        "0xD9000",
+        "0x00507800",
+        "兵种单槽",
+        "共享N"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "sourceRefs": [
+        "src.dm.assignment-8byte-static-20261027"
+      ],
+      "address": {
+        "kind": "pointerSlot",
+        "value": "0x00500C3B",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "activeAddress": {
+        "kind": "va",
+        "value": "0x00507800",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "fileAddress": {
+        "kind": "fileOffset",
+        "value": "0xD9000",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "recordCount": 255,
+      "stride": 8,
+      "indexFormula": "DWORD[00500C3B] + effectId * 8; effectId 0..254",
+      "fields": [
+        {
+          "name": "character_1",
+          "offset": "0x00",
+          "width": 2,
+          "type": "UInt16",
+          "meaning": "人物槽1；保留不透明高位token"
+        },
+        {
+          "name": "character_2",
+          "offset": "0x02",
+          "width": 2,
+          "type": "UInt16",
+          "meaning": "人物槽2"
+        },
+        {
+          "name": "character_3",
+          "offset": "0x04",
+          "width": 2,
+          "type": "UInt16",
+          "meaning": "人物槽3"
+        },
+        {
+          "name": "job_1",
+          "offset": "0x06",
+          "width": 1,
+          "type": "UInt8",
+          "meaning": "唯一兵种槽；0..79详细兵种，255为空；80..254异常占用保留"
+        },
+        {
+          "name": "shared_value",
+          "offset": "0x07",
+          "width": 1,
+          "type": "UInt8",
+          "meaning": "整行共享N，人物命中和兵种命中读取同一字节"
+        }
+      ],
+      "notes": [
+        "初始化两处push 0xfe与40883D的cmp AL上界相符；表区结束偏移（不含）0xD97F8",
+        "4198E5从[edx+7]取人物N；41990F/419912从同一行+7取兵种N。",
+        "没有第二个兵种槽；N修改会影响该行三个已分配人物与一个兵种。",
+        "408811是ID分配写入器，不写N；磁盘+7数值字段的直接编辑不需要虚构原生N写函数。",
+        "人物空值/高位token按原字节保留，不能把0x400+id全部自动改成1024。"
+      ],
+      "writeGates": [
+        "读取当前SHA、PE映射、活动指针、行宽及有效行数后再读写；仅改目标字节。",
+        "共享N编辑先显示同一行全部人物与兵种影响；未知业务名称不影响已证明数值字段的物理可写性。",
+        "字段可写能力与工具当前实现状态分别展示；实现未覆盖不表示引擎没有字段或字段不可写。",
+        "255只是本表兵种槽的空值；不能自动推广为个人selector安全禁用值或装备查询的原生特殊值。"
+      ]
+    }
+  ]
+}

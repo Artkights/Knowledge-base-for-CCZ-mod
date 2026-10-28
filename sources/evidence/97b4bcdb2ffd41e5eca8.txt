@@ -1,0 +1,5 @@
+LAYOUT_OK 洗隋 rows=180 width=8 slots=1 sharedN=True pointer=0x00500C3B table=0x00508998 file=0xDA198 allRows=PASS boundary=PASS mutations=7/7 relocation=PASS opaqueIds=PASS sourceUnchanged=PASS
+LAYOUT_OK 加强版6.5未加密版 rows=255 width=8 slots=1 sharedN=True pointer=0x00500C3B table=0x00507800 file=0xD9000 allRows=PASS boundary=PASS mutations=7/7 relocation=PASS opaqueIds=PASS sourceUnchanged=PASS
+LAYOUT_OK 复刻版6.6山贼 rows=255 width=16 slots=2 sharedN=False pointer=0x00500C3B table=0x00511000 file=0xE2800 allRows=PASS boundary=PASS mutations=7/7 relocation=PASS opaqueIds=PASS sourceUnchanged=PASS
+LAYOUT_OK 复刻版6.6山贼 国庆 rows=255 width=16 slots=2 sharedN=False pointer=0x00500C3B table=0x00511000 file=0xE2800 allRows=PASS boundary=PASS mutations=7/7 relocation=PASS opaqueIds=PASS sourceUnchanged=PASS
+EFFECT_ASSIGNMENT_LAYOUT_TESTS_OK samples=4

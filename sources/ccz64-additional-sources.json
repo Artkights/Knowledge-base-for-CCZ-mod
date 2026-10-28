@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "src.data-manager64.attribute-reader",
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryTableReader.cs",
+      "sha256": "C7CBA4D6C9D34B0005AAC6E5E11FCF1DBDB118C9F767DC96271D13EF36CA2710",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.augmentation",
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileAugmentationService.cs",
+      "sha256": "44FC522BB09449C487617CA2CEB177419DDEF30D568DE47E9A2B8EB618643CD7",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.codecs",
+      "path": "data管理器/src/DataManager.Core/Binary/RecordCodecs.cs",
+      "sha256": "6C3D5950FBA0A4808D0A78ECC0B1B96D420B500C4B51A70DA1A6C621C754773E",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.configuration64",
+      "path": "data管理器/src/DataManager.Core/Profiles/Ccz64ConfigurationProbe.cs",
+      "sha256": "32D609AF3B258E40F999AD638F64B29AD33681C1C097224C90E1374075B29249",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.consumers64",
+      "path": "data管理器/验证/6.4修正-20261022/data64消费者.md",
+      "sha256": "33653CE1D0F00B827D275D0B48E9698FA2DAD028E6ABA14E1EC2DC137771CE40",
+      "sourceType": "static-audit",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.csv",
+      "path": "data管理器/src/DataManager.Core/Csv/CsvService.cs",
+      "sha256": "5E6EE7B8BAEDA3EF49F6B91DE293AE7956B6D07AE6F4217FFAB30D117EC082E0",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.embedded-probe",
+      "path": "data管理器/src/DataManager.Core/Profiles/EmbeddedEngineLayoutProbe.cs",
+      "sha256": "621FCC2A60F582837E16C9BAFE6814BC70575A4ACBAB09C9533C978641143CBB",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.guide64",
+      "path": "data管理器/文档/6.4洗隋兼容适配.md",
+      "sha256": "13F7D981B0246575AD068B1BF3CB751BC7548BA999785B62993F9462846CBF03",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.migration",
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationService.cs",
+      "sha256": "717D28209E811829646D297E06651AE782A110CB4D157A74062D84918E56AA9B",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.name-pool",
+      "path": "data管理器/src/DataManager.Core/Domain/EffectNamePoolService.cs",
+      "sha256": "8C8562088CF738757E1FAE33633DE3B5D32EDBDBC7DC37BF9EFD29E98C83B80A",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.profile64",
+      "path": "data管理器/config/profiles/ccz-6.4.json",
+      "sha256": "7E7143DE7EE29E5DF1293751C9ED818C050C02DAE385981A1A268EE45FAE7366",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.profile64-before-configuration",
+      "path": "data管理器/config/profiles/ccz-6.4.before-configuration.json",
+      "sha256": "233C1304673D3D69921C83CA6563E78D9CA5CD93945AB2A5A89B1DD6814846CB",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.profile65",
+      "path": "data管理器/config/profiles/ccz-6.5.json",
+      "sha256": "8FD880D538BC021D231AA8E8FD601CC3266962CDE59A585C73C07B73F644CD09",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.quotes",
+      "path": "data管理器/src/DataManager.Core/Domain/PersonQuoteService.cs",
+      "sha256": "2CB7116E5444D0B2E6644C0564846BA3965B3DE79A11A27B85C6D2548BB94A54",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.registry",
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileRegistry.cs",
+      "sha256": "9918741D58CD71157E9C14345367E4DD7D512E042EF385E6A3EB03B4A550E316",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.report64-final",
+      "path": "data管理器/验证/6.4配置与装备类型修正-20261022/验收摘要.md",
+      "sha256": "CBE142CAF0251C4DB89E8AA9C41DC1AC12D4B3D905D39ED49F50BF5A42BFC864",
+      "sourceType": "test-report",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.studio-icon-mapping",
+      "path": "工具整合包/CCZModStudio/Core/ItemIconMappingService.cs",
+      "sha256": "15C42BDCFFD6EAEF156CB2D366D449603F451A40C99DDD6569F114EB23E4ACA8",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.studio-item-layout",
+      "path": "工具整合包/CCZModStudio/Core/Ccz66ItemLayoutService.cs",
+      "sha256": "C0AB9A7976BA06BC7FD85E516A14EF1323C9ECF226339550E8262261E3EA045A",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.test-profile-write",
+      "path": "data管理器/src/DataManager.Tests/ProfileWriteTests.cs",
+      "sha256": "DA40A2A1896A4647C81E336D1723D7839B2C8B1E98754E5866084AD3DCB6F8DE",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.test-quotes",
+      "path": "data管理器/src/DataManager.Tests/PersonQuoteTests.cs",
+      "sha256": "20113237D68740203BBCD942C6875FFB5F63B257FB77DCFC34DD76EFEEA6B1FF",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.test-runner",
+      "path": "data管理器/src/DataManager.Tests/Program.cs",
+      "sha256": "F7BA933174338EAFBE90C360CA45384E91A71CDA3EE50127F395A8FC3B879D5E",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.test64-compatibility",
+      "path": "data管理器/src/DataManager.Tests/Ccz64CompatibilityTests.cs",
+      "sha256": "40AF35F85682B804DE31D04C01FF9B75F695A0B8F54A79F770C1EDFDD151001D",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.test64-configuration",
+      "path": "data管理器/src/DataManager.Tests/Ccz64ConfigurationTests.cs",
+      "sha256": "B8501F22DA1F664E43F52E41C93F2BA1EF4DC62C8FE302EE5B2A4F7E5888AAD3",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.test64-field-writeback",
+      "path": "data管理器/src/DataManager.Tests/FieldWritebackMatrixTests.cs",
+      "sha256": "E9E5BF4B4FAD02891CC6957A0F8A5417601131A5D45BC394BCFC4E66C8D54073",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.transaction",
+      "path": "data管理器/src/DataManager.Core/Editing/WorkspaceBinaryTransaction.cs",
+      "sha256": "964EBE5ED35B90850EF85C55E3303C54D5EBDA290A688940099C67A2DB913949",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    },
+    {
+      "id": "src.data-manager64.user-attribute-enums",
+      "path": "sources/data-manager-user-confirmed-enums.md",
+      "sha256": "F7BF7F1D79F23E427B0C808DF1814ACC3B4356C28D085544EC38BA288186550C",
+      "sourceType": "user-confirmation",
+      "published": true,
+      "usedFor": "用户确认的兵种系属性枚举名称；不是逆向或引擎运行时验证证据",
+      "verification": {
+        "kind": "repository-file"
+      }
+    },
+    {
+      "id": "src.data-manager64.values",
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryValueCodec.cs",
+      "sha256": "47EA9B5BB89282B32FA2825B4D394923F41C60B215CA5D5228E34233AFBF36D8",
+      "sourceType": "first-party-source",
+      "published": false,
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+      "verification": {
+        "kind": "external-local",
+        "reason": "原始源码/证据保存在来源工作区；此清单记录准确SHA，发布整合时另补快照或固定Git来源。"
+      }
+    }
+  ]
+}

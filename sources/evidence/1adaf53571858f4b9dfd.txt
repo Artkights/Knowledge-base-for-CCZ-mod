@@ -1,0 +1,7 @@
+真实动画 Meff.e5，播放帧=17，画布={Width=95, Height=78}
+真实动画 Mcall:00，播放帧=25，画布={Width=240, Height=240}
+真实 Weather 四帧、暂停/下一帧/速度、Meff/Mcall 自动播放和源文件 SHA 检查通过。
+动画连续选择、切换资源、取消与 Dispose 的迟到结果门禁及 Bitmap 释放通过。
+合成播放画布 {Width=5, Height=2}，Alpha=132，原生=Color [A=255, R=30, G=20, B=10]
+Mcall 公共播放画布 5×2 / 原生编辑平面 2×1 区分通过。
+ANIMATION_PREVIEW_UI_TESTS_OK

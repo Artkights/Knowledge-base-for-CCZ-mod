@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "entityType": "data-structure",
+  "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+  "entries": [
+    {
+      "id": "structure.66.guoqing.active-effect-job-slots",
+      "title": "国庆活动特效表的兵种双槽",
+      "aliases": [
+        "00500C3B",
+        "00511000",
+        "0xE2800",
+        "0x0C/0x0E"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "sourceRefs": [
+        "src.dm.engine-assignment-static-20261027",
+        "src.dm.assignment-acceptance-20261027"
+      ],
+      "address": {
+        "kind": "pointerSlot",
+        "value": "0x00500C3B",
+        "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+        "evidence": "static-verified"
+      },
+      "activeAddress": {
+        "kind": "va",
+        "value": "0x00511000",
+        "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+        "evidence": "static-verified"
+      },
+      "fileAddress": {
+        "kind": "fileOffset",
+        "value": "0xE2800",
+        "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+        "evidence": "static-verified"
+      },
+      "stride": 16,
+      "rowCount": 255,
+      "indexFormula": "table = DWORD[00500C3B]; row = table + effectId * 16, effectId 0..254",
+      "fields": [
+        {
+          "name": "个人槽保留区",
+          "offset": "0x00",
+          "width": 12,
+          "type": "byte[12]",
+          "meaning": "四个人物槽，兵种管理不改写"
+        },
+        {
+          "name": "兵种槽1-ID",
+          "offset": "0x0C",
+          "width": 1,
+          "type": "UInt8",
+          "meaning": "0..79详细兵种；255空闲，其他异常占用不自动覆盖"
+        },
+        {
+          "name": "兵种槽1-N",
+          "offset": "0x0D",
+          "width": 1,
+          "type": "UInt8",
+          "meaning": "槽1独立效果值"
+        },
+        {
+          "name": "兵种槽2-ID",
+          "offset": "0x0E",
+          "width": 1,
+          "type": "UInt8",
+          "meaning": "0..79详细兵种；255空闲"
+        },
+        {
+          "name": "兵种槽2-N",
+          "offset": "0x0F",
+          "width": 1,
+          "type": "UInt8",
+          "meaning": "槽2独立效果值"
+        }
+      ],
+      "writePolicy": "每次验证读取链、行宽、真实槽与PE映射；不能使用旧固定0xD9000。"
+    }
+  ]
+}

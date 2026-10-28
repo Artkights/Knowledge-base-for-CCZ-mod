@@ -17,12 +17,22 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PROFILE_IDS = {
+    "64-xisui-v1": "profile.ccz64.xisui.9112",
     "65-standard-v1": "profile.ccz65.unencrypted.f9a",
     "66-standard-v1": "profile.ccz66.data-manager.standard",
     "66-legacy-data-v1": "profile.ccz66.data-manager.17byte",
     "66-shanzhai-legacy": "profile.ccz66.data-manager.old-shanzhai",
 }
 SOURCES = {
+    "profile64": "data管理器/config/profiles/ccz-6.4.json",
+    "profile64-before-configuration": "data管理器/config/profiles/ccz-6.4.before-configuration.json",
+    "configuration64": "data管理器/src/DataManager.Core/Profiles/Ccz64ConfigurationProbe.cs",
+    "test64-compatibility": "data管理器/src/DataManager.Tests/Ccz64CompatibilityTests.cs",
+    "test64-configuration": "data管理器/src/DataManager.Tests/Ccz64ConfigurationTests.cs",
+    "test64-field-writeback": "data管理器/src/DataManager.Tests/FieldWritebackMatrixTests.cs",
+    "guide64": "data管理器/文档/6.4洗隋兼容适配.md",
+    "consumers64": "data管理器/验证/6.4修正-20261022/data64消费者.md",
+    "report64-final": "data管理器/验证/6.4配置与装备类型修正-20261022/验收摘要.md",
     "profile65": "data管理器/config/profiles/ccz-6.5.json",
     "profile66": "data管理器/config/profiles/ccz-6.6.json",
     "registry": "data管理器/src/DataManager.Core/Profiles/ProfileRegistry.cs",
@@ -168,34 +178,77 @@ def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
+ACTIVE_SOURCE_PREFIX = "src.data-manager."
+
+
 def source_id(key: str) -> str:
-    return "src.data-manager." + key
+    """Return the source namespace for the active import.
+
+    The 6.4 evidence was collected from a different source snapshot than the
+    existing 6.5/6.6 records. Keep that namespace separate so a changed local
+    hash can never silently replace an older source record with the same label.
+    """
+    return ACTIVE_SOURCE_PREFIX + key
 
 
-def register_sources(workspace: Path) -> None:
-    registry = read_json(ROOT / "sources/source-manifest.json")
+def register_sources(workspace: Path, destination: Path | None = None, only64: bool = False) -> None:
+    destination = destination or ROOT / "sources/source-manifest.json"
+    registry = read_json(destination) if destination.exists() else {"schemaVersion": 1, "entries": []}
     current = {item["id"]: item for item in registry["entries"]}
+    keys64 = {"profile64", "profile64-before-configuration", "configuration64", "test64-compatibility",
+              "test64-configuration", "test64-field-writeback", "guide64", "consumers64", "report64-final",
+              "profile65", "registry", "augmentation", "embedded-probe", "codecs", "values", "quotes",
+              "test-quotes", "test-profile-write", "studio-item-layout", "studio-icon-mapping",
+              "attribute-reader", "name-pool", "csv", "transaction", "migration", "test-runner"}
     for key, relative in SOURCES.items():
+        if only64 and key not in keys64:
+            continue
         path = workspace / relative
         if not path.is_file():
             raise FileNotFoundError(relative)
         identifier = source_id(key)
-        current[identifier] = {
+        value = {
             "id": identifier, "path": relative,
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest().upper(),
             "sourceType": ("static-audit" if key in {"image-weather-evidence", "image-animation-consumer-evidence", "image-animation-mixer-evidence", "image-animation-thread-evidence", "image-pixel-mix-evidence", "image-color-mix-evidence", "hybrid-icon-evidence"}
                            else "test-report" if key in {"image-codec-diagnostics", "image-codec-report", "image-acceptance-summary", "image-animation-ui65-log", "image-animation-ui66-log", "image-atlas-dialog-log", "hybrid-icon-log", "bundle-final-report"} else "first-party-source"), "published": False,
-            "usedFor": "6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+            "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
+            "verification": {"kind": "external-local", "reason": "原始源码/证据位于输入工作区，不随知识库分发；保留精确SHA，发布前可补固定Git提交或仓库内证据快照。"},
         }
+        previous = current.get(identifier)
+        if previous and previous.get("sha256") == value["sha256"]:
+            # Keep published snapshot and repository provenance added by the audit.
+            continue
+        if previous:
+            value["historicalRevisions"] = [previous]
+        current[identifier] = value
     for key, relative in OWNED_SOURCES.items():
         current[source_id(key)] = {
             "id": source_id(key), "path": relative,
             "sha256": hashlib.sha256((ROOT / relative).read_bytes()).hexdigest().upper(),
             "sourceType": "user-confirmation", "published": True,
             "usedFor": "用户确认的兵种系属性枚举名称；不是逆向或引擎运行时验证证据",
+            "verification": {"kind": "repository-file"},
         }
     registry["entries"] = sorted(current.values(), key=lambda item: item["id"])
-    write_json("sources/source-manifest.json", registry)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
+def merge_collection(relative: str, entity_type: str, entries: list[dict], refresh: bool = False) -> None:
+    """Retain reviewed IDs unless an explicit refresh was requested.
+
+    Importers are acquisition tools, not authority for deleting manually reviewed
+    additions. A normal repeat import adds missing IDs and is otherwise stable.
+    """
+    path = ROOT / relative
+    existing = read_json(path)["entries"] if path.exists() else []
+    current = {item["id"]: item for item in existing}
+    for entry in entries:
+        if refresh or entry["id"] not in current:
+            current[entry["id"]] = entry
+    write_json(relative, {"schemaVersion": 1, "entityType": entity_type,
+                          "entries": sorted(current.values(), key=lambda item: item["id"])})
 
 
 def resolve(base: dict, child: dict | None, variant: dict) -> list[dict]:
@@ -247,7 +300,7 @@ def expand_fields(table: dict) -> list[dict]:
     return result
 
 
-def create_profiles(config66: dict) -> None:
+def create_profiles(config66: dict, refresh: bool = False) -> None:
     entries = []
     for variant in config66["variants"]:
         samples = variant.get("fingerprints", [])
@@ -268,8 +321,7 @@ def create_profiles(config66: dict) -> None:
             "sourceRefs": [source_id("profile66"), source_id("registry"), source_id("augmentation")],
         }
         entries.append(entry)
-    write_json("6.6/data/profiles/data-manager-layouts.json", {
-        "schemaVersion": 1, "entityType": "engine-profile", "entries": entries})
+    merge_collection("6.6/data/profiles/data-manager-layouts.json", "engine-profile", entries, refresh)
 
 
 def table_entry(table: dict, version: str, variant: dict, fingerprint65: dict) -> dict:
@@ -350,7 +402,7 @@ def table_entry(table: dict, version: str, variant: dict, fingerprint65: dict) -
             if field["name"] in meanings:
                 field["meaning"] += "；" + meanings[field["name"]]
             if field["name"] in {"宝物类型", "装备特效号"}:
-                field["meaning"] += "；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约"
+                field["meaning"] += "；此为逻辑字段，6.6 15 字节 Codec 仅当原始 +0x11>=26 且 +0x12 为2或3时交换实际写入位置；普通类型0..25优先按武器/防具解释，见专用 Codec 契约"
                 field["meaning"] += "；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。"
         entry["sourceRefs"] += [source_id("studio-item-layout"), source_id("studio-icon-mapping")]
         icon_offset = next(field["offset"] for field in table["fields"] if field.get("name") == "图标")
@@ -398,24 +450,105 @@ def special_quote_entry(version: str, variant: dict) -> dict:
     }
 
 
+def table_entry64(table: dict, variant: dict, fingerprint: dict, reviewed_keys: set[str]) -> dict:
+    table = copy.deepcopy(table)
+    if table["key"] == "effect-names":
+        table["capabilityEvidence"] = "洗隋两处唯一名称消费者和目标PE映射确认180×16只读槽；失败回退数字ID，不套用6.5的255槽。"
+    entry = table_entry(table, "6.4", variant, fingerprint)
+    key = table["key"]
+    independent = key in {"persons", "detailed-job-growth", "effect-names", "person-retreat-quotes",
+                          "person-r-assign", "person-s-assign", "strategy-terrain-availability"}
+    entry["layoutOrigin"] = "ccz-6.4 override" if key in reviewed_keys else "ccz-6.5 inherited geometry only"
+    entry["sourceRefs"] = list(dict.fromkeys(entry["sourceRefs"] + [source_id("profile64"),
+        source_id("configuration64"), source_id("consumers64"), source_id("test64-compatibility")]))
+    entry["configuredCapability"] = table.get("capability", "Editable")
+    entry["relations"] = [value for value in entry.get("relations", [])
+                          if value not in {"struct.64.item-category-semantics", "mechanism.shared.consumable-effect-namespace"}]
+    entry["notes"].append("本实体是磁盘 Profile 几何；6.4 父清单继承不构成独立消费者或玩法验证。洗隋完整消费者和逐表能力是不同维度。")
+    if not independent:
+        entry["status"] = "candidate"
+        entry["evidence"] = "inherited-source-layout"
+        entry["writeGates"].insert(0, "不得仅按父清单自动写入；须核对6.4目标文件、逐表消费者/Codec、样本边界与本条字段策略。")
+    else:
+        entry["status"] = "canonical"
+        entry["evidence"] = "source-reviewed-consumer-chain"
+        if isinstance(entry.get("address"), dict):
+            entry["address"]["evidence"] = "source-reviewed-consumer-chain"
+    if key in {"person-r-assign", "person-s-assign", "strategy-terrain-availability", "person-retreat-quotes"}:
+        entry["capability"] = "RuntimeProbeRequired"
+        entry["sourceRefs"].append(source_id("augmentation"))
+        entry["writeGates"].insert(0, "完整PE消费者、合法节映射和唯一性通过后才开放；探测失败关闭本表，不从6.5猜测地址。")
+    if key == "person-retreat-quotes":
+        entry["notes"] += ["消息索引为650+原生人物ID，人物ID只允许0..48；不是人物记录+15所指的独立行。",
+                           "200字节为读取记录宽度；缓冲区在[200]补NUL。字符串实际编辑容量仍遵循严格GBK及当前文本消费者策略。"]
+    if key == "effect-names":
+        entry["capability"] = "ReadOnly"
+        entry["notes"].append("180×16共享名称槽位于文件0xD0D60；与180×8活动特效表0xDA198不是同一结构。槽内严格GBK/NUL；探测失败回退数字ID。")
+        entry["writeGates"].insert(0, "两处唯一名称消费者与PE映射通过才读取180槽；名称表只读，不升级为Editable。")
+        for field in entry["fields"]:
+            field["writePolicy"] = "ReadOnly"
+    if key in {"item-acquisition-low", "item-acquisition-high"}:
+        entry["writeGates"] = [value for value in entry["writeGates"] if not value.startswith("旧 HexTable.xml")]
+        entry["writeGates"].append("旧定义Enable=false且未获洗隋独立读取证据；保持Unavailable，不读取猜测区。")
+    if key in {"persons", "detailed-job-growth"}:
+        cutoff = 27 if key == "persons" else 9
+        chain = "PersonDefaults" if key == "persons" else "EquipmentPermissions"
+        entry["fieldCapabilityGates"] = {"consumer": "Ccz64ConfigurationProbe." + chain,
+            "offsetFrom": f"0x{cutoff:X}", "onVerified": "Editable", "onFailure": "Preserve"}
+        entry["writeGates"].insert(0, "完整消费者不匹配时只保留受保护尾字段；普通人物/成长数值继续按原策略可用。")
+        for field in entry["fields"]:
+            if int(field["offset"], 16) >= cutoff:
+                field["writePolicy"] = "Editable"
+                field["writePrecondition"] = "Ccz64ConfigurationProbe." + chain
+                field["onFailurePolicy"] = "Preserve"
+                field["meaning"] += "；完整" + chain + "消费链通过才可编辑，失败按Preserve原字节保留"
+        if key == "persons":
+            entry["notes"] += ["级别+27的原值0在引擎加载时转为1；经验+28与默认装备+29..31均被消费者读取。",
+                               "默认装备按原生类型0..19武器、20..25防具、其余类别标记分类；255仅此装备ID字段表示未装备。"]
+        else:
+            entry["notes"].append("许可读取row+9+物品类型，0..25共26类；UInt8非零即允许，不能强制将历史非零值归一为1。")
+    return entry
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workspace", type=Path, required=True)
+    parser.add_argument("--versions", nargs="+", choices=("6.4", "6.5", "6.6"), default=["6.5", "6.6"],
+                        help="Default retains the existing 6.5/6.6 import; select --versions 6.4 for Xisui only.")
+    parser.add_argument("--refresh-existing", action="store_true",
+                        help="Explicitly replace generated IDs; otherwise reviewed existing entities are retained.")
+    parser.add_argument("--source-manifest", type=Path,
+                        help="Optional separate source collection for review before merging into the manifest.")
     args = parser.parse_args()
+    global ACTIVE_SOURCE_PREFIX
+    ACTIVE_SOURCE_PREFIX = "src.data-manager64." if set(args.versions) == {"6.4"} else "src.data-manager."
     workspace = args.workspace.resolve()
     base = read_json(workspace / SOURCES["profile65"])
-    child = read_json(workspace / SOURCES["profile66"])
-    register_sources(workspace)
-    create_profiles(child)
+    child = read_json(workspace / SOURCES["profile66"]) if "6.6" in args.versions else None
+    register_sources(workspace, args.source_manifest, only64=set(args.versions) == {"6.4"})
+    if child:
+        create_profiles(child, args.refresh_existing)
     fingerprint65 = base["variants"][0]["fingerprints"][0]
-    for config, version in ((base, "6.5"), (child, "6.6")):
+    configurations = {"6.5": base, "6.6": child}
+    if "6.4" in args.versions:
+        configurations["6.4"] = read_json(workspace / SOURCES["profile64"])
+    for version in args.versions:
+        config = configurations[version]
         entries = []
         for variant in config["variants"]:
-            tables = resolve(base, child if version == "6.6" else None, variant)
-            entries.extend(table_entry(table, version, variant, fingerprint65) for table in tables)
-            entries.append(special_quote_entry(version, variant))
-        write_json(f"{version}/data/structures/data-manager-physical-tables.json", {
-            "schemaVersion": 1, "entityType": "data-structure", "entries": entries})
+            tables = resolve(base, config if version in {"6.4", "6.6"} else None, variant)
+            if version == "6.4":
+                reviewed = {table["key"] for table in config.get("tables", [])}
+                entries.extend(table_entry64(table, variant, variant["fingerprints"][0], reviewed) for table in tables)
+                special = special_quote_entry(version, variant)
+                special["sourceRefs"] += [source_id("configuration64"), source_id("consumers64"), source_id("test64-configuration")]
+                special["notes"] = ["洗隋完整特殊暴击消费者验证21项上限、VA0x48B230到文件0x89C30映射及200字节消息读取；失败禁用。"]
+                entries.append(special)
+            else:
+                entries.extend(table_entry(table, version, variant, fingerprint65) for table in tables)
+                entries.append(special_quote_entry(version, variant))
+        merge_collection(f"{version}/data/structures/data-manager-physical-tables.json", "data-structure", entries,
+                         refresh=args.refresh_existing)
         print(f"{version}: tables={len(entries)} fields={sum(len(item['fields']) for item in entries)}")
 
 

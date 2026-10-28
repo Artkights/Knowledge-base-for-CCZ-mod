@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "entityType": "engine-profile",
+  "profile": null,
+  "entries": [
+    {
+      "id": "profile.ccz64.xisui.9112",
+      "title": "洗隋6.4活动特效表精确画像",
+      "aliases": [
+        "91121D4B",
+        "ccz-6.4",
+        "64-xisui-v1"
+      ],
+      "versions": [
+        "6.4"
+      ],
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "sha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+        "size": 1162240
+      },
+      "sourceRefs": [
+        "src.dm.assignment-8byte-static-20261027",
+        "src.data-manager64.profile64",
+        "src.data-manager64.consumers64",
+        "src.data-manager64.report64-final"
+      ],
+      "addressPolicy": "只对精确SHA成立；按PE映射、活动表指针、初始化计数、读取行宽和ABI共同核对，版本号不能代替画像。 人物、许可、撤退、特殊暴击和R/S等逐功能消费链独立判断；父清单继承与样本SHA都不能替代每张表的能力门禁。",
+      "sampleFingerprints": [
+        {
+          "sampleId": "洗隋",
+          "fileLengths": {
+            "Data.e5": 61379,
+            "Star.e5": 6359,
+            "Ekd5.exe": 1162240,
+            "Imsg.e5": 440200
+          },
+          "sha256": {
+            "Data.e5": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF",
+            "Star.e5": "4A201ECC0FA3C315DA077615DE7AE4A90EF4CC61E5D94F119841F906EE4FCD15",
+            "Ekd5.exe": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+            "Imsg.e5": "F3C8AF4FB4673719EAAD819CE44C4D81ADCD3A7FA3DA9A67910D82F501382E74"
+          }
+        }
+      ]
+    },
+    {
+      "id": "profile.ccz64.liubei.36d8.performance",
+      "title": "刘备6.4副本36D8扫描性能样本",
+      "aliases": [
+        "36D8010F",
+        "刘备6.4模组 - 副本"
+      ],
+      "versions": [
+        "6.4"
+      ],
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "sha256": "36D8010F01173408A61681DBB5522B17ECD062E72A00D4356F54954C2EF3F046"
+      },
+      "addressPolicy": "仅作为扫描输出与性能输入身份，不继承9112洗隋的180x8布局或固定地址。",
+      "sourceRefs": [
+        "src.dm.scan-performance-summary-20261027",
+        "src.dm.scan-performance-metrics-20261027"
+      ]
+    }
+  ]
+}

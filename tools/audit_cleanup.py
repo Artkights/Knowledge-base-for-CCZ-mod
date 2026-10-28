@@ -3,9 +3,11 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+import sys
+sys.dont_write_bytecode = True
+from version_config import ROOT, VERSIONS
 
 
-ROOT = Path(__file__).resolve().parent.parent
 CLEANUP = ROOT / "sources" / "cleanup-report.json"
 RESEARCH = ROOT / "research" / "research-gaps.json"
 
@@ -33,7 +35,7 @@ COVERAGE = {
 
 def version_for(path: str) -> list[str]:
     first = path.split("/", 1)[0]
-    return [first] if first in {"6.5", "6.5pl", "6.6"} else ["shared"]
+    return [first] if first in VERSIONS else ["shared"]
 
 
 def main() -> None:

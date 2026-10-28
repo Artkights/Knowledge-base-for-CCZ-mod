@@ -1,0 +1,34 @@
+name: Knowledge validation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Tooling contracts
+        run: python -B -m unittest discover -s tools/tests -p 'test_*.py' -v
+      - name: Check deterministic generated files without editing
+        run: |
+          python -B tools/build_reference.py --check
+          python -B tools/build_index.py --check
+      - name: Validate entities, sources and version boundaries
+        run: python -B tools/validate_kb.py
+      - name: Query the public CLI
+        run: python -B tools/query_smoke.py
+      - name: Check whitespace and unchanged checkout
+        run: |
+          git diff --check
+          git diff --exit-code

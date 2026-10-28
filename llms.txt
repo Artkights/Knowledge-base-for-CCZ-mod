@@ -4,6 +4,15 @@
 README.md
 CONTRIBUTING.md
 index.json
+sources/integration-20261028.json
+sources/local-document-review.json
+6.4/README.md
+6.4/reference/profiles.md
+6.4/reference/functions.md
+6.4/reference/structures.md
+6.4/reference/mechanisms.md
+6.4/reference/workflows.md
+6.4/reference/test-contracts.md
 6.5/README.md
 6.5/reference/profiles.md
 6.5/reference/functions.md

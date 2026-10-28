@@ -5,11 +5,14 @@ import json
 import re
 import subprocess
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
+
+sys.dont_write_bytecode = True
+from version_config import ROOT, VERSIONS, DATA_VERSIONS, PROFILE_REQUIRED_VERSIONS, RESEARCH_ONLY_VERSIONS, data_paths
+from generated_artifacts import differences
 
 
-ROOT = Path(__file__).resolve().parent.parent
-ALLOWED_TOP = {"6.5", "6.5pl", "6.6", "legacy", "research", "schema", "sources", "tools"}
+ALLOWED_TOP = set(VERSIONS) | {"research", "schema", "sources", "tools", ".github"}
 ALLOWED_ROOT = {".gitattributes", ".gitignore", "README.md", "llms.txt", "CONTRIBUTING.md", "NOTICE.md", "index.json"}
 FORBIDDEN_EXTENSIONS = {".exe", ".dll", ".pdb", ".bin", ".obj", ".rar", ".zip", ".7z", ".doc", ".docx", ".xls", ".xlsx", ".log", ".bak", ".tmp"}
 FORBIDDEN_PARTS = {"bin", "obj", "build", "publish", "release", "__pycache__"}
@@ -221,26 +224,142 @@ def validate_case_study(errors: list[str], entry: dict) -> None:
             error(errors, f"{entry['id']} case study missing {required}")
 
 
+def safe_relative_path(value: object) -> bool:
+    text = str(value or "")
+    windows = PureWindowsPath(text)
+    posix = PurePosixPath(text)
+    return bool(text) and not windows.drive and not windows.root and not posix.is_absolute() and ".." not in windows.parts and ".." not in posix.parts and "\\" not in text
+
+
+def validate_sources(errors: list[str], document: dict, root: Path = ROOT) -> set[str]:
+    source_ids: set[str] = set()
+    for item in document.get("entries", []):
+        source_id = item.get("id")
+        if not source_id or source_id in source_ids:
+            error(errors, f"duplicate/empty source id: {source_id}")
+        source_ids.add(source_id)
+        if not re.fullmatch(r"[0-9A-F]{64}", str(item.get("sha256", ""))):
+            error(errors, f"invalid source hash: {source_id}")
+        if not safe_relative_path(item.get("path")):
+            error(errors, f"source path must be a safe relative path: {source_id}")
+        verification = item.get("verification")
+        if not isinstance(verification, dict):
+            error(errors, f"source has no explicit verification/availability contract: {source_id}")
+            continue
+        kind = verification.get("kind")
+        if kind in {"repository-file", "repository-snapshot"}:
+            relative = item.get("path") if kind == "repository-file" else verification.get("snapshotPath")
+            expected = item.get("sha256") if kind == "repository-file" else verification.get("sha256")
+            if not safe_relative_path(relative):
+                error(errors, f"unsafe source snapshot path: {source_id}")
+                continue
+            target = root / relative
+            if not target.is_file() or not target.resolve().is_relative_to(root.resolve()):
+                error(errors, f"source snapshot missing or outside repository: {source_id}")
+            elif expected != sha256(target):
+                error(errors, f"source snapshot hash mismatch: {source_id}")
+            if kind == "repository-snapshot" and expected != item.get("sha256") and not verification.get("reason"):
+                error(errors, f"derived source snapshot requires original-byte limitation: {source_id}")
+        elif kind == "remote-git":
+            from urllib.parse import urlparse
+            url = urlparse(str(verification.get("repository", "")))
+            if url.scheme != "https" or not url.hostname or url.username or url.password:
+                error(errors, f"source remote repository must be an HTTPS URL: {source_id}")
+            if not re.fullmatch(r"[0-9a-fA-F]{40}", str(verification.get("commit", ""))):
+                error(errors, f"source remote commit is not pinned: {source_id}")
+            if not safe_relative_path(verification.get("path")):
+                error(errors, f"source remote path is unsafe: {source_id}")
+            if verification.get("sha256") != item.get("sha256"):
+                error(errors, f"source remote hash differs from original hash: {source_id}")
+        elif kind in {"external-local", "identity-only"}:
+            if not verification.get("reason"):
+                error(errors, f"unpublished source requires availability reason: {source_id}")
+        else:
+            error(errors, f"unknown source verification kind {kind}: {source_id}")
+    return source_ids
+
+
+
+def entity_sha256(value: dict) -> str:
+    encoded = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest().upper()
+
+
+def validate_integration_receipt(errors: list[str], receipt: dict, entities: dict[str, dict]) -> None:
+    """Verify frozen import coverage offline against today's structured entities."""
+    records = receipt.get("records")
+    if receipt.get("schemaVersion") != 1 or not isinstance(records, list):
+        error(errors, "invalid integration receipt envelope")
+        return
+    input_ids: set[str] = set()
+    input_counts: dict[str, int] = {}
+    for record in records:
+        entity_id = record.get("id")
+        if not entity_id or entity_id in input_ids:
+            error(errors, f"duplicate/empty integration input ID: {entity_id}")
+        input_ids.add(entity_id)
+        observations = record.get("inputs")
+        if not isinstance(observations, list) or not observations:
+            error(errors, f"integration record has no input observations: {entity_id}")
+            observations = []
+        seen_inputs = set()
+        for observation in observations:
+            name = observation.get("input")
+            if not name or name in seen_inputs:
+                error(errors, f"duplicate/empty integration observation: {entity_id}: {name}")
+            seen_inputs.add(name)
+            input_counts[name] = input_counts.get(name, 0) + 1
+            if not re.fullmatch(r"[0-9A-F]{64}", str(observation.get("entitySha256", ""))):
+                error(errors, f"invalid integration input hash: {entity_id}: {name}")
+        target_id = record.get("targetId", entity_id)
+        target = entities.get(target_id)
+        if target is None:
+            error(errors, f"integration target entity missing: {entity_id} -> {target_id}")
+            continue
+        if not safe_relative_path(record.get("targetPath")) or record.get("targetPath") != target["path"]:
+            error(errors, f"integration target path differs: {entity_id}")
+        if record.get("targetStatus") != target["entry"].get("status"):
+            error(errors, f"integration target status differs: {entity_id}")
+        if record.get("targetEntitySha256") != entity_sha256(target["entry"]):
+            error(errors, f"integration target hash differs: {entity_id}")
+    if receipt.get("inputUnionCount") != len(input_ids) or len(records) != len(input_ids):
+        error(errors, "integration inputUnionCount/records differs from unique input IDs")
+    if receipt.get("inputCounts") != input_counts:
+        error(errors, "integration inputCounts differs from input observations")
+    if receipt.get("finalEntityCount") != len(entities):
+        error(errors, "integration finalEntityCount differs from structured data")
+    missing = sorted(input_ids - set(entities))
+    if receipt.get("missingIds") != missing or missing:
+        error(errors, "integration input entities are missing or missingIds is stale")
+    if receipt.get("newEntityIds") != sorted(set(entities) - input_ids):
+        error(errors, "integration newEntityIds differs from final minus input IDs")
+
 def validate_generated(errors: list[str]) -> None:
-    watched = [ROOT / "index.json", *sorted(ROOT.glob("*/reference/*.md"))]
-    before = {path: path.read_bytes() for path in watched if path.exists()}
-    for script in ("build_reference.py", "build_index.py"):
-        result = subprocess.run([sys.executable, str(ROOT / "tools" / script)], cwd=ROOT, capture_output=True, text=True)
-        if result.returncode:
-            error(errors, f"{script} failed: {result.stderr.strip() or result.stdout.strip()}")
-            return
-    after_paths = [ROOT / "index.json", *sorted(ROOT.glob("*/reference/*.md"))]
-    after = {path: path.read_bytes() for path in after_paths if path.exists()}
-    if before != after:
-        changed = sorted(path.relative_to(ROOT).as_posix() for path in set(before) | set(after) if before.get(path) != after.get(path))
-        error(errors, "generated artifacts were stale: " + " | ".join(changed))
+    # Render in memory. Validation never edits stale tracked files.
+    import build_index
+    import build_reference
+    try:
+        expected, stale = build_reference.generated_documents()
+        expected.update(build_index.generated_documents())
+        changed = differences(expected, stale)
+        if changed:
+            error(errors, "generated artifacts were stale: " + " | ".join(path.relative_to(ROOT).as_posix() for path in changed))
+    except (OSError, KeyError, TypeError, ValueError) as exc:
+        error(errors, f"cannot render generated artifacts: {exc}")
 
 
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     errors: list[str] = []
-    files = [path for path in ROOT.rglob("*") if path.is_file() and ".git" not in path.parts]
+    files = [path for path in ROOT.rglob("*") if path.is_file() and ".git" not in path.parts and "__pycache__" not in path.parts]
+    # Python caches are explicitly ignored local runtime output. Still reject any
+    # accidentally tracked cache, so ignoring local imports cannot hide a commit.
+    tracked = subprocess.run(["git", "ls-files", "-z"], cwd=ROOT, capture_output=True)
+    if tracked.returncode == 0:
+        for relative in tracked.stdout.decode("utf-8").split("\0"):
+            if "__pycache__" in PurePosixPath(relative).parts or relative.endswith((".pyc", ".pyo")):
+                error(errors, f"tracked Python cache: {relative}")
     for path in files:
         rel = path.relative_to(ROOT).as_posix()
         parts = rel.split("/")
@@ -261,7 +380,7 @@ def main() -> int:
             if re.search(r"(?i)(?:BEGIN (?:RSA|OPENSSH|EC) PRIVATE KEY|ghp_[A-Za-z0-9]+|github_pat_[A-Za-z0-9]+)", text):
                 error(errors, f"secret-like value: {rel}")
 
-    data_paths = sorted([*ROOT.glob("6.5/data/**/*.json"), *ROOT.glob("6.6/data/**/*.json"), *ROOT.glob("legacy/data/**/*.json")])
+    collection_paths = data_paths(ROOT)
     documents: list[tuple[Path, dict]] = []
     ids: dict[str, str] = {}
     profiles: set[str] = set()
@@ -276,17 +395,9 @@ def main() -> int:
 
     source_document = load_json(ROOT / "sources" / "source-manifest.json", errors)
     if isinstance(source_document, dict):
-        for item in source_document.get("entries", []):
-            source_id = item.get("id")
-            if not source_id or source_id in source_ids:
-                error(errors, f"duplicate/empty source id: {source_id}")
-            source_ids.add(source_id)
-            if not re.fullmatch(r"[0-9A-F]{64}", str(item.get("sha256", ""))):
-                error(errors, f"invalid source hash: {source_id}")
-            if Path(str(item.get("path", ""))).is_absolute():
-                error(errors, f"source path must be relative: {source_id}")
+        source_ids = validate_sources(errors, source_document)
 
-    for path in data_paths:
+    for path in collection_paths:
         value = load_json(path, errors)
         if not isinstance(value, dict):
             continue
@@ -301,11 +412,15 @@ def main() -> int:
                 error(errors, f"duplicate/empty entity id: {entry_id}")
             else:
                 ids[entry_id] = path.relative_to(ROOT).as_posix()
-            for required in ("title", "status", "evidence", "sourceRefs"):
+            for required in ("title", "versions", "status", "evidence", "sourceRefs"):
                 if required not in item:
                     error(errors, f"{entry_id} missing {required}")
             if item.get("status") not in STATUSES:
                 error(errors, f"{entry_id} has unsupported status {item.get('status')}")
+            if not isinstance(item.get("versions"), list) or not item.get("versions"):
+                error(errors, f"{entry_id} has no version boundary")
+            if set(item.get("versions", [])) & RESEARCH_ONLY_VERSIONS and item.get("status") == "canonical":
+                error(errors, f"research-only version cannot be canonical: {entry_id}")
             if entity_type == "engine-profile":
                 profiles.add(entry_id)
 
@@ -314,7 +429,7 @@ def main() -> int:
         for item in document["entries"]:
             owner = item.get("id", path.name)
             version_root = path.relative_to(ROOT).parts[0]
-            if version_root in {"6.5", "6.6"} and item.get("status") == "legacy-reference":
+            if version_root in PROFILE_REQUIRED_VERSIONS and item.get("status") == "legacy-reference":
                 error(errors, f"{owner} legacy-reference status must live under legacy/data")
             if version_root == "legacy" and item.get("status") != "legacy-reference":
                 error(errors, f"{owner} in legacy/data must use legacy-reference status")
@@ -350,8 +465,20 @@ def main() -> int:
             if entity_type == "case-study":
                 validate_case_study(errors, item)
 
-    if list((ROOT / "6.5pl").rglob("*.json")):
-        error(errors, "6.5pl must not contain canonical data until an independent profile is verified")
+    for version in VERSIONS:
+        if not (ROOT / version / "README.md").is_file():
+            error(errors, f"version domain has no README: {version}")
+    for version in RESEARCH_ONLY_VERSIONS:
+        if list((ROOT / version).rglob("*.json")):
+            error(errors, f"{version} has no structured-data root until an independent profile is verified")
+
+    receipt = load_json(ROOT / "sources" / "integration-20261028.json", errors)
+    if isinstance(receipt, dict):
+        final_entities = {
+            entry["id"]: {"entry": entry, "path": path.relative_to(ROOT).as_posix()}
+            for path, document in documents for entry in document["entries"]
+        }
+        validate_integration_receipt(errors, receipt, final_entities)
 
     cleanup = load_json(ROOT / "sources" / "cleanup-report.json", errors)
     if not isinstance(cleanup, dict) or cleanup.get("oldIndexedEntryCount") != len(cleanup.get("records", [])):
@@ -393,15 +520,23 @@ def main() -> int:
         if indexed_files != actual_files:
             error(errors, "index structuredFiles differs from structured data files")
         for item in index.get("structuredFiles", []):
+            if not safe_relative_path(item.get("path")):
+                error(errors, f"unsafe index structured file path: {item.get('path')}")
+                continue
             target = ROOT / item.get("path", "")
             if not target.exists() or item.get("sha256") != sha256(target):
                 error(errors, f"index structured file hash mismatch: {item.get('path')}")
         for item in index.get("entries", []):
-            target = ROOT / item.get("structuredDataPath", item.get("canonicalDataPath", ""))
-            reference = ROOT / item.get("referencePath", "")
+            data_path = item.get("structuredDataPath", item.get("canonicalDataPath", ""))
+            ref_path = item.get("referencePath", "")
+            if not safe_relative_path(data_path) or not safe_relative_path(ref_path):
+                error(errors, f"unsafe index data/reference path for {item.get('id')}")
+                continue
+            target = ROOT / data_path
+            reference = ROOT / ref_path
             if not target.exists() or not reference.exists():
                 error(errors, f"index target/reference missing for {item.get('id')}")
-            if item.get("versions") == ["6.5pl"]:
+            if set(item.get("versions", [])) & RESEARCH_ONLY_VERSIONS and item.get("status") == "canonical":
                 error(errors, f"6.5pl canonical entry is not allowed yet: {item.get('id')}")
 
     validate_generated(errors)

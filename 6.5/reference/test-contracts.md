@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/tests/data-manager-test-contracts.json`、`6.5/data/tests/smoke-test-contracts.json`
+结构化事实来源：`6.5/data/tests/data-manager-test-contracts.json`、`6.5/data/tests/effect-assignment-layouts.json`、`6.5/data/tests/engine-assignment-final-results.json`、`6.5/data/tests/smoke-test-contracts.json`
 
 ## 6.5/6.6 Profile 与 Variant 检测
 
@@ -270,12 +270,15 @@ ID: `test.data-manager.animation-preview-ui`；状态: `canonical`；证据: `so
 - 连续选项、切换资源及Dispose取消旧请求；迟到结果不回填新资源，旧Bitmap被释放。
 - 有位移和透明百分比的公共播放画布5×2与原生编辑平面2×1分离，不把位移/alpha烘焙进资源替换。
 - 所有真实源资源SHA保持不变；本测试不宣称完整游戏场景/特殊辅助遮罩及引擎时钟一致。
+- 真实Meff17帧和Mcall25帧自动播放；6.5和6.6各执行一次。
 
 必需产物：
 
 - 同配置预先构建日志；所声明的 6.5/6.6 样本分别运行，console exit code 0 与 ANIMATION_PREVIEW_UI_TESTS_OK
 - 非零尾部合成例的普通 E5 拒绝、Meff 专用点击播放/50ms 间隔/原生平面及 SHA 断言
 - 实际样本与 Weather/Meff/Mcall 帧数、公共画布/原生平面尺寸、源 SHA；十八州 Meff 修复报告的 SHA 为 E7E6DB63A567053F5A5DF8AD16D09CE42F9818A2CE148AA6F3B4C54E66F85357
+- 6.5和6.6专项日志均ANIMATION_PREVIEW_UI_TESTS_OK且退出0
+- Weather/Meff/Mcall实际帧数、公共画布/原生平面尺寸、源SHA复核
 
 失败含义：动态预览拆帧、播放或生命周期错误；失败时不得把缓存/合成画布写回目标资源。
 
@@ -305,6 +308,207 @@ ID: `test.data-manager.item-semantic-editing`；状态: `canonical`；证据: `s
 - 临时副本生成的宝物154截图；截图不包含真实图标资源，不作为资源缺失或真实多显示器高 DPI 验收依据
 
 失败含义：类别映射、重绑定、草稿同步或 CSV 别名错误可能改写相邻/保留字节；任何独立样本断言或整文件预期比较失败须拒绝交付，保留原始源并重新核对布局，不放宽断言。通过不代表游戏内行为/未知参数语义已验证。
+
+## 四精确样本活动表布局识别与损坏拒绝
+
+ID: `test.shared.effect-assignment-layout-recognition`；状态: `canonical`；证据: `sample-verified`
+
+命令: `dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --effect-assignment-layouts <workspace>`
+
+目标: EffectAssignmentLayout与当前EXE活动表识别；变更范围: 读取真实样本；损坏/迁移输入仅在内存或临时副本，源文件SHA保持不变
+
+断言：
+
+- 9112识别180x8，3890识别255x8，25D/F20C识别255x16
+- 有效行逐行读取及末行179/254边界一致
+- 指针迁移按PE映射和消费者证据识别，不能依赖D9000固定偏移
+- 7项损坏条件拒绝，不把只存在虚拟地址的尾部当成文件可读表
+- 未知/不匹配布局保留诊断；读取前后实际源EXE SHA相同
+
+必需产物：
+
+- 逐样本布局和边界日志
+- 损坏与迁移反例结果
+- 实际源SHA复核结果
+
+失败含义：布局证据或边界不可靠，当前受影响表不得自动写入。
+
+## 洗隋3890国庆活动表真实临时副本写回事务
+
+ID: `test.shared.three-base-assignment-transaction`；状态: `canonical`；证据: `sample-verified`
+
+命令: `dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --three-base-assignments <workspace>`
+
+目标: 活动表单槽/双槽分配、N数值编辑与事务回滚；变更范围: 只写三个样本的临时工程副本；真实基底四个核心文件SHA保持不变
+
+断言：
+
+- 洗隋180行末行179、3890与国庆255行末行254可在合法槽写回
+- 8字节表兵种ID位于+6且N为+7整行共享；16字节表双槽各自N独立
+- 人物区域和表外字节保持逐字节一致
+- 未知布局拒绝写入并报告实际原因
+- 保存后重新读取布局与目标字节，真实源四核心文件SHA不变
+
+必需产物：
+
+- 临时工程写前/写后结果
+- 首末行与共享/独立N复读断言
+- 人物与表外区域字节对比
+- 真实四核心文件SHA复核
+
+失败含义：禁止将当前布局用于分配写回，先修复字节范围、共享值语义或事务隔离问题。
+
+## 三基底物理共享绑定组联动与冲突事务
+
+ID: `test.shared.effect-physical-binding-group-transaction`；状态: `canonical`；证据: `sample-verified`
+
+命令: `DataManager.Tests.dll --effect-binding-groups <workspace>`
+
+目标: 物理来源组、完整调用身份、跨效果别名、部分消费者及selector分号；变更范围: 仅三基底临时核心副本，真实源EXE SHA不变
+
+断言：
+
+- 循环/表/包装/Nested展开本身不构成禁写理由；仅当实际定义唯一、写计划及原指令宽度已证明时开放该物理字段。
+- 一个效果号可能有多个独立物理绑定组；同一物理组也可能覆盖多个效果号。宝物池按组展示，兵种活动行只保留一个规范实例。
+- 分配、转移或卸下一个组时同步全部别名草稿，预览所有共享消费者与宝物；同一字段提出不同目标时拒绝提交。
+- 已解析装备匹配号而字段未定位的消费者可单列位置及原因；装备号也未知者不算已迁移。部分消费者夹具只证明另一未知消费者不封锁已定位组，不证明未知行一定可见。
+- 卸下后的FF源字段保留在目录中，安装并复读装备子通道守卫后仍可再次分配；不得把个人selector改成255。
+- 只读消费者占用号不被自动分配；写后复读全部组成员同号，FF后仍可重新分配。
+
+必需产物：
+
+- 逐样本组ID、别名数、调用实例数与转移/冲突/FF/partial-consumer日志
+
+失败含义：受影响物理组不可提交；保留其他独立已定位字段能力，不按效果名称全局封锁。
+
+## 真实消息循环下11项扫描生命周期与缓存失效
+
+ID: `test.shared.engine-scan-lifecycle-and-fingerprint`；状态: `canonical`；证据: `sample-verified`
+
+命令: `DataManager.Tests.dll --engine-scan-lifecycle <workspace> <outputDirectory>`
+
+目标: 报告/目录缓存、扫描代次、取消重启、切项目、同mtime内容变更；变更范围: 临时工程，真实Application.Run且开启Control.CheckForIllegalCrossThreadCalls；真实四核心源SHA不变
+
+断言：
+
+- 相同EXE与说明内容SHA切换子页复用同一报告和分配目录。缓存命中不能仅依赖路径、长度或mtime。
+- 取消后允许立即启动新代次；即使项目根目录与SHA相同，旧代次的晚到成功或异常仍被忽略。
+- 切项目使旧成功和异常失效；控件关闭与切项目在真实Application.Run消息循环及非法跨线程检查下验证。
+- EXE同mtime而内容变化使完整结构报告失效；恢复旧SHA可复用已缓存的旧报告。
+- Imsg同mtime内容变化只刷新说明：worker、FunctionRoles、IndirectCalls、Wrappers结构集合保留同一引用；恢复SHA重用原报告。
+- Data低位与Star高位物品的内存草稿或同mtime外部编辑使分配目录失效；同一引擎结构报告继续复用。
+
+必需产物：
+
+- 含11项LIFECYCLE_OK与最终成功标记的结果文本
+
+失败含义：旧扫描可能覆盖新状态、缓存过期或关闭时有原生窗口/跨线程错误，不能宣称生命周期完成。
+
+## 三基底分配页双分辨率与真实N界面验收
+
+ID: `test.shared.engine-assignment-three-base-ui`；状态: `canonical`；证据: `sample-verified`
+
+命令: `DataManager.Tests.dll --engine-assignment-ui <project> <outputDirectory>`
+
+目标: 宝物/兵种分配页与只读能力池，1280x720和1920x1080；变更范围: 三套隔离临时工程，保留15张PNG及逐样本结果
+
+断言：
+
+- 双击、切页保留选择与筛选；鼠标/键盘选择先预检，取消不留草稿，未知项拒绝选择。
+- 区分开关、数值与混合模式；独立兵种槽新值必填，单槽共享N显示实际值及全行覆盖影响。
+- 满槽红色、只读能力灰色并展示原因；继承来源卸下显示实际影响范围。
+
+必需产物：
+
+- 三份ENGINE_ASSIGNMENT_UI_TESTS_OK文本
+- 15张PNG的尺寸及SHA清单
+
+失败含义：界面可能误导槽数、共享N、可写能力或草稿范围；修复受影响交互后重新验收。
+
+## 原生字节文本与排序筛选命令写回回归
+
+ID: `test.shared.native-input-and-command-mapping`；状态: `canonical`；证据: `sample-verified`
+
+命令: `DataManager.Tests.dll --ui-writeback-hardening <project>`
+
+目标: ByteLimitedTextBox、原生输入、磁盘往返、视图命令与隐藏宝物草稿；变更范围: 3890隔离副本；真实消息循环的切项目及关闭另见生命周期契约
+
+断言：
+
+- GBK字节输入约束及CR、LF、CRLF、尾空格、01/1A控制码经原生输入和磁盘往返保持。
+- 排序筛选后Delete、选中批量操作、可见查找替换、撤回重做映射到真实记录。
+- 隐藏的辅助装备草稿正常保存；NativeWindow释放不破坏窗口销毁子类链。
+
+必需产物：
+
+- UI_WRITEBACK_HARDENING_TESTS_OK及各子测试标记
+- 真实Application.Run生命周期成功结果
+
+失败含义：输入或视图映射可能改变未选择记录或原始字节，禁止宣称写回回归完成。
+
+## 版本25实际发布EXE资源与界面只读验收
+
+ID: `test.shared.release-resource-and-ui-verification-20261027`；状态: `canonical`；证据: `sample-verified`
+
+命令: `data管理器.exe --verify-resources <output.json> <project>`
+
+目标: 1.2026.1027.25实际单文件EXE内嵌资源、工作簿与主窗/引擎页两分辨率；变更范围: 只读打开3890样本与临时导入候选；42份源文件SHA保持不变
+
+断言：
+
+- BundleResourcesAndWorkbooks范围15项全部成功，Failures=0。
+- 1280x720与1920x1080主窗和引擎页生成截图，未产生草稿。
+- 完整范围尝试17项有16项通过；唯一未通过为样本缺少内嵌真彩BMP格式Mcall动画夹具，保留原失败。
+
+必需产物：
+
+- 实际EXE的BuildVersion、Runtime和Scope结果
+- 15项通过与17项完整范围原始记录
+- 真实源SHA复核及四张界面截图
+
+失败含义：按失败项目报告范围；特定夹具缺失不能宣布完整范围通过，也不能把15项资源范围通过扩大为全部夹具已验证。
+
+## 共享操作数角色隔离与完整寄存器宽度安全回归
+
+ID: `test.shared.operand-source-role-and-register-width-safety`；状态: `canonical`；证据: `sample-verified`
+
+命令: `DataManager.Tests.dll --operand-sharing-safety-tests`
+
+目标: 生产解码器与Argument/Wrapper分析器的物理定义链、跨角色共享及32位恢复；变更范围: 仅内存中构建的最小合成PE，反射调用生产内部分析器，不写任何真实样本
+
+断言：
+
+- 直接重复寄存器push仍保留同一物理定义；跨装备/个人角色共享时两方写计划阻断，未解析参数保持未解析。
+- 只读包装参数仍参与共享定义危险检测；纯装备角色的直接和包装别名保留可写且标记共享。
+- 独立MOV EAX,imm32无需XOR即可解析为四字节可写来源；XOR/SUB EAX,EAX后MOV AL合法，AX/AL及混合部分清零或无清零不能证明高位。
+
+必需产物：
+
+- 4项PASS和OPERAND_SHARING_SAFETY_TESTS_OK完整成功标记
+- 精确测试源码与最终分析器SHA
+
+失败含义：可能误改个人/模式参数或误拒完整32位字段；相关写计划必须保持只读直至来源角色与宽度正确。
+
+## 最终源码三目标完整报告并发确定性与取消隔离
+
+ID: `test.shared.final-scan-concurrency-and-cancellation`；状态: `canonical`；证据: `sample-verified`
+
+命令: `DataManager.Tests.dll --engine-effect-performance <project>`
+
+目标: 9112/3890/F20C各自独立EXE快照的公共扫描服务；变更范围: 真实源只读，独立内存分析上下文；不使用历史EXE或写入样本
+
+断言：
+
+- 同步报告与两份并发异步报告完整序列化相同；扫描阶段依次0..8且耗时单调。
+- 预先取消和阶段2期间取消抛OperationCanceledException，取消流程不发布完成阶段。
+- 取消后新扫描完整报告仍与同输入同步基线相同。
+
+必需产物：
+
+- 三个目标ENGINE_EFFECT_SCAN_PERFORMANCE_TESTS_OK结果
+- 最终测试及实现SHA
+
+失败含义：上下文可能跨扫描污染或取消路径破坏后续结果；日志总耗时不能当作单次冷扫计量。
 
 ## R/S eex 只读烟测
 

@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": null,
+  "entries": [
+    {
+      "id": "fn.66.shanzai6929.data-id-to-person",
+      "title": "6929 Data号转人物运行时指针",
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.local-review.77cd13b616d14c1b",
+        "src.local-review.d7dfb5239851df8d"
+      ],
+      "profile": "profile.ccz66.shanzai.6929.local-review",
+      "address": {
+        "kind": "va",
+        "value": "0x004061E4",
+        "profile": "profile.ccz66.shanzai.6929.local-review",
+        "evidence": "source-reviewed"
+      },
+      "callingConvention": "栈一参数，ret 4；结果寄存器ECX",
+      "inputs": "WORD[EBP+8]为DataId；人物基址从DWORD[0x004CEA00]读取",
+      "returns": "ECX=base+DataId*0x48",
+      "semantics": "按记录步长0x48寻址，不能由Ghidra空返回伪代码改为无返回。",
+      "notes": [
+        "来自精确样本的本地静态报告。原始指令和完整寄存器/栈守恒未随该摘要重新动态验收，保持candidate；禁止直接用于远程调用或补丁。"
+      ]
+    },
+    {
+      "id": "fn.66.shanzai6929.unit-id-to-unit",
+      "title": "6929战场单位号转单位指针",
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.local-review.77cd13b616d14c1b",
+        "src.local-review.d7dfb5239851df8d"
+      ],
+      "profile": "profile.ccz66.shanzai.6929.local-review",
+      "address": {
+        "kind": "va",
+        "value": "0x004061F9",
+        "profile": "profile.ccz66.shanzai.6929.local-review",
+        "evidence": "source-reviewed"
+      },
+      "callingConvention": "寄存器输入/返回，ret；完整clobber待补",
+      "inputs": "CL为单位号，先零扩展",
+      "returns": "ECX=0x004A7B20+UInt8(CL)*0x30",
+      "semantics": "战场单位编号和人物Data号属于不同编号空间。",
+      "notes": [
+        "来自精确样本的本地静态报告。原始指令和完整寄存器/栈守恒未随该摘要重新动态验收，保持candidate；禁止直接用于远程调用或补丁。"
+      ]
+    },
+    {
+      "id": "fn.66.shanzai6929.effect-aggregate",
+      "title": "6929效果值寄存器聚合器",
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.local-review.77cd13b616d14c1b",
+        "src.local-review.d7dfb5239851df8d"
+      ],
+      "profile": "profile.ccz66.shanzai.6929.local-review",
+      "address": {
+        "kind": "va",
+        "value": "0x0040BF2F",
+        "profile": "profile.ccz66.shanzai.6929.local-review",
+        "evidence": "source-reviewed"
+      },
+      "callingConvention": "EAX/EDX数值、ECX模式；完整clobber待补",
+      "inputs": "EAX、EDX为渠道值，ECX为模式",
+      "returns": "EAX，按分支合并；其他寄存器完整契约待补",
+      "semantics": "模式0为32位回绕加法，1无符号最大，3位或；其他模式AL==7保留EAX，否则取EDX。",
+      "notes": [
+        "来自精确样本的本地静态报告。原始指令和完整寄存器/栈守恒未随该摘要重新动态验收，保持candidate；禁止直接用于远程调用或补丁。"
+      ]
+    },
+    {
+      "id": "fn.66.shanzai6929.effect-submit",
+      "title": "6929效果值提交与模式2首次零值",
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.local-review.77cd13b616d14c1b",
+        "src.local-review.d7dfb5239851df8d"
+      ],
+      "profile": "profile.ccz66.shanzai.6929.local-review",
+      "address": {
+        "kind": "va",
+        "value": "0x00413009",
+        "profile": "profile.ccz66.shanzai.6929.local-review",
+        "evidence": "source-reviewed"
+      },
+      "callingConvention": "EAX/EDX/ECX寄存器契约；不是四栈参数ABI",
+      "inputs": "EAX/EDX渠道值和ECX聚合模式",
+      "returns": "经0x0040BF2F返回聚合结果；完整clobber待补",
+      "semantics": "当ECX==2且EDX==0时先把EAX转入EDX，再调用寄存器聚合器。",
+      "notes": [
+        "来自精确样本的本地静态报告。原始指令和完整寄存器/栈守恒未随该摘要重新动态验收，保持candidate；禁止直接用于远程调用或补丁。"
+      ]
+    }
+  ]
+}

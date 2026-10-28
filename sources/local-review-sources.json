@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "entityType": "source",
+  "profile": null,
+  "entries": [
+    {
+      "id": "src.local-review.a37c00c8fdede7c6",
+      "path": "工具整合包/本地知识库/09-版本与外部资料/复刻版6.6山贼基底身份与静态分析总览.md",
+      "sha256": "3D1874002459ACBEC204A919A82BC92DD56A3041E61D3FEBDC4575EBB0D7C2EA",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.d7dfb5239851df8d",
+      "path": "工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼特效与扩展接口.md",
+      "sha256": "EF6FE1073FC64ECFD246F27EB36F48531209618FDBCF85F2343135C65BDE0581",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.27e4d9b4a26e24bd",
+      "path": "工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼P0-007初始化与存档补证.md",
+      "sha256": "977FABE044A6792DE930687AC3AD1AF262B0DFB35EC488924BB12A6B7ADE13B6",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.cf30928f456799d5",
+      "path": "工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼P0-008接口消费者补证.md",
+      "sha256": "D3AF9005F592FC9565A1D011F98FBFC067D81A60A474B111D933C1DA4362691A",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.bb311414a6eadf7d",
+      "path": "工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼P0-009行动与GetAttack接口补证.md",
+      "sha256": "256E3073DB85456D1ED93155A26CD73E76DDDACDB1D48249DAB4DB0CF3A031A5",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.baba53e86f2a93c8",
+      "path": "工具整合包/本地知识库/02-数据结构/复刻版6.6山贼P0-014资源计算与效果事件补证.md",
+      "sha256": "450EE0CA98C615332B406281814C5D7D757CD3BE878A6E0D1BA5A354C55B7470",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.d774cf0fcebd4aed",
+      "path": "工具整合包/本地知识库/02-数据结构/复刻版6.6山贼P0-015资源加成与效果类别补证.md",
+      "sha256": "9CCA982CF22AC010BF2299E364E99C446A230A938E0697583E410C06B3A63117",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.9004164d5b1afbe2",
+      "path": "工具整合包/本地知识库/02-数据结构/复刻版6.6山贼P0-016类别映射与字段写入补证.md",
+      "sha256": "C5AD9C1D3E8F42C5D8A60B314446715F6D9FD28AA4E8F4F4A9C0B1D700E52844",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.d004745387742e2e",
+      "path": "工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-010行动数值与战场结果补证.md",
+      "sha256": "E02DFAE09040C52BE4F8519E6B290FFF6C1C1EE70F2EBFC1D96A134EADFB924F",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.559200708b5565e5",
+      "path": "工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-011战斗扣减与字段上限补证.md",
+      "sha256": "8F7E6DA56B35AA2D5A5A58B220063FE05347D10746D5A66003B1DC72E87B693E",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.2a51c9d40c31beaa",
+      "path": "工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-012资源同步与结算补证.md",
+      "sha256": "E6FBB75F69EB36E068AB4426C17349AC56A6E54A22C3DDE4A6663D04A9287196",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.fe517573e0d39ac6",
+      "path": "工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-013资源继承与多目标结算补证.md",
+      "sha256": "3BBA919C8225391AA1C1EFB05E4C479EA815ABF93987E838F87C0751EB057BD3",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.5bae6efa23e750b4",
+      "path": "工具整合包/本地知识库/02-数据结构/复刻版6.6山贼运行时数据结构.md",
+      "sha256": "A6A552E4AFFA51861825E99F405A4C99E8BF42D6B940B53BAAC1C70FD6A8349E",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.55e74bdb4ca4e2aa",
+      "path": "工具整合包/本地知识库/03-机制详解/特效扫描九概念统一词典.md",
+      "sha256": "4004031D549C6A9CC99695E4C0FA23F70F7962BC7250F3577E6F950FF884BC16",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.43c5343f1266ee37",
+      "path": "工具整合包/本地知识库/03-机制详解/特效扫描九概念调查记录.md",
+      "sha256": "4BBBB49D04CAA4B5C5EE622833A03F7B9A948F83B79E51C2EA7A774CA3033175",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.6a87ddb5f3a41178",
+      "path": "工具整合包/本地知识库/03-机制详解/特效后缀位置与读写方案.md",
+      "sha256": "39CC2A4A1579E6116A585D9E17A04D81E0EDF73211174C5184FFE7D0C398316F",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.77cd13b616d14c1b",
+      "path": "工具整合包/本地知识库/04-函数速查/复刻版6.6山贼函数静态目录.md",
+      "sha256": "6D78F79D5EB4A577DAE95C168B06D31C54967EC8947265DA87B7336DB029A81D",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.db2fa3c834c5e5c1",
+      "path": "工具整合包/本地知识库/00-总览与规范/格式与文件后缀.md",
+      "sha256": "8CAB8C416A0C71B5607A85FEBCEAFE8D4CF17DE6CF3ED98F99741C0C27E66C21",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.b69907b927fb7718",
+      "path": "data管理器/文档/人物R-S形象存档自动同步.md",
+      "sha256": "87F2BE157E52F11280E1739A7D62251A56D8B15556A8B84677C2DDD15B7EC291",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    },
+    {
+      "id": "src.local-review.251bf877d0de22c3",
+      "path": "工具整合包/本地知识库/06-项目与工具链/存档增强与战斗记录迁移.md",
+      "sha256": "A97858456C18EA8FB259E6C1108489F27CB6B1320CD72A0B9AB8E9EB5265BB8C",
+      "type": "local-knowledge-document",
+      "published": false,
+      "verification": {
+        "kind": "external-local"
+      },
+      "description": "全文扫描并选取技术结论复核；文档中的历史运行结果未在本轮重跑。"
+    }
+  ]
+}

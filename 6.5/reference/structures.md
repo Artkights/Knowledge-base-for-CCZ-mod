@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/structures/data-manager-physical-tables.json`、`6.5/data/structures/item-category-semantics.json`、`6.5/data/structures/runtime-structures.json`
+结构化事实来源：`6.5/data/structures/data-manager-physical-tables.json`、`6.5/data/structures/engine-effect-assignment.json`、`6.5/data/structures/item-category-semantics.json`、`6.5/data/structures/runtime-structures.json`
 
 ## 65-standard-v1 人物（persons 物理表）
 
@@ -11,6 +11,8 @@ ID: `struct.65.disk.65-standard-v1.persons`；状态: `canonical`；证据: `sou
 步长: `0x20` (32)
 
 索引公式: `Data.e5 + 0x18C + (ID - 0) * 0x20 + field_offset; ID=0..1023`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1024`。
 
 存储：`Data.e5`；起点：`0x18C` (fileOffset)；记录数：`1024`；ID 起点：`0`；结束偏移（不含）：`0x818C`。
 
@@ -58,6 +60,8 @@ ID: `struct.65.disk.65-standard-v1.person-biography`；状态: `canonical`；证
 
 索引公式: `Imsg.e5 + 0x2D050 + (ID - 0) * 0xC8 + field_offset; ID=0..1023`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1024`。
+
 存储：`Imsg.e5`；起点：`0x2D050` (fileOffset)；记录数：`1024`；ID 起点：`0`；结束偏移（不含）：`0x5F050`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -87,6 +91,8 @@ ID: `struct.65.disk.65-standard-v1.items-low`；状态: `canonical`；证据: `s
 
 索引公式: `Data.e5 + 0x818C + (ID - 0) * 0x19 + field_offset; ID=0..103`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`104`。
+
 存储：`Data.e5`；起点：`0x818C` (fileOffset)；记录数：`104`；ID 起点：`0`；结束偏移（不含）：`0x8BB4`。
 
 能力：`Editable`；Codec：`item-65-17-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -94,6 +100,7 @@ ID: `struct.65.disk.65-standard-v1.items-low`；状态: `canonical`；证据: `s
 - 物理文件布局和运行时内存记录是不同实体。
 - canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。
 - 15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。
+- 2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。
 
 写入门禁：
 
@@ -108,8 +115,8 @@ ID: `struct.65.disk.65-standard-v1.items-low`；状态: `canonical`；证据: `s
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
 | `名称` | `0x0` | 17 | `fixed-string` | 名称；字段策略 Editable；GBK，零终止或固定宽度填充，不允许截断多字节字符 |
-| `宝物类型` | `0x11` | 1 | `uint8` | 宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
-| `装备特效号` | `0x12` | 1 | `uint8` | 装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
+| `宝物类型` | `0x11` | 1 | `uint8` | 宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
+| `装备特效号` | `0x12` | 1 | `uint8` | 装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
 | `价格（/100）` | `0x13` | 1 | `uint8` | 价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。 |
 | `图标` | `0x14` | 1 | `uint8` | 图标；字段策略 Editable；本 Variant 使用 +0x14 UInt8 图标号，允许字段级编辑；E5/Item.e5 中逻辑图标 N 对应小图 #2N+1、大图 #2N+2，N 从 0 开始 |
 | `初始能力` | `0x15` | 1 | `uint8` | 初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。 |
@@ -125,6 +132,8 @@ ID: `struct.65.disk.65-standard-v1.items-high`；状态: `canonical`；证据: `
 
 索引公式: `Star.e5 + 0x0 + (ID - 104) * 0x19 + field_offset; ID=104..254`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`151`。
+
 存储：`Star.e5`；起点：`0x0` (fileOffset)；记录数：`151`；ID 起点：`104`；结束偏移（不含）：`0xEBF`。
 
 能力：`Editable`；Codec：`item-65-17-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -132,6 +141,7 @@ ID: `struct.65.disk.65-standard-v1.items-high`；状态: `canonical`；证据: `
 - 物理文件布局和运行时内存记录是不同实体。
 - canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。
 - 15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。
+- 2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。
 
 写入门禁：
 
@@ -146,8 +156,8 @@ ID: `struct.65.disk.65-standard-v1.items-high`；状态: `canonical`；证据: `
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
 | `名称` | `0x0` | 17 | `fixed-string` | 名称；字段策略 Editable；GBK，零终止或固定宽度填充，不允许截断多字节字符 |
-| `宝物类型` | `0x11` | 1 | `uint8` | 宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
-| `装备特效号` | `0x12` | 1 | `uint8` | 装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
+| `宝物类型` | `0x11` | 1 | `uint8` | 宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
+| `装备特效号` | `0x12` | 1 | `uint8` | 装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
 | `价格（/100）` | `0x13` | 1 | `uint8` | 价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。 |
 | `图标` | `0x14` | 1 | `uint8` | 图标；字段策略 Editable；本 Variant 使用 +0x14 UInt8 图标号，允许字段级编辑；E5/Item.e5 中逻辑图标 N 对应小图 #2N+1、大图 #2N+2，N 从 0 开始 |
 | `初始能力` | `0x15` | 1 | `uint8` | 初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。 |
@@ -162,6 +172,8 @@ ID: `struct.65.disk.65-standard-v1.item-description-low`；状态: `canonical`�
 步长: `0xC8` (200)
 
 索引公式: `Imsg.e5 + 0x5F050 + (ID - 0) * 0xC8 + field_offset; ID=0..103`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`104`。
 
 存储：`Imsg.e5`；起点：`0x5F050` (fileOffset)；记录数：`104`；ID 起点：`0`；结束偏移（不含）：`0x64190`。
 
@@ -192,6 +204,8 @@ ID: `struct.65.disk.65-standard-v1.item-description-high`；状态: `canonical`�
 
 索引公式: `Imsg.e5 + 0x64190 + (ID - 104) * 0xC8 + field_offset; ID=104..254`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`151`。
+
 存储：`Imsg.e5`；起点：`0x64190` (fileOffset)；记录数：`151`；ID 起点：`104`；结束偏移（不含）：`0x6B788`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -221,6 +235,8 @@ ID: `struct.65.disk.65-standard-v1.job-series`；状态: `canonical`；证据: `
 
 索引公式: `Ekd5.exe + 0x8B010 + (ID - 0) * 0x9 + field_offset; ID=0..39`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`40`。
+
 存储：`Ekd5.exe`；起点：`0x8B010` (fileOffset)；记录数：`40`；ID 起点：`0`；结束偏移（不含）：`0x8B178`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -249,6 +265,8 @@ ID: `struct.65.disk.65-standard-v1.job-series-terrain`；状态: `canonical`；�
 步长: `0x3C` (60)
 
 索引公式: `Data.e5 + 0xA8A4 + (ID - 0) * 0x3C + field_offset; ID=0..39`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`40`。
 
 存储：`Data.e5`；起点：`0xA8A4` (fileOffset)；记录数：`40`；ID 起点：`0`；结束偏移（不含）：`0xB204`。
 
@@ -308,6 +326,8 @@ ID: `struct.65.disk.65-standard-v1.job-series-move-cost`；状态: `canonical`�
 
 索引公式: `Data.e5 + 0xA8C2 + (ID - 0) * 0x3C + field_offset; ID=0..39`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`40`。
+
 存储：`Data.e5`；起点：`0xA8C2` (fileOffset)；记录数：`40`；ID 起点：`0`；结束偏移（不含）：`0xB222`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -365,6 +385,8 @@ ID: `struct.65.disk.65-standard-v1.job-series-counter`；状态: `canonical`；�
 步长: `0x28` (40)
 
 索引公式: `Ekd5.exe + 0xA3280 + (ID - 0) * 0x28 + field_offset; ID=0..39`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`40`。
 
 存储：`Ekd5.exe`；起点：`0xA3280` (fileOffset)；记录数：`40`；ID 起点：`0`；结束偏移（不含）：`0xA38C0`。
 
@@ -433,6 +455,8 @@ ID: `struct.65.disk.65-standard-v1.job-series-attributes`；状态: `canonical`�
 步长: `0x28` (40)
 
 索引公式: `Ekd5.exe + 0xA38C0 + (ID - 0) * 0x28 + field_offset; ID=0..7`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`8`。
 
 存储：`Ekd5.exe`；起点：`0xA38C0` (fileOffset)；记录数：`8`；ID 起点：`0`；结束偏移（不含）：`0xA3A00`。
 
@@ -514,6 +538,8 @@ ID: `struct.65.disk.65-standard-v1.detailed-jobs`；状态: `canonical`；证据
 
 索引公式: `Ekd5.exe + 0xD18D0 + (ID - 0) * 0x9 + field_offset; ID=0..79`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`80`。
+
 存储：`Ekd5.exe`；起点：`0xD18D0` (fileOffset)；记录数：`80`；ID 起点：`0`；结束偏移（不含）：`0xD1BA0`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -543,6 +569,8 @@ ID: `struct.65.disk.65-standard-v1.detailed-job-description`；状态: `canonica
 
 索引公式: `Imsg.e5 + 0x11170 + (ID - 0) * 0xC8 + field_offset; ID=0..79`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`80`。
+
 存储：`Imsg.e5`；起点：`0x11170` (fileOffset)；记录数：`80`；ID 起点：`0`；结束偏移（不含）：`0x14FF0`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -571,6 +599,8 @@ ID: `struct.65.disk.65-standard-v1.detailed-job-growth`；状态: `canonical`；
 步长: `0x23` (35)
 
 索引公式: `Data.e5 + 0x9DB4 + (ID - 0) * 0x23 + field_offset; ID=0..79`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`80`。
 
 存储：`Data.e5`；起点：`0x9DB4` (fileOffset)；记录数：`80`；ID 起点：`0`；结束偏移（不含）：`0xA8A4`。
 
@@ -635,6 +665,8 @@ ID: `struct.65.disk.65-standard-v1.detailed-job-penetration`；状态: `canonica
 
 索引公式: `Ekd5.exe + 0x6C81 + (ID - 0) * 0x1 + field_offset; ID=0..79`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`80`。
+
 存储：`Ekd5.exe`；起点：`0x6C81` (fileOffset)；记录数：`80`；ID 起点：`0`；结束偏移（不含）：`0x6CD1`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -663,6 +695,8 @@ ID: `struct.65.disk.65-standard-v1.strategies`；状态: `canonical`；证据: `
 步长: `0x61` (97)
 
 索引公式: `Data.e5 + 0xB204 + (ID - 0) * 0x61 + field_offset; ID=0..143`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
 
 存储：`Data.e5`；起点：`0xB204` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0xE894`。
 
@@ -779,6 +813,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-description`；状态: `canonical`�
 
 索引公式: `Imsg.e5 + 0x0 + (ID - 0) * 0xC8 + field_offset; ID=0..143`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
+
 存储：`Imsg.e5`；起点：`0x0` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0x7080`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -807,6 +843,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-extension`；状态: `canonical`；�
 步长: `0x1` (1)
 
 索引公式: `Ekd5.exe + 0xA2CE0 + (ID - 0) * 0x1 + field_offset; ID=0..143`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
 
 存储：`Ekd5.exe`；起点：`0xA2CE0` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0xA2D70`。
 
@@ -837,6 +875,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-damage-type`；状态: `canonical`�
 
 索引公式: `Ekd5.exe + 0xA30D0 + (ID - 0) * 0x1 + field_offset; ID=0..143`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
+
 存储：`Ekd5.exe`；起点：`0xA30D0` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0xA3160`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -865,6 +905,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-damage-ratio`；状态: `canonical`�
 步长: `0x1` (1)
 
 索引公式: `Ekd5.exe + 0xA3040 + (ID - 0) * 0x1 + field_offset; ID=0..143`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
 
 存储：`Ekd5.exe`；起点：`0xA3040` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0xA30D0`。
 
@@ -895,6 +937,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-hit-rate`；状态: `canonical`；�
 
 索引公式: `Ekd5.exe + 0xA2F20 + (ID - 0) * 0x1 + field_offset; ID=0..143`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
+
 存储：`Ekd5.exe`；起点：`0xA2F20` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0xA2FB0`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -923,6 +967,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-learning`；状态: `canonical`；�
 步长: `0x1` (1)
 
 索引公式: `Ekd5.exe + 0xA2FB0 + (ID - 0) * 0x1 + field_offset; ID=0..143`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
 
 存储：`Ekd5.exe`；起点：`0xA2FB0` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0xA3040`。
 
@@ -953,6 +999,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-battle-ai`；状态: `canonical`；�
 
 索引公式: `Ekd5.exe + 0xA2E00 + (ID - 0) * 0x1 + field_offset; ID=0..143`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
+
 存储：`Ekd5.exe`；起点：`0xA2E00` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0xA2E90`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -982,6 +1030,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-training-ai`；状态: `canonical`�
 
 索引公式: `Ekd5.exe + 0xA2E90 + (ID - 0) * 0x1 + field_offset; ID=0..143`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
+
 存储：`Ekd5.exe`；起点：`0xA2E90` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0xA2F20`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -1010,6 +1060,8 @@ ID: `struct.65.disk.65-standard-v1.class-effects`；状态: `canonical`；证据
 步长: `0x8` (8)
 
 索引公式: `Ekd5.exe + 0xD9000 + (ID - 0) * 0x8 + field_offset; ID=0..254`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`255`。
 
 存储：`Ekd5.exe`；起点：`0xD9000` (fileOffset)；记录数：`255`；ID 起点：`0`；结束偏移（不含）：`0xD97F8`。
 
@@ -1043,6 +1095,8 @@ ID: `struct.65.disk.65-standard-v1.personal-effects`；状态: `canonical`；证
 步长: `0x10` (16)
 
 索引公式: `Ekd5.exe + 0xDF800 + (ID - 0) * 0x10 + field_offset; ID=0..254`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`255`。
 
 存储：`Ekd5.exe`；起点：`0xDF800` (fileOffset)；记录数：`255`；ID 起点：`0`；结束偏移（不含）：`0xE07F0`。
 
@@ -1086,6 +1140,8 @@ ID: `struct.65.disk.65-standard-v1.person-critical-quotes`；状态: `canonical`
 
 索引公式: `Imsg.e5 + 0x222E0 + (ID - 0) * 0xC8 + field_offset; ID=0..98`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`99`。
+
 存储：`Imsg.e5`；起点：`0x222E0` (fileOffset)；记录数：`99`；ID 起点：`0`；结束偏移（不含）：`0x27038`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -1115,6 +1171,8 @@ ID: `struct.65.disk.65-standard-v1.person-retreat-quotes`；状态: `canonical`�
 
 索引公式: `Imsg.e5 + 0x6B788 + (ID - 0) * 0xC8 + field_offset; ID=0..48`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`49`。
+
 存储：`Imsg.e5`；起点：`0x6B788` (fileOffset)；记录数：`49`；ID 起点：`0`；结束偏移（不含）：`0x6DDD0`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -1143,6 +1201,8 @@ ID: `struct.65.disk.65-standard-v1.person-r-assign`；状态: `canonical`；证�
 步长: `0x2` (2)
 
 索引公式: `Ekd5.exe + 0xE1000 + (ID - 0) * 0x2 + field_offset; ID=0..1023`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1024`。
 
 存储：`Ekd5.exe`；起点：`0xE1000` (fileOffset)；记录数：`1024`；ID 起点：`0`；结束偏移（不含）：`0xE1800`。
 
@@ -1174,6 +1234,8 @@ ID: `struct.65.disk.65-standard-v1.person-s-assign`；状态: `canonical`；证�
 
 索引公式: `Ekd5.exe + 0xD2800 + (ID - 0) * 0x2 + field_offset; ID=0..1023`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1024`。
+
 存储：`Ekd5.exe`；起点：`0xD2800` (fileOffset)；记录数：`1024`；ID 起点：`0`；结束偏移（不含）：`0xD3000`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -1204,6 +1266,8 @@ ID: `struct.65.disk.65-standard-v1.scenario-names`；状态: `canonical`；证�
 
 索引公式: `Imsg.e5 + 0xC350 + (ID - 0) * 0xC8 + field_offset; ID=0..98`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`99`。
+
 存储：`Imsg.e5`；起点：`0xC350` (fileOffset)；记录数：`99`；ID 起点：`0`；结束偏移（不含）：`0x110A8`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -1232,6 +1296,8 @@ ID: `struct.65.disk.65-standard-v1.shops`；状态: `canonical`；证据: `sourc
 步长: `0x24` (36)
 
 索引公式: `Data.e5 + 0x8BB4 + (ID - 0) * 0x24 + field_offset; ID=0..127`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`128`。
 
 存储：`Data.e5`；起点：`0x8BB4` (fileOffset)；记录数：`128`；ID 起点：`0`；结束偏移（不含）：`0x9DB4`。
 
@@ -1295,6 +1361,8 @@ ID: `struct.65.disk.65-standard-v1.effect-names`；状态: `canonical`；证据:
 
 索引公式: `Ekd5.exe + 0x9E800 + (ID - 0) * 0x10 + field_offset; ID=0..254`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`255`。
+
 存储：`Ekd5.exe`；起点：`0x9E800` (fileOffset)；记录数：`255`；ID 起点：`0`；结束偏移（不含）：`0x9F7F0`。
 
 能力：`ReadOnly`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -1325,6 +1393,8 @@ ID: `struct.65.disk.65-standard-v1.effect-descriptions`；状态: `canonical`；
 
 索引公式: `Imsg.e5 + 0x14FF0 + (ID - 0) * 0xC8 + field_offset; ID=0..254`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`255`。
+
 存储：`Imsg.e5`；起点：`0x14FF0` (fileOffset)；记录数：`255`；ID 起点：`0`；结束偏移（不含）：`0x21728`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -1353,6 +1423,8 @@ ID: `struct.65.disk.65-standard-v1.effect-archive`；状态: `canonical`；证�
 步长: `0x400` (1024)
 
 索引公式: `Effect.e5 + 0x0 + (ID - 0) * 0x400 + field_offset; ID=0..1023`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1024`。
 
 存储：`Effect.e5`；起点：`0x0` (fileOffset)；记录数：`1024`；ID 起点：`0`；结束偏移（不含）：`0x100000`。
 
@@ -2406,6 +2478,8 @@ ID: `struct.65.disk.65-standard-v1.effect-messages`；状态: `canonical`；证�
 
 索引公式: `Effectmsg.e5 + 0x0 + (ID - 0) * 0x8 + field_offset; ID=0..254`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`255`。
+
 存储：`Effectmsg.e5`；起点：`0x0` (fileOffset)；记录数：`255`；ID 起点：`0`；结束偏移（不含）：`0x7F8`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -2441,6 +2515,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-study-extended`；状态: `canonical
 步长: `0x40` (64)
 
 索引公式: `MeffStudy.e5 + 0x0 + (ID - 0) * 0x40 + field_offset; ID=0..1023`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1024`。
 
 存储：`MeffStudy.e5`；起点：`0x0` (fileOffset)；记录数：`1024`；ID 起点：`0`；结束偏移（不含）：`0x10000`。
 
@@ -2534,6 +2610,8 @@ ID: `struct.65.disk.65-standard-v1.forge`；状态: `canonical`；证据: `sourc
 
 索引公式: `Forge.e5 + 0x0 + (ID - 0) * 0x40 + field_offset; ID=0..1023`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1024`。
+
 存储：`Forge.e5`；起点：`0x0` (fileOffset)；记录数：`1024`；ID 起点：`0`；结束偏移（不含）：`0x10000`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -2587,6 +2665,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-big-animation`；状态: `canonical`
 
 索引公式: `Ekd5.exe + 0xA31F0 + (ID - 0) * 0x1 + field_offset; ID=0..143`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
+
 存储：`Ekd5.exe`；起点：`0xA31F0` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0xA3280`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -2616,6 +2696,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-small-animation`；状态: `canonica
 
 索引公式: `Ekd5.exe + 0xA3160 + (ID - 0) * 0x1 + field_offset; ID=0..143`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`144`。
+
 存储：`Ekd5.exe`；起点：`0xA3160` (fileOffset)；记录数：`144`；ID 起点：`0`；结束偏移（不含）：`0xA31F0`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -2644,6 +2726,8 @@ ID: `struct.65.disk.65-standard-v1.job-series-accessory-groups`；状态: `candi
 步长: `0x1` (1)
 
 索引公式: `不解析占位 offset=0；实际地址由 VA 0x0044C341 经目标 PE 节表映射；参见 format.65.accessory-job-groups`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1`。
 
 存储：`Ekd5.exe`；起点：-；记录数：`1`；ID 起点：`0`；结束偏移（不含）：`0x1`。
 
@@ -2676,6 +2760,8 @@ ID: `struct.65.disk.65-standard-v1.strategy-terrain-availability`；状态: `can
 
 索引公式: `Ekd5.exe + 0x1FECC + (ID - 0) * 0x1 + field_offset; ID=0..29`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`30`。
+
 存储：`Ekd5.exe`；起点：`0x1FECC` (fileOffset)；记录数：`30`；ID 起点：`0`；结束偏移（不含）：`0x1FEEA`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -2707,6 +2793,8 @@ ID: `struct.65.disk.65-standard-v1.item-effect-names-low`；状态: `canonical`�
 
 索引公式: `Ekd5.exe + 0x8A9E8 + (ID - 0) * 0x375 + field_offset; ID=0..0`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1`。
+
 存储：`Ekd5.exe`；起点：`0x8A9E8` (fileOffset)；记录数：`1`；ID 起点：`0`；结束偏移（不含）：`0x8AD5D`。
 
 能力：`ReadOnly`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -2737,6 +2825,8 @@ ID: `struct.65.disk.65-standard-v1.item-effect-names-high`；状态: `canonical`
 
 索引公式: `Ekd5.exe + 0x9F800 + (ID - 0) * 0x170 + field_offset; ID=0..0`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1`。
+
 存储：`Ekd5.exe`；起点：`0x9F800` (fileOffset)；记录数：`1`；ID 起点：`0`；结束偏移（不含）：`0x9F970`。
 
 能力：`ReadOnly`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -2766,6 +2856,8 @@ ID: `struct.65.disk.65-standard-v1.finishing-moves`；状态: `canonical`；证�
 步长: `0x10` (16)
 
 索引公式: `Data.e5 + 0xE894 + (ID - 0) * 0x10 + field_offset; ID=0..95`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`96`。
 
 存储：`Data.e5`；起点：`0xE894` (fileOffset)；记录数：`96`；ID 起点：`0`；结束偏移（不含）：`0xEE94`。
 
@@ -2800,6 +2892,8 @@ ID: `struct.65.disk.65-standard-v1.finishing-move-description`；状态: `canoni
 
 索引公式: `Imsg.e5 + 0x7080 + (ID - 0) * 0xC8 + field_offset; ID=0..95`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`96`。
+
 存储：`Imsg.e5`；起点：`0x7080` (fileOffset)；记录数：`96`；ID 起点：`0`；结束偏移（不含）：`0xBB80`。
 
 能力：`Editable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -2828,6 +2922,8 @@ ID: `struct.65.disk.65-standard-v1.item-acquisition-low`；状态: `candidate`�
 步长: `0xC8` (200)
 
 索引公式: `Imsg.e5 + 0x6B5F8 + (ID - 0) * 0xC8 + field_offset; ID=0..103`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`104`。
 
 存储：`Imsg.e5`；起点：`0x6B5F8` (fileOffset)；记录数：`104`；ID 起点：`0`；结束偏移（不含）：`0x70738`。
 
@@ -2861,6 +2957,8 @@ ID: `struct.65.disk.65-standard-v1.item-acquisition-high`；状态: `candidate`�
 
 索引公式: `Imsg.e5 + 0x70738 + (ID - 104) * 0xC8 + field_offset; ID=104..199`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`96`。
+
 存储：`Imsg.e5`；起点：`0x70738` (fileOffset)；记录数：`96`；ID 起点：`104`；结束偏移（不含）：`0x75238`。
 
 能力：`Unavailable`；Codec：`fixed-record-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -2893,6 +2991,8 @@ ID: `struct.65.disk.65-standard-v1.items-extended`；状态: `canonical`；证�
 
 索引公式: `Item.e5 + 0x0 + (ID - 256) * 0x19 + field_offset; ID=256..511`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`256`。
+
 存储：`Item.e5`；起点：`0x0` (fileOffset)；记录数：`256`；ID 起点：`256`；结束偏移（不含）：`0x1900`。
 
 能力：`Editable`；Codec：`item-65-17-v1`；字节序：`little`；编码：`GBK for strings`。
@@ -2900,6 +3000,7 @@ ID: `struct.65.disk.65-standard-v1.items-extended`；状态: `canonical`；证�
 - 物理文件布局和运行时内存记录是不同实体。
 - canonical 仅表示本条来源/几何可复现，不会绕过运行时门禁，未知数值语义不得扩大为引擎已验证语义。
 - 15 字节名称布局中的 +0x10、+0x14 是保留字节；17 字节名称布局图标在 +0x14。跨布局迁移只映射图标逻辑字段，不能复制源偏移。
+- 2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。
 
 写入门禁：
 
@@ -2914,8 +3015,8 @@ ID: `struct.65.disk.65-standard-v1.items-extended`；状态: `canonical`；证�
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
 | `名称` | `0x0` | 17 | `fixed-string` | 名称；字段策略 Editable；GBK，零终止或固定宽度填充，不允许截断多字节字符 |
-| `宝物类型` | `0x11` | 1 | `uint8` | 宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
-| `装备特效号` | `0x12` | 1 | `uint8` | 装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 可根据原始 +0x12=2/3 交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
+| `宝物类型` | `0x11` | 1 | `uint8` | 宝物类型；字段策略 Editable；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
+| `装备特效号` | `0x12` | 1 | `uint8` | 装备特效号；字段策略 Editable；引用 effect-names；此为逻辑字段，6.6 15 字节 Codec 仅在原始+0x11>=26且原始+0x12=2/3时交换实际写入位置，见专用 Codec 契约；消耗品实际特效使用独立0x1A..0x3D目录，不能把物理referenceTable或类别2/3当作装备特效名称。 |
 | `价格（/100）` | `0x13` | 1 | `uint8` | 价格（/100）；字段策略 Editable；价格单位100；255表示不可买卖；不得将辅助 +0x17 的适用兵种当作价格。 |
 | `图标` | `0x14` | 1 | `uint8` | 图标；字段策略 Editable；本 Variant 使用 +0x14 UInt8 图标号，允许字段级编辑；E5/Item.e5 中逻辑图标 N 对应小图 #2N+1、大图 #2N+2，N 从 0 开始 |
 | `初始能力` | `0x15` | 1 | `uint8` | 初始能力；字段策略 Editable；物理 CSV 列名保留；普通装备为初始属性，辅助装备为特殊效果值，消耗品为效果参数低字节。 |
@@ -2930,6 +3031,8 @@ ID: `struct.65.disk.65-standard-v1.item-description-extended`；状态: `canonic
 步长: `0xC8` (200)
 
 索引公式: `Itemmsg.e5 + 0x0 + (ID - 256) * 0xC8 + field_offset; ID=256..511`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`256`。
 
 存储：`Itemmsg.e5`；起点：`0x0` (fileOffset)；记录数：`256`；ID 起点：`256`；结束偏移（不含）：`0xC800`。
 
@@ -2960,6 +3063,8 @@ ID: `struct.65.disk.65-standard-v1.person-critical-special-map`；状态: `canon
 
 索引公式: `Ekd5.exe + 0x89C30 + specialSlot * 4; specialSlot=0..20; Imsg.e5 quoteOffset=140000 + specialSlot*200`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`21`。
+
 存储：`Ekd5.exe`；起点：`0x89C30` (fileOffset)；记录数：`21`；ID 起点：`0`；结束偏移（不含）：`0x89C84`。
 
 能力：`RuntimeProbeRequired`；Codec：`fixed-record-v1`；字节序：`little`；编码：`not applicable`。
@@ -2975,6 +3080,39 @@ ID: `struct.65.disk.65-standard-v1.person-critical-special-map`；状态: `canon
 |---|---:|---:|---|---|
 | `人物ID` | `0x0` | 4 | `uint32le` | 绑定人物 ID 0..1023，1024 为空槽；数值不是 Imsg 行号，记录主键 ID/槽号才对应特殊台词行。 |
 
+## 加强版6.5未加密3890活动特效表3加1与共享N
+
+ID: `struct.65.3890.active-effect-assignment`；状态: `canonical`；证据: `static-verified`
+
+步长: `0x8` (8)
+
+索引公式: `DWORD[00500C3B] + effectId * 8; effectId 0..254`
+
+画像：`profile.ccz65.unencrypted.3890.scan`；记录数：`255`。
+
+指针槽：`0x00500C3B` (pointerSlot)；活动地址：`0x00507800` (va)；文件偏移：`0xD9000` (fileOffset)。
+
+- 初始化两处push 0xfe与40883D的cmp AL上界相符；表区结束偏移（不含）0xD97F8
+- 4198E5从[edx+7]取人物N；41990F/419912从同一行+7取兵种N。
+- 没有第二个兵种槽；N修改会影响该行三个已分配人物与一个兵种。
+- 408811是ID分配写入器，不写N；磁盘+7数值字段的直接编辑不需要虚构原生N写函数。
+- 人物空值/高位token按原字节保留，不能把0x400+id全部自动改成1024。
+
+写入门禁：
+
+- 读取当前SHA、PE映射、活动指针、行宽及有效行数后再读写；仅改目标字节。
+- 共享N编辑先显示同一行全部人物与兵种影响；未知业务名称不影响已证明数值字段的物理可写性。
+- 字段可写能力与工具当前实现状态分别展示；实现未覆盖不表示引擎没有字段或字段不可写。
+- 255只是本表兵种槽的空值；不能自动推广为个人selector安全禁用值或装备查询的原生特殊值。
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `character_1` | `0x00` | 2 | `UInt16` | 人物槽1；保留不透明高位token |
+| `character_2` | `0x02` | 2 | `UInt16` | 人物槽2 |
+| `character_3` | `0x04` | 2 | `UInt16` | 人物槽3 |
+| `job_1` | `0x06` | 1 | `UInt8` | 唯一兵种槽；0..79详细兵种，255为空；80..254异常占用保留 |
+| `shared_value` | `0x07` | 1 | `UInt8` | 整行共享N，人物命中和兵种命中读取同一字节 |
+
 ## 6.5 宝物按类别解释与字段读写契约
 
 ID: `struct.65.item-category-semantics`；状态: `canonical`；证据: `legacy-source-reviewed-sample-bytes-editor-roundtrip`
@@ -2983,11 +3121,14 @@ ID: `struct.65.item-category-semantics`；状态: `canonical`；证据: `legacy-
 
 索引公式: `row = Data.e5[0x818C + ID*25] for 0<=ID<=103; row = Star.e5[(ID-104)*25] for 104<=ID<=254; field = row + field_offset`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`-`。
+
 - 本实体说明类别语义；物理文件基址、名称/图标布局和每个Variant的写入门禁由既有物理表实体负责。
 - 分类先读取本项目System.ini的DefID/AssID（缺失时70/109），再结合ID区段、当前草稿和Codec类别标记，不能按特效号大小臆测类别。
 - 辅助适用兵种的0..39是兵种系编号，名称来自当前项目；它不是detailed-job-growth的26个普通装备许可列。
 - 业务名称可变，CSV继续使用原物理列名；固定6.5与动态6.6不能靠相同列名直接复制字节。
 - 同表跨类别切换必须更新布局和选项；摘要从草稿按原始类别标记选地址，不能只读OriginalFileBytes。
+- 2026-10-28分类守卫纠正：动态Codec仅当原始+0x11>=26且原始+0x12为2/3时交换逻辑类型/特效；普通类型0..19是武器、20..25是防具，其特效字节恰为2/3不会触发交换。其他关于仅凭+0x12分类的旧简写以此联合条件为准。
 
 写入门禁：
 
@@ -2998,7 +3139,7 @@ ID: `struct.65.item-category-semantics`；状态: `canonical`；证据: `legacy-
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
-| `类型或实际特效` | `0x11` | 1 | `uint8` | 普通武器/防具为装备类型；辅助/消耗品为实际特效号。6.6动态Codec以原始+0x12是否2/3决定逻辑列映射。 |
+| `类型或实际特效` | `0x11` | 1 | `uint8` | 普通武器/防具为装备类型；辅助/消耗品为实际特效号。6.6动态Codec以原始+0x11>=26且原始+0x12为2/3的联合条件决定逻辑列映射。 |
 | `特效或类别标记` | `0x12` | 1 | `uint8` | 普通武器/防具为装备特效号；辅助=2、消耗品=3类别标记，不得显示成枪许可或普通装备特效。 |
 | `价格` | `0x13` | 1 | `uint8` | 价格单位100；255表示不可买卖。辅助+0x17是适用兵种，不是价格。 |
 | `初始属性或辅助效果或参数低字节` | `0x15` | 1 | `uint8` | 武器/防具=初始属性；辅助=特殊效果值；消耗品=LE UInt16参数低字节。原CSV列名初始能力。 |
@@ -3013,6 +3154,8 @@ ID: `struct.65.tactical-unit`；状态: `canonical`；证据: `static-verified`
 步长: `0x30` (48)
 
 索引公式: `0x004A7B20 + battlefield_id * 0x30 + field_offset`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`250`。
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
@@ -3037,6 +3180,8 @@ ID: `struct.65.runtime-character`；状态: `canonical`；证据: `static-verifi
 步长: `0x48` (72)
 
 索引公式: `DWORD[0x004CEA00] + data_id * 0x48 + field_offset`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`1024`。
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
@@ -3079,6 +3224,8 @@ ID: `struct.65.item-record`；状态: `canonical`；证据: `static-verified`
 
 索引公式: `0x004A1140 + item_id * 0x19 + field_offset`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`255`。
+
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
 | `name` | `0x0` | 17 | `fixed-string` | 物品名存储区；文本容量 0x10 |
@@ -3098,6 +3245,8 @@ ID: `struct.65.detailed-job-record`；状态: `canonical`；证据: `static-veri
 步长: `0x23` (35)
 
 索引公式: `0x004A2A27 + job_id * 0x23 + field_offset`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`80`。
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
@@ -3120,6 +3269,8 @@ ID: `struct.65.job-family-terrain-record`；状态: `canonical`；证据: `stati
 
 索引公式: `0x004A3517 + family_id * 0x3C + field_offset`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`40`。
+
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
 | `terrain_adaptation` | `0x0` | 30 | `bytes` | 30 类地形适应 |
@@ -3132,6 +3283,8 @@ ID: `struct.65.effect-assignment`；状态: `canonical`；证据: `static-verifi
 步长: `0x8` (8)
 
 索引公式: `DWORD[0x00500C3B] + effect_id * 8 + field_offset`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`255`。
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
@@ -3148,6 +3301,8 @@ ID: `struct.65.fatal-assignment`；状态: `canonical`；证据: `static-verifie
 步长: `0x10` (16)
 
 索引公式: `0x00511800 + fatal_id * 16 + field_offset`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`80`。
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
@@ -3171,6 +3326,8 @@ ID: `struct.65.warehouse-record`；状态: `canonical`；证据: `static-verifie
 
 索引公式: `0x004B0783 + slot * 3 + field_offset`
 
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`200`。
+
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
 | `item_id` | `0x0` | 1 | `uint8` | 物品 ID |
@@ -3184,6 +3341,8 @@ ID: `struct.65.strategy-record`；状态: `canonical`；证据: `static-verified
 步长: `0x61` (97)
 
 索引公式: `0x004A3E77 + strategy_id * 0x61 + field_offset`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`None`。
 
 - 本
 - 轮
@@ -3217,6 +3376,8 @@ ID: `struct.65.range-segment`；状态: `canonical`；证据: `static-verified`
 步长: `0x4` (4)
 
 索引公式: `DWORD[0x004D1400 + range_id * 4] 指向 int8 dx,int8 dy 对；0xFFFF 终止`
+
+画像：`profile.ccz65.unencrypted.f9a`；记录数：`256`。
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|

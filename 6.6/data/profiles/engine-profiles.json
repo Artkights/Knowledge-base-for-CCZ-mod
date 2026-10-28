@@ -52,7 +52,8 @@
         "src.ccz.f36.static-report",
         "src.forum.godtype.194034",
         "src.history.local.godtype-f36-synthesis",
-        "src.items.byte-evidence"
+        "src.items.byte-evidence",
+        "src.upstream.artkights.b2c.ae01a6ff7002"
       ],
       "companionDataFiles": [
         {
@@ -75,6 +76,79 @@
           "length": 857117,
           "sha256": "A847EBF6DBE084B4A545976F0D32A44A071B88DDE73D2A80C2999210D24E4100"
         }
+      ]
+    },
+    {
+      "id": "profile.ccz66.shanzai.work.aa0f",
+      "title": "复刻版 6.6 山贼工作样本（原地补丁修订态）",
+      "aliases": [
+        "AA0F15B849D223F8",
+        "6.6-shanzai-work-aa0f"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "size": 1148928,
+        "sha256": "AA0F15B849D223F8A74ACB107CA7D0F9E2164DCAACC963C6B940DA2D245EF4E1"
+      },
+      "addressPolicy": "与 F36 基线同尺寸（1148928 B），差异来自原地字节补丁；本画像下的固定 VA 只对该 SHA 成立。其它 6.6/6.6x 作品必须按条目 aliases 中记录的原字节签名与操作数重新核对后才能套用。",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.ccz.shanzai.item.table-report"
+      ]
+    },
+    {
+      "id": "profile.ccz66.shanzai.work.1b25",
+      "title": "复刻版 6.6 山贼工作样本（2026-10-27 现读态）",
+      "aliases": [
+        "1B256D9822A59503",
+        "6.6-shanzai-work-164a"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "size": 1148928,
+        "sha256": "1B256D9822A59503652BFEFEDC82DA1BBEF3570550EAD53B9916656D4A70A010"
+      },
+      "addressPolicy": "固定 VA 只对该 SHA（1148928 字节，与 2026-10-17 的 AA0F15B8 基线同尺寸）成立，语义按 2026-10-27 现读复核。⚠ 同日还存在另一个 1149952 字节的并发构建（164AF7C2…）：其 0x0040BF56 处缺少 55 8B EC 序言，代码布局与本画像并不等价 ⇒ 禁止跨构建套用 VA 结论。本画像下 0x004D2568 已是可执行字节而非空闲洞，洞结论同样禁止跨画像复用。其它 6.6/6.6x 作品必须重新核对原字节与调用约定。",
+      "sourceRefs": [
+        "src.ccz.shanzai.work.1b25.exe"
+      ]
+    },
+    {
+      "id": "profile.ccz66.shanzhai-guoqing.f20c",
+      "title": "复刻版6.6山贼国庆活动表验证画像",
+      "aliases": [
+        "F20C5832国庆基底"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "size": 1148928,
+        "sha256": "F20C583296AD2C167AD0C732655B1F90457AA303DF6E8E15CFAA70A822B6EF19"
+      },
+      "addressPolicy": "固定地址只用于此精确样本；工具按当前PE读取指针并验证，不能套用旧0xD9000。",
+      "sourceRefs": [
+        "src.dm.engine-assignment-static-20261027",
+        "src.dm.engine-validation-20261027"
       ]
     }
   ]

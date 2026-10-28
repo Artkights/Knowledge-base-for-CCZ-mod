@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "entityType": "engine-profile",
+  "profile": null,
+  "entries": [
+    {
+      "id": "profile.ccz66.shanzai.6929.local-review",
+      "title": "复刻版6.6山贼6929本地静态审阅画像",
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.local-review.a37c00c8fdede7c6"
+      ],
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "sha256": "6929FE0DB049935EEC793CE785D431947E48BED406ED94233F9B3A9C6DB4BCB8"
+      },
+      "addressPolicy": "只绑定所列模块完整SHA。当前纳入的是本地人工静态报告，不以版本号、F36/F20C或相似地址代替原始模块复核；candidate不授权自动写回。DLL使用实际模块基址加RVA，安装槽的存在不代表已加载或安装成功。"
+    },
+    {
+      "id": "profile.ccz66.extenddata.6562.local-review",
+      "title": "ExtendData 6562 DLL独立静态审阅画像",
+      "versions": [
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.local-review.d7dfb5239851df8d"
+      ],
+      "imageBase": "0x10000000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "ExtendData.dll",
+        "sha256": "6562791F4E1AF07B8DBE0C12A8695FF6CB129D4803DF14BC9B21FDEF918EF062"
+      },
+      "addressPolicy": "只绑定所列模块完整SHA。当前纳入的是本地人工静态报告，不以版本号、F36/F20C或相似地址代替原始模块复核；candidate不授权自动写回。DLL使用实际模块基址加RVA，安装槽的存在不代表已加载或安装成功。"
+    }
+  ]
+}

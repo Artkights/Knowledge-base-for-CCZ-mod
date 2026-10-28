@@ -1,0 +1,212 @@
+using System.Security.Cryptography;
+using CCZModStudio.Models;
+
+namespace CCZModStudio.Core;
+
+public sealed class RangeEngineVersionProfileService
+{
+    public const string Canonical65Sha256 = "F9A357585F4D77C273A8BADD3E4EF4062983CC81D8040C0CB74768FAB7C04F5F";
+    public const string Canonical65ProfileId = "ccz65-unencrypted-f9a-range-v1";
+
+    public RangeEngineVersionProfile Resolve(CczProject project)
+    {
+        ArgumentNullException.ThrowIfNull(project);
+        var path = project.ResolveGameFile("Ekd5.exe");
+        if (!File.Exists(path)) return Unknown("EXE_MISSING");
+        var sha = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path)));
+        return ResolveBySha(sha);
+    }
+
+    public RangeEngineVersionProfile ResolveBySha(string sha256)
+    {
+        if (sha256.Equals(Canonical65Sha256, StringComparison.OrdinalIgnoreCase))
+            return Canonical65();
+        return Unknown("UNSUPPORTED_SHA");
+    }
+
+    public RangeVersionVerificationResult Verify(CczProject project, RangeEngineVersionProfile profile)
+    {
+        ArgumentNullException.ThrowIfNull(project);
+        ArgumentNullException.ThrowIfNull(profile);
+        var path = project.ResolveGameFile("Ekd5.exe");
+        if (!File.Exists(path)) return new RangeVersionVerificationResult { Status = "EXE_MISSING", IsSafe = false };
+        var bytes = File.ReadAllBytes(path);
+        var sha = Convert.ToHexString(SHA256.HashData(bytes));
+        var errors = new List<string>();
+        var warnings = new List<string>();
+        if (!sha.Equals(profile.ExeSha256, StringComparison.OrdinalIgnoreCase))
+            errors.Add($"Ekd5.exe SHA256 不匹配：期望 {profile.ExeSha256}，实际 {sha}。");
+
+        try
+        {
+            var snapshot = ExecutableAnalysisSnapshotCache.Shared.GetBase(path);
+            if (snapshot.PeImage.ImageBase != profile.ImageBase)
+                errors.Add($"ImageBase 不匹配：期望 0x{profile.ImageBase:X8}，实际 0x{snapshot.PeImage.ImageBase:X8}。");
+            foreach (var (name, address) in profile.StaticAddresses)
+            {
+                if (!TryRead(snapshot, address, 1, out _))
+                    errors.Add($"静态地址 {name}=0x{address:X8} 无法映射到当前 PE。");
+            }
+            foreach (var (name, signature) in profile.FunctionSignatures)
+            {
+                if (!profile.StaticAddresses.TryGetValue(name, out var address))
+                {
+                    errors.Add($"Function signature {name} has no static address.");
+                    continue;
+                }
+                var expectedSignature = EffectPatchByteService.ParseHex(signature);
+                if (!TryRead(snapshot, address, expectedSignature.Length, out var actualSignature) || !actualSignature.SequenceEqual(expectedSignature))
+                    errors.Add($"Function signature mismatch for {name} at 0x{address:X8}.");
+            }
+            foreach (var candidate in profile.HookCandidates)
+            {
+                if (string.IsNullOrWhiteSpace(candidate.ExpectedOldBytesHex))
+                {
+                    warnings.Add($"Hook 候选 {candidate.ContractId} 尚未登记旧字节，不能正式写入。");
+                    continue;
+                }
+                var expected = EffectPatchByteService.ParseHex(candidate.ExpectedOldBytesHex);
+                if (!TryRead(snapshot, candidate.HookAddress, expected.Length, out var actual) || !actual.SequenceEqual(expected))
+                    errors.Add($"Hook 候选 {candidate.ContractId} 的旧字节不匹配。");
+            }
+        }
+        catch (Exception ex)
+        {
+            errors.Add("PE/静态地址验证失败：" + ex.Message);
+        }
+
+        return new RangeVersionVerificationResult
+        {
+            Status = errors.Count == 0 && warnings.Count == 0 ? "VerifiedIdentity" : errors.Count == 0 ? "IdentityOnly" : "Rejected",
+            IsSafe = errors.Count == 0 && warnings.Count == 0,
+            EngineSha256 = sha,
+            Errors = errors,
+            Warnings = warnings
+        };
+    }
+
+    public static RangeEngineVersionProfile Canonical65()
+        => new()
+        {
+            ProfileId = Canonical65ProfileId,
+            EngineVersion = "6.5",
+            ExeSha256 = Canonical65Sha256,
+            ImageBase = 0x00400000,
+            RangePointerTableAddress = 0x004D1400,
+            RangePointerTableFileOffset = 0xA2C00,
+            PierceValueTableFileOffset = 0x6C81,
+            RangePointerCount = 0x100,
+            BuiltInAttackIdMax = 0x23,
+            BuiltInPierceIdMax = 0x0B,
+            ReservedRangeIds = new HashSet<byte> { 0x0A, 0x0B, 0x24, 0x25, 0xFF },
+            SectionMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["range_pointer_table"] = ".text3:VA=0x004D1400:file=0xA2C00",
+                ["pierce_value_table"] = ".text:file=0x6C81:VA=0x00407881"
+            },
+            FunctionSignatures = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["attack_dispatch"] = "55 8B EC 51 33 C0",
+                ["pierce_geometry_dispatch"] = "55 8B EC 51 33 C0 50"
+            },
+            StaticAddresses = new Dictionary<string, uint>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["attack_entry"] = 0x0043DADA,
+                ["attack_selector"] = 0x0045533D,
+                ["attack_dispatch"] = 0x00436511,
+                ["attack_geometry"] = 0x00436616,
+                ["attack_append_target"] = 0x00437AFF,
+                ["map_unit_lookup"] = 0x00435884,
+                ["pierce_loader"] = 0x0040782D,
+                ["pierce_value_table"] = 0x00407881,
+                ["combat_context_init"] = 0x00406282,
+                ["pierce_expand_wrapper"] = 0x004364C7,
+                ["pierce_geometry_dispatch"] = 0x00435CE9,
+                ["pierce_append_target"] = 0x00435BF2,
+                ["target_consumer"] = 0x004361B1,
+                ["range_target_buffer"] = 0x004AC748,
+                ["range_target_write_index"] = 0x004B2C34,
+                ["range_target_sentinel"] = 0x004B2C28,
+                ["physical_context"] = 0x004927F0
+            },
+            HookCandidates = new[]
+            {
+                new RangeHookCandidate
+                {
+                    ContractId = "attack-packed-dispatch-00436511",
+                    Kind = "Attack",
+                    HookAddress = 0x00436511,
+                    MinimumOverwriteLength = 6,
+                    ExpectedOldBytesHex = "55 8B EC 51 33 C0",
+                    ArgumentAbi = "ECX=runtime-unit; [EBP+08]=center; [EBP+0C..0F]=packed range bytes; ret 0x10",
+                    StaticEvidence = "读取 004D1400 指针表、FFFF 终止的 2-byte segment，并调用 00436616/00437AFF。"
+                },
+                new RangeHookCandidate
+                {
+                    ContractId = "attack-selector-call-004553F8",
+                    Kind = "Attack",
+                    HookAddress = 0x004553F8,
+                    MinimumOverwriteLength = 5,
+                    ExpectedOldBytesHex = "E8 14 11 FE FF",
+                    ArgumentAbi = "中心坐标、packed range descriptor、mode bit；必须保留调用者栈布局。",
+                    StaticEvidence = "0045533D 在此附近准备范围参数并调用 00436511。"
+                },
+                new RangeHookCandidate
+                {
+                    ContractId = "pierce-expand-004364C7",
+                    Kind = "Pierce",
+                    HookAddress = 0x004364C7,
+                    MinimumOverwriteLength = 5,
+                    ExpectedOldBytesHex = "55 8B EC 51 51",
+                    ArgumentAbi = "ECX=tactical-unit; target battle id; pierce byte; output buffer; filter/fallback args",
+                    StaticEvidence = "00406282 写入 004927F0+424 后调用；内部转入 00435CE9。"
+                },
+                new RangeHookCandidate
+                {
+                    ContractId = "pierce-dispatch-00435CE9",
+                    Kind = "Pierce",
+                    HookAddress = 0x00435CE9,
+                    MinimumOverwriteLength = 7,
+                    ExpectedOldBytesHex = "55 8B EC 51 33 C0 50",
+                    ArgumentAbi = "center coordinate; pierce/effect code; output buffer; filter/fallback args",
+                    StaticEvidence = "按 code 0..0x0B 分派几何并调用 00435BF2。"
+                }
+            }
+        };
+
+    private static RangeEngineVersionProfile Unknown(string reason)
+        => new()
+        {
+            ProfileId = "unknown-" + reason,
+            EngineVersion = "unknown",
+            ExeSha256 = string.Empty,
+            ImageBase = 0x00400000,
+            RangePointerTableAddress = 0x004D1400,
+            RangePointerCount = 0,
+            ReservedRangeIds = new HashSet<byte> { 0xFF }
+        };
+
+    private static bool TryRead(ExecutableAnalysisSnapshot snapshot, uint address, int length, out byte[] bytes)
+    {
+        try
+        {
+            bytes = snapshot.ReadVirtualRange(address, length).ToArray();
+            return bytes.Length == length;
+        }
+        catch
+        {
+            bytes = Array.Empty<byte>();
+            return false;
+        }
+    }
+}
+
+public sealed class RangeVersionVerificationResult
+{
+    public string Status { get; init; } = "Rejected";
+    public bool IsSafe { get; init; }
+    public string EngineSha256 { get; init; } = string.Empty;
+    public IReadOnlyList<string> Errors { get; init; } = Array.Empty<string>();
+    public IReadOnlyList<string> Warnings { get; init; } = Array.Empty<string>();
+    public bool IdentityMatches => Errors.Count == 0;
+}

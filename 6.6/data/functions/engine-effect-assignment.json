@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+  "entries": [
+    {
+      "id": "fn.66.guoqing.register-aggregate",
+      "title": "寄存器特效值聚合器",
+      "aliases": [
+        "00413009",
+        "EAX EDX ECX aggregate"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "sourceRefs": [
+        "src.dm.engine-assignment-static-20261027"
+      ],
+      "address": {
+        "kind": "va",
+        "value": "0x00413009",
+        "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "register contract; ret without stack arguments",
+      "inputs": {
+        "EAX": "装备或已有聚合值",
+        "EDX": "个人/兵种或待合并值",
+        "ECX": "聚合模式"
+      },
+      "returns": {
+        "EAX": "聚合结果"
+      },
+      "semantics": "不是四参数特效入口。模式2先在EDX=0时用EAX回退，再进入40BF2F；40BF2F模式0相加、1无符号最大、3位或，其他根据AL=7保留EAX否则选EDX。",
+      "writePolicy": "不得从前面四个push推造装备或个人selector；聚合模式不采用低字节FF编码契约。"
+    },
+    {
+      "id": "fn.66.guoqing.equipment-channel",
+      "title": "装备特效单渠道查询",
+      "aliases": [
+        "0043C794",
+        "equipment255"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "sourceRefs": [
+        "src.dm.engine-assignment-static-20261027"
+      ],
+      "address": {
+        "kind": "va",
+        "value": "0x0043C794",
+        "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX person; three arguments; ret 0x0C",
+      "inputs": {
+        "ECX": "单位",
+        "stack+4": "装备selector",
+        "stack+8": "值模式",
+        "stack+0C": "叠加模式"
+      },
+      "returns": {
+        "EAX": "值，拥有模式命中返回100",
+        "ECX": "独立命中标记"
+      },
+      "semantics": "由4079DA查询三个装备位，武器防具通过类别/特殊类型门槛，辅助读自身实际装备字段。255守卫只跳过该子通道，外层个人结果继续聚合。"
+    },
+    {
+      "id": "fn.66.guoqing.job-selector-match",
+      "title": "兵种槽匹配与同族继承",
+      "aliases": [
+        "0042F998",
+        "80 detailed jobs"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "sourceRefs": [
+        "src.dm.engine-assignment-static-20261027"
+      ],
+      "address": {
+        "kind": "va",
+        "value": "0x0042F998",
+        "profile": "profile.ccz66.shanzhai-guoqing.f20c",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "stdcall two stack arguments; ret 8",
+      "inputs": {
+        "stack+4": "分配槽的兵种ID；入口比较AL并拒绝低字节>=80",
+        "stack+8": "当前单位的详细兵种ID",
+        "runtimeFlag": "BYTE[00505F68]非0精确，否则同族继承"
+      },
+      "returns": {
+        "AL": "0表示匹配，1表示不匹配；命中分支xor eax,eax，拒绝分支mov al,1"
+      },
+      "semantics": "slot低字节>=80拒绝；FF为空。精确模式比较ID低字节。同族模式以40687F取族：ID<60按ID/3，60..79按ID-40，并要求槽ID<=当前ID；匹配返回0，未匹配返回AL=1。"
+    }
+  ]
+}

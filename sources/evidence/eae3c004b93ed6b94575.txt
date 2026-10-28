@@ -1,0 +1,96 @@
+"""Read-only PE evidence collector. Never opens an engine for writing."""
+import hashlib
+import json
+import struct
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE / "python-libs"))
+import pefile
+from capstone import Cs, CS_ARCH_X86, CS_MODE_32
+
+ROOT = HERE.parents[2]
+DIS = Cs(CS_ARCH_X86, CS_MODE_32)
+DIS.detail = True
+
+def inspect(path):
+    data = path.read_bytes()
+    pe = pefile.PE(data=data, fast_load=True)
+    image_base = pe.OPTIONAL_HEADER.ImageBase
+    sections = [{"name": s.Name.rstrip(b"\0").decode("ascii", "replace"),
+        "rva": hex(s.VirtualAddress), "raw": hex(s.PointerToRawData),
+        "rawSize": hex(s.SizeOfRawData), "virtualSize": hex(s.Misc_VirtualSize),
+        "flags": hex(s.Characteristics)} for s in pe.sections]
+    targets = {}
+    for name, off, length in [("r-assignment", 0xE1000, 2048), ("s-assignment", 0xD2800, 2048),
+            ("terrain-legacy-va", pe.get_offset_from_rva(0x420ACC-image_base), 30)]:
+        if off+length > len(data):
+            targets[name] = {"offset": hex(off), "status": "out-of-file"}
+            continue
+        va = image_base + pe.get_rva_from_offset(off)
+        pattern = struct.pack("<I", va)
+        refs = []
+        for section in pe.sections:
+            if not section.Characteristics & 0x20000000:
+                continue
+            raw = section.PointerToRawData
+            chunk = data[raw:raw+section.SizeOfRawData]
+            cursor = 0
+            while True:
+                hit = chunk.find(pattern, cursor)
+                if hit < 0: break
+                off_ref = raw+hit
+                # Several alignments are retained; exact consumer instruction is
+                # selected manually from the surrounding valid basic block.
+                start = max(raw, off_ref-28)
+                code = data[start:off_ref+36]
+                start_va = image_base+pe.get_rva_from_offset(start)
+                refs.append({"pointerOffset": hex(off_ref), "pointerVa": hex(image_base+pe.get_rva_from_offset(off_ref)),
+                    "windowOffset": hex(start), "bytes": code.hex(" "),
+                    "disassembly": [f"{i.address:08X}: {i.bytes.hex(' '):24} {i.mnemonic} {i.op_str}" for i in DIS.disasm(code, start_va)]})
+                cursor = hit+1
+        vals = list(struct.unpack("<1024H", data[off:off+length])) if length == 2048 else list(data[off:off+length])
+        targets[name] = {"offset": hex(off), "va": hex(va), "length": length,
+            "sha256": hashlib.sha256(data[off:off+length]).hexdigest().upper(),
+            "min": min(vals), "max": max(vals), "nonzero": sum(v != 0 for v in vals),
+            "firstValues": vals[:80], "refs": refs}
+    return {"path": str(path.relative_to(ROOT)), "size": len(data), "sha256": hashlib.sha256(data).hexdigest().upper(),
+        "imageBase": hex(image_base), "sections": sections, "targets": targets,
+        "terrainConsumer": call_evidence(data, pe, 0x419587, 20)}
+
+def call_evidence(data, pe, va, length):
+    image_base = pe.OPTIONAL_HEADER.ImageBase
+    off = pe.get_offset_from_rva(va-image_base)
+    refs = []
+    for section in pe.sections:
+        if not section.Characteristics & 0x20000000: continue
+        raw = section.PointerToRawData
+        chunk = data[raw:raw+section.SizeOfRawData]
+        for idx in range(len(chunk)-5):
+            if chunk[idx] != 0xE8: continue
+            call_va = image_base+pe.get_rva_from_offset(raw+idx)
+            if call_va+5+struct.unpack_from("<i", chunk, idx+1)[0] != va: continue
+            start = max(raw, raw+idx-48)
+            code = data[start:raw+idx+36]
+            refs.append({"callVa": hex(call_va), "windowOffset": hex(start), "bytes": code.hex(" "),
+                "disassembly": [f"{i.address:08X}: {i.bytes.hex(' '):24} {i.mnemonic} {i.op_str}" for i in DIS.disasm(code, image_base+pe.get_rva_from_offset(start))]})
+    return {"va": hex(va), "offset": hex(off), "bytes": data[off:off+length].hex(" "),
+        "disassembly": [f"{i.address:08X}: {i.bytes.hex(' '):24} {i.mnemonic} {i.op_str}" for i in DIS.disasm(data[off:off+length], va)], "callers": refs}
+
+def main():
+    names = ["加强版6.5未加密版", "曹操传6.6-V7.16 解压密码：66", "新改曹操傳6.6修正版", "清儿吕布传", "复刻版6.6山贼", "复刻版6.6山贼 国庆", "厚黑6.6测（7.9水杯版）", "烈焰同盟6.6x(新修版)黄线完结+红线5关", "曹操传6.6-V10.1 【解压密码：66】/复刻版6.6"]
+    paths = [ROOT / "基底" / n / "Ekd5.exe" for n in names]
+    paths.append(ROOT / "老版游戏制作工具/B形象指定器/6.6xEXE/Ekd5 6.6.exe")
+    result = []
+    for p in paths:
+        try:
+            item = inspect(p)
+            result.append(item)
+            print(item["path"], item["sha256"][:12], "; ".join(f"{n}: VA={v.get('va')} refs={len(v.get('refs', []))} range={v.get('min')}..{v.get('max')}" for n,v in item["targets"].items()))
+        except Exception as e:
+            result.append({"path": str(p.relative_to(ROOT)), "error": str(e)})
+            print(p.name, str(e))
+    (HERE / "66-layout-scan.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+
+if __name__ == "__main__": main()

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "entityType": "test-contract",
+  "profile": null,
+  "entries": [
+    {
+      "id": "test.shared.effect-assignment-layout-recognition",
+      "title": "四精确样本活动表布局识别与损坏拒绝",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "sourceRefs": [
+        "src.dm.assignment-layout-tests-20261027",
+        "src.dm.assignment-8byte-static-20261027",
+        "src.dm.final-layout-results-20261027",
+        "src.dm.final-core-app-source-snapshot-20261027",
+        "src.dm.final-completed-test-source-snapshot-20261027"
+      ],
+      "command": "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --effect-assignment-layouts <workspace>",
+      "target": "EffectAssignmentLayout与当前EXE活动表识别",
+      "mutationScope": "读取真实样本；损坏/迁移输入仅在内存或临时副本，源文件SHA保持不变",
+      "assertions": [
+        "9112识别180x8，3890识别255x8，25D/F20C识别255x16",
+        "有效行逐行读取及末行179/254边界一致",
+        "指针迁移按PE映射和消费者证据识别，不能依赖D9000固定偏移",
+        "7项损坏条件拒绝，不把只存在虚拟地址的尾部当成文件可读表",
+        "未知/不匹配布局保留诊断；读取前后实际源EXE SHA相同"
+      ],
+      "requiredArtifacts": [
+        "逐样本布局和边界日志",
+        "损坏与迁移反例结果",
+        "实际源SHA复核结果"
+      ],
+      "failureMeaning": "布局证据或边界不可靠，当前受影响表不得自动写入。",
+      "result": "四样本全行及边界通过；每样本7/7损坏拒绝、迁移、opaque ID和真实源SHA通过。"
+    },
+    {
+      "id": "test.shared.three-base-assignment-transaction",
+      "title": "洗隋3890国庆活动表真实临时副本写回事务",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "sourceRefs": [
+        "src.dm.three-base-assignment-tests-20261027",
+        "src.dm.assignment-8byte-static-20261027",
+        "src.dm.final-transaction-results-20261027",
+        "src.dm.final-core-app-source-snapshot-20261027",
+        "src.dm.final-completed-test-source-snapshot-20261027"
+      ],
+      "command": "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --three-base-assignments <workspace>",
+      "target": "活动表单槽/双槽分配、N数值编辑与事务回滚",
+      "mutationScope": "只写三个样本的临时工程副本；真实基底四个核心文件SHA保持不变",
+      "assertions": [
+        "洗隋180行末行179、3890与国庆255行末行254可在合法槽写回",
+        "8字节表兵种ID位于+6且N为+7整行共享；16字节表双槽各自N独立",
+        "人物区域和表外字节保持逐字节一致",
+        "未知布局拒绝写入并报告实际原因",
+        "保存后重新读取布局与目标字节，真实源四核心文件SHA不变"
+      ],
+      "requiredArtifacts": [
+        "临时工程写前/写后结果",
+        "首末行与共享/独立N复读断言",
+        "人物与表外区域字节对比",
+        "真实四核心文件SHA复核"
+      ],
+      "failureMeaning": "禁止将当前布局用于分配写回，先修复字节范围、共享值语义或事务隔离问题。",
+      "result": "9112/3890/F20C三目标隔离副本写回、末行、共享/独立N、未解析行可写、FF仅改ID及源SHA通过。"
+    }
+  ]
+}

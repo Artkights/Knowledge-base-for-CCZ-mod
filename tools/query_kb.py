@@ -5,8 +5,10 @@ import json
 import sys
 from pathlib import Path
 
+sys.dont_write_bytecode = True
+from version_config import ROOT, VERSIONS
 
-ROOT = Path(__file__).resolve().parent.parent
+
 
 
 def structured_entity(summary: dict, cache: dict[str, dict]) -> dict:
@@ -41,7 +43,7 @@ def main() -> int:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description="Query structured CCZ engine and production knowledge.")
     parser.add_argument("query", help="Entity ID, address, title, alias, field, or semantic text")
-    parser.add_argument("--version", help="Require an exact version, for example 6.5, 6.5pl, or 6.6")
+    parser.add_argument("--version", help="Require an exact version; current domains: " + ", ".join(VERSIONS))
     parser.add_argument("--limit", type=int, default=10)
     parser.add_argument("--status", choices=("canonical", "candidate", "legacy-reference"))
     parser.add_argument("--entity-type")

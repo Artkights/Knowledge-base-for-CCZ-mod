@@ -1,0 +1,124 @@
+[
+  {
+    "Sample": "复刻版6.6山贼 国庆",
+    "FixtureRole": "本轮目标",
+    "ExeSha256": "F20C583296AD2C167AD0C732655B1F90457AA303DF6E8E15CFAA70A822B6EF19",
+    "BaselineRuns": 3,
+    "OptimizedRuns": 3,
+    "BaselineMetricLines": [
+      1,
+      9,
+      12
+    ],
+    "OptimizedMetricLines": [
+      15,
+      18,
+      21
+    ],
+    "BaselineMedianMs": 12493.7201,
+    "OptimizedMedianMs": 3883.9481,
+    "TimeReductionPercent": 68.91,
+    "Speedup": 3.22,
+    "BaselineAllocatedMedianBytes": 12412795456,
+    "OptimizedAllocatedMedianBytes": 1815234464,
+    "AllocationReductionPercent": 85.38,
+    "BaselineReportSHA256": "32DAB91E3578A62655F099F0CACE7E705907910C405669F9772409F83D56B12D",
+    "OptimizedReportSHA256": "32DAB91E3578A62655F099F0CACE7E705907910C405669F9772409F83D56B12D"
+  },
+  {
+    "Sample": "加强版6.5未加密版",
+    "FixtureRole": "本轮目标",
+    "ExeSha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+    "BaselineRuns": 3,
+    "OptimizedRuns": 3,
+    "BaselineMetricLines": [
+      2,
+      10,
+      13
+    ],
+    "OptimizedMetricLines": [
+      16,
+      19,
+      22
+    ],
+    "BaselineMedianMs": 11660.5857,
+    "OptimizedMedianMs": 2392.9223,
+    "TimeReductionPercent": 79.48,
+    "Speedup": 4.87,
+    "BaselineAllocatedMedianBytes": 16561097456,
+    "OptimizedAllocatedMedianBytes": 1664679680,
+    "AllocationReductionPercent": 89.95,
+    "BaselineReportSHA256": "AABB74632BBEFC830A2DF6D7A06596CFA6989C766DABD2BB98513F2FEB7ADDF5",
+    "OptimizedReportSHA256": "AABB74632BBEFC830A2DF6D7A06596CFA6989C766DABD2BB98513F2FEB7ADDF5"
+  },
+  {
+    "Sample": "洗隋",
+    "FixtureRole": "本轮目标",
+    "ExeSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+    "BaselineRuns": 3,
+    "OptimizedRuns": 3,
+    "BaselineMetricLines": [
+      25,
+      26,
+      27
+    ],
+    "OptimizedMetricLines": [
+      28,
+      29,
+      30
+    ],
+    "BaselineMedianMs": 13532.1023,
+    "OptimizedMedianMs": 2324.3812,
+    "TimeReductionPercent": 82.82,
+    "Speedup": 5.82,
+    "BaselineAllocatedMedianBytes": 17913331096,
+    "OptimizedAllocatedMedianBytes": 1561895824,
+    "AllocationReductionPercent": 91.28,
+    "BaselineReportSHA256": "EB075A97E87A63783BD985542098A3445716413DEAFA4DE444CDD8B5CCEDED6D",
+    "OptimizedReportSHA256": "EB075A97E87A63783BD985542098A3445716413DEAFA4DE444CDD8B5CCEDED6D"
+  },
+  {
+    "Sample": "刘备6.4模组 - 副本",
+    "FixtureRole": "附加6.4 fixture",
+    "ExeSha256": "36D8010F01173408A61681DBB5522B17ECD062E72A00D4356F54954C2EF3F046",
+    "BaselineRuns": 3,
+    "OptimizedRuns": 3,
+    "BaselineMetricLines": [
+      3,
+      11,
+      14
+    ],
+    "OptimizedMetricLines": [
+      17,
+      20,
+      23
+    ],
+    "BaselineMedianMs": 12372.5388,
+    "OptimizedMedianMs": 1979.4096,
+    "TimeReductionPercent": 84.0,
+    "Speedup": 6.25,
+    "BaselineAllocatedMedianBytes": 17909340168,
+    "OptimizedAllocatedMedianBytes": 1556827752,
+    "AllocationReductionPercent": 91.31,
+    "BaselineReportSHA256": "79779CC746BA66472B76CCFB04E230C98F92A39F4836AE3D19BF0F5F693185B7",
+    "OptimizedReportSHA256": "79779CC746BA66472B76CCFB04E230C98F92A39F4836AE3D19BF0F5F693185B7"
+  },
+  {
+    "Sample": "加强版2.2.0",
+    "FixtureRole": "43MB单次观察",
+    "ExeSha256": "1D8E83F73E7780C60B0B5DE5277D54490F72472270F727C97753F8E72AE4B381",
+    "BaselineRuns": 1,
+    "OptimizedRuns": 1,
+    "BaselineMetricLines": 7,
+    "OptimizedMetricLines": 8,
+    "BaselineMedianMs": 1250.9378,
+    "OptimizedMedianMs": 752.3693,
+    "TimeReductionPercent": 39.86,
+    "Speedup": 1.66,
+    "BaselineAllocatedMedianBytes": 421925000,
+    "OptimizedAllocatedMedianBytes": 174845240,
+    "AllocationReductionPercent": 58.56,
+    "BaselineReportSHA256": "229B7696FAAD1F3BD7E2DD650A9A7EE773F326FA6C09ABDED27F0676FD2462A4",
+    "OptimizedReportSHA256": "229B7696FAAD1F3BD7E2DD650A9A7EE773F326FA6C09ABDED27F0676FD2462A4"
+  }
+]

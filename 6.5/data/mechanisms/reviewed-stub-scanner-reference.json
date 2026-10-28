@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": null,
+  "entries": [
+    {
+      "id": "mechanism.65pl.reference-scanner-coverage-and-counterexamples",
+      "title": "6.5pl参考桩扫描器的覆盖与反例",
+      "aliases": [
+        "stub_scan.py",
+        "arg_stub.py",
+        "多push反例",
+        "mov al跨分支",
+        "循环范围启发式"
+      ],
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.fc8bae5c6374",
+        "src.upstream.lanceyuki.de63.98faa1bb9ee1",
+        "src.upstream.lanceyuki.de63.3385870b029f",
+        "src.upstream.lanceyuki.de63.ec1407637ce2",
+        "src.upstream.lanceyuki.de63.221bb4bdbcc0",
+        "src.upstream.lanceyuki.de63.4673a3aba018"
+      ],
+      "summary": "参考实现只提供候选扫描思路，不复制源码，不授权自动写入；目标地址由用户画像配置。",
+      "algorithm": [
+        "覆盖标准四push、包装、mov al动态、参数化与参数循环桩，并保留调用VA/目标/push位置。",
+        "push imm8的selector按已确认低字节契约还原，模式与寄存器契约不能全局截断。",
+        "_parse对3push及多push仅作模板解释，不证明被调读取数目、顺序和含义。",
+        "_moval_nums实际收集同函数push eax之前的mov al；不能证明候选来自同一执行分支，注释所述中途call限制未完整落实。",
+        "arg_stub_range将起始imm32与局部cmp上限拼合，未证明二者属于同一循环及实际参数链。",
+        "新扫描器应以CFG、定义来源、完整实例身份和被调ABI补足证据；将旧形态用作覆盖清单与反例测试。"
+      ],
+      "boundaries": [
+        "原文只记录一个6.5pl分析样本，不提供当前国庆F20C的装备分类表、地址或ABI。",
+        "调用者与返回消费者共同决定语义；413009虽被核心调用，但不是四参数入口。",
+        "参考仓库采用非商业许可；本知识条目只归纳算法事实和限制，不引入参考代码。"
+      ]
+    }
+  ]
+}

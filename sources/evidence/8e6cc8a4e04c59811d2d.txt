@@ -1,0 +1,15 @@
+Item entries=126; lengths=1024:106,1026:20
+Item #1 length=1024, standard=False, head=000000000000000000000000
+Item #2 length=1024, standard=False, head=000000000000000000000000
+Item #3 length=1024, standard=False, head=00001F000000000000000000
+Item #4 length=1024, standard=False, head=000000000000000000000000
+Item #5 length=1024, standard=False, head=000000000000000000000000
+Item #6 length=1024, standard=False, head=1F1F1F000000000000000000
+Item #7 length=1024, standard=False, head=000000000000000000000000
+Item #8 length=1024, standard=False, head=000000000000000000000000
+Item #9 length=1024, standard=False, head=001F00000000000000000000
+Item #10 length=1024, standard=False, head=1F1F01010101010101010101
+DLL icons=171; dimensions={Width=16, Height=16}:171,{Width=32, Height=32}:171
+Profile=Ccz66; Ekd5.exe PE 固定版本资源 FilePrivatePart=6，识别为 6.6；资源容器独立探测。;6.6 引擎使用 DLL 图标资源；未验证几何的 RAW Item/Mtem 不按小图/大图配对读取。;未找到 Tou.dll，人物头像使用小头像降级模式。;人物指定表已验证：R@0xE1000、S@0xD2800、1024 行（六个本地 6.6 修正版项目逐表扫描）。
+EXE FileVersion=1, 0, 0, 1; FilePrivatePart=6
+混合版及六套6.6 Profile专项通过，断言=8

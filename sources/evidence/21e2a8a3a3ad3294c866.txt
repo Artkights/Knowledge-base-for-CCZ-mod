@@ -1,0 +1,190 @@
+{
+  "Schema": "ccz.three-base.release.v1",
+  "Version": "1.2026.1027.25",
+  "Timestamp": "2026-10-27T15:27:44.3137241+08:00",
+  "PackageDirectory": "<source-workspace>",
+  "Build": {
+    "Configuration": "Release",
+    "Runtime": "win-x64",
+    "SelfContained": false,
+    "SingleFile": true,
+    "Warnings": 0,
+    "Errors": 0
+  },
+  "Files": [
+    {
+      "Name": "第三方组件许可-Iced.txt",
+      "Length": 1114,
+      "SHA256": "93A47598376FD3F276B631E75149340087153C6FF1635A53C5790249E9124E2D"
+    },
+    {
+      "Name": "第三方组件许可-ImageSharp.txt",
+      "Length": 13791,
+      "SHA256": "9B251715291A68CA9B694833D7A68E2E1264FBEF66909558ADB9B4C8B100A5B7"
+    },
+    {
+      "Name": "使用说明.md",
+      "Length": 4343,
+      "SHA256": "D003F760A8CC44CFC63C522C848059FF294DC9CC53E1C894C354AAC8CE119964"
+    },
+    {
+      "Name": "性能摘要.json",
+      "Length": 4069,
+      "SHA256": "43E1BE5F856E75A20E86A310CBC3D87D3DC49AB8C35032C227F4B8F04CF23E23"
+    },
+    {
+      "Name": "验收报告.md",
+      "Length": 3778,
+      "SHA256": "D8A964EAEA42433D691A4DF98B580D0DCE4784E476A6F7A8669EAABD1BFDF033"
+    },
+    {
+      "Name": "data管理器.exe",
+      "Length": 14530321,
+      "SHA256": "B2C46251882D3133CA2D791C2FAB14AE21D6ACB35852A2DFF3397FC3E907B4D2"
+    }
+  ],
+  "OriginalTargets": [
+    {
+      "Sample": "洗隋",
+      "ExpectedExeSHA256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+      "OriginalExeUnchanged": true,
+      "Files": [
+        {
+          "Name": "Ekd5.exe",
+          "Length": 1162240,
+          "SHA256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"
+        },
+        {
+          "Name": "Data.e5",
+          "Length": 61379,
+          "SHA256": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF"
+        },
+        {
+          "Name": "Star.e5",
+          "Length": 6359,
+          "SHA256": "4A201ECC0FA3C315DA077615DE7AE4A90EF4CC61E5D94F119841F906EE4FCD15"
+        },
+        {
+          "Name": "Imsg.e5",
+          "Length": 440200,
+          "SHA256": "F3C8AF4FB4673719EAAD819CE44C4D81ADCD3A7FA3DA9A67910D82F501382E74"
+        }
+      ]
+    },
+    {
+      "Sample": "加强版6.5未加密版",
+      "ExpectedExeSHA256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+      "OriginalExeUnchanged": true,
+      "Files": [
+        {
+          "Name": "Ekd5.exe",
+          "Length": 1196032,
+          "SHA256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C"
+        },
+        {
+          "Name": "Data.e5",
+          "Length": 61379,
+          "SHA256": "638744E07B39A12DB2D807892D1FBC7EA69F7E43CAD2771DAA9003574B92B846"
+        },
+        {
+          "Name": "Star.e5",
+          "Length": 6359,
+          "SHA256": "2F357A35E4E9A40493E7AAFC154BF1FB0FAE4DA35BD06D43F460A8B9D2CE6C69"
+        },
+        {
+          "Name": "Imsg.e5",
+          "Length": 450000,
+          "SHA256": "A22C4F12B30F511A62DE8B9AE0C23B7BA41D55FD568B66D4F3544368912D9660"
+        }
+      ]
+    },
+    {
+      "Sample": "复刻版6.6山贼 国庆",
+      "ExpectedExeSHA256": "F20C583296AD2C167AD0C732655B1F90457AA303DF6E8E15CFAA70A822B6EF19",
+      "OriginalExeUnchanged": true,
+      "Files": [
+        {
+          "Name": "Ekd5.exe",
+          "Length": 1148928,
+          "SHA256": "F20C583296AD2C167AD0C732655B1F90457AA303DF6E8E15CFAA70A822B6EF19"
+        },
+        {
+          "Name": "Data.e5",
+          "Length": 61379,
+          "SHA256": "F4BC3764D613C8B8F03D54C814184251A7D41EBC34DF6753029BC313AD29F851"
+        },
+        {
+          "Name": "Star.e5",
+          "Length": 6359,
+          "SHA256": "B3921D1765911E52508149E712C6F86D5CD9A1352DB30618176CE3E4BEA2A7C0"
+        },
+        {
+          "Name": "Imsg.e5",
+          "Length": 857117,
+          "SHA256": "A847EBF6DBE084B4A545976F0D32A44A071B88DDE73D2A80C2999210D24E4100"
+        }
+      ]
+    }
+  ],
+  "VerifiedLogs": [
+    {
+      "Path": "effect-assignment-layouts.log",
+      "SuccessMarker": "EFFECT_ASSIGNMENT_LAYOUT_TESTS_OK samples=4",
+      "SHA256": "97B4BCDB2FFD41E5ECA8FE7C9D94C717B5CCA2C7A1FD57955D08BE2FC08325AB"
+    },
+    {
+      "Path": "three-base-assignments.log",
+      "SuccessMarker": "THREE_BASE_ASSIGNMENT_TESTS_OK samples=3",
+      "SHA256": "05796E618EF1C42A948DF7D5C10D86D1E65B3B38AE1B5EF9C9D973683BEF96D3"
+    },
+    {
+      "Path": "effect-binding-groups.log",
+      "SuccessMarker": "EFFECT_BINDING_GROUP_OK 复刻版6.6山贼 国庆",
+      "SHA256": "484610490F686F3A19FC110FC91BA39E5CD9AD5681A94182735EF3EB62E0FDCB"
+    },
+    {
+      "Path": "engine-effect-write-国庆.log",
+      "SuccessMarker": "ENGINE_EFFECT_WRITE_TESTS_OK",
+      "SHA256": "9AEEA36B2A7D5B37B40FB2EB7505CA933D770FDE977ADC1170BD4D473B9D9747"
+    },
+    {
+      "Path": "engine-effect-contracts-6.5.log",
+      "SuccessMarker": "ENGINE_EFFECT_CONTRACT_TESTS_OK",
+      "SHA256": "58AA991189E31D63414DCF9E9E70C43318FC8E3031F25B7AB4A5F28B5D442243"
+    },
+    {
+      "Path": "engine-effect-native.log",
+      "SuccessMarker": "NATIVE_EFFECT_ADAPTER_TESTS_OK (5 samples)",
+      "SHA256": "57288B686834415C5B56FD6C90F1C26E0BF6332E7DBF24FE4F984A64CD53AD23"
+    },
+    {
+      "Path": "operand-sharing-safety.log",
+      "SuccessMarker": "OPERAND_SHARING_SAFETY_TESTS_OK",
+      "SHA256": "3BC1F0D7AC7D02C63DC73C2C69D7E257565542A536105ADCCE4068505E72A221"
+    },
+    {
+      "Path": "最终扫描确定性.log",
+      "SuccessMarker": "ENGINE_EFFECT_SCAN_PERFORMANCE_TESTS_OK 复刻版6.6山贼 国庆",
+      "SHA256": "E0AED7DF80313065707699ACDA99C6083045B4C36259734091B6FD6BA66E10FC"
+    },
+    {
+      "Path": "UI/生命周期/扫描生命周期结果.txt",
+      "SuccessMarker": "ENGINE_SCAN_LIFECYCLE_TESTS_OK",
+      "SHA256": "1719549BB2B992DAF80E6531758D2521A7124B86D388089FA59328AA42D5D8F3"
+    }
+  ],
+  "UiScreenshots": 15,
+  "BundleVerification": {
+    "Path": "发布程序资源与界面验收.json",
+    "SHA256": "84A1FD1EA77B162F25D4ADAA6B81BDA026C9BFA5760555145C48A25E208BFB67",
+    "Scope": "BundleResourcesAndWorkbooks",
+    "Passed": 15,
+    "Failures": 0
+  },
+  "Boundaries": [
+    "未加壳EXE；加壳2.2.0仅诊断",
+    "静态分析、写回复读、事务与UI通过；未游戏战斗实测",
+    "斗将N次第三消费者尚未独立证实",
+    "性能完整报告等价与中位数来自保存的隔离性能快照"
+  ]
+}

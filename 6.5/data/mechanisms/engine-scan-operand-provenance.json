@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "mechanism.65.engine-scan-operand-provenance",
+      "title": "引擎扫描守卫操作数来源与跨块调用写回判定",
+      "aliases": [
+        "操作数来源版20261027.18",
+        "基本块去重叠",
+        "调用返回与调用写回"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "sourceRefs": [
+        "src.dm.engine-validation-20261027",
+        "src.dm.engine-acceptance-20261027"
+      ],
+      "summary": "守卫分支、参数来源、运行时行为分别记录。最短路径可用于说明一条可达路径，不能替代所有路径或将未定=0宣称为完全证明。",
+      "algorithm": [
+        "先按真实跳转目标拆分基本块，防止重叠解码将目标吞入前块。",
+        "块内从后向前找最后一次定义；支持mov/movzx/lea/add/sub/and/or/xor/imul。",
+        "找不到时向至多4个前驱追溯，深度3，visited防环；定义不一致降级为未定。",
+        "被调函数写EAX标记调用返回值；确定写ECX/EDX标记调用写回。",
+        "含嵌套call或超过解码上限时只标记可能被写，不能冒充确定返回值。"
+      ],
+      "historicalObservations": {
+        "edition": "1.2026.1027.18",
+        "samples": [
+          {
+            "version": "6.4",
+            "sha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+            "oldFourArgumentCountIncludingAggregate": 102,
+            "localGuards": 165,
+            "upstreamGuards": 0,
+            "crossBlockOrigins": 12
+          },
+          {
+            "version": "6.5",
+            "sha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+            "oldFourArgumentCountIncludingAggregate": 186,
+            "localGuards": 269,
+            "upstreamGuards": 19,
+            "crossBlockOrigins": 15
+          },
+          {
+            "version": "6.6",
+            "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A",
+            "oldFourArgumentCountIncludingAggregate": 206,
+            "localGuards": 177,
+            "upstreamGuards": 0,
+            "crossBlockOrigins": 4
+          }
+        ]
+      },
+      "boundaries": [
+        "上述历史调用数包含00413009，后续ABI纠正后四参数计数为97/181/199，不可混用作当前基线。",
+        "6.6仍有一条对象字段链未见基址定义；三样本各有两条调用后寄存器可能写回尾部。",
+        "Capstone独立复核证明指令字节与解码一致，不等于运行时效果已验证。",
+        "后续多路径DNF/决策点/循环重复求值应保留，不能回退为最多12条最短路径。"
+      ],
+      "writePolicy": "只将唯一可写参数来源开放写入；共享/多定义或未知内存保留诊断。"
+    }
+  ]
+}

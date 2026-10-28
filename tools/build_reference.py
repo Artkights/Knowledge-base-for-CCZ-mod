@@ -1,24 +1,23 @@
 from __future__ import annotations
 
+import argparse
 import json
+import sys
+sys.dont_write_bytecode = True
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent.parent
-DATA_ROOTS = [ROOT / "6.5" / "data", ROOT / "6.6" / "data", ROOT / "legacy" / "data"]
+from generated_artifacts import differences, update
+from version_config import DATA_VERSIONS, REFERENCE_FILES, ROOT
+
+DATA_ROOTS = [ROOT / version / "data" for version in DATA_VERSIONS]
 ORDER = [
     "engine-profile", "function", "global", "data-structure", "file-format",
     "effect-stub", "patch-recipe", "mechanism", "script-command", "workflow",
     "test-contract", "case-study",
 ]
-FILENAMES = {
-    "engine-profile": "profiles.md", "function": "functions.md", "global": "globals.md",
-    "data-structure": "structures.md", "file-format": "file-formats.md",
-    "patch-recipe": "patches.md", "mechanism": "mechanisms.md",
-    "effect-stub": "effect-stubs.md", "script-command": "script-commands.md",
-    "workflow": "workflows.md", "test-contract": "test-contracts.md",
-    "case-study": "case-studies.md",
-}
+FILENAMES = REFERENCE_FILES
+
 TITLES = {
     "engine-profile": "引擎画像", "function": "函数与入口", "global": "全局地址",
     "data-structure": "数据结构", "file-format": "文件格式",
@@ -84,6 +83,10 @@ def render_functions(entries: list[tuple[Path, dict]]) -> list[str]:
                 f"- `{item['id']}`：{fmt_address(site.get('address'))}；"
                 f"指令 `{site.get('instruction', '-')}`；{site.get('meaning', '-')}"
             )
+    notes = [(item, note) for _, item in entries for note in item.get("notes", [])]
+    if notes:
+        lines.extend(["", "## ABI与使用边界", ""])
+        lines.extend(f"- `{item['id']}`（画像 `{item.get('profile', '-')}`）：{note}" for item, note in notes)
     return lines
 
 
@@ -101,6 +104,10 @@ def render_structures(entries: list[tuple[Path, dict]]) -> list[str]:
     lines: list[str] = []
     for _, item in entries:
         lines.extend([f"## {item['title']}", "", f"ID: `{item['id']}`；状态: `{item['status']}`；证据: `{item['evidence']}`", "", f"步长: `0x{item['stride']:X}` ({item['stride']})", "", f"索引公式: `{item.get('indexFormula', '-')}`", ""])
+        if item.get("profile"):
+            lines.extend([f"画像：`{item['profile']}`；记录数：`{item.get('recordCount', item.get('rowCount', '-'))}`。", ""])
+        if item.get("activeAddress") or item.get("fileAddress"):
+            lines.extend([f"指针槽：{fmt_address(item.get('address'))}；活动地址：{fmt_address(item.get('activeAddress'))}；文件偏移：{fmt_address(item.get('fileAddress'))}。", ""])
         if item.get("fileName"):
             lines.extend([f"存储：`{item['fileName']}`；起点：{fmt_address(item.get('address'))}；记录数：`{item.get('recordCount', '-')}`；ID 起点：`{item.get('beginId', '-')}`；结束偏移（不含）：`{item.get('endOffsetExclusive', '-')}`。", ""])
         if item.get("capability"):
@@ -132,11 +139,6 @@ def render_structures(entries: list[tuple[Path, dict]]) -> list[str]:
         for value in fields:
             lines.append(f"| `{value['name']}` | `{value['offset']}` | {value['width']} | `{value['type']}` | {md_cell(value['meaning'])} |")
         lines.append("")
-        if item.get("sampleCases"):
-            lines.extend(["样本字段复核：", "", "| ID | 名称 | 特效值 +0x15 | 适用兵种 +0x17 | 价格 +0x13 | 图鉴 +0x18 |", "|---:|---|---:|---|---:|---:|"])
-            for sample in item["sampleCases"]:
-                lines.append(f"| {sample['itemId']} | {md_cell(sample['name'])} | {sample['effectValue']} | {sample['suitableJob']}：{md_cell(sample['jobName'])} | {sample['price']} | {sample['gallery']} |")
-            lines.append("")
     return lines
 
 
@@ -246,6 +248,8 @@ def render_mechanisms(entries: list[tuple[Path, dict]]) -> list[str]:
     lines: list[str] = []
     for _, item in entries:
         lines.extend([f"## {item['title']}", "", f"ID: `{item['id']}`；状态: `{item['status']}`；证据: `{item['evidence']}`", ""])
+        if item.get("summary"):
+            lines.extend([str(item["summary"]), ""])
         for step in item.get("steps", []):
             lines.append(f"{step['order']}. `{step['entity']}`：{step['role']}")
         if item.get("pierceBranch"):
@@ -256,24 +260,25 @@ def render_mechanisms(entries: list[tuple[Path, dict]]) -> list[str]:
             lines.extend(["", "计算规则：", ""])
             for value in item["algorithm"]:
                 lines.append(f"- `{value}`")
-        for key in ("scope", "namespace"):
+        for composition in item.get("composition", []):
+            lines.extend(["", "### " + str(composition.get("effect", "组合关系")), ""])
+            for key in ("steps", "rules", "abi"):
+                lines.extend(f"- {value}" for value in composition.get(key, []))
+            if composition.get("result"):
+                lines.extend(["", str(composition["result"])])
+            if composition.get("consumerEvidence"):
+                lines.extend(["", "消费者证据：", "", "```json", json.dumps(composition["consumerEvidence"], ensure_ascii=False, indent=2), "```"])
+        for title, key in (("边界", "boundaries"), ("补充说明", "notes"), ("写入策略", "writePolicy"), ("界面规则", "uiPolicy")):
             value = item.get(key)
-            if isinstance(value, dict):
-                if lines[-1] != "":
-                    lines.append("")
-                lines.extend(f"- {label}：{md_cell(detail)}" for label, detail in value.items())
-        if item.get("effects"):
-            lines.extend(["", "| 特效号 | 十进制 | 名称 | 含义 | 证据 | 6.5 字节样本 |", "|---|---:|---|---|---|---|"])
-            for effect in item["effects"]:
-                samples = "; ".join(f"{sample['itemId']}：{sample['name']}" for sample in effect.get("sampleItems", [])) or "—"
-                lines.append(f"| `{effect['id']}` | {effect['value']} | {md_cell(effect['name'])} | {md_cell(effect['meaning'])} | `{effect['evidence']}` | {md_cell(samples)} |")
-        for key in ("provenanceNotes", "unknownPolicy"):
-            value = item.get(key, [])
-            if value and lines[-1] != "":
-                lines.append("")
-            lines.extend(f"- {md_cell(note)}" for note in (value if isinstance(value, list) else [value]))
-        if item.get("writePolicy"):
-            lines.extend(["", "写入策略：" + md_cell(item["writePolicy"])])
+            if not value:
+                continue
+            lines.extend(["", title + "：", ""])
+            if isinstance(value, list):
+                lines.extend(f"- {child}" for child in value)
+            elif isinstance(value, dict):
+                lines.extend(f"- `{name}`：{child if isinstance(child, str) else json.dumps(child, ensure_ascii=False)}" for name, child in value.items())
+            else:
+                lines.append(str(value))
         lines.append("")
     return lines
 
@@ -389,29 +394,35 @@ def render_group(version_dir: Path, entity_type: str, entries: list[tuple[Path, 
     return "\n".join(lines).rstrip() + "\n"
 
 
-def main() -> None:
-    written = 0
+def generated_documents() -> tuple[dict[Path, str], set[Path]]:
+    expected: dict[Path, str] = {}
+    stale: set[Path] = set()
     for data_root in DATA_ROOTS:
         version_dir = data_root.parent
         reference = version_dir / "reference"
-        reference.mkdir(parents=True, exist_ok=True)
         groups = load_collections(version_dir)
-        expected = set()
         for entity_type in ORDER:
             entries = groups.get(entity_type)
-            if not entries:
-                continue
-            name = FILENAMES[entity_type]
-            expected.add(name)
-            (reference / name).write_text(
-                render_group(version_dir, entity_type, entries), encoding="utf-8", newline="\n"
-            )
-            written += 1
-        for stale in reference.glob("*.md"):
-            if stale.name not in expected:
-                stale.unlink()
-    print(f"references={written}")
+            if entries:
+                expected[reference / FILENAMES[entity_type]] = render_group(version_dir, entity_type, entries)
+        stale.update(path for path in reference.glob("*.md") if path not in expected)
+    return expected, stale
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Generate human references from structured JSON.")
+    parser.add_argument("--check", action="store_true", help="Report stale output without editing files")
+    args = parser.parse_args()
+    expected, stale = generated_documents()
+    changed = differences(expected, stale)
+    if args.check:
+        for path in changed:
+            print("stale: " + path.relative_to(ROOT).as_posix())
+        return int(bool(changed))
+    update(expected, stale)
+    print(f"references={len(expected)}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
