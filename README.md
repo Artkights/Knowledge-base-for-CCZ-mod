@@ -36,6 +36,8 @@
 
 当前数据域包括引擎画像、函数、全局量、数据结构、文件格式、补丁、机制、特效桩、剧本指令、工作流、测试契约和制作案例。`index.json` 提供统一 ID、版本、状态、证据、地址、搜索词、来源和数据路径。
 
+整合后的后续优先级、证据完成判据和 data 管理器改造建议见 [research/improvement-plan.md](research/improvement-plan.md)。该方案把物理可写性、玩法语义确认和管理器实现状态分开管理，并把 6.5pl 独立画像、6.4 消费者补证和持续 CI 列为研究队列。
+
 ## 地址与写回规则
 
 每个地址必须声明 `va`、`rva`、`fileOffset`、`pointerSlot` 或 `resolvedRuntimeAddress`，并绑定独立 `profile`。同名函数在不同版本中不得合并。
