@@ -1,0 +1,174 @@
+# 公式设定页：读写与语义验证（2026-10-30）
+
+## 1. 页面结构
+
+- 顶级页签：`Tag="__formulas"`，显示名“公式设定”。
+- 左侧：全局 `_entityList`，24 项 `分类 · 公式名`。
+- 右侧 `EngineBattleFormulaPanel`：
+  - 标题与三基底摘要；
+  - 公式计算过程（步骤 / 计算式 / 说明，只读）；
+  - 公式常量（常量 / 作用 / 6.4 / 6.5 / 6.6 / 新值 / 范围 / 状态）；
+  - 证据区（地址、签名、诊断）。
+- “新值”是唯一可编辑列；共享常量按 ID 去重，写入后所有同 ID 行刷新。
+
+## 2. 可写常量的地址与签名（原有 23 项 + 经验 9 项 + 升级 8 项）
+
+`FieldVa` 一律指立即数所在字节，`FieldFileOffset = FieldVa - 0x400C00`。
+
+| ID | 基底 | VA | 长度 | Prefix | Suffix |
+| --- | --- | ---: | ---: | --- | --- |
+| `hit-curve-cap` | 6.4 | `0x0043B51C` | 1 | `39 55 08 72 04 B0` | `EB 66 8B 55 08 3B` |
+| `hit-curve-cap` | 6.5/6.6 | `0x0043B54A` | 1 | `39 55 08 72 04 B0` | `EB 66 8B 55 08 3B` |
+| `hit-curve-high-coef` | 6.4 | `0x0043B535` | 1 | `83 C4 08 6B C0` | `33 D2 F7 75 0C` |
+| `hit-curve-high-coef` | 6.5/6.6 | `0x0043B563` | 1 | `83 C4 08 6B C0` | `33 D2 F7 75 0C` |
+| `hit-curve-high-base` | 6.4 | `0x0043B53D` | 1 | `33 D2 F7 75 0C 83 C0` | `EB 45 8B 4D 0C` |
+| `hit-curve-high-base` | 6.5/6.6 | `0x0043B56B` | 1 | `33 D2 F7 75 0C 83 C0` | `EB 45 8B 4D 0C` |
+| `hit-curve-mid-coef` | 6.4 | `0x0043B556` | 1 | `83 C4 08 6B C0` | `59 33 D2 F7 F1` |
+| `hit-curve-mid-coef` | 6.5/6.6 | `0x0043B584` | 1 | `83 C4 08 6B C0` | `59 33 D2 F7 F1` |
+| `hit-curve-mid-base` | 6.4 | `0x0043B55E` | 1 | `33 D2 F7 F1 83 C0` | `EB 24 8B 45 0C` |
+| `hit-curve-mid-base` | 6.5/6.6 | `0x0043B58C` | 1 | `33 D2 F7 F1 83 C0` | `EB 24 8B 45 0C` |
+| `hit-curve-low-divisor` | 6.4 | `0x0043B567` | 4 | `33 D2 B9` | `F7 F1 50 50 FF` |
+| `hit-curve-low-divisor` | 6.5/6.6 | `0x0043B595` | 4 | `33 D2 B9` | `F7 F1 50 50 FF` |
+| `hit-curve-low-coef` | 6.4 | `0x0043B57C` | 1 | `83 C4 08 6B C0` | `33 D2 59 F7 F1` |
+| `hit-curve-low-coef` | 6.5/6.6 | `0x0043B5AA` | 1 | `83 C4 08 6B C0` | `33 D2 59 F7 F1` |
+| `hit-curve-low-base` | 6.4 | `0x0043B584` | 1 | `59 F7 F1 83 C0` | `5D C2 08 00 90` |
+| `hit-curve-low-base` | 6.5/6.6 | `0x0043B5B2` | 1 | `59 F7 F1 83 C0` | `5D C2 08 00 90` |
+| `hit-curve-floor-66` | 6.6 主 | `0x0043B4E0` | 1 | `85 C0 74 56 83 F8` | `73 05 B8` |
+| `hit-curve-floor-66` | 6.6 次 | `0x0043B4E4` | 4 | `73 05 B8` | `90 90 90 90 90` |
+| `hit-retry-count` | 6.4 | `0x0043B4E9` | 1 | `80 7D F8` | `73 1A 6A 00` |
+| `hit-retry-count` | 6.5 | `0x0043B50A` | 1 | `80 7D F0` | `73 27 FF 75` |
+| `hit-retry-threshold` | 6.4 | `0x0043B4FD` | 1 | `83 7D FC` | `72 06 83 6D` |
+| `hit-retry-threshold` | 6.5 | `0x0043B528` | 1 | `83 7D F4` | `72 09 83 6D` |
+| `hit-retry-deduction` | 6.4 | `0x0043B503` | 1 | `83 6D FC` | `EB DD E9 4F` |
+| `hit-retry-deduction` | 6.5 | `0x0043B52E` | 1 | `83 6D F4` | `FE 45 F0 EB D3` |
+| `rate-curve-full-multiplier` | 全部 | `0x00405D14` | 1 | `8B 4D 08 6B C9` | `39 4D 0C 72 04` |
+| `rate-curve-cap` | 全部 | `0x00405D1B` | 1 | `39 4D 0C 72 04 B0` | `EB 37 8B 4D 08` |
+| `rate-curve-high-coef` | 全部 | `0x00405D2F` | 1 | `2B C1 6B C0` | `33 D2 F7 75 08` |
+| `rate-curve-high-base` | 全部 | `0x00405D37` | 1 | `33 D2 F7 75 08 83 C0` | `EB 1B 8B 45 0C` |
+| `rate-curve-low-coef` | 全部 | `0x00405D47` | 1 | `2B 45 08 6B C0` | `33 D2 F7 75 08` |
+| `rate-curve-low-base` | 全部 | `0x00405D4F` | 1 | `33 D2 F7 75 08 83 C0` | `EB 03 33 C0 40` |
+| `physical-crit-cap` | 全部 | `0x00405ED7` | 1 | `89 45 DC 83 F8` | `77 10` |
+| `physical-crit-pool` | 6.4 | `0x00405EDB` | 1 | `77 10 6A` | `50 E8 B4 19 03 00 85 C0 74 3E` |
+| `physical-crit-pool` | 6.5/6.6 | `0x00405EDB` | 1 | `77 10 6A` | `50 E8 C6 28 02 00 85 C0 74 3E` |
+| `strategy-crit-cap` | 6.4 | `0x0040CAD8` | 1 | `89 45 F8 83 F8` | `77 10` |
+| `strategy-crit-cap` | 6.5/6.6 | `0x0040CAA5` | 1 | `50 83 F8` | `77 10` |
+| `strategy-crit-pool` | 6.4 | `0x0040CADC` | 1 | `77 10 6A` | `50 E8 B3 AD 02 00 85 C0 74 1D` |
+| `strategy-crit-pool` | 6.5/6.6 | `0x0040CAA9` | 1 | `77 10 6A` | `50 E8 F8 BC 01 00 85 C0 74 1D` |
+| `combo-pool` | 6.4 | `0x0040612E` | 1 | `E8 8C FB FF FF 6A` | `50 E8 61 17 03 00 85 C0 75 03` |
+| `combo-pool` | 6.5/6.6 | `0x0040612E` | 1 | `E8 B3 DF 0D 00 6A` | `50 E8 73 26 02 00 85 C0 75 03` |
+| `personal-exp-base` | 全部 | `0x00403855` | 1 | `B0 2F 8D 4C 00` | `01 4D FC 8B 45 F8` |
+| `personal-exp-kill-flat` | 6.4/6.5 | `0x00403824` | 1 | `75 06 83 45 FC` | `EB 19 8B 45 F4` |
+| `personal-exp-kill-flat` | 6.6 | `0x0040381E` | 1 | `75 06 83 45 FC` | `EB 18 8B 45 F0` |
+| `personal-exp-kill-ratio-num` | 6.4/6.5 | `0x0040383A` | 1 | `8B C8 33 D2 B0` | `F7 F1 01 45 FC` |
+| `personal-exp-kill-ratio-num` | 6.6 | `0x00403833` | 1 | `8B C8 99 B0` | `F7 F1 01 45 FC` |
+| `personal-exp-kill-ratio-offset` | 6.4/6.5 | `0x00403834` | 1 | `33 C0 04` | `8B C8 33 D2 B0` |
+| `personal-exp-kill-ratio-offset` | 6.6 | `0x0040382E` | 1 | `33 C0 04` | `8B C8 99 B0` |
+| `exp-multiplier-base` | 全部 | `0x00407FB9` | 1 | `0F B6 C0 83 C0` | `5D C3` |
+| `weapon-exp-base` | 全部 | `0x004038FA` | 1 | `83 BC 88 84 00 00 00 00 75 0A 83 BC 88 54 02 00 00 00 74 1D B1` | `8B 45 F4 3B 45 F0` |
+| `weapon-exp-no-damage` | 全部 | `0x00403919` | 1 | `EB 04 C6 45 FC` | `8B 45 F8 8B 48 08` |
+| `armor-exp-base` | 全部 | `0x00403A8E` | 1 | `55 8B EC 6A` | `51 83 EC 10 E8` |
+| `armor-exp-no-damage` | 全部 | `0x00403AFB` | 1 | `EB 04 83 6D FC` | `8B 45 F8 40 50` |
+| `char-exp-max-level` | 6.4/6.6 | `0x004088D3` | 1 | `55 8B EC 33 C0 B0` | `50 B0 ?? 50 51 E8`（掩码） |
+| `char-exp-max-level` | 6.5 | `0x004088D3` | 1 | `55 8B EC 33 C0 B0` | `E9 1E 49 00 00` |
+| `char-exp-threshold` | 6.4/6.6 | `0x004088D6` | 1 | `50 B0` | `50 51 E8` |
+| `char-exp-band-65` | 6.5 | `0x0040D226` | 4 | `E8 AB 93 FF FF B9` | `31 D2 F7 F1 83 F8 03` |
+| `char-exp-step-65` | 6.5 | `0x0040D23D` | 1 | `83 C0 03 6B C0` | `5D C3` |
+| `equip-exp-threshold-special` | 全部 | `0x00408319` | 1 | `33 D2 85 C0 74 05 80 C2` | `EB 03` |
+| `equip-exp-threshold-normal` | 全部 | `0x0040831E` | 1 | `EB 03 80 C2` | `89 55 E8` |
+| `equip-level-cap-special` | 全部 | `0x00408327` | 1 | `89 55 E8 85 C0 74 04 B0` | `EB 02 B0` |
+| `equip-level-cap-normal` | 6.4/6.5 | `0x0040832B` | 1 | `EB 02 B0` | `88 45 F8 8A 45 08 50 8B 4D EC` |
+| `equip-level-cap-normal` | 6.6 | `0x0040832B` | 1 | `EB 02 B0` | `88 45 F8 FF 75 08 8B 4D EC` |
+
+三基底逐字节扫描结果：所有适用布局 `hits=1`。6.6 下限主签名不能缩短为 `83 F8`（短签名有 4 处命中）。经验常量的立即数地址已按字节复核：6.4 武器基础值为 `B1 03`（3），6.5 为 `B1 02`（2），6.6 为 `B1 03`（3）。
+
+## 3. 语义校验
+
+`EngineBattleFormulaService.ValidateEdits` 返回 Error / Warning：
+
+### 3.1 通用
+
+- Error：ID 不存在、不是公式常量、同一批出现多个不同值、当前基底不可写、超出范围。
+
+### 3.2 命中曲线族
+
+Error：
+
+- 低段基础 > 中段基础；
+- 中段基础 > 高段基础；
+- 高段基础 > 上限；
+- 低段除数不在 1..10；
+- 6.6 下限 > 低段基础。
+
+Warning：
+
+- 高段最高 > 上限（实际会被截断）；
+- 中段最高 > 上限；
+- 低段最高 > 上限。
+
+只改上限（例如 100 → 90）只产生截断提示，不拦截。
+
+### 3.3 发动率曲线族
+
+Error：
+
+- 低段基础 > 高段基础；
+- 高段基础 > 上限；
+- 满率倍率不在 2..10。
+
+Warning：高段/低段最高超过上限。
+
+### 3.4 二次判定
+
+- Error：次数不在 1..8；阈值/扣减不在 0..100。
+- Warning：扣减 > 阈值（补判命中率会变成 0 或负数）。
+
+### 3.5 暴击/连击
+
+- Error：上限不在 0..100；池号不在 0..255。
+- Warning：池号不是当前基底默认值（6.4 0/0/0；6.5/6.6 2/18/0）。
+
+### 3.6 经验族
+
+- Error：经验常量超出各自范围（基础值 0..100/0..20，击杀加成 0..200，分子 1..200，除数偏移 1..50，倍率基础 0..200，无伤害扣减 0..10；角色最大等级 1..99、每级经验 1..250、6.5 分段 1..100、6.5 增量 1..250；装备阈值 1..250、装备上限 1..99）。
+- Warning：
+  - 经验倍率基础值 < 100（所有经验按低于 100% 结算）；
+  - 击杀经验分子 < 除数偏移 + 1（普通击杀额外经验最多 1 点）；
+  - 个人/武器/防具经验基础值为 0（对应经验会变成 0）；
+  - 宝物等级上限低于普通上限（宝物会更早封顶）；
+  - 宝物经验阈值低于普通阈值（宝物升级反而更快）。
+- 只读结构值：个人经验的等级差钳位 −1/47、武器暴击 +1、防具等级 −1、策略经验各档位系数与上下限、功勋表结构、升级字段与满级 255 标记、战场变量装载表 `0x004123BE` 与 7 项写入/标志地址、每回合经验的 selector 表 `0x0043CFCD` 与 8 项结算地址、本场战功表 `0x508000 + ID×10` 与 9 项累加/结算地址，均不在“新值”列开放。
+
+## 4. 写入流程
+
+1. 用户编辑“新值”，`CellValidating` 做整数、范围、公式族校验。
+2. “写入修改”显示变更列表与 Warning，确认后调用 `TryCommit`。
+3. `TryCommit` 再校验一次，转成 `EngineConstantEdit` 调 `EngineConstantService.Commit`。
+4. 事务做整文件备份、等长补丁、写后复读、失败回滚。
+5. 成功后清空 pending、重新读取当前公式、刷新所有行。
+6. 失败保留 pending，状态栏/弹窗显示原因。
+
+## 5. 离开提示
+
+- 切换顶级页签、切换公式、切换 Profile、打开项目、迁移、重新扫描、关闭窗口前：
+  - Yes：先写入；
+  - No：放弃；
+  - Cancel：留在原页。
+- `HasPendingChanges` 包含公式 pending；`RefreshDirtyState` 显示“● 有未写入的公式修改”。
+
+## 6. 测试命令
+
+```text
+--battle-formulas <基底>
+--battle-formula-write <基底>
+--engine-constant-audit <基底>
+--engine-effect-ui <基底> <截图目录>
+--engine-assignment-ui <基底> <截图目录>
+```
+
+截图命名：`公式设定-{version}-{宽}x{高}.png`；经验页另存 `公式设定-经验-{version}-1280x720.png`，装备经验页另存 `公式设定-装备经验-{version}-1280x720.png`。
+
+## 7. 边界
+
+- 公式页只写“新值”列对应的真实立即数；`shl/shr/sar/inc/xor` 编码的倍率、除数、保底保持只读。
+- 武力/统帅/智力/敏捷/士气是公式输入，不是单点常量。
+- 静态写入验证不等于战场实机验收；曲线类改动建议在测试副本战斗场景复核。

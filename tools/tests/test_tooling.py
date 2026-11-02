@@ -18,6 +18,23 @@ from version_config import DATA_VERSIONS, VERSIONS, data_paths
 
 
 class ToolingContracts(unittest.TestCase):
+    def test_reference_exposes_payload_limits_and_execution_boundaries(self):
+        entry = {"id": "mechanism.fixture", "title": "预算", "status": "candidate", "evidence": "source-reviewed",
+                 "budgets": [{"tableKeys": ["items"], "storageBytes": 17, "maxPayloadBytes": 14,
+                              "requiresTerminator": True}],
+                 "originalSlotPolicy": ["保留隐藏尾部"], "runtimeBoundary": {"unknown": "不能推断消费者"}}
+        rendered = "\n".join(build_reference.render_mechanisms([(Path("fixture.json"), entry)]))
+        self.assertIn("| items | 17 | 14 | True |", rendered)
+        self.assertIn("保留隐藏尾部", rendered)
+        self.assertIn("不能推断消费者", rendered)
+        test = {"id": "test.fixture", "title": "测试", "status": "candidate", "evidence": "source-reviewed",
+                "lastExecution": {"gameRuntimeVerified": False}, "prerequisites": ["完整仓库根目录"],
+                "relatedCommands": ["runner --second <repository-root>"]}
+        rendered_test = "\n".join(build_reference.render_test_contracts([(Path("fixture.json"), test)]))
+        self.assertIn("完整仓库根目录", rendered_test)
+        self.assertIn("runner --second <repository-root>", rendered_test)
+        self.assertIn("gameRuntimeVerified", rendered_test)
+
     def test_versions_include_64_and_preserve_65pl_research_only(self):
         self.assertIn("6.4", DATA_VERSIONS)
         self.assertIn("6.5pl", VERSIONS)

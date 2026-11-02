@@ -1,0 +1,1554 @@
+using System.Buffers.Binary;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Security.Cryptography;
+using ImageManager.Core;
+using ImageManager.App;
+
+namespace ImageManager.Tests;
+
+internal static class Program
+{
+    private static int _passed;
+    private static int _failed;
+    private static int _skipped;
+
+    [STAThread]
+    private static int Main(string[] args)
+    {
+        if (args.Any(argument => argument.StartsWith("--atlas-", StringComparison.Ordinal)))
+            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
+        if (args.Contains("--atlas-real-compat", StringComparer.Ordinal))
+        {
+            Run("6.4/6.5/6.6真实S_242两图兼容与副本事务", RealAtlasCompatibilityTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--atlas-package", StringComparer.Ordinal))
+        {
+            Run("参考包清单、目标隔离、编号图和兼容导出", AtlasPackageTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--atlas-flexible", StringComparer.Ordinal))
+        {
+            Run("非标准画布、背景、源框修正与真实AI图", FlexibleAtlasTests.Run);
+            Run("横竖画布、非整数动作偏移与缺帧", AtlasTransformTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--image-import-acceptance", StringComparer.Ordinal))
+        {
+            Run("真实头像格式切换、新增/替换预览与原基底SHA", ImageImportAcceptanceScreenshots.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}，跳过 {_skipped}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.FirstOrDefault() == "--scene-terrain")
+        {
+            Run("内场景Pmap格式、菱形命中、笔画、联动事务与三版本基底", () => SceneTerrainTests.Run(args.Length > 1 ? args[1] : Directory.GetCurrentDirectory()));
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--pixel-editor", StringComparer.Ordinal))
+        {
+            Run("换色底图取色、取消、只读配置与调色板", PixelColorPickingTests.Run);
+            Run("编辑与播放窗口高 DPI 布局", TestDialogLayout);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}，跳过 {_skipped}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--pixel-writeback", StringComparer.Ordinal))
+        {
+            Run("真实像素对话框R/S落盘、黑擦除、分区色表与ARGB", PixelWritebackTests.Run);
+            Run("图片语义修改、无变化与独立预期像素复读", MutationSemanticTests.Run);
+            Run("换色底图取色、取消、只读配置与调色板", PixelColorPickingTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--ccz64", StringComparer.Ordinal))
+        {
+            Run("6.4 身份、实际容器、R/S验签与副本事务", Ccz64CompatibilityTests.Run);
+            Run("6.5 实际样本只读回归", TestSample65);
+            Run("6.6 实际样本只读回归", TestSample66);
+            Run("六个本地 6.6 Profile 指定表回归", TestSix66Profiles);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}，跳过 {_skipped}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--job-s-labels", StringComparer.Ordinal))
+        {
+            Run("兵种S详细名称、零基ID与阵营标签", JobSLabelTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}，跳过 {_skipped}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--image-import-dialog", StringComparer.Ordinal))
+        {
+            Run("统一导入映射、候选预览与异步失效", ImageImportDialogTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}，跳过 {_skipped}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--image-import-core", StringComparer.Ordinal))
+        {
+            Run("多格式首帧解码与目标规格事务", ImageImportSourceDecoderTests.Run);
+            Run("天气、Pmap与地图静态素材自动适配", SpecialFileImportTests.Run);
+            Run("素材准备、指纹、事务与像素编辑边界", ImageImportPreparationTests.Run);
+            Run("R/S 外部素材宽松导入与物理范围", RsFileImportTests.Run);
+            Run("普通图、头像、图标与DLL素材转换", RasterFileImportTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}，跳过 {_skipped}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--image-file-import", StringComparer.Ordinal))
+        {
+            Run("多格式首帧解码与目标规格事务", ImageImportSourceDecoderTests.Run);
+            Run("天气、Pmap与地图静态素材自动适配", SpecialFileImportTests.Run);
+            Run("素材准备、指纹、事务与像素编辑边界", ImageImportPreparationTests.Run);
+            Run("R/S 外部素材宽松导入与物理范围", RsFileImportTests.Run);
+            Run("普通图、头像、图标与DLL素材转换", RasterFileImportTests.Run);
+            Run("统一导入映射、候选预览与异步失效", ImageImportDialogTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}，跳过 {_skipped}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--s-mapping", StringComparer.Ordinal))
+        {
+            Run("Data 兵种与将领 S 物理图号映射", TestSPhysicalMapping);
+            Run("S 资源页逐图逻辑编号与截断边界", TestSLogicalMapping);
+            Run("6.5 实际样本只读验收", TestSample65);
+            Run("真实 S_241 单图参考图往返", TestRealSAtlasRoundTrip);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}，跳过 {_skipped}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--resource-writeback-matrix", StringComparer.Ordinal))
+        {
+            Run("资源分类实际写回矩阵", () => ResourceWritebackMatrixTests.Run());
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}，跳过 {_skipped}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--resource-transactions", StringComparer.Ordinal))
+        {
+            Run("资源过期候选、历史失败恢复与目录改名历史", ResourceTransactionTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--rs-exchange", StringComparer.Ordinal))
+        {
+            Run("R/S 原生动作条与当前套像素参考图", RsExchangeAndAtlasTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--atlas-regression", StringComparer.Ordinal))
+        {
+            Run("参考包清单、目标隔离、编号图和兼容导出", AtlasPackageTests.Run);
+            Run("非标准画布、背景、源框修正与真实AI图", FlexibleAtlasTests.Run);
+            Run("横竖画布、非整数动作偏移与缺帧", AtlasTransformTests.Run);
+            Run("R 无清单参考图 40 帧归一化", TestRAtlasRoundTrip);
+            Run("S 单转无清单参考图语义布局", TestSAtlasRoundTrip);
+            Run("旧三转布局探针与跨物理导出拒绝", TestSThreeTurnAtlasLayout);
+            Run("1024/1536 黑底缩放与缺帧阻断", TestAiAtlasScalingAndMissingFrame);
+            Run("真实 R 调色板索引参考图往返", TestRealRPaletteRoundTrip);
+            Run("真实 S_241 单图参考图往返", TestRealSAtlasRoundTrip);
+            Run("R/S 原生动作条与当前套像素参考图", RsExchangeAndAtlasTests.Run);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        if (args.Contains("--face-rs", StringComparer.Ordinal))
+        {
+            Run("R 非首帧写回保持其他帧", TestRsNonFirstFrameWrite);
+            Run("Face/Tou 双文件副本事务", TestFaceTouTransaction);
+            Console.WriteLine($"结果：通过 {_passed}，失败 {_failed}。");
+            return _failed == 0 ? 0 : 1;
+        }
+        Run("6.4 身份、实际容器、R/S验签与副本事务", Ccz64CompatibilityTests.Run);
+        Run("多格式首帧解码与目标规格事务", ImageImportSourceDecoderTests.Run);
+        Run("天气、Pmap与地图静态素材自动适配", SpecialFileImportTests.Run);
+        Run("素材准备、指纹、事务与像素编辑边界", ImageImportPreparationTests.Run);
+        Run("R/S 外部素材宽松导入与物理范围", RsFileImportTests.Run);
+        Run("普通图、头像、图标与DLL素材转换", RasterFileImportTests.Run);
+        Run("统一导入映射、候选预览与异步失效", ImageImportDialogTests.Run);
+        Run("E5 解析与增删替换", TestE5Rebuild);
+        Run("R 无清单参考图 40 帧归一化", TestRAtlasRoundTrip);
+        Run("S 单转无清单参考图语义布局", TestSAtlasRoundTrip);
+        Run("旧三转布局探针与跨物理导出拒绝", TestSThreeTurnAtlasLayout);
+        Run("R/S 原生动作条与当前套像素参考图", RsExchangeAndAtlasTests.Run);
+        Run("实际 1254 AI 图分区配准与面积卷积", TestActualAiAtlasNormalization);
+        Run("1024/1536 黑底缩放与缺帧阻断", TestAiAtlasScalingAndMissingFrame);
+        Run("实际 AI 图三档写入、复读与撤回前进", TestActualAiAtlasTransaction);
+        Run("多文件事务、撤回与前进", TestTransactionUndoRedo);
+        Run("资源过期候选、历史失败恢复与目录改名历史", ResourceTransactionTests.Run);
+        Run("批量改名冲突预检", TestRenameConflict);
+        Run("Data 职业与 S 物理图号映射", TestSPhysicalMapping);
+        Run("S 资源页逻辑编号映射", TestSLogicalMapping);
+        Run("兵种S详细名称、零基ID与阵营标签", JobSLabelTests.Run);
+        Run("6.6 人物指定表只改目标字段", TestAssignment66Candidate);
+        Run("六个本地 6.6 Profile 指定表", TestSix66Profiles);
+        Run("策略动画偏移与记录播放顺序", TestStrategyAnimationLayout);
+        Run("Mcall 格式探针与只读降级", TestMcallCatalogProbe);
+        Run("Mcall 单平面及文件创建删除事务", TestMcallMutationTransaction);
+        Run("Pmap/Weather/DT 专用格式预览", TestSpecialResourceCodecs);
+        Run("缩略图 LRU 有界逐出", TestThumbnailCache);
+        Run("无分页画廊滚动与完整选择", TestVirtualGalleryScroll);
+        Run("R 非首帧写回保持其他帧", TestRsNonFirstFrameWrite);
+        Run("6.5 实际样本只读验收", TestSample65);
+        Run("真实 R 调色板索引参考图往返", TestRealRPaletteRoundTrip);
+        Run("真实 S_241 单图参考图往返", TestRealSAtlasRoundTrip);
+        Run("6.5 DLL RT_BITMAP 副本写入", TestDllMutation);
+        Run("宝物大图透明卷积派生小图", TestItemIconDerivation);
+        Run("6.6 宝物大图同步写入大小图", TestItemE5LargeOnlyEdit);
+        Run("Face/Tou 双文件副本事务", TestFaceTouTransaction);
+        Run("战场 JPG/Hexzmap 成对事务", TestMapPairTransaction);
+        Run("6.6 实际样本只读验收", TestSample66);
+        Run("WinForms 主界面离屏烟测", TestUiSmoke);
+        Run("换色底图取色、取消、只读配置与调色板", PixelColorPickingTests.Run);
+        Run("真实像素对话框R/S落盘、黑擦除、分区色表与ARGB", PixelWritebackTests.Run);
+        Run("图片语义修改、无变化与独立预期像素复读", MutationSemanticTests.Run);
+        Run("编辑与播放窗口高 DPI 布局", TestDialogLayout);
+        Run("资源分类实际写回矩阵", () => ResourceWritebackMatrixTests.Run());
+        Console.WriteLine($"\n结果：通过 {_passed}，失败 {_failed}，跳过 {_skipped}。");
+        return _failed == 0 ? 0 : 1;
+    }
+
+    private static void TestE5Rebuild()
+    {
+        var original = BuildE5([new byte[] { 1, 2, 3 }, new byte[] { 4, 5 }, new byte[] { 6, 7, 8, 9 }], 4);
+        var archive = E5Archive.Parse("synthetic.e5", original);
+        Equal(3, archive.Entries.Count);
+        Sequence(new byte[] { 4, 5 }, archive.ReadDecoded(2));
+        var changed = archive.Rebuild(new Dictionary<int, byte[]> { [1] = [9, 9] }, [2], [[8, 8, 8]]);
+        var parsed = E5Archive.Parse("synthetic.e5", changed);
+        Equal(3, parsed.Entries.Count);
+        Sequence(new byte[] { 9, 9 }, parsed.ReadDecoded(1));
+        Sequence(new byte[] { 6, 7, 8, 9 }, parsed.ReadDecoded(2));
+        Sequence(new byte[] { 8, 8, 8 }, parsed.ReadDecoded(3));
+        Equal(4, parsed.DirectoryTrailerLength);
+    }
+
+    private static void TestRAtlasRoundTrip()
+    {
+        using var scope = TempScope.Create();
+        var descriptors = new List<FrameDescriptor>();
+        var decoded = new List<DecodedFrame>();
+        for (var side = 0; side < 2; side++)
+        for (var index = 0; index < 20; index++)
+        {
+            var descriptor = new FrameDescriptor("Pmapobj.e5", "memory", side + 1, index, 1, "r-action",
+                side == 0 ? "front" : "back", 48, 64);
+            descriptors.Add(descriptor);
+            decoded.Add(new DecodedFrame(descriptor, Solid(48, 64, Color.FromArgb(255, side * 100, index * 10, 80)),
+                Enumerable.Repeat((byte)(side * 20 + index), 48 * 64).ToArray(), new byte[1024]));
+        }
+        var asset = new LogicalImageAsset("Pmapobj.e5", 0, "R000", ImageCategory.CharacterR, ResourceKind.RComposite,
+            descriptors, Array.Empty<string>(), false, false, string.Empty);
+        var service = new ReferenceAtlasService();
+        var exported = service.Export(scope.Path, asset, decoded, Color.Magenta);
+        True(File.Exists(exported.PngPath) && File.Exists(exported.TransparentPngPath) && File.Exists(exported.PromptPath),
+            "R 导出必须包含键色版、透明版和提示词。");
+        True(File.Exists(exported.ManifestPath) && File.Exists(exported.GuidePath), "R 导出必须生成布局清单和独立动作对照图。");
+        using (var atlas = new Bitmap(exported.PngPath)) Equal(new Size(448, 448), atlas.Size);
+        using var normalized = service.Normalize(exported.TransparentPngPath, asset, decoded, new AiAtlasNormalizationOptions());
+        try
+        {
+            Equal(40, normalized.Frames.Count);
+            for (var index = 0; index < 40; index++)
+            {
+                Equal(ReferenceAtlasService.PixelHash(decoded[index].Bitmap),
+                    ReferenceAtlasService.PixelHash(normalized.Frames[index].Bitmap));
+            }
+        }
+        finally
+        {
+            foreach (var frame in decoded) frame.Dispose();
+        }
+    }
+
+    private static void TestSAtlasRoundTrip()
+    {
+        using var scope = TempScope.Create();
+        var decoded = new List<DecodedFrame>();
+        foreach (var action in new[] { (Name: "mov", Count: 11, Size: 48), (Name: "atk", Count: 12, Size: 64), (Name: "spc", Count: 5, Size: 48) })
+        for (var index = 0; index < action.Count; index++)
+        {
+            var descriptor = new FrameDescriptor("Unit_" + action.Name + ".e5", "memory", 337, index, 1,
+                action.Name, "none", action.Size, action.Size);
+            decoded.Add(new DecodedFrame(descriptor, Solid(action.Size, action.Size,
+                Color.FromArgb(255, 50, index * 10, action.Count))));
+        }
+        var mapping = new SLogicalAssetMapping(337, false, [new(1, 337)], 556);
+        var asset = new LogicalImageAsset("SComposite", 337, "S_337", ImageCategory.CharacterS, ResourceKind.SComposite,
+            decoded.Select(frame => frame.Descriptor).ToArray(), Array.Empty<string>(), false, false, string.Empty) { SMapping = mapping };
+        var service = new ReferenceAtlasService();
+        var exported = service.Export(scope.Path, asset, decoded, Color.Magenta);
+        using (var atlas = new Bitmap(exported.PngPath)) Equal(new Size(348, 348), atlas.Size);
+        using (var transparent = new Bitmap(exported.TransparentPngPath)) Equal(new Size(348, 348), transparent.Size);
+        True(File.Exists(exported.ManifestPath) && File.Exists(exported.GuidePath), "S 导出必须生成布局清单和独立动作对照图。");
+        var plan = new ReferenceAtlasLayoutPlanner().Plan(asset, decoded);
+        Equal("s-semantic-size-grid-v3", plan.LayoutId);
+        AssertAtlasFrame(plan, 1, "mov", 0, 25, 0, 48);
+        AssertAtlasFrame(plan, 1, "mov", 6, 25, 50, 48);
+        AssertAtlasFrame(plan, 1, "spc", 0, 25, 100, 48);
+        AssertAtlasFrame(plan, 1, "atk", 0, 43, 152, 64);
+        AssertAtlasFrame(plan, 1, "atk", 11, 241, 284, 64);
+        var prompt = exported.PromptPath;
+        True(File.Exists(prompt) && File.ReadAllText(prompt).Contains("S_337.png"), "导出后未生成对应物理编号的形象图提示词。");
+        using var imported = service.Normalize(exported.PngPath, asset, decoded, new AiAtlasNormalizationOptions());
+        try
+        {
+            Equal(28, imported.Frames.Count);
+            Equal(1, imported.Frames[0].Descriptor.Turn);
+            Equal("mov", imported.Frames[0].Descriptor.Action);
+            Equal(1, imported.Frames[^1].Descriptor.Turn);
+            Equal("atk", imported.Frames[^1].Descriptor.Action);
+            Equal(AtlasBackgroundKind.KeyColor, imported.BackgroundKind);
+        }
+        finally
+        {
+            foreach (var frame in decoded) frame.Dispose();
+        }
+    }
+
+    private static void TestSThreeTurnAtlasLayout()
+    {
+        using var scope = TempScope.Create();
+        var frames = new List<DecodedFrame>();
+        for (var turn = 1; turn <= 3; turn++)
+        foreach (var action in new[] { (Name: "mov", Count: 11, Size: 48), (Name: "spc", Count: 5, Size: 48), (Name: "atk", Count: 12, Size: 64) })
+        for (var index = 0; index < action.Count; index++)
+        {
+            var descriptor = new FrameDescriptor("Unit_" + action.Name + ".e5", "memory", 240 + turn,
+                index, turn, action.Name, "none", action.Size, action.Size);
+            frames.Add(new DecodedFrame(descriptor, Solid(action.Size, action.Size,
+                Color.FromArgb(255, turn * 60, index * 10 % 255, action.Count))));
+        }
+        var asset = new LogicalImageAsset("SComposite", 1, "S001", ImageCategory.CharacterS, ResourceKind.SComposite,
+            frames.Select(frame => frame.Descriptor).ToArray(), Array.Empty<string>(), true, false, string.Empty)
+        {
+            SMapping = new SLogicalAssetMapping(1, true, [new(1, 241), new(2, 242), new(3, 243)], 556)
+        };
+        try
+        {
+            var service = new ReferenceAtlasService();
+            var plan = new ReferenceAtlasLayoutPlanner().Plan(asset, frames);
+            Equal(3, plan.TurnCount);
+            AssertAtlasFrame(plan, 2, "mov", 0, 14, 150, 48);
+            AssertAtlasFrame(plan, 2, "atk", 0, 316, 198, 64);
+            AssertAtlasFrame(plan, 3, "spc", 4, 214, 400, 48);
+            AssertAtlasFrame(plan, 3, "atk", 11, 514, 528, 64);
+            var rejected = false;
+            try { service.Export(scope.Path, asset, frames, Color.Magenta); }
+            catch (InvalidDataException) { rejected = true; }
+            True(rejected, "物理S图库导出必须拒绝把三张不同Unit图片合为一个S文件。");
+            rejected = false;
+            try { ReferenceAtlasContext.Create(asset, frames, 2); }
+            catch (InvalidDataException) { rejected = true; }
+            True(rejected, "当前物理S参考图上下文必须拒绝跨物理图号聚合。");
+        }
+        finally { foreach (var frame in frames) frame.Dispose(); }
+    }
+
+    private static void TestActualAiAtlasNormalization()
+    {
+        var attachment = @"<local-path-redacted>";
+        if (!File.Exists(attachment)) throw new SkippedTestException("外部剪贴板素材已不存在；确定性 AI 导入由资源分类实际写回矩阵验证。");
+        var profile = new ProjectProfileService().Detect(SampleRoot("加强版6.5未加密版"));
+        var catalog = new ImageCatalogService();
+        var resource = catalog.BuildCatalog(profile).Single(item => item.Category == ImageCategory.CharacterS);
+        var asset = catalog.ReadAssets(profile, resource).Single(item => item.LogicalId == 106);
+        var reference = catalog.DecodeFrames(profile, asset);
+        try
+        {
+            using var result = new ReferenceAtlasService().Normalize(attachment, asset, reference,
+                new AiAtlasNormalizationOptions { Kernel = AtlasResamplingKernel.Area, BackgroundTolerance = 12 });
+            Equal(new Size(1254, 1254), result.SourceSize);
+            Equal(348, result.TargetCanvasSize);
+            True(Math.Abs(result.ScaleFactor - 3.603448275862069) < .000001, "附件倍率识别错误。");
+            Equal(AtlasBackgroundKind.OpaqueColor, result.BackgroundKind);
+            True(result.HasWarnings, "不透明黑底恢复必须要求人工确认。");
+            Equal(28, result.Frames.Count);
+            Equal(11, result.Frames.Count(frame => frame.Descriptor.Action == "mov" && frame.Bitmap.Size == new Size(48, 48)));
+            Equal(5, result.Frames.Count(frame => frame.Descriptor.Action == "spc" && frame.Bitmap.Size == new Size(48, 48)));
+            Equal(12, result.Frames.Count(frame => frame.Descriptor.Action == "atk" && frame.Bitmap.Size == new Size(64, 64)));
+            Equal(new Size(348, 348), result.NormalizedAtlas.Size);
+            var attackRows = new[] { 0, 4, 8 }.Select(index => result.FrameDiagnostics.Single(item =>
+                item.Descriptor.Action == "atk" && item.Descriptor.FrameIndex == index).SourceBounds.Top).ToArray();
+            True(attackRows[0] is >= 500 and <= 620 && attackRows[1] is >= 680 and <= 850 &&
+                 attackRows[2] is >= 860 and <= 1030 && attackRows.SequenceEqual(attackRows.Order()),
+                "实际附件的三条攻击语义行没有按渐进纵向偏移重新配准：" + string.Join(',', attackRows));
+            True(!result.HasBlockingIssues, "实际 AI 图未能形成完整 28 帧：" +
+                                            string.Join("；", result.FrameDiagnostics.Where(item => item.Severity == AtlasIssueSeverity.Error)
+                                                .Select(item => item.Message)));
+        }
+        finally { foreach (var frame in reference) frame.Dispose(); }
+    }
+
+    private static void TestAiAtlasScalingAndMissingFrame()
+    {
+        using var scope = TempScope.Create();
+        var frames = new List<DecodedFrame>();
+        foreach (var action in new[] { (Name: "mov", Count: 11, Size: 48), (Name: "spc", Count: 5, Size: 48), (Name: "atk", Count: 12, Size: 64) })
+        for (var index = 0; index < action.Count; index++)
+        {
+            var descriptor = new FrameDescriptor("Unit_" + action.Name + ".e5", "memory", 337,
+                index, 1, action.Name, "none", action.Size, action.Size);
+            var bitmap = new Bitmap(action.Size, action.Size, PixelFormat.Format32bppArgb);
+            using (var graphics = Graphics.FromImage(bitmap))
+            {
+                graphics.Clear(Color.Transparent);
+                var margin = 3 + index % 3;
+                using var outline = new SolidBrush(Color.Black);
+                using var body = new SolidBrush(Color.FromArgb(255, 80 + index * 7 % 150, 40 + index * 11 % 170, 190));
+                graphics.FillRectangle(outline, margin, margin, action.Size - margin * 2, action.Size - margin * 2);
+                graphics.FillRectangle(body, margin + 2, margin + 2, action.Size - margin * 2 - 4, action.Size - margin * 2 - 4);
+            }
+            frames.Add(new DecodedFrame(descriptor, bitmap));
+        }
+        var asset = new LogicalImageAsset("SComposite", 337, "S_337", ImageCategory.CharacterS,
+            ResourceKind.SComposite, frames.Select(frame => frame.Descriptor).ToArray(), Array.Empty<string>(),
+            false, false, string.Empty)
+        {
+            SMapping = new SLogicalAssetMapping(337, false, [new(1, 337)], 556)
+        };
+        try
+        {
+            var service = new ReferenceAtlasService();
+            var export = service.Export(scope.Path, asset, frames, Color.Magenta);
+            foreach (var size in new[] { 1024, 1536 })
+            {
+                var path = Path.Combine(scope.Path, $"ai-{size}.png");
+                using (var source = new Bitmap(export.TransparentPngPath))
+                using (var scaled = new Bitmap(size, size, PixelFormat.Format32bppArgb))
+                using (var graphics = Graphics.FromImage(scaled))
+                {
+                    graphics.Clear(Color.Black);
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.DrawImage(source, new Rectangle(0, 0, size, size));
+                    for (var y = 7; y < size; y += 37)
+                    for (var x = 11; x < size; x += 41) scaled.SetPixel(x, y, Color.FromArgb(5, 4, 6));
+                    scaled.Save(path, ImageFormat.Png);
+                }
+                using var result = service.Normalize(path, asset, frames,
+                    new AiAtlasNormalizationOptions { Kernel = AtlasResamplingKernel.Area, BackgroundTolerance = 12 });
+                Equal(AtlasBackgroundKind.OpaqueColor, result.BackgroundKind);
+                Equal(28, result.Frames.Count);
+                Equal(new Size(348, 348), result.NormalizedAtlas.Size);
+                True(!result.HasBlockingIssues, $"{size}x{size} 黑底缩放图不应缺帧。");
+            }
+
+            var damagedPath = Path.Combine(scope.Path, "missing-frame.png");
+            using (var damaged = new Bitmap(export.TransparentPngPath))
+            using (var graphics = Graphics.FromImage(damaged))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.FillRectangle(Brushes.Transparent, new Rectangle(25, 0, 48, 48));
+                damaged.Save(damagedPath, ImageFormat.Png);
+            }
+            using var missing = service.Normalize(damagedPath, asset, frames, new AiAtlasNormalizationOptions());
+            True(missing.HasBlockingIssues && missing.FrameDiagnostics.Any(item => item.Severity == AtlasIssueSeverity.Error),
+                "缺失必需帧必须阻止写回。");
+        }
+        finally { foreach (var frame in frames) frame.Dispose(); }
+    }
+
+    private static void TestActualAiAtlasTransaction()
+    {
+        var attachment = @"<local-path-redacted>";
+        if (!File.Exists(attachment)) throw new SkippedTestException("外部剪贴板素材已不存在；确定性 AI 导入由资源分类实际写回矩阵验证。");
+        using var scope = TempScope.Create();
+        var originalProfile = new ProjectProfileService().Detect(SampleRoot("加强版6.5未加密版"));
+        var resources = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var key in new[] { "Unit_mov.e5", "Unit_atk.e5", "Unit_spc.e5" })
+        {
+            var target = Path.Combine(scope.Path, key);
+            File.Copy(originalProfile.TryGetResource(key)!, target);
+            resources[key] = target;
+        }
+        if (originalProfile.TryGetResource("Spalet.e5") is { } palette) resources["Spalet.e5"] = palette;
+        var profile = new ProjectProfile(scope.Path, "ai-transaction", ProjectVersion.Ccz65, false,
+            resources, Array.Empty<string>());
+        var catalog = new ImageCatalogService();
+        var descriptor = catalog.BuildCatalog(profile).Single(item => item.Category == ImageCategory.CharacterS);
+        var asset = catalog.ReadAssets(profile, descriptor).Single(item => item.LogicalId == 106);
+        var reference = catalog.DecodeFrames(profile, asset);
+        try
+        {
+            using var normalized = new ReferenceAtlasService().Normalize(attachment, asset, reference,
+                new AiAtlasNormalizationOptions());
+            True(!normalized.HasBlockingIssues, "实际 AI 图事务测试前仍有阻断项。");
+            var before = resources.Where(pair => pair.Key.StartsWith("Unit_", StringComparison.OrdinalIgnoreCase))
+                .ToDictionary(pair => pair.Value, pair => File.ReadAllBytes(pair.Value), StringComparer.OrdinalIgnoreCase);
+            var untouched = before.Keys.ToDictionary(path => path, path => E5Archive.Open(path).ReadDecoded(409),
+                StringComparer.OrdinalIgnoreCase);
+            var plan = new RsImportService().PlanImport(profile, asset, normalized.Frames);
+            Equal(3, plan.Files.Count);
+            foreach (var file in plan.Files)
+            {
+                var candidate = E5Archive.Parse(file.TargetPath, file.CandidateBytes);
+                Sequence(untouched[file.TargetPath], candidate.ReadDecoded(409));
+                True(!candidate.ReadDecoded(410).SequenceEqual(E5Archive.Parse(file.TargetPath, before[file.TargetPath]).ReadDecoded(410)),
+                    Path.GetFileName(file.TargetPath) + " 的目标 Unit #410 没有变化。");
+            }
+            var history = new HistoryService(Path.Combine(scope.Path, "backup"));
+            var mutation = new ImageMutationService(history);
+            var committed = mutation.Commit(profile, plan);
+            True(committed.Success && committed.WrittenPaths.Count == 3, string.Join("；", committed.Diagnostics));
+            var reread = catalog.DecodeFrames(profile, asset);
+            try
+            {
+                Equal(28, reread.Count);
+                Equal(11, reread.Count(frame => frame.Descriptor.Action == "mov"));
+                Equal(5, reread.Count(frame => frame.Descriptor.Action == "spc"));
+                Equal(12, reread.Count(frame => frame.Descriptor.Action == "atk"));
+            }
+            finally { foreach (var frame in reread) frame.Dispose(); }
+            var undo = history.Undo(profile, committed.HistoryId!);
+            True(undo.Success, string.Join("；", undo.Diagnostics));
+            foreach (var pair in before) Sequence(pair.Value, File.ReadAllBytes(pair.Key));
+            var redo = history.Redo(profile, committed.HistoryId!);
+            True(redo.Success, string.Join("；", redo.Diagnostics));
+            foreach (var file in plan.Files) Sequence(file.CandidateBytes, File.ReadAllBytes(file.TargetPath));
+        }
+        finally { foreach (var frame in reference) frame.Dispose(); }
+    }
+
+    private static void TestTransactionUndoRedo()
+    {
+        using var scope = TempScope.Create();
+        var first = Path.Combine(scope.Path, "one.e5");
+        var second = Path.Combine(scope.Path, "two.e5");
+        File.WriteAllBytes(first, BuildE5([[1, 2, 3]], 0));
+        File.WriteAllBytes(second, BuildE5([[4, 5, 6]], 4));
+        var profile = new ProjectProfile(scope.Path, "事务测试", ProjectVersion.Ccz65, false,
+            new Dictionary<string, string>(), Array.Empty<string>());
+        var history = new HistoryService(Path.Combine(scope.Path, "backups"));
+        var mutations = new ImageMutationService(history);
+        var firstCandidate = E5Archive.Open(first).Rebuild(new Dictionary<int, byte[]> { [1] = [8, 8] });
+        var secondCandidate = E5Archive.Open(second).Rebuild(new Dictionary<int, byte[]> { [1] = [9, 9] });
+        var plan = new MutationPlan(Guid.NewGuid().ToString("N"), MutationKind.Replace, "双文件替换",
+            [new MutationFile(first, firstCandidate, "one"), new MutationFile(second, secondCandidate, "two")],
+            Array.Empty<string>(), false);
+        var result = mutations.Commit(profile, plan);
+        True(result.Success, string.Join(";", result.Diagnostics));
+        Sequence(new byte[] { 8, 8 }, E5Archive.Open(first).ReadDecoded(1));
+        var undo = history.Undo(profile, result.HistoryId!);
+        True(undo.Success, string.Join(";", undo.Diagnostics));
+        Sequence(new byte[] { 1, 2, 3 }, E5Archive.Open(first).ReadDecoded(1));
+        Sequence(new byte[] { 4, 5, 6 }, E5Archive.Open(second).ReadDecoded(1));
+        var redo = history.Redo(profile, result.HistoryId!);
+        True(redo.Success, string.Join(";", redo.Diagnostics));
+        Sequence(new byte[] { 8, 8 }, E5Archive.Open(first).ReadDecoded(1));
+        Equal(3, history.List(profile).Count);
+    }
+
+    private static void TestRenameConflict()
+    {
+        using var scope = TempScope.Create();
+        Directory.CreateDirectory(Path.Combine(scope.Path, "nested"));
+        File.WriteAllText(Path.Combine(scope.Path, "nested", "a01.png"), "a");
+        File.WriteAllText(Path.Combine(scope.Path, "nested", "a02.png"), "b");
+        var profile = new ProjectProfile(scope.Path, "rename", ProjectVersion.Ccz65, false,
+            new Dictionary<string, string>(), Array.Empty<string>());
+        var service = new BatchRenameService(new HistoryService(Path.Combine(scope.Path, "backup")));
+        var conflict = service.Preview(scope.Path, new RenameRule("a0", string.Empty, string.Empty, string.Empty,
+            "same", false, false));
+        True(!conflict.CanApply && conflict.Errors.Count > 0, "应检测重复目标名。");
+        var valid = service.Preview(scope.Path, new RenameRule("a", "R", string.Empty, string.Empty, null, false, false));
+        True(valid.CanApply, string.Join(";", valid.Errors));
+        var applied = service.Apply(profile, valid);
+        True(applied.Success, string.Join(";", applied.Diagnostics));
+        True(File.Exists(Path.Combine(scope.Path, "nested", "R01.png")), "改名后的文件不存在。");
+    }
+
+    private static void TestSPhysicalMapping()
+    {
+        var service = new SPhysicalMappingService();
+        Equal(1, service.Resolve(0, 0, 1).ImageNumber);
+        Equal(7, service.Resolve(0, 2, 3).ImageNumber);
+        Equal(10, service.Resolve(0, 3, 1).ImageNumber);
+        Equal(178, service.Resolve(0, 59, 3).ImageNumber);
+        Equal(181, service.Resolve(0, 60, 1).ImageNumber);
+        True(!service.Resolve(0, 60, 2).SupportsRequestedTurn, "职业 60 不应支持二转预览。");
+        Equal(238, service.Resolve(0, 79, 1).ImageNumber);
+        Equal(241, service.Resolve(1, 0, 1).ImageNumber);
+        Equal(242, service.Resolve(1, 0, 2).ImageNumber);
+        Equal(243, service.Resolve(1, 0, 3).ImageNumber);
+        Equal(244, service.Resolve(2, 0, 1).ImageNumber);
+        Equal(334, service.Resolve(32, 0, 1).ImageNumber);
+        Equal(336, service.Resolve(32, 0, 3).ImageNumber);
+        Equal(337, service.Resolve(33, 0, 1).ImageNumber);
+        Equal(337, service.Resolve(33, 0, 3).ImageNumber);
+        True(service.Resolve(1, 0, 2).SupportsRequestedTurn, "人物紧凑编号1..32应具有独立三转。");
+        True(!service.Resolve(33, 0, 2).SupportsRequestedTurn && service.Resolve(33, 0, 2).EffectiveTurn == 1,
+            "人物紧凑编号33及以后应保持单转。");
+        Equal(1, service.Resolve(0, 0, 3).ImageNumber);
+        Equal(4, service.Resolve(0, 1, 1).ImageNumber);
+        var used = service.ResolveUsedPhysicalIds([
+            new CharacterAssignment(0, "A", 0, 0, 1),
+            new CharacterAssignment(1, "B", 60, 0, 33)
+        ]);
+        True(used.SetEquals(new[] { 241, 242, 243, 337 }), "人物引用应投影到三转组的全部物理图片，单转编号不能误作物理编号。");
+        var defaultUsed = service.ResolveUsedPhysicalIds([new CharacterAssignment(2, "默认", 79, 0, 0)]);
+        True(defaultUsed.SetEquals(new[] { 238, 239, 240 }), "默认兵种引用必须覆盖我友敌三个固定槽。");
+    }
+
+    private static void TestSLogicalMapping()
+    {
+        var service = new SLogicalAssetMappingService();
+        var mappings = service.Build(556);
+        Equal(316, mappings.Count);
+        True(mappings.Select(mapping => mapping.SId).SequenceEqual(Enumerable.Range(241, 316)),
+            "将领图库必须直接展示241..556物理图号，不能使用人物紧凑编号。");
+        True(mappings.All(mapping => !mapping.IsThreeTurn && mapping.Turns.Count == 1 &&
+            mapping.Turns[0].Turn == 1 && mapping.Turns[0].ImageNumber == mapping.SId),
+            "将领图库的每项必须独立映射一张物理图片。");
+        Equal(556, mappings[^1].Turns.Single().ImageNumber);
+
+        var truncated = service.Build(335);
+        Equal(95, truncated.Count);
+        Equal(335, truncated[^1].Turns.Single().ImageNumber);
+        Equal(0, service.Build(240).Count);
+        Equal(1, service.Build(241).Count);
+        Equal(2, service.Build(242).Count);
+        var jobs = service.BuildJobs(556);
+        True(jobs.Select(mapping => mapping.SId).SequenceEqual(Enumerable.Range(1, 240)) &&
+            jobs.All(mapping => mapping.Turns.Single().ImageNumber == mapping.SId), "兵种图库必须直接展示1..240物理固定槽。");
+
+        var assignments = service.BuildPersonAssignments(556);
+        Equal(252, assignments.Count);
+        True(assignments.Select(mapping => mapping.SId).SequenceEqual(Enumerable.Range(1, 252)),
+            "人物选择应使用完整资源组的紧凑编号且不混入默认0。");
+        foreach (var (sId, numbers) in new[] { (1, new[] { 241, 242, 243 }), (2, new[] { 244, 245, 246 }),
+                     (32, new[] { 334, 335, 336 }), (33, new[] { 337 }), (252, new[] { 556 }) })
+        {
+            var assignment = assignments.Single(mapping => mapping.SId == sId);
+            True(assignment.Turns.Select(turn => turn.ImageNumber).SequenceEqual(numbers) &&
+                assignment.IsThreeTurn == (numbers.Length == 3), $"人物紧凑S{sId}的完整转职资源组错误。");
+        }
+        foreach (var (count, expected) in new[] { (240, 0), (241, 0), (242, 0), (243, 1), (335, 31), (336, 32), (337, 33) })
+            Equal(expected, service.BuildPersonAssignments(count).Count);
+    }
+
+    private static void TestAssignment66Candidate()
+    {
+        using var scope = TempScope.Create();
+        var sample = SampleRoot("新改曹操傳6.6修正版");
+        var resources = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var name in new[] { "Ekd5.exe", "Data.e5", "Pmapobj.e5", "Unit_mov.e5", "Unit_atk.e5", "Unit_spc.e5" })
+        {
+            var source = Directory.EnumerateFiles(sample, name, SearchOption.AllDirectories).First();
+            var target = Path.Combine(scope.Path, name);
+            File.Copy(source, target);
+            resources[name] = target;
+        }
+        var profile = new ProjectProfile(scope.Path, "66-copy", ProjectVersion.Ccz66, false, resources, Array.Empty<string>());
+        var service = new CharacterAssignmentService();
+        var rows = service.Read(profile).ToArray();
+        Equal(1024, rows.Length);
+        True(rows[0].JobId >= 0, "应从 Data row+26 读取职业。");
+        var replacementR = rows[0].RId == 0 ? 1 : 0;
+        rows[0] = rows[0] with { RId = replacementR };
+        var before = File.ReadAllBytes(resources["Ekd5.exe"]);
+        var plan = service.PlanSave(profile, rows);
+        var after = plan.Files.Single().CandidateBytes;
+        var changed = before.Select((value, index) => (value, index)).Where(item => item.value != after[item.index]).Select(item => item.index).ToArray();
+        True(changed.Length is >= 1 and <= 2, "只修改一个 UInt16 字段时不应改动其他 EXE 区域。");
+        True(changed.All(index => index is >= 0xE1000 and < 0xE1002), "修改落点必须在 6.6 R 表首项。 ");
+        Equal(replacementR, BinaryPrimitives.ReadUInt16LittleEndian(after.AsSpan(0xE1000, 2)));
+    }
+
+    private static void TestSix66Profiles()
+    {
+        var names = new[]
+        {
+            "厚黑6.6测（7.9水杯版）", "复刻版6.6山贼", "复刻版6.6山贼 国庆",
+            "新改曹操傳6.6修正版", "曹操传6.6-V7.16 样本标识已脱敏", "烈焰同盟6.6x(新修版)黄线完结+红线5关"
+        };
+        foreach (var name in names)
+        {
+            var profile = new ProjectProfileService().Detect(SampleRoot(name));
+            Equal(ProjectVersion.Ccz66, profile.Version);
+            var layout = new CharacterAssignmentService().GetLayout(profile);
+            Equal(0xE1000, layout.ROffset);
+            Equal(0xD2800, layout.SOffset);
+            True(layout.CanWrite, name + " 的人物指定表应有可写 Profile。");
+            Equal(1024, new CharacterAssignmentService().Read(profile).Count);
+        }
+    }
+
+    private static void TestStrategyAnimationLayout()
+    {
+        using var scope = TempScope.Create();
+        var project = new ProjectProfile(scope.Path, "animation", ProjectVersion.Ccz65, false,
+            new Dictionary<string, string>(), Array.Empty<string>());
+        const int records = 4;
+        const int width = 2;
+        const int height = 1;
+        var bytes = new byte[records * 20 + width * height * 2 + 3];
+        bytes[0] = records - 1;
+        bytes[1] = 2;
+        BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(2, 2), 0x1234);
+        BinaryPrimitives.WriteInt32LittleEndian(bytes.AsSpan(4, 4), 80);
+        BinaryPrimitives.WriteInt32LittleEndian(bytes.AsSpan(8, 4), width);
+        BinaryPrimitives.WriteInt32LittleEndian(bytes.AsSpan(12, 4), height);
+        BinaryPrimitives.WriteInt32LittleEndian(bytes.AsSpan(16, 4), 77);
+        bytes[20] = 1;
+        bytes[40] = 0;
+        bytes[60] = 1;
+        bytes[80] = 1; bytes[81] = 2;
+        bytes[82] = 3; bytes[83] = 4;
+        bytes[^3] = 0xAA; bytes[^2] = 0xBB; bytes[^1] = 0xCC;
+        var codec = new StrategyAnimationPackageCodec();
+        using var decoded = codec.Decode(project, bytes);
+        True(decoded.PlaybackSequence.SequenceEqual(new[] { 1, 0, 1 }), "播放必须服从记录区帧引用。");
+        Equal(80, decoded.IntervalMs);
+        Equal(0x1234, decoded.Flags);
+        Equal(77, decoded.SoundParameter);
+        using var replacement = Solid(width, height, Color.Red);
+        var rebuilt = codec.RebuildFramePlanes(project, decoded, new Dictionary<int, Bitmap> { [0] = replacement });
+        Sequence(decoded.RecordBytes, rebuilt[..decoded.RecordBytes.Length]);
+        Sequence(decoded.TailBytes, rebuilt[^decoded.TailBytes.Length..]);
+        Sequence(decoded.PlaneBytes.AsSpan(width * height, width * height).ToArray(),
+            rebuilt.AsSpan(decoded.RecordBytes.Length + width * height, width * height).ToArray());
+
+        var sample = new ProjectProfileService().Detect(SampleRoot("加强版6.5未加密版"));
+        var rows = new StrategyRowService().Read(sample);
+        var exe = File.ReadAllBytes(sample.TryGetResource("Ekd5.exe")!);
+        Equal(exe[668000], rows[0].MeffId);
+        Equal(exe[668144], rows[0].McallId);
+    }
+
+    private static void TestMcallCatalogProbe()
+    {
+        var sample = new ProjectProfileService().Detect(SampleRoot("加强版6.5未加密版"));
+        var catalog = new ImageCatalogService();
+        var mcalls = catalog.BuildCatalog(sample).Where(resource => resource.Kind == ResourceKind.McallAnimation).ToArray();
+        Equal(9, mcalls.Length);
+        True(mcalls.All(resource => resource.CanPreview && resource.CanMutate && !resource.IsExperimental),
+            "9 个本地 Mcall 样本均应通过结构探针并开放安全写回。");
+        var recognized = mcalls.First(resource => resource.CanMutate);
+        var asset = catalog.ReadAssets(sample, recognized).Single();
+        True(!asset.IsExperimental && asset.Status.Contains("已识别", StringComparison.Ordinal),
+            "已识别 Mcall 的逻辑资产不应继续标为实验只读。");
+
+        using var scope = TempScope.Create();
+        var damaged = Path.Combine(scope.Path, "Mcall99.e5");
+        File.WriteAllBytes(damaged, [1, 2, 3, 4]);
+        var unknown = new ProjectProfile(scope.Path, "unknown-mcall", ProjectVersion.Ccz65, false,
+            new Dictionary<string, string> { ["Mcall:99"] = damaged }, Array.Empty<string>());
+        var descriptor = catalog.BuildCatalog(unknown).Single(resource => resource.Kind == ResourceKind.McallAnimation);
+        True(!descriptor.CanPreview && !descriptor.CanMutate && descriptor.IsExperimental,
+            "无法复读的 Mcall 变体必须保持只读诊断。 ");
+    }
+
+    private static void TestMcallMutationTransaction()
+    {
+        using var scope = TempScope.Create();
+        var sample = new ProjectProfileService().Detect(SampleRoot("加强版6.5未加密版"));
+        var source = sample.ResourcePaths.First(pair => pair.Key.StartsWith("Mcall:", StringComparison.OrdinalIgnoreCase)).Value;
+        var target = Path.Combine(scope.Path, Path.GetFileName(source));
+        File.Copy(source, target);
+        var resources = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Mcall:00"] = target
+        };
+        if (sample.TryGetResource("Spalet.e5") is { } palettePath) resources["Spalet.e5"] = palettePath;
+        var profile = new ProjectProfile(scope.Path, "mcall-copy", ProjectVersion.Ccz65, false, resources,
+            Array.Empty<string>());
+        var original = File.ReadAllBytes(target);
+        var codec = new StrategyAnimationPackageCodec();
+        using var package = codec.Decode(profile, original);
+        var planeIndex = package.PlaybackSequence[0];
+        var planeSize = package.Width * package.Height;
+        var planeOffset = package.RecordBytes.Length + planeIndex * planeSize;
+        var localOffset = Array.FindIndex(package.PlaneBytes, planeIndex * planeSize, planeSize, value => value != 0);
+        if (localOffset < 0) localOffset = planeIndex * planeSize;
+        var originalIndex = package.PlaneBytes[localOffset];
+        var targetIndex = originalIndex == 0 ? 1 : 0;
+        var palette = new PaletteService().Load(profile);
+        using var replacement = new Bitmap(package.PlaneFrames[planeIndex]);
+        var pixelOffset = localOffset - planeIndex * planeSize;
+        replacement.SetPixel(pixelOffset % package.Width, pixelOffset / package.Width, palette[targetIndex]);
+        var candidate = codec.RebuildFramePlanes(profile, package,
+            new Dictionary<int, Bitmap> { [planeIndex] = replacement });
+        True(candidate.AsSpan(planeOffset, planeSize).SequenceEqual(original.AsSpan(planeOffset, planeSize)) == false,
+            "目标动画平面应发生变化。");
+        Sequence(original[..planeOffset], candidate[..planeOffset]);
+        Sequence(original[(planeOffset + planeSize)..], candidate[(planeOffset + planeSize)..]);
+
+        var incoming = Path.Combine(scope.Path, "replacement.animation.bin");
+        File.WriteAllBytes(incoming, candidate);
+        var history = new HistoryService(Path.Combine(scope.Path, "backup"));
+        var mutations = new ImageMutationService(history);
+        var result = mutations.Commit(profile, mutations.PlanWholeFileReplace(profile, target, incoming));
+        True(result.Success, string.Join(";", result.Diagnostics));
+        Sequence(candidate, File.ReadAllBytes(target));
+        var undo = history.Undo(profile, result.HistoryId!);
+        True(undo.Success, string.Join(";", undo.Diagnostics));
+        Sequence(original, File.ReadAllBytes(target));
+        var redo = history.Redo(profile, result.HistoryId!);
+        True(redo.Success, string.Join(";", redo.Diagnostics));
+        Sequence(candidate, File.ReadAllBytes(target));
+
+        var created = Path.Combine(scope.Path, "Mcall99.e5");
+        var createPlan = new MutationPlan(Guid.NewGuid().ToString("N"), MutationKind.Append, "创建 Mcall99",
+            [new MutationFile(created, candidate, "创建独立动画包", AllowCreate: true)], Array.Empty<string>(), false);
+        var create = mutations.Commit(profile, createPlan);
+        True(create.Success && File.Exists(created), string.Join(";", create.Diagnostics));
+        True(history.Undo(profile, create.HistoryId!).Success && !File.Exists(created), "撤回创建应恢复为文件不存在。");
+        True(history.Redo(profile, create.HistoryId!).Success && File.Exists(created), "前进创建应恢复文件。 ");
+
+        var deletePlan = new MutationPlan(Guid.NewGuid().ToString("N"), MutationKind.Delete, "删除 Mcall99",
+            [new MutationFile(created, Array.Empty<byte>(), "删除独立动画包", DeleteTarget: true)],
+            Array.Empty<string>(), true);
+        var delete = mutations.Commit(profile, deletePlan);
+        True(delete.Success && !File.Exists(created), string.Join(";", delete.Diagnostics));
+        True(history.Undo(profile, delete.HistoryId!).Success && File.Exists(created), "撤回删除应恢复文件。 ");
+        True(history.Redo(profile, delete.HistoryId!).Success && !File.Exists(created), "前进删除应再次移除文件。 ");
+    }
+
+    private static void TestSpecialResourceCodecs()
+    {
+        var profile = new ProjectProfileService().Detect(SampleRoot("新改曹操傳6.6修正版"));
+        var catalog = new ImageCatalogService();
+        var resources = catalog.BuildCatalog(profile);
+        var pmap = resources.Single(resource => resource.Key == "Pmap.e5");
+        Equal(ResourceKind.PmapSpecial, pmap.Kind);
+        var pmapAsset = catalog.ReadAssets(profile, pmap)[0];
+        var pmapFrames = catalog.DecodeFrames(profile, pmapAsset);
+        try { Equal(new Size(200, 100), pmapFrames[0].Bitmap.Size); }
+        finally { foreach (var frame in pmapFrames) frame.Dispose(); }
+
+        var weather = resources.Single(resource => resource.Key == "Weather.e5");
+        Equal(ResourceKind.WeatherSpecial, weather.Kind);
+        var weatherFrames = catalog.DecodeFrames(profile, catalog.ReadAssets(profile, weather)[0]);
+        try
+        {
+            Equal(4, weatherFrames.Count);
+            True(weatherFrames.All(frame => frame.Bitmap.Size == new Size(216, 50)), "天气应分为四个 216×50 帧。");
+        }
+        finally { foreach (var frame in weatherFrames) frame.Dispose(); }
+
+        var dt = resources.Single(resource => resource.Key == "DT.e5");
+        Equal(ResourceKind.DtAnimation, dt.Kind);
+        var dtFrames = catalog.DecodeFrames(profile, catalog.ReadAssets(profile, dt)[0]);
+        try { True(dtFrames[0].Bitmap.Width > 0 && dtFrames[0].Bitmap.Height > 0, "DT 嵌入 BMP 未解码。"); }
+        finally { foreach (var frame in dtFrames) frame.Dispose(); }
+
+        var mark = resources.Single(resource => resource.Key == "Mark.e5");
+        Equal(ResourceKind.MarkRaw, mark.Kind);
+        True(!mark.CanPreview && !mark.CanMutate, "未验证 Mark 必须保持只读诊断。");
+    }
+
+    private static void TestThumbnailCache()
+    {
+        using var scope = TempScope.Create();
+        using var cache = new ThumbnailCache(2, 1024 * 1024);
+        using var red = Solid(8, 8, Color.Red);
+        using var green = Solid(8, 8, Color.Green);
+        using var blue = Solid(8, 8, Color.Blue);
+        var a = Path.Combine(scope.Path, "a.e5");
+        var b = Path.Combine(scope.Path, "b.e5");
+        File.WriteAllBytes(a, [1]);
+        File.WriteAllBytes(b, [2]);
+        cache.Store("a", red, a);
+        cache.Store("b", green, b);
+        using (cache.TryGetClone("a")) { }
+        cache.Store("c", blue, b);
+        True(cache.TryGetClone("b") == null, "LRU 应逐出最久未使用项。");
+        cache.InvalidatePath(a);
+        True(cache.TryGetClone("a") == null, "按路径失效应精确移除关联缩略图。");
+    }
+
+    private static void TestVirtualGalleryScroll()
+    {
+        var items = Enumerable.Range(0, 500).Select(index =>
+        {
+            var frame = new FrameDescriptor("virtual", "memory", index + 1, 0, 1, "frame", "none", 16, 16);
+            return new LogicalImageAsset("virtual", index, $"图片 {index:000}", ImageCategory.Interface,
+                ResourceKind.Unknown, [frame], Array.Empty<string>(), false, false, string.Empty);
+        }).ToArray();
+        using var form = new Form { ClientSize = new Size(760, 420), ShowInTaskbar = false, Opacity = 0 };
+        using var gallery = new VirtualImageGallery { Dock = DockStyle.Fill };
+        form.Controls.Add(gallery);
+        form.Show();
+        Application.DoEvents();
+        gallery.SetItems(items, asset =>
+        {
+            var card = new Panel();
+            card.Controls.Add(new CheckBox { Text = asset.DisplayName, Tag = "selector", Dock = DockStyle.Top });
+            return card;
+        }, false);
+        Application.DoEvents();
+        True(gallery.RealizedCount < 80, "虚拟画廊不应在启动时实现全部 500 个卡片。");
+
+        gallery.AutoScrollPosition = new Point(0, gallery.AutoScrollMinSize.Height);
+        typeof(VirtualImageGallery).GetMethod("RealizeVisibleRows",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!.Invoke(gallery, null);
+        Application.DoEvents();
+        var realizedIds = gallery.RealizedControls.Select(control => (control.Tag as LogicalImageAsset)?.LogicalId)
+            .Where(id => id.HasValue).Select(id => id!.Value).ToArray();
+        True(realizedIds.Contains(499), "连续滚动到底部后必须能到达最后一个逻辑图片。");
+        True(!realizedIds.Contains(0), "滚动离开首屏后应回收首项卡片。");
+        True(gallery.RealizedCount < 80, "滚动后实现卡片数量仍应保持有界。");
+
+        gallery.SelectAll(true);
+        Equal(500, gallery.SelectedItems.Count);
+        gallery.SetItems(items.Where(item => item.LogicalId % 10 == 0).ToArray(), asset =>
+        {
+            var card = new Panel();
+            card.Controls.Add(new CheckBox { Text = asset.DisplayName, Tag = "selector", Dock = DockStyle.Top });
+            return card;
+        }, true);
+        Equal(50, gallery.SelectedItems.Count);
+        form.Close();
+    }
+
+    private static void TestRsNonFirstFrameWrite()
+    {
+        using var scope = TempScope.Create();
+        var path = Path.Combine(scope.Path, "Pmapobj.e5");
+        var front = new byte[48 * 64 * 20];
+        var back = new byte[48 * 64 * 20];
+        for (var frame = 0; frame < 20; frame++)
+        {
+            Array.Fill(front, (byte)(frame + 1), frame * 48 * 64, 48 * 64);
+            Array.Fill(back, (byte)(frame + 41), frame * 48 * 64, 48 * 64);
+        }
+        File.WriteAllBytes(path, BuildE5([front, back], 0));
+        var profile = new ProjectProfile(scope.Path, "strip", ProjectVersion.Ccz65, false,
+            new Dictionary<string, string> { ["Pmapobj.e5"] = path }, Array.Empty<string>());
+        var resource = new ImageResourceDescriptor("Pmapobj.e5", "R 形象", ImageCategory.CharacterR,
+            ResourceKind.RComposite, [path], 2, true, true, false, string.Empty, string.Empty);
+        var codec = new RResourceCodec();
+        var asset = codec.ReadAssets(profile, resource).Single();
+        var frames = codec.DecodeFrames(profile, asset).ToList();
+        try
+        {
+            var changed = frames.Single(frame => frame.Descriptor.ImageNumber == 1 && frame.Descriptor.FrameIndex == 7);
+            changed.Bitmap.SetPixel(0, 0, new PaletteService().RequireWritePalette(profile)[200]);
+            var index = frames.IndexOf(changed);
+            frames[index] = new DecodedFrame(changed.Descriptor, changed.Bitmap, null, changed.PaletteBgra);
+            var plan = new RsImportService().PlanImport(profile, asset, frames);
+            var candidate = E5Archive.Parse(path, plan.Files.Single().CandidateBytes);
+            var rewrittenFront = candidate.ReadDecoded(1);
+            var rewrittenBack = candidate.ReadDecoded(2);
+            var changedOffset = 7 * 48 * 64;
+            Equal((byte)200, rewrittenFront[changedOffset]);
+            for (var offset = 0; offset < front.Length; offset++)
+                if (offset != changedOffset) Equal(front[offset], rewrittenFront[offset]);
+            Sequence(back, rewrittenBack);
+        }
+        finally
+        {
+            foreach (var frame in frames.DistinctBy(frame => frame.Bitmap)) frame.Dispose();
+        }
+    }
+
+    private static void TestSample65()
+    {
+        var root = SampleRoot("加强版6.5未加密版");
+        var profile = new ProjectProfileService().Detect(root);
+        Equal(ProjectVersion.Ccz65, profile.Version);
+        Equal(659, E5Archive.Open(profile.TryGetResource("Pmapobj.e5")!).Entries.Count);
+        Equal(556, E5Archive.Open(profile.TryGetResource("Unit_mov.e5")!).Entries.Count);
+        Equal(556, E5Archive.Open(profile.TryGetResource("Unit_atk.e5")!).Entries.Count);
+        Equal(556, E5Archive.Open(profile.TryGetResource("Unit_spc.e5")!).Entries.Count);
+        Equal(293, E5Archive.Open(profile.TryGetResource("Face.e5")!).Entries.Count);
+        var catalog = new ImageCatalogService();
+        var resources = catalog.BuildCatalog(profile);
+        Equal(329, catalog.ReadAssets(profile, resources.Single(item => item.Category == ImageCategory.CharacterR)).Count);
+        var sAssets = catalog.ReadAssets(profile, resources.Single(item => item.Category == ImageCategory.CharacterS));
+        Equal(316, sAssets.Count);
+        Equal("S_241", sAssets[0].DisplayName);
+        Equal(241, sAssets[0].LogicalId);
+        Equal(1, sAssets[0].SMapping!.Turns.Count);
+        Equal("S_556", sAssets[^1].DisplayName);
+        Equal(556, sAssets[^1].LogicalId);
+        var assignments = new CharacterAssignmentService().Read(profile);
+        Equal(1024, assignments.Count);
+        var strategies = new StrategyRowService().Read(profile);
+        Equal(144, strategies.Count);
+    }
+
+    private static void TestSample66()
+    {
+        var root = SampleRoot("新改曹操傳6.6修正版");
+        var profile = new ProjectProfileService().Detect(root);
+        Equal(ProjectVersion.Ccz66, profile.Version);
+        foreach (var expected in new[] { ("Item.e5", 512), ("Mtem.e5", 176), ("DT.e5", 60), ("Fb.e5", 673),
+                     ("Pmap.e5", 477), ("U_select.e5", 32) })
+            Equal(expected.Item2, E5Archive.Open(profile.TryGetResource(expected.Item1)!).Entries.Count);
+        var catalog = new ImageCatalogService();
+        var resources = catalog.BuildCatalog(profile);
+        Equal(256, catalog.ReadAssets(profile, resources.Single(item => item.Key == "Item.e5")).Count);
+        // Each logical strategy icon owns a small/large pair of physical entries.
+        var mtem = resources.Single(item => item.Key == "Mtem.e5");
+        Equal(E5Archive.Open(mtem.Paths.Single()).Entries.Count / 2, catalog.ReadAssets(profile, mtem).Count);
+    }
+
+    private static void TestRealRPaletteRoundTrip()
+    {
+        using var scope = TempScope.Create();
+        var profile = new ProjectProfileService().Detect(SampleRoot("加强版6.5未加密版"));
+        var catalog = new ImageCatalogService();
+        var resource = catalog.BuildCatalog(profile).Single(item => item.Category == ImageCategory.CharacterR);
+        var asset = catalog.ReadAssets(profile, resource)[0];
+        var decoded = catalog.DecodeFrames(profile, asset);
+        try
+        {
+            var service = new ReferenceAtlasService();
+            var keyColor = ReferenceAtlasService.ResolveKeyColor(new PaletteService().Load(profile));
+            var files = service.Export(scope.Path, asset, decoded, keyColor);
+            using var imported = service.Normalize(files.TransparentPngPath, asset, decoded, new AiAtlasNormalizationOptions());
+            var original = decoded.ToDictionary(frame => FrameIdentity(frame.Descriptor));
+            foreach (var frame in imported.Frames)
+            {
+                var expected = original[FrameIdentity(frame.Descriptor)];
+                Equal(TransparentPixelHash(expected.Bitmap), TransparentPixelHash(frame.Bitmap));
+            }
+        }
+        finally { foreach (var frame in decoded) frame.Dispose(); }
+    }
+
+    private static void TestRealSAtlasRoundTrip()
+    {
+        using var scope = TempScope.Create();
+        var profile = new ProjectProfileService().Detect(SampleRoot("加强版6.5未加密版"));
+        var catalog = new ImageCatalogService();
+        var resource = catalog.BuildCatalog(profile).Single(item => item.Category == ImageCategory.CharacterS);
+        var asset = catalog.ReadAssets(profile, resource).Single(item => item.LogicalId == 241);
+        var decoded = catalog.DecodeFrames(profile, asset);
+        try
+        {
+            Equal(28, decoded.Count);
+            var service = new ReferenceAtlasService();
+            var keyColor = ReferenceAtlasService.ResolveKeyColor(new PaletteService().Load(profile));
+            var files = service.Export(scope.Path, asset, decoded, keyColor);
+            using (var atlas = new Bitmap(files.PngPath)) Equal(new Size(348, 348), atlas.Size);
+            using var imported = service.Normalize(files.TransparentPngPath, asset, decoded, new AiAtlasNormalizationOptions());
+            Equal(decoded.Count, imported.Frames.Count);
+            var original = decoded.ToDictionary(frame => FrameIdentity(frame.Descriptor));
+            foreach (var frame in imported.Frames)
+            {
+                var expected = original[FrameIdentity(frame.Descriptor)];
+                Equal(TransparentPixelHash(expected.Bitmap), TransparentPixelHash(frame.Bitmap));
+            }
+        }
+        finally { foreach (var frame in decoded) frame.Dispose(); }
+    }
+
+    private static void TestDllMutation()
+    {
+        using var scope = TempScope.Create();
+        var source = Path.Combine(SampleRoot("加强版6.5未加密版"), "Itemicon.dll");
+        var copy = Path.Combine(scope.Path, "Itemicon.dll");
+        File.Copy(source, copy);
+        var resource = new ImageResourceDescriptor("Itemicon.dll", "宝物图标", ImageCategory.ItemIcon,
+            ResourceKind.DllBitmap, [copy], 0, true, true, false, string.Empty, string.Empty);
+        var profile = new ProjectProfile(scope.Path, "dll", ProjectVersion.Ccz65, false,
+            new Dictionary<string, string> { ["Itemicon.dll"] = copy }, Array.Empty<string>());
+        var codec = new DllBitmapResourceCodec();
+        var assets = codec.ReadAssets(profile, resource);
+        True(assets.Count > 2, "没有解析到足够的 DLL 图标。");
+        var first = assets[0];
+        var largeFrame = first.Frames.Single(frame => frame.Action == "large");
+        using var red = Solid(largeFrame.Width, largeFrame.Height, Color.Red);
+        var history = new HistoryService(Path.Combine(scope.Path, "backup"));
+        var mutations = new ImageMutationService(history);
+        var result = mutations.Commit(profile, mutations.PlanItemIconEdit(profile, first, red, false));
+        True(result.Success, string.Join(";", result.Diagnostics));
+        var decoded = codec.DecodeFrames(profile, first);
+        try
+        {
+            Equal(2, decoded.Count);
+            True(decoded.Single(frame => frame.Descriptor.Action == "small").Bitmap.GetPixel(0, 0).R > 240,
+                "DLL 小图没有从大图派生。");
+        }
+        finally { foreach (var frame in decoded) frame.Dispose(); }
+        var compact = DllBitmapMutation.BuildCompactCandidate(copy, first.Frames.Select(frame => frame.ImageNumber).ToHashSet());
+        File.WriteAllBytes(copy, compact);
+        var after = codec.ReadAssets(profile, resource);
+        Equal(assets.Count - 1, after.Count);
+    }
+
+    private static void TestItemIconDerivation()
+    {
+        var service = new ItemIconDerivationService();
+        using var source = new Bitmap(4, 4);
+        using (var graphics = Graphics.FromImage(source)) graphics.Clear(Color.Blue);
+        for (var y = 0; y < 2; y++)
+        for (var x = 0; x < 2; x++) source.SetPixel(x, y, Color.Red);
+        source.SetPixel(2, 0, Color.Red);
+        source.SetPixel(3, 0, Color.Red);
+        using var small = service.DeriveSmall(source, new Size(2, 2), Color.Blue);
+        var full = small.GetPixel(0, 0);
+        True(full.A == 255 && full.R == 255 && full.G == 0 && full.B == 0, "完整 2x2 红色卷积结果错误。");
+        var half = small.GetPixel(1, 0);
+        True(half.A is >= 127 and <= 128 && half.R == 255 && half.B == 0, "半透明边缘卷积结果错误。");
+        Equal(0, small.GetPixel(1, 1).A);
+    }
+
+    private static void TestItemE5LargeOnlyEdit()
+    {
+        using var scope = TempScope.Create();
+        var sourcePath = Path.Combine(SampleRoot("新改曹操傳6.6修正版"), "E5", "Item.e5");
+        var path = Path.Combine(scope.Path, "Item.e5");
+        File.Copy(sourcePath, path);
+        var profile = new ProjectProfile(scope.Path, "item", ProjectVersion.Ccz66, false,
+            new Dictionary<string, string> { ["Item.e5"] = path }, Array.Empty<string>());
+        var descriptor = new ImageResourceDescriptor("Item.e5", "宝物图标", ImageCategory.ItemIcon,
+            ResourceKind.E5Indexed, [path], E5Archive.Open(path).Entries.Count, true, true, false, string.Empty, string.Empty);
+        var codec = new PairedE5IconCodec();
+        var asset = codec.ReadAssets(profile, descriptor)[0];
+        var before = E5Archive.Open(path);
+        var untouched = before.ReadDecoded(3);
+        using var large = new Bitmap(32, 32);
+        using (var graphics = Graphics.FromImage(large)) graphics.Clear(Color.Transparent);
+        using (var graphics = Graphics.FromImage(large)) graphics.FillRectangle(Brushes.Red, 8, 8, 16, 16);
+        var mutations = new ImageMutationService(new HistoryService(Path.Combine(scope.Path, "backup")));
+        var plan = mutations.PlanItemIconEdit(profile, asset, large, false);
+        Equal(1, plan.Files.Count);
+        var candidate = E5Archive.Parse(path, plan.Files[0].CandidateBytes);
+        Equal(before.Entries.Count, candidate.Entries.Count);
+        Sequence(untouched, candidate.ReadDecoded(3));
+        using var small = ImageRendering.DecodeStandardImage(candidate.ReadDecoded(1));
+        using var rewrittenLarge = ImageRendering.DecodeStandardImage(candidate.ReadDecoded(2));
+        Equal(new Size(16, 16), small.Size);
+        Equal(new Size(32, 32), rewrittenLarge.Size);
+        True(rewrittenLarge.GetPixel(16, 16).R > 240, "大图像素没有写入。");
+        True(small.GetPixel(8, 8).R > 200, "小图没有从大图卷积生成。");
+    }
+
+    private static void TestFaceTouTransaction()
+    {
+        using var scope = TempScope.Create();
+        var sample = SampleRoot("东吴霸王传");
+        var face = Path.Combine(scope.Path, "Face.e5");
+        var tou = Path.Combine(scope.Path, "Tou.dll");
+        File.Copy(Path.Combine(sample, "Face.e5"), face);
+        File.Copy(Path.Combine(sample, "Tou.dll"), tou);
+        var profile = new ProjectProfile(scope.Path, "face-tou", ProjectVersion.Ccz65, false,
+            new Dictionary<string, string> { ["Face.e5"] = face, ["Tou.dll"] = tou }, Array.Empty<string>());
+        var resource = new ImageResourceDescriptor("Face", "人物头像", ImageCategory.Portrait, ResourceKind.FaceComposite,
+            [face, tou], E5Archive.Open(face).Entries.Count, true, true, false, "完整模式", "头像");
+        var codec = new FaceResourceCodec();
+        var before = codec.ReadAssets(profile, resource);
+        True(before.Count > 2 && before[1].Frames.Any(frame => frame.SourceKey == "Tou.dll"), "Face/Tou 资源号未配对。");
+        var faceDescriptor = before[1].Frames.Single(frame => frame.SourceKey == "Face.e5");
+        Equal(64, faceDescriptor.Width);
+        Equal(80, faceDescriptor.Height);
+        var beforeFaceBytes = E5Archive.Open(face).ReadDecoded(faceDescriptor.ImageNumber);
+        Equal(5120, beforeFaceBytes.Length);
+        using (var originalPortrait = FacePayloadService.Decode(profile, beforeFaceBytes))
+            Sequence(beforeFaceBytes, FacePayloadService.Rebuild(profile, beforeFaceBytes, originalPortrait));
+        var png = Path.Combine(scope.Path, "portrait.png");
+        using (var source = Solid(96, 96, Color.LimeGreen)) source.Save(png);
+        var history = new HistoryService(Path.Combine(scope.Path, "backup"));
+        var mutations = new ImageMutationService(history);
+        var replace = mutations.Commit(profile, mutations.PlanReplace(profile, [before[1]], [png]));
+        True(replace.Success && replace.WrittenPaths.Count == 2, string.Join(";", replace.Diagnostics));
+        Equal(5120, E5Archive.Open(face).ReadDecoded(faceDescriptor.ImageNumber).Length);
+        var previewFrames = codec.DecodeFrames(profile, before[1]);
+        try { True(previewFrames.Any(frame => frame.Bitmap.Width == 64 && frame.Bitmap.Height == 80), "RAW Face 写后不能正确复读。"); }
+        finally { foreach (var frame in previewFrames) frame.Dispose(); }
+        var faceCount = E5Archive.Open(face).Entries.Count;
+        var appendTemplateLength = E5Archive.Open(face).ReadDecoded(faceCount).Length;
+        var append = mutations.Commit(profile, mutations.PlanAppend(profile, resource, [png]));
+        True(append.Success && append.WrittenPaths.Count == 2, string.Join(";", append.Diagnostics));
+        Equal(faceCount + 1, E5Archive.Open(face).Entries.Count);
+        Equal(appendTemplateLength, E5Archive.Open(face).ReadDecoded(faceCount + 1).Length);
+        var afterAppend = codec.ReadAssets(profile, resource);
+        var delete = mutations.Commit(profile, mutations.PlanDelete(profile, [afterAppend[^1]]));
+        True(delete.Success && delete.WrittenPaths.Count == 2, string.Join(";", delete.Diagnostics));
+        Equal(faceCount, E5Archive.Open(face).Entries.Count);
+    }
+
+    private static void TestMapPairTransaction()
+    {
+        using var scope = TempScope.Create();
+        var sample = SampleRoot("加强版6.5未加密版");
+        var mapDirectory = Path.Combine(scope.Path, "Map");
+        Directory.CreateDirectory(mapDirectory);
+        var map = Path.Combine(mapDirectory, "M000.JPG");
+        var hex = Path.Combine(scope.Path, "Hexzmap.e5");
+        File.Copy(Path.Combine(sample, "Map", "M000.JPG"), map);
+        File.Copy(Path.Combine(sample, "Hexzmap.e5"), hex);
+        var profile = new ProjectProfile(scope.Path, "map-pair", ProjectVersion.Ccz65, false,
+            new Dictionary<string, string> { ["MapDirectory"] = mapDirectory, ["Hexzmap.e5"] = hex }, Array.Empty<string>());
+        var descriptor = new ImageResourceDescriptor("MapPairs", "战场地图", ImageCategory.Scene, ResourceKind.MapPair,
+            [map], 1, true, true, false, string.Empty, string.Empty);
+        var asset = new MapPairResourceCodec().ReadAssets(profile, descriptor).Single();
+        var export = Path.Combine(scope.Path, "export");
+        var service = new MapPairService();
+        var files = service.Export(profile, asset, export);
+        True(File.Exists(files.JpegPath) && File.Exists(files.BmpPath), "地图对导出不完整。");
+        var plan = service.PlanImport(profile, asset, export);
+        Equal(2, plan.Files.Count);
+        var result = new ImageMutationService(new HistoryService(Path.Combine(scope.Path, "backup"))).Commit(profile, plan);
+        True(result.Success && result.WrittenPaths.Count == 2, string.Join(";", result.Diagnostics));
+    }
+
+    private static void TestUiSmoke()
+    {
+        using var form = new MainForm { Width = 1280, Height = 720, ShowInTaskbar = false, Opacity = 0 };
+        form.Show();
+        Application.DoEvents();
+        form.LoadProjectForSmokeTest(SampleRoot("加强版6.5未加密版"));
+        var controls = Descendants(form).ToArray();
+        foreach (var label in new[] { "人物形象", "人物头像", "宝物图标", "策略图标", "场景图片", "其他图片", "历史记录" })
+            True(controls.OfType<TabPage>().Any(tab => tab.Text == label), "缺少主标签：" + label);
+        var idle = controls.OfType<CheckBox>().First(check => check.Text == "空闲");
+        var backgrounds = controls.OfType<CheckBox>().Where(check => check.Text == "背景色").ToArray();
+        True(!idle.Checked, "空闲默认值应为关闭。");
+        Equal(3, backgrounds.Length);
+        True(backgrounds.All(background => background.Checked), "R/S/宝物的背景色默认值应为开启。");
+        var mainTabs = controls.OfType<TabControl>().First(tab => tab.TabPages.Cast<TabPage>().Any(page => page.Text == "人物头像"));
+        var characterPage = mainTabs.TabPages.Cast<TabPage>().Single(page => page.Text == "人物形象");
+        var characterTabs = Descendants(characterPage).OfType<TabControl>().Single();
+        var data = characterTabs.TabPages.Cast<TabPage>().Single(page => page.Text == "Data");
+        True(!Descendants(data).OfType<SplitContainer>().Any(), "Data 页面不应保留可拖动分隔条。");
+        Equal(3, Descendants(data).OfType<RadioButton>().Count(button => button.Text.EndsWith("转", StringComparison.Ordinal)));
+        Equal(20, Descendants(data).OfType<PictureBox>().Count());
+        var strategyTab = mainTabs.TabPages.Cast<TabPage>().Single(page => page.Text == "策略图标");
+        True(Descendants(strategyTab).OfType<SplitContainer>().All(split => split.Panel2Collapsed),
+            "策略页面未播放动画时应收起共用动画预览分隔区域。");
+        foreach (var pageName in new[] { "人物头像", "策略图标", "场景图片", "其他图片" })
+        {
+            var page = mainTabs.TabPages.Cast<TabPage>().Single(tab => tab.Text == pageName);
+            True(!Descendants(page).OfType<CheckBox>().Any(check => check.Text == "背景色"),
+                pageName + " 不应显示背景色选项。");
+        }
+        foreach (var pageName in new[] { "人物头像", "宝物图标", "策略图标", "场景图片", "其他图片" })
+        {
+            var page = mainTabs.TabPages.Cast<TabPage>().Single(tab => tab.Text == pageName);
+            var buttonTexts = Descendants(page).OfType<Button>().Select(button => button.Text).ToHashSet();
+            True(!buttonTexts.Contains("播放动作") && !buttonTexts.Contains("全部帧数"), pageName + " 不应显示 R/S 播放工具。");
+        }
+        foreach (var rsName in new[] { "R 形象", "S 形象" })
+        {
+            var page = characterTabs.TabPages.Cast<TabPage>().Single(tab => tab.Text == rsName);
+            var buttonTexts = Descendants(page).OfType<Button>().Select(button => button.Text).ToHashSet();
+            True(buttonTexts.Contains("播放动作") && buttonTexts.Contains("全部帧数"), rsName + " 缺少播放或全部帧工具。");
+        }
+        var sPage = characterTabs.TabPages.Cast<TabPage>().Single(page => page.Text == "S 形象");
+        Equal(0, Descendants(sPage).OfType<ComboBox>().Count(combo => combo.Items.Cast<object>()
+            .Any(item => item?.ToString() is "正面" or "一转")));
+        mainTabs.SelectedTab = characterPage;
+        characterTabs.SelectedTab = sPage;
+        Application.DoEvents();
+        var sGallery = Descendants(sPage).OfType<VirtualImageGallery>().Single();
+        Equal(316, sGallery.ItemCount);
+        var sCards = sGallery.RealizedControls.Where(card => card.Tag is LogicalImageAsset).ToArray();
+        True(sCards.Length > 0, $"S 长页没有实现首屏卡片：Visible={sGallery.Visible}, Handle={sGallery.IsHandleCreated}, Client={sGallery.ClientSize}, Scroll={sGallery.AutoScrollMinSize}, Realized={sGallery.RealizedCount}。");
+        foreach (var card in sCards)
+        {
+            var asset = (LogicalImageAsset)card.Tag!;
+            True(asset.DisplayName == $"S_{asset.LogicalId:000}" && asset.LogicalId >= 241,
+                "S 卡片必须按独立物理图号显示。");
+            Equal(1, Descendants(card).OfType<PictureBox>().Count());
+        }
+        sGallery.ScrollToItem(315);
+        Control? lastSCard = null;
+        for (var attempt = 0; attempt < 100; attempt++)
+        {
+            Application.DoEvents();
+            lastSCard = sGallery.RealizedControls.FirstOrDefault(card =>
+                card.Tag is LogicalImageAsset { LogicalId: 556 });
+            if (lastSCard != null && Descendants(lastSCard).OfType<PictureBox>().Single().Image != null) break;
+            Thread.Sleep(20);
+        }
+        True(lastSCard != null, "S 长页滚动到底部后没有实现 S_556 卡片：" +
+                                $"Position={sGallery.AutoScrollPosition}, Min={sGallery.AutoScrollMinSize}, Client={sGallery.ClientSize}, " +
+                                $"Vertical={sGallery.VerticalScroll.Minimum}/{sGallery.VerticalScroll.Value}/{sGallery.VerticalScroll.Maximum}/{sGallery.VerticalScroll.LargeChange}, " +
+                                "IDs=" + string.Join(',', sGallery.RealizedControls
+                                    .Select(card => (card.Tag as LogicalImageAsset)?.LogicalId).Where(id => id.HasValue)));
+        True(Descendants(lastSCard!).OfType<PictureBox>().Single().Image != null,
+            "S 长页滚动到底部后未能刷新 S_556 缩略图。");
+
+        var itemTab = mainTabs.TabPages.Cast<TabPage>().Single(page => page.Text == "宝物图标");
+        mainTabs.SelectedTab = itemTab;
+        Application.DoEvents();
+        var itemGallery = Descendants(itemTab).OfType<VirtualImageGallery>().Single();
+        var itemCards = itemGallery.RealizedControls.Where(card => card.Tag is LogicalImageAsset).ToArray();
+        True(itemCards.Length > 0, "宝物长页没有实现首屏卡片。");
+        foreach (var card in itemCards)
+        {
+            var pictures = Descendants(card).OfType<PictureBox>().ToArray();
+            Equal(1, pictures.Length);
+            True(pictures[0].Tag is FrameDescriptor { Action: "large" }, "宝物卡片只能绑定大图预览。");
+        }
+        True(!controls.OfType<Label>().Any(label => label.Text == "间隔(ms)"), "页级工具栏不应显示播放间隔。");
+        using var bitmap = new Bitmap(form.Width, form.Height);
+        form.DrawToBitmap(bitmap, new Rectangle(Point.Empty, bitmap.Size));
+        var sampleColors = new HashSet<int>();
+        for (var y = 0; y < bitmap.Height; y += 20)
+        for (var x = 0; x < bitmap.Width; x += 20) sampleColors.Add(bitmap.GetPixel(x, y).ToArgb());
+        True(sampleColors.Count > 6, "主界面离屏渲染疑似空白。");
+
+        foreach (var size in new[] { new Size(1280, 720), new Size(1920, 1080) })
+        {
+            form.ClientSize = size;
+            form.PerformLayout();
+            foreach (var button in Descendants(form).OfType<Button>().Where(button => button.Visible))
+            {
+                True(button.ClientSize.Width > 0 && button.ClientSize.Height > 0, "发现不可点击的零尺寸按钮：" + button.Text);
+                True(button.Width + 2 >= button.PreferredSize.Width || button.AutoSize,
+                    "按钮文字可能被裁切：" + button.Text);
+            }
+        }
+    }
+
+    private static void TestDialogLayout()
+    {
+        using var source = Solid(64, 96, Color.Magenta);
+        using var pixel = new PixelEditorDialog(source, "layout",
+            [new PixelEditorSection("mov", new Rectangle(0, 0, 48, 48), 48, "Unit_mov.e5")]);
+        ValidateDialogAtScale(pixel, 1f);
+        ValidateDialogAtScale(pixel, 1.5f);
+
+        var descriptor = new FrameDescriptor("Unit_atk.e5", "memory", 1, 0, 1, "atk", "front", 64, 64);
+        using var frameBitmap = Solid(64, 64, Color.Blue);
+        using var frame = new DecodedFrame(descriptor, new Bitmap(frameBitmap));
+        using var allFrames = new AllFramesDialog("layout", [frame]);
+        ValidateDialogAtScale(allFrames, 1f);
+
+        using var first = Solid(32, 32, Color.Red);
+        using var second = Solid(32, 32, Color.Green);
+        using var animation = new AnimationDialog("layout", [new Bitmap(first), new Bitmap(second)], 100);
+        ValidateDialogAtScale(animation, 1f);
+
+        using var replacement = new PixelColorReplaceDialog(_ => 12,
+            Enumerable.Range(0, 256).Select(value => Color.FromArgb(value, value, value)).ToArray());
+        replacement.ShowInTaskbar = false;
+        replacement.Opacity = 0;
+        replacement.StartPosition = FormStartPosition.Manual;
+        replacement.Location = new Point(0, 0);
+        replacement.Show();
+        Application.DoEvents();
+        ValidateDialogAtScale(replacement, 1f, preserveAutoSize: true);
+        SettlePixelReplacementLayout(replacement);
+        SavePixelReplacementSnapshot(replacement, "换色窗口-100pct.png");
+        ValidatePixelReplacementVisibleBounds(replacement);
+        ValidateDialogAtScale(replacement, 2f, preserveAutoSize: true);
+        SettlePixelReplacementLayout(replacement);
+        SavePixelReplacementSnapshot(replacement, "换色窗口-200pct.png");
+        ValidatePixelReplacementVisibleBounds(replacement);
+        replacement.Close();
+
+        using var scope = TempScope.Create();
+        var profile = new ProjectProfile(scope.Path, "layout", ProjectVersion.Ccz65, false,
+            new Dictionary<string, string>(), Array.Empty<string>());
+        using var rename = new BatchRenameDialog(new BatchRenameService(new HistoryService(Path.Combine(scope.Path, "backup"))), profile);
+        ValidateDialogAtScale(rename, 1f);
+
+        var atlasFrames = new List<DecodedFrame>();
+        foreach (var action in new[] { (Name: "mov", Count: 11, Size: 48), (Name: "spc", Count: 5, Size: 48), (Name: "atk", Count: 12, Size: 64) })
+        for (var index = 0; index < action.Count; index++)
+        {
+            var atlasDescriptor = new FrameDescriptor("Unit_" + action.Name + ".e5", "memory", 337,
+                index, 1, action.Name, "none", action.Size, action.Size);
+            atlasFrames.Add(new DecodedFrame(atlasDescriptor,
+                Solid(action.Size, action.Size, Color.FromArgb(255, 40 + index * 7, 80, 160))));
+        }
+        var atlasAsset = new LogicalImageAsset("SComposite", 337, "S_337", ImageCategory.CharacterS,
+            ResourceKind.SComposite, atlasFrames.Select(item => item.Descriptor).ToArray(), Array.Empty<string>(),
+            false, false, string.Empty)
+        {
+            SMapping = new SLogicalAssetMapping(337, false, [new(1, 337)], 556)
+        };
+        try
+        {
+            var atlasService = new ReferenceAtlasService();
+            var atlasExport = atlasService.Export(scope.Path, atlasAsset, atlasFrames, Color.Magenta);
+            using (var aiImport = new AiAtlasImportDialog(atlasService, atlasExport.TransparentPngPath,
+                       atlasAsset, atlasFrames) { ShowInTaskbar = false, Opacity = 0 })
+            {
+                aiImport.Show();
+                Application.DoEvents();
+                ValidateDialogAtScale(aiImport, 1f);
+                aiImport.Close();
+            }
+            using (var aiImport = new AiAtlasImportDialog(atlasService, atlasExport.TransparentPngPath,
+                       atlasAsset, atlasFrames) { ShowInTaskbar = false, Opacity = 0 })
+            {
+                aiImport.Show();
+                Application.DoEvents();
+                ValidateDialogAtScale(aiImport, 2f);
+                aiImport.Close();
+            }
+        }
+        finally { foreach (var atlasFrame in atlasFrames) atlasFrame.Dispose(); }
+    }
+
+    private static void ValidateDialogAtScale(Form form, float scale, bool preserveAutoSize = false)
+    {
+        if (!preserveAutoSize) form.ClientSize = new Size(1280, 720);
+        if (Math.Abs(scale - 1f) > .001f) form.Scale(new SizeF(scale, scale));
+        form.PerformLayout();
+        using var bitmap = new Bitmap(form.ClientSize.Width, form.ClientSize.Height);
+        form.DrawToBitmap(bitmap, new Rectangle(Point.Empty, bitmap.Size));
+        foreach (var button in Descendants(form).OfType<Button>().Where(button => button.Visible))
+        {
+            True(button.Width >= Math.Min(button.MinimumSize.Width, button.PreferredSize.Width) && button.Height > 0,
+                $"{form.Text} 按钮尺寸不足：{button.Text}");
+            if (button.Parent is FlowLayoutPanel parent && !parent.AutoScroll)
+                True(button.Right <= parent.ClientSize.Width + 2 && button.Bottom <= parent.ClientSize.Height + 2,
+                    $"{form.Text} 按钮超出自适应按钮栏：{button.Text}");
+        }
+    }
+
+    private static void SavePixelReplacementSnapshot(Form form, string name)
+    {
+        var output = Environment.GetEnvironmentVariable("IMAGEMANAGER_PIXEL_TEST_OUTPUT");
+        if (string.IsNullOrWhiteSpace(output)) return;
+        Directory.CreateDirectory(output);
+        using var bitmap = new Bitmap(form.Width, form.Height);
+        form.DrawToBitmap(bitmap, new Rectangle(Point.Empty, bitmap.Size));
+        var path = Path.Combine(output, name);
+        bitmap.Save(path, ImageFormat.Png);
+        Console.WriteLine($"PIXEL_REPLACEMENT_LAYOUT {name} {bitmap.Width}x{bitmap.Height}");
+        var geometry = new List<string> { $"Form Bounds={form.Bounds}; Client={form.ClientSize}; Preferred={form.PreferredSize}; Visible={form.Visible}" };
+        foreach (var control in Descendants(form).Where(control => control is Button or Panel or TableLayoutPanel))
+            geometry.Add($"{control.GetType().Name}/{control.Name}/{control.Text}: Bounds={control.Bounds}; Client={control.ClientSize}; Preferred={control.PreferredSize}; Visible={control.Visible}; Parent={control.Parent?.GetType().Name}/{control.Parent?.Bounds}; Grandparent={control.Parent?.Parent?.GetType().Name}/{control.Parent?.Parent?.Bounds}");
+        File.WriteAllLines(Path.Combine(output, Path.GetFileNameWithoutExtension(name) + "-几何.txt"), geometry);
+    }
+
+    private static void SettlePixelReplacementLayout(Form form)
+    {
+        Application.DoEvents();
+        form.PerformLayout();
+        Application.DoEvents();
+        form.PerformLayout();
+        Application.DoEvents();
+    }
+
+    private static void ValidatePixelReplacementVisibleBounds(Form form)
+    {
+        foreach (var button in Descendants(form).OfType<Button>())
+        {
+            True(button.Visible, $"换色按钮不可见：{button.Name}/{button.Text}; bounds={button.Bounds}; parent={button.Parent!.Bounds}; form={form.ClientSize}");
+            var bounds = form.RectangleToClient(button.RectangleToScreen(button.ClientRectangle));
+            True(form.ClientRectangle.Contains(bounds),
+                $"换色按钮被窗口裁切：{button.Name}/{button.Text}; bounds={bounds}; client={form.ClientSize}; parent={button.Parent!.Bounds}; grandparent={button.Parent.Parent?.Bounds}");
+            for (var ancestor = button.Parent; ancestor != null && ancestor != form; ancestor = ancestor.Parent)
+            {
+                var childBounds = ancestor.RectangleToClient(button.RectangleToScreen(button.ClientRectangle));
+                True(ancestor.ClientRectangle.Contains(childBounds),
+                    $"换色按钮被容器裁切：{button.Name}/{button.Text}; bounds={childBounds}; ancestor={ancestor.GetType().Name}/{ancestor.ClientSize}");
+            }
+        }
+    }
+
+    private static IEnumerable<Control> Descendants(Control root)
+    {
+        foreach (Control child in root.Controls)
+        {
+            yield return child;
+            foreach (var descendant in Descendants(child)) yield return descendant;
+        }
+    }
+
+    private static string SampleRoot(string name)
+    {
+        var root = Path.Combine(Directory.GetCurrentDirectory(), "基底", name);
+        if (!Directory.Exists(root)) throw new DirectoryNotFoundException(root);
+        return root;
+    }
+
+    private static byte[] BuildE5(IReadOnlyList<byte[]> payloads, int trailer)
+    {
+        var dataStart = E5Archive.IndexOffset + payloads.Count * E5Archive.EntrySize + trailer;
+        var bytes = new byte[dataStart + payloads.Sum(payload => payload.Length)];
+        for (var index = 0; index < E5Archive.IndexOffset; index++) bytes[index] = (byte)(index * 17);
+        var offset = dataStart;
+        for (var index = 0; index < payloads.Count; index++)
+        {
+            var entry = E5Archive.IndexOffset + index * E5Archive.EntrySize;
+            BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan(entry, 4), (uint)payloads[index].Length);
+            BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan(entry + 4, 4), (uint)payloads[index].Length);
+            BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan(entry + 8, 4), (uint)offset);
+            payloads[index].CopyTo(bytes, offset);
+            offset += payloads[index].Length;
+        }
+        return bytes;
+    }
+
+    private static Bitmap Solid(int width, int height, Color color)
+    {
+        var bitmap = new Bitmap(width, height);
+        using var graphics = Graphics.FromImage(bitmap);
+        graphics.Clear(color);
+        return bitmap;
+    }
+
+    private static void AssertAtlasFrame(ReferenceAtlasLayoutPlan plan, int turn, string action, int index,
+        int x, int y, int size)
+    {
+        var frame = plan.Placements.Single(item => item.Frame.Descriptor.Turn == turn &&
+                                                  item.Frame.Descriptor.Action == action &&
+                                                  item.Frame.Descriptor.FrameIndex == index);
+        Equal(x, frame.Bounds.X);
+        Equal(y, frame.Bounds.Y);
+        Equal(size, frame.Bounds.Width);
+        Equal(size, frame.Bounds.Height);
+    }
+
+    private static string TransparentPixelHash(Bitmap bitmap)
+    {
+        var bytes = new byte[checked(bitmap.Width * bitmap.Height * 4)];
+        var offset = 0;
+        for (var y = 0; y < bitmap.Height; y++)
+        for (var x = 0; x < bitmap.Width; x++)
+        {
+            var color = bitmap.GetPixel(x, y);
+            var key = color.G == 0 && color.B == 255 && color.R is 247 or 255;
+            if (color.A == 0 || key)
+            {
+                bytes[offset++] = 0; bytes[offset++] = 0; bytes[offset++] = 0; bytes[offset++] = 0;
+            }
+            else
+            {
+                bytes[offset++] = color.R; bytes[offset++] = color.G; bytes[offset++] = color.B; bytes[offset++] = color.A;
+            }
+        }
+        return Convert.ToHexString(SHA256.HashData(bytes));
+    }
+
+    private static string FrameIdentity(FrameDescriptor frame)
+        => $"{frame.SourceKey}|{frame.ImageNumber}|{frame.FrameIndex}|{frame.Turn}|{frame.Action}|{frame.Direction}";
+
+    private static void Run(string name, Action test)
+    {
+        try { test(); _passed++; Console.WriteLine("[PASS] " + name); }
+        catch (SkippedTestException ex) { _skipped++; Console.WriteLine("[SKIP] " + name + "：" + ex.Message); }
+        catch (Exception ex) { _failed++; Console.WriteLine("[FAIL] " + name + "\n       " + ex); }
+    }
+
+    private sealed class SkippedTestException(string message) : Exception(message);
+
+    private static void Equal<T>(T expected, T actual)
+    {
+        if (!EqualityComparer<T>.Default.Equals(expected, actual)) throw new InvalidOperationException($"期望 {expected}，实际 {actual}。");
+    }
+
+    private static void Sequence(byte[] expected, byte[] actual)
+    {
+        if (!expected.SequenceEqual(actual)) throw new InvalidOperationException($"字节不一致：{Convert.ToHexString(expected)} != {Convert.ToHexString(actual)}");
+    }
+
+    private static void True(bool condition, string message)
+    {
+        if (!condition) throw new InvalidOperationException(message);
+    }
+
+    private sealed class TempScope : IDisposable
+    {
+        private TempScope(string path) => Path = path;
+        public string Path { get; }
+        public static TempScope Create()
+        {
+            var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "ImageManager.Tests", Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(path);
+            return new TempScope(path);
+        }
+        public void Dispose()
+        {
+            try { Directory.Delete(Path, true); } catch (IOException) { }
+        }
+    }
+}

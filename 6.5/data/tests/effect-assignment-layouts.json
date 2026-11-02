@@ -19,9 +19,12 @@
         "src.dm.assignment-8byte-static-20261027",
         "src.dm.final-layout-results-20261027",
         "src.dm.final-core-app-source-snapshot-20261027",
-        "src.dm.final-completed-test-source-snapshot-20261027"
+        "src.dm.final-completed-test-source-snapshot-20261027",
+        "src.dm.current-assignment-layout-tests-20261102",
+        "src.dm.current-validation-20261102",
+        "src.dm.current-source-inventory-20261102"
       ],
-      "command": "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --effect-assignment-layouts <workspace>",
+      "command": "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --effect-assignment-layouts <repository-root>",
       "target": "EffectAssignmentLayout与当前EXE活动表识别",
       "mutationScope": "读取真实样本；损坏/迁移输入仅在内存或临时副本，源文件SHA保持不变",
       "assertions": [
@@ -37,7 +40,23 @@
         "实际源SHA复核结果"
       ],
       "failureMeaning": "布局证据或边界不可靠，当前受影响表不得自动写入。",
-      "result": "四样本全行及边界通过；每样本7/7损坏拒绝、迁移、opaque ID和真实源SHA通过。"
+      "result": "四样本全行及边界通过；每样本7/7损坏拒绝、迁移、opaque ID和真实源SHA通过。",
+      "prerequisites": [
+        "<repository-root>包含基底/洗隋、加强版6.5未加密版、复刻版6.6山贼与国庆样本；不是单个基底目录。",
+        "在匹配本轮来源身份的源码工作区先构建相同Release配置；不得用旧二进制代替当前源码。"
+      ],
+      "lastExecution": {
+        "date": "2026-11-02",
+        "sourceVersion": "1.2026.1101.114",
+        "level": "tool-isolated-copy-and-static-verification",
+        "runIds": [
+          "effect-assignment-layouts"
+        ],
+        "exitCodes": [
+          0
+        ],
+        "gameRuntimeVerified": false
+      }
     },
     {
       "id": "test.shared.three-base-assignment-transaction",
@@ -55,9 +74,10 @@
         "src.dm.assignment-8byte-static-20261027",
         "src.dm.final-transaction-results-20261027",
         "src.dm.final-core-app-source-snapshot-20261027",
-        "src.dm.final-completed-test-source-snapshot-20261027"
+        "src.dm.final-completed-test-source-snapshot-20261027",
+        "src.dm.current-three-base-assignment-tests-20261102"
       ],
-      "command": "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --three-base-assignments <workspace>",
+      "command": "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --three-base-assignments <repository-root>",
       "target": "活动表单槽/双槽分配、N数值编辑与事务回滚",
       "mutationScope": "只写三个样本的临时工程副本；真实基底四个核心文件SHA保持不变",
       "assertions": [
@@ -74,7 +94,11 @@
         "真实四核心文件SHA复核"
       ],
       "failureMeaning": "禁止将当前布局用于分配写回，先修复字节范围、共享值语义或事务隔离问题。",
-      "result": "9112/3890/F20C三目标隔离副本写回、末行、共享/独立N、未解析行可写、FF仅改ID及源SHA通过。"
+      "result": "9112/3890/F20C三目标隔离副本写回、末行、共享/独立N、未解析行可写、FF仅改ID及源SHA通过。",
+      "prerequisites": [
+        "<repository-root>包含基底/洗隋、加强版6.5未加密版、复刻版6.6山贼与国庆样本；不是单个基底目录。",
+        "在匹配本轮来源身份的源码工作区先构建相同Release配置；不得用旧二进制代替当前源码。"
+      ]
     }
   ]
 }

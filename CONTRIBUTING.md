@@ -133,3 +133,15 @@ python -B -m unittest discover -s tools/tests -p "test_*.py" -v
 ```
 
 CI 执行上述门禁和 `git diff --check`。发现生成物过期时先执行普通生成命令，再审阅并提交生成差异；验证器不会替提交者静默修复。新增或合并分支必须保留逐实体处置回执，以 ID 对照说明保留、合并、拆分、降级或排除理由。
+
+## 7. 后续增量与历史回执
+
+增量整理先固定一个本地可解析的完整基线提交，并编写文档审阅清单。清单记录 `schemaVersion`、`reviewDate`、`baselineCommit` 和 `entries`；每条包含源相对 `path`、原件 `sha256`、`disposition`、`targetIds`、具体处置 `reason`。新增或修改的每个事实实体必须至少有一条审阅记录；研究条目另记 `researchIds`，不混入事实 `targetIds`。清单不替代来源登记或证据快照。
+
+实体和来源定稿后执行：
+
+```text
+python -B tools/build_integration_receipt.py --refresh-current --incremental-from <baseline-commit> --date <YYYY-MM-DD> --document-review sources/data-manager-review-<YYYYMMDD>.json
+```
+
+`--refresh-current` 保留 2026-10-28 回执中的历史输入观察、日期和数量，仅同步当前目标信息；`--incremental-from` 生成包含全部基线观察与当前实体增删差异的当日回执。当前入口拒绝未交代的实体消失，新增、更新和保留均按稳定 ID 记录。再次执行必须零差异。验证器检查历史回执与最新增量回执，旧增量回执保留为历史快照；不要使用历史 `--local-draft` 导入命令覆盖后续审阅结果。

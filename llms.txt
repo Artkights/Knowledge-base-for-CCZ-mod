@@ -6,6 +6,9 @@ CONTRIBUTING.md
 index.json
 sources/integration-20261028.json
 sources/local-document-review.json
+sources/integration-20261102.json
+sources/data-manager-review-20261102.json
+sources/data-manager-source-snapshot-20261102.json
 6.4/README.md
 6.4/reference/profiles.md
 6.4/reference/functions.md
@@ -34,6 +37,8 @@ sources/local-document-review.json
 6.6/reference/patches.md
 6.6/reference/mechanisms.md
 6.6/reference/script-commands.md
+6.6/reference/workflows.md
+6.6/reference/test-contracts.md
 6.5pl/README.md
 legacy/README.md
 legacy/reference/profiles.md

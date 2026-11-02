@@ -2,8 +2,317 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/tests/data-manager-test-contracts.json`、`6.5/data/tests/effect-assignment-layouts.json`、`6.5/data/tests/engine-assignment-final-results.json`、`6.5/data/tests/smoke-test-contracts.json`
+结构化事实来源：`6.5/data/test-contracts/data-manager-formulas.json`、`6.5/data/tests/data-manager-current-contracts.json`、`6.5/data/tests/data-manager-exchange-resources.json`、`6.5/data/tests/data-manager-test-contracts.json`、`6.5/data/tests/effect-assignment-layouts.json`、`6.5/data/tests/engine-assignment-final-results.json`、`6.5/data/tests/smoke-test-contracts.json`
 
+## 6.5 33项公式与88项常量副本回归契约
+
+ID: `test.65.dm-formulas-and-constant-audit`；状态: `candidate`；证据: `source-reviewed`
+
+命令: `dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release -- --battle-formulas "{EXACT_SAMPLE_ROOT}"`
+
+目标: DataManager.Core的公式模型、公式族校验和常量签名/多站点写入；命令在含data管理器/和形象管理器/的匹配源码工作区执行。；变更范围: 前三项测试内部建立临时核心文件副本并在副本修改/复读/回填，finally清理副本；重定位探测只读。构建仅产生bin/obj，不应修改原始游戏样本。
+
+断言：
+
+- 公式条目与Definitions数量一致（本快照33项），公式步骤、证据、名称和引用常量完整。
+- 本快照88项常量在此精确样本中71项命中；仅适用且完整签名匹配者允许写入，其余只读。
+- 逐项修改、复读、核对原始文件字节再回填；成对字段保持主站点位移，附加站点与主值一致。
+- 非法曲线组合返回Error且文件SHA不变；只改命中上限产生Warning并可正常提交、复读。
+- 原地址完整命中的非可选签名须恰好1处；可选布局缺失不自动宣称兼容。
+- 执行前后源EXE SHA保持相同；本契约不证明游戏内命中/伤害已验收。
+- 随后执行：dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --battle-formula-write "{EXACT_SAMPLE_ROOT}"
+- 随后执行：dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --engine-constant-audit "{EXACT_SAMPLE_ROOT}"
+- 随后执行：dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --engine-constant-relocations "{EXACT_SAMPLE_ROOT}" 6.5
+
+必需产物：
+
+- 固定源码来源SHA与精确样本EXE SHA
+- BATTLE_FORMULA_TESTS_OK、BATTLE_FORMULA_WRITE_OK、ENGINE_CONSTANT_AUDIT_OK标记和退出码
+- 逐布局exact/relocate/hits日志及源样本不变记录
+
+失败含义：断言失败表示源码模型、实际字段布局、共享约束或事务回读不一致；保留失败日志并保持candidate，不能以旧统计或只读跳过冒充适用项通过。
+
+
+补充命令：
+
+- dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --battle-formula-write "{EXACT_SAMPLE_ROOT}"
+- dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --engine-constant-audit "{EXACT_SAMPLE_ROOT}"
+- dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --engine-constant-relocations "{EXACT_SAMPLE_ROOT}" 6.5
+
+本轮执行：
+
+- `date`：2026-11-02
+- `sourceVersion`：1.2026.1101.114
+- `level`：tool-isolated-copy-and-static-verification
+- `runIds`：["6.5-battle-formulas", "6.5-battle-formula-write", "6.5-engine-constant-audit", "6.5-engine-constant-relocations"]
+- `exitCodes`：[0, 0, 0, 0]
+- `gameRuntimeVerified`：false
+## 严格GBK预算、原槽保护与统一保存边界契约
+
+ID: `test.shared.data-manager-text-payload-writeback`；状态: `canonical`；证据: `source-reviewed-test-contract`
+
+命令: `dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release --no-build -- --writeback-hardening <sample-root>`
+
+目标: TextConstraintTests、原生文本输入、草稿原子性与写后复读；变更范围: 测试只在内存/隔离项目副本创建候选及保存，原始样本只读。
+
+断言：
+
+- 三种布局名称预算按12/10/14/8/10/29严格GBK字节判断；汉字混合边界与满200字节列传可往返。
+- emoji/孤立代理项/NUL拒绝；原坏字节、旧超预算原值、尾空格和CR/LF控制码不被无关保存清洗。
+- 隐藏非零尾部限制增长且编辑后保持；CSV/迁移使用相同约束。
+- 原生输入控件与业务/物理表路径写回、复读、非目标字节与失败原子性由专项共同核验。
+
+必需产物：
+
+- 退出码0和WRITEBACK_HARDENING_TESTS_OK
+- 临时副本写前/写后字节及回滚断言
+- TextConstraintTests为聚合专项之一，没有伪造独立PASS标签
+
+失败含义：任何断言失败表示对应能力或事务边界尚未满足；保留原文件和诊断，不得把部分结果标为完整通过。
+
+
+执行约束：
+
+自定义Windows console/WinForms runner；在包含data管理器与同级形象管理器的源工作区先按相同配置构建。本知识库不分发游戏样本，缺样本不能以合成fixture替代原件验收。
+## 人物R/S存档字段隔离、统计索引分组与历史恢复契约
+
+ID: `test.shared.data-manager-appearance-save-isolation`；状态: `canonical`；证据: `source-reviewed-test-contract`
+
+命令: `dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release --no-build -- --save-appearance <repository-root>`
+
+目标: 原生存档布局、SaveAppearanceSync、资源影响与实际顶部保存/迁移入口；变更范围: 实际写回仅使用隔离项目/真实存档副本；源EXE与源存档保持只读。
+
+断言：
+
+- 当前EXE完整PE/人物ID/R/S消费链/WriteFile/ReadFile/场景分段通过才形成E5S布局；损坏消费者不沿用固定偏移。
+- R-only、S-only和多个目标只修改对应UInt16；普通坏档跳过，成功组与主操作同一历史撤回/重做。
+- schema1 .stats、schema2内嵌统计及已有索引Hash更新后保持其余字节、编码、换行和文件属性。
+- 外部改写阻断提交/恢复并保留外部内容与恢复快照；主操作晚失败回滚已成功存档组。
+- CSV/XLSX先入草稿，顶部保存才同步；图片仅用解压后实际差异和已保存指定；迁移只同步真实目标存档，源存档不迁入。
+- 源样本SHA不变；无真实存档的样本记录为no-op，不能伪装成实档写回验收。
+
+必需产物：
+
+- 退出码0和SAVE_APPEARANCE_SYNC_OK、APPEARANCE_SAVE_INTEGRATION_OK
+- 布局/真实存档/no-op与跳过明细
+- 字段级逐字节差异、统计SHA、回滚/历史结果
+
+失败含义：任何断言失败表示对应能力或事务边界尚未满足；保留原文件和诊断，不得把部分结果标为完整通过。
+
+
+执行约束：
+
+自定义Windows console/WinForms runner；在包含data管理器与同级形象管理器的源工作区先按相同配置构建。本知识库不分发游戏样本，缺样本不能以合成fixture替代原件验收。
+## 左栏ID名称查询、候选选择与真实记录绑定契约
+
+ID: `test.shared.data-manager-record-query-ui`；状态: `canonical`；证据: `source-reviewed-test-contract`
+
+命令: `dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release --no-build -- --record-query-ui <sample-root>`
+
+目标: 当前业务页/物理表共享的ID名称标签查询与WinForms编辑状态；变更范围: 复制核心样本到临时目录，仅对该工作区草稿及离屏WinForms执行编辑；测试结束释放窗口并清理临时副本。
+
+断言：
+
+- 仅按左栏ID：名称标签匹配；列传详情和HP数值不进入姓名候选；引号、方括号和星号按字面匹配。
+- 输入候选不提前改已执行筛选；明确鼠标/键盘选候选按实际ID精确定位，纯输入完整标签或数字按既定包含查询处理。
+- 未失焦输入先入草稿再重建查询；无效编辑拒绝新查询并保留原编辑状态；清空、删除和撤回重算结果。
+- 业务页与物理表使用同一实际ID，切页保存各自查询状态；快速定位清筛选并定位真实记录。
+- 逐张物理表导航首末ID和记录数一致；1280×720、1500×900、1920×1080查询控件不越出父容器。
+
+必需产物：
+
+- 退出码0和RECORD_QUERY_UI_TESTS_OK
+- checkedTables数量及label-only/candidates/physical-ID/layout断言
+- 当前构建身份及原样本前后SHA（运行证据另登记）
+
+失败含义：任何断言失败表示对应能力或事务边界尚未满足；保留原文件和诊断，不得把部分结果标为完整通过。
+
+
+执行约束：
+
+自定义Windows console/WinForms runner；在包含data管理器与同级形象管理器的源工作区先按相同配置构建。本知识库不分发游戏样本，缺样本不能以合成fixture替代原件验收。
+
+本轮执行：
+
+- `date`：2026-11-02
+- `sourceVersion`：1.2026.1101.114
+- `level`：tool-isolated-copy-and-static-verification
+- `runIds`：["6.5-record-query-ui"]
+- `exitCodes`：[0]
+- `gameRuntimeVerified`：false
+## 业务 XLSX 基线、权限白名单、控制文本与组合草稿测试
+
+ID: `test.data-manager.business-xlsx-contract`；状态: `canonical`；证据: `source-reviewed`
+
+命令: `dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --page-workbook <sample-root>`
+
+目标: PageWorkbookTests + WorkbookNativeTests（内部包含WorkbookTextEncodingTests）；变更范围: 只在CreateCoreCopy生成的临时项目和临时XLSX中编辑/生成/清理；原始样本只读取。
+
+断言：
+
+- 可用业务页导出后OpenXmlValidator有效且原样回导零修改；显示表重命名/重排与缺数据行不视为删除
+- 预检不产生草稿；应用一条修改后整体撤回/重做，重复导入零修改
+- 三方冲突与确认后草稿变化、重复/新增ID、公式、超范围、超长文本、缺表和未知字段均整本拒绝且无部分草稿泄漏
+- 宝物装备许可白名单/兵种策略只读名称生效；辅助原生分组与物理表一并导入/撤回/重做
+- 控制字符、CR/LF、多行和_xNNNN_字面转义保真，拓展数据工作簿零变更往返
+
+必需产物：
+
+- 完整console日志与退出码0
+- PAGE_WORKBOOK_TESTS_OK
+- WORKBOOK_NATIVE_TESTS_OK auxiliary+physical/extend/undo/redo
+- 每页WORKBOOK_ROUNDTRIP_OK及样本身份
+
+失败含义：任何失败表示交换协议、权限/冲突或组合草稿原子性不满足；不得把可打开Excel视为安全导入。
+
+
+前置条件：
+
+- 使用同一Release配置构建；这是自定义console runner，不是dotnet test
+- <sample-root>必须为可加载且具备测试所需人物/装备及原生辅助分组的样本目录；不能省略并依赖当前工作目录猜测
+
+执行边界：
+
+本实体记录当前源码定义的可复现测试契约；本轮实际执行结果由独立运行日志登记，未执行不得写为已通过。
+
+本轮执行：
+
+- `date`：2026-11-02
+- `sourceVersion`：1.2026.1101.114
+- `level`：tool-isolated-copy-and-static-verification
+- `runIds`：["6.5-page-workbook"]
+- `exitCodes`：[0]
+- `gameRuntimeVerified`：false
+## 参考包四件套、布局清单与当前目标隔离测试
+
+ID: `test.data-manager.reference-atlas-package`；状态: `canonical`；证据: `source-reviewed`
+
+命令: `dotnet run --project 形象管理器/src/ImageManager.Tests/ImageManager.Tests.csproj --configuration Release --no-build -- --atlas-package`
+
+目标: AtlasPackageTests；变更范围: 系统临时目录合成帧和导出参考包，finally删除；不写真实游戏资源。
+
+断言：
+
+- 默认4倍输出1392×1392 S主图、atlas.json、动作对照图及提示词；默认无透明观察图，主图无编号污染
+- 28帧清单行数6/5/5/4/4/4，版本1/物理号/三资源来源完整
+- 给另一个当前物理目标关联旧清单，仅生成新目标帧键；来源242不得改变当前337目标
+- 重复/缺失动作、未知清单版本、越界格与ROI拒绝；兼容旧重载仍1倍并含透明图
+
+必需产物：
+
+- console退出码0且测试名“参考包清单、目标隔离、编号图和兼容导出”通过
+- 结果失败0
+
+失败含义：失败说明参考包输出协议或目标隔离有回归，不能授权参考图写回。
+
+
+前置条件：
+
+- 同一Release配置构建ImageManager.Tests及其依赖
+- Windows/System.Drawing可用；不依赖真实基底或真实AI PNG
+
+执行边界：
+
+本实体记录当前源码定义的可复现测试契约；本轮实际执行结果由独立运行日志登记，未执行不得写为已通过。
+
+本轮执行：
+
+- `date`：2026-11-02
+- `sourceVersion`：1.2026.1101.114
+- `level`：tool-isolated-copy-and-static-verification
+- `runIds`：["atlas-package"]
+- `exitCodes`：[0]
+- `gameRuntimeVerified`：false
+## 灵活画布、动作偏移、背景修正与缺帧阻断测试
+
+ID: `test.data-manager.flexible-atlas-contract`；状态: `canonical`；证据: `source-reviewed`
+
+命令: `dotnet run --project 形象管理器/src/ImageManager.Tests/ImageManager.Tests.csproj --configuration Release --no-build -- --atlas-flexible`
+
+目标: FlexibleAtlasTests + AtlasTransformTests；变更范围: 临时合成E5项目与参考图用于事务/撤回测试；向本地源码工作区data管理器/验证/参考图灵活回导-20261026输出诊断及归一化/蒙版PNG，不写原始基底。
+
+断言：
+
+- 规范参考图像素逐帧往返一致；长方形非对称留白、横/竖画布有效ROI恢复不损动作偏移
+- 非整数放大恢复保留动作位移；默认等比不擅自修复拉伸，显式RepairAspectRatio才恢复横纵比例
+- 暗紫背景2048和白底边框663真实测试素材均产生28帧且无阻断，外框ROI和临时资源事务可复读/撤回
+- 被手动确认的真实空帧仍报Error阻断，保护色和源框修复不以旧人物轮廓限制新造型
+
+必需产物：
+
+- 完整console日志、退出码0、FLEXIBLE_ATLAS_TESTS_OK
+- 两条REAL_ATLAS_OK及ROI/警告数
+- 归一化/蒙版PNG与diagnostics.txt
+- 结果失败0
+
+失败含义：失败可能为测试素材缺失、映射/缩放破坏或阻断失效；必须区分前置条件缺失与实现回归。
+
+
+前置条件：
+
+- 源码工作区含形象管理器/src/ImageManager.Tests/Fixtures/Atlas/暗紫背景-2048.png及白底边框-663.png，两图不是可选输入
+- 同一Release构建并从可定位源码工作区的目录运行
+
+执行边界：
+
+本实体记录当前源码定义的可复现测试契约；本轮实际执行结果由独立运行日志登记，未执行不得写为已通过。
+
+本轮执行：
+
+- `date`：2026-11-02
+- `sourceVersion`：1.2026.1101.114
+- `level`：tool-isolated-copy-and-static-verification
+- `runIds`：["atlas-flexible"]
+- `exitCodes`：[0]
+- `gameRuntimeVerified`：false
+## Pmap 编解码、菱形轨迹和 Mmap/Pmap 联合事务测试
+
+ID: `test.data-manager.scene-terrain-pair-contract`；状态: `canonical`；证据: `source-reviewed`
+
+命令: `dotnet run --project 形象管理器/src/ImageManager.Tests/ImageManager.Tests.csproj --configuration Release --no-build -- --scene-terrain <repository-root>`
+
+目标: SceneTerrainTests；一体化入口另用DataManager.Tests --scene-terrain <repository-root>；变更范围: 在<repository-root>/data管理器/验证/2026-10-23-内场景地形编辑/core及ui创建测试副本/结果/截图；写回副本，读取原基底并核对SHA。
+
+断言：
+
+- 100×100UInt16LE载荷逐字节往返，单格变化只改对应字节，保留16字节头；损坏长度/未知格值/多层不开放编辑
+- 640×399/400菱形命中、文件/游戏Y差2、完整拖动轨迹和笔画撤回/重做符合独立坐标预期
+- 普通Pmap保存保留其他条目，源依赖改写拒绝；双档新增/复制/删除/历史恢复和失败回滚保持编号与尾项一致
+- 外场景黑色占位、删除最后配对保留全通行尾项、缺配对拒绝及无协议结构变化拒绝
+- 只对实际找到并完成检查的6.4/6.5/6.6精确样本记录结果；一体化UI另检查Pmap不可普通图片写入及Mmap配对策略
+
+必需产物：
+
+- 退出码0与SCENE_TERRAIN_TESTS_OK
+- core/scene-terrain-core-results.json和其中RealSamples/Checks
+- 另跑一体化入口时须有SCENE_TERRAIN_INTEGRATION_TESTS_OK及ui结果/截图
+- 原始样本前后SHA核对
+
+失败含义：失败说明结构、坐标、依赖门禁或双档原子性未满足；缺少指定样本要记缺失，不能视为三版本写回验收。
+
+
+前置条件：
+
+- <repository-root>是完整本地制作源码/基底根目录，不是单个基底目录
+- 测试需基底/加强版6.5未加密版/Ekd5.exe；真实矩阵还枚举洗隋、新改曹操傳6.6修正版及复刻版6.6山贼
+- 同一Release构建ImageManager.Tests；一体化入口需DataManager.Tests和WinForms环境
+
+关联命令：
+
+- dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --scene-terrain <repository-root>
+
+执行边界：
+
+本实体记录当前源码定义的可复现测试契约；本轮实际执行结果由独立运行日志登记，未执行不得写为已通过。
+
+本轮执行：
+
+- `date`：2026-11-02
+- `sourceVersion`：1.2026.1101.114
+- `level`：tool-isolated-copy-and-static-verification
+- `runIds`：["scene-terrain-core", "scene-terrain-integration"]
+- `exitCodes`：[0, 0]
+- `gameRuntimeVerified`：false
 ## 6.5/6.6 Profile 与 Variant 检测
 
 ID: `test.data-manager.profile-variant-detection`；状态: `canonical`；证据: `source-reviewed-tests`
@@ -28,6 +337,10 @@ ID: `test.data-manager.profile-variant-detection`；状态: `canonical`；证据
 
 失败含义：Profile 或 Variant 误判会使 CSV、Codec 和迁移字段映射失效，必须阻止写入。
 
+
+执行约束：
+
+这是自定义 console runner，不是 dotnet test/xUnit；--no-build 前须使用同一配置构建。--core-regression 显式接收存在的样本根目录；不能把未提供样本时的纯合成测试成功当作本地样本写回验收。
 ## 物理表字段写回与边界复读
 
 ID: `test.data-manager.physical-table-roundtrip`；状态: `canonical`；证据: `source-reviewed-tests`
@@ -53,6 +366,10 @@ ID: `test.data-manager.physical-table-roundtrip`；状态: `canonical`；证据:
 
 失败含义：任何字段/边界/复读失败都必须回滚整个页面事务。
 
+
+执行约束：
+
+这是自定义 console runner，不是 dotnet test/xUnit；--no-build 前须使用同一配置构建。--core-regression 显式接收存在的样本根目录；不能把未提供样本时的纯合成测试成功当作本地样本写回验收。
 ## 专用二进制结构证据门禁
 
 ID: `test.data-manager.special-binary-evidence`；状态: `canonical`；证据: `source-reviewed-tests`
@@ -78,6 +395,10 @@ ID: `test.data-manager.special-binary-evidence`；状态: `canonical`；证据: 
 
 失败含义：若门禁被绕过，可能把其它代码或资源区域当作表写坏；测试失败必须保持只读。
 
+
+执行约束：
+
+这是自定义 console runner，不是 dotnet test/xUnit；--no-build 前须使用同一配置构建。--core-regression 显式接收存在的样本根目录；不能把未提供样本时的纯合成测试成功当作本地样本写回验收。
 ## CSV round-trip、跨 Variant 迁移和回滚
 
 ID: `test.data-manager.csv-and-migration`；状态: `canonical`；证据: `source-reviewed-tests`
@@ -109,6 +430,18 @@ ID: `test.data-manager.csv-and-migration`；状态: `canonical`；证据: `sourc
 
 失败含义：任何已选择项目的映射/资源转换/像素复读、源或目标 SHA 漂移、目标写入失败必须停止并恢复目标；明确 Ignored 的整段扩展物品保持目标原值，不作为完成迁入。不能把四拓展文件物理可读等同为目标游戏具备相应消费者。
 
+
+补充命令：
+
+- dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --migration-ui
+- dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --migration-icons <source-wrapper> <target-wrapper>
+- dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --migration-real <source-root> <target-root> <report-directory> preview
+- dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --migration-real <source-root> <target-root> <report-directory> apply
+- dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --migration-readonly <sample-root>
+
+执行约束：
+
+这是自定义 console runner，不是 dotnet test/xUnit；--no-build 前须使用同一配置构建。未提供存在的 DATAMANAGER_TEST_BASE 时真实项目测试会被跳过，不能把纯合成测试成功当作本地样本写回验收。
 ## Profile、Codec、知识库和本地样本离线一致性
 
 ID: `test.data-manager.layout-knowledge-offline`；状态: `canonical`；证据: `source-reviewed-offline-checker`
@@ -199,6 +532,12 @@ ID: `test.data-manager.rs-strip-and-atlas`；状态: `canonical`；证据: `sour
 
 失败含义：导出/替换协议、目标槽或还原核错误会覆盖其他转数、改变像素风格或丢失原编码字节，失败时拒绝提交。
 
+
+补充命令：
+
+- dotnet run --project 形象管理器/src/ImageManager.Tests/ImageManager.Tests.csproj --configuration Release --no-build -- --atlas-regression
+- dotnet run --project 形象管理器/src/ImageManager.Tests/ImageManager.Tests.csproj --configuration Release --no-build -- --face-rs
+- dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --atlas-dialog
 ## 依赖系统 .NET 8 的 Windows x64 单 EXE 发布与嵌入资源验收
 
 ID: `test.data-manager.single-executable-publish`；状态: `canonical`；证据: `source-reviewed-publish-profile`
@@ -224,6 +563,10 @@ ID: `test.data-manager.single-executable-publish`；状态: `canonical`；证据
 
 失败含义：输出多文件或带入旧 runtime 表示发布目录/配置不符合单 EXE 契约；目标缺少 Desktop Runtime 属于明确的系统前置条件，不应通过重新声明自包含绕过。资源/图标缺失或已满足 Runtime 条件仍不能启动时阻止交付。
 
+
+补充命令：
+
+- <isolated-chinese-directory>/data管理器.exe --verify-bundle <report-json> <sample-root>
 ## 旧 BMP、动画载荷与天气帧条编解码专项
 
 ID: `test.data-manager.bmp-animation-weather-codecs`；状态: `canonical`；证据: `source-reviewed-tests`
@@ -253,6 +596,10 @@ ID: `test.data-manager.bmp-animation-weather-codecs`；状态: `canonical`；证
 
 失败含义：头部、palette或动画分界错误会把非像素数据读成乱码或破坏原索引；结构/字节复读失败时不能提交候选资源。
 
+
+补充命令：
+
+- dotnet run --project 形象管理器/src/ImageManager.CodecTests/ImageManager.CodecTests.csproj --configuration Release -- --raw-icon-investigation
 ## Weather与Meff/Mcall动态预览及异步取消界面验收
 
 ID: `test.data-manager.animation-preview-ui`；状态: `canonical`；证据: `source-reviewed-tests`
@@ -282,6 +629,10 @@ ID: `test.data-manager.animation-preview-ui`；状态: `canonical`；证据: `so
 
 失败含义：动态预览拆帧、播放或生命周期错误；失败时不得把缓存/合成画布写回目标资源。
 
+
+补充命令：
+
+- dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --animation-preview-ui <workspace-root>/基底/18州/十八州演义0.2版本
 ## 宝物类别编辑、辅助五例与消耗品草稿/CSV/字节隔离回归
 
 ID: `test.data-manager.item-semantic-editing`；状态: `canonical`；证据: `source-reviewed-tests-and-recorded-local-regression`
@@ -313,7 +664,7 @@ ID: `test.data-manager.item-semantic-editing`；状态: `canonical`；证据: `s
 
 ID: `test.shared.effect-assignment-layout-recognition`；状态: `canonical`；证据: `sample-verified`
 
-命令: `dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --effect-assignment-layouts <workspace>`
+命令: `dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --effect-assignment-layouts <repository-root>`
 
 目标: EffectAssignmentLayout与当前EXE活动表识别；变更范围: 读取真实样本；损坏/迁移输入仅在内存或临时副本，源文件SHA保持不变
 
@@ -333,11 +684,25 @@ ID: `test.shared.effect-assignment-layout-recognition`；状态: `canonical`；�
 
 失败含义：布局证据或边界不可靠，当前受影响表不得自动写入。
 
+
+前置条件：
+
+- <repository-root>包含基底/洗隋、加强版6.5未加密版、复刻版6.6山贼与国庆样本；不是单个基底目录。
+- 在匹配本轮来源身份的源码工作区先构建相同Release配置；不得用旧二进制代替当前源码。
+
+本轮执行：
+
+- `date`：2026-11-02
+- `sourceVersion`：1.2026.1101.114
+- `level`：tool-isolated-copy-and-static-verification
+- `runIds`：["effect-assignment-layouts"]
+- `exitCodes`：[0]
+- `gameRuntimeVerified`：false
 ## 洗隋3890国庆活动表真实临时副本写回事务
 
 ID: `test.shared.three-base-assignment-transaction`；状态: `canonical`；证据: `sample-verified`
 
-命令: `dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --three-base-assignments <workspace>`
+命令: `dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --three-base-assignments <repository-root>`
 
 目标: 活动表单槽/双槽分配、N数值编辑与事务回滚；变更范围: 只写三个样本的临时工程副本；真实基底四个核心文件SHA保持不变
 
@@ -358,6 +723,11 @@ ID: `test.shared.three-base-assignment-transaction`；状态: `canonical`；证�
 
 失败含义：禁止将当前布局用于分配写回，先修复字节范围、共享值语义或事务隔离问题。
 
+
+前置条件：
+
+- <repository-root>包含基底/洗隋、加强版6.5未加密版、复刻版6.6山贼与国庆样本；不是单个基底目录。
+- 在匹配本轮来源身份的源码工作区先构建相同Release配置；不得用旧二进制代替当前源码。
 ## 三基底物理共享绑定组联动与冲突事务
 
 ID: `test.shared.effect-physical-binding-group-transaction`；状态: `canonical`；证据: `sample-verified`

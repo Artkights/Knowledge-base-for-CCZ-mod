@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/file-formats/binary-formats.json`、`6.5/data/file-formats/data-manager-formats.json`、`6.5/data/file-formats/local-review-20261028.json`
+结构化事实来源：`6.5/data/file-formats/binary-formats.json`、`6.5/data/file-formats/data-manager-exchange-resources.json`、`6.5/data/file-formats/data-manager-formats.json`、`6.5/data/file-formats/local-review-20261028.json`
 
 ## E5 索引资源封包
 
@@ -62,6 +62,64 @@ ID: `format.item.split-data-star`；状态: `canonical`；证据: `source-review
 - 6.5 和 6.6 17 字节兼容 Variant 名称区 0x11 字节、图标为 +0x14；6.6 标准/旧山贼候选 Variant 名称区 0x0F 字节、图标为 +0x0F，+0x10/+0x14 是 Preserve 原始字节。各 Variant 的图标字段统一名为图标、类型 UInt8、字段策略 Editable。
 - 图标值 N 从 0 开始，对应 E5/Item.e5 的小图 #2N+1 与大图 #2N+2；不能将逻辑图标号、1 起始 E5 图号和版本内字节偏移混用。
 - 6.6 15 字节记录 +0x11/+0x12 的类型/特效动态语义与原始类别标记有关，必须使用目标 Codec，不能按字段名固定偏移迁移。
+
+## 业务页 XLSX：隐藏基线、稳定数据集与三方冲突协议
+
+ID: `format.data-manager.business-xlsx`；状态: `canonical`；证据: `source-reviewed`
+
+字节序: `ZIP/Office Open XML；单元格使用数值或InlineString，非游戏二进制表`
+
+- 文件：`<business-page>.xlsx`
+
+- 一个业务页导出一个XLSX，当前实际可用的物理/原生数据集各一张可见表，并为每张表保存VeryHidden基线；_DataManager为VeryHidden元数据页，记录Schema=DataManagerWorkbook/1、Profile、Variant、Layout、Page及Datasets[{Key,SheetId,BaselineSheetId}]。这不是任意Excel表自动识别协议。
+- 每表第1行为隐藏稳定字段键，第2行为可读表头，第3行起为数据；ID列只定位既有记录。表名和顺序可改，注册SheetId/数据集/基线不可缺失或重复。可见表缺少某条数据行表示不更新该记录，完整基线仍必须覆盖当前数据集全部ID。
+- 程序依据当前页重建数据集和可编辑字段白名单，不信任文件内权限。宝物页的兵种成长数据只允许26类装备许可；兵种页的策略表仅名称参考和学习等级，名称只读；原生辅助分组仅更新已有组成员。
+- 导入比较导出基线B、当前草稿C、文件值F：F=B不处理，F=C不重复修改；F≠B且C既非B也非F则拒绝整本。数值列使用整数等价比较；未改的只读字段可原样保留。
+- 未知/重复/新增ID、未知字段、只读字段改变、公式、Excel错误单元格、超范围值、超GBK容量、跨Profile/Variant或不兼容Layout均拒绝；公式缓存不能代替已粘贴的常量值。
+- OOXML ST_Xstring转义保留原生控制字节及CR/LF；看似_xNNNN_的字面文本先保护下划线，导入只解码一次，防止把游戏控制字节静默删掉。
+- PreviewImport仅产生不可变提案与单元格位置，零磁盘写入；ApplyImport确认后再核对规范化项目路径、Profile/Variant/Layout及每个拟改当前值，把物理字段和原生分组合为一条可撤回/重做草稿。顶部保存才经既有二进制事务落盘。
+- 协议适用于已加载的6.4/6.5/6.6 Profile数据集；具体表是否存在或可编辑仍由当前布局证据决定。跨版本用迁移器，不通过修改元数据绕过兼容校验。
+
+写入策略：业务页XLSX只创建现有记录的草稿，不新增/删除游戏记录；任何整本预检失败不得留下部分草稿。物理表继续使用独立CSV协议。
+
+## Pmap 内场景地形：16字节头与100×100 UInt16LE单元
+
+ID: `format.data-manager.inner-scene-pmap`；状态: `canonical`；证据: `source-reviewed`
+
+字节序: `外层E5目录大端；解压Pmap头字段和格值均UInt16 little-endian`
+
+索引公式: `Mmap physical n>40 -> Pmap physical n-40; cell(x,y) offset=0x10+2*(y*width+x)`
+
+每条解压大小: `20016` 字节。
+
+- 文件：`Mmap.e5`
+- 文件：`Pmap.e5`
+
+头记录字段：
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `opaque-prefix` | `0x0` | 2 | `preserved bytes` | 保存时原样保留，不把默认模板的0x0017推断为所有档案的通用magic |
+| `width` | `0x2` | 2 | `UInt16LE` | 列数；当前可编辑100 |
+| `height` | `0x4` | 2 | `UInt16LE` | 行数；当前可编辑100 |
+| `layers` | `0x6` | 2 | `UInt16LE` | 层数；当前只开放1层 |
+| `opaque-tail` | `0x8` | 8 | `preserved bytes` | 未解释的头尾字段；普通编辑原样保留 |
+
+播放记录字段：
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `terrain-cell` | `0x10` | 2 | `UInt16LE[]` | 行主序width×height×layers项；FFFF可通行，F0FF障碍，文件字节分别FF FF与FF F0 |
+
+- Pmap是碰撞/障碍数据，不是调色板图片。通用解码要求16+width×height×layers×2恰等于解压长度，尺寸/层数非零且计数不溢出；未知但结构完整的载荷可只读，不擅自当100×100编辑。
+- 可编辑要求100列×100行×1层且所有格值均FFFF/F0FF，背景640×399或640×400、项目可写、Mmap/Pmap配对完整，并通过当前EXE的PE映射和固定40场景偏移/16位地形消费者检查。版本名、文件存在或长度足够不能代替门禁。
+- Mmap前40个物理条目为外场景；第41项是内场景1，对应Pmap第1项。普通地形笔画仅改对应Pmap载荷，保持原16字节头、未改格及其他条目stored bytes不变。编辑期间同时监控背景、地形和引擎依赖，外部改写拒绝覆盖。
+- 菱形宽16高8：文件格中心pixel=(8*(x-y+40),4*(x+y-48)-1)；文件格转游戏格为(x,y+2)。快速拖动按两条斜轴跨界遍历，不能仅按鼠标事件采样而漏格。
+- 一体化编辑器把Pmap合入Mmap的地形入口，禁止作为普通图片导入/量化。新增内场景同步插入默认可通行地形；复制内场景可复制其对应地形，复制外场景追加内场景时用默认地形。既有Pmap多余尾项保留并后移。
+- 删除外场景写同尺寸同编码黑色占位，保留前40槽；删除内场景同时删除对应地形并前移后续内场景。不自动改R剧本引用。若删除后Pmap将完全为空，保留一个全通行尾部预留记录；已有额外尾项继续保留。
+- Mmap结构新增/删除必须携带配对协议和两档候选，ValidateMmapPlan核对数量、插入/移除位置及未动条目；缺配对地形、缺口、候选过期或复读不一致均拒绝，不能补洞或套用最后一条地形。
+
+写入策略：普通地形编辑只写对应Pmap；改变内场景数量的操作以Mmap/Pmap一条资源事务提交及历史撤回/重做。固定地址门禁留在当前源码，不授权对所有同名版本直接写偏移。
 
 ## 物品 6.5/6.6 记录 Codec
 
@@ -185,12 +243,17 @@ ID: `format.data-manager.extended-tables`；状态: `canonical`；证据: `sourc
 
 | 字段 | 偏移 | 宽度 | 类型 | 含义 |
 |---|---:|---:|---|---|
-| `Effect.e5` | `0x0` | 1024 | `256 slot records` | 1024 行，每行 256 槽×4 字节，共 1048576 字节；每槽 +0 特效号 UInt8、+1 特效值 UInt8、+2..3 Preserve 原始字节。 |
-| `Effectmsg.e5` | `0x0` | 8 | `uint8[8]` | 255 行×8 字节，共 2040 字节；启用与 7 个原始参数。 |
-| `MeffStudy.e5` | `0x0` | 64 | `32 two-byte records` | 1024 行，每行 32 槽×2 字节，共 65536 字节；每槽 +0 策略ID UInt8，+1 次数 UInt8，不能按单 UInt16 语义解释。 |
-| `Forge.e5` | `0x0` | 64 | `structured 64-byte record` | 1024 行×64 字节，共 65536 字节；GBK 名称30字节、8个材料ID UInt16/数量UInt8、结果和保留字段，详见物理表字段。 |
+| `Effect.e5` | `0x0` | 1024 | `256 four-byte slots per person` | 1..1024条完整人物记录，每条256槽×4字节；+0特效ID、+1效果值、+2经验、+3剩余回合均UInt8，经验/回合为语义可编辑字段，不是Preserve。 |
+| `Effectmsg.e5` | `0x0` | 8 | `eight UInt8 growth fields` | 按实际长度读取1..256条；2040/2048字节分别255/256条。+0允许成长、+1吃书初始值、+2上限、+3临时回合、+4成长书经验、+5攻击经验、+6受击经验、+7击杀经验；ID255若存在为只读保留槽。 |
+| `MeffStudy.e5` | `0x0` | 64 | `32 two-byte strategy slots per person` | 1..1024条完整人物记录，每条32槽；+0策略ID和+1次数各UInt8，不能按单UInt16解释。 |
+| `Forge.e5` | `0x0` | 64 | `structured 64-byte recipe` | 1..1024条完整配方，实际16384字节即256条合法；名称0..29，8项{UInt16物品ID,UInt8数量/等级}在30..53，UInt32金钱54..57，材料项数58、商店59、启用60、剩余次数61、保留62..63。 |
 
-- 四表逐物理表 CSV；每次导入携带 Profile/Variant/TableKey/schema 元数据，事务一次提交并记录源 SHA。
+- Profile默认行数不是固定文件容量。运行时按无头完整记录推导行数：长度非零、能被行宽整除且不超过Effectmsg256/其余1024条才加载；尾部截断、零条或超容量使对应表Unavailable，不截断读取，不因打开/普通保存扩容。
+- Effect ID255为空，回合255永久；改已有特效只改指定字段，不清经验/回合。空槽新增默认经验0/回合255，主动清空FF 00 00 FF；原始回合0保留并提示上游递减语义，整理移动完整4字节且保留重复。
+- Effectmsg允许成长按非零判定，2/255等原值不因展示归一化；ID255保留记录存在时只读。MeffStudy策略255为空、次数255无限，主动清空FF 00；整理空洞必须显式触发。
+- Forge前N项是材料、其余产物；材料的装备等级字节低7位等级/高位精确等级，消耗品材料低7位数量，产物使用完整字节。物品低字节255为空，原255/511/65535等空编码未改时原样保留。
+- 四类独立缺失/不可用，不阻断其他类；逐物理表CSV与业务XLSX仍遵循项目布局身份及统一草稿/保存/历史事务。
+- 适用版本列表只表示管理器各Profile的物理格式入口；文件存在/可编辑不能证明该引擎有相应消费者。扩展功能和旧EXS存档覆盖行为以独立运行时证据为准。
 
 ## 形象管理器资源布局
 
@@ -199,10 +262,10 @@ ID: `format.data-manager.image-resources`；状态: `canonical`；证据: `sourc
 字节序: `big for E5 directory; codec-specific payload`
 
 - Pmapobj.e5 每个 R 逻辑资源为正/背两个 E5 条目，每面 20 帧、48×64；逻辑资源编号从 0 开始，物理 E5 条目从 1 开始。
-- Unit_mov.e5/Unit_atk.e5/Unit_spc.e5 分别按 48×48×11、64×64×12、48×48×5 帧解码；三档案共同物理容量取目录条目数最小值，只列共同完整可用槽。兵种形象单独命名空间：逻辑 ID 0..min(239,共同容量-1) 对应物理 #ID+1，不从人物 S=1 的特殊区生成兵种形象。
-- 人物 S=0 为默认兵种：jobId 0..59 先算 effectiveJob=(jobId/3 的整数商)×3+(turn-1)，物理图号 effectiveJob×3+1；jobId 60..79 为单转，物理图号 jobId×3+1。
+- Unit_mov.e5/Unit_atk.e5/Unit_spc.e5分别为48×48×11、64×64×12、48×48×5帧；共同物理容量取三档案目录条目数最小值。当前图库直接按Unit物理号展示：兵种1..min(240,共同容量)，将领241..共同容量，均不是Data人物紧凑S字段。
+- 人物S=0直接按当前详细兵种ID取我军物理图号jobId×3+1；0..59的兵种ID本身已含转职阶段，effectiveTurn=jobId%3+1，60..79为单转。不得再按传入turn重新改写jobId所属阶段。
 - 人物 S=1..32 为特殊三转，物理图号 241+(S-1)×3+(turn-1)；S>=33 为单转，物理图号 337+(S-33)。
-- turn 只能 1..3；兵种库的 0..239 槽与人物库相互独立，人物下拉只接受人物模式并额外提供默认 S=0。
+- 人物紧凑S指定及turn1..3只属于人物映射；图库兵种/将领均用物理图号。人物下拉由BuildPersonAssignments生成完整紧凑S编号并单独提供默认0，不能把图库图号直接写入人物字段。
 - 人物头像字段是 Data.e5 +396+personId×32+13（等价文件偏移 0x199+personId×0x20）的 UInt16LE，0..65535；不可按 UInt8 截断 255 以上编号。
 - +15 撤退字段、+16 普通暴击字段相邻，写头像只能修改 +13..14。
 - Face/Tou 逻辑头像 N 与该字段直接相等；头像 0 使用 Face.e5 #1..8 八表情，N>=1 使用 Face.e5 #N+8，Tou.dll 取对应物理图号+300 的 RT_BITMAP，优先语言 2052。
@@ -215,13 +278,14 @@ ID: `format.data-manager.image-resources`；状态: `canonical`；证据: `sourc
 - 多个 6.6 样本末尾有孤立物理条目；它不构成新逻辑图标。新增完整小/大对插入孤立尾之前，既有编号和尾部 stored bytes/DecodedLength 保持不变；历史撤回/重做按整个档案逐字节恢复。
 - 业务页默认预览大图，按原图宽高比适配区域，不能把大小图或动画帧拉伸成固定比例；资源缺失或未知数值显示无图，不回退到相邻图号。
 - 可重排资源的删除/重排只在资源事务中进行并显示外部引用警告，不自动更新 Data、策略、脚本或地图编号；兵种 S 固定槽仅清空，不物理删除或前移。
-- 兵种 S 的逻辑0..239为固定物理槽；删除不是移除目录项，而是在 Unit_mov/Unit_atk/Unit_spc 中同步把所选槽的全部帧像素索引清零，保持原尺寸、物理目录条目数及所有后续编号。RAW保留末尾额外字节，8bpp BMP保留头/调色板及未编辑载荷；未验证格式拒绝清空。
+- 当前兵种S图库物理1..240为固定槽；删除不是移除目录项，而是在 Unit_mov/Unit_atk/Unit_spc 中同步把所选槽的全部帧像素索引清零，保持原尺寸、物理目录条目数及所有后续编号。RAW保留末尾额外字节，8bpp BMP保留头/调色板及未编辑载荷；未验证格式拒绝清空。
 - 兵种 S 页的“新增”表示向选中的既有固定槽导入/替换，不允许向人物将领 S 命名空间尾部追加。原人物 S 的追加入口不构成兵种扩容；兵种固定槽的像素修改应原位写回，复制追加必须拒绝。
 - 兵种固定槽清空事务登记 ReferencePolicy=fixed-slot-clear；不能套用普通资源删除的前移重排策略。仍保留 before/after SHA与整档案快照供撤回/重做；同一事务修改mov/atk/spc全部关联文件。
 - 原生动作条、当前套AI参考图与BMP/动画子格式分别登记独立协议；原生导出R为正背两条、S为mov/atk/spc三条，不能用参考总图替代原生导出。
-- 形象设定中文分类名称后附当前descriptor实际出处文件：6.5宝物为Itemicon.dll、6.6为Item.e5；Pmap.e5显示战场地形，Weather.e5显示天气图片。内部ResourceKey与物理相对路径不因显示标签修改。
+- 形象设定中文分类名称后附当前descriptor实际出处文件：6.5宝物为Itemicon.dll、6.6为Item.e5；一体化管理器Pmap.e5为内场景地形并合入Mmap场景背景的“地形编辑”入口，不作独立普通图片分类，Weather.e5显示天气图片。内部ResourceKey与物理相对路径不因显示标签修改。
 - 引擎版本与图标容器独立：固定PE版本FilePrivatePart=6可判为6.6，即使本地化FileVersion文本为旧1,0,0,1或仍使用Itemicon/Mgcicon DLL。IsUsableResourcePath要求Item/Mtem首条为标准图片，未知RAW几何不按大小图配对读取，回退已验证DLL。厚黑6.6混合样本E5/Item.e5为126条（106×1024、20×1026字节），不因此假设63对图标；实际Itemicon.dll为171对16/32图。
 - Meff规范路径优先E5/Meff.e5；十八州样本目录四字节尾部可非零，必须用OpenMeff专用读取，普通E5保持严格零尾部。缩略图、完整解码、播放间隔、导出和原生平面均复用ReadPackageBytes；只让首帧解码成功仍会导致图库点击播放失败。
+- 一体化Mmap/Pmap关联按format.data-manager.inner-scene-pmap：前40外场景固定槽，内场景n映射Pmap n−40；改变内场景数量必须双档配对事务。Pmap为16字节头和UInt16LE单元，禁止经普通图片量化。
 
 ## 攻击与穿透范围字段到预览图号的映射
 
@@ -281,21 +345,20 @@ ID: `format.data-manager.rs-native-strip-exchange`；状态: `canonical`；证�
 - R正面接受front/x/1、背面接受back/y/2文件名；S接受mov/atk/spc。完整路径或包含逻辑形象子目录均能定位。
 - 8bpp BMP保留原索引及palette后送入RsImportService；RAW/BMP真实写回保留源容器未拆字节和尾部，在一次多文件资源事务提交。
 
-## 当前套参考总图与像素导回协议
+## 当前物理 R/S 参考包、布局清单与灵活画布回导
 
 ID: `format.data-manager.current-set-reference-atlas`；状态: `canonical`；证据: `source-reviewed`
 
 字节序: `PNG network byte order; application frame descriptors preserve source physical IDs`
 
-- ReferenceAtlasContext为当前逻辑资源的非拥有视图。S只筛选当前preferredTurn的28帧且要求同一物理图号；无该Turn时取首个真实可用套；R保留40帧。
-- 默认输出一张键色PNG和提示词，透明观察版由IncludeTransparent显式选择；旧接口透明版行为保留兼容。参考图不写JSON manifest，也不依赖目录内遗留JSON。
-- R布局40帧，front0..19再back0..19，单格64×64、7列，总画布448×448；帧本身保持48×64。
-- S当前套布局348×348：mov0..5、mov6..10、spc0..4占48像素三行，atk0..3、4..7、8..11占64像素三行；帧距2像素，分区保持既有布局。
-- 导出倍率仅1/2/4，用最近邻等整数放大；提示词逐项写出实际输出画布与各帧矩形，不允许平台自行转1024/1536、添加外边距、合并格子或填占保留空格。
-- 默认导回Kernel=NearestNeighbor、GeometryMode=None，只按格位恢复一次原生像素网格，不强迫AI新角色缩成原人物轮廓或相同基线；旧AlignToReferenceOccupancy仅为显式选项。
-- 输入必须无损PNG；AI实际画布可经格式修复配准到标准格位，但先逐帧拆分再处理，禁止把整张大图模糊缩小当最终结果。
-- 保留AI新服装、武器和身形，原项目帧用作格位和动作参照。缺帧、占保留格、无法解释的错格阻止提交；低置信度、蒙版或裁切必须在确认窗审查。
-- 最终量化回目标项目调色板并保留目标帧描述符；参考套导回不能覆盖其他转数或另一个S命名空间。
+- ReferenceAtlasContext是当前选定资源的非拥有视图。S须是同一Unit物理号的28帧：mov11、atk12、spc5，帧描述符保留真实目标；当前实现不从preferredTurn自动抽另一物理套。R上下文保留正背帧。
+- 当前新接口默认4倍最近邻导出主键色PNG、.atlas.json布局清单、独立动作对照PNG和提示词；透明观察图仅IncludeTransparent显式开启。旧asset+frames重载仍1倍且含透明图，但也写出布局清单。旧“参考图不写JSON”记录已被当前源码替代。
+- R标准40帧按front0..19/back0..19排序，48×64帧位于64像素格的7列448×448画布。S单套原生348×348、格距2，六行6/5/5/4/4/4分别为mov0..5、mov6..10、spc0..4和atk0..11，默认4倍1392×1392；两个小格保留位保持空。
+- AtlasManifest version1包含布局ID、原生画布、导出倍率/尺寸、资源类型、描述性来源号/键、分区与逐帧动作/方向/序号/原生尺寸/源框。Load限制2MiB、版本/边界/唯一帧；ValidateFor核对当前目标帧结构。清单来源号及回图文件名均不选择写入目标。
+- 无清单旧PNG可处理；关联清单也可在当前非方形回图中指定有效ROI并重新映射。支持外边框/留白、非整数缩放、逐帧源框校正与多背景采样，原生格位只是动作格式，不要求新人物贴合旧轮廓。
+- 默认最近邻、按动作组统一等比还原并补透明边；显式RepairAspectRatio才修复横纵拉伸。先从原图逐帧裁取再还原，保持受击/倒地位移，不以整张模糊缩小或逐帧贴底替代。
+- 真实缺帧、重复/越界源框和未解决布局歧义阻断，人工确认不能掩盖空帧；低置信度/背景/触边/色差等警告须审阅。只有最新处理完成且满足确认门禁的候选可写回。
+- 最终使用当前目标帧描述符和调色板写回：一张S图的28帧落同一物理号mov/atk/spc三档案，不解释成三转三套。沿用多文件事务、源SHA、备份、复读与历史恢复；源码审阅不等于本轮游戏运行验收。
 
 ## Weather.e5 216×50 四帧竖条与消费者
 

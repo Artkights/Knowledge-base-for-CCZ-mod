@@ -1,0 +1,240 @@
+{
+  "id": "ccz-6.4",
+  "version": "6.4",
+  "displayName": "曹操传加强版 6.4",
+  "inherits": "ccz-6.5",
+  "defaultVariantId": "64-xisui-v1",
+  "variants": [
+    {
+      "id": "64-xisui-v1",
+      "displayName": "6.4 洗隋兼容布局",
+      "layoutId": "64-xisui-v1",
+      "fingerprints": [
+        {
+          "sampleId": "洗隋",
+          "fileLengths": {
+            "Data.e5": 61379,
+            "Star.e5": 6359,
+            "Ekd5.exe": 1162240,
+            "Imsg.e5": 440200
+          },
+          "sha256": {
+            "Data.e5": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF",
+            "Star.e5": "4A201ECC0FA3C315DA077615DE7AE4A90EF4CC61E5D94F119841F906EE4FCD15",
+            "Ekd5.exe": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+            "Imsg.e5": "F3C8AF4FB4673719EAAD819CE44C4D81ADCD3A7FA3DA9A67910D82F501382E74"
+          }
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "key": "persons",
+      "displayName": "人物",
+      "file": "Data.e5",
+      "offset": 396,
+      "rows": 1024,
+      "rowSize": 32,
+      "beginId": 0,
+      "module": "人物",
+      "recordCodecKey": "fixed-record-v1",
+      "verificationLevel": "SourceReviewed",
+      "fields": [
+        {
+          "name": "名称",
+          "offset": 0,
+          "size": 13,
+          "kind": "FixedString"
+        },
+        {
+          "name": "头像",
+          "offset": 13,
+          "size": 2,
+          "kind": "UInt16",
+          "policy": "Editable"
+        },
+        {
+          "name": "撤退台词",
+          "offset": 15,
+          "size": 1,
+          "kind": "UInt8",
+          "policy": "Editable"
+        },
+        {
+          "name": "暴击台词",
+          "offset": 16,
+          "size": 1,
+          "kind": "UInt8",
+          "policy": "Editable"
+        },
+        {
+          "name": "Army",
+          "offset": 17,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "names": [
+            "武力",
+            "统帅",
+            "智力",
+            "敏捷",
+            "士气"
+          ],
+          "offset": 18,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "初始HP",
+          "offset": 23,
+          "size": 2,
+          "kind": "UInt16",
+          "maximum": 65535
+        },
+        {
+          "name": "初始MP",
+          "offset": 25,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "name": "兵种",
+          "offset": 26,
+          "size": 1,
+          "kind": "UInt8",
+          "maximum": 79,
+          "referenceTable": "detailed-jobs"
+        },
+        {
+          "name": "级别",
+          "offset": 27,
+          "size": 1,
+          "kind": "UInt8",
+          "policy": "Editable"
+        },
+        {
+          "name": "经验",
+          "offset": 28,
+          "size": 1,
+          "kind": "UInt8",
+          "policy": "Editable"
+        },
+        {
+          "name": "默认武器",
+          "offset": 29,
+          "size": 1,
+          "kind": "UInt8",
+          "referenceTable": "items"
+        },
+        {
+          "name": "默认防具",
+          "offset": 30,
+          "size": 1,
+          "kind": "UInt8",
+          "referenceTable": "items"
+        },
+        {
+          "name": "默认辅助",
+          "offset": 31,
+          "size": 1,
+          "kind": "UInt8",
+          "referenceTable": "items"
+        }
+      ],
+      "layoutSource": "洗隋人物构造/批量1024行/32字节步长消费者；级别经验和默认装备经完整调用链核对"
+    },
+    {
+      "key": "detailed-job-growth",
+      "displayName": "兵种成长与装备",
+      "file": "Data.e5",
+      "offset": 40372,
+      "rows": 80,
+      "rowSize": 35,
+      "beginId": 0,
+      "module": "兵种",
+      "parentKey": "detailed-jobs",
+      "fields": [
+        {
+          "names": [
+            "移动力成长",
+            "攻击范围",
+            "攻击成长",
+            "防御成长",
+            "精神成长",
+            "爆发成长",
+            "士气成长",
+            "HP成长",
+            "MP成长"
+          ],
+          "offset": 0,
+          "size": 1,
+          "kind": "UInt8"
+        },
+        {
+          "names": [
+            "普通剑",
+            "特殊剑",
+            "普通枪",
+            "特殊枪",
+            "普通弓",
+            "特殊弓",
+            "普通刀",
+            "特殊刀",
+            "普通炮车",
+            "特殊炮车",
+            "普通锤",
+            "特殊锤",
+            "普通斧",
+            "特殊斧",
+            "普通扇",
+            "特殊扇",
+            "普通宝剑",
+            "特殊宝剑",
+            "普通将剑",
+            "特殊将剑",
+            "普通铠甲",
+            "特殊铠甲",
+            "普通衣服",
+            "特殊衣服",
+            "普通袍服",
+            "特殊袍服"
+          ],
+          "offset": 9,
+          "size": 1,
+          "kind": "UInt8"
+        }
+      ],
+      "verificationLevel": "SourceReviewed",
+      "layoutSource": "洗隋80×35字节加载器、job accessor与26类装备许可消费者"
+    },
+    {
+      "key": "effect-names",
+      "offset": 855392,
+      "rows": 180,
+      "capability": "ReadOnly",
+      "verificationLevel": "SourceReviewed",
+      "layoutSource": "洗隋 PE 双名称消费者 VA 0x4FF560，180×16"
+    },
+    {
+      "key": "person-retreat-quotes",
+      "capability": "Unavailable",
+      "verificationLevel": "InheritedUnverified",
+      "capabilityEvidence": "由洗隋49条上限/200字节步长/IMSG对象加载与对话调用链独立探测后开放。",
+      "offset": 130000
+    },
+    {
+      "key": "strategy-extension",
+      "capability": "Unavailable",
+      "verificationLevel": "InheritedUnverified",
+      "capabilityEvidence": "6.4 旧表未声明该扩展标记；尚无洗隋独立消费者证据，保留对应 EXE 字节。"
+    },
+    {
+      "key": "strategy-terrain-availability",
+      "capability": "Unavailable",
+      "verificationLevel": "InheritedUnverified",
+      "capabilityEvidence": "由6.4实际PE消费者与调用方独立探测后开放。"
+    }
+  ]
+}

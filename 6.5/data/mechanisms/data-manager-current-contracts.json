@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "entries": [
+    {
+      "id": "mechanism.shared.data-manager-text-payload-budget",
+      "title": "文本物理槽宽、严格GBK有效载荷与原槽尾部保护",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed-current-implementation",
+      "sourceRefs": [
+        "src.dm.core-current-20261102.text-constraints",
+        "src.dm.core-current-20261102.text-evidence",
+        "src.dm.core-current-20261102.encoding",
+        "src.dm.core-current-20261102.test-text"
+      ],
+      "aliases": [
+        "GBK字节预算",
+        "物品名称14字节",
+        "完整200字节列传",
+        "隐藏尾参数",
+        "CP936"
+      ],
+      "summary": "磁盘槽宽、允许修改的文本载荷和运行时消费者证据是三个独立量。当前管理器采用严格GBK/CP936字节预算；原值未改保留整个槽，主动修改才校验编码、容量、NUL和隐藏尾部。",
+      "budgets": [
+        {
+          "tableKeys": [
+            "persons"
+          ],
+          "storageBytes": 13,
+          "maxPayloadBytes": 12,
+          "requiresTerminator": true
+        },
+        {
+          "tableKeys": [
+            "strategies"
+          ],
+          "storageBytes": 11,
+          "maxPayloadBytes": 10,
+          "requiresTerminator": true
+        },
+        {
+          "tableKeys": [
+            "items-low",
+            "items-high",
+            "items-extended"
+          ],
+          "storageBytes": [
+            15,
+            17
+          ],
+          "maxPayloadBytes": 14,
+          "requiresTerminator": true,
+          "meaning": "15/17为物理名称槽宽；当前物品初始化消费者使运行时名称第15字节为NUL，不能据物理宽度允许输入15/17字节。"
+        },
+        {
+          "tableKeys": [
+            "job-series",
+            "detailed-jobs"
+          ],
+          "storageBytes": 9,
+          "maxPayloadBytes": 8,
+          "requiresTerminator": true
+        },
+        {
+          "tableKeys": [
+            "finishing-moves"
+          ],
+          "storageBytes": 11,
+          "maxPayloadBytes": 10,
+          "requiresTerminator": true,
+          "isConservative": true
+        },
+        {
+          "tableKeys": [
+            "forge"
+          ],
+          "storageBytes": 30,
+          "maxPayloadBytes": 29,
+          "requiresTerminator": true,
+          "isConservative": true
+        },
+        {
+          "tableKeys": [
+            "effect-names",
+            "item-effect-names-66"
+          ],
+          "storageBytes": 16,
+          "maxPayloadBytes": 15,
+          "requiresTerminator": true
+        },
+        {
+          "tableKeys": [
+            "Imsg.e5中的200字节文本字段"
+          ],
+          "storageBytes": 200,
+          "maxPayloadBytes": 200,
+          "requiresTerminator": false,
+          "meaning": "读取缓冲区另附NUL；满200个GBK字节可合法保存，不能统一减成199。"
+        }
+      ],
+      "originalSlotPolicy": [
+        "找到首个NUL后，从下一字节寻找首个非零保留字节i；当前可增长预算至多i-1，保留终止符及尾部。",
+        "新值不能用GBK表示或含嵌入NUL时拒绝，不能静默截断或以问号代写；GBK不可用不回退UTF-8。",
+        "原无效字节以私用占位区分于真实问号并记录警告；未改字段仍保存原槽，改该文本时要求替换不可编码占位。",
+        "CR、LF、尾空格和控制码按原字节保留并计入预算；不会TrimEnd或统一换行。",
+        "旧超预算名称不因打开、相同CSV回导或保存其他字段被清洗；未知窄槽始终以其真实槽宽收窄预算。"
+      ],
+      "consumerEvidenceBoundary": {
+        "verifiedExecutableSha256": [
+          "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+          "34B810EE790F4BAA70EBF60AA286AA7BD246A2C17B425B36BD3825B36BA2D6DA",
+          "A99DDD6971669D4847444F91B9ED211CD205107E1074528CCEDB86E360FC1282"
+        ],
+        "unknown": "当前EXE完整指纹不匹配时，即使局部消费者签名相同仍标保守策略；6.4及其他改版不能继承这三份EXE的完整运行时证据。",
+        "conservativeNames": "必杀与锻造的10/29字节是当前保守保存策略，实际字符串消费者尚未完整核定。"
+      },
+      "writePolicy": "仅给当前已定位且允许编辑的字段提供文本预算，不改变ReadOnly/Preserve/Unavailable或授予未知区域写入能力。",
+      "relations": [
+        "test.shared.data-manager-text-payload-writeback"
+      ]
+    },
+    {
+      "id": "mechanism.shared.data-manager-extension-runtime-boundary",
+      "title": "拓展初始表、个人活动表与EXS恢复的证据边界",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed-current-implementation",
+      "sourceRefs": [
+        "src.dm.core-current-20261102.extend-service",
+        "src.dm.core-current-20261102.extend-reference",
+        "src.dm.core-current-20261102.table-reader",
+        "src.dm.core-current-20261102.augmentation"
+      ],
+      "aliases": [
+        "文件存在不等于插件已启用",
+        "Effect.e5初始数据",
+        "EXS覆盖",
+        "特效号255空槽"
+      ],
+      "summary": "Effect、Effectmsg、MeffStudy、Forge的物理记录解析、管理器编辑能力和目标游戏消费者分别判断；文件存在或临时副本写后可复读，均不能证明该引擎已启用拓展功能。EXS可能恢复运行时状态，修改初始e5不保证覆盖旧档。",
+      "rules": [
+        "按当前文件的完整记录数及容量上限加载，不因打开/保存自动扩容；截断、超容量、缺文件只关闭受影响分类。",
+        "根目录Item.e5是可选数据来源；E5/Item.e5是图标档案，不能因同名读取为扩展数据。",
+        "Effect.e5每人物256个四字节槽，活动表每特效行按人物/兵种匹配；二者索引方向不同，不能把扩展槽存在当成该EXE已执行扩展读取链。",
+        "扩展Effect槽ID255是该扩展协议的空槽/结束项，回合255是永久；这个空值契约不能移植为原生活动表个人selector255。",
+        "Effect已有槽只改ID/值时保留经验和回合；新填空槽默认经验0、回合255；主动清空写FF 00 00 FF，整理移动完整四字节并保留顺序与重复。",
+        "MeffStudy查询可能扫描全部32槽，但扣次/关末清理可能首空停止；次数255无限，清空FF 00，整理需显式操作。",
+        "Effectmsg成长ID255保留只读；允许成长按非零判断，原2/255不自动归一成1。",
+        "锻造物品ID低字节255为空；已有255/511/65535等原编码未修改时保留。",
+        "迁移/CSV创建物理文件不注入消费者或替换扩展DLL；6.4继承几何不构成独立消费者证据。"
+      ],
+      "runtimeBoundary": "要证明玩法已生效，须另有精确样本、插件/加载器及消费者证据和相应游戏运行验收；本实体只确认当前离线管理器的处理与限制。",
+      "relations": [
+        "format.data-manager.extended-tables",
+        "mechanism.66.engine-effect-assignment-composition"
+      ]
+    }
+  ]
+}

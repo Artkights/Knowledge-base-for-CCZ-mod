@@ -9,3 +9,5 @@
 使用 `python tools/query_kb.py "查询词" --version 6.6` 检索；增加 `--status candidate` 可专门审查历史候选。
 
 宝物类别读写见 [structures.md](reference/structures.md) 中的 `struct.66.item-category-semantics`，天毒珠、太平要术等五个辅助样本绑定当前 `profile.ccz66.shanzai.guoqing.f36` 及其配套数据文件哈希。不同名称/图标布局仍须选择对应 Codec；不能按“五例都能读取”推定旧山贼 EXE 已验证。消耗品的共享候选目录统一维护在 [6.5 mechanisms.md](../6.5/reference/mechanisms.md)，原始字节与用户标签来源见 [sources](../sources/item-semantic-byte-evidence.json)。
+
+2026-11-02 的data管理器公式与常量条目绑定各自声明的精确25D画像，不能继承到F20C、F36或其它6.6构建。新增33项公式候选、80项匹配常量及相应工作流/测试，见 `reference/mechanisms.md`、`reference/workflows.md`、`reference/test-contracts.md`。疾风攻击中的代码固定补正+12与活动表槽N独立；公式解释和工具副本写回均不等价于游戏内实战验收。XLSX、参考包与内场景地形等跨版本协议继续统一查询6.5下的共享实体。

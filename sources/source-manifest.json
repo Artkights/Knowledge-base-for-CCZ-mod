@@ -5344,6 +5344,1674 @@
         "kind": "external-local",
         "reason": "历史来源原字节未在当前工作区或已抓取Git历史中找到，原始SHA256仅保留为身份记录；本次不能复核原件，不能据此宣称重新完成静态或实机验证。"
       }
+    },
+    {
+      "id": "src.dm.formulas.service-20261102",
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineBattleFormulaService.cs",
+      "sha256": "50DB5AC96CFF4B9B3DD606839A6084377A57C29AA6316E232344053860B30C04",
+      "sourceType": "first-party-source",
+      "usedFor": "33项公式、逐步计算式、固定/链接常量和公式族输入校验",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/e4a0c21af3ac46ee032a.txt",
+        "sha256": "E4A0C21AF3AC46EE032A08919E6B6F1863247179107BBFD33B7327E207CC68D5",
+        "normalizedSha256": "E4A0C21AF3AC46EE032A08919E6B6F1863247179107BBFD33B7327E207CC68D5",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.constants-20261102",
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineConstantService.cs",
+      "sha256": "4DD85001A8B56F5010336005B59EDF947BD358CD526D25B63B39776E3D971D70",
+      "sourceType": "first-party-source",
+      "usedFor": "88项常量定义、签名与掩码、PE映射、指针相对定位及多站点事务",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/c3c043e01001f9a3b88c.txt",
+        "sha256": "C3C043E01001F9A3B88C85536E1E291C098F50306637374BBA93207C0488F9FB",
+        "normalizedSha256": "C3C043E01001F9A3B88C85536E1E291C098F50306637374BBA93207C0488F9FB",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.constant-definitions-20261102",
+      "path": "data管理器/src/DataManager.Core/Scanner/BattleFormulaConstantDefinitions.cs",
+      "sha256": "B1BFCE53A72E7DEA571DE8F7ADCB7F08C34FFCCAEFB693A6C84CDAC5BBA1D98B",
+      "sourceType": "first-party-source",
+      "usedFor": "40项公式常量的布局、范围、立即数字段宽度与版本限制",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/b1bfce53a72e7dea571d.txt",
+        "sha256": "B1BFCE53A72E7DEA571DE8F7ADCB7F08C34FFCCAEFB693A6C84CDAC5BBA1D98B",
+        "normalizedSha256": "B1BFCE53A72E7DEA571DE8F7ADCB7F08C34FFCCAEFB693A6C84CDAC5BBA1D98B",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.tests-20261102",
+      "path": "data管理器/src/DataManager.Tests/EngineBattleFormulaTests.cs",
+      "sha256": "FDE74E87C5D6BC523039FB4C58FB856A3E5D91BC7228A6816B6A3CF2583A4B4A",
+      "sourceType": "first-party-source",
+      "usedFor": "公式可读、常量链接、步骤与跨公式共享值断言",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/fde74e87c5d6bc523039.txt",
+        "sha256": "FDE74E87C5D6BC523039FB4C58FB856A3E5D91BC7228A6816B6A3CF2583A4B4A",
+        "normalizedSha256": "FDE74E87C5D6BC523039FB4C58FB856A3E5D91BC7228A6816B6A3CF2583A4B4A",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.write-tests-20261102",
+      "path": "data管理器/src/DataManager.Tests/EngineBattleFormulaWriteTests.cs",
+      "sha256": "0E65928E7EDEF51BC804B0EC3C8B3C8C98D2967AFA94346439356E82EC79A7BC",
+      "sourceType": "first-party-source",
+      "usedFor": "隔离副本的修改/复读/回填，公式族错误拒绝和警告不阻断断言",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/0e65928e7edef51bc804.txt",
+        "sha256": "0E65928E7EDEF51BC804B0EC3C8B3C8C98D2967AFA94346439356E82EC79A7BC",
+        "normalizedSha256": "0E65928E7EDEF51BC804B0EC3C8B3C8C98D2967AFA94346439356E82EC79A7BC",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.audit-tests-20261102",
+      "path": "data管理器/src/DataManager.Tests/EngineConstantAuditTests.cs",
+      "sha256": "B051E29A2392E7BE1E998140288C5D2F2E3BE00E08BC4055F148CCC9EADAB7C4",
+      "sourceType": "first-party-source",
+      "usedFor": "逐项写入/复读/恢复及成对位移、唯一签名、原基底不变断言",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/b051e29a2392e7be1e99.txt",
+        "sha256": "B051E29A2392E7BE1E998140288C5D2F2E3BE00E08BC4055F148CCC9EADAB7C4",
+        "normalizedSha256": "B051E29A2392E7BE1E998140288C5D2F2E3BE00E08BC4055F148CCC9EADAB7C4",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.doc-swift-20261102",
+      "path": "data管理器/知识库/01-核心引擎/疾风攻击公式与常量-特效值区分.md",
+      "sha256": "93C08EAA861DB5586EFC3E24AACD1817C43A40AC3996FEE17E4091A52AF2871A",
+      "sourceType": "first-party-document",
+      "usedFor": "公式与字段边界交叉核对；摘要冲突以完整消费链和当前源码为准",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/93c08eaa861db5586efc.txt",
+        "sha256": "93C08EAA861DB5586EFC3E24AACD1817C43A40AC3996FEE17E4091A52AF2871A",
+        "normalizedSha256": "93C08EAA861DB5586EFC3E24AACD1817C43A40AC3996FEE17E4091A52AF2871A",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.doc-constant-contract-20261102",
+      "path": "data管理器/知识库/01-核心引擎/特效常量-三基底证据与相对定位.md",
+      "sha256": "C8E381593902871FF91617A8482A58415B2F3A317F2DB0097BA476845758BF85",
+      "sourceType": "first-party-document",
+      "usedFor": "公式与字段边界交叉核对；摘要冲突以完整消费链和当前源码为准",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/241930a84733f43b9e00.txt",
+        "sha256": "241930A84733F43B9E003DAF4A42FC0ED8091DCAB2AABA13281486B0E512A529",
+        "normalizedSha256": "241930A84733F43B9E003DAF4A42FC0ED8091DCAB2AABA13281486B0E512A529",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.doc-battle-formulas-20261102",
+      "path": "data管理器/知识库/01-核心引擎/战斗公式-三基底公式与常量.md",
+      "sha256": "01543EFEFA27C45F492EC2BF16B1B8FBCF5FFA7CA8FE17CA94745743E33FBCE7",
+      "sourceType": "first-party-document",
+      "usedFor": "公式与字段边界交叉核对；摘要冲突以完整消费链和当前源码为准",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/7197e6209e500889e8c7.txt",
+        "sha256": "7197E6209E500889E8C74B3B68178055532F1A6ECD58684F934544BC096355FB",
+        "normalizedSha256": "7197E6209E500889E8C74B3B68178055532F1A6ECD58684F934544BC096355FB",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.doc-formula-validation-20261102",
+      "path": "data管理器/知识库/01-核心引擎/公式设定页-读写与语义验证.md",
+      "sha256": "E42CCBAC6BAFB2023E9978BF1536C140012111085DA19F53C2AD654A5D35B640",
+      "sourceType": "first-party-document",
+      "usedFor": "公式与字段边界交叉核对；摘要冲突以完整消费链和当前源码为准",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/e42ccbac6bafb2023e99.txt",
+        "sha256": "E42CCBAC6BAFB2023E9978BF1536C140012111085DA19F53C2AD654A5D35B640",
+        "normalizedSha256": "E42CCBAC6BAFB2023E9978BF1536C140012111085DA19F53C2AD654A5D35B640",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.doc-active-table-20261102",
+      "path": "data管理器/知识库/01-核心引擎/活动表版本差异与字段写入契约.md",
+      "sha256": "9D2C165EDEEFEEC096DC4841A3E85A997002C237BE39DF99DB46991010006198",
+      "sourceType": "first-party-document",
+      "usedFor": "公式与字段边界交叉核对；摘要冲突以完整消费链和当前源码为准",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/9d2c165edeefeec096dc.txt",
+        "sha256": "9D2C165EDEEFEEC096DC4841A3E85A997002C237BE39DF99DB46991010006198",
+        "normalizedSha256": "9D2C165EDEEFEEC096DC4841A3E85A997002C237BE39DF99DB46991010006198",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.doc-person-job-slots-20261102",
+      "path": "data管理器/知识库/01-核心引擎/人物槽与兵种槽-特效号读取规则.md",
+      "sha256": "C19487FA5C9E9E8ED9D86636EA2162250416DD77982160F7DA8C71D0F1BC2BBE",
+      "sourceType": "first-party-document",
+      "usedFor": "公式与字段边界交叉核对；摘要冲突以完整消费链和当前源码为准",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/c19487fa5c9e9e8ed9d8.txt",
+        "sha256": "C19487FA5C9E9E8ED9D86636EA2162250416DD77982160F7DA8C71D0F1BC2BBE",
+        "normalizedSha256": "C19487FA5C9E9E8ED9D86636EA2162250416DD77982160F7DA8C71D0F1BC2BBE",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.doc-three-pools-20261102",
+      "path": "data管理器/知识库/01-核心引擎/引擎特效复合绑定与三子页分配池.md",
+      "sha256": "4106A6654D3D90575ED027DCBA25E2603A00FA65A976BD17CD5ED0F691A32757",
+      "sourceType": "first-party-document",
+      "usedFor": "公式与字段边界交叉核对；摘要冲突以完整消费链和当前源码为准",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/7b80accaf306cbf0c8be.txt",
+        "sha256": "7B80ACCAF306CBF0C8BEB02F7A9A00EE6CEB7342A219ACCF23B7F66ED0AD4BA2",
+        "normalizedSha256": "7B80ACCAF306CBF0C8BEB02F7A9A00EE6CEB7342A219ACCF23B7F66ED0AD4BA2",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.sample-64-20261102",
+      "path": "基底/洗隋/Ekd5.exe",
+      "sha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+      "sourceType": "sample-binary",
+      "usedFor": "公式与常量精确样本身份；不分发游戏EXE",
+      "published": false,
+      "verification": {
+        "kind": "identity-only",
+        "reason": "只登记样本身份与SHA256，复核原始字节需自备完全匹配样本；仓库保留小型静态字段报告。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.fields-64-20261102",
+      "path": "_tmp/kb-incremental-20261102/formula-fields-64.json",
+      "sha256": "A95FF10376EA2D731EB85EA6230F878E5332A835669AAD4B262CA24D64ACC233",
+      "sourceType": "static-analysis-report",
+      "usedFor": "精确样本全部可读常量的PE映射、字段原字节、前后签名和唯一重定位只读复核",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/a95ff10376ea2d731eb8.txt",
+        "sha256": "A95FF10376EA2D731EB85EA6230F878E5332A835669AAD4B262CA24D64ACC233",
+        "normalizedSha256": "A95FF10376EA2D731EB85EA6230F878E5332A835669AAD4B262CA24D64ACC233",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.sample-65-20261102",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+      "sourceType": "sample-binary",
+      "usedFor": "公式与常量精确样本身份；不分发游戏EXE",
+      "published": false,
+      "verification": {
+        "kind": "identity-only",
+        "reason": "只登记样本身份与SHA256，复核原始字节需自备完全匹配样本；仓库保留小型静态字段报告。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.fields-65-20261102",
+      "path": "_tmp/kb-incremental-20261102/formula-fields-65.json",
+      "sha256": "8FD71C4594A4AB75F5CB8980E45768353F5334ED92D8A761CDE9EC8F794D4CBB",
+      "sourceType": "static-analysis-report",
+      "usedFor": "精确样本全部可读常量的PE映射、字段原字节、前后签名和唯一重定位只读复核",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/8fd71c4594a4ab75f5cb.txt",
+        "sha256": "8FD71C4594A4AB75F5CB8980E45768353F5334ED92D8A761CDE9EC8F794D4CBB",
+        "normalizedSha256": "8FD71C4594A4AB75F5CB8980E45768353F5334ED92D8A761CDE9EC8F794D4CBB",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.sample-66-20261102",
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A",
+      "sourceType": "sample-binary",
+      "usedFor": "公式与常量精确样本身份；不分发游戏EXE",
+      "published": false,
+      "verification": {
+        "kind": "identity-only",
+        "reason": "只登记样本身份与SHA256，复核原始字节需自备完全匹配样本；仓库保留小型静态字段报告。"
+      }
+    },
+    {
+      "id": "src.dm.formulas.fields-66-20261102",
+      "path": "_tmp/kb-incremental-20261102/formula-fields-66.json",
+      "sha256": "4AC7F44D3ED95224AE7430321DF5008C9A8D463801FBACF327B74A3757566505",
+      "sourceType": "static-analysis-report",
+      "usedFor": "精确样本全部可读常量的PE映射、字段原字节、前后签名和唯一重定位只读复核",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/4ac7f44d3ed95224ae74.txt",
+        "sha256": "4AC7F44D3ED95224AE7430321DF5008C9A8D463801FBACF327B74A3757566505",
+        "normalizedSha256": "4AC7F44D3ED95224AE7430321DF5008C9A8D463801FBACF327B74A3757566505",
+        "reason": "完整文本快照；仅移除UTF-8 BOM并把行结束统一为LF，原字节SHA与快照SHA分别登记，未修改技术内容或脱敏。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.xlsx-package",
+      "path": "data管理器/src/DataManager.Core/Workbooks/WorkbookPackage.cs",
+      "sha256": "D81076D9422C82061338B46AD94CB2AF4D6F49E827A24E564FF7D3E0011BA706",
+      "sourceType": "first-party-source",
+      "usedFor": "业务 XLSX 的 DataManagerWorkbook/1、VeryHidden 元数据/基线、隐藏字段键与 OOXML 文本保真",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/d81076d9422c82061338.txt",
+        "sha256": "D81076D9422C82061338B46AD94CB2AF4D6F49E827A24E564FF7D3E0011BA706",
+        "normalizedSha256": "D81076D9422C82061338B46AD94CB2AF4D6F49E827A24E564FF7D3E0011BA706",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.xlsx-service",
+      "path": "data管理器/src/DataManager.Core/Workbooks/PageWorkbookService.cs",
+      "sha256": "910AFE11DACF6FE3A6F4AF2D59E8808B88126FB4E5517604C4331879C6B5EDAA",
+      "sourceType": "first-party-source",
+      "usedFor": "业务工作簿三方冲突、整本预检、预览二次校验与组合草稿",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/910afe11dacf6fe3a6f4.txt",
+        "sha256": "910AFE11DACF6FE3A6F4AF2D59E8808B88126FB4E5517604C4331879C6B5EDAA",
+        "normalizedSha256": "910AFE11DACF6FE3A6F4AF2D59E8808B88126FB4E5517604C4331879C6B5EDAA",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.xlsx-registry",
+      "path": "data管理器/src/DataManager.Core/Workbooks/PageDatasetRegistry.cs",
+      "sha256": "6B782BC1C697D56C0CA2C424BEFA1B4BBE176E20D4A3A7BEEC2852435B3C355A",
+      "sourceType": "first-party-source",
+      "usedFor": "程序侧业务页数据集/字段权限白名单与辅助分组",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/6b782bc1c697d56c0ca2.txt",
+        "sha256": "6B782BC1C697D56C0CA2C424BEFA1B4BBE176E20D4A3A7BEEC2852435B3C355A",
+        "normalizedSha256": "6B782BC1C697D56C0CA2C424BEFA1B4BBE176E20D4A3A7BEEC2852435B3C355A",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.xlsx-models",
+      "path": "data管理器/src/DataManager.Core/Workbooks/WorkbookModels.cs",
+      "sha256": "93D89F842711AAC005DE925E71B8353858A871633ADFAF3CCC6F06B65C06F76E",
+      "sourceType": "first-party-source",
+      "usedFor": "工作簿 manifest、稳定 SheetId 与不可变导入提案接口",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/93d89f842711aac005de.txt",
+        "sha256": "93D89F842711AAC005DE925E71B8353858A871633ADFAF3CCC6F06B65C06F76E",
+        "normalizedSha256": "93D89F842711AAC005DE925E71B8353858A871633ADFAF3CCC6F06B65C06F76E",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.xlsx-doc",
+      "path": "data管理器/文档/业务工作簿交换.md",
+      "sha256": "9A9F88CC07ED4448BA7897F42E0E9D8E9F3CC5035444E7DE6CBE14E337155863",
+      "sourceType": "first-party-documentation",
+      "usedFor": "业务工作簿使用规则与导入范围",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/661113684351d7ab9db5.txt",
+        "sha256": "661113684351D7AB9DB56385767A9BCE6CF6D305E3B53A0903A26C5B216116FD",
+        "normalizedSha256": "661113684351D7AB9DB56385767A9BCE6CF6D305E3B53A0903A26C5B216116FD",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。 本轮发布快照另归一化LF、移除BOM及行尾空白；语义未改，原字节SHA保留在来源sha256。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.xlsx-tests",
+      "path": "data管理器/src/DataManager.Tests/PageWorkbookTests.cs",
+      "sha256": "D2CA189EF3A4BA58F651724D210D072B13091473BC99A3F82F4D4A6FBCE820B0",
+      "sourceType": "first-party-source",
+      "usedFor": "各业务页零变更往返、Open XML 验证、冲突/公式/缺表/白名单拒绝断言",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/d2ca189ef3a4ba58f651.txt",
+        "sha256": "D2CA189EF3A4BA58F651724D210D072B13091473BC99A3F82F4D4A6FBCE820B0",
+        "normalizedSha256": "D2CA189EF3A4BA58F651724D210D072B13091473BC99A3F82F4D4A6FBCE820B0",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.xlsx-native-tests",
+      "path": "data管理器/src/DataManager.Tests/WorkbookNativeTests.cs",
+      "sha256": "3D6713CBA5930EB3AE615F78261EE23201AE2C77639F79F0A947AB3975E0085C",
+      "sourceType": "first-party-source",
+      "usedFor": "控制文本、拓展工作簿、原生辅助分组与物理表联合撤回/重做",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/3d6713cba5930eb3ae61.txt",
+        "sha256": "3D6713CBA5930EB3AE615F78261EE23201AE2C77639F79F0A947AB3975E0085C",
+        "normalizedSha256": "3D6713CBA5930EB3AE615F78261EE23201AE2C77639F79F0A947AB3975E0085C",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.xlsx-text-tests",
+      "path": "data管理器/src/DataManager.Tests/WorkbookTextEncodingTests.cs",
+      "sha256": "A25EB5DD270550C1162AB71C86B0BA763D6731451D1A43BF6591A3201E40EE72",
+      "sourceType": "first-party-source",
+      "usedFor": "OOXML 控制码、CR/LF 和字面转义只解码一次",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/a25eb5dd270550c1162a.txt",
+        "sha256": "A25EB5DD270550C1162AB71C86B0BA763D6731451D1A43BF6591A3201E40EE72",
+        "normalizedSha256": "A25EB5DD270550C1162AB71C86B0BA763D6731451D1A43BF6591A3201E40EE72",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-context",
+      "path": "形象管理器/src/ImageManager.Core/ReferenceAtlasContext.cs",
+      "sha256": "2195B555DF8009DF2EF6C922EB8083457D7375EC45032F3DC4688851037C32FA",
+      "sourceType": "first-party-source",
+      "usedFor": "当前物理 S 槽 28 帧约束和参考包默认四倍导出",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/2195b555df8009df2ef6.txt",
+        "sha256": "2195B555DF8009DF2EF6C922EB8083457D7375EC45032F3DC4688851037C32FA",
+        "normalizedSha256": "2195B555DF8009DF2EF6C922EB8083457D7375EC45032F3DC4688851037C32FA",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-service",
+      "path": "形象管理器/src/ImageManager.Core/ReferenceAtlasService.cs",
+      "sha256": "915740E38C627AEE6413547BA66308E58D279284F25A0D0D06DD75947B717219",
+      "sourceType": "first-party-source",
+      "usedFor": "主 PNG、atlas.json、动作对照图、提示词与兼容重载输出",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/915740e38c627aee6413.txt",
+        "sha256": "915740E38C627AEE6413547BA66308E58D279284F25A0D0D06DD75947B717219",
+        "normalizedSha256": "915740E38C627AEE6413547BA66308E58D279284F25A0D0D06DD75947B717219",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-layout",
+      "path": "形象管理器/src/ImageManager.Core/ReferenceAtlasLayoutPlanner.cs",
+      "sha256": "0FAB084D6E60B1EB94952CD300F18F93FD0F4A9994BD440923266B3363A6AE94",
+      "sourceType": "first-party-source",
+      "usedFor": "R 40 帧及 S 6/5/5/4/4/4 帧位与348像素单套布局",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/0fab084d6e60b1eb9495.txt",
+        "sha256": "0FAB084D6E60B1EB94952CD300F18F93FD0F4A9994BD440923266B3363A6AE94",
+        "normalizedSha256": "0FAB084D6E60B1EB94952CD300F18F93FD0F4A9994BD440923266B3363A6AE94",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-manifest",
+      "path": "形象管理器/src/ImageManager.Core/AtlasManifest.cs",
+      "sha256": "3DE83A29DADBC0CD5722F4EE2DD28EFF1977F5324C627829AFFC7D97A6E78539",
+      "sourceType": "first-party-source",
+      "usedFor": "version1布局清单、帧身份/边界校验、当前目标隔离和有效画布映射",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/3de83a29dadbc0cd5722.txt",
+        "sha256": "3DE83A29DADBC0CD5722F4EE2DD28EFF1977F5324C627829AFFC7D97A6E78539",
+        "normalizedSha256": "3DE83A29DADBC0CD5722F4EE2DD28EFF1977F5324C627829AFFC7D97A6E78539",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-mapping",
+      "path": "形象管理器/src/ImageManager.Core/AtlasSourceMapping.cs",
+      "sha256": "7A72D08574D94F08691273690F22BB54A641C815D33EDF64571350B5BAA77FD7",
+      "sourceType": "first-party-source",
+      "usedFor": "源画布ROI、逐帧裁切框、明确确认与可选横纵比例修复",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/7a72d08574d94f086912.txt",
+        "sha256": "7A72D08574D94F08691273690F22BB54A641C815D33EDF64571350B5BAA77FD7",
+        "normalizedSha256": "7A72D08574D94F08691273690F22BB54A641C815D33EDF64571350B5BAA77FD7",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-flexible",
+      "path": "形象管理器/src/ImageManager.Core/AiAtlasNormalizer.Flexible.cs",
+      "sha256": "760E1CB956BA18FE3A0FCF429783740C4201F86782677133F1D8B4E2FFF1EB74",
+      "sourceType": "first-party-source",
+      "usedFor": "灵活画布、背景蒙版、动作组统一尺度与源框恢复",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/760e1cb956ba18fe3a0f.txt",
+        "sha256": "760E1CB956BA18FE3A0FCF429783740C4201F86782677133F1D8B4E2FFF1EB74",
+        "normalizedSha256": "760E1CB956BA18FE3A0FCF429783740C4201F86782677133F1D8B4E2FFF1EB74",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-ui",
+      "path": "形象管理器/src/ImageManager.App/AiAtlasImportDialog.cs",
+      "sha256": "5214BA0DB8B3AC21B3ED48DFD25D31A33A9A26E68B91A9F6775B55AA2F9A2226",
+      "sourceType": "first-party-source",
+      "usedFor": "异步最新预览、警告确认、阻断问题与写回门禁",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/5d05c2de6267c0b85b74.txt",
+        "sha256": "5D05C2DE6267C0B85B74772AA0F151EA3DA27000551DCA937B92D773F937F229",
+        "normalizedSha256": "5D05C2DE6267C0B85B74772AA0F151EA3DA27000551DCA937B92D773F937F229",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。 本轮发布快照另归一化LF、移除BOM及行尾空白；语义未改，原字节SHA保留在来源sha256。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-doc",
+      "path": "data管理器/文档/参考图灵活回导.md",
+      "sha256": "499A71FA6967C660A0984A31876093A525532EFA01DA489AF16B2EA0AB1203F6",
+      "sourceType": "first-party-documentation",
+      "usedFor": "参考包、非方形画布与三文件回导操作边界",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/499a71fa6967c660a098.txt",
+        "sha256": "499A71FA6967C660A0984A31876093A525532EFA01DA489AF16B2EA0AB1203F6",
+        "normalizedSha256": "499A71FA6967C660A0984A31876093A525532EFA01DA489AF16B2EA0AB1203F6",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-package-tests",
+      "path": "形象管理器/src/ImageManager.Tests/AtlasPackageTests.cs",
+      "sha256": "80BFC071877FE831DFEDA88E44EF819605F1C2C8E4FC16DB6026A29E84FD61DC",
+      "sourceType": "first-party-source",
+      "usedFor": "默认参考包四件套、原生像素、来源号不改变目标号和清单拒绝断言",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/80bfc071877fe831dfed.txt",
+        "sha256": "80BFC071877FE831DFEDA88E44EF819605F1C2C8E4FC16DB6026A29E84FD61DC",
+        "normalizedSha256": "80BFC071877FE831DFEDA88E44EF819605F1C2C8E4FC16DB6026A29E84FD61DC",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-flexible-tests",
+      "path": "形象管理器/src/ImageManager.Tests/FlexibleAtlasTests.cs",
+      "sha256": "A96235B9B6411C5C61CDFA43271A26354E105FF7F066968A6F38FBB29B0AA67F",
+      "sourceType": "first-party-source",
+      "usedFor": "规范/长方形画布、背景/源框修正和两张真实素材的临时事务",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/a96235b9b6411c5c61cd.txt",
+        "sha256": "A96235B9B6411C5C61CDFA43271A26354E105FF7F066968A6F38FBB29B0AA67F",
+        "normalizedSha256": "A96235B9B6411C5C61CDFA43271A26354E105FF7F066968A6F38FBB29B0AA67F",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.atlas-transform-tests",
+      "path": "形象管理器/src/ImageManager.Tests/AtlasTransformTests.cs",
+      "sha256": "6C8D7EA79CA8AABAEFD2948F5844B3D4CFCEDE37F404E3391F987D4A869D2787",
+      "sourceType": "first-party-source",
+      "usedFor": "横竖留白、非整数动作偏移、显式变形修复与真实缺帧阻断",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/6c8d7ea79ca8aabaefd2.txt",
+        "sha256": "6C8D7EA79CA8AABAEFD2948F5844B3D4CFCEDE37F404E3391F987D4A869D2787",
+        "normalizedSha256": "6C8D7EA79CA8AABAEFD2948F5844B3D4CFCEDE37F404E3391F987D4A869D2787",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.pmap-codec",
+      "path": "形象管理器/src/ImageManager.Core/PmapTerrainCodec.cs",
+      "sha256": "D60D0A3EEE49023BC454882E60D35B2EF7FFEFFF4B1B5458B3299EDDFD8735D0",
+      "sourceType": "first-party-source",
+      "usedFor": "16字节原头、UInt16LE单元、20016字节默认地形与精确长度约束",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/d60d0a3eee49023bc454.txt",
+        "sha256": "D60D0A3EEE49023BC454882E60D35B2EF7FFEFFF4B1B5458B3299EDDFD8735D0",
+        "normalizedSha256": "D60D0A3EEE49023BC454882E60D35B2EF7FFEFFF4B1B5458B3299EDDFD8735D0",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.pmap-data",
+      "path": "形象管理器/src/ImageManager.Core/PmapTerrainData.cs",
+      "sha256": "64AAC7BAAF50537A05528B5C606837E1DA61A1B4D74494DC73B5C5B2DCA2E35A",
+      "sourceType": "first-party-source",
+      "usedFor": "100×100单层及FFFF/F0FF格值的可编辑能力门禁",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/64aac7baaf50537a0552.txt",
+        "sha256": "64AAC7BAAF50537A05528B5C606837E1DA61A1B4D74494DC73B5C5B2DCA2E35A",
+        "normalizedSha256": "64AAC7BAAF50537A05528B5C606837E1DA61A1B4D74494DC73B5C5B2DCA2E35A",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.pmap-document",
+      "path": "形象管理器/src/ImageManager.Core/SceneTerrainDocument.cs",
+      "sha256": "F0388DEEEE84450F3D8C3CFC4058A7345BA271C74D3179C5FD3818CFAF518A38",
+      "sourceType": "first-party-source",
+      "usedFor": "行主序格子、笔画级撤回/重做、原始基线及源依赖快照",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/f0388deeee84450f3d8c.txt",
+        "sha256": "F0388DEEEE84450F3D8C3CFC4058A7345BA271C74D3179C5FD3818CFAF518A38",
+        "normalizedSha256": "F0388DEEEE84450F3D8C3CFC4058A7345BA271C74D3179C5FD3818CFAF518A38",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.pmap-service",
+      "path": "形象管理器/src/ImageManager.Core/SceneTerrainService.cs",
+      "sha256": "125362F5FD04E63DE953AC1D0D3E4085EE2085BF712DDDA1A7055BD4EC5A0D19",
+      "sourceType": "first-party-source",
+      "usedFor": "前40外场景、内场景n−40配对、PE消费者门禁、双档结构事务与余项保留",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/125362f5fd04e63de953.txt",
+        "sha256": "125362F5FD04E63DE953AC1D0D3E4085EE2085BF712DDDA1A7055BD4EC5A0D19",
+        "normalizedSha256": "125362F5FD04E63DE953AC1D0D3E4085EE2085BF712DDDA1A7055BD4EC5A0D19",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.pmap-geometry",
+      "path": "形象管理器/src/ImageManager.Core/DiamondTerrainGeometry.cs",
+      "sha256": "530123C9203BE243B6754D666F542FB9F04E8121D667ACCA7F4D811DCF009428",
+      "sourceType": "first-party-source",
+      "usedFor": "16×8菱形、文件/游戏Y差2、拖动轨迹跨格插值",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/530123c9203be243b675.txt",
+        "sha256": "530123C9203BE243B6754D666F542FB9F04E8121D667ACCA7F4D811DCF009428",
+        "normalizedSha256": "530123C9203BE243B6754D666F542FB9F04E8121D667ACCA7F4D811DCF009428",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.pmap-policy",
+      "path": "data管理器/src/DataManager.Images/IntegratedSceneMutationPolicy.cs",
+      "sha256": "7D76EA1666A5CE356AA98AADFDD060F971D872B082F67FCC19F0CDB998E0EEEF",
+      "sourceType": "first-party-source",
+      "usedFor": "一体化编辑器禁止Pmap图片写入并强制Mmap/Pmap配对事务",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/7d76ea1666a5ce356aa9.txt",
+        "sha256": "7D76EA1666A5CE356AA98AADFDD060F971D872B082F67FCC19F0CDB998E0EEEF",
+        "normalizedSha256": "7D76EA1666A5CE356AA98AADFDD060F971D872B082F67FCC19F0CDB998E0EEEF",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.pmap-doc",
+      "path": "data管理器/文档/内场景地形编辑.md",
+      "sha256": "4A4D9F9431F750D4DCE22952745B134ED2DA092CFA63C4DC5653038A0F1DEA93",
+      "sourceType": "first-party-documentation",
+      "usedFor": "内场景地形用途、配对新增删除与保存兼容边界",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/4a4d9f9431f750d4dce2.txt",
+        "sha256": "4A4D9F9431F750D4DCE22952745B134ED2DA092CFA63C4DC5653038A0F1DEA93",
+        "normalizedSha256": "4A4D9F9431F750D4DCE22952745B134ED2DA092CFA63C4DC5653038A0F1DEA93",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.pmap-tests",
+      "path": "形象管理器/src/ImageManager.Tests/SceneTerrainTests.cs",
+      "sha256": "5E85684BFD63C5BCFC8373805541731656CEB2890457265F2B2C3CDCF2A2D823",
+      "sourceType": "first-party-source",
+      "usedFor": "Pmap格式/几何/双档原子事务及精确本地样本测试断言",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/5e85684bfd63c5bcfc83.txt",
+        "sha256": "5E85684BFD63C5BCFC8373805541731656CEB2890457265F2B2C3CDCF2A2D823",
+        "normalizedSha256": "5E85684BFD63C5BCFC8373805541731656CEB2890457265F2B2C3CDCF2A2D823",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.pmap-integration-tests",
+      "path": "data管理器/src/DataManager.Tests/SceneTerrainIntegrationTests.cs",
+      "sha256": "93FBBF63DFC9B378112BF6EC3B4D69D743BF0669BB0E8D9673B25FF1BA71794D",
+      "sourceType": "first-party-source",
+      "usedFor": "一体化Pmap分类隔离、配对策略和地形窗口控件断言",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/93fbbf63dfc9b378112b.txt",
+        "sha256": "93FBBF63DFC9B378112BF6EC3B4D69D743BF0669BB0E8D9673B25FF1BA71794D",
+        "normalizedSha256": "93FBBF63DFC9B378112BF6EC3B4D69D743BF0669BB0E8D9673B25FF1BA71794D",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.s-physical-mapping",
+      "path": "形象管理器/src/ImageManager.Core/SPhysicalMappingService.cs",
+      "sha256": "EC5C904BD09EB0EE50FD3AAAA6EEE93813FF58034F25B250742F03DB01C06325",
+      "sourceType": "first-party-source",
+      "usedFor": "图库使用Unit物理图号、人物S紧凑号独立、S0直接按当前兵种ID取图",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/ec5c904bd09eb0ee50fd.txt",
+        "sha256": "EC5C904BD09EB0EE50FD3AAAA6EEE93813FF58034F25B250742F03DB01C06325",
+        "normalizedSha256": "EC5C904BD09EB0EE50FD3AAAA6EEE93813FF58034F25B250742F03DB01C06325",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.s-numbering-rules",
+      "path": "形象管理器/src/Shared/SImageNumberingRules.cs",
+      "sha256": "FCF9781B70589C690828AA422281BDF442360639D893F5C29A55C8E8AC691DC8",
+      "sourceType": "first-party-source",
+      "usedFor": "共享的兵种1..240及人物241起物理编号与紧凑S换算",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/fcf9781b70589c690828.txt",
+        "sha256": "FCF9781B70589C690828AA422281BDF442360639D893F5C29A55C8E8AC691DC8",
+        "normalizedSha256": "FCF9781B70589C690828AA422281BDF442360639D893F5C29A55C8E8AC691DC8",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.image-display-names",
+      "path": "data管理器/src/DataManager.Images/ResourceDisplayNames.cs",
+      "sha256": "267314FA4570355304A07B17D5198DB40BACB9F66D766B02470846AC683D16B6",
+      "sourceType": "first-party-source",
+      "usedFor": "一体化Mmap场景背景与Pmap内场景地形显示语义",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/267314fa4570355304a0.txt",
+        "sha256": "267314FA4570355304A07B17D5198DB40BACB9F66D766B02470846AC683D16B6",
+        "normalizedSha256": "267314FA4570355304A07B17D5198DB40BACB9F66D766B02470846AC683D16B6",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.exchange-test-runner",
+      "path": "data管理器/src/DataManager.Tests/Program.cs",
+      "sha256": "D91EDD06FE1709180097327D3EAA451491D1D70AC583ADCB33D18E48A6F817BB",
+      "sourceType": "first-party-source",
+      "usedFor": "业务XLSX和地形自定义console runner分派及参数语义",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/8b70abb1f5d7f1345e56.txt",
+        "sha256": "8B70ABB1F5D7F1345E5648F181D31F842DACFC099DC14E93B1685E7EF9D58A77",
+        "normalizedSha256": "8B70ABB1F5D7F1345E5648F181D31F842DACFC099DC14E93B1685E7EF9D58A77",
+        "reason": "2026-11-02 当前文本派生快照；只删除UTF-8 BOM或将本机绝对路径/目录口令替换为占位符，保留结构与测试断言；原字节SHA另在顶层登记。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。 本轮发布快照另归一化LF、移除BOM及行尾空白；语义未改，原字节SHA保留在来源sha256。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.image-test-runner",
+      "path": "形象管理器/src/ImageManager.Tests/Program.cs",
+      "sha256": "2E0DFE81782264E81A311820A465DA518BA3F6B6392C14648BE223BB80121CE6",
+      "sourceType": "first-party-source",
+      "usedFor": "参考包/灵活画布/地形测试分派及汇总返回码",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/e7dad89867b67190a8c2.txt",
+        "sha256": "E7DAD89867B67190A8C2F3B58D7E322E2E28D1F96FB0E75FA5EF45B5EBBABEAD",
+        "normalizedSha256": "E7DAD89867B67190A8C2F3B58D7E322E2E28D1F96FB0E75FA5EF45B5EBBABEAD",
+        "reason": "2026-11-02 当前文本派生快照；只删除UTF-8 BOM或将本机绝对路径/目录口令替换为占位符，保留结构与测试断言；原字节SHA另在顶层登记。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.extend-service",
+      "path": "data管理器/src/DataManager.Core/Domain/ExtendDataService.cs",
+      "sha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
+      "sourceType": "first-party-source",
+      "usedFor": "拓展四表槽位经验/回合编辑、空值和ID255成长保留规则",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/0daa61a08d568d423d06.txt",
+        "sha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
+        "normalizedSha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.extend-geometry",
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileAugmentationService.cs",
+      "sha256": "44FC522BB09449C487617CA2CEB177419DDEF30D568DE47E9A2B8EB618643CD7",
+      "sourceType": "first-party-source",
+      "usedFor": "无头定宽拓展表按实际完整记录数确定行数而非JSON默认行数",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/f05d6b73b0efd40ebdfd.txt",
+        "sha256": "F05D6B73B0EFD40EBDFD56978425C55954B69C3326FC9EA4EB94E41DA5F9557A",
+        "normalizedSha256": "F05D6B73B0EFD40EBDFD56978425C55954B69C3326FC9EA4EB94E41DA5F9557A",
+        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。 本轮发布快照另归一化LF、移除BOM及行尾空白；语义未改，原字节SHA保留在来源sha256。"
+      }
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.extend-doc",
+      "path": "data管理器/文档/拓展数据实现与验收.md",
+      "sha256": "43EDBE0C58269097075339488B6EBE99D7610D7C6471E61DE7F152540D8E00F1",
+      "sourceType": "first-party-documentation",
+      "usedFor": "四表记录语义、空槽、真实Forge256行与运行时支持边界",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/8d8309921e2ab990c890.txt",
+        "sha256": "8D8309921E2AB990C89097C663EE559E76AE1D8013079892A615F3844984CE58",
+        "normalizedSha256": "8D8309921E2AB990C89097C663EE559E76AE1D8013079892A615F3844984CE58",
+        "reason": "2026-11-02 当前文本派生快照；只删除UTF-8 BOM或将本机绝对路径/目录口令替换为占位符，保留结构与测试断言；原字节SHA另在顶层登记。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.text-constraints",
+      "path": "data管理器/src/DataManager.Core/Binary/TextFieldConstraints.cs",
+      "sha256": "28B8E36CF5FE3987D23AA032F6BBF7B934DDA8A698BA2EC00B0D4BBCA5FE5C1E",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/28b8e36cf5fe3987d23a.txt",
+        "sha256": "28B8E36CF5FE3987D23AA032F6BBF7B934DDA8A698BA2EC00B0D4BBCA5FE5C1E",
+        "normalizedSha256": "28B8E36CF5FE3987D23AA032F6BBF7B934DDA8A698BA2EC00B0D4BBCA5FE5C1E",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.text-evidence",
+      "path": "data管理器/src/DataManager.Core/Binary/TextConsumerEvidence.cs",
+      "sha256": "9E1B24A06B60AB1EDFB3A7519E3EB586201CBAE2F3B6EE2B3A043A93A95CD41A",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/9e1b24a06b60ab1edfb3.txt",
+        "sha256": "9E1B24A06B60AB1EDFB3A7519E3EB586201CBAE2F3B6EE2B3A043A93A95CD41A",
+        "normalizedSha256": "9E1B24A06B60AB1EDFB3A7519E3EB586201CBAE2F3B6EE2B3A043A93A95CD41A",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.encoding",
+      "path": "data管理器/src/DataManager.Core/Binary/EncodingService.cs",
+      "sha256": "ACFC0EB8930F3F9CC3C5A296C245289AF589FB836FC9DBDF53E058171FA52D56",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/acfc0eb8930f3f9cc3c5.txt",
+        "sha256": "ACFC0EB8930F3F9CC3C5A296C245289AF589FB836FC9DBDF53E058171FA52D56",
+        "normalizedSha256": "ACFC0EB8930F3F9CC3C5A296C245289AF589FB836FC9DBDF53E058171FA52D56",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.extend-service",
+      "path": "data管理器/src/DataManager.Core/Domain/ExtendDataService.cs",
+      "sha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/0daa61a08d568d423d06.txt",
+        "sha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
+        "normalizedSha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.extend-reference",
+      "path": "data管理器/src/DataManager.Core/Domain/EngineEffectReferenceService.cs",
+      "sha256": "254F83DEB66693FFBE065359EA656BFA7329D625DF5C207EE92F0D8B7365A59E",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/1cf0ba7d0b2849e87264.txt",
+        "sha256": "1CF0BA7D0B2849E872643C7FA48602AC69219632139B39F3A9A44274D05231C2",
+        "normalizedSha256": "1CF0BA7D0B2849E872643C7FA48602AC69219632139B39F3A9A44274D05231C2",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.table-reader",
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryTableReader.cs",
+      "sha256": "C7CBA4D6C9D34B0005AAC6E5E11FCF1DBDB118C9F767DC96271D13EF36CA2710",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/c7cba4d6c9d34b0005aa.txt",
+        "sha256": "C7CBA4D6C9D34B0005AAC6E5E11FCF1DBDB118C9F767DC96271D13EF36CA2710",
+        "normalizedSha256": "C7CBA4D6C9D34B0005AAC6E5E11FCF1DBDB118C9F767DC96271D13EF36CA2710",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.augmentation",
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileAugmentationService.cs",
+      "sha256": "44FC522BB09449C487617CA2CEB177419DDEF30D568DE47E9A2B8EB618643CD7",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/f05d6b73b0efd40ebdfd.txt",
+        "sha256": "F05D6B73B0EFD40EBDFD56978425C55954B69C3326FC9EA4EB94E41DA5F9557A",
+        "normalizedSha256": "F05D6B73B0EFD40EBDFD56978425C55954B69C3326FC9EA4EB94E41DA5F9557A",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.assignment-layout",
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectAssignmentService.JobLayout.cs",
+      "sha256": "D00BA0AEA03559A23ECB8DAEF7F0E5A8959C11C260ECB851031171AEEA99DCFD",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/d00ba0aea03559a23ecb.txt",
+        "sha256": "D00BA0AEA03559A23ECB8DAEF7F0E5A8959C11C260ECB851031171AEEA99DCFD",
+        "normalizedSha256": "D00BA0AEA03559A23ECB8DAEF7F0E5A8959C11C260ECB851031171AEEA99DCFD",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.assignment-writer",
+      "path": "data管理器/src/DataManager.Core/Scanner/EngineEffectAssignmentService.Write.cs",
+      "sha256": "6C2FB6D66902219E44C8F30DE9D36754E19E6655E445749CA00B4203E5648B7D",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/7ea616a26a45be9a58d9.txt",
+        "sha256": "7EA616A26A45BE9A58D943DAD408F3621AB2DCFEEE7E83E57E9159118B8EC9AD",
+        "normalizedSha256": "7EA616A26A45BE9A58D943DAD408F3621AB2DCFEEE7E83E57E9159118B8EC9AD",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.appearance-layout",
+      "path": "data管理器/src/DataManager.Core/Profiles/SaveAppearanceLayoutProbe.cs",
+      "sha256": "1B8EC61598443511D9DCCA8628F15442EE1310E3DB21ED7F9E82864D0C71E55D",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/1b8ec61598443511d9dc.txt",
+        "sha256": "1B8EC61598443511D9DCCA8628F15442EE1310E3DB21ED7F9E82864D0C71E55D",
+        "normalizedSha256": "1B8EC61598443511D9DCCA8628F15442EE1310E3DB21ED7F9E82864D0C71E55D",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.appearance-service",
+      "path": "data管理器/src/DataManager.Core/Appearance/SaveAppearanceSyncService.cs",
+      "sha256": "CFF71F58DEBC30EB3A8A1967632488E99953321D2801BC9470BD2FC75EBA3AC4",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/cff71f58debc30eb3a8a.txt",
+        "sha256": "CFF71F58DEBC30EB3A8A1967632488E99953321D2801BC9470BD2FC75EBA3AC4",
+        "normalizedSha256": "CFF71F58DEBC30EB3A8A1967632488E99953321D2801BC9470BD2FC75EBA3AC4",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.appearance-formats",
+      "path": "data管理器/src/DataManager.Core/Appearance/SaveAppearanceFormats.cs",
+      "sha256": "F0875D726227E1AD35B8D02C8BBF9EC814F2E9530EDF661944CC4CC91C63DFFB",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/f0875d726227e1ad35b8.txt",
+        "sha256": "F0875D726227E1AD35B8D02C8BBF9EC814F2E9530EDF661944CC4CC91C63DFFB",
+        "normalizedSha256": "F0875D726227E1AD35B8D02C8BBF9EC814F2E9530EDF661944CC4CC91C63DFFB",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.appearance-session",
+      "path": "data管理器/src/DataManager.Core/Appearance/AppearanceSyncSession.cs",
+      "sha256": "1BA9CFBFF6B471A59B39F72F7968474A359AF1EFE16AE5C968741A1B62654913",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/1ba9cfbff6b471a59b39.txt",
+        "sha256": "1BA9CFBFF6B471A59B39F72F7968474A359AF1EFE16AE5C968741A1B62654913",
+        "normalizedSha256": "1BA9CFBFF6B471A59B39F72F7968474A359AF1EFE16AE5C968741A1B62654913",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.appearance-updates",
+      "path": "data管理器/src/DataManager.Core/Appearance/AppearanceSyncUpdates.cs",
+      "sha256": "194627A636491547C33ADB0BB0924A14459EA69BE184E1E00772909137ED3912",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/194627a636491547c33a.txt",
+        "sha256": "194627A636491547C33ADB0BB0924A14459EA69BE184E1E00772909137ED3912",
+        "normalizedSha256": "194627A636491547C33ADB0BB0924A14459EA69BE184E1E00772909137ED3912",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.test-text",
+      "path": "data管理器/src/DataManager.Tests/TextConstraintTests.cs",
+      "sha256": "9BC83EED1EE7200E8F642694CA6447FE83152844E16E47D2D6851813723D2261",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/9bc83eed1ee7200e8f64.txt",
+        "sha256": "9BC83EED1EE7200E8F642694CA6447FE83152844E16E47D2D6851813723D2261",
+        "normalizedSha256": "9BC83EED1EE7200E8F642694CA6447FE83152844E16E47D2D6851813723D2261",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.test-save",
+      "path": "data管理器/src/DataManager.Tests/SaveAppearanceSyncTests.cs",
+      "sha256": "510001644D61A2DE816322E99F17AE26F97F1228767258ED4BD9E029CE212641",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/510001644d61a2de8163.txt",
+        "sha256": "510001644D61A2DE816322E99F17AE26F97F1228767258ED4BD9E029CE212641",
+        "normalizedSha256": "510001644D61A2DE816322E99F17AE26F97F1228767258ED4BD9E029CE212641",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.test-save-integration",
+      "path": "data管理器/src/DataManager.Tests/AppearanceSaveIntegrationTests.cs",
+      "sha256": "6BF2D6A12D0A8CF1BFE3D5C276C52D04CCF1E260A8B5CB7857E045D7A89A9556",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/6bf2d6a12d0a8cf1bfe3.txt",
+        "sha256": "6BF2D6A12D0A8CF1BFE3D5C276C52D04CCF1E260A8B5CB7857E045D7A89A9556",
+        "normalizedSha256": "6BF2D6A12D0A8CF1BFE3D5C276C52D04CCF1E260A8B5CB7857E045D7A89A9556",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.test-query",
+      "path": "data管理器/src/DataManager.Tests/RecordQueryUiTests.cs",
+      "sha256": "7A02125C271C66151844EF83646A11C46A0E83B49F9DA8653E21763FB2FF2185",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/5187743db76125cfbac2.txt",
+        "sha256": "5187743DB76125CFBAC27DAC403DE86E637F19D3A8D0CEB3DB988621FED5BCDE",
+        "normalizedSha256": "5187743DB76125CFBAC27DAC403DE86E637F19D3A8D0CEB3DB988621FED5BCDE",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.test-runner",
+      "path": "data管理器/src/DataManager.Tests/Program.cs",
+      "sha256": "D91EDD06FE1709180097327D3EAA451491D1D70AC583ADCB33D18E48A6F817BB",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/8b70abb1f5d7f1345e56.txt",
+        "sha256": "8B70ABB1F5D7F1345E5648F181D31F842DACFC099DC14E93B1685E7EF9D58A77",
+        "normalizedSha256": "8B70ABB1F5D7F1345E5648F181D31F842DACFC099DC14E93B1685E7EF9D58A77",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。 本轮发布快照另归一化LF、移除BOM及行尾空白；语义未改，原字节SHA保留在来源sha256。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.profile-64",
+      "path": "data管理器/config/profiles/ccz-6.4.json",
+      "sha256": "7E7143DE7EE29E5DF1293751C9ED818C050C02DAE385981A1A268EE45FAE7366",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/87c0d3be482e81fc069e.txt",
+        "sha256": "87C0D3BE482E81FC069EB0BECE59BFA1D70E4378C91F78051A91F9F0AF8BBAAA",
+        "normalizedSha256": "87C0D3BE482E81FC069EB0BECE59BFA1D70E4378C91F78051A91F9F0AF8BBAAA",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.profile-65",
+      "path": "data管理器/config/profiles/ccz-6.5.json",
+      "sha256": "8FD880D538BC021D231AA8E8FD601CC3266962CDE59A585C73C07B73F644CD09",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/8fd880d538bc021d231a.txt",
+        "sha256": "8FD880D538BC021D231AA8E8FD601CC3266962CDE59A585C73C07B73F644CD09",
+        "normalizedSha256": "8FD880D538BC021D231AA8E8FD601CC3266962CDE59A585C73C07B73F644CD09",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.profile-66",
+      "path": "data管理器/config/profiles/ccz-6.6.json",
+      "sha256": "6AABB1BE5A4657A6933E403CFA187D7D7F68178F80BDC667F6202DDB0B92A1E5",
+      "sourceType": "first-party-source",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/6aabb1be5a4657a6933e.txt",
+        "sha256": "6AABB1BE5A4657A6933E403CFA187D7D7F68178F80BDC667F6202DDB0B92A1E5",
+        "normalizedSha256": "6AABB1BE5A4657A6933E403CFA187D7D7F68178F80BDC667F6202DDB0B92A1E5",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-894958174b09",
+      "path": "data管理器/文档/6.4洗隋兼容适配.md",
+      "sha256": "13F7D981B0246575AD068B1BF3CB751BC7548BA999785B62993F9462846CBF03",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/2a47e93d6ab534f7748d.txt",
+        "sha256": "2A47E93D6AB534F7748D0DBC5C06DE9C94B5DCA4330D207D866FDDF67C063B28",
+        "normalizedSha256": "2A47E93D6AB534F7748D0DBC5C06DE9C94B5DCA4330D207D866FDDF67C063B28",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-fa10bfaac33f",
+      "path": "data管理器/文档/S形象物理编号与人物紧凑编号.md",
+      "sha256": "A57366D39DAA13C1F40845A9498AD43708583A1B9BD0948143F654287D30ECD3",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/a57366d39daa13c1f408.txt",
+        "sha256": "A57366D39DAA13C1F40845A9498AD43708583A1B9BD0948143F654287D30ECD3",
+        "normalizedSha256": "A57366D39DAA13C1F40845A9498AD43708583A1B9BD0948143F654287D30ECD3",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-71165a44d5a7",
+      "path": "data管理器/文档/业务工作簿交换.md",
+      "sha256": "9A9F88CC07ED4448BA7897F42E0E9D8E9F3CC5035444E7DE6CBE14E337155863",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/661113684351d7ab9db5.txt",
+        "sha256": "661113684351D7AB9DB56385767A9BCE6CF6D305E3B53A0903A26C5B216116FD",
+        "normalizedSha256": "661113684351D7AB9DB56385767A9BCE6CF6D305E3B53A0903A26C5B216116FD",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-b69907b927fb",
+      "path": "data管理器/文档/人物R-S形象存档自动同步.md",
+      "sha256": "87F2BE157E52F11280E1739A7D62251A56D8B15556A8B84677C2DDD15B7EC291",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/87f2be157e52f11280e1.txt",
+        "sha256": "87F2BE157E52F11280E1739A7D62251A56D8B15556A8B84677C2DDD15B7EC291",
+        "normalizedSha256": "87F2BE157E52F11280E1739A7D62251A56D8B15556A8B84677C2DDD15B7EC291",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-b58a5df54733",
+      "path": "data管理器/文档/内场景地形编辑.md",
+      "sha256": "4A4D9F9431F750D4DCE22952745B134ED2DA092CFA63C4DC5653038A0F1DEA93",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/4a4d9f9431f750d4dce2.txt",
+        "sha256": "4A4D9F9431F750D4DCE22952745B134ED2DA092CFA63C4DC5653038A0F1DEA93",
+        "normalizedSha256": "4A4D9F9431F750D4DCE22952745B134ED2DA092CFA63C4DC5653038A0F1DEA93",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-b809b51f1178",
+      "path": "data管理器/文档/写入约束证据.md",
+      "sha256": "F4FD53A7C8035A9C50F03EDEA965E7246E2DB35101A6FC6214485896F6D26475",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/f4fd53a7c8035a9c50f0.txt",
+        "sha256": "F4FD53A7C8035A9C50F03EDEA965E7246E2DB35101A6FC6214485896F6D26475",
+        "normalizedSha256": "F4FD53A7C8035A9C50F03EDEA965E7246E2DB35101A6FC6214485896F6D26475",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-c28c8ca77c30",
+      "path": "data管理器/文档/参考图灵活回导.md",
+      "sha256": "499A71FA6967C660A0984A31876093A525532EFA01DA489AF16B2EA0AB1203F6",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/499a71fa6967c660a098.txt",
+        "sha256": "499A71FA6967C660A0984A31876093A525532EFA01DA489AF16B2EA0AB1203F6",
+        "normalizedSha256": "499A71FA6967C660A0984A31876093A525532EFA01DA489AF16B2EA0AB1203F6",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-43e2f475bfff",
+      "path": "data管理器/文档/图片导入兼容规则.md",
+      "sha256": "07AC9E68F8B810BD4B20A25601B627BF9E9F318A33407CCF7BBA608A1F7F36BA",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/07ac9e68f8b810bd4b20.txt",
+        "sha256": "07AC9E68F8B810BD4B20A25601B627BF9E9F318A33407CCF7BBA608A1F7F36BA",
+        "normalizedSha256": "07AC9E68F8B810BD4B20A25601B627BF9E9F318A33407CCF7BBA608A1F7F36BA",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-040e54d79033",
+      "path": "data管理器/文档/完整写回与动态约束验收.md",
+      "sha256": "34A1303D305CECEE677113F6747E131DE77943DF16D45A98A2F0B65525B08D59",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/34a1303d305cecee6771.txt",
+        "sha256": "34A1303D305CECEE677113F6747E131DE77943DF16D45A98A2F0B65525B08D59",
+        "normalizedSha256": "34A1303D305CECEE677113F6747E131DE77943DF16D45A98A2F0B65525B08D59",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-4479b5cf50ed",
+      "path": "data管理器/文档/拓展数据实现与验收.md",
+      "sha256": "43EDBE0C58269097075339488B6EBE99D7610D7C6471E61DE7F152540D8E00F1",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/43edbe0c582690970753.txt",
+        "sha256": "43EDBE0C58269097075339488B6EBE99D7610D7C6471E61DE7F152540D8E00F1",
+        "normalizedSha256": "43EDBE0C58269097075339488B6EBE99D7610D7C6471E61DE7F152540D8E00F1",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-b8a1b5d21263",
+      "path": "data管理器/文档/模块精简与历史隔离.md",
+      "sha256": "3DFF64A800647D106F4E6E4953763B9F967F686F27980992E137C5081AB87CDB",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/3c41e545823b38e45eb2.txt",
+        "sha256": "3C41E545823B38E45EB26C3F9549126430ECE881CC3F028B695B7484D2A4CA07",
+        "normalizedSha256": "3C41E545823B38E45EB26C3F9549126430ECE881CC3F028B695B7484D2A4CA07",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-86f499e780fd",
+      "path": "data管理器/文档/装备类型分类与默认装备筛选.md",
+      "sha256": "BD79F2877F522ABB8258AEC5FB5D80F9948BB21110160B07D26F063D14D1FA13",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/bd79f2877f522abb8258.txt",
+        "sha256": "BD79F2877F522ABB8258AEC5FB5D80F9948BB21110160B07D26F063D14D1FA13",
+        "normalizedSha256": "BD79F2877F522ABB8258AEC5FB5D80F9948BB21110160B07D26F063D14D1FA13",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-9bd1726ab9db",
+      "path": "data管理器/文档/资源事务写回验收.md",
+      "sha256": "55163A9CB01A3176FE5D231D86AC7DF82352EE6CF1CE686F9446A1A5A6B30144",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/55163a9cb01a3176fe5d.txt",
+        "sha256": "55163A9CB01A3176FE5D231D86AC7DF82352EE6CF1CE686F9446A1A5A6B30144",
+        "normalizedSha256": "55163A9CB01A3176FE5D231D86AC7DF82352EE6CF1CE686F9446A1A5A6B30144",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-60762b58b8f3",
+      "path": "data管理器/知识库/00-总览与共性规范.md",
+      "sha256": "3F2FBB7C6779A43FC0F36F597B78B76341158FB7B609E26E2A0375DB125E6DFB",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/3f2fbb7c6779a43fc0f3.txt",
+        "sha256": "3F2FBB7C6779A43FC0F36F597B78B76341158FB7B609E26E2A0375DB125E6DFB",
+        "normalizedSha256": "3F2FBB7C6779A43FC0F36F597B78B76341158FB7B609E26E2A0375DB125E6DFB",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-7297cad09fe9",
+      "path": "data管理器/知识库/01-Profile系统.md",
+      "sha256": "E81EFFD3088F0B3952C6C179FBFADB0FAD21DFD10AA15D367994519E3D18C37E",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/e81effd3088f0b3952c6.txt",
+        "sha256": "E81EFFD3088F0B3952C6C179FBFADB0FAD21DFD10AA15D367994519E3D18C37E",
+        "normalizedSha256": "E81EFFD3088F0B3952C6C179FBFADB0FAD21DFD10AA15D367994519E3D18C37E",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-dc245c04aa64",
+      "path": "data管理器/知识库/01-核心引擎/人物槽与兵种槽-特效号读取规则.md",
+      "sha256": "C19487FA5C9E9E8ED9D86636EA2162250416DD77982160F7DA8C71D0F1BC2BBE",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/c19487fa5c9e9e8ed9d8.txt",
+        "sha256": "C19487FA5C9E9E8ED9D86636EA2162250416DD77982160F7DA8C71D0F1BC2BBE",
+        "normalizedSha256": "C19487FA5C9E9E8ED9D86636EA2162250416DD77982160F7DA8C71D0F1BC2BBE",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-01967bcbf677",
+      "path": "data管理器/知识库/01-核心引擎/公式设定页-读写与语义验证.md",
+      "sha256": "E42CCBAC6BAFB2023E9978BF1536C140012111085DA19F53C2AD654A5D35B640",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/e42ccbac6bafb2023e99.txt",
+        "sha256": "E42CCBAC6BAFB2023E9978BF1536C140012111085DA19F53C2AD654A5D35B640",
+        "normalizedSha256": "E42CCBAC6BAFB2023E9978BF1536C140012111085DA19F53C2AD654A5D35B640",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-522689750d9c",
+      "path": "data管理器/知识库/01-核心引擎/引擎特效复合绑定与三子页分配池.md",
+      "sha256": "4106A6654D3D90575ED027DCBA25E2603A00FA65A976BD17CD5ED0F691A32757",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/7b80accaf306cbf0c8be.txt",
+        "sha256": "7B80ACCAF306CBF0C8BEB02F7A9A00EE6CEB7342A219ACCF23B7F66ED0AD4BA2",
+        "normalizedSha256": "7B80ACCAF306CBF0C8BEB02F7A9A00EE6CEB7342A219ACCF23B7F66ED0AD4BA2",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-184ccc8418d2",
+      "path": "data管理器/知识库/01-核心引擎/战斗公式-三基底公式与常量.md",
+      "sha256": "01543EFEFA27C45F492EC2BF16B1B8FBCF5FFA7CA8FE17CA94745743E33FBCE7",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/7197e6209e500889e8c7.txt",
+        "sha256": "7197E6209E500889E8C74B3B68178055532F1A6ECD58684F934544BC096355FB",
+        "normalizedSha256": "7197E6209E500889E8C74B3B68178055532F1A6ECD58684F934544BC096355FB",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-898d0f569cea",
+      "path": "data管理器/知识库/01-核心引擎/活动表版本差异与字段写入契约.md",
+      "sha256": "9D2C165EDEEFEEC096DC4841A3E85A997002C237BE39DF99DB46991010006198",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/9d2c165edeefeec096dc.txt",
+        "sha256": "9D2C165EDEEFEEC096DC4841A3E85A997002C237BE39DF99DB46991010006198",
+        "normalizedSha256": "9D2C165EDEEFEEC096DC4841A3E85A997002C237BE39DF99DB46991010006198",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-f5521a8e2a16",
+      "path": "data管理器/知识库/01-核心引擎/特效常量-三基底证据与相对定位.md",
+      "sha256": "C8E381593902871FF91617A8482A58415B2F3A317F2DB0097BA476845758BF85",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/241930a84733f43b9e00.txt",
+        "sha256": "241930A84733F43B9E003DAF4A42FC0ED8091DCAB2AABA13281486B0E512A529",
+        "normalizedSha256": "241930A84733F43B9E003DAF4A42FC0ED8091DCAB2AABA13281486B0E512A529",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-28003bccc3f1",
+      "path": "data管理器/知识库/01-核心引擎/疾风攻击公式与常量-特效值区分.md",
+      "sha256": "93C08EAA861DB5586EFC3E24AACD1817C43A40AC3996FEE17E4091A52AF2871A",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/93c08eaa861db5586efc.txt",
+        "sha256": "93C08EAA861DB5586EFC3E24AACD1817C43A40AC3996FEE17E4091A52AF2871A",
+        "normalizedSha256": "93C08EAA861DB5586EFC3E24AACD1817C43A40AC3996FEE17E4091A52AF2871A",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-e1846449aa27",
+      "path": "data管理器/知识库/02-6.5布局.md",
+      "sha256": "E7170D83454A43F6CB3E6A736DFDADD38A6C5EE615912DB0563CCB35F1BAD1E4",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/e7170d83454a43f6cb3e.txt",
+        "sha256": "E7170D83454A43F6CB3E6A736DFDADD38A6C5EE615912DB0563CCB35F1BAD1E4",
+        "normalizedSha256": "E7170D83454A43F6CB3E6A736DFDADD38A6C5EE615912DB0563CCB35F1BAD1E4",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-769701aa7cf6",
+      "path": "data管理器/知识库/03-6.6布局变体.md",
+      "sha256": "2BAAE4EC50353385E6701F886F3659473F253113081D5600329ED91274A85087",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/2baae4ec50353385e670.txt",
+        "sha256": "2BAAE4EC50353385E6701F886F3659473F253113081D5600329ED91274A85087",
+        "normalizedSha256": "2BAAE4EC50353385E6701F886F3659473F253113081D5600329ED91274A85087",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-f64b67bca40e",
+      "path": "data管理器/知识库/04-版本差异矩阵.md",
+      "sha256": "1679AF08E92F9A6DFCF1AA36BB3F6BAE4EDCF0E60D0A8BA19D9F22658C54AFBC",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/1679af08e92f9a6dfcf1.txt",
+        "sha256": "1679AF08E92F9A6DFCF1AA36BB3F6BAE4EDCF0E60D0A8BA19D9F22658C54AFBC",
+        "normalizedSha256": "1679AF08E92F9A6DFCF1AA36BB3F6BAE4EDCF0E60D0A8BA19D9F22658C54AFBC",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-7900d1e52f16",
+      "path": "data管理器/知识库/05-人物与兵种.md",
+      "sha256": "AE194F7536BA76A471373982CF9CDD60FAE40F85BA3F01135BD05F3EAC3F6EDE",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/ae194f7536ba76a47137.txt",
+        "sha256": "AE194F7536BA76A471373982CF9CDD60FAE40F85BA3F01135BD05F3EAC3F6EDE",
+        "normalizedSha256": "AE194F7536BA76A471373982CF9CDD60FAE40F85BA3F01135BD05F3EAC3F6EDE",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-53fac3d1fc1a",
+      "path": "data管理器/知识库/06-策略与宝物.md",
+      "sha256": "B54C15BCB11B7CAED62A28559A95AF6F60227D2A2FAC3414A4B8046E6B853D71",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/b54c15bcb11b7caed62a.txt",
+        "sha256": "B54C15BCB11B7CAED62A28559A95AF6F60227D2A2FAC3414A4B8046E6B853D71",
+        "normalizedSha256": "B54C15BCB11B7CAED62A28559A95AF6F60227D2A2FAC3414A4B8046E6B853D71",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-924d3b9c9e5f",
+      "path": "data管理器/知识库/07-人物与套装特效.md",
+      "sha256": "AFBC55A772188DF825042BF4F249DCF7107771ED28C94A0D68DE905E8B0287FE",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/6b3203aca7b70dd9b8b9.txt",
+        "sha256": "6B3203ACA7B70DD9B8B90F6B3AD5151CCB64F6BB427D459C305ACD183F773D6E",
+        "normalizedSha256": "6B3203ACA7B70DD9B8B90F6B3AD5151CCB64F6BB427D459C305ACD183F773D6E",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-db07f8a031f7",
+      "path": "data管理器/知识库/08-扫描匹配与回退.md",
+      "sha256": "A529D64C29E82896BF562F50F218024CD229BDD6B6DD66E317044DDA88F36770",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/a529d64c29e82896bf56.txt",
+        "sha256": "A529D64C29E82896BF562F50F218024CD229BDD6B6DD66E317044DDA88F36770",
+        "normalizedSha256": "A529D64C29E82896BF562F50F218024CD229BDD6B6DD66E317044DDA88F36770",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-99edba4f4386",
+      "path": "data管理器/知识库/09-CSV与历史记录.md",
+      "sha256": "7C97118556B799266FB7DD21226E9E3D88C63FD47EC9210484C59A9BCC7460C2",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/7c97118556b799266fb7.txt",
+        "sha256": "7C97118556B799266FB7DD21226E9E3D88C63FD47EC9210484C59A9BCC7460C2",
+        "normalizedSha256": "7C97118556B799266FB7DD21226E9E3D88C63FD47EC9210484C59A9BCC7460C2",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-983fc0b90355",
+      "path": "data管理器/知识库/10-验证与烟测.md",
+      "sha256": "0575CD79C57212E12398FA6942C34DF00FF9735D44F19C083B3304A8CFA49343",
+      "sourceType": "technical-document",
+      "published": true,
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/0575cd79c57212e12398.txt",
+        "sha256": "0575CD79C57212E12398FA6942C34DF00FF9735D44F19C083B3304A8CFA49343",
+        "normalizedSha256": "0575CD79C57212E12398FA6942C34DF00FF9735D44F19C083B3304A8CFA49343",
+        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
+      }
+    },
+    {
+      "id": "src.dm.current-validation-20261102",
+      "path": "_tmp/kb-incremental-20261102/current-validation-20261102.json",
+      "sha256": "2F1F5F877437247424F551A227250AE964123D71207E9AFBCB3FC200708238F0",
+      "sourceType": "automation-test-report",
+      "usedFor": "当前.114源码两次构建及21项隔离工具测试、原件SHA、误调用纠正记录；不证明游戏运行",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/2f1f5f877437247424f5.txt",
+        "sha256": "2F1F5F877437247424F551A227250AE964123D71207E9AFBCB3FC200708238F0",
+        "normalizedSha256": "2F1F5F877437247424F551A227250AE964123D71207E9AFBCB3FC200708238F0",
+        "reason": "本轮汇总报告完整UTF-8/LF快照；已将本机绝对路径替换为占位符，未发布游戏或构建产物。"
+      }
+    },
+    {
+      "id": "src.dm.current-source-inventory-20261102",
+      "path": "sources/data-manager-source-snapshot-20261102.json",
+      "sha256": "4ED0AD702A015E88D3A0980FC27384B2D653B7E615DC7F0FCDDE9BBFD9700FE5",
+      "sourceType": "first-party-source-inventory",
+      "usedFor": "当前主线源码与共享图片依赖逐文件身份；源码.114与README.96分离",
+      "published": true,
+      "verification": {
+        "kind": "repository-file",
+        "reason": "仓库内逐文件SHA清单；原源码仅选定小型证据快照随库提供，其余须自备匹配原件。"
+      }
+    },
+    {
+      "id": "src.dm.current-assignment-layout-tests-20261102",
+      "path": "data管理器/src/DataManager.Tests/EffectAssignmentLayoutTests.cs",
+      "sha256": "974440C7CB7825ECD83F74234FF08F159BF8D4FAE960371C6E17ACFA9F695BB5",
+      "sourceType": "first-party-source",
+      "usedFor": "核对活动表测试入口需要完整repository-root及固定基底布局",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/974440c7cb7825ecd83f.txt",
+        "sha256": "974440C7CB7825ECD83F74234FF08F159BF8D4FAE960371C6E17ACFA9F695BB5",
+        "normalizedSha256": "974440C7CB7825ECD83F74234FF08F159BF8D4FAE960371C6E17ACFA9F695BB5",
+        "reason": "完整源码文本快照；仅移除UTF-8 BOM并归一化LF，原字节SHA另保留。"
+      }
+    },
+    {
+      "id": "src.dm.current-three-base-assignment-tests-20261102",
+      "path": "data管理器/src/DataManager.Tests/ThreeBaseAssignmentTests.cs",
+      "sha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E",
+      "sourceType": "first-party-source",
+      "usedFor": "核对活动表测试入口需要完整repository-root及固定基底布局",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/06dd4258bc28a171e209.txt",
+        "sha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E",
+        "normalizedSha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E",
+        "reason": "完整源码文本快照；仅移除UTF-8 BOM并归一化LF，原字节SHA另保留。"
+      }
     }
   ]
 }

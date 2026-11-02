@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "entityType": "workflow",
+  "entries": [
+    {
+      "id": "workflow.65.dm-formula-constant-transaction",
+      "title": "6.5 公式常量草稿校验与同步站点事务",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.dm.formulas.service-20261102",
+        "src.dm.formulas.constants-20261102",
+        "src.dm.formulas.doc-formula-validation-20261102"
+      ],
+      "goal": "修改已定位公式常量，避免共享常量、曲线约束或成对字段产生部分写入。",
+      "inputs": [
+        "匹配精确画像的项目副本",
+        "常量ID与目标整数值；已展示的共享影响和Warning"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "读取当前样本身份、Profile与PE映射，按契约重新读出常量签名、原值及全部同步站点。"
+        },
+        {
+          "order": 2,
+          "action": "以稳定常量ID合并编辑，拒绝同批不同目标值；ValidateEdits检查适用版本、范围及公式族约束。"
+        },
+        {
+          "order": 3,
+          "action": "展示字段差异、全部共享公式和Warning。Error拒绝整批，未通过签名或只有固定结构值的行不可写。"
+        },
+        {
+          "order": 4,
+          "action": "构造完整EXE候选；主、成对、附加站点同步等长修改，保存整文件备份并复核来源SHA。"
+        },
+        {
+          "order": 5,
+          "action": "统一事务提交，按相同版本复读所有目标值，核对同值站点和非目标字节；成功刷新共用公式，失败恢复整组并保留草稿。"
+        }
+      ],
+      "gates": [
+        "只在隔离副本验收；未知构建不得继承本画像位置。",
+        "命中曲线基础值次序非法、除数越界或0、当前基底不可写时拒绝。单独调低上限可产生截断Warning，不伪报为Error。",
+        "不得将历史通过日志冒充本轮执行；工具层通过也不构成游戏内数值验收。"
+      ],
+      "outputs": [
+        "候选字段字节差异、共享影响与诊断",
+        "备份、提交结果和写后复读值",
+        "源样本SHA未改变的隔离验收日志"
+      ],
+      "rollback": [
+        "失败恢复本次完整EXE候选；来源已被外部改写时报告冲突，不覆盖外部内容。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4017 @@
+{
+  "schemaVersion": 1,
+  "kind": "read-only-formula-constant-extraction",
+  "version": "6.5",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "samplePath": "基底/加强版6.5未加密版/Ekd5.exe",
+  "sampleSha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+  "coreAssemblySha256": "E3C990822C1056812660EFCA8E35327F5C0C685BFFDEB6E1144CAEFD20564DE4",
+  "sourceHashes": {
+    "data管理器/src/DataManager.Core/Scanner/EngineBattleFormulaService.cs": "50DB5AC96CFF4B9B3DD606839A6084377A57C29AA6316E232344053860B30C04",
+    "data管理器/src/DataManager.Core/Scanner/EngineConstantService.cs": "4DD85001A8B56F5010336005B59EDF947BD358CD526D25B63B39776E3D971D70",
+    "data管理器/src/DataManager.Core/Scanner/BattleFormulaConstantDefinitions.cs": "B1BFCE53A72E7DEA571DE8F7ADCB7F08C34FFCCAEFB693A6C84CDAC5BBA1D98B"
+  },
+  "imageBase": "0x00400000",
+  "sections": [
+    {
+      "name": ".code",
+      "virtualSize": 544768,
+      "rva": 4096,
+      "rawSize": 544256,
+      "rawPointer": 1024
+    },
+    {
+      "name": ".text1",
+      "virtualSize": 20480,
+      "rva": 548864,
+      "rawSize": 18432,
+      "rawPointer": 545280
+    },
+    {
+      "name": ".text2",
+      "virtualSize": 208896,
+      "rva": 569344,
+      "rawSize": 26624,
+      "rawPointer": 563712
+    },
+    {
+      "name": ".api",
+      "virtualSize": 65536,
+      "rva": 778240,
+      "rawSize": 62976,
+      "rawPointer": 590336
+    },
+    {
+      "name": ".text3",
+      "virtualSize": 409600,
+      "rva": 843776,
+      "rawSize": 409600,
+      "rawPointer": 653312
+    },
+    {
+      "name": ".rsrc",
+      "virtualSize": 132784,
+      "rva": 1253376,
+      "rawSize": 133120,
+      "rawPointer": 1062912
+    }
+  ],
+  "formulaDefinitions": 33,
+  "constantDefinitions": 88,
+  "matchedConstantCount": 71,
+  "method": "Read当前源码编译程序集的只读API，独立按PE节映射复核全部已命中主/成对/附加站点的原字节、签名掩码；调用前后核对EXE SHA不变。不运行游戏、不写回。",
+  "constants": [
+    {
+      "constantId": "guided-attack-count",
+      "title": "引导攻击追加次数",
+      "value": 2,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00421340",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00020740",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "02",
+          "signature": {
+            "prefix": "80 7D F8",
+            "suffix": "73 16",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "80 7D F8",
+            "actualSuffix": "73 16"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00421340"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "furious-attack-targets",
+      "title": "奋战攻击目标数",
+      "value": 8,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00405C16",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00005016",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "08",
+          "signature": {
+            "prefix": "FE 45 F4 80 7D F4",
+            "suffix": "73 3A FF 75 F4 8D 4D FC 51",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "FE 45 F4 80 7D F4",
+            "actualSuffix": "73 3A FF 75 F4 8D 4D FC 51"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.4/6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00405C16"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "active-combo-chance",
+      "title": "主动连击发动率",
+      "value": 100,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x004E411C",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000B591C",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "04 B0",
+            "suffix": "EB 35 8B",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "04 B0",
+            "actualSuffix": "EB 35 8B"
+          }
+        },
+        {
+          "role": "paired",
+          "address": {
+            "kind": "va",
+            "value": "0x004E4146",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000B5946",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "75 04 B0",
+            "suffix": "EB 0B FF",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "75 04 B0",
+            "actualSuffix": "EB 0B FF"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x004E411C"
+          ]
+        },
+        {
+          "label": "6.5/6.6 成对",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x004E4146"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "counter-damage-share",
+      "title": "普通反击伤害份数",
+      "value": 3,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x004E3216",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000B4A16",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "0E 8B 4D 08 6B C1",
+            "suffix": "C1 E8 02 85 C0 75",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "0E 8B 4D 08 6B C1",
+            "actualSuffix": "C1 E8 02 85 C0 75"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x004E3216"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "breakthrough-quote",
+      "title": "突破攻击台词",
+      "value": "唔，好强的气势。",
+      "nature": "文本槽",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00500CFF",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000D24FF",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 16,
+          "expectedFieldBytes": "DF ED A3 AC BA C3 C7 BF B5 C4 C6 F8 CA C6 A1 A3",
+          "signature": {
+            "prefix": "",
+            "suffix": "",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "",
+            "actualSuffix": ""
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": []
+    },
+    {
+      "constantId": "breakthrough-damage-bonus",
+      "title": "突破攻击伤害加成",
+      "value": 40,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x004110C1",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000104C1",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "28",
+          "signature": {
+            "prefix": "B0",
+            "suffix": "83 7D 08 01 74",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "B0",
+            "actualSuffix": "83 7D 08 01 74"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x004110C1"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "drain-attack-cap",
+      "title": "吸血攻击吸取上限",
+      "value": 100,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00406B9A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00005F9A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "E8 00 00 00 00 85 C0 74 00 3C",
+            "suffix": "76 02 B0 64 FF 35 00 00 00 00 50 E8",
+            "prefixMask": "01 00 00 00 00 01 01 01 00 01",
+            "suffixMask": "01 01 01 00 01 01 00 00 00 00 01 01",
+            "actualPrefix": "E8 44 96 00 00 85 C0 74 3D 3C",
+            "actualSuffix": "76 02 B0 64 FF 35 BD E8 48 00 50 E8"
+          }
+        },
+        {
+          "role": "paired",
+          "address": {
+            "kind": "va",
+            "value": "0x00406B9E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00005F9E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "76 02 B0",
+            "suffix": "FF 35",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "76 02 B0",
+            "actualSuffix": "FF 35"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00406B9A"
+          ]
+        },
+        {
+          "label": "全部基底 成对",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00406B9E"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "iron-chain-directions",
+      "title": "铁索横江邻接方向数",
+      "value": 4,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00412B7A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00011F7A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "04",
+          "signature": {
+            "prefix": "8B 45 FC 3C",
+            "suffix": "73 40 8D 4D F0 51",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 45 FC 3C",
+            "actualSuffix": "73 40 8D 4D F0 51"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.4/6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00412B7A"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "heavy-strike-cap",
+      "title": "猛击伤害比例上限",
+      "value": 100,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00422036",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00021436",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "55 8B EC 8B 4D 08 E8 68 9F FE FF 85 C0 74 14 3C",
+            "suffix": "76 02",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "55 8B EC 8B 4D 08 E8 68 9F FE FF 85 C0 74 14 3C",
+            "actualSuffix": "76 02"
+          }
+        },
+        {
+          "role": "paired",
+          "address": {
+            "kind": "va",
+            "value": "0x0042203A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0002143A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "02 B0",
+            "suffix": "50 6A 08",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "02 B0",
+            "actualSuffix": "50 6A 08"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00422036"
+          ]
+        },
+        {
+          "label": "6.5 成对",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0042203A"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "shield-counter-cap",
+      "title": "盾反反弹比例上限",
+      "value": 100,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0042205F",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0002145F",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "E8 51 9F FE FF 85 C0 74 14 3C",
+            "suffix": "76 02",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "E8 51 9F FE FF 85 C0 74 14 3C",
+            "actualSuffix": "76 02"
+          }
+        },
+        {
+          "role": "paired",
+          "address": {
+            "kind": "va",
+            "value": "0x00422063",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00021463",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "02 B0",
+            "suffix": "50 6A 02",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "02 B0",
+            "actualSuffix": "50 6A 02"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0042205F"
+          ]
+        },
+        {
+          "label": "6.5 成对",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00422063"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "demon-stat-cap",
+      "title": "神魔附体属性上限",
+      "value": 9999,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043C517",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003B917",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 4,
+          "expectedFieldBytes": "0F 27 00 00",
+          "signature": {
+            "prefix": "03 45 FC 3D",
+            "suffix": "72 05",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "03 45 FC 3D",
+            "actualSuffix": "72 05"
+          }
+        },
+        {
+          "role": "paired",
+          "address": {
+            "kind": "va",
+            "value": "0x0043C51E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003B91E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 4,
+          "expectedFieldBytes": "0F 27 00 00",
+          "signature": {
+            "prefix": "72 05 B8",
+            "suffix": "8B E5 5D",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "72 05 B8",
+            "actualSuffix": "8B E5 5D"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043C517"
+          ]
+        },
+        {
+          "label": "6.5 成对",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043C51E"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "swift-attack-bonus",
+      "title": "疾风攻击每点增伤",
+      "value": 5,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043BD88",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003B188",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "05",
+          "signature": {
+            "prefix": "D8 6B C0",
+            "suffix": "FF 75",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "D8 6B C0",
+            "actualSuffix": "FF 75"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.4/6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043BD88"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "physical-damage-base",
+      "title": "物理攻击基础伤害",
+      "value": 25,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043BD36",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003B136",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "19",
+          "signature": {
+            "prefix": "8B 4D D4 E8 40 69 FD FF 83 C0",
+            "suffix": "89 45 FC 8B 45",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 4D D4 E8 40 69 FD FF 83 C0",
+            "actualSuffix": "89 45 FC 8B 45"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043BD36"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "strategy-damage-base",
+      "title": "策略攻击基础伤害",
+      "value": 25,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043C101",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003B501",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "19",
+          "signature": {
+            "prefix": "01 45 FC 83 45 FC",
+            "suffix": "90 90 90 90",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "01 45 FC 83 45 FC",
+            "actualSuffix": "90 90 90 90"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.4/6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043C101"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "strategy-damage-divisor",
+      "title": "策略伤害能力差除数",
+      "value": 3,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043C126",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003B526",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 4,
+          "expectedFieldBytes": "03 00 00 00",
+          "signature": {
+            "prefix": "2B 45 E8 99 B9",
+            "suffix": "F7 F1 03 45 FC",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "2B 45 E8 99 B9",
+            "actualSuffix": "F7 F1 03 45 FC"
+          }
+        },
+        {
+          "role": "paired",
+          "address": {
+            "kind": "va",
+            "value": "0x0043C139",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003B539",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 4,
+          "expectedFieldBytes": "03 00 00 00",
+          "signature": {
+            "prefix": "2B 45 EC 99 B9",
+            "suffix": "F7 F1 50 FF 75",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "2B 45 EC 99 B9",
+            "actualSuffix": "F7 F1 50 FF 75"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043C126"
+          ]
+        },
+        {
+          "label": "全部基底 成对",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043C139"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "convert-heal-mp-cost",
+      "title": "化力为疗每点伤害MP消耗",
+      "value": 2,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D0A8",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C4A8",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "02",
+          "signature": {
+            "prefix": "2B 48 10 3B CA 72 0D 6B D2",
+            "suffix": "3E 29 55 B8 3E 29 55 EC EB 0A",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "2B 48 10 3B CA 72 0D 6B D2",
+            "actualSuffix": "3E 29 55 B8 3E 29 55 EC EB 0A"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D0A8"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "sharpen-attack-cap",
+      "title": "夺锐攻击能力上限",
+      "value": 3,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D0E1",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C4E1",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "0F B6 49 18 83 F9",
+            "suffix": "7E 14",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "0F B6 49 18 83 F9",
+            "actualSuffix": "7E 14"
+          }
+        },
+        {
+          "role": "paired",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D0F7",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C4F7",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "8B 4D E0 36 C6 41 18",
+            "suffix": "8B 4D E0",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 4D E0 36 C6 41 18",
+            "actualSuffix": "8B 4D E0"
+          }
+        },
+        {
+          "role": "extra",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D101",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C501",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "0F B6 49 19 83 F9",
+            "suffix": "7E 14",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "0F B6 49 19 83 F9",
+            "actualSuffix": "7E 14"
+          }
+        },
+        {
+          "role": "extra",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D117",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C517",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "8B 4D E0 36 C6 41 19",
+            "suffix": "8B 4D E0",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 4D E0 36 C6 41 19",
+            "actualSuffix": "8B 4D E0"
+          }
+        },
+        {
+          "role": "extra",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D121",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C521",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "0F B6 49 1A 83 F9",
+            "suffix": "7E 14",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "0F B6 49 1A 83 F9",
+            "actualSuffix": "7E 14"
+          }
+        },
+        {
+          "role": "extra",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D137",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C537",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "8B 4D E0 36 C6 41 1A",
+            "suffix": "8B 4D E0",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 4D E0 36 C6 41 1A",
+            "actualSuffix": "8B 4D E0"
+          }
+        },
+        {
+          "role": "extra",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D141",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C541",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "0F B6 49 1B 83 F9",
+            "suffix": "7E 14",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "0F B6 49 1B 83 F9",
+            "actualSuffix": "7E 14"
+          }
+        },
+        {
+          "role": "extra",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D157",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C557",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "8B 4D E0 36 C6 41 1B",
+            "suffix": "8B 4D E0",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 4D E0 36 C6 41 1B",
+            "actualSuffix": "8B 4D E0"
+          }
+        },
+        {
+          "role": "extra",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D161",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C561",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "0F B6 49 1C 83 F9",
+            "suffix": "7E 14",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "0F B6 49 1C 83 F9",
+            "actualSuffix": "7E 14"
+          }
+        },
+        {
+          "role": "extra",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D177",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C577",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "8B 4D E0 36 C6 41 1C",
+            "suffix": "8B 4D E0",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 4D E0 36 C6 41 1C",
+            "actualSuffix": "8B 4D E0"
+          }
+        },
+        {
+          "role": "extra",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D181",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C581",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "0F B6 49 1D 83 F9",
+            "suffix": "7E 14",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "0F B6 49 1D 83 F9",
+            "actualSuffix": "7E 14"
+          }
+        },
+        {
+          "role": "extra",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D197",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C597",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "8B 4D E0 36 C6 41 1D",
+            "suffix": "8B 4D F4",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 4D E0 36 C6 41 1D",
+            "actualSuffix": "8B 4D F4"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D0E1"
+          ]
+        },
+        {
+          "label": "6.5 成对",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D0F7"
+          ]
+        },
+        {
+          "label": "6.5 附加 0x0040D101",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D101"
+          ]
+        },
+        {
+          "label": "6.5 附加 0x0040D117",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D117"
+          ]
+        },
+        {
+          "label": "6.5 附加 0x0040D121",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D121"
+          ]
+        },
+        {
+          "label": "6.5 附加 0x0040D137",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D137"
+          ]
+        },
+        {
+          "label": "6.5 附加 0x0040D141",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D141"
+          ]
+        },
+        {
+          "label": "6.5 附加 0x0040D157",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D157"
+          ]
+        },
+        {
+          "label": "6.5 附加 0x0040D161",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D161"
+          ]
+        },
+        {
+          "label": "6.5 附加 0x0040D177",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D177"
+          ]
+        },
+        {
+          "label": "6.5 附加 0x0040D181",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D181"
+          ]
+        },
+        {
+          "label": "6.5 附加 0x0040D197",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D197"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "wind-rush-damage-divisor",
+      "title": "风驰电掣伤害除数",
+      "value": 11,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0041A51C",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0001991C",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 4,
+          "expectedFieldBytes": "0B 00 00 00",
+          "signature": {
+            "prefix": "0F AF 45 FC FF 75 08 50 E8 00 00 00 00 33 D2 B9",
+            "suffix": "F7 F1 01 45 08 8B 45 08",
+            "prefixMask": "01 01 01 01 01 01 01 01 01 00 00 00 00 01 01 01",
+            "suffixMask": null,
+            "actualPrefix": "0F AF 45 FC FF 75 08 50 E8 C0 B5 00 00 33 D2 B9",
+            "actualSuffix": "F7 F1 01 45 08 8B 45 08"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0041A51C"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "strategy-hit-cap",
+      "title": "策略命中/格挡率上限",
+      "value": 100,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B9E7",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003ADE7",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "89 45 F0 0F B6 45 F0 3C",
+            "suffix": "76 02 B0",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "89 45 F0 0F B6 45 F0 3C",
+            "actualSuffix": "76 02 B0"
+          }
+        },
+        {
+          "role": "paired",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B9EB",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003ADEB",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "76 02 B0",
+            "suffix": "5E 8B E5 5D C2 0C 00",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "76 02 B0",
+            "actualSuffix": "5E 8B E5 5D C2 0C 00"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.4/6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B9E7"
+          ]
+        },
+        {
+          "label": "6.4/6.5 成对",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B9EB"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "chaos-yin-yang-hit-bonus",
+      "title": "逆乱阴阳命中加成",
+      "value": 10,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B9D6",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003ADD6",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "0A",
+          "signature": {
+            "prefix": "85 C0 74 0F 6A 64 6A",
+            "suffix": "FF 75 F0 E8 AA 40 04 00",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "85 C0 74 0F 6A 64 6A",
+            "actualSuffix": "FF 75 F0 E8 AA 40 04 00"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B9D6"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "effect-screen-directions",
+      "title": "特效屏蔽方向数",
+      "value": 4,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x004253AA",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000247AA",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "04",
+          "signature": {
+            "prefix": "8B 45 F4 3C",
+            "suffix": "73 42 8D 4D E8 51 8B 4D FC E8",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 45 F4 3C",
+            "actualSuffix": "73 42 8D 4D E8 51 8B 4D FC E8"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x004253AA"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "screen-inner-directions",
+      "title": "特效屏蔽内层方向数",
+      "value": 4,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040F1E9",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000E5E9",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "04",
+          "signature": {
+            "prefix": "8B 45 F4 3C",
+            "suffix": "73 51 8D 4D E8 51 8B 4D FC",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 45 F4 3C",
+            "actualSuffix": "73 51 8D 4D E8 51 8B 4D FC"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040F1E9"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "pass-through-directions",
+      "title": "穿越移动判定方向数",
+      "value": 4,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00437D8A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003718A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "04",
+          "signature": {
+            "prefix": "8B 45 F0 3C",
+            "suffix": "73 47 50 FF 75 F4 E8",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 45 F0 3C",
+            "actualSuffix": "73 47 50 FF 75 F4 E8"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00437D8A"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "aura-range",
+      "title": "状态强化/周围能力范围",
+      "value": 9,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00422151",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00021551",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "09",
+          "signature": {
+            "prefix": "FF 45 F8 8B 45 F8 3C",
+            "suffix": "73 57 85 C0 75 05 8B",
+            "prefixMask": null,
+            "suffixMask": "01 00 01 01 01 01 01",
+            "actualPrefix": "FF 45 F8 8B 45 F8 3C",
+            "actualSuffix": "73 57 85 C0 75 05 8B"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.4/6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00422151"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "combo-damage-bonus",
+      "title": "连击固定增伤",
+      "value": 0,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x004E319E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000B499E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "00",
+          "signature": {
+            "prefix": "0F AF 45 FC 83 C0",
+            "suffix": "FF 75 08 50 E8",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "0F AF 45 FC 83 C0",
+            "actualSuffix": "FF 75 08 50 E8"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x004E319E"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "adversity-reduction-cap",
+      "title": "逆境减伤最大比例",
+      "value": 80,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00449093",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00048493",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "50",
+          "signature": {
+            "prefix": "2B 45 FC 6B C0",
+            "suffix": "33 D2 F7 F9 85 C0",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "2B 45 FC 6B C0",
+            "actualSuffix": "33 D2 F7 F9 85 C0"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00449093"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "sneak-attack-step",
+      "title": "偷袭攻击每档增伤",
+      "value": 25,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x004D2767",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000A3F67",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "19",
+          "signature": {
+            "prefix": "B0 02 6B C0",
+            "suffix": "50 FF 75 10 E8 68 33 F5 FF 01",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "B0 02 6B C0",
+            "actualSuffix": "50 FF 75 10 E8 68 33 F5 FF 01"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x004D2767"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "fixed-damage-basis",
+      "title": "固定值基础加成",
+      "value": 10,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00448F8B",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0004838B",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "0A",
+          "signature": {
+            "prefix": "8B 45 FC D1 E8 90 83 C0",
+            "suffix": "03 45 08 50 6A 00",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 45 FC D1 E8 90 83 C0",
+            "actualSuffix": "03 45 08 50 6A 00"
+          }
+        },
+        {
+          "role": "paired",
+          "address": {
+            "kind": "va",
+            "value": "0x00448FB7",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000483B7",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "0A",
+          "signature": {
+            "prefix": "8B 45 FC D1 E8 90 83 C0",
+            "suffix": "8B 4D F8 2B C8 83 F9 00",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 45 FC D1 E8 90 83 C0",
+            "actualSuffix": "8B 4D F8 2B C8 83 F9 00"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00448F8B"
+          ]
+        },
+        {
+          "label": "6.5/6.6 成对",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00448FB7"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "strategy-floor-bonus",
+      "title": "策伤保底追加比例",
+      "value": 20,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043D3EA",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003C7EA",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "14",
+          "signature": {
+            "prefix": "39 45 08 72 12 6A",
+            "suffix": "FF 75 08 E8",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "39 45 08 72 12 6A",
+            "actualSuffix": "FF 75 08 E8"
+          }
+        },
+        {
+          "role": "paired",
+          "address": {
+            "kind": "va",
+            "value": "0x0043D43A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003C83A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "14",
+          "signature": {
+            "prefix": "39 45 08 73 10 6A",
+            "suffix": "FF 75 08 E8",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "39 45 08 73 10 6A",
+            "actualSuffix": "FF 75 08 E8"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043D3EA"
+          ]
+        },
+        {
+          "label": "6.5 成对",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043D43A"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "exploit-weakness-threshold",
+      "title": "趁虚攻击虚弱阈值",
+      "value": 3,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043EA40",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003DE40",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "83 FA 06 73 0D 8B 4D 0C 80 7C 11 18",
+            "suffix": "7D 01 40 EB",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "83 FA 06 73 0D 8B 4D 0C 80 7C 11 18",
+            "actualSuffix": "7D 01 40 EB"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043EA40"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "money-absorb-multiplier",
+      "title": "吸收金钱获得倍率",
+      "value": 1,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00406BFF",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00005FFF",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "01",
+          "signature": {
+            "prefix": "A1 BD E8 48 00 6B C0",
+            "suffix": "BA 7C 07 4B 00 80 F9 02",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "A1 BD E8 48 00 6B C0",
+            "actualSuffix": "BA 7C 07 4B 00 80 F9 02"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00406BFF"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "fengfeng-floor-bonus",
+      "title": "神锋沥辉保底加成",
+      "value": 10,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0042426A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0002366A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "0A",
+          "signature": {
+            "prefix": "6A 00 E8 00 00 00 00 83 C0",
+            "suffix": "50 E8 00 00 00 00 01 45 08",
+            "prefixMask": "01 00 01 00 00 00 00 01 01",
+            "suffixMask": "01 01 00 00 00 00 01 01 01",
+            "actualPrefix": "6A 14 E8 6C 78 FE FF 83 C0",
+            "actualSuffix": "50 E8 68 18 00 00 01 45 08"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0042426A"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "shop-sell-price-numerator",
+      "title": "商店卖出价格比例分子",
+      "value": 3,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040B48D",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000A88D",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "6B C0 64 6B C0",
+            "suffix": "99 83 E2 03 03 C2 C1 F8 02",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "6B C0 64 6B C0",
+            "actualSuffix": "99 83 E2 03 03 C2 C1 F8 02"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040B48D"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-curve-cap",
+      "title": "命中率上限",
+      "value": 100,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B54A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A94A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "39 55 08 72 04 B0",
+            "suffix": "EB 66 8B 55 08 3B",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "39 55 08 72 04 B0",
+            "actualSuffix": "EB 66 8B 55 08 3B"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B54A"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-curve-high-base",
+      "title": "高段基础值",
+      "value": 90,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B56B",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A96B",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "5A",
+          "signature": {
+            "prefix": "33 D2 F7 75 0C 83 C0",
+            "suffix": "EB 45 8B 4D 0C",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "33 D2 F7 75 0C 83 C0",
+            "actualSuffix": "EB 45 8B 4D 0C"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B56B"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-curve-high-coef",
+      "title": "高段每点系数",
+      "value": 10,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B563",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A963",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "0A",
+          "signature": {
+            "prefix": "83 C4 08 6B C0",
+            "suffix": "33 D2 F7 75 0C",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "83 C4 08 6B C0",
+            "actualSuffix": "33 D2 F7 75 0C"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B563"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-curve-mid-base",
+      "title": "中段基础值",
+      "value": 60,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B58C",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A98C",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "3C",
+          "signature": {
+            "prefix": "33 D2 F7 F1 83 C0",
+            "suffix": "EB 24 8B 45 0C",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "33 D2 F7 F1 83 C0",
+            "actualSuffix": "EB 24 8B 45 0C"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B58C"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-curve-mid-coef",
+      "title": "中段每点系数",
+      "value": 30,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B584",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A984",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "1E",
+          "signature": {
+            "prefix": "83 C4 08 6B C0",
+            "suffix": "59 33 D2 F7 F1",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "83 C4 08 6B C0",
+            "actualSuffix": "59 33 D2 F7 F1"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B584"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-curve-low-divisor",
+      "title": "低段守方除数",
+      "value": 3,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B595",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A995",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 4,
+          "expectedFieldBytes": "03 00 00 00",
+          "signature": {
+            "prefix": "33 D2 B9",
+            "suffix": "F7 F1 50 50 FF",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "33 D2 B9",
+            "actualSuffix": "F7 F1 50 50 FF"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B595"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-curve-low-base",
+      "title": "低段基础值",
+      "value": 30,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B5B2",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A9B2",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "1E",
+          "signature": {
+            "prefix": "59 F7 F1 83 C0",
+            "suffix": "5D C2 08 00 90",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "59 F7 F1 83 C0",
+            "actualSuffix": "5D C2 08 00 90"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B5B2"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-curve-low-coef",
+      "title": "低段每点系数",
+      "value": 30,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B5AA",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A9AA",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "1E",
+          "signature": {
+            "prefix": "83 C4 08 6B C0",
+            "suffix": "33 D2 59 F7 F1",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "83 C4 08 6B C0",
+            "actualSuffix": "33 D2 59 F7 F1"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B5AA"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-retry-count",
+      "title": "最多命中判定次数",
+      "value": 2,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B50A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A90A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "02",
+          "signature": {
+            "prefix": "80 7D F0",
+            "suffix": "73 27 FF 75",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "80 7D F0",
+            "actualSuffix": "73 27 FF 75"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B50A"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-retry-threshold",
+      "title": "二次判定触发阈值",
+      "value": 85,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B528",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A928",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "55",
+          "signature": {
+            "prefix": "83 7D F4",
+            "suffix": "72 09 83 6D",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "83 7D F4",
+            "actualSuffix": "72 09 83 6D"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B528"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "hit-retry-deduction",
+      "title": "二次判定命中扣减",
+      "value": 10,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0043B52E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0003A92E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "0A",
+          "signature": {
+            "prefix": "83 6D F4",
+            "suffix": "FE 45 F0 EB D3",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "83 6D F4",
+            "actualSuffix": "FE 45 F0 EB D3"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0043B52E"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "rate-curve-full-multiplier",
+      "title": "满发动率所需倍数",
+      "value": 3,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00405D14",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00005114",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "8B 4D 08 6B C9",
+            "suffix": "39 4D 0C 72 04",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B 4D 08 6B C9",
+            "actualSuffix": "39 4D 0C 72 04"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00405D14"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "rate-curve-cap",
+      "title": "发动率上限",
+      "value": 100,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00405D1B",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000511B",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "39 4D 0C 72 04 B0",
+            "suffix": "EB 37 8B 4D 08",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "39 4D 0C 72 04 B0",
+            "actualSuffix": "EB 37 8B 4D 08"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00405D1B"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "rate-curve-high-coef",
+      "title": "高段每点系数",
+      "value": 80,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00405D2F",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000512F",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "50",
+          "signature": {
+            "prefix": "2B C1 6B C0",
+            "suffix": "33 D2 F7 75 08",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "2B C1 6B C0",
+            "actualSuffix": "33 D2 F7 75 08"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00405D2F"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "rate-curve-high-base",
+      "title": "高段基础值",
+      "value": 20,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00405D37",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00005137",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "14",
+          "signature": {
+            "prefix": "33 D2 F7 75 08 83 C0",
+            "suffix": "EB 1B 8B 45 0C",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "33 D2 F7 75 08 83 C0",
+            "actualSuffix": "EB 1B 8B 45 0C"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00405D37"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "rate-curve-low-coef",
+      "title": "低段每点系数",
+      "value": 18,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00405D47",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00005147",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "12",
+          "signature": {
+            "prefix": "2B 45 08 6B C0",
+            "suffix": "33 D2 F7 75 08",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "2B 45 08 6B C0",
+            "actualSuffix": "33 D2 F7 75 08"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00405D47"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "rate-curve-low-base",
+      "title": "低段基础值",
+      "value": 2,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00405D4F",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000514F",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "02",
+          "signature": {
+            "prefix": "33 D2 F7 75 08 83 C0",
+            "suffix": "EB 03 33 C0 40",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "33 D2 F7 75 08 83 C0",
+            "actualSuffix": "EB 03 33 C0 40"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00405D4F"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "physical-crit-cap",
+      "title": "物理暴击率上限",
+      "value": 100,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00405ED7",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000052D7",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "89 45 DC 83 F8",
+            "suffix": "77 10",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "89 45 DC 83 F8",
+            "actualSuffix": "77 10"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00405ED7"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "physical-crit-pool",
+      "title": "物理暴击集气池",
+      "value": 2,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00405EDB",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000052DB",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "02",
+          "signature": {
+            "prefix": "77 10 6A",
+            "suffix": "50 E8 C6 28 02 00 85 C0 74 3E",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "77 10 6A",
+            "actualSuffix": "50 E8 C6 28 02 00 85 C0 74 3E"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00405EDB"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "strategy-crit-cap",
+      "title": "策略暴击率上限",
+      "value": 100,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040CAA5",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000BEA5",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "50 83 F8",
+            "suffix": "77 10",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "50 83 F8",
+            "actualSuffix": "77 10"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040CAA5"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "strategy-crit-pool",
+      "title": "策略暴击集气池",
+      "value": 18,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040CAA9",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000BEA9",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "12",
+          "signature": {
+            "prefix": "77 10 6A",
+            "suffix": "50 E8 F8 BC 01 00 85 C0 74 1D",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "77 10 6A",
+            "actualSuffix": "50 E8 F8 BC 01 00 85 C0 74 1D"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040CAA9"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "combo-pool",
+      "title": "连击集气池",
+      "value": 0,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040612E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000552E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "00",
+          "signature": {
+            "prefix": "E8 B3 DF 0D 00 6A",
+            "suffix": "50 E8 73 26 02 00 85 C0 75 03",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "E8 B3 DF 0D 00 6A",
+            "actualSuffix": "50 E8 73 26 02 00 85 C0 75 03"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5/6.6",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040612E"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "personal-exp-kill-flat",
+      "title": "个人经验·击杀固定加成",
+      "value": 48,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00403824",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00002C24",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "30",
+          "signature": {
+            "prefix": "75 06 83 45 FC",
+            "suffix": "EB 19 8B 45 F4",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "75 06 83 45 FC",
+            "actualSuffix": "EB 19 8B 45 F4"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.4/6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00403824"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "personal-exp-kill-ratio-num",
+      "title": "个人经验·击杀经验分子",
+      "value": 64,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040383A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00002C3A",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "40",
+          "signature": {
+            "prefix": "8B C8 33 D2 B0",
+            "suffix": "F7 F1 01 45 FC",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "8B C8 33 D2 B0",
+            "actualSuffix": "F7 F1 01 45 FC"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.4/6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040383A"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "personal-exp-kill-ratio-offset",
+      "title": "个人经验·击杀除数偏移",
+      "value": 2,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00403834",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00002C34",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "02",
+          "signature": {
+            "prefix": "33 C0 04",
+            "suffix": "8B C8 33 D2 B0",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "33 C0 04",
+            "actualSuffix": "8B C8 33 D2 B0"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.4/6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00403834"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "personal-exp-base",
+      "title": "个人经验基础值",
+      "value": 6,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00403855",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00002C55",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "06",
+          "signature": {
+            "prefix": "B0 2F 8D 4C 00",
+            "suffix": "01 4D FC 8B 45 F8",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "B0 2F 8D 4C 00",
+            "actualSuffix": "01 4D FC 8B 45 F8"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00403855"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "exp-multiplier-base",
+      "title": "经验倍率基础值",
+      "value": 100,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00407FB9",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x000073B9",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "64",
+          "signature": {
+            "prefix": "0F B6 C0 83 C0",
+            "suffix": "5D C3",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "0F B6 C0 83 C0",
+            "actualSuffix": "5D C3"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00407FB9"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "weapon-exp-base",
+      "title": "武器经验基础值",
+      "value": 2,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x004038FA",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00002CFA",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "02",
+          "signature": {
+            "prefix": "83 BC 88 84 00 00 00 00 75 0A 83 BC 88 54 02 00 00 00 74 1D B1",
+            "suffix": "8B 45 F4 3B 45 F0",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "83 BC 88 84 00 00 00 00 75 0A 83 BC 88 54 02 00 00 00 74 1D B1",
+            "actualSuffix": "8B 45 F4 3B 45 F0"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x004038FA"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "weapon-exp-no-damage",
+      "title": "武器经验无伤害值",
+      "value": 2,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00403919",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00002D19",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "02",
+          "signature": {
+            "prefix": "EB 04 C6 45 FC",
+            "suffix": "8B 45 F8 8B 48 08",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "EB 04 C6 45 FC",
+            "actualSuffix": "8B 45 F8 8B 48 08"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00403919"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "armor-exp-base",
+      "title": "防具经验基础值",
+      "value": 3,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00403A8E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00002E8E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "03",
+          "signature": {
+            "prefix": "55 8B EC 6A",
+            "suffix": "51 83 EC 10 E8",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "55 8B EC 6A",
+            "actualSuffix": "51 83 EC 10 E8"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00403A8E"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "armor-exp-no-damage",
+      "title": "防具经验无伤害扣减",
+      "value": 2,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00403AFB",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00002EFB",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "02",
+          "signature": {
+            "prefix": "EB 04 83 6D FC",
+            "suffix": "8B 45 F8 40 50",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "EB 04 83 6D FC",
+            "actualSuffix": "8B 45 F8 40 50"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00403AFB"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "char-exp-max-level",
+      "title": "角色升级·最大等级",
+      "value": 60,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x004088D3",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00007CD3",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "3C",
+          "signature": {
+            "prefix": "55 8B EC 33 C0 B0",
+            "suffix": "E9 1E 49 00 00",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "55 8B EC 33 C0 B0",
+            "actualSuffix": "E9 1E 49 00 00"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x004088D3"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "char-exp-band-65",
+      "title": "角色升级·等级分段（6.5）",
+      "value": 20,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D226",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C626",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 4,
+          "expectedFieldBytes": "14 00 00 00",
+          "signature": {
+            "prefix": "E8 AB 93 FF FF B9",
+            "suffix": "31 D2 F7 F1 83 F8 03",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "E8 AB 93 FF FF B9",
+            "actualSuffix": "31 D2 F7 F1 83 F8 03"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D226"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "char-exp-step-65",
+      "title": "角色升级·每档增量（6.5）",
+      "value": 50,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040D23D",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000C63D",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "32",
+          "signature": {
+            "prefix": "83 C0 03 6B C0",
+            "suffix": "5D C3",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "83 C0 03 6B C0",
+            "actualSuffix": "5D C3"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040D23D"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "equip-exp-threshold-special",
+      "title": "装备升级·宝物经验阈值",
+      "value": 200,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00408319",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00007719",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "C8",
+          "signature": {
+            "prefix": "33 D2 85 C0 74 05 80 C2",
+            "suffix": "EB 03",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "33 D2 85 C0 74 05 80 C2",
+            "actualSuffix": "EB 03"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00408319"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "equip-exp-threshold-normal",
+      "title": "装备升级·普通经验阈值",
+      "value": 150,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040831E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000771E",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "96",
+          "signature": {
+            "prefix": "EB 03 80 C2",
+            "suffix": "89 55 E8",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "EB 03 80 C2",
+            "actualSuffix": "89 55 E8"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040831E"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "equip-level-cap-special",
+      "title": "装备升级·宝物等级上限",
+      "value": 9,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x00408327",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x00007727",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "09",
+          "signature": {
+            "prefix": "89 55 E8 85 C0 74 04 B0",
+            "suffix": "EB 02 B0",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "89 55 E8 85 C0 74 04 B0",
+            "actualSuffix": "EB 02 B0"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "全部基底",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x00408327"
+          ]
+        }
+      ]
+    },
+    {
+      "constantId": "equip-level-cap-normal",
+      "title": "装备升级·普通等级上限",
+      "value": 5,
+      "nature": "代码固定值",
+      "sites": [
+        {
+          "role": "primary",
+          "address": {
+            "kind": "va",
+            "value": "0x0040832B",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "fileAddress": {
+            "kind": "fileOffset",
+            "value": "0x0000772B",
+            "profile": "profile.ccz65.unencrypted.3890.scan",
+            "evidence": "static-verified"
+          },
+          "width": 1,
+          "expectedFieldBytes": "05",
+          "signature": {
+            "prefix": "EB 02 B0",
+            "suffix": "88 45 F8 8A 45 08 50 8B 4D EC",
+            "prefixMask": null,
+            "suffixMask": null,
+            "actualPrefix": "EB 02 B0",
+            "actualSuffix": "88 45 F8 8A 45 08 50 8B 4D EC"
+          }
+        }
+      ],
+      "signatureMatches": true,
+      "relocationChecks": [
+        {
+          "label": "6.4/6.5",
+          "hits": 1,
+          "relocate": true,
+          "optional": false,
+          "addresses": [
+            "0x0040832B"
+          ]
+        }
+      ]
+    }
+  ],
+  "unavailable": [
+    {
+      "id": "swift-attack-offset",
+      "title": "疾风攻击补正值（6.6）",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "absolute-strategy-damage-bonus",
+      "title": "绝对策略伤害追加比例",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "strategy-damage-limit-cut",
+      "title": "限制策略伤害额外减伤",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "absolute-damage-hp-threshold",
+      "title": "绝对伤害触发 HP 线",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "absolute-damage-bonus",
+      "title": "绝对伤害追加比例",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "lone-brave-reduction-cap",
+      "title": "孤勇者减伤上限",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "continuous-attack-reduction-cap",
+      "title": "连续攻击减伤封顶",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "battle-veteran-damage-divisor",
+      "title": "越战越勇伤害除数",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "advance-retreat-double-line",
+      "title": "进退有据翻倍触发 HP 线",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "mp-strategy-bonus",
+      "title": "MP辅助策略基础加成",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "money-defense-cost",
+      "title": "金钱防御每点伤害消耗",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "dodge-damage-cap",
+      "title": "化险为夷最大伤害比例",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "offense-defense-add-line",
+      "title": "攻守兼备增伤触发 HP 线",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "offense-defense-effect-cap",
+      "title": "攻守兼备减伤效果值上限",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "offense-defense-reduce-line",
+      "title": "攻守兼备减伤触发 HP 线",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "hit-curve-floor-66",
+      "title": "6.6 命中下限",
+      "reason": "此常量只适用于 6.6，当前基底不适用。"
+    },
+    {
+      "id": "char-exp-threshold",
+      "title": "角色升级·每级经验",
+      "reason": "此常量只适用于 6.4/6.6，当前基底不适用。"
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import json
 import re
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path, PurePosixPath, PureWindowsPath
 
 sys.dont_write_bytecode = True
@@ -285,7 +286,7 @@ def validate_sources(errors: list[str], document: dict, root: Path = ROOT) -> se
 
 
 
-def entity_sha256(value: dict) -> str:
+def entity_sha256(value: object) -> str:
     encoded = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest().upper()
 
@@ -338,6 +339,185 @@ def validate_integration_receipt(errors: list[str], receipt: dict, entities: dic
         error(errors, "integration input entities are missing or missingIds is stale")
     if receipt.get("newEntityIds") != sorted(set(entities) - input_ids):
         error(errors, "integration newEntityIds differs from final minus input IDs")
+
+
+def validate_incremental_receipt(errors: list[str], receipt: dict, entities: dict[str, dict],
+                                 root: Path = ROOT, review_document: dict | None = None,
+                                 review_bytes: bytes | None = None) -> None:
+    """Validate a frozen baseline, current targets and changed-entity review coverage."""
+    if receipt.get("schemaVersion") != 1 or receipt.get("receiptType") != "incremental":
+        error(errors, "invalid incremental receipt envelope")
+        return
+    try:
+        if date.fromisoformat(receipt.get("date", "")).isoformat() != receipt.get("date"):
+            raise ValueError("date must use YYYY-MM-DD")
+    except (TypeError, ValueError):
+        error(errors, "invalid incremental receipt date")
+    if not re.fullmatch(r"[0-9a-fA-F]{40}", str(receipt.get("baselineCommit", ""))):
+        error(errors, "incremental baseline commit is not pinned")
+    baseline_list = receipt.get("baselineEntities")
+    records = receipt.get("records")
+    if not isinstance(baseline_list, list) or not isinstance(records, list):
+        error(errors, "incremental baselineEntities/records must be arrays")
+        return
+    if receipt.get("baselineEntitiesSha256") != entity_sha256(baseline_list):
+        error(errors, "incremental baseline observation hash differs")
+
+    def valid_observation(value: object, owner: str) -> bool:
+        if not isinstance(value, dict):
+            error(errors, f"incremental observation missing: {owner}")
+            return False
+        if not safe_relative_path(value.get("path")):
+            error(errors, f"incremental observation path unsafe: {owner}")
+        if value.get("status") not in STATUSES:
+            error(errors, f"incremental observation status invalid: {owner}")
+        if not re.fullmatch(r"[0-9A-F]{64}", str(value.get("entitySha256", ""))):
+            error(errors, f"incremental observation hash invalid: {owner}")
+        return True
+
+    baseline = {}
+    for item in baseline_list:
+        if not isinstance(item, dict) or not item.get("id") or item.get("id") in baseline:
+            error(errors, "duplicate/empty incremental baseline ID")
+            continue
+        entity_id = item["id"]
+        baseline[entity_id] = {key: value for key, value in item.items() if key != "id"}
+        valid_observation(baseline[entity_id], entity_id + ":baseline")
+    if receipt.get("baselineEntityCount") != len(baseline) or len(baseline_list) != len(baseline):
+        error(errors, "incremental baselineEntityCount differs from observations")
+    missing = set(baseline) - set(entities)
+    if missing:
+        error(errors, "incremental baseline entities disappeared: " + ", ".join(sorted(missing)))
+
+    actual_ids = set()
+    changed_ids = set()
+    counts = {"added": 0, "updated": 0, "retained": 0}
+    for record in records:
+        if not isinstance(record, dict):
+            error(errors, "invalid incremental record")
+            continue
+        entity_id = record.get("id")
+        if not entity_id or entity_id in actual_ids:
+            error(errors, f"duplicate/empty incremental record ID: {entity_id}")
+            continue
+        actual_ids.add(entity_id)
+        before = baseline.get(entity_id)
+        if record.get("before") != before:
+            error(errors, f"incremental before observation differs: {entity_id}")
+        target = entities.get(entity_id)
+        if target is None:
+            error(errors, f"incremental target entity missing: {entity_id}")
+            continue
+        after = {"path": target["path"], "status": target["entry"].get("status"),
+                 "entitySha256": entity_sha256(target["entry"])}
+        valid_observation(record.get("after"), entity_id + ":after")
+        if record.get("after") != after:
+            error(errors, f"incremental after observation differs: {entity_id}")
+        action = "added" if before is None else ("retained" if before == after else "updated")
+        counts[action] += 1
+        if record.get("action") != action:
+            error(errors, f"incremental action differs: {entity_id}")
+        if not isinstance(record.get("reason"), str) or not record["reason"].strip():
+            error(errors, f"incremental disposition reason missing: {entity_id}")
+        if action != "retained":
+            changed_ids.add(entity_id)
+    if actual_ids != set(baseline) | set(entities) or len(records) != len(actual_ids):
+        error(errors, "incremental records do not cover baseline/final entity union")
+    if receipt.get("finalEntityCount") != len(entities):
+        error(errors, "incremental finalEntityCount differs from structured data")
+    if receipt.get("actionCounts") != counts:
+        error(errors, "incremental actionCounts differs from actual changes")
+
+    review_ref = receipt.get("documentReview", {})
+    if not isinstance(review_ref, dict) or not safe_relative_path(review_ref.get("path")):
+        error(errors, "incremental document review path unsafe/missing")
+        return
+    if review_document is None or review_bytes is None:
+        path = root / review_ref["path"]
+        if not path.is_file() or not path.resolve().is_relative_to(root.resolve()):
+            error(errors, "incremental document review missing/outside repository")
+            return
+        try:
+            review_bytes = path.read_bytes()
+            review_document = json.loads(review_bytes.decode("utf-8-sig"))
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            error(errors, f"invalid incremental document review: {exc}")
+            return
+    actual_hash = hashlib.sha256(review_bytes).hexdigest().upper()
+    normalized_hash = hashlib.sha256(review_bytes.replace(b"\r\n", b"\n")).hexdigest().upper()
+    if not re.fullmatch(r"[0-9A-F]{64}", str(review_ref.get("sha256", ""))):
+        error(errors, "invalid incremental document review hash")
+    if review_ref.get("sha256") != actual_hash and review_ref.get("normalizedSha256") != normalized_hash:
+        error(errors, "incremental document review hash differs")
+    if not isinstance(review_document, dict):
+        error(errors, "invalid incremental document review envelope")
+        return
+    if (review_document.get("schemaVersion") != 1 or review_document.get("reviewDate") != receipt.get("date")
+            or review_document.get("baselineCommit") != receipt.get("baselineCommit")):
+        error(errors, "incremental document review metadata differs")
+    review_entries = review_document.get("entries")
+    if not isinstance(review_entries, list):
+        error(errors, "incremental document review entries must be an array")
+        return
+    covered = set()
+    reviewed_paths = set()
+    dispositions = {"updated-entities", "new-entities", "existing-entities", "research", "index-only", "excluded"}
+    for entry in review_entries:
+        if not isinstance(entry, dict):
+            error(errors, "invalid incremental document review entry")
+            continue
+        path = entry.get("path")
+        if not safe_relative_path(path) or path in reviewed_paths:
+            error(errors, f"unsafe/duplicate incremental reviewed path: {path}")
+        reviewed_paths.add(path)
+        if not re.fullmatch(r"[0-9A-F]{64}", str(entry.get("sha256", ""))):
+            error(errors, f"invalid incremental reviewed source hash: {path}")
+        if entry.get("disposition") not in dispositions or not isinstance(entry.get("reason"), str) or not entry["reason"].strip():
+            error(errors, f"incremental reviewed source disposition/reason missing: {path}")
+        target_ids = entry.get("targetIds")
+        if not isinstance(target_ids, list) or any(not isinstance(entity_id, str) for entity_id in target_ids):
+            error(errors, f"invalid incremental reviewed target IDs: {path}")
+            continue
+        for entity_id in target_ids:
+            if entity_id not in entities:
+                error(errors, f"incremental reviewed target entity missing: {entity_id}")
+            covered.add(entity_id)
+    uncovered = changed_ids - covered
+    if uncovered:
+        error(errors, "incremental changed entities lack source/document review: " + ", ".join(sorted(uncovered)))
+
+
+def validate_incremental_receipt_files(errors: list[str], entities: dict[str, dict], root: Path = ROOT) -> None:
+    """Reject malformed dated receipts; validate the newest receipt's final tree."""
+    receipts = []
+    for path in sorted((root / "sources").glob("integration-*.json")):
+        if path.name == "integration-20261028.json":
+            continue
+        match = re.fullmatch(r"integration-(\d{4})(\d{2})(\d{2})\.json", path.name)
+        if not match:
+            continue
+        try:
+            value = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            error(errors, f"invalid incremental receipt {path.name}: {exc}")
+            continue
+        if not isinstance(value, dict) or value.get("receiptType") != "incremental":
+            error(errors, f"dated integration receipt must declare receiptType incremental: {path.name}")
+            continue
+        expected_date = "-".join(match.groups())
+        try:
+            date.fromisoformat(expected_date)
+        except ValueError:
+            error(errors, f"dated integration receipt has invalid filename date: {path.name}")
+            continue
+        if value.get("date") != expected_date:
+            error(errors, f"incremental receipt date differs from filename: {path.name}")
+            continue
+        receipts.append((expected_date, value))
+    if receipts:
+        _, latest = max(receipts, key=lambda item: item[0])
+        validate_incremental_receipt(errors, latest, entities, root=root)
+
 
 def validate_generated(errors: list[str]) -> None:
     # Render in memory. Validation never edits stale tracked files.
@@ -477,13 +657,16 @@ def main() -> int:
         if list((ROOT / version).rglob("*.json")):
             error(errors, f"{version} has no structured-data root until an independent profile is verified")
 
+    final_entities = {
+        entry["id"]: {"entry": entry, "path": path.relative_to(ROOT).as_posix()}
+        for path, document in documents for entry in document["entries"]
+    }
     receipt = load_json(ROOT / "sources" / "integration-20261028.json", errors)
     if isinstance(receipt, dict):
-        final_entities = {
-            entry["id"]: {"entry": entry, "path": path.relative_to(ROOT).as_posix()}
-            for path, document in documents for entry in document["entries"]
-        }
         validate_integration_receipt(errors, receipt, final_entities)
+    # Historical observations stay frozen. Only the newest incremental receipt
+    # describes the current tree; older before/after receipts remain an audit trail.
+    validate_incremental_receipt_files(errors, final_entities)
 
     cleanup = load_json(ROOT / "sources" / "cleanup-report.json", errors)
     if not isinstance(cleanup, dict) or cleanup.get("oldIndexedEntryCount") != len(cleanup.get("records", [])):

@@ -88,4 +88,15 @@ python tools/validate_kb.py
 
 知识库生成、校验和查询命令在本仓库根目录运行。数据管理器的构建与回归契约则在包含 `data管理器/`、`形象管理器/` 的源工作区运行；先按 `sources/source-manifest.json` 的相对路径和 SHA-256 核对源码版本，再替换契约中的目录占位符。本仓库保留结构化结论与小型字节证据，不分发游戏基底或工具构建产物。
 
-本轮整合回执见 `sources/integration-20261028.json`。它记录 main、三个专题分支和当前本地整合稿的稳定 ID 覆盖、目标路径、状态和规范化实体哈希；历史来源无法随仓库发布时，`sources/source-manifest.json` 的 `verification` 会明确标为 `external-local` 或 `identity-only`，不会把路径存在误写成仓库内证据。
+2026-10-28 整合回执见 `sources/integration-20261028.json`。其历史输入观察保留原日期和哈希，最终目标信息随增量更新；历史来源无法随仓库发布时，`sources/source-manifest.json` 的 `verification` 明确标为 `external-local` 或 `identity-only`。
+
+## 2026-11-02 data 管理器增量
+
+本轮以源码 `1.2026.1101.114` 为准，逐项复核本地知识库、专项文档、Profile 和共享图像实现。README 标注的 `.96` 与历史发布验收分别保留身份；源码逐文件清单见 [source snapshot](sources/data-manager-source-snapshot-20261102.json)，文档处置见 [review](sources/data-manager-review-20261102.json)，逐实体前后对照见 [incremental receipt](sources/integration-20261102.json)。
+
+- 三基底分别收录33项公式与实际匹配常量；当前源码共有88项常量定义，精确样本匹配数为6.4的58项、6.5的71项和6.6的80项。公式语义保持候选，静态字节与工具测试独立登记。
+- 新增业务XLSX基线/三方冲突协议、参考包清单与灵活画布、Pmap结构与Mmap配对事务，纠正旧版参考图、S形象编号和拓展表记录数描述。
+- 明确GBK字节预算、活动表共享N、个人selector255风险，以及物理文件存在与运行时消费者支持的区别。238张静态物理表与当前配置复核一致，保留原稳定ID及字段契约。
+- 当前构建与21项工具专项通过，包含三基底公式写回/常量审计、业务工作簿、查询、参考包和四样本地形事务；原始文件SHA不变。本轮没有运行游戏，不能据此声明实战效果已验证。
+
+跨版本共享格式、工作流和测试契约统一位于 `6.5/data/` 并用 `versions` 标注适用域；公式及常量按各自精确画像存放于6.4、6.5、6.6，查询入口保持不变。

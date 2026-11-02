@@ -49,6 +49,22 @@ def md_cell(value: object) -> str:
     return str(value if value is not None else "-").replace("|", "\\|").replace("\n", " ")
 
 
+def render_details(lines: list[str], item: dict, sections: tuple[tuple[str, str], ...]) -> None:
+    """Expose structured usage limits alongside the generated core narrative."""
+    for title, key in sections:
+        value = item.get(key)
+        if not value:
+            continue
+        lines.extend(["", title + "：", ""])
+        if isinstance(value, dict):
+            lines.extend(f"- `{name}`：{child if isinstance(child, str) else json.dumps(child, ensure_ascii=False)}"
+                         for name, child in value.items())
+        elif isinstance(value, list):
+            lines.extend(f"- {child if isinstance(child, str) else json.dumps(child, ensure_ascii=False)}" for child in value)
+        else:
+            lines.append(str(value))
+
+
 def fmt_abi(item: dict) -> str:
     parts = [str(item.get("callingConvention", "unknown"))]
     abi = item.get("abi", {})
@@ -268,6 +284,11 @@ def render_mechanisms(entries: list[tuple[Path, dict]]) -> list[str]:
                 lines.extend(["", str(composition["result"])])
             if composition.get("consumerEvidence"):
                 lines.extend(["", "消费者证据：", "", "```json", json.dumps(composition["consumerEvidence"], ensure_ascii=False, indent=2), "```"])
+        if item.get("budgets"):
+            lines.extend(["", "文本字节预算：", "", "| 表 | 物理槽宽 | 最大载荷 | 必须终止符 | 说明 |", "|---|---:|---:|---|---|"])
+            for budget in item["budgets"]:
+                lines.append(f"| {md_cell(', '.join(budget.get('tableKeys', [])))} | {md_cell(budget.get('storageBytes'))} | "
+                             f"{md_cell(budget.get('maxPayloadBytes'))} | {budget.get('requiresTerminator', '-')} | {md_cell(budget.get('meaning', ''))} |")
         for title, key in (("边界", "boundaries"), ("补充说明", "notes"), ("写入策略", "writePolicy"), ("界面规则", "uiPolicy")):
             value = item.get(key)
             if not value:
@@ -279,6 +300,9 @@ def render_mechanisms(entries: list[tuple[Path, dict]]) -> list[str]:
                 lines.extend(f"- `{name}`：{child if isinstance(child, str) else json.dumps(child, ensure_ascii=False)}" for name, child in value.items())
             else:
                 lines.append(str(value))
+        render_details(lines, item, (("原槽保护", "originalSlotPolicy"), ("消费者证据边界", "consumerEvidenceBoundary"),
+                                    ("解析与编辑规则", "rules"), ("运行时边界", "runtimeBoundary"),
+                                    ("选择器与槽位边界", "selectorAndSlotBoundaries")))
         lines.append("")
     return lines
 
@@ -340,6 +364,7 @@ def render_workflows(entries: list[tuple[Path, dict]]) -> list[str]:
         for title, key in (("门禁", "gates"), ("产物", "outputs"), ("回滚", "rollback")):
             lines.extend(["", f"{title}：", ""])
             lines.extend(f"- {value}" for value in item.get(key, []))
+        render_details(lines, item, (("同步范围", "syncScope"), ("失败处理", "failurePolicy")))
         lines.append("")
     return lines
 
@@ -358,6 +383,9 @@ def render_test_contracts(entries: list[tuple[Path, dict]]) -> list[str]:
         lines.extend(["", "必需产物：", ""])
         lines.extend(f"- {value}" for value in item.get("requiredArtifacts", []))
         lines.extend(["", f"失败含义：{item.get('failureMeaning', '-')}" , ""])
+        render_details(lines, item, (("前置条件", "prerequisites"), ("补充命令", "additionalCommands"),
+                                    ("关联命令", "relatedCommands"), ("执行边界", "executionBoundary"),
+                                    ("执行约束", "runnerPolicy"), ("本轮执行", "lastExecution")))
     return lines
 
 

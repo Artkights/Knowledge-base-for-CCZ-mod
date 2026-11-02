@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "entityType": "workflow",
+  "entries": [
+    {
+      "id": "workflow.data-manager.business-xlsx-import",
+      "title": "业务 XLSX 整本预检、三方冲突与原子草稿导入",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager.incremental-20261102.xlsx-package",
+        "src.data-manager.incremental-20261102.xlsx-service",
+        "src.data-manager.incremental-20261102.xlsx-registry",
+        "src.data-manager.incremental-20261102.xlsx-models",
+        "src.data-manager.incremental-20261102.xlsx-doc"
+      ],
+      "goal": "在现有业务页范围内交换多个数据集，既保留当前草稿也阻止跨布局和越权字段写回。",
+      "inputs": [
+        "已打开项目及当前Profile/Variant/Layout",
+        "该业务页导出的DataManagerWorkbook/1工作簿",
+        "导出基线与当前草稿"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "从当前业务页导出可用数据集、稳定字段键和ID、VeryHidden基线与元数据，保留只读/可写列区分。"
+        },
+        {
+          "order": 2,
+          "action": "按程序重建的数据集/字段白名单校验工作簿身份、注册SheetId、基线完整性和每个单元格；一次收集整本提案，不提前改草稿。"
+        },
+        {
+          "order": 3,
+          "action": "比较导出基线/当前草稿/文件值，跳过未变或已一致值；发现三方冲突、公式、未知字段或数值/编码错误则整本拒绝并显示表/单元格/ID/字段。"
+        },
+        {
+          "order": 4,
+          "action": "向用户显示变更提案，确认后重验项目身份和每个拟改当前值；将物理字段及原生辅助分组作为同一命令组加入草稿。"
+        },
+        {
+          "order": 5,
+          "action": "可整体撤回/重做导入；用户执行保存后才走统一备份、原字节/SHA校验、写后复读和历史持久化。"
+        }
+      ],
+      "gates": [
+        "工作簿不得扩大业务页可编辑字段或新增记录",
+        "缺少数据行只表示不更新，缺少注册工作表/基线必须拒绝",
+        "确认期间项目或拟改单元格变化必须重新预检"
+      ],
+      "outputs": [
+        "带稳定基线的业务XLSX",
+        "完整单元格差异预览",
+        "一条可整体撤回/重做草稿及保存后历史"
+      ],
+      "rollback": [
+        "预检失败零草稿/零游戏文件写入",
+        "应用草稿使用命令组；保存失败由统一事务恢复关联文件和历史"
+      ]
+    },
+    {
+      "id": "workflow.data-manager.flexible-reference-atlas",
+      "title": "当前物理 R/S 参考包与灵活画布回导",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager.incremental-20261102.atlas-context",
+        "src.data-manager.incremental-20261102.atlas-service",
+        "src.data-manager.incremental-20261102.atlas-layout",
+        "src.data-manager.incremental-20261102.atlas-manifest",
+        "src.data-manager.incremental-20261102.atlas-mapping",
+        "src.data-manager.incremental-20261102.atlas-flexible",
+        "src.data-manager.incremental-20261102.atlas-ui",
+        "src.data-manager.incremental-20261102.atlas-doc"
+      ],
+      "goal": "保留新形象外观及动作偏移，将完整参考图还原到当前选中的原生帧，并避免清单来源号改变目标。",
+      "inputs": [
+        "图库当前明确选定的R或S物理目标及原帧描述符",
+        "无损PNG回图",
+        "可选atlas.json布局清单与有效画布/逐帧源框"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "锁定目标；S上下文必须为同一Unit物理槽的11移动+12攻击+5特技帧，R为完整正背参考。导出默认4倍主PNG、布局JSON、动作对照图和提示词。"
+        },
+        {
+          "order": 2,
+          "action": "导入回图后识别有效画布/背景，必要时关联清单、裁掉外框/留白并按全部帧、分区、语义行或单帧调整源框；清单只解释布局。"
+        },
+        {
+          "order": 3,
+          "action": "从原图按源框裁取，采用多背景采样及保留/移除蒙版；按动作组统一等比恢复到原生帧并补透明边，默认最近邻，横纵拉伸修复仅显式启用。"
+        },
+        {
+          "order": 4,
+          "action": "逐帧和动画审阅：真实缺帧、重复/越界源框或未解决布局歧义保持阻断；确认标记不能制造缺失像素。警告需要人工审阅。"
+        },
+        {
+          "order": 5,
+          "action": "仅最新异步处理完成且无阻断的预览可提交；按当前目标描述符量化并写回原生R正背或S同一物理号三档案，复读及历史撤回/重做。"
+        }
+      ],
+      "gates": [
+        "清单SourcePhysicalImageNumber/SourceResourceKeys为描述性来源，不控制目标；回图改名也不改目标",
+        "S三档案缺失/数量不齐、同名资源冲突或源SHA变化拒绝写入",
+        "支持非方形留白和非整数缩放，不允许任意乱序/多人混图冒充完整模板"
+      ],
+      "outputs": [
+        "主PNG、atlas.json、动作对照PNG、提示词及可选透明图",
+        "有效画布/源框和逐帧诊断",
+        "原生帧候选、写后复读与资源历史"
+      ],
+      "rollback": [
+        "取消或预览失败不修改项目",
+        "提交使用既有多文件资源事务，失败恢复已改档案；成功记录整档案前后SHA供撤回/重做"
+      ]
+    },
+    {
+      "id": "workflow.data-manager.inner-scene-terrain",
+      "title": "Mmap 内场景地形编辑及 Mmap/Pmap 配对变更",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager.incremental-20261102.pmap-codec",
+        "src.data-manager.incremental-20261102.pmap-data",
+        "src.data-manager.incremental-20261102.pmap-document",
+        "src.data-manager.incremental-20261102.pmap-service",
+        "src.data-manager.incremental-20261102.pmap-geometry",
+        "src.data-manager.incremental-20261102.pmap-policy",
+        "src.data-manager.incremental-20261102.pmap-doc"
+      ],
+      "goal": "编辑内场景障碍或增删场景时保持Pmap数据、Mmap编号及未编辑字节一致。",
+      "inputs": [
+        "当前项目Mmap.e5/Pmap.e5和引擎依赖快照",
+        "内场景物理号n>40或显式场景新增/删除计划"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "打开Mmap场景，按n−40加载Pmap；验证16字节头、100×100单层格值、背景几何、项目读写能力及当前PE消费者。"
+        },
+        {
+          "order": 2,
+          "action": "每次鼠标笔画记录原格值并遍历跨格轨迹，左键设置障碍、右键清除；按笔画撤回/重做。无实际差异不创建保存记录。"
+        },
+        {
+          "order": 3,
+          "action": "普通地形保存仅重建对应Pmap条目；内场景新增/删除则构造Mmap/Pmap配对事务，保留外场景固定槽和多余尾项。"
+        },
+        {
+          "order": 4,
+          "action": "验证来源快照、候选数量/编号、原16字节头、目标单元与其他条目stored bytes；缺地形、缺口或不兼容格式则拒绝。"
+        },
+        {
+          "order": 5,
+          "action": "统一资源事务备份提交后复读，登记场景/地形对应号和历史；内场景重排后由制作者核对外部R剧本编号。"
+        }
+      ],
+      "gates": [
+        "Pmap不可作为普通图片经过调色板量化",
+        "前40外场景删除采用黑色占位；内场景删除必须同步Pmap",
+        "最后一项删除不得产生空Pmap；外部修改保留本地草稿并拒绝覆盖"
+      ],
+      "outputs": [
+        "地形笔画草稿与诊断",
+        "单Pmap编辑或Mmap/Pmap双档结构候选",
+        "写后复读和一条联合历史"
+      ],
+      "rollback": [
+        "候选/依赖失败不触碰原档案",
+        "统一事务失败恢复已改文件与历史；成功支持场景和地形共同撤回/重做"
+      ]
+    }
+  ]
+}

@@ -14,7 +14,13 @@
       "status": "candidate",
       "evidence": "source-reviewed",
       "sourceRefs": [
-        "src.local-review.b69907b927fb7718"
+        "src.local-review.b69907b927fb7718",
+        "src.dm.core-current-20261102.appearance-layout",
+        "src.dm.core-current-20261102.appearance-service",
+        "src.dm.core-current-20261102.appearance-formats",
+        "src.dm.core-current-20261102.appearance-session",
+        "src.dm.core-current-20261102.appearance-updates",
+        "src.dm.core-current-20261102.test-save-integration"
       ],
       "goal": "更改人物指定或关联图片后，只同步受影响人物的已保存R/S字段，保留剧情换装和存档其他字节。",
       "inputs": [
@@ -57,6 +63,24 @@
       "rollback": [
         "成功组与主操作一起撤回/重做；恢复前检查原始/候选SHA，外部改写时保留其内容并报告冲突。",
         "迁移只同步真实目标档，不把源存档迁往目标。"
+      ],
+      "relations": [
+        "test.shared.data-manager-appearance-save-isolation"
+      ],
+      "syncScope": {
+        "nativeSlots": "当前项目SV直接子文件中名称为SV加至少三位数字的E5S，不递归；SV.E5S/SVCMN.E5S、EXS、备份及重解析点排除。",
+        "autosave": "仅当前Profile的patch/xiaoan64、xiaoan65或xiaoan66/autosave，由实际同名INI找到E5S；不探测其他版本目录。",
+        "nativeFormat": "仅接受完整验证的原生非战场/战场分段和已识别统计尾；未知扩容、校验尾、截断或SHA关联不符跳过。",
+        "sidecars": "已有schema1统计、schema2内嵌统计及Save.Hash跟随同组；普通仅User.Note注释INI原样保留，不补建索引或统计。",
+        "numbering": "S0按已保存兵种和三阵营关联；紧凑S1..32投影三转，S33起单转；同步写回仍为人物紧凑S值，不写Unit物理号。",
+        "resourceDelta": "R任一正背变化命中该逻辑R；S按mov/atk/spc解压后同位置内容差异识别，不以目录或压缩偏移变化扩大范围。",
+        "migration": "只同步真实目标存档；源存档不复制，源项目不改写。"
+      },
+      "failurePolicy": [
+        "准备失败跳过该组并报告部分同步，不因单个普通坏档阻断主形象保存；组写入失败先恢复本组。",
+        "主数据/图片/历史全局失败回滚已成功组；恢复前检查原始/候选SHA，外部改写冲突保留外部内容及恢复快照。",
+        "无目标字段变化或已一致时不写存档、不创建伪造历史；存档其他人物的剧情换装不归一化。",
+        "本次补证为当前源码与可复现测试契约审阅，仍保留未完成本轮游戏窗口人工读档观察的边界。"
       ]
     }
   ]

@@ -2,8 +2,51 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.4/data/tests/data-manager-contracts.json`
+结构化事实来源：`6.4/data/test-contracts/data-manager-formulas.json`、`6.4/data/tests/data-manager-contracts.json`
 
+## 6.4 33项公式与88项常量副本回归契约
+
+ID: `test.64.dm-formulas-and-constant-audit`；状态: `candidate`；证据: `source-reviewed`
+
+命令: `dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release -- --battle-formulas "{EXACT_SAMPLE_ROOT}"`
+
+目标: DataManager.Core的公式模型、公式族校验和常量签名/多站点写入；命令在含data管理器/和形象管理器/的匹配源码工作区执行。；变更范围: 前三项测试内部建立临时核心文件副本并在副本修改/复读/回填，finally清理副本；重定位探测只读。构建仅产生bin/obj，不应修改原始游戏样本。
+
+断言：
+
+- 公式条目与Definitions数量一致（本快照33项），公式步骤、证据、名称和引用常量完整。
+- 本快照88项常量在此精确样本中58项命中；仅适用且完整签名匹配者允许写入，其余只读。
+- 逐项修改、复读、核对原始文件字节再回填；成对字段保持主站点位移，附加站点与主值一致。
+- 非法曲线组合返回Error且文件SHA不变；只改命中上限产生Warning并可正常提交、复读。
+- 原地址完整命中的非可选签名须恰好1处；可选布局缺失不自动宣称兼容。
+- 执行前后源EXE SHA保持相同；本契约不证明游戏内命中/伤害已验收。
+- 随后执行：dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --battle-formula-write "{EXACT_SAMPLE_ROOT}"
+- 随后执行：dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --engine-constant-audit "{EXACT_SAMPLE_ROOT}"
+- 随后执行：dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --engine-constant-relocations "{EXACT_SAMPLE_ROOT}" 6.4
+
+必需产物：
+
+- 固定源码来源SHA与精确样本EXE SHA
+- BATTLE_FORMULA_TESTS_OK、BATTLE_FORMULA_WRITE_OK、ENGINE_CONSTANT_AUDIT_OK标记和退出码
+- 逐布局exact/relocate/hits日志及源样本不变记录
+
+失败含义：断言失败表示源码模型、实际字段布局、共享约束或事务回读不一致；保留失败日志并保持candidate，不能以旧统计或只读跳过冒充适用项通过。
+
+
+补充命令：
+
+- dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --battle-formula-write "{EXACT_SAMPLE_ROOT}"
+- dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --engine-constant-audit "{EXACT_SAMPLE_ROOT}"
+- dotnet run --project "data管理器/src/DataManager.Tests/DataManager.Tests.csproj" --configuration Release --no-build -- --engine-constant-relocations "{EXACT_SAMPLE_ROOT}" 6.4
+
+本轮执行：
+
+- `date`：2026-11-02
+- `sourceVersion`：1.2026.1101.114
+- `level`：tool-isolated-copy-and-static-verification
+- `runIds`：["6.4-battle-formulas", "6.4-battle-formula-write", "6.4-engine-constant-audit", "6.4-engine-constant-relocations"]
+- `exitCodes`：[0, 0, 0, 0]
+- `gameRuntimeVerified`：false
 ## 6.4识别、交换、事务历史和四方向迁移契约
 
 ID: `test.64.data-manager.compatibility`；状态: `canonical`；证据: `source-reviewed`

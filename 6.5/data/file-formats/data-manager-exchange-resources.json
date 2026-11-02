@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "entityType": "file-format",
+  "entries": [
+    {
+      "id": "format.data-manager.business-xlsx",
+      "title": "业务页 XLSX：隐藏基线、稳定数据集与三方冲突协议",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager.incremental-20261102.xlsx-package",
+        "src.data-manager.incremental-20261102.xlsx-service",
+        "src.data-manager.incremental-20261102.xlsx-registry",
+        "src.data-manager.incremental-20261102.xlsx-models",
+        "src.data-manager.incremental-20261102.xlsx-doc"
+      ],
+      "aliases": [
+        "DataManagerWorkbook/1",
+        "_DataManager",
+        "_baseline",
+        "PageWorkbookService",
+        "业务工作簿",
+        "XLSX"
+      ],
+      "endianness": "ZIP/Office Open XML；单元格使用数值或InlineString，非游戏二进制表",
+      "files": [
+        "<business-page>.xlsx"
+      ],
+      "semantics": [
+        "一个业务页导出一个XLSX，当前实际可用的物理/原生数据集各一张可见表，并为每张表保存VeryHidden基线；_DataManager为VeryHidden元数据页，记录Schema=DataManagerWorkbook/1、Profile、Variant、Layout、Page及Datasets[{Key,SheetId,BaselineSheetId}]。这不是任意Excel表自动识别协议。",
+        "每表第1行为隐藏稳定字段键，第2行为可读表头，第3行起为数据；ID列只定位既有记录。表名和顺序可改，注册SheetId/数据集/基线不可缺失或重复。可见表缺少某条数据行表示不更新该记录，完整基线仍必须覆盖当前数据集全部ID。",
+        "程序依据当前页重建数据集和可编辑字段白名单，不信任文件内权限。宝物页的兵种成长数据只允许26类装备许可；兵种页的策略表仅名称参考和学习等级，名称只读；原生辅助分组仅更新已有组成员。",
+        "导入比较导出基线B、当前草稿C、文件值F：F=B不处理，F=C不重复修改；F≠B且C既非B也非F则拒绝整本。数值列使用整数等价比较；未改的只读字段可原样保留。",
+        "未知/重复/新增ID、未知字段、只读字段改变、公式、Excel错误单元格、超范围值、超GBK容量、跨Profile/Variant或不兼容Layout均拒绝；公式缓存不能代替已粘贴的常量值。",
+        "OOXML ST_Xstring转义保留原生控制字节及CR/LF；看似_xNNNN_的字面文本先保护下划线，导入只解码一次，防止把游戏控制字节静默删掉。",
+        "PreviewImport仅产生不可变提案与单元格位置，零磁盘写入；ApplyImport确认后再核对规范化项目路径、Profile/Variant/Layout及每个拟改当前值，把物理字段和原生分组合为一条可撤回/重做草稿。顶部保存才经既有二进制事务落盘。",
+        "协议适用于已加载的6.4/6.5/6.6 Profile数据集；具体表是否存在或可编辑仍由当前布局证据决定。跨版本用迁移器，不通过修改元数据绕过兼容校验。"
+      ],
+      "writePolicy": "业务页XLSX只创建现有记录的草稿，不新增/删除游戏记录；任何整本预检失败不得留下部分草稿。物理表继续使用独立CSV协议。"
+    },
+    {
+      "id": "format.data-manager.inner-scene-pmap",
+      "title": "Pmap 内场景地形：16字节头与100×100 UInt16LE单元",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager.incremental-20261102.pmap-codec",
+        "src.data-manager.incremental-20261102.pmap-data",
+        "src.data-manager.incremental-20261102.pmap-document",
+        "src.data-manager.incremental-20261102.pmap-service",
+        "src.data-manager.incremental-20261102.pmap-geometry",
+        "src.data-manager.incremental-20261102.pmap-policy",
+        "src.data-manager.incremental-20261102.pmap-doc"
+      ],
+      "aliases": [
+        "Mmap.e5",
+        "Pmap.e5",
+        "PmapTerrainCodec",
+        "0xF0FF",
+        "0xFFFF",
+        "20016",
+        "内场景地形"
+      ],
+      "endianness": "外层E5目录大端；解压Pmap头字段和格值均UInt16 little-endian",
+      "files": [
+        "Mmap.e5",
+        "Pmap.e5"
+      ],
+      "entrySize": 20016,
+      "indexFormula": "Mmap physical n>40 -> Pmap physical n-40; cell(x,y) offset=0x10+2*(y*width+x)",
+      "headerFields": [
+        {
+          "name": "opaque-prefix",
+          "offset": "0x0",
+          "width": 2,
+          "type": "preserved bytes",
+          "meaning": "保存时原样保留，不把默认模板的0x0017推断为所有档案的通用magic"
+        },
+        {
+          "name": "width",
+          "offset": "0x2",
+          "width": 2,
+          "type": "UInt16LE",
+          "meaning": "列数；当前可编辑100"
+        },
+        {
+          "name": "height",
+          "offset": "0x4",
+          "width": 2,
+          "type": "UInt16LE",
+          "meaning": "行数；当前可编辑100"
+        },
+        {
+          "name": "layers",
+          "offset": "0x6",
+          "width": 2,
+          "type": "UInt16LE",
+          "meaning": "层数；当前只开放1层"
+        },
+        {
+          "name": "opaque-tail",
+          "offset": "0x8",
+          "width": 8,
+          "type": "preserved bytes",
+          "meaning": "未解释的头尾字段；普通编辑原样保留"
+        }
+      ],
+      "recordFields": [
+        {
+          "name": "terrain-cell",
+          "offset": "0x10",
+          "width": 2,
+          "type": "UInt16LE[]",
+          "meaning": "行主序width×height×layers项；FFFF可通行，F0FF障碍，文件字节分别FF FF与FF F0"
+        }
+      ],
+      "semantics": [
+        "Pmap是碰撞/障碍数据，不是调色板图片。通用解码要求16+width×height×layers×2恰等于解压长度，尺寸/层数非零且计数不溢出；未知但结构完整的载荷可只读，不擅自当100×100编辑。",
+        "可编辑要求100列×100行×1层且所有格值均FFFF/F0FF，背景640×399或640×400、项目可写、Mmap/Pmap配对完整，并通过当前EXE的PE映射和固定40场景偏移/16位地形消费者检查。版本名、文件存在或长度足够不能代替门禁。",
+        "Mmap前40个物理条目为外场景；第41项是内场景1，对应Pmap第1项。普通地形笔画仅改对应Pmap载荷，保持原16字节头、未改格及其他条目stored bytes不变。编辑期间同时监控背景、地形和引擎依赖，外部改写拒绝覆盖。",
+        "菱形宽16高8：文件格中心pixel=(8*(x-y+40),4*(x+y-48)-1)；文件格转游戏格为(x,y+2)。快速拖动按两条斜轴跨界遍历，不能仅按鼠标事件采样而漏格。",
+        "一体化编辑器把Pmap合入Mmap的地形入口，禁止作为普通图片导入/量化。新增内场景同步插入默认可通行地形；复制内场景可复制其对应地形，复制外场景追加内场景时用默认地形。既有Pmap多余尾项保留并后移。",
+        "删除外场景写同尺寸同编码黑色占位，保留前40槽；删除内场景同时删除对应地形并前移后续内场景。不自动改R剧本引用。若删除后Pmap将完全为空，保留一个全通行尾部预留记录；已有额外尾项继续保留。",
+        "Mmap结构新增/删除必须携带配对协议和两档候选，ValidateMmapPlan核对数量、插入/移除位置及未动条目；缺配对地形、缺口、候选过期或复读不一致均拒绝，不能补洞或套用最后一条地形。"
+      ],
+      "writePolicy": "普通地形编辑只写对应Pmap；改变内场景数量的操作以Mmap/Pmap一条资源事务提交及历史撤回/重做。固定地址门禁留在当前源码，不授权对所有同名版本直接写偏移。"
+    }
+  ]
+}

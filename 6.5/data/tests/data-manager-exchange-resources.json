@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "entityType": "test-contract",
+  "entries": [
+    {
+      "id": "test.data-manager.business-xlsx-contract",
+      "title": "业务 XLSX 基线、权限白名单、控制文本与组合草稿测试",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager.incremental-20261102.xlsx-package",
+        "src.data-manager.incremental-20261102.xlsx-service",
+        "src.data-manager.incremental-20261102.xlsx-registry",
+        "src.data-manager.incremental-20261102.xlsx-models",
+        "src.data-manager.incremental-20261102.xlsx-doc",
+        "src.data-manager.incremental-20261102.xlsx-tests",
+        "src.data-manager.incremental-20261102.xlsx-native-tests",
+        "src.data-manager.incremental-20261102.xlsx-text-tests",
+        "src.data-manager.incremental-20261102.exchange-test-runner",
+        "src.dm.current-validation-20261102",
+        "src.dm.current-source-inventory-20261102"
+      ],
+      "command": "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --page-workbook <sample-root>",
+      "target": "PageWorkbookTests + WorkbookNativeTests（内部包含WorkbookTextEncodingTests）",
+      "mutationScope": "只在CreateCoreCopy生成的临时项目和临时XLSX中编辑/生成/清理；原始样本只读取。",
+      "assertions": [
+        "可用业务页导出后OpenXmlValidator有效且原样回导零修改；显示表重命名/重排与缺数据行不视为删除",
+        "预检不产生草稿；应用一条修改后整体撤回/重做，重复导入零修改",
+        "三方冲突与确认后草稿变化、重复/新增ID、公式、超范围、超长文本、缺表和未知字段均整本拒绝且无部分草稿泄漏",
+        "宝物装备许可白名单/兵种策略只读名称生效；辅助原生分组与物理表一并导入/撤回/重做",
+        "控制字符、CR/LF、多行和_xNNNN_字面转义保真，拓展数据工作簿零变更往返"
+      ],
+      "requiredArtifacts": [
+        "完整console日志与退出码0",
+        "PAGE_WORKBOOK_TESTS_OK",
+        "WORKBOOK_NATIVE_TESTS_OK auxiliary+physical/extend/undo/redo",
+        "每页WORKBOOK_ROUNDTRIP_OK及样本身份"
+      ],
+      "failureMeaning": "任何失败表示交换协议、权限/冲突或组合草稿原子性不满足；不得把可打开Excel视为安全导入。",
+      "executionBoundary": "本实体记录当前源码定义的可复现测试契约；本轮实际执行结果由独立运行日志登记，未执行不得写为已通过。",
+      "prerequisites": [
+        "使用同一Release配置构建；这是自定义console runner，不是dotnet test",
+        "<sample-root>必须为可加载且具备测试所需人物/装备及原生辅助分组的样本目录；不能省略并依赖当前工作目录猜测"
+      ],
+      "lastExecution": {
+        "date": "2026-11-02",
+        "sourceVersion": "1.2026.1101.114",
+        "level": "tool-isolated-copy-and-static-verification",
+        "runIds": [
+          "6.5-page-workbook"
+        ],
+        "exitCodes": [
+          0
+        ],
+        "gameRuntimeVerified": false
+      }
+    },
+    {
+      "id": "test.data-manager.reference-atlas-package",
+      "title": "参考包四件套、布局清单与当前目标隔离测试",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager.incremental-20261102.atlas-context",
+        "src.data-manager.incremental-20261102.atlas-service",
+        "src.data-manager.incremental-20261102.atlas-layout",
+        "src.data-manager.incremental-20261102.atlas-manifest",
+        "src.data-manager.incremental-20261102.atlas-mapping",
+        "src.data-manager.incremental-20261102.atlas-flexible",
+        "src.data-manager.incremental-20261102.atlas-ui",
+        "src.data-manager.incremental-20261102.atlas-doc",
+        "src.data-manager.incremental-20261102.atlas-package-tests",
+        "src.data-manager.incremental-20261102.image-test-runner",
+        "src.dm.current-validation-20261102",
+        "src.dm.current-source-inventory-20261102"
+      ],
+      "command": "dotnet run --project 形象管理器/src/ImageManager.Tests/ImageManager.Tests.csproj --configuration Release --no-build -- --atlas-package",
+      "target": "AtlasPackageTests",
+      "mutationScope": "系统临时目录合成帧和导出参考包，finally删除；不写真实游戏资源。",
+      "assertions": [
+        "默认4倍输出1392×1392 S主图、atlas.json、动作对照图及提示词；默认无透明观察图，主图无编号污染",
+        "28帧清单行数6/5/5/4/4/4，版本1/物理号/三资源来源完整",
+        "给另一个当前物理目标关联旧清单，仅生成新目标帧键；来源242不得改变当前337目标",
+        "重复/缺失动作、未知清单版本、越界格与ROI拒绝；兼容旧重载仍1倍并含透明图"
+      ],
+      "requiredArtifacts": [
+        "console退出码0且测试名“参考包清单、目标隔离、编号图和兼容导出”通过",
+        "结果失败0"
+      ],
+      "failureMeaning": "失败说明参考包输出协议或目标隔离有回归，不能授权参考图写回。",
+      "executionBoundary": "本实体记录当前源码定义的可复现测试契约；本轮实际执行结果由独立运行日志登记，未执行不得写为已通过。",
+      "prerequisites": [
+        "同一Release配置构建ImageManager.Tests及其依赖",
+        "Windows/System.Drawing可用；不依赖真实基底或真实AI PNG"
+      ],
+      "lastExecution": {
+        "date": "2026-11-02",
+        "sourceVersion": "1.2026.1101.114",
+        "level": "tool-isolated-copy-and-static-verification",
+        "runIds": [
+          "atlas-package"
+        ],
+        "exitCodes": [
+          0
+        ],
+        "gameRuntimeVerified": false
+      }
+    },
+    {
+      "id": "test.data-manager.flexible-atlas-contract",
+      "title": "灵活画布、动作偏移、背景修正与缺帧阻断测试",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager.incremental-20261102.atlas-context",
+        "src.data-manager.incremental-20261102.atlas-service",
+        "src.data-manager.incremental-20261102.atlas-layout",
+        "src.data-manager.incremental-20261102.atlas-manifest",
+        "src.data-manager.incremental-20261102.atlas-mapping",
+        "src.data-manager.incremental-20261102.atlas-flexible",
+        "src.data-manager.incremental-20261102.atlas-ui",
+        "src.data-manager.incremental-20261102.atlas-doc",
+        "src.data-manager.incremental-20261102.atlas-flexible-tests",
+        "src.data-manager.incremental-20261102.atlas-transform-tests",
+        "src.data-manager.incremental-20261102.image-test-runner",
+        "src.dm.current-validation-20261102",
+        "src.dm.current-source-inventory-20261102"
+      ],
+      "command": "dotnet run --project 形象管理器/src/ImageManager.Tests/ImageManager.Tests.csproj --configuration Release --no-build -- --atlas-flexible",
+      "target": "FlexibleAtlasTests + AtlasTransformTests",
+      "mutationScope": "临时合成E5项目与参考图用于事务/撤回测试；向本地源码工作区data管理器/验证/参考图灵活回导-20261026输出诊断及归一化/蒙版PNG，不写原始基底。",
+      "assertions": [
+        "规范参考图像素逐帧往返一致；长方形非对称留白、横/竖画布有效ROI恢复不损动作偏移",
+        "非整数放大恢复保留动作位移；默认等比不擅自修复拉伸，显式RepairAspectRatio才恢复横纵比例",
+        "暗紫背景2048和白底边框663真实测试素材均产生28帧且无阻断，外框ROI和临时资源事务可复读/撤回",
+        "被手动确认的真实空帧仍报Error阻断，保护色和源框修复不以旧人物轮廓限制新造型"
+      ],
+      "requiredArtifacts": [
+        "完整console日志、退出码0、FLEXIBLE_ATLAS_TESTS_OK",
+        "两条REAL_ATLAS_OK及ROI/警告数",
+        "归一化/蒙版PNG与diagnostics.txt",
+        "结果失败0"
+      ],
+      "failureMeaning": "失败可能为测试素材缺失、映射/缩放破坏或阻断失效；必须区分前置条件缺失与实现回归。",
+      "executionBoundary": "本实体记录当前源码定义的可复现测试契约；本轮实际执行结果由独立运行日志登记，未执行不得写为已通过。",
+      "prerequisites": [
+        "源码工作区含形象管理器/src/ImageManager.Tests/Fixtures/Atlas/暗紫背景-2048.png及白底边框-663.png，两图不是可选输入",
+        "同一Release构建并从可定位源码工作区的目录运行"
+      ],
+      "lastExecution": {
+        "date": "2026-11-02",
+        "sourceVersion": "1.2026.1101.114",
+        "level": "tool-isolated-copy-and-static-verification",
+        "runIds": [
+          "atlas-flexible"
+        ],
+        "exitCodes": [
+          0
+        ],
+        "gameRuntimeVerified": false
+      }
+    },
+    {
+      "id": "test.data-manager.scene-terrain-pair-contract",
+      "title": "Pmap 编解码、菱形轨迹和 Mmap/Pmap 联合事务测试",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.data-manager.incremental-20261102.pmap-codec",
+        "src.data-manager.incremental-20261102.pmap-data",
+        "src.data-manager.incremental-20261102.pmap-document",
+        "src.data-manager.incremental-20261102.pmap-service",
+        "src.data-manager.incremental-20261102.pmap-geometry",
+        "src.data-manager.incremental-20261102.pmap-policy",
+        "src.data-manager.incremental-20261102.pmap-doc",
+        "src.data-manager.incremental-20261102.pmap-tests",
+        "src.data-manager.incremental-20261102.pmap-integration-tests",
+        "src.data-manager.incremental-20261102.exchange-test-runner",
+        "src.data-manager.incremental-20261102.image-test-runner",
+        "src.dm.current-validation-20261102",
+        "src.dm.current-source-inventory-20261102"
+      ],
+      "command": "dotnet run --project 形象管理器/src/ImageManager.Tests/ImageManager.Tests.csproj --configuration Release --no-build -- --scene-terrain <repository-root>",
+      "target": "SceneTerrainTests；一体化入口另用DataManager.Tests --scene-terrain <repository-root>",
+      "mutationScope": "在<repository-root>/data管理器/验证/2026-10-23-内场景地形编辑/core及ui创建测试副本/结果/截图；写回副本，读取原基底并核对SHA。",
+      "assertions": [
+        "100×100UInt16LE载荷逐字节往返，单格变化只改对应字节，保留16字节头；损坏长度/未知格值/多层不开放编辑",
+        "640×399/400菱形命中、文件/游戏Y差2、完整拖动轨迹和笔画撤回/重做符合独立坐标预期",
+        "普通Pmap保存保留其他条目，源依赖改写拒绝；双档新增/复制/删除/历史恢复和失败回滚保持编号与尾项一致",
+        "外场景黑色占位、删除最后配对保留全通行尾项、缺配对拒绝及无协议结构变化拒绝",
+        "只对实际找到并完成检查的6.4/6.5/6.6精确样本记录结果；一体化UI另检查Pmap不可普通图片写入及Mmap配对策略"
+      ],
+      "requiredArtifacts": [
+        "退出码0与SCENE_TERRAIN_TESTS_OK",
+        "core/scene-terrain-core-results.json和其中RealSamples/Checks",
+        "另跑一体化入口时须有SCENE_TERRAIN_INTEGRATION_TESTS_OK及ui结果/截图",
+        "原始样本前后SHA核对"
+      ],
+      "failureMeaning": "失败说明结构、坐标、依赖门禁或双档原子性未满足；缺少指定样本要记缺失，不能视为三版本写回验收。",
+      "executionBoundary": "本实体记录当前源码定义的可复现测试契约；本轮实际执行结果由独立运行日志登记，未执行不得写为已通过。",
+      "prerequisites": [
+        "<repository-root>是完整本地制作源码/基底根目录，不是单个基底目录",
+        "测试需基底/加强版6.5未加密版/Ekd5.exe；真实矩阵还枚举洗隋、新改曹操傳6.6修正版及复刻版6.6山贼",
+        "同一Release构建ImageManager.Tests；一体化入口需DataManager.Tests和WinForms环境"
+      ],
+      "relatedCommands": [
+        "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj --configuration Release --no-build -- --scene-terrain <repository-root>"
+      ],
+      "lastExecution": {
+        "date": "2026-11-02",
+        "sourceVersion": "1.2026.1101.114",
+        "level": "tool-isolated-copy-and-static-verification",
+        "runIds": [
+          "scene-terrain-core",
+          "scene-terrain-integration"
+        ],
+        "exitCodes": [
+          0,
+          0
+        ],
+        "gameRuntimeVerified": false
+      }
+    }
+  ]
+}

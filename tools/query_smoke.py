@@ -26,6 +26,11 @@ def main() -> int:
         ("0x14", "6.5", "script-command", "script.65.opcode-14"),
         ("mechanism.66.xiaoan.super-s", "6.6", "mechanism", "mechanism.66.xiaoan.super-s"),
         ("mechanism.65pl.reference-scanner-coverage-and-counterexamples", "6.5pl", "mechanism", "mechanism.65pl.reference-scanner-coverage-and-counterexamples"),
+        ("6.5 物理攻击伤害", "6.5", "mechanism", "mechanism.65.dm-formula-physical-damage"),
+        ("0x0040B48D", "6.5", "mechanism", "mechanism.65.dm-constant-shop-sell-price-numerator"),
+        ("业务页 XLSX", "6.4", "file-format", "format.data-manager.business-xlsx"),
+        ("Pmap 内场景地形", "6.6", "file-format", "format.data-manager.inner-scene-pmap"),
+        ("参考包四件套", "6.5", "test-contract", "test.data-manager.reference-atlas-package"),
     ]
     for term, version, kind, expected in cases:
         payload = query(term, "--version", version, "--entity-type", kind, "--limit", "50")
@@ -42,7 +47,19 @@ def main() -> int:
     guard = query("mechanism.65pl.reference-scanner-coverage-and-counterexamples", "--version", "6.5pl", "--canonical-only", expected_code=(0, 1))
     assert all(value["summary"]["status"] != "canonical" for value in guard["results"])
 
-    print(f"query_smoke_ok scenarios={len(cases) + 3}")
+    formula_id = "mechanism.66.dm-formula-physical-damage"
+    candidate = query(formula_id, "--version", "6.6", "--canonical-only", expected_code=(0, 1))
+    assert all(value["summary"]["id"] != formula_id for value in candidate["results"])
+    other_version = query(formula_id, "--version", "6.5", expected_code=(0, 1))
+    assert all(value["summary"]["id"] != formula_id for value in other_version["results"])
+    gaps = json.loads((ROOT / "research/research-gaps.json").read_text(encoding="utf-8"))["entries"]
+    research_id = gaps[0]["id"]
+    hidden = query(research_id, expected_code=(0, 1))
+    assert hidden["research"] == []
+    visible = query(research_id, "--include-research")
+    assert any(item["id"] == research_id for item in visible["research"])
+
+    print(f"query_smoke_ok scenarios={len(cases) + 7}")
     return 0
 
 

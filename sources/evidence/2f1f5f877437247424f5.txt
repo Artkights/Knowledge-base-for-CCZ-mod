@@ -1,0 +1,817 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-02",
+  "sourceVersion": "1.2026.1101.114",
+  "sourceInventory": "sources/data-manager-source-snapshot-20261102.json",
+  "sourceInventorySha256": "4ED0AD702A015E88D3A0980FC27384B2D653B7E615DC7F0FCDDE9BBFD9700FE5",
+  "testRunnerIdentities": [
+    {
+      "path": "_tmp/kb-incremental-20261102/build/bin/DataManager.Tests/release/DataManager.Tests.dll",
+      "sha256": "4158D17F0EDD55904ABC9FF1C7B0D00DA50DFCABEC92ECE76A4894E6B1732F5D"
+    },
+    {
+      "path": "_tmp/kb-incremental-20261102/image-build/bin/ImageManager.Tests/release/ImageManager.Tests.dll",
+      "sha256": "031FB50211C0EAFB05702FB3B973B6CE3C19DE358EAD72273E50A7881A7ECCDE"
+    }
+  ],
+  "builds": [
+    {
+      "project": "data管理器/DataManager.sln",
+      "configuration": "Release",
+      "sdk": "8.0.400",
+      "warnings": 0,
+      "errors": 0,
+      "exitCode": 0
+    },
+    {
+      "project": "形象管理器/src/ImageManager.Tests/ImageManager.Tests.csproj",
+      "configuration": "Release",
+      "sdk": "8.0.400",
+      "warnings": 0,
+      "errors": 0,
+      "exitCode": 0
+    }
+  ],
+  "scope": "Fresh source builds, static byte checks, isolated copy writeback, rollback and WinForms event tests; no game process or gameplay acceptance.",
+  "successfulRunCount": 21,
+  "runs": [
+    {
+      "id": "6.4-battle-formulas",
+      "arguments": [
+        "--battle-formulas",
+        "<SOURCE_ROOT>\\基底\\洗隋"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.82,
+      "output": "BATTLE_FORMULA_TESTS_OK version=6.4 formulas=33 constants=253 editable=56\r\n"
+    },
+    {
+      "id": "6.4-battle-formula-write",
+      "arguments": [
+        "--battle-formula-write",
+        "<SOURCE_ROOT>\\基底\\洗隋"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 5.08,
+      "output": "BATTLE_FORMULA_WRITE_OK version=6.4\r\n"
+    },
+    {
+      "id": "6.4-engine-constant-audit",
+      "arguments": [
+        "--engine-constant-audit",
+        "<SOURCE_ROOT>\\基底\\洗隋"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 11.21,
+      "output": "ENGINE_CONSTANT_AUDIT_OK 6.4 total=88 writable=58 readOnly=30 layouts=62\r\nSOURCE_BASE_UNCHANGED 91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8\r\n"
+    },
+    {
+      "id": "6.4-engine-constant-relocations",
+      "arguments": [
+        "--engine-constant-relocations",
+        "<SOURCE_ROOT>\\基底\\洗隋",
+        "6.4"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.22,
+      "output": "guided-attack-count\t全部基底\texact=True\trelocate=True\thits=1\t0x00421340\r\nfurious-attack-targets\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x00405C16\r\nactive-combo-chance\t6.4\texact=True\trelocate=True\thits=1\t0x00405CF8\r\nbreakthrough-damage-bonus\t全部基底\texact=True\trelocate=True\thits=1\t0x004110C1\r\ndrain-attack-cap\t全部基底\texact=True\trelocate=True\thits=1\t0x00406B9A\r\ndrain-attack-cap\t全部基底 成对\texact=True\trelocate=True\thits=1\t0x00406B9E\r\niron-chain-directions\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x00412B7A\r\nheavy-strike-cap\t6.4\texact=True\trelocate=True\thits=1\t0x00422039\r\nheavy-strike-cap\t6.4 成对\texact=True\trelocate=True\thits=1\t0x0042203D\r\nshield-counter-cap\t6.4\texact=True\trelocate=True\thits=1\t0x004220B5\r\nshield-counter-cap\t6.4 成对\texact=True\trelocate=True\thits=1\t0x004220B9\r\nswift-attack-bonus\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x0043BD88\r\nphysical-damage-base\t全部基底\texact=True\trelocate=True\thits=1\t0x0043BD36\r\nstrategy-damage-base\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x0043C101\r\nstrategy-damage-divisor\t全部基底\texact=True\trelocate=True\thits=1\t0x0043C126\r\nstrategy-damage-divisor\t全部基底 成对\texact=True\trelocate=True\thits=1\t0x0043C139\r\nstrategy-hit-cap\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x0043B9E7\r\nstrategy-hit-cap\t6.4/6.5 成对\texact=True\trelocate=True\thits=1\t0x0043B9EB\r\nchaos-yin-yang-hit-bonus\t全部基底\texact=True\trelocate=True\thits=1\t0x0043B9D6\r\neffect-screen-directions\t全部基底\texact=True\trelocate=True\thits=1\t0x004253AA\r\nscreen-inner-directions\t全部基底\texact=True\trelocate=True\thits=1\t0x0040F1E9\r\npass-through-directions\t6.4\texact=True\trelocate=True\thits=1\t0x00437DBB\r\naura-range\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x00422151\r\nmoney-absorb-multiplier\t全部基底\texact=True\trelocate=True\thits=1\t0x00406BFF\r\nshop-sell-price-numerator\t全部基底\texact=True\trelocate=True\thits=1\t0x0040B48D\r\nhit-curve-cap\t6.4\texact=True\trelocate=True\thits=1\t0x0043B51C\r\nhit-curve-high-base\t6.4\texact=True\trelocate=True\thits=1\t0x0043B53D\r\nhit-curve-high-coef\t6.4\texact=True\trelocate=True\thits=1\t0x0043B535\r\nhit-curve-mid-base\t6.4\texact=True\trelocate=True\thits=1\t0x0043B55E\r\nhit-curve-mid-coef\t6.4\texact=True\trelocate=True\thits=1\t0x0043B556\r\nhit-curve-low-divisor\t6.4\texact=True\trelocate=True\thits=1\t0x0043B567\r\nhit-curve-low-base\t6.4\texact=True\trelocate=True\thits=1\t0x0043B584\r\nhit-curve-low-coef\t6.4\texact=True\trelocate=True\thits=1\t0x0043B57C\r\nhit-retry-count\t6.4\texact=True\trelocate=True\thits=1\t0x0043B4E9\r\nhit-retry-threshold\t6.4\texact=True\trelocate=True\thits=1\t0x0043B4FD\r\nhit-retry-deduction\t6.4\texact=True\trelocate=True\thits=1\t0x0043B503\r\nrate-curve-full-multiplier\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D14\r\nrate-curve-cap\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D1B\r\nrate-curve-high-coef\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D2F\r\nrate-curve-high-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D37\r\nrate-curve-low-coef\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D47\r\nrate-curve-low-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D4F\r\nphysical-crit-cap\t全部基底\texact=True\trelocate=True\thits=1\t0x00405ED7\r\nphysical-crit-pool\t6.4\texact=True\trelocate=True\thits=1\t0x00405EDB\r\nstrategy-crit-cap\t6.4\texact=True\trelocate=True\thits=1\t0x0040CAD8\r\nstrategy-crit-pool\t6.4\texact=True\trelocate=True\thits=1\t0x0040CADC\r\ncombo-pool\t6.4\texact=True\trelocate=True\thits=1\t0x0040612E\r\npersonal-exp-kill-flat\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x00403824\r\npersonal-exp-kill-ratio-num\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x0040383A\r\npersonal-exp-kill-ratio-offset\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x00403834\r\npersonal-exp-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00403855\r\nexp-multiplier-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00407FB9\r\nweapon-exp-base\t全部基底\texact=True\trelocate=True\thits=1\t0x004038FA\r\nweapon-exp-no-damage\t全部基底\texact=True\trelocate=True\thits=1\t0x00403919\r\narmor-exp-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00403A8E\r\narmor-exp-no-damage\t全部基底\texact=True\trelocate=True\thits=1\t0x00403AFB\r\nchar-exp-max-level\t6.4/6.6\texact=True\trelocate=True\thits=1\t0x004088D3\r\nchar-exp-threshold\t6.4/6.6\texact=True\trelocate=True\thits=1\t0x004088D6\r\nequip-exp-threshold-special\t全部基底\texact=True\trelocate=True\thits=1\t0x00408319\r\nequip-exp-threshold-normal\t全部基底\texact=True\trelocate=True\thits=1\t0x0040831E\r\nequip-level-cap-special\t全部基底\texact=True\trelocate=True\thits=1\t0x00408327\r\nequip-level-cap-normal\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x0040832B\r\n"
+    },
+    {
+      "id": "6.5-battle-formulas",
+      "arguments": [
+        "--battle-formulas",
+        "<SOURCE_ROOT>\\基底\\加强版6.5未加密版"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.55,
+      "output": "BATTLE_FORMULA_TESTS_OK version=6.5 formulas=33 constants=253 editable=62\r\n"
+    },
+    {
+      "id": "6.5-battle-formula-write",
+      "arguments": [
+        "--battle-formula-write",
+        "<SOURCE_ROOT>\\基底\\加强版6.5未加密版"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 6.11,
+      "output": "BATTLE_FORMULA_WRITE_OK version=6.5\r\n"
+    },
+    {
+      "id": "6.5-engine-constant-audit",
+      "arguments": [
+        "--engine-constant-audit",
+        "<SOURCE_ROOT>\\基底\\加强版6.5未加密版"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 19.18,
+      "output": "ENGINE_CONSTANT_AUDIT_OK 6.5 total=88 writable=71 readOnly=17 layouts=90\r\nSOURCE_BASE_UNCHANGED 3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C\r\n"
+    },
+    {
+      "id": "6.5-engine-constant-relocations",
+      "arguments": [
+        "--engine-constant-relocations",
+        "<SOURCE_ROOT>\\基底\\加强版6.5未加密版",
+        "6.5"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.41,
+      "output": "guided-attack-count\t全部基底\texact=True\trelocate=True\thits=1\t0x00421340\r\nfurious-attack-targets\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x00405C16\r\nactive-combo-chance\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x004E411C\r\nactive-combo-chance\t6.5/6.6 成对\texact=True\trelocate=True\thits=1\t0x004E4146\r\ncounter-damage-share\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x004E3216\r\nbreakthrough-damage-bonus\t全部基底\texact=True\trelocate=True\thits=1\t0x004110C1\r\ndrain-attack-cap\t全部基底\texact=True\trelocate=True\thits=1\t0x00406B9A\r\ndrain-attack-cap\t全部基底 成对\texact=True\trelocate=True\thits=1\t0x00406B9E\r\niron-chain-directions\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x00412B7A\r\nheavy-strike-cap\t6.5\texact=True\trelocate=True\thits=1\t0x00422036\r\nheavy-strike-cap\t6.5 成对\texact=True\trelocate=True\thits=1\t0x0042203A\r\nshield-counter-cap\t6.5\texact=True\trelocate=True\thits=1\t0x0042205F\r\nshield-counter-cap\t6.5 成对\texact=True\trelocate=True\thits=1\t0x00422063\r\ndemon-stat-cap\t6.5\texact=True\trelocate=True\thits=1\t0x0043C517\r\ndemon-stat-cap\t6.5 成对\texact=True\trelocate=True\thits=1\t0x0043C51E\r\nswift-attack-bonus\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x0043BD88\r\nphysical-damage-base\t全部基底\texact=True\trelocate=True\thits=1\t0x0043BD36\r\nstrategy-damage-base\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x0043C101\r\nstrategy-damage-divisor\t全部基底\texact=True\trelocate=True\thits=1\t0x0043C126\r\nstrategy-damage-divisor\t全部基底 成对\texact=True\trelocate=True\thits=1\t0x0043C139\r\nconvert-heal-mp-cost\t6.5\texact=True\trelocate=True\thits=1\t0x0040D0A8\r\nsharpen-attack-cap\t6.5\texact=True\trelocate=True\thits=1\t0x0040D0E1\r\nsharpen-attack-cap\t6.5 成对\texact=True\trelocate=True\thits=1\t0x0040D0F7\r\nsharpen-attack-cap\t6.5 附加 0x0040D101\texact=True\trelocate=True\thits=1\t0x0040D101\r\nsharpen-attack-cap\t6.5 附加 0x0040D117\texact=True\trelocate=True\thits=1\t0x0040D117\r\nsharpen-attack-cap\t6.5 附加 0x0040D121\texact=True\trelocate=True\thits=1\t0x0040D121\r\nsharpen-attack-cap\t6.5 附加 0x0040D137\texact=True\trelocate=True\thits=1\t0x0040D137\r\nsharpen-attack-cap\t6.5 附加 0x0040D141\texact=True\trelocate=True\thits=1\t0x0040D141\r\nsharpen-attack-cap\t6.5 附加 0x0040D157\texact=True\trelocate=True\thits=1\t0x0040D157\r\nsharpen-attack-cap\t6.5 附加 0x0040D161\texact=True\trelocate=True\thits=1\t0x0040D161\r\nsharpen-attack-cap\t6.5 附加 0x0040D177\texact=True\trelocate=True\thits=1\t0x0040D177\r\nsharpen-attack-cap\t6.5 附加 0x0040D181\texact=True\trelocate=True\thits=1\t0x0040D181\r\nsharpen-attack-cap\t6.5 附加 0x0040D197\texact=True\trelocate=True\thits=1\t0x0040D197\r\nwind-rush-damage-divisor\t6.5\texact=True\trelocate=True\thits=1\t0x0041A51C\r\nstrategy-hit-cap\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x0043B9E7\r\nstrategy-hit-cap\t6.4/6.5 成对\texact=True\trelocate=True\thits=1\t0x0043B9EB\r\nchaos-yin-yang-hit-bonus\t全部基底\texact=True\trelocate=True\thits=1\t0x0043B9D6\r\neffect-screen-directions\t全部基底\texact=True\trelocate=True\thits=1\t0x004253AA\r\nscreen-inner-directions\t全部基底\texact=True\trelocate=True\thits=1\t0x0040F1E9\r\npass-through-directions\t6.5\texact=True\trelocate=True\thits=1\t0x00437D8A\r\naura-range\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x00422151\r\ncombo-damage-bonus\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x004E319E\r\nadversity-reduction-cap\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x00449093\r\nsneak-attack-step\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x004D2767\r\nfixed-damage-basis\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x00448F8B\r\nfixed-damage-basis\t6.5/6.6 成对\texact=True\trelocate=True\thits=1\t0x00448FB7\r\nstrategy-floor-bonus\t6.5\texact=True\trelocate=True\thits=1\t0x0043D3EA\r\nstrategy-floor-bonus\t6.5 成对\texact=True\trelocate=True\thits=1\t0x0043D43A\r\nexploit-weakness-threshold\t6.5\texact=True\trelocate=True\thits=1\t0x0043EA40\r\nmoney-absorb-multiplier\t全部基底\texact=True\trelocate=True\thits=1\t0x00406BFF\r\nfengfeng-floor-bonus\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0042426A\r\nshop-sell-price-numerator\t全部基底\texact=True\trelocate=True\thits=1\t0x0040B48D\r\nhit-curve-cap\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B54A\r\nhit-curve-high-base\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B56B\r\nhit-curve-high-coef\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B563\r\nhit-curve-mid-base\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B58C\r\nhit-curve-mid-coef\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B584\r\nhit-curve-low-divisor\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B595\r\nhit-curve-low-base\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B5B2\r\nhit-curve-low-coef\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B5AA\r\nhit-retry-count\t6.5\texact=True\trelocate=True\thits=1\t0x0043B50A\r\nhit-retry-threshold\t6.5\texact=True\trelocate=True\thits=1\t0x0043B528\r\nhit-retry-deduction\t6.5\texact=True\trelocate=True\thits=1\t0x0043B52E\r\nrate-curve-full-multiplier\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D14\r\nrate-curve-cap\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D1B\r\nrate-curve-high-coef\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D2F\r\nrate-curve-high-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D37\r\nrate-curve-low-coef\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D47\r\nrate-curve-low-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D4F\r\nphysical-crit-cap\t全部基底\texact=True\trelocate=True\thits=1\t0x00405ED7\r\nphysical-crit-pool\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x00405EDB\r\nstrategy-crit-cap\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0040CAA5\r\nstrategy-crit-pool\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0040CAA9\r\ncombo-pool\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0040612E\r\npersonal-exp-kill-flat\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x00403824\r\npersonal-exp-kill-ratio-num\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x0040383A\r\npersonal-exp-kill-ratio-offset\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x00403834\r\npersonal-exp-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00403855\r\nexp-multiplier-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00407FB9\r\nweapon-exp-base\t全部基底\texact=True\trelocate=True\thits=1\t0x004038FA\r\nweapon-exp-no-damage\t全部基底\texact=True\trelocate=True\thits=1\t0x00403919\r\narmor-exp-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00403A8E\r\narmor-exp-no-damage\t全部基底\texact=True\trelocate=True\thits=1\t0x00403AFB\r\nchar-exp-max-level\t6.5\texact=True\trelocate=True\thits=1\t0x004088D3\r\nchar-exp-band-65\t6.5\texact=True\trelocate=True\thits=1\t0x0040D226\r\nchar-exp-step-65\t6.5\texact=True\trelocate=True\thits=1\t0x0040D23D\r\nequip-exp-threshold-special\t全部基底\texact=True\trelocate=True\thits=1\t0x00408319\r\nequip-exp-threshold-normal\t全部基底\texact=True\trelocate=True\thits=1\t0x0040831E\r\nequip-level-cap-special\t全部基底\texact=True\trelocate=True\thits=1\t0x00408327\r\nequip-level-cap-normal\t6.4/6.5\texact=True\trelocate=True\thits=1\t0x0040832B\r\n"
+    },
+    {
+      "id": "6.6-battle-formulas",
+      "arguments": [
+        "--battle-formulas",
+        "<SOURCE_ROOT>\\基底\\复刻版6.6山贼"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.75,
+      "output": "BATTLE_FORMULA_TESTS_OK version=6.6 formulas=33 constants=253 editable=66\r\n"
+    },
+    {
+      "id": "6.6-battle-formula-write",
+      "arguments": [
+        "--battle-formula-write",
+        "<SOURCE_ROOT>\\基底\\复刻版6.6山贼"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 5.42,
+      "output": "BATTLE_FORMULA_WRITE_OK version=6.6\r\n"
+    },
+    {
+      "id": "6.6-engine-constant-audit",
+      "arguments": [
+        "--engine-constant-audit",
+        "<SOURCE_ROOT>\\基底\\复刻版6.6山贼"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 22.81,
+      "output": "ENGINE_CONSTANT_AUDIT_OK 6.6 total=88 writable=80 readOnly=8 layouts=103\r\nSOURCE_BASE_UNCHANGED 25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A\r\n"
+    },
+    {
+      "id": "6.6-engine-constant-relocations",
+      "arguments": [
+        "--engine-constant-relocations",
+        "<SOURCE_ROOT>\\基底\\复刻版6.6山贼",
+        "6.6"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.35,
+      "output": "guided-attack-count\t全部基底\texact=True\trelocate=True\thits=1\t0x00421340\r\nfurious-attack-targets\t6.6\texact=True\trelocate=True\thits=1\t0x00405C13\r\nactive-combo-chance\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x004E411C\r\nactive-combo-chance\t6.5/6.6 成对\texact=True\trelocate=True\thits=1\t0x004E4146\r\ncounter-damage-share\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x004E3216\r\nbreakthrough-damage-bonus\t全部基底\texact=True\trelocate=True\thits=1\t0x004110C1\r\ndrain-attack-cap\t全部基底\texact=True\trelocate=True\thits=1\t0x00406B9A\r\ndrain-attack-cap\t全部基底 成对\texact=True\trelocate=True\thits=1\t0x00406B9E\r\niron-chain-directions\t6.6\texact=True\trelocate=True\thits=1\t0x00412B7B\r\nheavy-strike-cap\t6.6\texact=True\trelocate=True\thits=1\t0x00422036\r\nheavy-strike-cap\t6.6 成对\texact=True\trelocate=True\thits=1\t0x0042203A\r\nheavy-strike-cap\t6.6改版（6.5式）\texact=True\trelocate=True\thits=1\t0x00422036\r\nheavy-strike-cap\t6.6改版（6.5式） 成对\texact=False\trelocate=True\thits=0\t\r\nshield-counter-cap\t6.6\texact=True\trelocate=True\thits=1\t0x0042205F\r\nshield-counter-cap\t6.6 成对\texact=True\trelocate=True\thits=1\t0x00422063\r\nshield-counter-cap\t6.6-6.5式\texact=True\trelocate=True\thits=1\t0x0042205F\r\nshield-counter-cap\t6.6-6.5式 成对\texact=False\trelocate=True\thits=1\t0x0042203A\r\ndemon-stat-cap\t6.6\texact=True\trelocate=True\thits=1\t0x0043C522\r\ndemon-stat-cap\t6.6 成对\texact=True\trelocate=True\thits=1\t0x0043C529\r\ndemon-stat-cap\t6.6-6.5式\texact=False\trelocate=True\thits=0\t\r\ndemon-stat-cap\t6.6-6.5式 成对\texact=False\trelocate=True\thits=1\t0x0043C529\r\nswift-attack-bonus\t6.6 兵种76槽\texact=True\trelocate=True\thits=1\t0x0051175D\r\nswift-attack-bonus\t6.6 兵种14槽（上限0）\texact=False\trelocate=True\thits=1\t0x00511CFD\r\nswift-attack-bonus\t6.6 兵种14槽（上限5）\texact=False\trelocate=True\thits=0\t\r\nswift-attack-bonus\t6.6-6.5式\texact=False\trelocate=True\thits=0\t\r\nswift-attack-offset\t6.6\texact=True\trelocate=True\thits=1\t0x0043BD82\r\nphysical-damage-base\t全部基底\texact=True\trelocate=True\thits=1\t0x0043BD36\r\nstrategy-damage-base\t6.6\texact=True\trelocate=True\thits=1\t0x0043C118\r\nstrategy-damage-divisor\t全部基底\texact=True\trelocate=True\thits=1\t0x0043C126\r\nstrategy-damage-divisor\t全部基底 成对\texact=True\trelocate=True\thits=1\t0x0043C139\r\nabsolute-strategy-damage-bonus\t6.6\texact=True\trelocate=True\thits=1\t0x00434187\r\nstrategy-damage-limit-cut\t6.6\texact=True\trelocate=True\thits=1\t0x00434243\r\nabsolute-damage-hp-threshold\t6.6\texact=True\trelocate=True\thits=1\t0x004341E2\r\nabsolute-damage-bonus\t6.6\texact=True\trelocate=True\thits=1\t0x004341EA\r\nlone-brave-reduction-cap\t6.6\texact=True\trelocate=True\thits=1\t0x0041A982\r\nlone-brave-reduction-cap\t6.6 成对\texact=True\trelocate=True\thits=1\t0x0041A986\r\ncontinuous-attack-reduction-cap\t6.6\texact=True\trelocate=True\thits=1\t0x00441ECA\r\nwind-rush-damage-divisor\t6.6\texact=True\trelocate=True\thits=1\t0x0041A7F0\r\nbattle-veteran-damage-divisor\t6.6\texact=True\trelocate=True\thits=1\t0x0041A85B\r\nstrategy-hit-cap\t6.6\texact=True\trelocate=True\thits=1\t0x0043B9E7\r\nstrategy-hit-cap\t6.6 成对\texact=True\trelocate=True\thits=1\t0x0043B9EB\r\nchaos-yin-yang-hit-bonus\t全部基底\texact=True\trelocate=True\thits=1\t0x0043B9D6\r\nadvance-retreat-double-line\t6.6\texact=True\trelocate=True\thits=1\t0x0043D3F2\r\nadvance-retreat-double-line\t6.6 成对\texact=True\trelocate=True\thits=1\t0x0043D43B\r\neffect-screen-directions\t全部基底\texact=True\trelocate=True\thits=1\t0x004253AA\r\nscreen-inner-directions\t全部基底\texact=True\trelocate=True\thits=1\t0x0040F1E9\r\npass-through-directions\t6.6\texact=True\trelocate=True\thits=1\t0x00437D9B\r\naura-range\t6.6\texact=True\trelocate=True\thits=1\t0x00422151\r\ncombo-damage-bonus\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x004E319E\r\nadversity-reduction-cap\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x00449093\r\nsneak-attack-step\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x004D2767\r\nfixed-damage-basis\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x00448F8B\r\nfixed-damage-basis\t6.5/6.6 成对\texact=True\trelocate=True\thits=1\t0x00448FB7\r\nmp-strategy-bonus\t6.6\texact=True\trelocate=True\thits=1\t0x00435143\r\nmoney-defense-cost\t6.6\texact=True\trelocate=True\thits=1\t0x004212C3\r\ndodge-damage-cap\t6.6\texact=True\trelocate=True\thits=1\t0x00449151\r\noffense-defense-add-line\t6.6\texact=True\trelocate=True\thits=1\t0x00441E3A\r\noffense-defense-effect-cap\t6.6\texact=True\trelocate=True\thits=1\t0x00441E5A\r\noffense-defense-effect-cap\t6.6 成对\texact=True\trelocate=True\thits=1\t0x00441E5E\r\noffense-defense-reduce-line\t6.6\texact=True\trelocate=True\thits=1\t0x00441E84\r\nexploit-weakness-threshold\t6.6\texact=True\trelocate=True\thits=1\t0x0043EA31\r\nmoney-absorb-multiplier\t全部基底\texact=True\trelocate=True\thits=1\t0x00406BFF\r\nfengfeng-floor-bonus\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0042426A\r\nshop-sell-price-numerator\t全部基底\texact=True\trelocate=True\thits=1\t0x0040B48D\r\nhit-curve-cap\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B54A\r\nhit-curve-high-base\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B56B\r\nhit-curve-high-coef\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B563\r\nhit-curve-mid-base\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B58C\r\nhit-curve-mid-coef\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B584\r\nhit-curve-low-divisor\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B595\r\nhit-curve-low-base\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B5B2\r\nhit-curve-low-coef\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0043B5AA\r\nhit-curve-floor-66\t6.6\texact=True\trelocate=True\thits=1\t0x0043B4E0\r\nhit-curve-floor-66\t6.6 成对\texact=True\trelocate=True\thits=1\t0x0043B4E4\r\nrate-curve-full-multiplier\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D14\r\nrate-curve-cap\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D1B\r\nrate-curve-high-coef\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D2F\r\nrate-curve-high-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D37\r\nrate-curve-low-coef\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D47\r\nrate-curve-low-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00405D4F\r\nphysical-crit-cap\t全部基底\texact=True\trelocate=True\thits=1\t0x00405ED7\r\nphysical-crit-pool\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x00405EDB\r\nstrategy-crit-cap\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0040CAA5\r\nstrategy-crit-pool\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0040CAA9\r\ncombo-pool\t6.5/6.6\texact=True\trelocate=True\thits=1\t0x0040612E\r\npersonal-exp-kill-flat\t6.6\texact=True\trelocate=True\thits=1\t0x0040381E\r\npersonal-exp-kill-flat\t6.6-6.5式\texact=False\trelocate=True\thits=0\t\r\npersonal-exp-kill-ratio-num\t6.6\texact=True\trelocate=True\thits=1\t0x00403833\r\npersonal-exp-kill-ratio-num\t6.6-6.5式\texact=False\trelocate=True\thits=0\t\r\npersonal-exp-kill-ratio-offset\t6.6\texact=True\trelocate=True\thits=1\t0x0040382E\r\npersonal-exp-kill-ratio-offset\t6.6-6.5式\texact=False\trelocate=True\thits=0\t\r\npersonal-exp-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00403855\r\nexp-multiplier-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00407FB9\r\nweapon-exp-base\t全部基底\texact=True\trelocate=True\thits=1\t0x004038FA\r\nweapon-exp-no-damage\t全部基底\texact=True\trelocate=True\thits=1\t0x00403919\r\narmor-exp-base\t全部基底\texact=True\trelocate=True\thits=1\t0x00403A8E\r\narmor-exp-no-damage\t全部基底\texact=True\trelocate=True\thits=1\t0x00403AFB\r\nchar-exp-max-level\t6.4/6.6\texact=True\trelocate=True\thits=1\t0x004088D3\r\nchar-exp-threshold\t6.4/6.6\texact=True\trelocate=True\thits=1\t0x004088D6\r\nequip-exp-threshold-special\t全部基底\texact=True\trelocate=True\thits=1\t0x00408319\r\nequip-exp-threshold-normal\t全部基底\texact=True\trelocate=True\thits=1\t0x0040831E\r\nequip-level-cap-special\t全部基底\texact=True\trelocate=True\thits=1\t0x00408327\r\nequip-level-cap-normal\t6.6\texact=True\trelocate=True\thits=1\t0x0040832B\r\n"
+    },
+    {
+      "id": "6.5-engine-constants",
+      "arguments": [
+        "--engine-constants",
+        "<SOURCE_ROOT>\\基底\\加强版6.5未加密版"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 4.9,
+      "output": "CONSTANT_BASELINE 加强版6.5未加密版 guided=2 furious=8 bonus=40 drain=100 iron=4 heavy=100 shield=100 demon=9999 swift=5 swiftOffset=— screen=4 inner=4 pass=4 aura=9 combo=100 counter=3 quote=唔，好强的气势。 comboBonus=0 adversity=80 sneak=25 fixedBasis=10 strategyBonus=20 mpStrategy=— money=— dodge=— exploit=3 offAdd=— offReduce=—\r\nENGINE_CONSTANT_TESTS_OK guided/screen/aura/quote + write/readback + limits\r\nSOURCE_BASE_UNCHANGED 3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C\r\n"
+    },
+    {
+      "id": "6.5-page-workbook",
+      "arguments": [
+        "--page-workbook",
+        "<SOURCE_ROOT>\\基底\\加强版6.5未加密版"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 17.93,
+      "output": "WORKBOOK_TEXT_ENCODING_OK controls/literals/adjacent/overlap/malformed/all-65536-code-units\r\nWORKBOOK_ROUNDTRIP_OK Persons 267618 bytes\r\nWORKBOOK_ROUNDTRIP_OK JobSeries 43360 bytes\r\nWORKBOOK_ROUNDTRIP_OK DetailedJobs 115716 bytes\r\nWORKBOOK_ROUNDTRIP_OK Items 80896 bytes\r\nWORKBOOK_ROUNDTRIP_OK Shop 36751 bytes\r\nWORKBOOK_ROUNDTRIP_OK Strategies 143843 bytes\r\nPAGE_WORKBOOK_TESTS_OK\r\nWORKBOOK_NATIVE_TESTS_OK auxiliary+physical/extend/undo/redo\r\n"
+    },
+    {
+      "id": "operand-sharing-safety",
+      "arguments": [
+        "--operand-sharing-safety-tests"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.27,
+      "output": "PASS direct repeated-register cross-role source preserved; both plans blocked; personal stays unresolved\r\nPASS wrapper read-only cross-role consumer blocks the shared item immediate\r\nPASS isolated item writable; direct and wrapper item-only aliases writable with shared marker\r\nPASS complete MOV EAX immediate writable without XOR; only full32 XOR/SUB prove high bits; partial/no zeroing stays unresolved read-only\r\nOPERAND_SHARING_SAFETY_TESTS_OK direct-cross-role wrapper-cross-role item-only-sharing full32-immediate partial-zeroing-safety\r\n"
+    },
+    {
+      "id": "6.5-record-query-ui",
+      "arguments": [
+        "--record-query-ui",
+        "<SOURCE_ROOT>\\基底\\加强版6.5未加密版"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 18.18,
+      "output": "RECORD_QUERY_UI_TESTS_OK tables=38 label-only/details-excluded/candidates/literal-label-enter/explicit-selection/keyboard-selection/numeric-enter/numeric-button/dropdown-reopen/clear/literal/draft/empty/page-state/quick-locate/physical-ID/layout\r\n"
+    },
+    {
+      "id": "effect-assignment-layouts",
+      "runner": "DataManager.Tests",
+      "arguments": [
+        "--effect-assignment-layouts",
+        "<SOURCE_ROOT>\\_tmp\\kb-incremental-20261102\\fixtures"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.15,
+      "output": "LAYOUT_OK 洗隋 rows=180 width=8 slots=1 sharedN=True pointer=0x00500C3B table=0x00508998 file=0xDA198 allRows=PASS boundary=PASS mutations=7/7 relocation=PASS opaqueIds=PASS sourceUnchanged=PASS\r\nLAYOUT_OK 加强版6.5未加密版 rows=255 width=8 slots=1 sharedN=True pointer=0x00500C3B table=0x00507800 file=0xD9000 allRows=PASS boundary=PASS mutations=7/7 relocation=PASS opaqueIds=PASS sourceUnchanged=PASS\r\nLAYOUT_OK 复刻版6.6山贼 rows=255 width=16 slots=2 sharedN=False pointer=0x00500C3B table=0x00511000 file=0xE2800 allRows=PASS boundary=PASS mutations=7/7 relocation=PASS opaqueIds=PASS sourceUnchanged=PASS\r\nLAYOUT_OK 复刻版6.6山贼 国庆 rows=255 width=16 slots=2 sharedN=False pointer=0x00500C3B table=0x00511000 file=0xE2800 allRows=PASS boundary=PASS mutations=7/7 relocation=PASS opaqueIds=PASS sourceUnchanged=PASS\r\nEFFECT_ASSIGNMENT_LAYOUT_TESTS_OK samples=4\r\n"
+    },
+    {
+      "id": "atlas-package",
+      "runner": "ImageManager.Tests",
+      "arguments": [
+        "--atlas-package"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.5,
+      "output": "[PASS] 参考包清单、目标隔离、编号图和兼容导出\r\n结果：通过 1，失败 0。\r\n"
+    },
+    {
+      "id": "atlas-flexible",
+      "runner": "ImageManager.Tests",
+      "arguments": [
+        "--atlas-flexible"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 3.5,
+      "output": "REAL_ATLAS_OK 暗紫背景-2048.png roi={X=0,Y=0,Width=2048,Height=2048} warnings=19\r\nREAL_ATLAS_OK 白底边框-663.png roi={X=7,Y=2,Width=655,Height=655} warnings=19\r\nFLEXIBLE_ATLAS_TESTS_OK\r\n[PASS] 非标准画布、背景、源框修正与真实AI图\r\n[PASS] 横竖画布、非整数动作偏移与缺帧\r\n结果：通过 2，失败 0。\r\n"
+    },
+    {
+      "id": "scene-terrain-core",
+      "runner": "ImageManager.Tests",
+      "arguments": [
+        "--scene-terrain",
+        "<SOURCE_ROOT>\\_tmp\\kb-incremental-20261102\\fixtures"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 14.55,
+      "output": "SCENE_TERRAIN_TESTS_OK <SOURCE_ROOT>\\_tmp\\kb-incremental-20261102\\fixtures\\data管理器\\验证\\2026-10-23-内场景地形编辑\\core\r\n[PASS] 内场景Pmap格式、菱形命中、笔画、联动事务与三版本基底\r\n结果：通过 1，失败 0。\r\n"
+    },
+    {
+      "id": "scene-terrain-integration",
+      "runner": "DataManager.Tests",
+      "arguments": [
+        "--scene-terrain",
+        "<SOURCE_ROOT>\\_tmp\\kb-incremental-20261102\\fixtures"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 13.41,
+      "output": "SCENE_TERRAIN_INTEGRATION_TESTS_OK <SOURCE_ROOT>\\_tmp\\kb-incremental-20261102\\fixtures\\data管理器\\验证\\2026-10-23-内场景地形编辑\\ui\r\n"
+    }
+  ],
+  "artifactSummaries": [
+    {
+      "path": "_tmp/kb-incremental-20261102/fixtures/data管理器/验证/2026-10-23-内场景地形编辑/core/scene-terrain-core-results.json",
+      "sha256": "C9A0F328A9842BAF39B76B460A60B3DDBFE1DF4778D5B75B0C090461D12F886B",
+      "content": {
+        "Passed": true,
+        "Checks": [
+          "真实头字段、UInt16行主序、单字节差异、损坏/未知值/多层拒写",
+          "旧工具相位、四个边界内外、画布外、文件/游戏坐标与快速跨格插值",
+          "笔画撤销重做、空笔画、只写Pmap、磁盘复读、资源历史、过期会话拒绝、日志失败回滚",
+          "追加/复制配对、额外Pmap尾条目前插入、内场景同步删除、外场景黑图固定槽、双文件回滚和历史",
+          "最后内场景删除保留全FFFF尾部预留；重新新增在预留前插入且旧障碍不复活",
+          "6.4真实样本副本编辑保存/压缩保持/历史撤回/源文件哈希保持",
+          "6.5真实样本副本编辑保存/压缩保持/历史撤回/源文件哈希保持",
+          "6.6真实样本副本编辑保存/压缩保持/历史撤回/源文件哈希保持",
+          "6.6山贼真实样本副本编辑保存/压缩保持/历史撤回/源文件哈希保持"
+        ],
+        "RealSamples": [
+          {
+            "Version": "6.4",
+            "Source": "<SOURCE_ROOT>\\_tmp\\kb-incremental-20261102\\fixtures\\基底\\洗隋",
+            "Hashes": {
+              "Ekd5.exe": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+              "Mmap.e5": "08A81D2CEFA88F51A3B56F945F21B4714633F11F873217B48BAD1981A9FDEF62",
+              "Pmap.e5": "08E32E8119DD9534F854A9476DB3880E7EC761982B23F4009F3BC6F72F277E61"
+            },
+            "MmapCount": 223,
+            "PmapCount": 184,
+            "PmapCompressedEntries": 17,
+            "EngineBlockedConsumerFileOffset": 154983,
+            "EngineWordIndexFileOffset": 154871,
+            "CoordinateRoundTrip": true,
+            "OriginalWord": 61695,
+            "EditedWord": 65535,
+            "LandmarkWriteback": [
+              {
+                "Label": "wall",
+                "NativePixel": [
+                  20,
+                  20
+                ],
+                "FileCell": [
+                  8,
+                  45
+                ],
+                "GameCell": [
+                  8,
+                  47
+                ],
+                "ByteOffset": 9032,
+                "OriginalWord": "0xF0FF",
+                "EditedWord": "0xFFFF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              },
+              {
+                "Label": "doorway",
+                "NativePixel": [
+                  575,
+                  70
+                ],
+                "FileCell": [
+                  49,
+                  17
+                ],
+                "GameCell": [
+                  49,
+                  19
+                ],
+                "ByteOffset": 3514,
+                "OriginalWord": "0xFFFF",
+                "EditedWord": "0xF0FF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              },
+              {
+                "Label": "floor",
+                "NativePixel": [
+                  400,
+                  180
+                ],
+                "FileCell": [
+                  52,
+                  42
+                ],
+                "GameCell": [
+                  52,
+                  44
+                ],
+                "ByteOffset": 8520,
+                "OriginalWord": "0xFFFF",
+                "EditedWord": "0xF0FF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              }
+            ]
+          },
+          {
+            "Version": "6.5",
+            "Source": "<SOURCE_ROOT>\\_tmp\\kb-incremental-20261102\\fixtures\\基底\\加强版6.5未加密版",
+            "Hashes": {
+              "Ekd5.exe": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+              "Mmap.e5": "A9679A54FF4372DE263ED00F4F05283057B4982FDCEEF6CF430E78ECC6EDDC67",
+              "Pmap.e5": "597B50A9F6024063E6F107959985D2C22922DE93DB26D9A264EA600DBD156C42"
+            },
+            "MmapCount": 385,
+            "PmapCount": 345,
+            "PmapCompressedEntries": 44,
+            "EngineBlockedConsumerFileOffset": 154983,
+            "EngineWordIndexFileOffset": 154871,
+            "CoordinateRoundTrip": true,
+            "OriginalWord": 61695,
+            "EditedWord": 65535,
+            "LandmarkWriteback": [
+              {
+                "Label": "wall",
+                "NativePixel": [
+                  20,
+                  20
+                ],
+                "FileCell": [
+                  8,
+                  45
+                ],
+                "GameCell": [
+                  8,
+                  47
+                ],
+                "ByteOffset": 9032,
+                "OriginalWord": "0xF0FF",
+                "EditedWord": "0xFFFF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              },
+              {
+                "Label": "doorway",
+                "NativePixel": [
+                  575,
+                  70
+                ],
+                "FileCell": [
+                  49,
+                  17
+                ],
+                "GameCell": [
+                  49,
+                  19
+                ],
+                "ByteOffset": 3514,
+                "OriginalWord": "0xFFFF",
+                "EditedWord": "0xF0FF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              },
+              {
+                "Label": "floor",
+                "NativePixel": [
+                  400,
+                  180
+                ],
+                "FileCell": [
+                  52,
+                  42
+                ],
+                "GameCell": [
+                  52,
+                  44
+                ],
+                "ByteOffset": 8520,
+                "OriginalWord": "0xFFFF",
+                "EditedWord": "0xF0FF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              }
+            ]
+          },
+          {
+            "Version": "6.6",
+            "Source": "<SOURCE_ROOT>\\_tmp\\kb-incremental-20261102\\fixtures\\基底\\新改曹操傳6.6修正版",
+            "Hashes": {
+              "Ekd5.exe": "4A4FD8DDBF83E5F0B769D1B97BF8F6E6431C3AB42892024A354228212D3D06A4",
+              "Mmap.e5": "E06B1CFCD3FD43E2B82F9509909EC53931BDEA0E22419535923AE1310B15BF2B",
+              "Pmap.e5": "92AEDAE7049CC066F0F26A5554468CBD8D5DCFD443B37572982228F519FBDFD6"
+            },
+            "MmapCount": 516,
+            "PmapCount": 477,
+            "PmapCompressedEntries": 48,
+            "EngineBlockedConsumerFileOffset": 154968,
+            "EngineWordIndexFileOffset": 154871,
+            "CoordinateRoundTrip": true,
+            "OriginalWord": 61695,
+            "EditedWord": 65535,
+            "LandmarkWriteback": [
+              {
+                "Label": "wall",
+                "NativePixel": [
+                  20,
+                  20
+                ],
+                "FileCell": [
+                  8,
+                  45
+                ],
+                "GameCell": [
+                  8,
+                  47
+                ],
+                "ByteOffset": 9032,
+                "OriginalWord": "0xF0FF",
+                "EditedWord": "0xFFFF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              },
+              {
+                "Label": "doorway",
+                "NativePixel": [
+                  575,
+                  70
+                ],
+                "FileCell": [
+                  49,
+                  17
+                ],
+                "GameCell": [
+                  49,
+                  19
+                ],
+                "ByteOffset": 3514,
+                "OriginalWord": "0xFFFF",
+                "EditedWord": "0xF0FF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              },
+              {
+                "Label": "floor",
+                "NativePixel": [
+                  400,
+                  180
+                ],
+                "FileCell": [
+                  52,
+                  42
+                ],
+                "GameCell": [
+                  52,
+                  44
+                ],
+                "ByteOffset": 8520,
+                "OriginalWord": "0xFFFF",
+                "EditedWord": "0xF0FF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              }
+            ]
+          },
+          {
+            "Version": "6.6山贼",
+            "Source": "<SOURCE_ROOT>\\_tmp\\kb-incremental-20261102\\fixtures\\基底\\复刻版6.6山贼",
+            "Hashes": {
+              "Ekd5.exe": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A",
+              "Mmap.e5": "585D8212E8D41C5167ED3DA824CE011780B46B92F75C28EFD7435838D6557C69",
+              "Pmap.e5": "75006C1616041522903C2763B10572E54457BC8F1712FD81F3E143C36C82C240"
+            },
+            "MmapCount": 156,
+            "PmapCount": 123,
+            "PmapCompressedEntries": 55,
+            "EngineBlockedConsumerFileOffset": 154968,
+            "EngineWordIndexFileOffset": 154871,
+            "CoordinateRoundTrip": true,
+            "OriginalWord": 61695,
+            "EditedWord": 65535,
+            "LandmarkWriteback": [
+              {
+                "Label": "wall",
+                "NativePixel": [
+                  20,
+                  20
+                ],
+                "FileCell": [
+                  8,
+                  45
+                ],
+                "GameCell": [
+                  8,
+                  47
+                ],
+                "ByteOffset": 9032,
+                "OriginalWord": "0xF0FF",
+                "EditedWord": "0xFFFF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              },
+              {
+                "Label": "doorway",
+                "NativePixel": [
+                  575,
+                  70
+                ],
+                "FileCell": [
+                  49,
+                  17
+                ],
+                "GameCell": [
+                  49,
+                  19
+                ],
+                "ByteOffset": 3514,
+                "OriginalWord": "0xFFFF",
+                "EditedWord": "0xF0FF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              },
+              {
+                "Label": "floor",
+                "NativePixel": [
+                  400,
+                  180
+                ],
+                "FileCell": [
+                  52,
+                  42
+                ],
+                "GameCell": [
+                  52,
+                  44
+                ],
+                "ByteOffset": 8520,
+                "OriginalWord": "0xFFFF",
+                "EditedWord": "0xF0FF",
+                "SavedAndReopened": true,
+                "UndoRestoredOriginalArchive": true
+              }
+            ]
+          }
+        ],
+        "CoordinateEvidence": {
+          "PixelToGame": "floor(px/16+py/8+4.625),floor(py/8-px/16+46.625)",
+          "GameToFile": "(gameX,gameY-2)",
+          "FileCellCenter": "(8*(fileX-fileY+40),4*(fileX+fileY-48)-1)",
+          "Old65MouseVA": "0x53F688-0x53F78C",
+          "Old65WriteVA": "0x53EF99-0x53F067",
+          "Old66MouseVA": "0x54ECBE-0x54EDB6",
+          "Old66WriteVA": "0x54E5D9-0x54E655"
+        }
+      }
+    },
+    {
+      "path": "_tmp/kb-incremental-20261102/fixtures/data管理器/验证/2026-10-23-内场景地形编辑/ui/scene-terrain-ui-results.json",
+      "sha256": "1B257EE89874A51FDE27806360A195777718239C5409A21985282950C0A561B8",
+      "content": {
+        "Passed": true,
+        "Checks": [
+          "ResourceCatalogAdapter实际新增/内场景删除/外场景占位、尾条目保留、Pmap直接操作拒绝、项目历史",
+          "图库Live服务新增/删除/编辑副本、Pmap写入门禁、缺配对提交拒绝与真实导入预检",
+          "大小写旧Pmap分类导向Mmap、分类移除Pmap、外场景/缺失/损坏/未知格/缺条地形入口禁用、修复后恢复、其他图库无入口",
+          "6.4真实弹窗：显示开关、左右快速笔画、出界/滚动结束笔画、静止指针坐标刷新、DPI缩放、撤回重做、游戏坐标、保存复读、只读拒写与实际WinForms截图",
+          "6.5真实弹窗：显示开关、左右快速笔画、出界/滚动结束笔画、静止指针坐标刷新、DPI缩放、撤回重做、游戏坐标、保存复读、只读拒写与实际WinForms截图",
+          "6.6真实弹窗：显示开关、左右快速笔画、出界/滚动结束笔画、静止指针坐标刷新、DPI缩放、撤回重做、游戏坐标、保存复读、只读拒写与实际WinForms截图",
+          "6.6山贼真实弹窗：显示开关、左右快速笔画、出界/滚动结束笔画、静止指针坐标刷新、DPI缩放、撤回重做、游戏坐标、保存复读、只读拒写与实际WinForms截图"
+        ]
+      }
+    }
+  ],
+  "invocationCorrections": [
+    {
+      "id": "6.5-effect-assignment-layouts",
+      "initialExitCode": 1,
+      "reason": "Test entry expects <repository-root>, initial invocation supplied a sample directory. Corrected effect-assignment-layouts run passed."
+    },
+    {
+      "id": "scene-terrain-core",
+      "initialExitCode": 1,
+      "reason": "Initial isolated fixture omitted E5/Mmap.e5 and E5/Pmap.e5; corrected fixture preserves original resource bytes."
+    },
+    {
+      "id": "scene-terrain-integration",
+      "initialExitCode": 1,
+      "reason": "Initial isolated fixture omitted E5/Mmap.e5 and E5/Pmap.e5; corrected fixture preserves original resource bytes."
+    }
+  ],
+  "originalFilesUnchanged": true,
+  "originalFiles": [
+    {
+      "path": "基底/洗隋/Data.e5",
+      "beforeSha256": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF",
+      "afterSha256": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF"
+    },
+    {
+      "path": "基底/洗隋/Star.e5",
+      "beforeSha256": "4A201ECC0FA3C315DA077615DE7AE4A90EF4CC61E5D94F119841F906EE4FCD15",
+      "afterSha256": "4A201ECC0FA3C315DA077615DE7AE4A90EF4CC61E5D94F119841F906EE4FCD15"
+    },
+    {
+      "path": "基底/洗隋/Ekd5.exe",
+      "beforeSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+      "afterSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"
+    },
+    {
+      "path": "基底/洗隋/Imsg.e5",
+      "beforeSha256": "F3C8AF4FB4673719EAAD819CE44C4D81ADCD3A7FA3DA9A67910D82F501382E74",
+      "afterSha256": "F3C8AF4FB4673719EAAD819CE44C4D81ADCD3A7FA3DA9A67910D82F501382E74"
+    },
+    {
+      "path": "基底/加强版6.5未加密版/Data.e5",
+      "beforeSha256": "638744E07B39A12DB2D807892D1FBC7EA69F7E43CAD2771DAA9003574B92B846",
+      "afterSha256": "638744E07B39A12DB2D807892D1FBC7EA69F7E43CAD2771DAA9003574B92B846"
+    },
+    {
+      "path": "基底/加强版6.5未加密版/Star.e5",
+      "beforeSha256": "2F357A35E4E9A40493E7AAFC154BF1FB0FAE4DA35BD06D43F460A8B9D2CE6C69",
+      "afterSha256": "2F357A35E4E9A40493E7AAFC154BF1FB0FAE4DA35BD06D43F460A8B9D2CE6C69"
+    },
+    {
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "beforeSha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+      "afterSha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C"
+    },
+    {
+      "path": "基底/加强版6.5未加密版/Imsg.e5",
+      "beforeSha256": "A22C4F12B30F511A62DE8B9AE0C23B7BA41D55FD568B66D4F3544368912D9660",
+      "afterSha256": "A22C4F12B30F511A62DE8B9AE0C23B7BA41D55FD568B66D4F3544368912D9660"
+    },
+    {
+      "path": "基底/复刻版6.6山贼/Data.e5",
+      "beforeSha256": "C4B57DD0A9DC3EF2A7FE4D6A36EEAF0F7EDEA06BF2F6407B1A8AE3252E5807CE",
+      "afterSha256": "C4B57DD0A9DC3EF2A7FE4D6A36EEAF0F7EDEA06BF2F6407B1A8AE3252E5807CE"
+    },
+    {
+      "path": "基底/复刻版6.6山贼/Star.e5",
+      "beforeSha256": "0F196332ECF2E845EA1D93AC2E7762DAADBACC0EBF802CCE697BB1C06BAE6EB9",
+      "afterSha256": "0F196332ECF2E845EA1D93AC2E7762DAADBACC0EBF802CCE697BB1C06BAE6EB9"
+    },
+    {
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "beforeSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A",
+      "afterSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    },
+    {
+      "path": "基底/复刻版6.6山贼/Imsg.e5",
+      "beforeSha256": "A959F248DF6EF5518280EAFEBB5970B318662FA64D354AFFCF23504938146464",
+      "afterSha256": "A959F248DF6EF5518280EAFEBB5970B318662FA64D354AFFCF23504938146464"
+    },
+    {
+      "path": "基底/洗隋/Ekd5.exe",
+      "sha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"
+    },
+    {
+      "path": "基底/洗隋/Data.e5",
+      "sha256": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF"
+    },
+    {
+      "path": "基底/洗隋/Star.e5",
+      "sha256": "4A201ECC0FA3C315DA077615DE7AE4A90EF4CC61E5D94F119841F906EE4FCD15"
+    },
+    {
+      "path": "基底/洗隋/Imsg.e5",
+      "sha256": "F3C8AF4FB4673719EAAD819CE44C4D81ADCD3A7FA3DA9A67910D82F501382E74"
+    },
+    {
+      "path": "基底/洗隋/E5/Mmap.e5",
+      "sha256": "08A81D2CEFA88F51A3B56F945F21B4714633F11F873217B48BAD1981A9FDEF62"
+    },
+    {
+      "path": "基底/洗隋/E5/Pmap.e5",
+      "sha256": "08E32E8119DD9534F854A9476DB3880E7EC761982B23F4009F3BC6F72F277E61"
+    },
+    {
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C"
+    },
+    {
+      "path": "基底/加强版6.5未加密版/Data.e5",
+      "sha256": "638744E07B39A12DB2D807892D1FBC7EA69F7E43CAD2771DAA9003574B92B846"
+    },
+    {
+      "path": "基底/加强版6.5未加密版/Star.e5",
+      "sha256": "2F357A35E4E9A40493E7AAFC154BF1FB0FAE4DA35BD06D43F460A8B9D2CE6C69"
+    },
+    {
+      "path": "基底/加强版6.5未加密版/Imsg.e5",
+      "sha256": "A22C4F12B30F511A62DE8B9AE0C23B7BA41D55FD568B66D4F3544368912D9660"
+    },
+    {
+      "path": "基底/加强版6.5未加密版/E5/Mmap.e5",
+      "sha256": "A9679A54FF4372DE263ED00F4F05283057B4982FDCEEF6CF430E78ECC6EDDC67"
+    },
+    {
+      "path": "基底/加强版6.5未加密版/E5/Pmap.e5",
+      "sha256": "597B50A9F6024063E6F107959985D2C22922DE93DB26D9A264EA600DBD156C42"
+    },
+    {
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    },
+    {
+      "path": "基底/复刻版6.6山贼/Data.e5",
+      "sha256": "C4B57DD0A9DC3EF2A7FE4D6A36EEAF0F7EDEA06BF2F6407B1A8AE3252E5807CE"
+    },
+    {
+      "path": "基底/复刻版6.6山贼/Star.e5",
+      "sha256": "0F196332ECF2E845EA1D93AC2E7762DAADBACC0EBF802CCE697BB1C06BAE6EB9"
+    },
+    {
+      "path": "基底/复刻版6.6山贼/Imsg.e5",
+      "sha256": "A959F248DF6EF5518280EAFEBB5970B318662FA64D354AFFCF23504938146464"
+    },
+    {
+      "path": "基底/复刻版6.6山贼/E5/Mmap.e5",
+      "sha256": "585D8212E8D41C5167ED3DA824CE011780B46B92F75C28EFD7435838D6557C69"
+    },
+    {
+      "path": "基底/复刻版6.6山贼/E5/Pmap.e5",
+      "sha256": "75006C1616041522903C2763B10572E54457BC8F1712FD81F3E143C36C82C240"
+    },
+    {
+      "path": "基底/复刻版6.6山贼 国庆/Ekd5.exe",
+      "sha256": "F36F9A3D06F3C4E52F32320FAE4633D0EADC9B7863F410EA7532B3C45E2ABF88"
+    },
+    {
+      "path": "基底/复刻版6.6山贼 国庆/Data.e5",
+      "sha256": "65EA78D8B27CAE3D6B866243422721CCB136376E92F8240AB2FC1655E6D34D3F"
+    },
+    {
+      "path": "基底/复刻版6.6山贼 国庆/Star.e5",
+      "sha256": "B3921D1765911E52508149E712C6F86D5CD9A1352DB30618176CE3E4BEA2A7C0"
+    },
+    {
+      "path": "基底/复刻版6.6山贼 国庆/Imsg.e5",
+      "sha256": "A847EBF6DBE084B4A545976F0D32A44A071B88DDE73D2A80C2999210D24E4100"
+    },
+    {
+      "path": "基底/复刻版6.6山贼 国庆/E5/Mmap.e5",
+      "sha256": "F824EFC6AB9CCDF586023DA9B0E70884472CC0C94428A2CDFC182712E0EE2358"
+    },
+    {
+      "path": "基底/复刻版6.6山贼 国庆/E5/Pmap.e5",
+      "sha256": "E09BC99406B4E2A29C19A0140496A52C63D14FC4870256BF10F2948F9E848491"
+    },
+    {
+      "path": "基底/新改曹操傳6.6修正版/Ekd5.exe",
+      "sha256": "4A4FD8DDBF83E5F0B769D1B97BF8F6E6431C3AB42892024A354228212D3D06A4"
+    },
+    {
+      "path": "基底/新改曹操傳6.6修正版/Data.e5",
+      "sha256": "8B89067B87265277B1EB872569A14F67D158D1E37B4032F6E7460806EF5743BF"
+    },
+    {
+      "path": "基底/新改曹操傳6.6修正版/Star.e5",
+      "sha256": "991E2032C87C000FA66F34C5D85F90932057E00EC8E60FCDA9F21430D64E1822"
+    },
+    {
+      "path": "基底/新改曹操傳6.6修正版/Imsg.e5",
+      "sha256": "4784E7B3F1DE192E63537E70B146DB3799A61542EDBC91056869BAF76066CE08"
+    },
+    {
+      "path": "基底/新改曹操傳6.6修正版/E5/Mmap.e5",
+      "sha256": "E06B1CFCD3FD43E2B82F9509909EC53931BDEA0E22419535923AE1310B15BF2B"
+    },
+    {
+      "path": "基底/新改曹操傳6.6修正版/E5/Pmap.e5",
+      "sha256": "92AEDAE7049CC066F0F26A5554468CBD8D5DCFD443B37572982228F519FBDFD6"
+    }
+  ]
+}

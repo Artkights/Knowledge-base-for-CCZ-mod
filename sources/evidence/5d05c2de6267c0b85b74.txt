@@ -1,0 +1,637 @@
+using ImageManager.Core;
+
+namespace ImageManager.App;
+
+public sealed partial class AiAtlasImportDialog : Form
+{
+    private readonly IReferenceAtlasService _service;
+    private readonly string _pngPath;
+    private readonly LogicalImageAsset _asset;
+    private readonly IReadOnlyList<DecodedFrame> _referenceFrames;
+    private readonly ReferenceAtlasContext _context;
+    private readonly IReadOnlyList<DecodedFrame>? _legacyReferenceFrames;
+    private readonly CheckBox _legacyThreeTurns = new() { Text = "旧三转参考图（同时写入三转）", AutoSize = true };
+    private CancellationTokenSource? _normalizationCancellation;
+    private long _normalizationRevision;
+    private bool _processing;
+    private long _successfulRevision = -1;
+    private readonly AiAtlasNormalizationOptions _options = new();
+    private readonly ComboBox _kernel = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 136 };
+    private readonly NumericUpDown _tolerance = new() { Minimum = 0, Maximum = 80, Value = 12, Width = 66 };
+    private readonly CheckBox _dither = new() { Text = "有序抖动", AutoSize = true, Margin = new Padding(8, 7, 3, 0) };
+    private readonly ComboBox _maskTool = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 108 };
+    private readonly NumericUpDown _brushRadius = new() { Minimum = 1, Maximum = 100, Value = 12, Width = 62 };
+    private readonly ComboBox _scope = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 108 };
+    private readonly ComboBox _comparisonMode = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 150 };
+    private readonly NumericUpDown _scale = new() { Minimum = 25, Maximum = 400, Value = 100, Increment = 5, Width = 66 };
+    private readonly PictureBox _maskPreview = PreviewBox();
+    private readonly PictureBox _referencePreview = PreviewBox();
+    private readonly PictureBox _rawPreview = PreviewBox();
+    private readonly PictureBox _alignedPreview = PreviewBox();
+    private readonly PictureBox _finalPreview = PreviewBox();
+    private readonly PictureBox _normalizedPreview = PreviewBox();
+    private readonly PictureBox _animationPreview = PreviewBox();
+    private readonly Label _comparisonStatus = new() { AutoSize = true, Padding = new Padding(6) };
+    private readonly DataGridView _diagnostics = new()
+    {
+        Dock = DockStyle.Fill, ReadOnly = true, AllowUserToAddRows = false, AllowUserToDeleteRows = false,
+        AllowUserToResizeRows = false, MultiSelect = false, SelectionMode = DataGridViewSelectionMode.FullRowSelect,
+        RowHeadersVisible = false, AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+    };
+    private readonly Label _summary = new() { AutoSize = true, Padding = new Padding(6, 8, 6, 4) };
+    private readonly Label _status = new() { AutoSize = true, Padding = new Padding(8, 8, 0, 0) };
+    private readonly CheckBox _reviewed = new() { Text = "已检查低置信度、蒙版和裁切区域", AutoSize = true };
+    private readonly Button _confirm = new() { Text = "确认写回", AutoSize = true, MinimumSize = new Size(96, 34) };
+    private readonly Button _play = new() { Text = "播放", AutoSize = true, MinimumSize = new Size(72, 30) };
+    private readonly System.Windows.Forms.Timer _animationTimer = new() { Interval = 120 };
+    private AiAtlasNormalizationResult? _result;
+    private readonly Stack<AtlasMaskStroke> _undoneStrokes = new();
+    private bool _painting;
+    private Point? _lastStrokePoint;
+    private int _animationIndex;
+    private bool _fillingDiagnostics;
+
+    public AiAtlasImportDialog(IReferenceAtlasService service, string pngPath, LogicalImageAsset asset,
+        IReadOnlyList<DecodedFrame> referenceFrames)
+        : this(service, pngPath, ReferenceAtlasContext.Create(asset, referenceFrames), referenceFrames) { }
+
+    public AiAtlasImportDialog(IReferenceAtlasService service, string pngPath, ReferenceAtlasContext context,
+        IReadOnlyList<DecodedFrame>? legacyReferenceFrames = null)
+    {
+        _service = service;
+        _pngPath = pngPath;
+        _context = context;
+        _asset = context.Asset;
+        _referenceFrames = context.Frames;
+        _legacyReferenceFrames = !_asset.PhysicalImageNumber.HasValue &&
+            legacyReferenceFrames?.Select(frame => frame.Descriptor.Turn).Distinct().Count() > 1
+            ? legacyReferenceFrames : null;
+        Text = "AI 参考图导回 - " + _asset.DisplayName + (_asset.Kind == ResourceKind.SComposite
+            ? _asset.PhysicalImageNumber is int physical ? $" · Unit #{physical}（仅此物理图号）" : $" · 第 {context.TargetTurn} 转" : "");
+        ClientSize = WorkingSize(1340, 860);
+        MinimumSize = new Size(980, 680);
+        StartPosition = FormStartPosition.CenterParent;
+        AutoScaleMode = AutoScaleMode.Dpi;
+        KeyPreview = true;
+
+        _kernel.Items.AddRange(["面积卷积", "最近邻（默认）", "Lanczos3"]);
+        _kernel.SelectedIndex = (int)AtlasResamplingKernel.NearestNeighbor;
+        _maskTool.Items.AddRange(["背景取色", "保留画笔", "移除画笔"]);
+        _maskTool.SelectedIndex = 0;
+        _scope.Items.AddRange(["全部帧", "当前分区", "当前帧"]);
+        _scope.SelectedIndex = 2;
+        _comparisonMode.Items.AddRange(["四阶段并列", "原始/AI 叠加", "AI/CCZ 差异"]);
+        _comparisonMode.SelectedIndex = 0;
+        _comparisonMode.SelectedIndexChanged += (_, _) => ShowSelectedComparison();
+
+        var root = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 4, Padding = new Padding(8) };
+        root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        root.RowStyles.Add(new RowStyle(SizeType.Percent, 78));
+        root.RowStyles.Add(new RowStyle(SizeType.Percent, 22));
+        root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        root.Controls.Add(BuildLockedTargetHeader(), 0, 0);
+        root.Controls.Add(BuildWorkspace(), 0, 1);
+        root.Controls.Add(_diagnostics, 0, 2);
+        root.Controls.Add(BuildBottomBar(), 0, 3);
+        Controls.Add(root);
+        InitializeSourceSpace(root);
+        _summary.MaximumSize = new Size(Math.Max(200, ClientSize.Width - 36), 0);
+        SizeChanged += (_, _) => _summary.MaximumSize = new Size(Math.Max(200, ClientSize.Width - 36), 0);
+
+        ConfigureDiagnostics();
+        SelectionAppearance.Configure(_diagnostics, preserveCurrentRow: true);
+        _diagnostics.SelectionChanged += (_, _) =>
+        {
+            if (_fillingDiagnostics) return;
+            LoadSelectedAdjustment();
+            ShowSelectedComparison();
+            SelectSourceFrame();
+        };
+        _reviewed.CheckedChanged += (_, _) => UpdateConfirmState();
+        _confirm.Click += (_, _) => Confirm();
+        _maskPreview.MouseDown += MaskMouseDown;
+        _maskPreview.MouseMove += MaskMouseMove;
+        _maskPreview.MouseUp += MaskMouseUp;
+        _animationTimer.Tick += (_, _) => AdvanceAnimation();
+        _play.Click += (_, _) => ToggleAnimation();
+        _legacyThreeTurns.CheckedChanged += (_, _) => Rerun();
+        InitializeSourceEditing();
+        Shown += (_, _) => Rerun();
+    }
+
+    public IReadOnlyList<DecodedFrame> ConfirmedFrames { get; private set; } = Array.Empty<DecodedFrame>();
+
+    private Control BuildToolbar()
+    {
+        var bar = new FlowLayoutPanel
+        {
+            Dock = DockStyle.Fill, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            WrapContents = true, Padding = new Padding(4), MinimumSize = new Size(0, 78)
+        };
+        AddLabel(bar, "还原方式"); bar.Controls.Add(_kernel);
+        if (_legacyReferenceFrames != null) bar.Controls.Add(_legacyThreeTurns);
+        bar.Controls.Add(_dither);
+        AddButton(bar, "重新处理", Rerun);
+        AddLabel(bar, "调整范围"); bar.Controls.Add(_scope);
+        AddButton(bar, "←", () => Nudge(-1, 0));
+        AddButton(bar, "→", () => Nudge(1, 0));
+        AddButton(bar, "↑", () => Nudge(0, -1));
+        AddButton(bar, "↓", () => Nudge(0, 1));
+        AddLabel(bar, "缩放%"); bar.Controls.Add(_scale);
+        AddButton(bar, "应用缩放", ApplyScale);
+        AddButton(bar, "复位范围", ResetAdjustment);
+        AddLabel(bar, "对比"); bar.Controls.Add(_comparisonMode);
+        bar.Controls.Add(_showGuides);
+        return bar;
+    }
+
+    private Control BuildPreviews()
+    {
+        var tabs = new TabControl { Dock = DockStyle.Fill };
+        var stagePage = new TabPage("逐帧对比与调整");
+        var stage = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 3 };
+        stage.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        stage.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        stage.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        stage.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        stage.Controls.Add(BuildToolbar(), 0, 0);
+        var table = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 4, RowCount = 2, Padding = new Padding(2) };
+        for (var column = 0; column < 4; column++) table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
+        table.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        table.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        table.Controls.Add(Header("原始项目参考帧"), 0, 0);
+        table.Controls.Add(Header("AI 原始帧"), 1, 0);
+        table.Controls.Add(Header("几何对齐帧"), 2, 0);
+        table.Controls.Add(Header("最终写入帧"), 3, 0);
+        table.Controls.Add(PreviewImageLayout.CreateViewport(_referencePreview), 0, 1);
+        table.Controls.Add(PreviewImageLayout.CreateViewport(_rawPreview), 1, 1);
+        table.Controls.Add(PreviewImageLayout.CreateViewport(_alignedPreview), 2, 1);
+        table.Controls.Add(PreviewImageLayout.CreateViewport(_finalPreview), 3, 1);
+        stage.Controls.Add(table, 0, 1);
+        _comparisonStatus.MaximumSize = new Size(600, 0);
+        stage.Controls.Add(_comparisonStatus, 0, 2);
+        stagePage.Controls.Add(stage);
+        var maskPage = new TabPage("蒙版、整图与动画");
+        var maskLayout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 2 };
+        maskLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        maskLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        maskLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        maskLayout.Controls.Add(BuildMaskToolbar(), 0, 0);
+        var masks = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 3, RowCount = 2 };
+        for (var column = 0; column < 3; column++) masks.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / 3f));
+        masks.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        masks.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        masks.Controls.Add(Header("背景蒙版（点击/拖动修正）"), 0, 0);
+        masks.Controls.Add(Header("归一化标准总图"), 1, 0);
+        var animationHeader = new FlowLayoutPanel { AutoSize = true, Dock = DockStyle.Fill, WrapContents = true };
+        animationHeader.Controls.Add(Header("逐帧动画")); animationHeader.Controls.Add(_play);
+        animationHeader.Controls.Add(_animationScope);
+        masks.Controls.Add(animationHeader, 2, 0);
+        masks.Controls.Add(PreviewImageLayout.CreateViewport(_maskPreview), 0, 1);
+        masks.Controls.Add(PreviewImageLayout.CreateViewport(_normalizedPreview), 1, 1);
+        masks.Controls.Add(PreviewImageLayout.CreateViewport(_animationPreview), 2, 1);
+        maskLayout.Controls.Add(masks, 0, 1);
+        maskPage.Controls.Add(maskLayout);
+        tabs.TabPages.Add(stagePage);
+        tabs.TabPages.Add(maskPage);
+        return tabs;
+    }
+
+    private Control BuildMaskToolbar()
+    {
+        var bar = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true, Padding = new Padding(3) };
+        AddLabel(bar, "背景容差"); bar.Controls.Add(_tolerance);
+        AddLabel(bar, "蒙版工具"); bar.Controls.Add(_maskTool);
+        AddLabel(bar, "画笔半径"); bar.Controls.Add(_brushRadius);
+        AddButton(bar, "撤回蒙版", UndoMask);
+        AddButton(bar, "重做蒙版", RedoMask);
+        AddButton(bar, "撤回取色点", UndoBackgroundSample);
+        AddButton(bar, "重做取色点", RedoBackgroundSample);
+        AddButton(bar, "清空取色点", ClearBackgroundSamples);
+        AddLabel(bar, "蒙版底色"); bar.Controls.Add(_maskBackdrop);
+        AddButton(bar, "重新处理", Rerun);
+        return bar;
+    }
+
+    private Control BuildBottomBar()
+    {
+        var panel = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, ColumnCount = 2, RowCount = 2 };
+        panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        panel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        panel.Controls.Add(_summary, 0, 0);
+        panel.SetColumnSpan(_summary, 2);
+        var left = new FlowLayoutPanel { AutoSize = true, Dock = DockStyle.Fill, WrapContents = true };
+        left.Controls.Add(_reviewed); left.Controls.Add(_status);
+        panel.Controls.Add(left, 0, 1);
+        var right = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.LeftToRight, WrapContents = false };
+        var cancel = new Button { Text = "关闭", AutoSize = true, MinimumSize = new Size(82, 34), DialogResult = DialogResult.Cancel };
+        right.Controls.Add(_confirm); right.Controls.Add(cancel);
+        panel.Controls.Add(right, 1, 1);
+        AcceptButton = _confirm;
+        CancelButton = cancel;
+        return panel;
+    }
+
+    private void ConfigureDiagnostics()
+    {
+        _diagnostics.Columns.Add("turn", "转数");
+        _diagnostics.Columns["turn"]!.Visible = !_asset.PhysicalImageNumber.HasValue;
+        _diagnostics.Columns.Add("action", "动作");
+        _diagnostics.Columns.Add("direction", "方向");
+        _diagnostics.Columns.Add("frame", "帧号");
+        _diagnostics.Columns.Add("source", "AI 源矩形");
+        _diagnostics.Columns.Add("target", "目标矩形");
+        _diagnostics.Columns.Add("reference", "原始前景");
+        _diagnostics.Columns.Add("ai", "AI 前景");
+        _diagnostics.Columns.Add("aligned", "对齐后");
+        _diagnostics.Columns.Add("scale", "缩放");
+        _diagnostics.Columns.Add("baseline", "基线偏移");
+        _diagnostics.Columns.Add("colorError", "颜色误差");
+        _diagnostics.Columns.Add("aiColorError", "AI/原图误差");
+        _diagnostics.Columns.Add("clipped", "裁切");
+        _diagnostics.Columns.Add("confidence", "置信度");
+        _diagnostics.Columns.Add("state", "状态");
+        _diagnostics.Columns.Add("message", "说明");
+        foreach (DataGridViewColumn column in _diagnostics.Columns) column.MinimumWidth = 58;
+        _diagnostics.Columns["message"]!.FillWeight = 240;
+        _diagnostics.Columns["source"]!.FillWeight = 145;
+        _diagnostics.Columns["target"]!.FillWeight = 120;
+        _diagnostics.Columns["reference"]!.FillWeight = 120;
+        _diagnostics.Columns["ai"]!.FillWeight = 120;
+        _diagnostics.Columns["aligned"]!.FillWeight = 120;
+    }
+
+    private async void Rerun()
+    {
+        _normalizationCancellation?.Cancel();
+        var cancellation = new CancellationTokenSource();
+        _normalizationCancellation = cancellation;
+        var revision = ++_normalizationRevision;
+        var token = cancellation.Token;
+        // Each worker owns its reference bitmaps. Closing the dialog must never
+        // race the caller disposing the decoded project frames.
+        var sourceFrames = _legacyThreeTurns.Checked ? _legacyReferenceFrames ?? _referenceFrames : _referenceFrames;
+        var copies = sourceFrames.Select(frame => new DecodedFrame(frame.Descriptor, new Bitmap(frame.Bitmap),
+            frame.PaletteIndexes?.ToArray(), frame.PaletteBgra?.ToArray())).ToArray();
+        var context = _context with { Frames = copies };
+        try
+        {
+            UseWaitCursor = true;
+            _processing = true;
+            _animationTimer.Stop();
+            _play.Text = "播放";
+            _status.Text = "正在后台自动配准并还原像素…";
+            UpdateConfirmState();
+            _options.Kernel = (AtlasResamplingKernel)_kernel.SelectedIndex;
+            _options.BackgroundTolerance = (int)_tolerance.Value;
+            _options.OrderedDither = _dither.Checked;
+            var options = _options.Clone();
+            var next = await Task.Run(() => _service.Normalize(_pngPath, context, options, token), token);
+            if (token.IsCancellationRequested || revision != _normalizationRevision || IsDisposed || Disposing)
+            {
+                next.Dispose();
+                return;
+            }
+            _result?.Dispose();
+            _result = next;
+            UpdateSourceEditor(next);
+            ReplaceImage(_maskPreview, new Bitmap(next.MaskPreview));
+            ReplaceImage(_normalizedPreview, new Bitmap(next.NormalizedAtlas));
+            _animationIndex = 0;
+            ShowAnimationFrame();
+            FillDiagnostics();
+            var background = next.BackgroundKind switch
+            {
+                AtlasBackgroundKind.Transparent => "有效 Alpha",
+                AtlasBackgroundKind.KeyColor => "键色",
+                _ => "不透明纯色（有损恢复）"
+            };
+            _summary.Text = $"{Path.GetFileName(_pngPath)}：{next.SourceSize.Width}x{next.SourceSize.Height} → " +
+                            $"{next.TargetCanvasSize}x{next.TargetCanvasSize}，倍率 {next.ScaleFactor:0.######}x；" +
+                            $"背景 {background} #{next.BackgroundColor.R:X2}{next.BackgroundColor.G:X2}{next.BackgroundColor.B:X2}；" +
+                            $"必需帧 {next.Frames.Count}。";
+            _reviewed.Checked = false;
+            _reviewed.Visible = next.HasWarnings;
+            _status.Text = next.HasBlockingIssues ? "请在“裁剪与格位”中修正红色问题。" : next.HasWarnings ? "请检查警告后勾选确认。" : "可以写回。";
+            _comparisonStatus.Text = "选择下方帧诊断行查看：原始 → AI → 对齐 → 写入结果。";
+            _processing = false;
+            _successfulRevision = revision;
+            UpdateConfirmState();
+        }
+        catch (OperationCanceledException) { }
+        catch (Exception ex)
+        {
+            if (IsDisposed || Disposing || revision != _normalizationRevision) return;
+            _confirm.Enabled = false;
+            MessageBox.Show(this, ex.Message, "AI 参考图处理失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            foreach (var frame in copies) frame.Dispose();
+            if (ReferenceEquals(_normalizationCancellation, cancellation)) _normalizationCancellation = null;
+            cancellation.Dispose();
+            if (!IsDisposed && !Disposing && revision == _normalizationRevision)
+            {
+                UseWaitCursor = false;
+                _processing = false;
+                UpdateConfirmState();
+            }
+        }
+    }
+
+    private void FillDiagnostics()
+    {
+        var selectedKey = (_diagnostics.CurrentRow?.Tag as AiAtlasFrameDiagnostic)?.FrameKey;
+        _fillingDiagnostics = true;
+        try
+        {
+        _diagnostics.Rows.Clear();
+        if (_result == null) return;
+        foreach (var item in _result.FrameDiagnostics)
+        {
+            var index = _diagnostics.Rows.Add(item.Descriptor.Turn, item.Descriptor.Action, item.Descriptor.Direction,
+                item.Descriptor.FrameIndex, RectangleText(item.SourceBounds), RectangleText(item.TargetBounds),
+                RectangleText(item.ReferenceForegroundBounds), RectangleText(item.AiForegroundBounds),
+                RectangleText(item.AlignedForegroundBounds), item.Scale.ToString("0.00x"),
+                item.BaselineOffset.ToString("0.0"), item.ColorError.ToString("0.0"),
+                item.AiColorError.ToString("0.0"),
+                item.IsClipped ? "是" : "否", item.Confidence.ToString("P0"), SeverityText(item.Severity), item.Message);
+            var row = _diagnostics.Rows[index];
+            row.Tag = item;
+            row.DefaultCellStyle.BackColor = item.Severity switch
+            {
+                AtlasIssueSeverity.Error => Color.MistyRose,
+                AtlasIssueSeverity.Warning => Color.LemonChiffon,
+                _ => SystemColors.Window
+            };
+        }
+        var selectedRow = _diagnostics.Rows.Cast<DataGridViewRow>().FirstOrDefault(row =>
+            row.Tag is AiAtlasFrameDiagnostic item && item.FrameKey == selectedKey)
+            ?? _diagnostics.Rows.Cast<DataGridViewRow>().FirstOrDefault();
+        if (selectedRow != null)
+        {
+            _diagnostics.CurrentCell = selectedRow.Cells.Cast<DataGridViewCell>().First(cell => cell.Visible);
+            selectedRow.Selected = true;
+        }
+        }
+        finally { _fillingDiagnostics = false; }
+        LoadSelectedAdjustment();
+        ShowSelectedComparison();
+        SelectSourceFrame();
+    }
+
+    private void UpdateConfirmState()
+        => _confirm.Enabled = !_processing && _successfulRevision == _normalizationRevision &&
+            _result is { HasBlockingIssues: false } && (!_result.HasWarnings || _reviewed.Checked);
+
+    private void Confirm()
+    {
+        if (_result == null || !_confirm.Enabled) return;
+        ConfirmedFrames = _result.Frames.Select(frame => new DecodedFrame(frame.Descriptor, new Bitmap(frame.Bitmap),
+            frame.PaletteIndexes?.ToArray(), frame.PaletteBgra?.ToArray())).ToArray();
+        DialogResult = DialogResult.OK;
+        Close();
+    }
+
+    private void MaskMouseDown(object? sender, MouseEventArgs e)
+    {
+        if (_result == null || e.Button != MouseButtons.Left) return;
+        var point = ImagePoint(_maskPreview, e.Location, _result.SourceSize);
+        if (point == null) return;
+        if (_maskTool.SelectedIndex == 0)
+        {
+            _options.BackgroundSample = null;
+            _options.BackgroundSamples.Add(point.Value);
+            _undoneBackgroundSamples.Clear();
+            Rerun();
+            return;
+        }
+        _painting = true;
+        _lastStrokePoint = null;
+        AddStroke(point.Value);
+    }
+
+    private void MaskMouseMove(object? sender, MouseEventArgs e)
+    {
+        if (!_painting || _result == null || e.Button != MouseButtons.Left) return;
+        var point = ImagePoint(_maskPreview, e.Location, _result.SourceSize);
+        if (point == null) return;
+        if (_lastStrokePoint is { } last && Distance(last, point.Value) < Math.Max(2, (int)_brushRadius.Value / 2)) return;
+        AddStroke(point.Value);
+    }
+
+    private void MaskMouseUp(object? sender, MouseEventArgs e)
+    {
+        if (!_painting) return;
+        _painting = false;
+        Rerun();
+    }
+
+    private void AddStroke(Point point)
+    {
+        _options.MaskStrokes.Add(new AtlasMaskStroke(_maskTool.SelectedIndex == 1, point, (int)_brushRadius.Value));
+        _undoneStrokes.Clear();
+        _lastStrokePoint = point;
+    }
+
+    private void UndoMask()
+    {
+        if (_options.MaskStrokes.Count == 0) return;
+        var stroke = _options.MaskStrokes[^1];
+        _options.MaskStrokes.RemoveAt(_options.MaskStrokes.Count - 1);
+        _undoneStrokes.Push(stroke);
+        Rerun();
+    }
+
+    private void RedoMask()
+    {
+        if (_undoneStrokes.Count == 0) return;
+        _options.MaskStrokes.Add(_undoneStrokes.Pop());
+        Rerun();
+    }
+
+    private void Nudge(int x, int y)
+    {
+        var key = CurrentScopeKey();
+        if (key == null) return;
+        var current = _options.Adjustments.GetValueOrDefault(key, AtlasFrameAdjustment.Default);
+        _options.Adjustments[key] = current with { OffsetX = current.OffsetX + x, OffsetY = current.OffsetY + y };
+        Rerun();
+    }
+
+    private void ApplyScale()
+    {
+        var key = CurrentScopeKey();
+        if (key == null) return;
+        var current = _options.Adjustments.GetValueOrDefault(key, AtlasFrameAdjustment.Default);
+        _options.Adjustments[key] = current with { ScalePercent = (int)_scale.Value };
+        Rerun();
+    }
+
+    private void ResetAdjustment()
+    {
+        var key = CurrentScopeKey();
+        if (key == null) return;
+        _options.Adjustments.Remove(key);
+        _scale.Value = 100;
+        Rerun();
+    }
+
+    private void LoadSelectedAdjustment()
+    {
+        var key = CurrentScopeKey();
+        var value = key == null ? AtlasFrameAdjustment.Default :
+            _options.Adjustments.GetValueOrDefault(key, AtlasFrameAdjustment.Default);
+        _scale.Value = Math.Clamp(value.ScalePercent, (int)_scale.Minimum, (int)_scale.Maximum);
+    }
+
+    private void ShowSelectedComparison()
+    {
+        if (_result == null || _diagnostics.CurrentRow?.Tag is not AiAtlasFrameDiagnostic item ||
+            !_result.FrameComparisons.TryGetValue(item.FrameKey, out var comparison))
+        {
+            ReplaceImage(_referencePreview, null);
+            ReplaceImage(_rawPreview, null);
+            ReplaceImage(_alignedPreview, null);
+            ReplaceImage(_finalPreview, null);
+            return;
+        }
+
+        ReplaceImage(_referencePreview, new Bitmap(comparison.ReferenceFrame));
+        ReplaceImage(_rawPreview, new Bitmap(comparison.RawAiFrame));
+        ReplaceImage(_alignedPreview, new Bitmap(comparison.AlignedAiFrame));
+        ReplaceImage(_finalPreview, _comparisonMode.SelectedIndex switch
+        {
+            1 => BlendImages(comparison.ReferenceFrame, comparison.RawAiFrame, false),
+            2 => BlendImages(comparison.RawAiFrame, comparison.FinalCczFrame, true),
+            _ => new Bitmap(comparison.FinalCczFrame)
+        });
+        var report = _result.QuantizationReports.GetValueOrDefault(item.FrameKey);
+        _comparisonStatus.Text = report == null
+            ? $"帧 {item.Descriptor.FrameIndex}：未使用索引调色板。"
+            : $"帧 {item.Descriptor.FrameIndex}：键色 {report.KeyPixelCount}，非键色 {report.NonKeyPixelCount}，" +
+              $"平均 Lab 误差 {report.AverageColorError:0.0}，最大 {report.MaximumColorError:0.0}。";
+    }
+
+    private string? CurrentScopeKey()
+    {
+        if (_scope.SelectedIndex == 0) return "all";
+        if (_diagnostics.CurrentRow?.Tag is not AiAtlasFrameDiagnostic item) return null;
+        return _scope.SelectedIndex == 1
+            ? $"section:{item.Descriptor.Turn}:{(item.Descriptor.Action == "atk" ? "atk" : "small")}"
+            : "frame:" + AiAtlasNormalizer.FrameKey(item.Descriptor);
+    }
+
+    private void ToggleAnimation()
+    {
+        if (AnimationFrames().Count < 2) return;
+        _animationTimer.Enabled = !_animationTimer.Enabled;
+        _play.Text = _animationTimer.Enabled ? "暂停" : "播放";
+    }
+
+    private void AdvanceAnimation()
+    {
+        var frames = AnimationFrames();
+        if (frames.Count == 0) return;
+        _animationIndex = (_animationIndex + 1) % frames.Count;
+        ShowAnimationFrame();
+    }
+
+    private void ShowAnimationFrame()
+    {
+        var frames = AnimationFrames();
+        if (frames.Count == 0) { ReplaceImage(_animationPreview, null); return; }
+        var frame = frames[Math.Clamp(_animationIndex, 0, frames.Count - 1)];
+        ReplaceImage(_animationPreview, new Bitmap(frame.Bitmap));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            ++_normalizationRevision;
+            _normalizationCancellation?.Cancel();
+            _animationTimer.Dispose();
+            _targetToolTip.Dispose();
+            _maskPreview.BackgroundImage?.Dispose();
+            _result?.Dispose();
+            ReplaceImage(_maskPreview, null);
+            ReplaceImage(_referencePreview, null);
+            ReplaceImage(_rawPreview, null);
+            ReplaceImage(_alignedPreview, null);
+            ReplaceImage(_finalPreview, null);
+            ReplaceImage(_normalizedPreview, null);
+            ReplaceImage(_animationPreview, null);
+        }
+        base.Dispose(disposing);
+    }
+
+    private static PictureBox PreviewBox() => new()
+    {
+        Dock = DockStyle.Fill, SizeMode = PictureBoxSizeMode.Zoom, BackColor = Color.FromArgb(38, 40, 43),
+        BorderStyle = BorderStyle.FixedSingle, MinimumSize = new Size(80, 60)
+    };
+
+    private static Label Header(string text) => new()
+        { Text = text, AutoSize = true, Font = new Font(Control.DefaultFont, FontStyle.Bold), Padding = new Padding(4) };
+
+    private static void AddLabel(Control parent, string text)
+        => parent.Controls.Add(new Label { Text = text, AutoSize = true, Margin = new Padding(8, 8, 2, 0) });
+
+    private static void AddButton(Control parent, string text, Action action)
+    {
+        var button = new Button { Text = text, AutoSize = true, MinimumSize = new Size(42, 30), Margin = new Padding(3) };
+        button.Click += (_, _) => action();
+        parent.Controls.Add(button);
+    }
+
+    private static void ReplaceImage(PictureBox box, Image? image)
+    {
+        var old = box.Image;
+        box.Image = image;
+        old?.Dispose();
+    }
+
+    private static Point? ImagePoint(PictureBox box, Point client, Size image)
+    {
+        if (box.ClientSize.Width <= 0 || box.ClientSize.Height <= 0) return null;
+        var scale = Math.Min(box.ClientSize.Width / (double)image.Width, box.ClientSize.Height / (double)image.Height);
+        var width = image.Width * scale; var height = image.Height * scale;
+        var left = (box.ClientSize.Width - width) / 2; var top = (box.ClientSize.Height - height) / 2;
+        if (client.X < left || client.X >= left + width || client.Y < top || client.Y >= top + height) return null;
+        return new Point(Math.Clamp((int)((client.X - left) / scale), 0, image.Width - 1),
+            Math.Clamp((int)((client.Y - top) / scale), 0, image.Height - 1));
+    }
+
+    private static double Distance(Point left, Point right)
+        => Math.Sqrt(Math.Pow(left.X - right.X, 2) + Math.Pow(left.Y - right.Y, 2));
+
+    private static Bitmap BlendImages(Bitmap left, Bitmap right, bool difference)
+    {
+        var width = Math.Min(left.Width, right.Width);
+        var height = Math.Min(left.Height, right.Height);
+        var output = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+        for (var y = 0; y < height; y++)
+        for (var x = 0; x < width; x++)
+        {
+            var a = left.GetPixel(x, y); var b = right.GetPixel(x, y);
+            output.SetPixel(x, y, difference
+                ? Color.FromArgb(255, Math.Abs(a.R - b.R), Math.Abs(a.G - b.G), Math.Abs(a.B - b.B))
+                : Color.FromArgb(255, (a.R + b.R) / 2, (a.G + b.G) / 2, (a.B + b.B) / 2));
+        }
+        return output;
+    }
+
+    private static string RectangleText(Rectangle rectangle)
+        => rectangle.IsEmpty ? "-" : $"({rectangle.X},{rectangle.Y}) {rectangle.Width}x{rectangle.Height}";
+
+    private static string SeverityText(AtlasIssueSeverity severity) => severity switch
+        { AtlasIssueSeverity.Error => "阻止", AtlasIssueSeverity.Warning => "警告", _ => "正常" };
+
+    private static Size WorkingSize(int width, int height)
+    {
+        var area = Screen.PrimaryScreen?.WorkingArea ?? new Rectangle(0, 0, width, height);
+        return new Size(Math.Min(width, (int)(area.Width * .9)), Math.Min(height, (int)(area.Height * .9)));
+    }
+}

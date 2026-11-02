@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "entityType": "test-contract",
+  "entries": [
+    {
+      "id": "test.shared.data-manager-text-payload-writeback",
+      "title": "严格GBK预算、原槽保护与统一保存边界契约",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed-test-contract",
+      "sourceRefs": [
+        "src.dm.core-current-20261102.test-text",
+        "src.dm.core-current-20261102.test-runner",
+        "src.dm.core-current-20261102.text-constraints",
+        "src.dm.core-current-20261102.encoding"
+      ],
+      "command": "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release --no-build -- --writeback-hardening <sample-root>",
+      "target": "TextConstraintTests、原生文本输入、草稿原子性与写后复读",
+      "mutationScope": "测试只在内存/隔离项目副本创建候选及保存，原始样本只读。",
+      "assertions": [
+        "三种布局名称预算按12/10/14/8/10/29严格GBK字节判断；汉字混合边界与满200字节列传可往返。",
+        "emoji/孤立代理项/NUL拒绝；原坏字节、旧超预算原值、尾空格和CR/LF控制码不被无关保存清洗。",
+        "隐藏非零尾部限制增长且编辑后保持；CSV/迁移使用相同约束。",
+        "原生输入控件与业务/物理表路径写回、复读、非目标字节与失败原子性由专项共同核验。"
+      ],
+      "requiredArtifacts": [
+        "退出码0和WRITEBACK_HARDENING_TESTS_OK",
+        "临时副本写前/写后字节及回滚断言",
+        "TextConstraintTests为聚合专项之一，没有伪造独立PASS标签"
+      ],
+      "failureMeaning": "任何断言失败表示对应能力或事务边界尚未满足；保留原文件和诊断，不得把部分结果标为完整通过。",
+      "runnerPolicy": "自定义Windows console/WinForms runner；在包含data管理器与同级形象管理器的源工作区先按相同配置构建。本知识库不分发游戏样本，缺样本不能以合成fixture替代原件验收。"
+    },
+    {
+      "id": "test.shared.data-manager-appearance-save-isolation",
+      "title": "人物R/S存档字段隔离、统计索引分组与历史恢复契约",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed-test-contract",
+      "sourceRefs": [
+        "src.dm.core-current-20261102.test-save",
+        "src.dm.core-current-20261102.test-save-integration",
+        "src.dm.core-current-20261102.test-runner",
+        "src.dm.core-current-20261102.appearance-service",
+        "src.dm.core-current-20261102.appearance-session"
+      ],
+      "command": "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release --no-build -- --save-appearance <repository-root>",
+      "target": "原生存档布局、SaveAppearanceSync、资源影响与实际顶部保存/迁移入口",
+      "mutationScope": "实际写回仅使用隔离项目/真实存档副本；源EXE与源存档保持只读。",
+      "assertions": [
+        "当前EXE完整PE/人物ID/R/S消费链/WriteFile/ReadFile/场景分段通过才形成E5S布局；损坏消费者不沿用固定偏移。",
+        "R-only、S-only和多个目标只修改对应UInt16；普通坏档跳过，成功组与主操作同一历史撤回/重做。",
+        "schema1 .stats、schema2内嵌统计及已有索引Hash更新后保持其余字节、编码、换行和文件属性。",
+        "外部改写阻断提交/恢复并保留外部内容与恢复快照；主操作晚失败回滚已成功存档组。",
+        "CSV/XLSX先入草稿，顶部保存才同步；图片仅用解压后实际差异和已保存指定；迁移只同步真实目标存档，源存档不迁入。",
+        "源样本SHA不变；无真实存档的样本记录为no-op，不能伪装成实档写回验收。"
+      ],
+      "requiredArtifacts": [
+        "退出码0和SAVE_APPEARANCE_SYNC_OK、APPEARANCE_SAVE_INTEGRATION_OK",
+        "布局/真实存档/no-op与跳过明细",
+        "字段级逐字节差异、统计SHA、回滚/历史结果"
+      ],
+      "failureMeaning": "任何断言失败表示对应能力或事务边界尚未满足；保留原文件和诊断，不得把部分结果标为完整通过。",
+      "runnerPolicy": "自定义Windows console/WinForms runner；在包含data管理器与同级形象管理器的源工作区先按相同配置构建。本知识库不分发游戏样本，缺样本不能以合成fixture替代原件验收。"
+    },
+    {
+      "id": "test.shared.data-manager-record-query-ui",
+      "title": "左栏ID名称查询、候选选择与真实记录绑定契约",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "source-reviewed-test-contract",
+      "sourceRefs": [
+        "src.dm.core-current-20261102.test-query",
+        "src.dm.core-current-20261102.test-runner",
+        "src.dm.current-validation-20261102",
+        "src.dm.current-source-inventory-20261102"
+      ],
+      "command": "dotnet run --project data管理器/src/DataManager.Tests/DataManager.Tests.csproj -c Release --no-build -- --record-query-ui <sample-root>",
+      "target": "当前业务页/物理表共享的ID名称标签查询与WinForms编辑状态",
+      "mutationScope": "复制核心样本到临时目录，仅对该工作区草稿及离屏WinForms执行编辑；测试结束释放窗口并清理临时副本。",
+      "assertions": [
+        "仅按左栏ID：名称标签匹配；列传详情和HP数值不进入姓名候选；引号、方括号和星号按字面匹配。",
+        "输入候选不提前改已执行筛选；明确鼠标/键盘选候选按实际ID精确定位，纯输入完整标签或数字按既定包含查询处理。",
+        "未失焦输入先入草稿再重建查询；无效编辑拒绝新查询并保留原编辑状态；清空、删除和撤回重算结果。",
+        "业务页与物理表使用同一实际ID，切页保存各自查询状态；快速定位清筛选并定位真实记录。",
+        "逐张物理表导航首末ID和记录数一致；1280×720、1500×900、1920×1080查询控件不越出父容器。"
+      ],
+      "requiredArtifacts": [
+        "退出码0和RECORD_QUERY_UI_TESTS_OK",
+        "checkedTables数量及label-only/candidates/physical-ID/layout断言",
+        "当前构建身份及原样本前后SHA（运行证据另登记）"
+      ],
+      "failureMeaning": "任何断言失败表示对应能力或事务边界尚未满足；保留原文件和诊断，不得把部分结果标为完整通过。",
+      "runnerPolicy": "自定义Windows console/WinForms runner；在包含data管理器与同级形象管理器的源工作区先按相同配置构建。本知识库不分发游戏样本，缺样本不能以合成fixture替代原件验收。",
+      "lastExecution": {
+        "date": "2026-11-02",
+        "sourceVersion": "1.2026.1101.114",
+        "level": "tool-isolated-copy-and-static-verification",
+        "runIds": [
+          "6.5-record-query-ui"
+        ],
+        "exitCodes": [
+          0
+        ],
+        "gameRuntimeVerified": false
+      }
+    }
+  ]
+}
