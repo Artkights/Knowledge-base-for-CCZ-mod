@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "entityType": "case-study",
+  "profile": null,
+  "entries": [
+    {
+      "id": "case.65pl.attack-side-value-and-mp-candidate",
+      "title": "6.5pl 攻击侧数值与 MP 路径候选复盘",
+      "versions": [
+        "6.5pl"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "profile": null,
+      "objective": "记录攻击侧原始属性、当前 MP、状态档位和修饰结果的候选路径，避免把局部值直接命名为最终伤害公式。",
+      "inputs": [
+        "6.5pl 静态反汇编样本",
+        "TacticalUnit/DataRecord 对象区分",
+        "攻击入口和消费者调用链"
+      ],
+      "procedure": [
+        "从 DataRecord+0x11、TacticalUnit+0x14/+0x18 和攻击修饰调用点开始。",
+        "追踪 EDX、[ebp-0x20] 等局部值到后续算术和写入消费者。",
+        "区分候选属性读取、MP 加成、局部修饰和最终伤害/动画证据。"
+      ],
+      "outcome": "形成可检索的候选路径和未决边界；静态链未证明最终公式或游戏内效果。",
+      "reusableLessons": [
+        "攻击侧修饰结果可能只存在于调用帧局部变量。",
+        "MP 加成进入选择器不等于已证明最终消耗。",
+        "必须继续追到写入和显示消费者。"
+      ],
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
+      "id": "case.65pl.anomaly-status-groups-candidate",
+      "title": "6.5pl 异常状态四组 2-bit 编码复盘",
+      "versions": [
+        "6.5pl"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "profile": null,
+      "objective": "整理 TacticalUnit+0x1E 的四组状态位、查询掩码和回合衰减路径，保留状态等级解释的证据边界。",
+      "inputs": [
+        "状态查询/写入函数候选",
+        "TacticalUnit 结构候选",
+        "正向回合和清除分支"
+      ],
+      "procedure": [
+        "按掩码区分麻痹 0x03、禁咒 0x0C、混乱 0x30、中毒 0xC0。",
+        "追踪值 3 的写入、值大于 1 的递减、值为 1 的概率清除。",
+        "将编码阶段与画面显示、免疫和最终行为分开验证。"
+      ],
+      "outcome": "确认四组位域和恢复阶段候选；未确认所有状态显示、免疫和版本一致性。",
+      "reusableLessons": [
+        "位域数值不应直接命名为玩法等级。",
+        "查询掩码和写回初值必须同时记录。",
+        "不同版本必须重新确认位域消费者。"
+      ],
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
+      "id": "case.65pl.critical-check-marker-candidate",
+      "title": "6.5pl 暴击概率检定标记复盘",
+      "versions": [
+        "6.5pl"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "profile": null,
+      "objective": "界定事务区 +0x604 标记能证明什么，避免将概率检定通过误报为最终伤害或动画。",
+      "inputs": [
+        "战斗事务上下文候选",
+        "概率分支和清零路径",
+        "防御响应后的消费者链"
+      ],
+      "procedure": [
+        "定位置位、清零和比较该 dword 的全部路径。",
+        "记录随机/概率通过与后续防御响应的先后关系。",
+        "检查最终伤害、暴击动画和消息消费者是否真正读取该标记。"
+      ],
+      "outcome": "条目只保留“暴击概率检定通过”候选语义，最终伤害和动画仍在研究队列。",
+      "reusableLessons": [
+        "单个标记只能证明其写入和读取关系。",
+        "概率通过与最终显示/伤害是不同证据层。",
+        "事务区字段不得迁移为持久结构字段。"
+      ],
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    }
+  ]
+}

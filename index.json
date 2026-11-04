@@ -2,9 +2,9 @@
   "schemaVersion": 3,
   "structuredAuthority": "version-data-json",
   "generatedBy": "tools/build_index.py",
-  "entityCount": 1190,
+  "entityCount": 1206,
   "statusCounts": {
-    "candidate": 823,
+    "candidate": 839,
     "canonical": 352,
     "legacy-reference": 15
   },
@@ -52,6 +52,10 @@
     {
       "path": "6.5/data/cases/production-cases.json",
       "sha256": "90545B3FF88DE2E03D947F4873F6BE8BAC5BF994252E1E3A6428228C9D691910"
+    },
+    {
+      "path": "6.5/data/cases/upstream-analysis-cases.json",
+      "sha256": "393A807D231D0C55476D48A7870A7E3CD359A564CE4939BC79168E334D1936CF"
     },
     {
       "path": "6.5/data/file-formats/binary-formats.json",
@@ -122,6 +126,10 @@
       "sha256": "8D6AFCE4E0E3DF40BF849BA270D85115FDBF3AD5B6E4B44CBA1AEDC71116ACE4"
     },
     {
+      "path": "6.5/data/mechanisms/public-reverse-analysis-methods.json",
+      "sha256": "9BC0F3624B9705242AABC015C879149594963E9F308BD0F188BD0821E46479F1"
+    },
+    {
       "path": "6.5/data/mechanisms/reviewed-stub-scanner-reference.json",
       "sha256": "834AA8CA46FBDE2E744A3F9ABBD2CC1B9168B7713C9A5FF98C0742B3AB31D8FF"
     },
@@ -158,6 +166,10 @@
       "sha256": "67B048A10DF0DDD2C07907C6E9C25DCB3F9C40E603223D5751A6FBCEE31C5073"
     },
     {
+      "path": "6.5/data/structures/reference-object-identifiers.json",
+      "sha256": "C881B379153C68DE8F7A176505350240D0588FE2F88660BE0FF035608A695552"
+    },
+    {
       "path": "6.5/data/structures/runtime-structures.json",
       "sha256": "E183D4A0A173F6005FD2E242C881306EDD239B1A594427B284BEFF265F115B67"
     },
@@ -190,6 +202,10 @@
       "sha256": "67A1388F7C692C1103DCC2650741D32443CD6D695BD1204141DD87C9F21D8F83"
     },
     {
+      "path": "6.5/data/tests/reverse-engineering-evidence-contracts.json",
+      "sha256": "9477ECADCD8C7539EDFD2E279E2BD2B5B07BF4211DE51B4A6DF8A9665E2AFEF0"
+    },
+    {
       "path": "6.5/data/tests/smoke-test-contracts.json",
       "sha256": "0A60DF24F8127D67A972ED7FA7593E69DC61782F17E53A40F9AEBE2A4747F7EB"
     },
@@ -212,6 +228,10 @@
     {
       "path": "6.5/data/workflows/production-workflows.json",
       "sha256": "209E0F5793D3A5F4BBB82CE7535564B897D46255CFF74329D5A0718241476174"
+    },
+    {
+      "path": "6.5/data/workflows/reverse-engineering-methods.json",
+      "sha256": "8863546FBF8AFB52A6600E850134BF12ACAB33D3DB8E889A3308D759B1078CA5"
     },
     {
       "path": "6.6/data/file-formats/shanzai-20261027-file-formats.json",
@@ -554,6 +574,111 @@
       "referencePath": "6.5/reference/case-studies.md",
       "sourceRefs": [
         "src.history.9b8abf5.1a72d287098f22fe"
+      ]
+    },
+    {
+      "id": "case.65pl.anomaly-status-groups-candidate",
+      "entityType": "case-study",
+      "title": "6.5pl 异常状态四组 2-bit 编码复盘",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "case.65pl.anomaly-status-groups-candidate",
+        "6.5pl 异常状态四组 2-bit 编码复盘",
+        "6.5pl",
+        "整理 TacticalUnit+0x1E 的四组状态位、查询掩码和回合衰减路径，保留状态等级解释的证据边界。",
+        "状态查询/写入函数候选",
+        "TacticalUnit 结构候选",
+        "正向回合和清除分支",
+        "按掩码区分麻痹 0x03、禁咒 0x0C、混乱 0x30、中毒 0xC0。",
+        "追踪值 3 的写入、值大于 1 的递减、值为 1 的概率清除。",
+        "将编码阶段与画面显示、免疫和最终行为分开验证。",
+        "确认四组位域和恢复阶段候选；未确认所有状态显示、免疫和版本一致性。",
+        "位域数值不应直接命名为玩法等级。",
+        "查询掩码和写回初值必须同时记录。",
+        "不同版本必须重新确认位域消费者。"
+      ],
+      "structuredDataPath": "6.5/data/cases/upstream-analysis-cases.json",
+      "referencePath": "6.5/reference/case-studies.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
+      "id": "case.65pl.attack-side-value-and-mp-candidate",
+      "entityType": "case-study",
+      "title": "6.5pl 攻击侧数值与 MP 路径候选复盘",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "case.65pl.attack-side-value-and-mp-candidate",
+        "6.5pl 攻击侧数值与 MP 路径候选复盘",
+        "6.5pl",
+        "记录攻击侧原始属性、当前 MP、状态档位和修饰结果的候选路径，避免把局部值直接命名为最终伤害公式。",
+        "6.5pl 静态反汇编样本",
+        "TacticalUnit/DataRecord 对象区分",
+        "攻击入口和消费者调用链",
+        "从 DataRecord+0x11、TacticalUnit+0x14/+0x18 和攻击修饰调用点开始。",
+        "追踪 EDX、[ebp-0x20] 等局部值到后续算术和写入消费者。",
+        "区分候选属性读取、MP 加成、局部修饰和最终伤害/动画证据。",
+        "形成可检索的候选路径和未决边界；静态链未证明最终公式或游戏内效果。",
+        "攻击侧修饰结果可能只存在于调用帧局部变量。",
+        "MP 加成进入选择器不等于已证明最终消耗。",
+        "必须继续追到写入和显示消费者。"
+      ],
+      "structuredDataPath": "6.5/data/cases/upstream-analysis-cases.json",
+      "referencePath": "6.5/reference/case-studies.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
+      "id": "case.65pl.critical-check-marker-candidate",
+      "entityType": "case-study",
+      "title": "6.5pl 暴击概率检定标记复盘",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "case.65pl.critical-check-marker-candidate",
+        "6.5pl 暴击概率检定标记复盘",
+        "6.5pl",
+        "界定事务区 +0x604 标记能证明什么，避免将概率检定通过误报为最终伤害或动画。",
+        "战斗事务上下文候选",
+        "概率分支和清零路径",
+        "防御响应后的消费者链",
+        "定位置位、清零和比较该 dword 的全部路径。",
+        "记录随机/概率通过与后续防御响应的先后关系。",
+        "检查最终伤害、暴击动画和消息消费者是否真正读取该标记。",
+        "条目只保留“暴击概率检定通过”候选语义，最终伤害和动画仍在研究队列。",
+        "单个标记只能证明其写入和读取关系。",
+        "概率通过与最终显示/伤害是不同证据层。",
+        "事务区字段不得迁移为持久结构字段。"
+      ],
+      "structuredDataPath": "6.5/data/cases/upstream-analysis-cases.json",
+      "referencePath": "6.5/reference/case-studies.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.history.local.godtype-f36-synthesis"
       ]
     },
     {
@@ -21106,6 +21231,170 @@
       ]
     },
     {
+      "id": "mechanism.65pl.public-core-engine-analysis",
+      "entityType": "mechanism",
+      "title": "6.5pl 核心特效引擎反汇编分析契约",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "mechanism.65pl.public-core-engine-analysis",
+        "6.5pl 核心特效引擎反汇编分析契约",
+        "core-engine.md",
+        "核心引擎",
+        "0x4101D9",
+        "四参数核心",
+        "6.5pl",
+        "把核心入口、调用者预检、核心处理和上层消费拆成独立证据链。固定地址只作为 6.5pl 参考样本线索，不能直接迁移到其它构建。",
+        "0x004101D9",
+        "0x0041301E",
+        "0x00413009",
+        "0x0042518F",
+        "0x0040B922",
+        "不能把 test eax,eax 的零/非零直接命名为命中、成功或效果生效。",
+        "不能只凭效果值、叠加标志或函数名推断返回值语义。",
+        "调用者、预检函数和结果消费者缺一时，条目保持 candidate。",
+        "从桩或调用点向上找真实入口，记录调用点、模块偏移和完整函数边界。",
+        "按 x86 栈帧还原四个参数，核对 push 顺序、ret N/add esp、ECX/EDX 使用和寄存器守恒。",
+        "沿预检、查表、累加、test/cmp 和条件跳转追踪每一条路径，并继续追到返回值消费者。",
+        "将静态结论拆成边界、调用关系、参数位置、分支方向和数值语义；只有运行时或文件读回才能升级对应证据。"
+      ],
+      "structuredDataPath": "6.5/data/mechanisms/public-reverse-analysis-methods.json",
+      "referencePath": "6.5/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.fc8bae5c6374"
+      ]
+    },
+    {
+      "id": "mechanism.65pl.public-dispatcher-analysis",
+      "entityType": "mechanism",
+      "title": "6.5pl 特效调度器交叉引用与消费者追踪",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "mechanism.65pl.public-dispatcher-analysis",
+        "6.5pl 特效调度器交叉引用与消费者追踪",
+        "dispatcher-function.md",
+        "调度函数",
+        "预检调度",
+        "6.5pl",
+        "以特效桩交叉引用为入口定位调度器，先还原上下文和预检读取，再覆盖全部返回路径与上层消费。",
+        "0x009BBFE4",
+        "0x004101D9",
+        "0x0042518F",
+        "413009 被核心调用不等于四参数入口。",
+        "任何效果名称都必须由调用者和返回消费者共同证明。",
+        "收集所有调用者和被调目标，区分标准桩、包装桩和直接核心调用。",
+        "记录 ECX、EDX、栈参数、预检读取位置、调度器返回和每个条件跳转。",
+        "把调度器到核心入口、再到调用者消费的路径画成 CFG/调用图，保留未覆盖分支。",
+        "将“非零跳过核心”“返回值被比较”“返回值进入伤害或效果写入”等事实分别登记。"
+      ],
+      "structuredDataPath": "6.5/data/mechanisms/public-reverse-analysis-methods.json",
+      "referencePath": "6.5/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.upstream.lanceyuki.de63.33953c21ed13"
+      ]
+    },
+    {
+      "id": "mechanism.65pl.public-object-identity-analysis",
+      "entityType": "mechanism",
+      "title": "6.5pl 对象编号、记录步长与事务区边界",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "mechanism.65pl.public-object-identity-analysis",
+        "6.5pl 对象编号、记录步长与事务区边界",
+        "object-identifiers-and-records.md",
+        "战场编号与 Data 号",
+        "对象身份边界",
+        "6.5pl",
+        "区分战场编号、人物 Data 号、DataRecord、战术单位和物理攻击事务区；记录步长与索引公式只能在当前画像内使用。",
+        "TacticalUnit",
+        "0x004A7B20 + battlefield_id * 0x30",
+        "战场编号，unit+0 为 Data 号",
+        "CharacterData",
+        "Data 号索引的角色数据记录",
+        "持久角色编号，不等同战场编号",
+        "DataRecord",
+        "[0x004CEA00] + data_id * 0x48",
+        "运行时人物记录候选",
+        "BattleTransaction",
+        "0x004927F0 + field_offset",
+        "当前攻击/效果事务局部区，不是持久人物字段",
+        "未绑定精确样本时不把这些地址写入 canonical 函数或补丁。",
+        "先确认编号的来源和宽度，再使用基址、步长和字段偏移。",
+        "读取宽度不等于字段语义宽度；局部变量不等于持久结构字段。",
+        "同名“单位”在战场槽、人物记录和调用帧中必须使用不同实体身份。"
+      ],
+      "structuredDataPath": "6.5/data/mechanisms/public-reverse-analysis-methods.json",
+      "referencePath": "6.5/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26"
+      ]
+    },
+    {
+      "id": "mechanism.65pl.public-stub-abi-reconstruction",
+      "entityType": "mechanism",
+      "title": "6.5pl 特效桩参数与清栈契约复原",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "mechanism.65pl.public-stub-abi-reconstruction",
+        "6.5pl 特效桩参数与清栈契约复原",
+        "stub-function.md",
+        "push 顺序",
+        "ret N",
+        "add esp",
+        "6.5pl",
+        "从桩的压栈序列和函数收尾恢复效果值、叠加标记、装备特效 ID、个人特效 ID 的候选参数契约。",
+        "effectValueFlag",
+        "stackingFlag",
+        "equipmentEffectId",
+        "personalEffectId",
+        "压栈顺序不能单独证明参数语义。",
+        "短函数或跨函数准备必须回到 CFG 和原始字节逐项复核。",
+        "从高栈地址向 [ebp+08]/[ebp+0C] 方向还原参数，而不是按源码表面顺序猜测。",
+        "区分 push imm8/imm32、push eax/ecx、add al/eax 基数和 thiscall 的 ECX 上下文。",
+        "用 ret N、add esp,N、完整函数边界和返回消费者交叉核对参数个数与清栈责任。",
+        "对三 push、多 push、动态 mov al 和参数循环只记录形态候选，不授予写回权限。"
+      ],
+      "structuredDataPath": "6.5/data/mechanisms/public-reverse-analysis-methods.json",
+      "referencePath": "6.5/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5"
+      ]
+    },
+    {
       "id": "mechanism.65pl.reference-scanner-coverage-and-counterexamples",
       "entityType": "mechanism",
       "title": "6.5pl参考桩扫描器的覆盖与反例",
@@ -21149,6 +21438,88 @@
         "src.upstream.lanceyuki.de63.ec1407637ce2",
         "src.upstream.lanceyuki.de63.221bb4bdbcc0",
         "src.upstream.lanceyuki.de63.4673a3aba018"
+      ]
+    },
+    {
+      "id": "mechanism.65pl.reference-scanner-hardening",
+      "entityType": "mechanism",
+      "title": "参考桩扫描器的 CFG 与操作数来源补证方法",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "mechanism.65pl.reference-scanner-hardening",
+        "参考桩扫描器的 CFG 与操作数来源补证方法",
+        "stub_scan.py",
+        "arg_stub.py",
+        "PE32 扫描",
+        "操作数来源",
+        "6.5pl",
+        "将只读扫描器的形态候选转化为可复核结论时，必须加入 CFG、定义来源、实例身份和被调 ABI 证据。",
+        "线性扫描会漏掉间接调用、跨函数准备和编译器变体，也可能误报。",
+        "扫描输出不是运行时验收，也不包含代码洞、注入和引擎资产。",
+        "PE32 头、节表、VA/RVA/文件偏移映射和边界先校验；不跨节读取。",
+        "E8 目标扫描和 push 形态扫描只产生候选，输出命中原始字节和调用 VA。",
+        "以基本块为单位追踪 EAX/ECX/EDX 最后定义和前驱路径，禁止跨分支拼接 mov al 或循环上限。",
+        "把标准四 push、包装、动态参数、参数范围等形态分别统计，并逐项回到反汇编器复核。",
+        "只有完整函数边界、调用约定、返回消费者和负例测试都成立时，才可升级为实现依据。"
+      ],
+      "structuredDataPath": "6.5/data/mechanisms/public-reverse-analysis-methods.json",
+      "referencePath": "6.5/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.fc8bae5c6374",
+        "src.upstream.lanceyuki.de63.98faa1bb9ee1",
+        "src.upstream.lanceyuki.de63.3385870b029f",
+        "src.upstream.lanceyuki.de63.ec1407637ce2",
+        "src.upstream.lanceyuki.de63.221bb4bdbcc0"
+      ]
+    },
+    {
+      "id": "mechanism.65pl.reverse-engineering-evidence-layers",
+      "entityType": "mechanism",
+      "title": "反汇编与行为分析的分层证据模型",
+      "versions": [
+        "6.5pl",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "mechanism.65pl.reverse-engineering-evidence-layers",
+        "反汇编与行为分析的分层证据模型",
+        "静态证据",
+        "运行时读回",
+        "文件读回",
+        "实机验收",
+        "6.5pl",
+        "6.5",
+        "6.6",
+        "static：可证明 函数边界, 调用关系, 参数位置, 分支方向；不能单独证明 玩法效果已生效, 返回值的最终命名",
+        "runtime-readback：可证明 具体分支命中, 指针和值在当前场景的变化；不能单独证明 永久补丁正确, 未覆盖路径安全",
+        "file-readback：可证明 原字节/替换字节/长度/布局；不能单独证明 游戏内结果",
+        "controlled-path：可证明 受控启动和路径观察；不能单独证明 所有场景覆盖",
+        "in-game-acceptance：可证明 目标场景可见行为；不能单独证明 其它版本地址可复用",
+        "每条结论必须写目标样本、来源、证据层级和未覆盖边界。",
+        "条件断点命中计数不等于条件成立。",
+        "运行时临时写入必须立即读回并恢复。"
+      ],
+      "structuredDataPath": "6.5/data/mechanisms/public-reverse-analysis-methods.json",
+      "referencePath": "6.5/reference/mechanisms.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.forum.godtype.194034",
+        "src.history.local.godtype-f36-synthesis",
+        "src.ccz.f36.static-report"
       ]
     },
     {
@@ -78929,6 +79300,109 @@
       ]
     },
     {
+      "id": "structure.65pl.reference-battle-transaction-context",
+      "entityType": "data-structure",
+      "title": "6.5pl 参考战斗事务上下文",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "structure.65pl.reference-battle-transaction-context",
+        "6.5pl 参考战斗事务上下文",
+        "物理攻击事务区",
+        "0x4927F0",
+        "critical marker",
+        "transaction_base + field_offset；事务基址和生命周期需按初始化路径确认",
+        "attacker_battle_id",
+        "攻击者战场编号候选",
+        "0x00",
+        "target_battle_id",
+        "目标战场编号候选",
+        "0x01",
+        "data_id",
+        "当前效果/攻击关联的 Data 号候选",
+        "0x04",
+        "data_record_ptr",
+        "当前 DataRecord 指针候选",
+        "0x08",
+        "tactical_unit_ptr",
+        "当前 TacticalUnit 指针候选",
+        "0x0C",
+        "critical_check_marker",
+        "暴击概率检定通过标记候选；不等同最终伤害或动画",
+        "0x604",
+        "6.5pl",
+        "uint8",
+        "uint16",
+        "pointer",
+        "uint32",
+        "仅按具体初始化和消费路径解释字段。",
+        "局部事务字段不能迁移为持久数据结构。",
+        "暴击标记需同时记录置位、清零和后续消费者。"
+      ],
+      "structuredDataPath": "6.5/data/structures/reference-object-identifiers.json",
+      "referencePath": "6.5/reference/structures.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
+      "id": "structure.65pl.reference-tactical-unit-identity",
+      "entityType": "data-structure",
+      "title": "6.5pl 参考战术单位身份记录",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "structure.65pl.reference-tactical-unit-identity",
+        "6.5pl 参考战术单位身份记录",
+        "TacticalUnit",
+        "战场单位槽",
+        "unit+0 Data号",
+        "tactical_unit_ptr = tactical_base + battlefield_id * 0x30（基址需当前画像确认）",
+        "data_id",
+        "人物 Data 号候选；FFFF 表示空槽",
+        "0x00",
+        "packed_identity_and_position",
+        "形象、阵营、X/Y 的打包视图；不能当作 Data 号",
+        "0x04",
+        "current_hp_candidate",
+        "当前 HP 候选，需目标版本动态读回",
+        "0x10",
+        "current_mp_candidate",
+        "当前 MP 候选，读取宽度和 setter 需独立复核",
+        "0x14",
+        "status_bits_candidate",
+        "异常状态分组候选，不能直接当作状态等级",
+        "0x1E",
+        "6.5pl",
+        "uint16",
+        "packed-bytes",
+        "uint32",
+        "uint8",
+        "battlefield_id 与 data_id 分开记录。",
+        "跨版本重新确认基址、步长和字段消费者。",
+        "未经动态闭环不得直接写 HP/MP/状态。"
+      ],
+      "structuredDataPath": "6.5/data/structures/reference-object-identifiers.json",
+      "referencePath": "6.5/reference/structures.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
       "id": "structure.66.guoqing.active-effect-job-slots",
       "entityType": "data-structure",
       "title": "国庆活动特效表的兵种双槽",
@@ -80807,6 +81281,83 @@
       "referencePath": "6.5/reference/test-contracts.md",
       "sourceRefs": [
         "src.history.9b8abf5.9bf86fa0fc659fb0"
+      ]
+    },
+    {
+      "id": "test.65pl.evidence-layer-separation",
+      "entityType": "test-contract",
+      "title": "反汇编证据层级隔离测试",
+      "versions": [
+        "6.5pl",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "test.65pl.evidence-layer-separation",
+        "反汇编证据层级隔离测试",
+        "6.5pl",
+        "6.5",
+        "6.6",
+        "python tools/query_kb.py \"分层证据模型\" --entity-type mechanism",
+        "验证静态、运行时读回、文件读回、受控路径和游戏内验收在索引中保持独立语义。",
+        "只读索引和生成参考页；不写样本、不启动游戏。",
+        "结果包含五个证据层。",
+        "每层同时列出可证明项和不可证明项。",
+        "候选地址不会因静态命中自动升级为 canonical。",
+        "查询输出",
+        "生成 reference 页",
+        "研究边界审计",
+        "证据层级混淆，可能将静态调用关系误报为实机功能或将临时运行时写入误报为持久补丁。"
+      ],
+      "structuredDataPath": "6.5/data/tests/reverse-engineering-evidence-contracts.json",
+      "referencePath": "6.5/reference/test-contracts.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.forum.godtype.194034",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
+      "id": "test.65pl.reference-scanner-negative-cases",
+      "entityType": "test-contract",
+      "title": "参考桩扫描器负例与候选边界测试",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "test.65pl.reference-scanner-negative-cases",
+        "参考桩扫描器负例与候选边界测试",
+        "6.5pl",
+        "python tools/query_kb.py \"参考桩扫描器\" --version 6.5pl --entity-type mechanism",
+        "检查参考扫描器的标准四 push、三 push、多 push、mov al 跨分支和参数循环负例是否保持 candidate 语义。",
+        "只读查询和离线候选 JSON；不得修改目标 EXE、DLL 或游戏资源。",
+        "查询结果包含 mechanism.65pl.reference-scanner-coverage-and-counterexamples。",
+        "候选条目包含 CFG、定义来源、完整实例身份和被调 ABI 补证要求。",
+        "没有任何条目被解释为自动写入配方。",
+        "查询输出",
+        "负例清单",
+        "候选扫描 JSON",
+        "人工复核记录",
+        "扫描器覆盖或边界发生漂移，可能把形态命中误报为已确认 ABI/玩法语义。"
+      ],
+      "structuredDataPath": "6.5/data/tests/reverse-engineering-evidence-contracts.json",
+      "referencePath": "6.5/reference/test-contracts.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.fc8bae5c6374",
+        "src.upstream.lanceyuki.de63.98faa1bb9ee1",
+        "src.upstream.lanceyuki.de63.3385870b029f",
+        "src.upstream.lanceyuki.de63.ec1407637ce2",
+        "src.upstream.lanceyuki.de63.221bb4bdbcc0"
       ]
     },
     {
@@ -82713,6 +83264,174 @@
       "referencePath": "6.5/reference/workflows.md",
       "sourceRefs": [
         "src.history.9b8abf5.b10db802d294dd63"
+      ]
+    },
+    {
+      "id": "workflow.65pl.engine-feature-development",
+      "entityType": "workflow",
+      "title": "引擎特效功能的行为契约到分层验收",
+      "versions": [
+        "6.5pl",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "workflow.65pl.engine-feature-development",
+        "引擎特效功能的行为契约到分层验收",
+        "6.5pl",
+        "6.5",
+        "6.6",
+        "从行为契约出发追到真实读取、选择、修饰、写回和消费者路径，生成可回滚的最小修改并逐层验收。",
+        "目标版本画像",
+        "命中/未命中/边界场景",
+        "静态调用链",
+        "ABI 和寄存器契约",
+        "补丁前后字节",
+        "锁定样本并保护基线，记录目标行为契约和验收场景。",
+        "按目标引擎追踪真实读取、选择、修饰、写回和消费者，核实调用约定、栈、寄存器和 flags。",
+        "设计最小可回滚改动，登记原字节、完整指令、索引终止规则、代码洞和冲突。",
+        "用单一生成源计算跳转/替换字节并断言长度、边界、模块范围和原字节匹配。",
+        "先做静态反汇编复读，再做文件读回和差异审计。",
+        "在测试副本做运行时读回和受控路径观察，记录写入者与结果消费者。",
+        "执行游戏内正负样本和副作用检查，分离功能结果与未覆盖路径。",
+        "沉淀实体、证据、边界和回滚信息；证据不足时退回 candidate。",
+        "参考地址不能直接复制到新版本。",
+        "连续零/NOP 不能自动判定为空闲代码洞。",
+        "断点命中不能代替结果验收。",
+        "命中、未命中、提前返回和原生门控都必须保持栈/寄存器/flags 守恒。",
+        "行为契约",
+        "补丁配方和回滚字节",
+        "分层验证报告",
+        "可查询结构化实体",
+        "研究缺口清单",
+        "逆序恢复写入站点和页保护",
+        "恢复测试副本/存档",
+        "删除未通过证据门禁的自动配置"
+      ],
+      "structuredDataPath": "6.5/data/workflows/reverse-engineering-methods.json",
+      "referencePath": "6.5/reference/workflows.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.forum.godtype.194034",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
+      "id": "workflow.65pl.reverse-engineering-migration",
+      "entityType": "workflow",
+      "title": "6.5pl 反汇编结论迁移与 Hook 设计",
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "workflow.65pl.reverse-engineering-migration",
+        "6.5pl 反汇编结论迁移与 Hook 设计",
+        "6.5pl",
+        "把上游参考样本中的核心入口、调度器、桩参数和对象身份结论迁移到新样本，同时保留证据边界和可回滚条件。",
+        "目标 EXE 和 SHA256",
+        "PE32/x86 画像草案",
+        "上游候选扫描输出",
+        "行为契约与正负样本",
+        "原字节快照",
+        "固定目标文件 SHA256、大小、时间戳和模块基址，建立独立 profile 草案。",
+        "只读解析 MZ/PE 头与节表，建立 VA、RVA、文件偏移和节权限映射。",
+        "以 E8 交叉引用、常量、步长和调用形状定位候选入口，保存原始字节和函数边界。",
+        "按基本块追踪操作数最后定义、前驱路径、ECX/EDX/栈参数和 EFLAGS，构建 CFG。",
+        "区分 TacticalUnit、CharacterData、DataRecord、事务区和调用帧局部值，验证编号宽度与步长。",
+        "核对 ret N/add esp、返回值消费者、预检分支和所有提前返回，再决定候选语义。",
+        "为 Hook 或补丁登记 expectedBytes、完整指令边界、桩入口、回跳、重定位和冲突所有权。",
+        "在测试副本做静态复读、文件读回、运行时读回和正负场景验证，更新 evidence/status。",
+        "地址必须绑定当前 SHA profile。",
+        "任何跨分支拼接、线性扫描命中或函数名猜测都不能升级结论。",
+        "缺少原字节、ABI、回跳或动态证据时保持 candidate 且禁止自动写入。",
+        "代码洞、覆盖长度和寄存器/栈守恒必须逐项审计。",
+        "profile 草案",
+        "CFG/调用链和操作数来源记录",
+        "对象身份与字段映射",
+        "候选补丁契约",
+        "静态/文件/运行时验证报告",
+        "删除测试副本补丁并恢复原字节",
+        "保留失败现场、日志和未决研究项",
+        "撤销未通过门禁的自动生成配置"
+      ],
+      "structuredDataPath": "6.5/data/workflows/reverse-engineering-methods.json",
+      "referencePath": "6.5/reference/workflows.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.fc8bae5c6374",
+        "src.upstream.lanceyuki.de63.98faa1bb9ee1",
+        "src.upstream.lanceyuki.de63.3385870b029f",
+        "src.upstream.lanceyuki.de63.ec1407637ce2",
+        "src.upstream.lanceyuki.de63.221bb4bdbcc0"
+      ]
+    },
+    {
+      "id": "workflow.65pl.x32dbg-runtime-evidence",
+      "entityType": "workflow",
+      "title": "6.5pl x32dbg 运行时证据采集",
+      "versions": [
+        "6.5pl",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "address": null,
+      "searchTerms": [
+        "workflow.65pl.x32dbg-runtime-evidence",
+        "6.5pl x32dbg 运行时证据采集",
+        "6.5pl",
+        "6.5",
+        "6.6",
+        "用最小、可恢复的运行时实验验证静态反汇编对分支、指针、值和消费者的解释。",
+        "精确样本及模块基址",
+        "可复现存档或场景",
+        "要证明的单一事件",
+        "断点计划",
+        "静态候选地址或 RVA",
+        "确认 x86/x64 架构、进程、模块和复现步骤，先把旧绝对地址换算为当前模块 RVA。",
+        "写明本次只证明的事件、命中条件、预期读写字段和未覆盖路径。",
+        "按目标选择软件、硬件、内存、条件、跟踪或日志断点，设置最小命中范围。",
+        "暂停后记录线程、当前指令/RVA、寄存器、EFLAGS、调用栈和关键内存。",
+        "沿后续指令跟踪写入者、读取者、比较和最终消费者，区分命中计数与条件成立。",
+        "若必须写入，只做测试副本中的最小变更，保存原字节并立即读回。",
+        "恢复临时写入，重复正样本、负样本和边界样本，避免把一次命中当作完整功能。",
+        "将架构、断点类型、条件、线程、停点、寄存器、内存、外部结果和未覆盖路径写入证据记录。",
+        "运行时地址必须由当前模块基址和 profile 推导。",
+        "条件断点命中次数不能代替路径成立证据。",
+        "临时写入必须可恢复，且不得直接生成持久补丁。",
+        "运行时快照",
+        "读写者/消费者链",
+        "正负样本对照",
+        "恢复确认",
+        "证据升级或研究缺口",
+        "恢复测试副本和内存现场",
+        "清除断点、跟踪和临时文件",
+        "若现场污染则停止推广并保留原样本"
+      ],
+      "structuredDataPath": "6.5/data/workflows/reverse-engineering-methods.json",
+      "referencePath": "6.5/reference/workflows.md",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.forum.godtype.194034",
+        "src.history.local.godtype-f36-synthesis"
       ]
     },
     {

@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": null,
+  "entries": [
+    {
+      "id": "mechanism.65pl.public-core-engine-analysis",
+      "title": "6.5pl 核心特效引擎反汇编分析契约",
+      "aliases": [
+        "core-engine.md",
+        "核心引擎",
+        "0x4101D9",
+        "四参数核心"
+      ],
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.fc8bae5c6374"
+      ],
+      "summary": "把核心入口、调用者预检、核心处理和上层消费拆成独立证据链。固定地址只作为 6.5pl 参考样本线索，不能直接迁移到其它构建。",
+      "addressClues": [
+        "0x004101D9",
+        "0x0041301E",
+        "0x00413009",
+        "0x0042518F",
+        "0x0040B922"
+      ],
+      "boundaries": [
+        "不能把 test eax,eax 的零/非零直接命名为命中、成功或效果生效。",
+        "不能只凭效果值、叠加标志或函数名推断返回值语义。",
+        "调用者、预检函数和结果消费者缺一时，条目保持 candidate。"
+      ],
+      "algorithm": [
+        "从桩或调用点向上找真实入口，记录调用点、模块偏移和完整函数边界。",
+        "按 x86 栈帧还原四个参数，核对 push 顺序、ret N/add esp、ECX/EDX 使用和寄存器守恒。",
+        "沿预检、查表、累加、test/cmp 和条件跳转追踪每一条路径，并继续追到返回值消费者。",
+        "将静态结论拆成边界、调用关系、参数位置、分支方向和数值语义；只有运行时或文件读回才能升级对应证据。"
+      ]
+    },
+    {
+      "id": "mechanism.65pl.public-dispatcher-analysis",
+      "title": "6.5pl 特效调度器交叉引用与消费者追踪",
+      "aliases": [
+        "dispatcher-function.md",
+        "调度函数",
+        "预检调度"
+      ],
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.upstream.lanceyuki.de63.33953c21ed13"
+      ],
+      "summary": "以特效桩交叉引用为入口定位调度器，先还原上下文和预检读取，再覆盖全部返回路径与上层消费。",
+      "addressClues": [
+        "0x009BBFE4",
+        "0x004101D9",
+        "0x0042518F"
+      ],
+      "boundaries": [
+        "413009 被核心调用不等于四参数入口。",
+        "任何效果名称都必须由调用者和返回消费者共同证明。"
+      ],
+      "algorithm": [
+        "收集所有调用者和被调目标，区分标准桩、包装桩和直接核心调用。",
+        "记录 ECX、EDX、栈参数、预检读取位置、调度器返回和每个条件跳转。",
+        "把调度器到核心入口、再到调用者消费的路径画成 CFG/调用图，保留未覆盖分支。",
+        "将“非零跳过核心”“返回值被比较”“返回值进入伤害或效果写入”等事实分别登记。"
+      ]
+    },
+    {
+      "id": "mechanism.65pl.public-stub-abi-reconstruction",
+      "title": "6.5pl 特效桩参数与清栈契约复原",
+      "aliases": [
+        "stub-function.md",
+        "push 顺序",
+        "ret N",
+        "add esp"
+      ],
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5"
+      ],
+      "summary": "从桩的压栈序列和函数收尾恢复效果值、叠加标记、装备特效 ID、个人特效 ID 的候选参数契约。",
+      "pushOrder": [
+        "effectValueFlag",
+        "stackingFlag",
+        "equipmentEffectId",
+        "personalEffectId"
+      ],
+      "boundaries": [
+        "压栈顺序不能单独证明参数语义。",
+        "短函数或跨函数准备必须回到 CFG 和原始字节逐项复核。"
+      ],
+      "algorithm": [
+        "从高栈地址向 [ebp+08]/[ebp+0C] 方向还原参数，而不是按源码表面顺序猜测。",
+        "区分 push imm8/imm32、push eax/ecx、add al/eax 基数和 thiscall 的 ECX 上下文。",
+        "用 ret N、add esp,N、完整函数边界和返回消费者交叉核对参数个数与清栈责任。",
+        "对三 push、多 push、动态 mov al 和参数循环只记录形态候选，不授予写回权限。"
+      ]
+    },
+    {
+      "id": "mechanism.65pl.public-object-identity-analysis",
+      "title": "6.5pl 对象编号、记录步长与事务区边界",
+      "aliases": [
+        "object-identifiers-and-records.md",
+        "战场编号与 Data 号",
+        "对象身份边界"
+      ],
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26"
+      ],
+      "summary": "区分战场编号、人物 Data 号、DataRecord、战术单位和物理攻击事务区；记录步长与索引公式只能在当前画像内使用。",
+      "objects": [
+        {
+          "name": "TacticalUnit",
+          "formula": "0x004A7B20 + battlefield_id * 0x30",
+          "identity": "战场编号，unit+0 为 Data 号"
+        },
+        {
+          "name": "CharacterData",
+          "formula": "Data 号索引的角色数据记录",
+          "identity": "持久角色编号，不等同战场编号"
+        },
+        {
+          "name": "DataRecord",
+          "formula": "[0x004CEA00] + data_id * 0x48",
+          "identity": "运行时人物记录候选"
+        },
+        {
+          "name": "BattleTransaction",
+          "formula": "0x004927F0 + field_offset",
+          "identity": "当前攻击/效果事务局部区，不是持久人物字段"
+        }
+      ],
+      "boundaries": [
+        "未绑定精确样本时不把这些地址写入 canonical 函数或补丁。"
+      ],
+      "algorithm": [
+        "先确认编号的来源和宽度，再使用基址、步长和字段偏移。",
+        "读取宽度不等于字段语义宽度；局部变量不等于持久结构字段。",
+        "同名“单位”在战场槽、人物记录和调用帧中必须使用不同实体身份。"
+      ]
+    },
+    {
+      "id": "mechanism.65pl.reverse-engineering-evidence-layers",
+      "title": "反汇编与行为分析的分层证据模型",
+      "aliases": [
+        "静态证据",
+        "运行时读回",
+        "文件读回",
+        "实机验收"
+      ],
+      "versions": [
+        "6.5pl",
+        "6.5",
+        "6.6"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.forum.godtype.194034",
+        "src.history.local.godtype-f36-synthesis",
+        "src.ccz.f36.static-report"
+      ],
+      "notes": [
+        "static：可证明 函数边界, 调用关系, 参数位置, 分支方向；不能单独证明 玩法效果已生效, 返回值的最终命名",
+        "runtime-readback：可证明 具体分支命中, 指针和值在当前场景的变化；不能单独证明 永久补丁正确, 未覆盖路径安全",
+        "file-readback：可证明 原字节/替换字节/长度/布局；不能单独证明 游戏内结果",
+        "controlled-path：可证明 受控启动和路径观察；不能单独证明 所有场景覆盖",
+        "in-game-acceptance：可证明 目标场景可见行为；不能单独证明 其它版本地址可复用"
+      ],
+      "boundaries": [
+        "每条结论必须写目标样本、来源、证据层级和未覆盖边界。",
+        "条件断点命中计数不等于条件成立。",
+        "运行时临时写入必须立即读回并恢复。"
+      ]
+    },
+    {
+      "id": "mechanism.65pl.reference-scanner-hardening",
+      "title": "参考桩扫描器的 CFG 与操作数来源补证方法",
+      "aliases": [
+        "stub_scan.py",
+        "arg_stub.py",
+        "PE32 扫描",
+        "操作数来源"
+      ],
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.fc8bae5c6374",
+        "src.upstream.lanceyuki.de63.98faa1bb9ee1",
+        "src.upstream.lanceyuki.de63.3385870b029f",
+        "src.upstream.lanceyuki.de63.ec1407637ce2",
+        "src.upstream.lanceyuki.de63.221bb4bdbcc0"
+      ],
+      "summary": "将只读扫描器的形态候选转化为可复核结论时，必须加入 CFG、定义来源、实例身份和被调 ABI 证据。",
+      "limitations": [
+        "线性扫描会漏掉间接调用、跨函数准备和编译器变体，也可能误报。",
+        "扫描输出不是运行时验收，也不包含代码洞、注入和引擎资产。"
+      ],
+      "algorithm": [
+        "PE32 头、节表、VA/RVA/文件偏移映射和边界先校验；不跨节读取。",
+        "E8 目标扫描和 push 形态扫描只产生候选，输出命中原始字节和调用 VA。",
+        "以基本块为单位追踪 EAX/ECX/EDX 最后定义和前驱路径，禁止跨分支拼接 mov al 或循环上限。",
+        "把标准四 push、包装、动态参数、参数范围等形态分别统计，并逐项回到反汇编器复核。",
+        "只有完整函数边界、调用约定、返回消费者和负例测试都成立时，才可升级为实现依据。"
+      ]
+    }
+  ]
+}

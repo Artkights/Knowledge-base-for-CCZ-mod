@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "entityType": "test-contract",
+  "profile": null,
+  "entries": [
+    {
+      "id": "test.65pl.reference-scanner-negative-cases",
+      "title": "参考桩扫描器负例与候选边界测试",
+      "versions": [
+        "6.5pl"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "profile": null,
+      "command": "python tools/query_kb.py \"参考桩扫描器\" --version 6.5pl --entity-type mechanism",
+      "target": "检查参考扫描器的标准四 push、三 push、多 push、mov al 跨分支和参数循环负例是否保持 candidate 语义。",
+      "mutationScope": "只读查询和离线候选 JSON；不得修改目标 EXE、DLL 或游戏资源。",
+      "assertions": [
+        "查询结果包含 mechanism.65pl.reference-scanner-coverage-and-counterexamples。",
+        "候选条目包含 CFG、定义来源、完整实例身份和被调 ABI 补证要求。",
+        "没有任何条目被解释为自动写入配方。"
+      ],
+      "requiredArtifacts": [
+        "查询输出",
+        "负例清单",
+        "候选扫描 JSON",
+        "人工复核记录"
+      ],
+      "failureMeaning": "扫描器覆盖或边界发生漂移，可能把形态命中误报为已确认 ABI/玩法语义。",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.fc8bae5c6374",
+        "src.upstream.lanceyuki.de63.98faa1bb9ee1",
+        "src.upstream.lanceyuki.de63.3385870b029f",
+        "src.upstream.lanceyuki.de63.ec1407637ce2",
+        "src.upstream.lanceyuki.de63.221bb4bdbcc0"
+      ]
+    },
+    {
+      "id": "test.65pl.evidence-layer-separation",
+      "title": "反汇编证据层级隔离测试",
+      "versions": [
+        "6.5pl",
+        "6.5",
+        "6.6"
+      ],
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "profile": null,
+      "command": "python tools/query_kb.py \"分层证据模型\" --entity-type mechanism",
+      "target": "验证静态、运行时读回、文件读回、受控路径和游戏内验收在索引中保持独立语义。",
+      "mutationScope": "只读索引和生成参考页；不写样本、不启动游戏。",
+      "assertions": [
+        "结果包含五个证据层。",
+        "每层同时列出可证明项和不可证明项。",
+        "候选地址不会因静态命中自动升级为 canonical。"
+      ],
+      "requiredArtifacts": [
+        "查询输出",
+        "生成 reference 页",
+        "研究边界审计"
+      ],
+      "failureMeaning": "证据层级混淆，可能将静态调用关系误报为实机功能或将临时运行时写入误报为持久补丁。",
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.upstream.lanceyuki.de63.014d84819d26",
+        "src.upstream.lanceyuki.de63.6a7cae8887b5",
+        "src.forum.godtype.194034",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    }
+  ]
+}

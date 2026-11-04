@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/mechanisms/consumable-effects.json`、`6.5/data/mechanisms/data-manager-current-contracts.json`、`6.5/data/mechanisms/data-manager-formulas.json`、`6.5/data/mechanisms/engine-assignment-field-policy.json`、`6.5/data/mechanisms/engine-mechanisms.json`、`6.5/data/mechanisms/engine-physical-binding-groups.json`、`6.5/data/mechanisms/engine-scan-lifecycle.json`、`6.5/data/mechanisms/engine-scan-operand-provenance.json`、`6.5/data/mechanisms/engine-scan-performance-equivalence.json`、`6.5/data/mechanisms/reviewed-stub-scanner-reference.json`
+结构化事实来源：`6.5/data/mechanisms/consumable-effects.json`、`6.5/data/mechanisms/data-manager-current-contracts.json`、`6.5/data/mechanisms/data-manager-formulas.json`、`6.5/data/mechanisms/engine-assignment-field-policy.json`、`6.5/data/mechanisms/engine-mechanisms.json`、`6.5/data/mechanisms/engine-physical-binding-groups.json`、`6.5/data/mechanisms/engine-scan-lifecycle.json`、`6.5/data/mechanisms/engine-scan-operand-provenance.json`、`6.5/data/mechanisms/engine-scan-performance-equivalence.json`、`6.5/data/mechanisms/public-reverse-analysis-methods.json`、`6.5/data/mechanisms/reviewed-stub-scanner-reference.json`
 
 ## 消耗品独立特效目录 0x1A–0x3D 与证据分层
 
@@ -7200,6 +7200,115 @@ ID: `mechanism.shared.engine-scan-context-cache-equivalence`；状态: `canonica
 - 耗时受环境和进程状态影响；摘要不是跨机器保证。baseline/optimized的源快照和样本身份必须保留。
 - 加强版2.2.0仅1轮对照，不纳入三基底n3结论。
 - 共用服务、字段组写回和界面生命周期分别引用独立完成日志；性能输出等价不能代替这些事务与交互结论。
+
+## 6.5pl 核心特效引擎反汇编分析契约
+
+ID: `mechanism.65pl.public-core-engine-analysis`；状态: `candidate`；证据: `source-reviewed`
+
+把核心入口、调用者预检、核心处理和上层消费拆成独立证据链。固定地址只作为 6.5pl 参考样本线索，不能直接迁移到其它构建。
+
+
+计算规则：
+
+- `从桩或调用点向上找真实入口，记录调用点、模块偏移和完整函数边界。`
+- `按 x86 栈帧还原四个参数，核对 push 顺序、ret N/add esp、ECX/EDX 使用和寄存器守恒。`
+- `沿预检、查表、累加、test/cmp 和条件跳转追踪每一条路径，并继续追到返回值消费者。`
+- `将静态结论拆成边界、调用关系、参数位置、分支方向和数值语义；只有运行时或文件读回才能升级对应证据。`
+
+边界：
+
+- 不能把 test eax,eax 的零/非零直接命名为命中、成功或效果生效。
+- 不能只凭效果值、叠加标志或函数名推断返回值语义。
+- 调用者、预检函数和结果消费者缺一时，条目保持 candidate。
+
+## 6.5pl 特效调度器交叉引用与消费者追踪
+
+ID: `mechanism.65pl.public-dispatcher-analysis`；状态: `candidate`；证据: `source-reviewed`
+
+以特效桩交叉引用为入口定位调度器，先还原上下文和预检读取，再覆盖全部返回路径与上层消费。
+
+
+计算规则：
+
+- `收集所有调用者和被调目标，区分标准桩、包装桩和直接核心调用。`
+- `记录 ECX、EDX、栈参数、预检读取位置、调度器返回和每个条件跳转。`
+- `把调度器到核心入口、再到调用者消费的路径画成 CFG/调用图，保留未覆盖分支。`
+- `将“非零跳过核心”“返回值被比较”“返回值进入伤害或效果写入”等事实分别登记。`
+
+边界：
+
+- 413009 被核心调用不等于四参数入口。
+- 任何效果名称都必须由调用者和返回消费者共同证明。
+
+## 6.5pl 特效桩参数与清栈契约复原
+
+ID: `mechanism.65pl.public-stub-abi-reconstruction`；状态: `candidate`；证据: `source-reviewed`
+
+从桩的压栈序列和函数收尾恢复效果值、叠加标记、装备特效 ID、个人特效 ID 的候选参数契约。
+
+
+计算规则：
+
+- `从高栈地址向 [ebp+08]/[ebp+0C] 方向还原参数，而不是按源码表面顺序猜测。`
+- `区分 push imm8/imm32、push eax/ecx、add al/eax 基数和 thiscall 的 ECX 上下文。`
+- `用 ret N、add esp,N、完整函数边界和返回消费者交叉核对参数个数与清栈责任。`
+- `对三 push、多 push、动态 mov al 和参数循环只记录形态候选，不授予写回权限。`
+
+边界：
+
+- 压栈顺序不能单独证明参数语义。
+- 短函数或跨函数准备必须回到 CFG 和原始字节逐项复核。
+
+## 6.5pl 对象编号、记录步长与事务区边界
+
+ID: `mechanism.65pl.public-object-identity-analysis`；状态: `candidate`；证据: `source-reviewed`
+
+区分战场编号、人物 Data 号、DataRecord、战术单位和物理攻击事务区；记录步长与索引公式只能在当前画像内使用。
+
+
+计算规则：
+
+- `先确认编号的来源和宽度，再使用基址、步长和字段偏移。`
+- `读取宽度不等于字段语义宽度；局部变量不等于持久结构字段。`
+- `同名“单位”在战场槽、人物记录和调用帧中必须使用不同实体身份。`
+
+边界：
+
+- 未绑定精确样本时不把这些地址写入 canonical 函数或补丁。
+
+## 反汇编与行为分析的分层证据模型
+
+ID: `mechanism.65pl.reverse-engineering-evidence-layers`；状态: `candidate`；证据: `source-reviewed`
+
+
+边界：
+
+- 每条结论必须写目标样本、来源、证据层级和未覆盖边界。
+- 条件断点命中计数不等于条件成立。
+- 运行时临时写入必须立即读回并恢复。
+
+补充说明：
+
+- static：可证明 函数边界, 调用关系, 参数位置, 分支方向；不能单独证明 玩法效果已生效, 返回值的最终命名
+- runtime-readback：可证明 具体分支命中, 指针和值在当前场景的变化；不能单独证明 永久补丁正确, 未覆盖路径安全
+- file-readback：可证明 原字节/替换字节/长度/布局；不能单独证明 游戏内结果
+- controlled-path：可证明 受控启动和路径观察；不能单独证明 所有场景覆盖
+- in-game-acceptance：可证明 目标场景可见行为；不能单独证明 其它版本地址可复用
+
+## 参考桩扫描器的 CFG 与操作数来源补证方法
+
+ID: `mechanism.65pl.reference-scanner-hardening`；状态: `candidate`；证据: `source-reviewed`
+
+将只读扫描器的形态候选转化为可复核结论时，必须加入 CFG、定义来源、实例身份和被调 ABI 证据。
+
+
+计算规则：
+
+- `PE32 头、节表、VA/RVA/文件偏移映射和边界先校验；不跨节读取。`
+- `E8 目标扫描和 push 形态扫描只产生候选，输出命中原始字节和调用 VA。`
+- `以基本块为单位追踪 EAX/ECX/EDX 最后定义和前驱路径，禁止跨分支拼接 mov al 或循环上限。`
+- `把标准四 push、包装、动态参数、参数范围等形态分别统计，并逐项回到反汇编器复核。`
+- `只有完整函数边界、调用约定、返回消费者和负例测试都成立时，才可升级为实现依据。`
 
 ## 6.5pl参考桩扫描器的覆盖与反例
 

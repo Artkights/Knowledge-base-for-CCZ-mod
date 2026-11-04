@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/test-contracts/data-manager-formulas.json`、`6.5/data/tests/data-manager-current-contracts.json`、`6.5/data/tests/data-manager-exchange-resources.json`、`6.5/data/tests/data-manager-test-contracts.json`、`6.5/data/tests/effect-assignment-layouts.json`、`6.5/data/tests/engine-assignment-final-results.json`、`6.5/data/tests/smoke-test-contracts.json`
+结构化事实来源：`6.5/data/test-contracts/data-manager-formulas.json`、`6.5/data/tests/data-manager-current-contracts.json`、`6.5/data/tests/data-manager-exchange-resources.json`、`6.5/data/tests/data-manager-test-contracts.json`、`6.5/data/tests/effect-assignment-layouts.json`、`6.5/data/tests/engine-assignment-final-results.json`、`6.5/data/tests/reverse-engineering-evidence-contracts.json`、`6.5/data/tests/smoke-test-contracts.json`
 
 ## 6.5 33项公式与88项常量副本回归契约
 
@@ -879,6 +879,51 @@ ID: `test.shared.final-scan-concurrency-and-cancellation`；状态: `canonical`�
 - 最终测试及实现SHA
 
 失败含义：上下文可能跨扫描污染或取消路径破坏后续结果；日志总耗时不能当作单次冷扫计量。
+
+## 参考桩扫描器负例与候选边界测试
+
+ID: `test.65pl.reference-scanner-negative-cases`；状态: `candidate`；证据: `source-reviewed`
+
+命令: `python tools/query_kb.py "参考桩扫描器" --version 6.5pl --entity-type mechanism`
+
+目标: 检查参考扫描器的标准四 push、三 push、多 push、mov al 跨分支和参数循环负例是否保持 candidate 语义。；变更范围: 只读查询和离线候选 JSON；不得修改目标 EXE、DLL 或游戏资源。
+
+断言：
+
+- 查询结果包含 mechanism.65pl.reference-scanner-coverage-and-counterexamples。
+- 候选条目包含 CFG、定义来源、完整实例身份和被调 ABI 补证要求。
+- 没有任何条目被解释为自动写入配方。
+
+必需产物：
+
+- 查询输出
+- 负例清单
+- 候选扫描 JSON
+- 人工复核记录
+
+失败含义：扫描器覆盖或边界发生漂移，可能把形态命中误报为已确认 ABI/玩法语义。
+
+## 反汇编证据层级隔离测试
+
+ID: `test.65pl.evidence-layer-separation`；状态: `candidate`；证据: `source-reviewed`
+
+命令: `python tools/query_kb.py "分层证据模型" --entity-type mechanism`
+
+目标: 验证静态、运行时读回、文件读回、受控路径和游戏内验收在索引中保持独立语义。；变更范围: 只读索引和生成参考页；不写样本、不启动游戏。
+
+断言：
+
+- 结果包含五个证据层。
+- 每层同时列出可证明项和不可证明项。
+- 候选地址不会因静态命中自动升级为 canonical。
+
+必需产物：
+
+- 查询输出
+- 生成 reference 页
+- 研究边界审计
+
+失败含义：证据层级混淆，可能将静态调用关系误报为实机功能或将临时运行时写入误报为持久补丁。
 
 ## R/S eex 只读烟测
 

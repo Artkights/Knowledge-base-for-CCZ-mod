@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/structures/data-manager-physical-tables.json`、`6.5/data/structures/engine-effect-assignment.json`、`6.5/data/structures/item-category-semantics.json`、`6.5/data/structures/runtime-structures.json`
+结构化事实来源：`6.5/data/structures/data-manager-physical-tables.json`、`6.5/data/structures/engine-effect-assignment.json`、`6.5/data/structures/item-category-semantics.json`、`6.5/data/structures/reference-object-identifiers.json`、`6.5/data/structures/runtime-structures.json`
 
 ## 65-standard-v1 人物（persons 物理表）
 
@@ -3146,6 +3146,51 @@ ID: `struct.65.item-category-semantics`；状态: `canonical`；证据: `legacy-
 | `装备效果或保留或参数高字节` | `0x16` | 1 | `uint8` | 武器/防具=特殊效果值；辅助=空/保留；消耗品=参数高字节。原CSV列名装备特效值。 |
 | `成长或适用兵种或保留` | `0x17` | 1 | `uint8` | 武器/防具=能力成长；辅助=适用兵种系ID（255=所有兵种）；消耗品=空/保留。原CSV列名能力成长。 |
 | `图鉴` | `0x18` | 1 | `uint8` | 图鉴标记。勾选框主动修改写0/1，未主动修改的非零原值保持；不在只读浏览时归一化。 |
+
+## 6.5pl 参考战术单位身份记录
+
+ID: `structure.65pl.reference-tactical-unit-identity`；状态: `candidate`；证据: `source-reviewed`
+
+步长: `0x30` (48)
+
+索引公式: `tactical_unit_ptr = tactical_base + battlefield_id * 0x30（基址需当前画像确认）`
+
+写入门禁：
+
+- battlefield_id 与 data_id 分开记录。
+- 跨版本重新确认基址、步长和字段消费者。
+- 未经动态闭环不得直接写 HP/MP/状态。
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `data_id` | `0x00` | 2 | `uint16` | 人物 Data 号候选；FFFF 表示空槽 |
+| `packed_identity_and_position` | `0x04` | 4 | `packed-bytes` | 形象、阵营、X/Y 的打包视图；不能当作 Data 号 |
+| `current_hp_candidate` | `0x10` | 4 | `uint32` | 当前 HP 候选，需目标版本动态读回 |
+| `current_mp_candidate` | `0x14` | 4 | `uint32` | 当前 MP 候选，读取宽度和 setter 需独立复核 |
+| `status_bits_candidate` | `0x1E` | 1 | `uint8` | 异常状态分组候选，不能直接当作状态等级 |
+
+## 6.5pl 参考战斗事务上下文
+
+ID: `structure.65pl.reference-battle-transaction-context`；状态: `candidate`；证据: `source-reviewed`
+
+步长: `0x608` (1544)
+
+索引公式: `transaction_base + field_offset；事务基址和生命周期需按初始化路径确认`
+
+写入门禁：
+
+- 仅按具体初始化和消费路径解释字段。
+- 局部事务字段不能迁移为持久数据结构。
+- 暴击标记需同时记录置位、清零和后续消费者。
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `attacker_battle_id` | `0x00` | 1 | `uint8` | 攻击者战场编号候选 |
+| `target_battle_id` | `0x01` | 1 | `uint8` | 目标战场编号候选 |
+| `data_id` | `0x04` | 2 | `uint16` | 当前效果/攻击关联的 Data 号候选 |
+| `data_record_ptr` | `0x08` | 4 | `pointer` | 当前 DataRecord 指针候选 |
+| `tactical_unit_ptr` | `0x0C` | 4 | `pointer` | 当前 TacticalUnit 指针候选 |
+| `critical_check_marker` | `0x604` | 4 | `uint32` | 暴击概率检定通过标记候选；不等同最终伤害或动画 |
 
 ## 战术单位记录
 

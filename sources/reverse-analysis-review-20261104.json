@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-04",
+  "baselineCommit": "9975b0f21343de07fce8ce2b24f2396c131ed69e",
+  "scope": "把 caocao-mod-public-knowledge-base 的核心引擎、对象身份和反汇编/动态分析方法整合为第二知识库可查询的 candidate 实体。",
+  "method": "只引用 source-manifest 中已登记的固定上游提交和本地证据；不复制扫描器源码、游戏映像或私有构建；所有固定地址和玩法结论保留样本边界。",
+  "documentCount": 5,
+  "entries": [
+    {
+      "path": "6.5/data/mechanisms/public-reverse-analysis-methods.json",
+      "sha256": "71955B35166651A0DA6694805517A3BB07D6F5819F66BDAA0B4EBAB2DED3F143",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65pl.public-core-engine-analysis",
+        "mechanism.65pl.public-dispatcher-analysis",
+        "mechanism.65pl.public-object-identity-analysis",
+        "mechanism.65pl.public-stub-abi-reconstruction",
+        "mechanism.65pl.reference-scanner-hardening",
+        "mechanism.65pl.reverse-engineering-evidence-layers"
+      ],
+      "reason": "从上游公共知识库提取核心引擎、调度器、桩 ABI、对象身份、证据层和扫描器限制；均保持 candidate。"
+    },
+    {
+      "path": "6.5/data/structures/reference-object-identifiers.json",
+      "sha256": "C881B379153C68DE8F7A176505350240D0588FE2F88660BE0FF035608A695552",
+      "disposition": "new-entities",
+      "targetIds": [
+        "structure.65pl.reference-battle-transaction-context",
+        "structure.65pl.reference-tactical-unit-identity"
+      ],
+      "reason": "把对象编号、步长、事务区和字段边界转为结构化候选，避免把 6.5pl 地址套用到其它版本。"
+    },
+    {
+      "path": "6.5/data/workflows/reverse-engineering-methods.json",
+      "sha256": "5D28607334EEA6D3BABEA7774F7F85B62879479141AFE7DB6D61D6FD400957CB",
+      "disposition": "new-entities",
+      "targetIds": [
+        "workflow.65pl.engine-feature-development",
+        "workflow.65pl.reverse-engineering-migration",
+        "workflow.65pl.x32dbg-runtime-evidence"
+      ],
+      "reason": "把反汇编迁移、x32dbg 运行时证据和行为契约验收流程转为可执行门禁。"
+    },
+    {
+      "path": "6.5/data/tests/reverse-engineering-evidence-contracts.json",
+      "sha256": "9477ECADCD8C7539EDFD2E279E2BD2B5B07BF4211DE51B4A6DF8A9665E2AFEF0",
+      "disposition": "new-entities",
+      "targetIds": [
+        "test.65pl.evidence-layer-separation",
+        "test.65pl.reference-scanner-negative-cases"
+      ],
+      "reason": "补充扫描器负例和证据层隔离的只读测试契约。"
+    },
+    {
+      "path": "6.5/data/cases/upstream-analysis-cases.json",
+      "sha256": "495AF037CC70E0FBFF6FA6BDBBC758B9C8E2A6FBECBD1C5537A7F61E823BF7F9",
+      "disposition": "new-entities",
+      "targetIds": [
+        "case.65pl.anomaly-status-groups-candidate",
+        "case.65pl.attack-side-value-and-mp-candidate",
+        "case.65pl.critical-check-marker-candidate"
+      ],
+      "reason": "保留攻击侧数值、异常状态和暴击检定标记的样本边界，明确未完成实机闭环。"
+    }
+  ]
+}

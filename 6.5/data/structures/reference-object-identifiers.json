@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "entityType": "data-structure",
+  "profile": null,
+  "entries": [
+    {
+      "id": "structure.65pl.reference-tactical-unit-identity",
+      "title": "6.5pl 参考战术单位身份记录",
+      "aliases": [
+        "TacticalUnit",
+        "战场单位槽",
+        "unit+0 Data号"
+      ],
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "stride": 48,
+      "indexFormula": "tactical_unit_ptr = tactical_base + battlefield_id * 0x30（基址需当前画像确认）",
+      "fields": [
+        {
+          "name": "data_id",
+          "offset": "0x00",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 Data 号候选；FFFF 表示空槽"
+        },
+        {
+          "name": "packed_identity_and_position",
+          "offset": "0x04",
+          "width": 4,
+          "type": "packed-bytes",
+          "meaning": "形象、阵营、X/Y 的打包视图；不能当作 Data 号"
+        },
+        {
+          "name": "current_hp_candidate",
+          "offset": "0x10",
+          "width": 4,
+          "type": "uint32",
+          "meaning": "当前 HP 候选，需目标版本动态读回"
+        },
+        {
+          "name": "current_mp_candidate",
+          "offset": "0x14",
+          "width": 4,
+          "type": "uint32",
+          "meaning": "当前 MP 候选，读取宽度和 setter 需独立复核"
+        },
+        {
+          "name": "status_bits_candidate",
+          "offset": "0x1E",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "异常状态分组候选，不能直接当作状态等级"
+        }
+      ],
+      "writeGates": [
+        "battlefield_id 与 data_id 分开记录。",
+        "跨版本重新确认基址、步长和字段消费者。",
+        "未经动态闭环不得直接写 HP/MP/状态。"
+      ],
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    },
+    {
+      "id": "structure.65pl.reference-battle-transaction-context",
+      "title": "6.5pl 参考战斗事务上下文",
+      "aliases": [
+        "物理攻击事务区",
+        "0x4927F0",
+        "critical marker"
+      ],
+      "versions": [
+        "6.5pl"
+      ],
+      "profile": null,
+      "status": "candidate",
+      "evidence": "source-reviewed",
+      "stride": 1544,
+      "indexFormula": "transaction_base + field_offset；事务基址和生命周期需按初始化路径确认",
+      "fields": [
+        {
+          "name": "attacker_battle_id",
+          "offset": "0x00",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "攻击者战场编号候选"
+        },
+        {
+          "name": "target_battle_id",
+          "offset": "0x01",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "目标战场编号候选"
+        },
+        {
+          "name": "data_id",
+          "offset": "0x04",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "当前效果/攻击关联的 Data 号候选"
+        },
+        {
+          "name": "data_record_ptr",
+          "offset": "0x08",
+          "width": 4,
+          "type": "pointer",
+          "meaning": "当前 DataRecord 指针候选"
+        },
+        {
+          "name": "tactical_unit_ptr",
+          "offset": "0x0C",
+          "width": 4,
+          "type": "pointer",
+          "meaning": "当前 TacticalUnit 指针候选"
+        },
+        {
+          "name": "critical_check_marker",
+          "offset": "0x604",
+          "width": 4,
+          "type": "uint32",
+          "meaning": "暴击概率检定通过标记候选；不等同最终伤害或动画"
+        }
+      ],
+      "writeGates": [
+        "仅按具体初始化和消费路径解释字段。",
+        "局部事务字段不能迁移为持久数据结构。",
+        "暴击标记需同时记录置位、清零和后续消费者。"
+      ],
+      "sourceRefs": [
+        "src.upstream.lanceyuki.de63.33953c21ed13",
+        "src.upstream.lanceyuki.de63.74b842bd2170",
+        "src.history.local.godtype-f36-synthesis"
+      ]
+    }
+  ]
+}
