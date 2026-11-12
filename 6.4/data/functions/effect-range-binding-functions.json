@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz64.xisui.9112",
+  "entries": [
+    {
+      "id": "fn.64.effect-group-query.9112",
+      "title": "特效组查询（基础号+项数）",
+      "aliases": [
+        "0x0043C794",
+        "effect_group_query"
+      ],
+      "versions": [
+        "6.4"
+      ],
+      "profile": "profile.ccz64.xisui.9112",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043C794",
+        "profile": "profile.ccz64.xisui.9112",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "cdecl；ECX 由 0x4079DA 使用，栈参 (base, flag, count)",
+      "inputs": "[ebp+8]=起始特效号, [ebp+0xC]=标志, [ebp+0x10]=项数",
+      "returns": "EAX=1 命中 / 0 未命中（ECX 同步）",
+      "semantics": "先 0x4079DA(unit, base) 判断是否存在；存在且 flag==0 时再 0x407AF2(unit, base, count) 组扫描。6.4 的穿透加载器以 (0x33,0,5)、范围解析以 (0x32,0,5) 调用，是 6.4 版穿透/远距的入口。",
+      "relations": [],
+      "sourceRefs": [
+        "src.dm.formulas.sample-64-20261102",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.64.effect-presence.9112",
+      "title": "单特效存在性判定",
+      "aliases": [
+        "0x004079DA",
+        "effect_presence"
+      ],
+      "versions": [
+        "6.4"
+      ],
+      "profile": "profile.ccz64.xisui.9112",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004079DA",
+        "profile": "profile.ccz64.xisui.9112",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=单位指针，栈参 (paramID)",
+      "inputs": "ECX=单位指针, [ebp+8]=参数号",
+      "returns": "EAX≠0 表示拥有",
+      "semantics": "被 0x43C794、0x43F8C0（0x4079DA(unit,0x32) 与 (unit,0)）反复调用；是 6.4 判断远距/穿透候选是否生效的原子桩。",
+      "relations": [
+        "fn.64.effect-group-query.9112"
+      ],
+      "sourceRefs": [
+        "src.dm.formulas.sample-64-20261102",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.64.pierce-loader.9112",
+      "title": "穿透加载器（含穿透攻击替换）",
+      "aliases": [
+        "0x0040782D",
+        "pierce_loader"
+      ],
+      "versions": [
+        "6.4"
+      ],
+      "profile": "profile.ccz64.xisui.9112",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040782D",
+        "profile": "profile.ccz64.xisui.9112",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=单位指针，无栈参",
+      "inputs": "ECX=单位指针",
+      "returns": "AL=穿透范围码",
+      "semantics": "0x505FDC≠0 返回 0；0x500E9A==2 且 0x484E27 命中返回其值；否则 0x43C794(unit,0x33,0,5) 查穿透攻击，非 0 直接作为穿透范围码（替换）；未命中按单位类型查 0x407881 表。",
+      "relations": [
+        "fn.64.effect-group-query.9112"
+      ],
+      "sourceRefs": [
+        "src.dm.formulas.sample-64-20261102",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.64.state-range-remap.9112",
+      "title": "状态类型→状态范围重映射",
+      "aliases": [
+        "0x0040CCCC",
+        "state_range_remap"
+      ],
+      "versions": [
+        "6.4"
+      ],
+      "profile": "profile.ccz64.xisui.9112",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040CCCC",
+        "profile": "profile.ccz64.xisui.9112",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "cdecl；4 个栈参，前两个为输出槽",
+      "inputs": "[ebp+8]=范围(出), [ebp+0xC]=标志(出), [ebp+0x10]=单位, [ebp+0x14]=类型码",
+      "returns": "EAX=范围, EDX=替换标志",
+      "semantics": "特效 0x7D（或 0x42108C）命中时：类型 9/0x0A→范围 0x0B、类型 7/0x0D→范围 0x0C；特效 0x7E 命中且类型 2/3/4→0x0C；特效 0x83 命中且类型≥0x0E 时范围至少 0x0C。命中即置标志 1（替换）。由 0x43F839 在范围解析内调用。",
+      "relations": [],
+      "sourceRefs": [
+        "src.dm.formulas.sample-64-20261102",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

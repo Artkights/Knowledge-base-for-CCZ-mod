@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.item-record-fields.3ef7",
+      "title": "物品记录 25 字节字段语义与 DATA.E5+star.e5 装载链",
+      "aliases": [
+        "物品字段",
+        "item+0x11",
+        "item+0x12",
+        "item+0x15",
+        "item+0x17",
+        "item+0x18",
+        "star.e5",
+        "0x40E070",
+        "0x40B477",
+        "0x40B3D7",
+        "0x4303C8"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "25 字节物品记录字段逐项展开：+0x10 使用效果码、+0x11 类型码、+0x12 买价/100、+0x14 装备子类型、+0x15 基础值、+0x17 每级成长、+0x18 存在/启用标志；+0x13 仍未定名。装载链为 DATA.E5 块1（104 条）＋ star.e5（6.5 0xED8=152 条、6.6 0x27D8=408 条）拼接：6.5 归一化 255 槽、6.6 归一化 512 槽；6.5/6.6 装载时内联旋转 +0x12..+0x14（同哈希 4aabbdb8c85a23bf），6.4 经 0x41FECC 解析式完成同一重排。买价 0x40E070=byte[+0x12]×0x64，卖价 0x40B477=买价的 75%（0xFF→0xFFFF），配合 0x4673xx 排序比较器闭合价格消费链。0x40B3D7 给出 value=byte[+0x15]+(count-1)×byte[+0x17]。6.6 新增 20 项类型表 0x4303C8。",
+      "constants": [
+        "0x19",
+        "0x64",
+        "0xFF",
+        "0xFFFF",
+        "0x14",
+        "0x1A",
+        "0x0B",
+        "0x0E",
+        "0x12",
+        "0x13",
+        "0x14",
+        "0x15",
+        "0x17",
+        "0x18",
+        "0xED8",
+        "0x27D8",
+        "0xA28",
+        "0x4303C8",
+        "0x4A1140",
+        "0x49F820",
+        "0x4A1B68",
+        "0x4A0248"
+      ],
+      "identity": "旋转块 0x4010E7 在 6.5/6.6 同哈希 4aabbdb8c85a23bf；0x40B477 在 6.4/6.5 同哈希 71bb63fe737cd56d，6.6 因内部调用 0x40D38C→0x453A98 改为 f2a2f31a6693ebf2；0x40E070/0x41DD72/0x40B444/0x40B460/0x40B4BD/0x40B4E1/0x40C45A/0x40C46E/0x43AD20 三基底同哈希；+0x10 getter 6.6 由 0x41C330 重定位到 0x41C325（体同哈希 c374a5d630193ccb），+0x18 getter 6.6 由 0x44001E 重定位到 0x4083F0（体同哈希 bf141a17d6f19d2d）。",
+      "limitations": [
+        "+0x13 未发现独立消费点（+0x10 已由 mechanism.65.item-effect-code-and-range-table.3ef7 解析为使用效果码）。",
+        "+0x16 仅随 word[+0x15] 读取。",
+        "6.6 类型表 0x4303C8 仅 20 项，装备类型 >=0x1A 会读入 0x90 填充，语义待核。",
+        "6.4 槽位上限已由 0x41BABB 的 0..0xFE 循环证明为 255（见 item-loader-64-parser）。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.item-record-table.3ef7",
+        "mechanism.65.item-loader-64-parser.3ef7",
+        "mechanism.65.item-record-normalization.3ef7",
+        "mechanism.65.item-type-classification.3ef7",
+        "mechanism.65.item-price-consumption-boundary.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-item-record-fields-20261112",
+        "src.research.engine-item-record-table-20261112"
+      ],
+      "siteAddresses": {
+        "loader65": "0x4010B0",
+        "loader66": "0x4010B0",
+        "rotation": "0x4010E7",
+        "starFile": "0x48C530",
+        "price": "0x40E070",
+        "sellPrice": "0x40B477",
+        "growthFormula": "0x40B3D7",
+        "baseValueGetter": "0x41DD72",
+        "growthGetter": "0x41B4F7",
+        "typeGetter": "0x43AD20",
+        "typeClass": "0x40B444",
+        "typeSub": "0x40B460",
+        "typeExt": "0x40B4BD",
+        "specialFlag": "0x40B4E1",
+        "validGetter65": "0x44001E",
+        "validGetter66": "0x4083F0",
+        "field10Getter65": "0x41C330",
+        "field10Getter66": "0x41C325",
+        "validCounter65": "0x423DFF",
+        "validCounter66": "0x427A98",
+        "typeTable66": "0x4303C8",
+        "typeTableReader66": "0x43038B"
+      }
+    }
+  ]
+}

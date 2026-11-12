@@ -50,6 +50,30 @@
         "src.dm.engine-validation-20261027",
         "src.dm.assignment-8byte-static-20261027"
       ]
+    },
+    {
+      "id": "profile.ccz65.unencrypted.3ef7",
+      "title": "曹操传 6.5 加强版未加密样本（3EF7）",
+      "aliases": [
+        "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED",
+        "6.5-strategy-3ef7"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "status": "canonical",
+      "evidence": "sample-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED",
+        "size": 1196032
+      },
+      "addressPolicy": "本画像 VA 仅对该 SHA 样本成立；策略记录/子表结论已在该样本上逐项复核。",
+      "sourceRefs": [
+        "src.research.strategy-attribute-verification-20261111"
+      ]
     }
   ]
 }

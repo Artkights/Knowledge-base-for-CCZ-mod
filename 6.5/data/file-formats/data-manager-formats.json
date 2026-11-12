@@ -92,7 +92,7 @@
         "src.items.byte-evidence",
         "src.items.semantic-resolver",
         "src.items.semantic-tests",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ],
       "relations": [
         "struct.65.item-category-semantics",
@@ -329,7 +329,7 @@
         "src.data-manager.csv",
         "src.data-manager.workspace",
         "src.data-manager.incremental-20261102.extend-service",
-        "src.data-manager.incremental-20261102.extend-geometry",
+        "src.data-manager64.augmentation",
         "src.data-manager.incremental-20261102.extend-doc"
       ]
     },

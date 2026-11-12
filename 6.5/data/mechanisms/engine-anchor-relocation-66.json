@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.anchor-relocation-66.3ef7",
+      "title": "6.5→6.6 全局数据锚点重定位映射（27 组配对）",
+      "aliases": [
+        "anchor relocation",
+        "锚点重定位",
+        "0x4CE77C",
+        "0x500AD0",
+        "0x511E40",
+        "0x4930C8"
+      ],
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "以 dataRefs 的引用函数签名做 Jaccard 配对，得到 27 组 6.5→6.6 全局锚点映射：原 0x4CE76C..0x4CE7FE UI/战斗全局块迁到 0x500AAC..0x500ADE（逐字段、非固定位移），0x511000→0x508C00、0x511400→0x4CB1C0、0x511E40→0x4930C8；.text 内嵌数据 0x407826→0x41A139、0x407D1A→0x476891。高置信 8 组（Jaccard≥0.82）。第 68 轮以同址操作数复核，新增 9 组字段级映射并更正 UI 模式字段：0x4CE79F→0x500AD7（原误记为 0x500AD3）。",
+      "constants": [
+        "0x4CE77C", "0x500AD0", "0x4CE7BE", "0x500ADA",
+        "0x4CE78F", "0x500ACF", "0x4CE79F", "0x500AD7",
+        "0x4CE77E", "0x500AD2", "0x4CE77F", "0x500AD3",
+        "0x4CE74C", "0x500AB0", "0x4CE75C", "0x500AB4",
+        "0x4CE78C", "0x500AB8", "0x4CE7AC", "0x500ABC",
+        "0x4CE7CC", "0x500AC0", "0x4CE78E", "0x500ACE",
+        "0x511000", "0x508C00", "0x511400", "0x4CB1C0",
+        "0x511E40", "0x4930C8"
+      ],
+      "identity": "配对得分阈值 0.6；高置信组 shared≥2 且 Jaccard=1.0；0x4CE77C→0x500AD0 为 shared=10/Jaccard=0.82 的主锚点。字段级复核采用“同一指令地址操作同一字段”判定（第 68 轮）。",
+      "limitations": [
+        "配对基于引用函数签名，函数体被改写的锚点可能漏配。",
+        "0x44143D/0x441449/0x441462/0x44146A 同时指向 0x441416，歧义未消解。",
+        "0x500ABx..0x500AEx 新块各字段语义已在第 68 轮登记到 mechanism.65.global-ui-state-block.3ef7，但部分字段仍为 candidate。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.item-record-fields.3ef7",
+        "mechanism.65.save-load-constants.3ef7",
+        "mechanism.65.crit-combo-mode.3ef7",
+        "mechanism.65.engine-general-coverage.3ef7",
+        "mechanism.65.global-ui-state-block.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-anchor-relocation-65-66-20261112"
+      ],
+      "siteAddresses": {
+        "block65": "0x4CE76C",
+        "block66": "0x500AAC",
+        "savePage65": "0x4CE78F",
+        "savePage66": "0x500ACF",
+        "validItemCount65": "0x4CE7BE",
+        "validItemCount66": "0x500ADA",
+        "uiMode65": "0x4CE79F",
+        "uiMode66": "0x500AD7",
+        "listIndex65": "0x4CE76C",
+        "listIndex66": "0x500AAC",
+        "actionParam65": "0x4CE74C",
+        "actionParam66": "0x500AB0",
+        "targetCache65": "0x4CE75C",
+        "targetCache66": "0x500AB4",
+        "hintWord65": "0x4CE78C",
+        "hintWord66": "0x500AB8",
+        "cmdIcon65": "0x4CE7AC",
+        "cmdIcon66": "0x500ABC",
+        "currentUnit65": "0x4CE7CC",
+        "currentUnit66": "0x500AC0",
+        "reentry65": "0x4CE78E",
+        "reentry66": "0x500ACE",
+        "uiCommand65": "0x4CE77E",
+        "uiCommand66": "0x500AD2",
+        "damageFlag65": "0x4CE77F",
+        "damageFlag66": "0x500AD3",
+        "critArray65": "0x511E40",
+        "critArray66": "0x4930C8",
+        "buffer65": "0x511000",
+        "buffer66": "0x508C00"
+      }
+    }
+  ]
+}

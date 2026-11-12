@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "mechanism.65.script-main-loop.3890",
+      "title": "剧本主循环（0x4180F9）与帧执行",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.script-interpret-frame.3890",
+          "role": "0x4100A1 单帧执行（计数驱动）"
+        },
+        {
+          "order": 2,
+          "entity": "global.65.script-vtable.3890",
+          "role": "虚表 +8 = 0x4109E6 分派器"
+        },
+        {
+          "order": 3,
+          "entity": "global.65.script-control-codes.3890",
+          "role": "控制码 3 退出单帧循环"
+        }
+      ],
+      "semantics": [
+        "主循环 0x4180F9：`eax=[0x4ABF9C] & 0x6E`，非 0 则退出；若 [0x4ABF9C]==2 则原地等待；否则 `ecx=0x492F90; call 0x4180C1` 执行一帧，然后跳回循环开头。",
+        "0x492F90 是剧本执行上下文对象（同时也是文本缓冲），主循环始终以它为 ECX。",
+        "0x4180C1 是帧包装：保存上下文 → call 0x4100A1（单帧）→ 非 0 时 call 0x41811F 做后处理 → 再 0x410950 判定，必要时再次 0x41811F → 返回后处理结果。",
+        "0x40FB6C 重置上下文游标：[ctx+0xC] = 0x40FB5B() + [ctx+0x20]；[ctx+8] = 0（即回到帧基准位置）。",
+        "0x40FBA5(i) 向前跳过 i 个 token（循环调用 0x40FCB2），用于定位帧内第 i 项。",
+        "0x41811F(ctx) 后处理：0x41085D(ctx,1,0)，返回 4 时 word[0x4B0770+6] 自增（章节/段号推进）。",
+        "跳转机制：0x41085D(ctx, a, b) 先查 0x410950(ctx)=ctx+0x28；若 [ctx+0x14]<0，则读一个 token 并令 全局 0x4CE75C = token + [ctx+0xC]（当前偏移），b==0 时置 [ctx+0x2C]=1；返回 4 表示需要推进章节/段号。"
+      ],
+      "relations": [
+        "fn.65.script-interpret-frame.3890",
+        "global.65.script-vtable.3890",
+        "struct.65.script-context.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

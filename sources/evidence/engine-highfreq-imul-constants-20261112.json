@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "analysis": "highfreq-imul-constants",
+  "date": "2026-11-12",
+  "method": "从 out/arith-66.json 取 0x6C00/0x12900/0xC000/0x3000 的全部 imul 站点，用 context.py 反汇编上下文，结合第 53 轮 0x1B00 单层字节数与第 72 轮 0x430020 表后代码，推导倍数关系。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "constants": [
+    {
+      "value": "0x1B00",
+      "decimal": 6912,
+      "counts": [57, 54, 50],
+      "semantic": "战场单层字节数（第 53 轮）",
+      "evidence": "0x404485 push 0x1B00；0x41ED2D imul edx,eax,0x1B00"
+    },
+    {
+      "value": "0x6C00",
+      "decimal": 27648,
+      "counts": [24, 24, 24],
+      "semantic": "4 个战场图层（4×0x1B00）",
+      "evidence": "0x41ED23：imul edx,eax,0x6C00 后与 0x1B00 分支并列送入 0x430020（参数 0x30,0x30）；0x40ABC2：imul eax,edx,0x6C00 + [ebp+0xC]"
+    },
+    {
+      "value": "0x12900",
+      "decimal": 76032,
+      "counts": [21, 21, 21],
+      "semantic": "11 个战场图层（11×0x1B00）",
+      "evidence": "0x40446E：imul esi, byte[0x4927F0], 0x12900；0x41ED07：imul eax, byte[rec+0xD], 0x12900 后加 0xF300"
+    },
+    {
+      "value": "0x3000",
+      "decimal": 12288,
+      "counts": [12, 12, 11],
+      "semantic": "64×64 24bpp 图块（64×64×3）",
+      "evidence": "0x41B5E7：imul eax,eax,0x3000 + [ebp+0x10]；0x40B549：imul eax,[ebp+0x10]+8,0x3000 + [ebp-8] 后调用 0x41B5B6"
+    },
+    {
+      "value": "0xC000",
+      "decimal": 49152,
+      "counts": [18, 18, 18],
+      "semantic": "4 个 64×64 24bpp 图块（128×128 图像，4×0x3000）",
+      "evidence": "0x41B5FA：imul eax,[ebp-4],0xC000 + [ebp+0xC]，与 push 0x40/0x40 一起调用 0x430020（0x40=64）"
+    }
+  ],
+  "blitFunction": {
+    "entry": "0x430020",
+    "position": "紧随 0x430000 的 8 项跳转表之后（第 72 轮）",
+    "signature": "blit(dstOrSrc, dstOrSrc, width, height)",
+    "observedCalls": [
+      {"site": "0x41ED37", "args": ["edx=idx*0x6C00+[ebp-8]", "edx=idx*0x1B00+[ebp-0xC]", "0x30", "0x30"]},
+      {"site": "0x41B607", "args": ["[ebp+0x14]", "eax=idx*0xC000+[ebp+0xC]", "0x40", "0x40"]}
+    ],
+    "meaning": "矩形块拷贝/合成，宽高为 0x30(48) 或 0x40(64)；与 0x1B00/0x6C00/0x12900/0x3000/0xC000 的缓冲布局配合"
+  },
+  "globalByte": {
+    "address": "0x4927F0",
+    "usage": "byte[0x4927F0] * 0x12900（0x40446B..0x40446E）作为记录偏移",
+    "semantic": "选择 0x12900 字节记录块的全局字节（候选：当前战场/地图资源编号）"
+  },
+  "conclusion": "高频 imul 常量形成图块/图层缓冲布局：0x1B00 为单层，0x6C00=4 层，0x12900=11 层；0x3000=64×64×3 的 24bpp 图块，0xC000=4 个图块（128×128）。0x430020 是接受宽高参数的矩形块拷贝函数，0x30/0x40 为调用尺寸。0x4927F0 为选择 0x12900 记录块的全局字节。",
+  "limitations": [
+    "0x12900 的 11 层中各层用途未定名。",
+    "0x4927F0 的业务名称未定。",
+    "0x430020 的源/目的参数顺序未逐字段验证。",
+    "未运行游戏对照。"
+  ]
+}

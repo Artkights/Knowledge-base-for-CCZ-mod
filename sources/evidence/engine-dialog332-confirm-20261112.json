@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "analysis": "dialog332-confirm",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 6.5 的 0x410EED（332 对话框对象构造，写 vtable 0x44A6B5）、0x456CB4（WM_COMMAND 槽）、0x41B8AF（BM_GETCHECK 包装）、0x42ACD2（0x508000 表访问器）、0x40BE7D（调用参数）；pefile 读 vtable 0x44A6B5 的 10 项。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "dialogClass": {
+    "ctor": "0x410EED：call 0x40E03D（基类）→ 0x463322 构造 +0x2C 子对象 → 写 vtable 0x44A6B5",
+    "vtable": {
+      "address": "0x44A6B5",
+      "slots": [
+        {"index": 0, "target": "0x44D4D2"},
+        {"index": 1, "target": "0x46E81F"},
+        {"index": 2, "target": "0x46F9BA"},
+        {"index": 3, "target": "0x401216"},
+        {"index": 4, "target": "0x456CB4"},
+        {"index": 5, "target": "0x46E9DB"},
+        {"index": 6, "target": "0x40E310"},
+        {"index": 7, "target": "0x42C5EC"},
+        {"index": 8, "target": "0x40E370"},
+        {"index": 9, "target": "0x40E3D0"}
+      ]
+    },
+    "note": "0x418C34 变体 0x418BC8 构造此对象后 DialogBoxParamA(模板 0x14C=332, proc 0x46D0F8)；0x46D221 的 WM_COMMAND 走 vtable+0x10 = slot4 = 0x456CB4"
+  },
+  "confirmHandler": {
+    "entry": "0x456CB4",
+    "steps": [
+      "若 byte[0x505FA8]==0 → 直接 EndDialog(hwnd, 0xFF)",
+      "0x40BE7D(hwnd=0x500E28, 0x505F40, 0x4FFF68, 0, 0)",
+      "0x42ACD2(0)：al==0xFF 时直接 EndDialog(0xFF)",
+      "复制 5 个 word 到 [ebp-0x1C] 起（源 [ebp-0x10]）",
+      "循环 i=0..4：GetDlgItem(hwnd, 0x406+i) → 0x41B8AF 读复选状态；置位则 mask |= 1<<i",
+      "写 byte[对象+2] = mask",
+      "若 [edx+0x14]!=0 且 byte[ecx-4]!=1 且 mask!=0：取 mask 最低置位 i，word[ebp-0x1C+i*2] += dx",
+      "结束：EndDialog(hwnd, 0xFF)"
+    ],
+    "controlIds": "0x406..0x40A（1030..1034，对应模板 332 的 武/统/智/敏/运 复选框）"
+  },
+  "helpers": {
+    "checkboxReader": {
+      "entry": "0x41B8AF",
+      "behavior": "SendMessageA(控件句柄, 0xF0=BM_GETCHECK, 0, 0) == 1（BST_CHECKED）时返回 1，否则 0"
+    },
+    "tableAccessor": {
+      "entry": "0x42ACD2",
+      "behavior": "index<0x66(102) 且 ([ebp+8]==1 或 byte[record+0x2A]!=0xFF) 时返回 index*0x0A + 0x508000，否则 al=0xFF",
+      "table": "0x508000：102 条 × 0x0A 记录（语义未定）"
+    }
+  },
+  "conclusion": "模板 332 的对话框类由 0x410EED 构造、vtable 0x44A6B5；WM_COMMAND 槽 0x456CB4 先经 0x42ACD2(0) 校验（失败 0xFF），再读取 0x406..0x40A 五个复选框（BM_GETCHECK=0xF0）组成 5 位掩码写入对象 +2，并在条件满足时把某个 word 加到被选中项；最后 EndDialog(hwnd,0xFF)。0x42ACD2 指向 0x508000 的 102×0x0A 表。",
+  "limitations": [
+    "0x508000 的 102×0x0A 记录字段语义未定。",
+    "对象 +2 掩码与 [edx+0x14]/byte[ecx-4] 的业务名未定。",
+    "0x40BE7D 的参数含义未展开。",
+    "未运行游戏对照。"
+  ]
+}

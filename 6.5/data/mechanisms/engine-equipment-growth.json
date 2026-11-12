@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.equipment-growth-thresholds.3ef7",
+      "title": "装备升级经验阈值与等级上限（三基底）",
+      "aliases": [
+        "equip-exp-threshold",
+        "equip-level-cap",
+        "装备升级",
+        "装备经验阈值"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x408304..0x40832C 按 0x40B4E1 的普通/特殊分支写入装备升级阈值与等级上限。6.4 普通 100/5、特殊 200/9；6.5 普通 150/5、特殊 200/9；6.6 普通 100/9、特殊 200/15。",
+      "function": "0x408304..0x40832C",
+      "branches": {
+        "normal": {"threshold": {"6.4": 100, "6.5": 150, "6.6": 100}, "cap": {"6.4": 5, "6.5": 5, "6.6": 9}},
+        "special": {"threshold": {"6.4": 200, "6.5": 200, "6.6": 200}, "cap": {"6.4": 9, "6.5": 9, "6.6": 15}}
+      },
+      "siteAddresses": {
+        "thresholdSpecial": "0x408317 add dl,0xC8",
+        "thresholdNormal": "0x40831C add dl,imm",
+        "capSpecial": "0x408326 mov al,imm",
+        "capNormal": "0x40832A mov al,imm"
+      },
+      "itemTypeCheck": "0x40B4E1（0x40C45A）返回 0/非0",
+      "limitations": [
+        "0x40B4E1 的特殊判定未映射到物品类型编号。",
+        "后续升级成长链未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.formula-site-cross-base-audit.3ef7",
+        "struct.65.item-record"
+      ],
+      "sourceRefs": [
+        "src.research.engine-equipment-growth-20261112",
+        "src.ccz65.3890.ekd5",
+        "src.dm.formulas.constants-20261102"
+      ]
+    }
+  ]
+}

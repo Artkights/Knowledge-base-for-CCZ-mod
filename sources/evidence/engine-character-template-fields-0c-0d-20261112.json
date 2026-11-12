@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "analysis": "character-template-fields-0c-0d",
+  "date": "2026-11-12",
+  "method": "context.py/dump_funcs.py 反汇编 0x4244E5（模板 +0x0D 使用）、0x4233F8、0x417B77、0x401DFF；结合第 62/65 轮已登记的 +0x0C/+0x0D 事实与第 73 轮 0x41CEAB 随机替换链。仅静态分析。",
+  "samples": [
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "fields": [
+    {
+      "offset": "+0x0C",
+      "size": 1,
+      "semantic": "动作/图像编号（候选）",
+      "evidence": "0x401DFF：template=0x484002(idx)；value=byte[template+0xC]（0x418C90）；返回 0x41CE8C(2, value)。0x41CEAB 的 33 项随机变体表以该值为索引（第 73 轮）。",
+      "confidence": "high"
+    },
+    {
+      "offset": "+0x0D",
+      "size": 1,
+      "semantic": "组别/候选索引（索引进栈上候选字节列表，选中值写入 unit+0xC 与 unit+0xD）",
+      "evidence": "0x4244E5：0x4233F8(2) 取类别值并缓存到 [ctx+0xC]；0x42452E 起构建 0xCC 字节栈上列表（0x4819E0 复制、0x444064 计算）；0x4245C0 取 template，0x4245C5 al=byte[template+0xD] 作为列表索引；0x4245E5 cl=[esp+index]，0x4245EB/0x4245EE 写入 unit+0xD 与 unit+0xC。另有 0x4244FE 将 [edx+1] 直接写入 [edx+0xD]。",
+      "confidence": "medium"
+    }
+  ],
+  "selectionContext": {
+    "categoryGetter": "0x4233F8(2)：0x42220F(2) 返回值经 0x417B77 校验；0 则返回 0xFF，否则把值写入 [ctx+0xC] 并返回",
+    "validationFn": "0x417B77(ctx, [ctx], [ctx+1], value, [ctx+0x54C])",
+    "listBuild": "0x42452E：push edx / sub esp,0xCC / inc edx / ecx=esp+0xD / push edx / call 0x4819E0（memcpy 类）",
+    "listConsumption": "0x4245A3 循环在列表中查找 [ebp-8]；0x4245E5 按模板 +0xD 索引取值"
+  },
+  "conclusion": "人物模板 +0x0C 是动作/图像编号（0x401DFF→0x41CE8B(2) 随机替换链的索引）；+0x0D 是组别/候选索引，0x4244E5 以它索引栈上候选字节列表，把选中值同时写入单位 +0xD 与 +0xC。0x4233F8(2) 负责取类别值并经 0x417B77 校验。",
+  "limitations": [
+    "候选列表的数据来源（文件/表）未追踪。",
+    "0x417B77 的校验规则未展开。",
+    "+0x0C 的业务名称（动作编号还是图像编号）仍未由命名表证明。",
+    "未运行游戏对照。"
+  ]
+}

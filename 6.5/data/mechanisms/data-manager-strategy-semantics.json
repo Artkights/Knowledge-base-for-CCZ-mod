@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.dm-strategy-attribute-semantics",
+      "title": "data 管理器策略页：界面描述与引擎语义对照",
+      "aliases": [
+        "策略页字段语义",
+        "strategy-learning 效果索引",
+        "strategy-extension 策略扩展标记",
+        "策略命中率 命中上限"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "策略页把三组不同东西放在同一页面：Data.e5 的 0x61 字节记录、Ekd5.exe 的 10 张 144 字节子表、以及一个 30 字节全局地形表。字段名称大多正确，但 多个字段的语义/标签与引擎不符，另有若干 UI 选项缺少证据。",
+      "fields": [
+        {
+          "ui": "名称",
+          "storage": "strategies +0x00，11 字节 GBK",
+          "engine": "运行时只复制 10 字节并补 NUL；第 11 字节为槽尾",
+          "verdict": "基本一致；应提示有效名称上限 10 字节"
+        },
+        {
+          "ui": "策略类型（KnownStrategyTypes 0..42）",
+          "storage": "strategies 文件 +0x0B（运行时 +0x0F）",
+          "engine": "0火/1水/2地/3风；4+ 效果类别；0x44270C 读取运行时 +0x0F；经验/地形共用",
+          "verdict": "字段名与文件偏移正确；6.6 的 0x1E/0x20/0x21/0x24/0x26/0x27/0x29/0x2A 与固定 6.5 名称不符"
+        },
+        {
+          "ui": "施展对象（0敌方/1我方/2全屏天气/5全屏己方气合/6全屏对方反气合）",
+          "storage": "strategies 文件 +0x0C（运行时 +0x0B）",
+          "engine": "0敌方/1我方/2全屏天气；0x425AC7 读取运行时 +0x0B；经验函数按 2/1 分支；代码/数据只支持 0/1/2",
+          "verdict": "5/6 缺少代码与数据证据，应移除或标记未验证"
+        },
+        {
+          "ui": "施法范围（Hitarea 形状单选）",
+          "storage": "strategies 文件 +0x0D（运行时 +0x0C）",
+          "engine": "范围/动画模板等级；0x418C93/0x401DFF 读取运行时 +0x0C；不是位掩码",
+          "verdict": "字段名与文件偏移正确；不要与运行时 +0x0D 的穿透位掩码混淆"
+        },
+        {
+          "ui": "穿透范围（0..6 形状）",
+          "storage": "strategies 文件 +0x0E（运行时 +0x0D）",
+          "engine": "文件 +0x0E → 运行时 +0x0D；专属消费者尚未唯一隔离；0x425AF0 是通用 +0x0D 位测试函数",
+          "verdict": "0..6 形状列表基本可用；6.6 数据出现 7，7 的语义仍需运行时确认"
+        },
+        {
+          "ui": "策略消耗",
+          "storage": "strategies 文件 +0x0F（运行时 +0x0E）",
+          "engine": "MP 成本；0x425AD0 读取运行时 +0x0E；样本值与已知 MP 成本吻合",
+          "verdict": "一致"
+        },
+        {
+          "ui": "策略图标",
+          "storage": "strategies +0x10",
+          "engine": "编辑器按 Mtem.e5 / Mgcicon.dll 预览；未确认专属引擎消费者",
+          "verdict": "编辑器元数据；引擎消费者待确认"
+        },
+        {
+          "ui": "兵种XX学习等级",
+          "storage": "strategies +0x11..+0x60，80 项",
+          "engine": "0=不习得，1..255=习得等级",
+          "verdict": "一致"
+        },
+        {
+          "ui": "策略说明",
+          "storage": "Imsg.e5，200 字节",
+          "engine": "200 字节 Imsg 文本；无逐策略运行时语义",
+          "verdict": "一致（文本）"
+        },
+        {
+          "ui": "策略扩展标记（6.6 两个复选框：策略模仿/辅助穿透；6.4/6.5 完全隐藏）",
+          "storage": "Ekd5 0xA2CE0，144 字节",
+          "engine": "6.4 全 0x90；6.5 143×0x90+0x91，无消费者；6.6 bit0=策略模仿/AI 可用，bit1=策略穿透增强适用，bits2-7 未使用",
+          "verdict": "6.6 只显示两个可写复选框；bits2-7 不显示但写回保留；6.4/6.5 策略页完全隐藏"
+        },
+        {
+          "ui": "是否伤血（Profile/CSV 策略伤害类型/策略伤血类型）",
+          "storage": "Ekd5 0xA30D0，144 字节",
+          "engine": "0x415EFA 返回 type<4 ? 1 : 0；0..3 行为完全等价；4 不伤血；>=4 同样被门控，但显示函数只把精确的 4 显示为 0；6.4/6.5 由 ID 0x46/0x16 绕过门控，6.6 由策略类型 0x1E/0x06 绕过",
+          "verdict": "真实含义是伤害门控，不是四种独立伤害类型；把 0..3 当不同玩法类型会过度解释"
+        },
+        {
+          "ui": "伤害系数（Profile/CSV 策略伤害系数）",
+          "storage": "Ekd5 0xA3040，144 字节",
+          "engine": "百分比系数；0x43C112 读取，伤害×系数/100",
+          "verdict": "方向正确；0x1C=28%，0x46=70%，0x5A=90%，0x64=100%"
+        },
+        {
+          "ui": "命中上限（Profile/CSV 策略命中率）",
+          "storage": "Ekd5 0xA2F20，144 字节",
+          "engine": "0..4 特殊模式；0=基础×90/100、1=绝对100、2=能力曲线、3=基础×34/100、4=基础×50/100；>=5 为基础×值/100，0x64=100；最终封顶 100",
+          "verdict": "语义错误：不是命中上限，是命中模式/基础命中率选择器；>=5 也不是无条件的绝对百分比"
+        },
+        {
+          "ui": "类型索引（Profile 显示效果索引；8 位 AI 类别掩码）",
+          "storage": "Ekd5 0xA2FB0，144 字节",
+          "engine": "8 位 AI 策略类别掩码；0x41DCBF/0x465B0F 逐位 test",
+          "verdict": "语义错误：不是索引；bit6“绝”、bit7“四神”与样本不符"
+        },
+        {
+          "ui": "效果索引（物理字段名效果类）",
+          "storage": "Ekd5 0xA2D70，144 字节",
+          "engine": "ID→效果类索引；0x4256BC 分派，48 项跳表 0x4259C3",
+          "verdict": "语义正确；旧界面名恢复为“效果索引”，物理字段仍为“效果类”"
+        },
+        {
+          "ui": "战场AI策略/练武场AI策略（Profile/CSV 战场AI策略限制/练武场AI策略限制）",
+          "storage": "Ekd5 0xA2E00 / 0xA2E90，各 144 字节",
+          "engine": "0x00..0x0F 为 AI 评分处理器编号，跳 16 项表 0x43A140",
+          "verdict": "语义错误：不是“AI限制”位标志，是评分处理器编号"
+        },
+        {
+          "ui": "大动画/小动画",
+          "storage": "Ekd5 0xA31F0 / 0xA3160，各 144 字节",
+          "engine": "0xFF=无动画；大动画 >=0x64 为特殊演出码",
+          "verdict": "名称正确；缺少 0xFF 与 >=0x64 的特殊值说明"
+        },
+        {
+          "ui": "策略施展地形",
+          "storage": "Ekd5 0x1FECC，30 字节",
+          "engine": "全局火/水/风/地地形掩码，不按策略 ID 存储",
+          "verdict": "不是逐策略属性；放在策略页会误导（紧凑页已排除）"
+        }
+      ],
+      "missingAttributes": [
+        "运行时有效行数 68：ID 68..143 存在文件中但启动加载器不读入；页面没有此边界提示。",
+        "AI 评分处理器编号到 16 项处理器的映射。",
+        "效果类处理器/ABI 与 0x2A..0x2F 预留空槽（6.6）。",
+        "大/小动画 0xFF 与 >=0x64 的特殊码。",
+        "6.6 扩展标志 bits2-7 的用途：当前样本均为 0，未发现消费者；编辑器写回时保留原值。",
+        "命中模式特殊目标条件（目标 byte[+0x1E]、0x41C2B0/0x45F670/0x406604、6.4 0x406610）的玩法名称尚未逐一命名。",
+        "6.6 0x42FD1C 额外读取 damage-type 后的局部值未被消费，具体描述构造用途未命名。"
+      ],
+      "notes": [
+        "data 管理器显示名已恢复为原有名称：界面为类型索引/命中上限/伤害系数/战场AI策略/练武场AI策略/效果索引/策略扩展标记；Profile 与 CSV 仍用策略类型索引/策略命中率/策略伤害系数/战场AI策略限制/练武场AI策略限制/策略扩展标记。功能修正保留：施展对象上限 2；战场/练武场 AI 上限 15；伤害类型上限 4；6.4/6.5 扩展位从策略页完全隐藏，6.6 只显示 bit0/bit1 两个可写复选框。",
+        "6.6 策略页的扩展位复选框名称为“策略模仿”（bit0）和“辅助穿透”（bit1）；bits2-7 不显示，但写回使用 (原值 & 0xFC) | (编辑位 & 0x03) 保留原值。",
+        "文件布局与运行时布局不同：0x40D73C 把文件 +0x0B..+0x0F 重排为运行时的对象/范围/穿透/MP/类型；data 管理器按文件偏移编辑是正确的。",
+        "语义错误：strategy-learning“效果索引”是 AI 类别位掩码；命中率是模式码；战场/练武场 AI 是评分处理器编号。",
+        "空属性：6.4/6.5 的策略扩展标记是 0x90 填充，不是可编辑策略属性。",
+        "旧界面名：strategy-learning 为“类型索引”，strategy-effect-class 为“效果索引”；后者的物理字段名仍是“效果类”，两者不是同一张表。",
+        "缺失：运行时 68 行边界、AI 16 项处理器映射、动画 0xFF/0x64+ 约定；命中码 0..4 已全量解析。",
+        "策略页区块标题已恢复为“效果与拓展”；strategy-learning 仍是 AI 类别掩码，界面旧名为“类型索引”。",
+        "是否伤血：0x415EFA 只返回 type<4；0..3 在全部直接消费者中完全等价，4 不伤血，>=4 同样被门控；6.4/6.5 由 ID 0x46/0x16 绕过门控，6.6 由策略类型 0x1E/0x06 绕过；显示函数只把精确的 4 显示为 0。",
+        "命中模式：0=基础×90/100、1=绝对100、2=能力曲线、3=基础×34/100、4=基础×50/100；>=5 是基础×值/100，不是无条件绝对百分比；最终封顶 100。6.4 额外在 0x406610 返回 0xFF 时置 0；6.6 效果读取改用 0x42518F。",
+        "位编辑器在实体重绑时抑制 CheckedChanged 提交，切换策略不会把中间复选框状态写成瞬态草稿；测试用未保存草稿在策略 0/104 间往返验证。",
+        "本实体只描述 data 管理器策略页与其引擎语义的对应关系，不授权任何自动写回。",
+        "界面标签取自 BusinessEditorPanel.FieldLabel/GetFlags 与 Profile 字段名；引擎语义取自 6.5 3EF7 静态反汇编。",
+        "6.4/6.5/6.6 的字段偏移一致；差异集中在 0xA2CE0 的含义和 6.6 效果类范围。",
+        "待确认：穿透范围 7 与运行时 +0x0D 的专属消费者；0x425AF0 的掩码不能直接当作策略证据。"
+      ],
+      "relations": [
+        "struct.65.strategy-record.3ef7",
+        "mechanism.65.strategy-damage-hit-resolution.3ef7",
+        "mechanism.65.strategy-attribute-tables.3ef7",
+        "mechanism.66.strategy-attribute-tables.25d",
+        "mechanism.64.strategy-attribute-tables.9112"
+      ],
+      "sourceRefs": [
+        "src.research.strategy-damage-hit-resolution-20261112",
+        "src.research.strategy-attribute-verification-20261111",
+        "src.data-manager.profile65",
+        "src.data-manager.registry",
+        "src.data-manager.values"
+      ]
+    }
+  ]
+}

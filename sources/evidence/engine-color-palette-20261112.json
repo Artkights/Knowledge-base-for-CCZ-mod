@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "analysis": "color-palette",
+  "date": "2026-11-12",
+  "method": "用 refs_to.py 收集 6.6 0x4CB1C0 与 6.5/6.4 0x511400 的全部引用；用 pefile 按 VA 读取 0x400 字节并计算 sha256；用 dump_funcs.py/context.py 反汇编调色板转换函数与颜色选择点；导入表解析 CreateSolidBrush/SetDlgItemInt 等。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "palette": {
+    "address66": "0x4CB1C0",
+    "address65": "0x511400",
+    "address64": "0x511400",
+    "size": "0x400（256 项 dword）",
+    "format": "0x00RRGGBB（GDI COLORREF 兼容）",
+    "sha256_0x400": "6BC92B09EBB7130D66053CB5B1051D3CA9F9731D757B770A7E2710CB348A4125",
+    "identicalAcrossBases": true,
+    "section66": ".api",
+    "section65": ".text3",
+    "section64": ".data2",
+    "entryGroups": [
+      {"range": "0..9", "value": "0x00F700FF", "semantic": "透明/色键洋红（绘制时作背景色使用）"},
+      {"range": "10..15", "values": ["0x00FF8C63", "0x00FF6B4A", "0x00F74A39", "0x00AD3129", "0x00FFDE5A", "0x00FFCE52"], "semantic": "肤色/暖色"},
+      {"range": "16..31", "values": ["0x00EFBD5A", "0x00BD9C52", "0x00FFFFFF", "...", "0x00000000"], "semantic": "灰阶/亮度梯度（16..27），28..31 深灰到黑"},
+      {"range": "32..47", "values": ["0x00FDEFE1", "0x00FDD9B4", "0x00FECA96", "0x00FEB369", "0x00FF952D", "0x00FF7F00", "0x00FF6E00", "0x00FF4C00", "0x00FF0000", "0x00E70000", "...", "0x004A0000"], "semantic": "橙红梯度"},
+      {"range": "48..63", "values": ["0x00D2FDFD", "0x00B4FDFD", "0x0096FEFD", "0x0069FEFD", "0x0000FFFF", "...", "0x00000056"], "semantic": "青蓝梯度"},
+      {"range": "64..255", "semantic": "其余色相梯度（绿/紫/棕等）+ 保留洋红填充（0x00F700FF 共 20 处）"}
+    ]
+  },
+  "conversion": {
+    "function66": "0x45B6E3",
+    "function65": "0x45B6E3",
+    "function64": "0x45B6E3",
+    "behavior66": "无参数：源固定 0x4CB1C0，目的固定 0x497770；循环 256 次，每项取 byte[+0]>>4、byte[+2]>>4、byte[+1]>>4 写入 dest 的 3 字节（顺序 0,2,1），即 256×3 的 4-bit RGB 表。",
+    "behavior65": "ecx=目的，[ebp+0xC]=源（调用点 0x42B9C9 push 0x511400；0x42B9CE push 0x497770），其余循环体相同。",
+    "behavior64": "与 6.5 相同（入口 0x45B6E3，循环体 0x45B6FD）。",
+    "destination": "0x497770（256×3=0x300 字节）",
+    "caller": "0x42B9FB（6.6）/0x42B9D3（6.5）战斗初始化链，紧跟在 0x4CE7FF/0x500ADF 计数自增之后"
+  },
+  "consumers": [
+    {"site": "0x4034F6", "behavior": "arg3==3 时 color=palette[arg2]，并 (原 dword & 0xFF000000) xor color 写回 32 位像素；否则写单字节。"},
+    {"site": "0x40A4D1", "behavior": "把颜色索引（cl）经 palette[cl] 展开为 0x00RRGGBB，再拆成 R/G/B 求亮度。"},
+    {"site": "0x40E835/0x40E83A", "behavior": "读 palette[edx] 作为颜色（6.5 同址 0x40E83A）。"},
+    {"site": "0x41734A/0x41734F", "behavior": "读 palette[edx] 作为颜色（6.5 同址 0x41734F）。"},
+    {"site": "0x42E19B", "behavior": "颜色选择：arg>=0 取索引 0x1F(黑)、0x3A(蓝)、0x12(白)；arg<0 取 0x12(白)、0x28(红)、0x12(白)。由 neg/sbb/and al,0xF3/add 0x1F 等无分支指令实现。"},
+    {"site": "0x4647E8", "behavior": "CreateSolidBrush(palette[arg+1])，把调色板颜色转成 GDI 画刷。"},
+    {"site": "0x42AEF4", "behavior": "6.6 新增：按位掩码 dl 的 8 个 bit 生成像素颜色，位为 0 时写 0x00F700FF（透明色键）。"},
+    {"site": "0x42AF3A", "behavior": "6.6 新增：push palette[arg] 作为前景色，背景色 0x00F700FF，交 0x41307D 绘制。"}
+  ],
+  "crossBaseNotes": [
+    "调色板 0x400 字节三基底完全相同（sha256 一致）。",
+    "6.6 把转换函数的源/目的硬编码进 0x45B6E3；6.5/6.4 由调用方压入 0x511400/0x497770。",
+    "6.6 新增两个消费点 0x42AEF4/0x42AF3A（位掩码生成像素与绘制）；6.5 对应的 0x42B9C9 已改为直接 push 源地址。",
+    "表在文件中的所属节不同：6.6 .api、6.5 .text3、6.4 .data2，但 VA 区间均紧邻代码。"
+  ],
+  "conclusion": "0x4CB1C0（6.6）/0x511400（6.5、6.4）是 256 项 24 位 RGB 调色板（0x400 字节，三基底逐字节相同），用于像素颜色、GDI 画刷、伤害/阵营颜色选择；0x00F700FF 为透明色键。6.6 的 0x45B6E3 把调色板转换成 0x497770 的 256×3 4-bit RGB 表，供绘制链使用。",
+  "limitations": [
+    "索引 0..9 之外的完整色相命名未逐一登记，只登记了主要梯度段。",
+    "0x42AEF4/0x42AF3A 的具体绘制对象（特效/头像/地图）未追踪。",
+    "调色板是否在运行期被修改未验证（静态仅见读取）。",
+    "未运行游戏对照。"
+  ]
+}

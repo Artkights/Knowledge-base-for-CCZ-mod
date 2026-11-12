@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "analysis": "training-ground-context",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 6.5 的 0x418F05（上下文初始化）、0x4207B2（模板 330 对话框过程）、0x41D0AE（SetDlgItemInt 包装）、0x405BA2（0x559 控件刷新）、0x41E6A7（0x500D8F 自增）、0x46FD2E（+0x11 判定）；dialog_resource.py 解析 RT_DIALOG 330 的 48 个控件；hash_regions.py 对照三基底 0x418F05；refs_to.py 汇总 0x500AA0/0x500AE0 引用；比较 6.4/6.5/6.6 的 330 资源。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "contextStruct": {
+    "sixFiveBase": "0x500AA0",
+    "sixSixBase": "0x500AE0",
+    "sixFourBase": "0x500AA0",
+    "size": "0x90",
+    "note": "第79轮的「关卡/地图全局描述结构」，本轮确认其宿主为练武场（模板 330）"
+  },
+  "initializer": {
+    "entry": "0x418F05",
+    "hashAllBases": "47ca7661c8fbfedd",
+    "signature": "void InitTrainingContext(TrainingCtx* ecx, int a1, int a2, int edx)",
+    "writes": [
+      {"field": "+0x00", "value": "eax（调用方传入，候选：人物记录指针）"},
+      {"field": "+0x04", "value": "[ebp+8]"},
+      {"field": "+0x08", "value": "[ebp+0xC]"},
+      {"field": "+0x09", "value": "edx（与 +0x08 的 dword 重叠 3 字节）"},
+      {"field": "+0x0A", "value": "1"},
+      {"field": "+0x1C", "value": "dword[0x4CEA08]（地图记录指针，第59轮 +0x1B/+0x1F 像素原点）"},
+      {"field": "+0x10", "value": "byte[0x505FDC]（战斗/训练模式字节）"},
+      {"field": "+0x11", "value": "byte[0x500D8F]（场景计数，0x41E6A7 处自增）"}
+    ],
+    "tail": "push 0x4207B2（DlgProc）；push [0x4B6A68]（主窗口）；push 0x14A（模板 330）；push [0x4B6A60]（hInstance）；call DialogBoxParamA"
+  },
+  "dialog330": {
+    "id": 330,
+    "hex": "0x14A",
+    "title": "练武场",
+    "format": "DLGTEMPLATE",
+    "style": "0x80C008C0",
+    "sizeDlu": "250x151",
+    "font": "9pt 宋体",
+    "itemCount": 48,
+    "resourceHashes": {
+      "6.4": {"bytes": 1480, "sha1Prefix": "ffbebc1b9b1cb70c"},
+      "6.5": {"bytes": 1480, "sha1Prefix": "679ba6d5a929663d"},
+      "6.6": {"bytes": 1480, "sha1Prefix": "34f247835f43a21a"}
+    },
+    "controls": [
+      {"id": "0x050B", "dec": 1291, "class": "Button", "text": "逃跑", "rect": "199,134,49,14"},
+      {"id": "0x059D", "dec": 1437, "class": "Static", "text": "回合数", "rect": "199,3,25,8"},
+      {"id": "0x04C3", "dec": 1219, "class": "Static", "text": "", "rect": "2,2,195,98", "note": "左侧大面板"},
+      {"id": "0x055A", "dec": 1370, "class": "Button", "text": "N", "rect": "1,103,96,46"},
+      {"id": "0x055D", "dec": 1373, "class": "Static", "text": "", "rect": "22,127,69,8", "note": "左 HP 值"},
+      {"id": "0x0551", "dec": 1361, "class": "Static", "text": "Lv", "rect": "68,115,9,8"},
+      {"id": "0x055C", "dec": 1372, "class": "Static", "text": "", "rect": "79,115,13,8", "note": "左 Lv 值"},
+      {"id": "0x055B", "dec": 1371, "class": "Static", "text": "", "rect": "8,115,32,8", "note": "左 姓名"},
+      {"id": "0x0555", "dec": 1365, "class": "Static", "text": "Exp", "rect": "8,147,12,8"},
+      {"id": "0x0553", "dec": 1363, "class": "Static", "text": "SP", "rect": "8,137,9,8"},
+      {"id": "0x055E", "dec": 1374, "class": "Static", "text": "", "rect": "22,137,69,8", "note": "左 SP 值"},
+      {"id": "0x055F", "dec": 1375, "class": "Static", "text": "", "rect": "22,147,69,8", "note": "左 Exp 值"},
+      {"id": "0x0560", "dec": 1376, "class": "Static", "text": "", "rect": "26,157,65,8", "note": "左 攻击值"},
+      {"id": "0x0561", "dec": 1377, "class": "Static", "text": "", "rect": "26,167,65,8", "note": "左 防御值"},
+      {"id": "0x0562", "dec": 1378, "class": "Static", "text": "", "rect": "26,177,65,8", "note": "左 精神值"},
+      {"id": "0x0563", "dec": 1379, "class": "Static", "text": "", "rect": "26,187,65,8", "note": "左 爆发值"},
+      {"id": "0x0564", "dec": 1380, "class": "Static", "text": "", "rect": "26,197,65,8", "note": "左 士气值"},
+      {"id": "0x0557", "dec": 1367, "class": "Button", "text": "N", "rect": "101,103,95,46"},
+      {"id": "0x0558", "dec": 1368, "class": "Static", "text": "", "rect": "107,115,32,8", "note": "右 姓名"},
+      {"id": "0x0552", "dec": 1362, "class": "Static", "text": "Lv", "rect": "167,115,9,8"},
+      {"id": "0x0559", "dec": 1369, "class": "Static", "text": "", "rect": "178,115,13,8", "note": "右 Lv 值（0x405BA2 刷新）"},
+      {"id": "0x0554", "dec": 1364, "class": "Static", "text": "SP", "rect": "107,137,9,8"},
+      {"id": "0x0556", "dec": 1366, "class": "Static", "text": "Exp", "rect": "107,147,12,8"},
+      {"id": "0x0568", "dec": 1384, "class": "Static", "text": "", "rect": "121,127,69,8", "note": "右 HP 值"},
+      {"id": "0x0569", "dec": 1385, "class": "Static", "text": "", "rect": "121,137,69,8", "note": "右 SP 值"},
+      {"id": "0x056A", "dec": 1386, "class": "Static", "text": "", "rect": "121,147,69,8", "note": "右 Exp 值"},
+      {"id": "0x056B", "dec": 1387, "class": "Static", "text": "", "rect": "125,157,65,8", "note": "右 攻击值"},
+      {"id": "0x056C", "dec": 1388, "class": "Static", "text": "", "rect": "125,167,65,8", "note": "右 防御值"},
+      {"id": "0x056D", "dec": 1389, "class": "Static", "text": "", "rect": "125,177,65,8", "note": "右 精神值"},
+      {"id": "0x056E", "dec": 1390, "class": "Static", "text": "", "rect": "125,187,65,8", "note": "右 爆发值"},
+      {"id": "0x056F", "dec": 1391, "class": "Static", "text": "", "rect": "125,197,65,8", "note": "右 士气值"},
+      {"id": "0x0507", "dec": 1287, "class": "Button", "text": "开始", "rect": "199,19,49,14"},
+      {"id": "0x0508", "dec": 1288, "class": "Button", "text": "防御", "rect": "199,75,49,14"},
+      {"id": "0x0509", "dec": 1289, "class": "Button", "text": "回避", "rect": "199,105,49,14"},
+      {"id": "0x050A", "dec": 1290, "class": "Button", "text": "突击", "rect": "200,46,49,14"},
+      {"id": "0x0433", "dec": 1075, "class": "Static", "text": "", "rect": "226,2,22,9", "note": "回合数值"}
+    ],
+    "labelsNotListed": "HP/攻击/防御/精神/爆发/士气 标签为重复 ID 0xFFFF（静态文本），左右各一组"
+  },
+  "proc330": {
+    "entry": "0x4207B2",
+    "entryReads": "mov ecx,0x500AA0; movzx eax,byte[ecx+0x10]; push eax; mov al,byte[ecx+0x11]; push eax; push ecx",
+    "messageHandling": "WM_DESTROY(2) 分支调用 0x40BA7D/0x452DE9/0x41D27A/0x437250，并对 0x491878 对象调用 0x455E1D/0x455E44 后 DeleteObject"
+  },
+  "fieldSemantics": {
+    "+0x00": "候选：人物记录指针（0x405BA2 以 dword[0x500AA0] 作 0x4065D0 的 ecx；0x4065D0 在 0x407A37 中接收 dword[0x4CEA00]）",
+    "+0x04": "初始化参数 1（0x418F05 自 [ebp+8] 写入；调用方为片段式栈传递，业务名未定）",
+    "+0x08/+0x09": "初始化参数 2/3（dword 与 edx 重叠写入）",
+    "+0x0A": "初始化完成标志（写 1）",
+    "+0x10": "模式字节，取自 0x505FDC",
+    "+0x11": "场景/回合计数，取自 0x500D8F（0x41E6A7 inc）",
+    "+0x1C": "地图记录指针 dword[0x4CEA08]（第59轮：+0x1B/+0x1F 为像素原点）"
+  },
+  "controlRefresh": {
+    "setDlgItemIntWrapper": "0x41D0AE：0x4065D0(ecx=人物记录基址) 取值后 SetDlgItemInt(hDlg, nID, value, FALSE)（导入 0x4862E4）",
+    "site0x559": "0x405BA2 以 nID=0x559、hDlg=[ebp+8]、ecx=dword[0x500AA0] 调用 0x41D0AE，刷新右方 Lv",
+    "scenarioCounter": "0x41E6A7 inc byte[0x500D8F]；0x41E6D1 之后调用 0x418F05 初始化上下文"
+  },
+  "conclusion": "0x500AA0（6.6 为 0x500AE0）是练武场上下文：0x418F05 写入 +0x00 人物记录指针候选、+0x04/+0x08/+0x09 初始化参数、+0x0A 完成标志、+0x10 模式字节（0x505FDC）、+0x11 场景计数（0x500D8F）、+0x1C 地图记录指针（0x4CEA08），随后以模板 0x14A（RT_DIALOG 330「练武场」）打开 0x4207B2。模板 330 有 48 个控件：左右两个人物面板（姓名/Lv/HP/SP/Exp/攻击/防御/精神/爆发/士气）、按钮 开始1287/突击1290/防御1288/回避1289/逃跑1291、回合数 1437 与回合值 1075。0x4207B2 入口读取 +0x10/+0x11；0x41D0AE 是 SetDlgItemInt 包装，0x405BA2 用它刷新 0x559。",
+  "corrections": [
+    "第79轮把 0x500AE0/0x500AA0 泛称为「关卡/地图描述结构」；本轮确认其宿主是模板 330「练武场」对话框，+0x10/+0x11 为模式与场景计数"
+  ],
+  "limitations": [
+    "+0x00/+0x04/+0x08/+0x09 的业务名仍未由字符串或界面直接证明。",
+    "0x4207B2 的 WM_COMMAND 分支（开始/突击/防御/回避/逃跑）未逐项反汇编。",
+    "0x4065D0 的 ecx 语义（人物记录基址 vs 其他）仅有间接证据。",
+    "未运行游戏对照。"
+  ]
+}

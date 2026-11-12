@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "id": "src.research.engine-quick-window-names-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "四快捷窗口业务名（卖/买/仓库/切换）、0x501FFF 状态与 0x4B09DB 数量",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密版",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 0x4195AA（模板 297 对话框过程）、0x4196F8（点击处理）、0x409B11（句柄反查）、0x415B4F（操作码 0x06）、0x415C0D、0x40C755、0x415B9C/0x40700A/0x4137AB/0x42A183（0x501FFF 读写）、0x40B900（0x4AE4C0 消费）；GBK 字符串 0x48B49B 三条格式串；0x407D1A 三字节表。仅静态分析。",
+  "findings": [
+    {
+      "id": "window-images",
+      "claim": "模板 297 的 4 个快捷窗口在 WM_INITDIALOG 时按 lParam=i（0..3）加载图像资源 0x155+i（341..344）并显示在静态控件 0x56B（1387）：0x423C4B(0x155+i) 取图像句柄写入 dword[0x496F38+0x14+i*4]，再 SendMessage(GetDlgItem(hwnd,0x56B), 0xF7(STM_SETIMAGE), 0, img)。",
+      "evidence": [
+        "004195F8 cmp eax,0x110；004195FF push [ebp+8]；00419602 call 0x41501D",
+        "00419607 mov eax,[ebp+0x14]；0041960A add eax,0x155；00419610 call 0x423C4B",
+        "0041961B mov ecx,[ecx+edx*4]；0041961E mov [ecx],eax",
+        "00419623 push 0xF7；00419628 push 0x56B；00419630 call GetDlgItem；00419637 call SendMessage"
+      ]
+    },
+    {
+      "id": "click-names",
+      "claim": "点击静态 0x56B 时 0x4196F8 以 0x409B11(hwnd) 反查窗口索引 0..3；章节!=3 时先隐藏全部 4 窗（0x423CCE），再按索引执行：0=「%s，卖掉物资！」、1=「%s，买进物资！」（随后 0x461CF6(1)）、2=「%s！打开仓库！」（随后 0x461C88），格式串位于 0x48B49B+index*0xF；%s 由 0x40C755(byte[0x407D1A+index]) 取得（选中武将名，路径 settings+0x06→0x415E19→0x41B7E2 记录→0x45F670/0x48196D）。0x407D1A 三字节为 01 01 00。",
+      "evidence": [
+        "00419646 call 0x409B11；00419652 call 0x4196F8",
+        "0041970F cmp word[ebp+0xC],0x56B；0041971A shr ecx,0x10；0041971D test cx,cx；0041972A call 0x438FC1",
+        "0041973A call 0x4759BC(0)；00419747 call 0x423CCE（隐藏全部）",
+        "00419769 mov cl,byte[eax+0x407D1A]；00419770 call 0x40C755；00419776 call 0x41992E",
+        "0041977F imul edx,eax,0xF；00419782 add edx,0x48B49B；0041978D call wsprintfA",
+        "0x48B49B：%s，卖掉物资！ / %s，买进物资！ / %s！打开仓库！",
+        "004197CA push ecx；004197CB call 0x461CF6（index1）；004197D2 call 0x461C88（index2）"
+      ]
+    },
+    {
+      "id": "index3",
+      "claim": "索引 3（第 4 窗）不是买卖类命令：0x418597(0x492F90,1) 检查队伍/敌方名单（0x4B0A04 与 0x4B09DC 各 20 word）非空后，ShowWindow([0x4B7508],0) 隐藏主窗，0x41196C(0) 关闭快捷窗口，并置 dword[0x4AE4C0]=1（待处理切换标志，0x40B900 会消费该标志并返回 1）。",
+      "evidence": [
+        "004197D9 cmp al,3；004197E4 call 0x418597（ecx=0x492F90，arg=1）",
+        "004197F0 push 0；004197F2 push [0x4B7508]；004197F8 call ShowWindow",
+        "004197FE push 0；00419800 call 0x41196C",
+        "00419808 mov dword[0x4AE4C0],1",
+        "0040B905 mov ecx,0x4AE4C0；0040B90A cmp [ecx],eax；0040B90E mov [ecx],eax；0040B910 inc eax（消费返回 1）",
+        "0x418597 另一调用点 0x415C01 位于操作码 0x06 处理器内"
+      ]
+    },
+    {
+      "id": "state-flag",
+      "claim": "byte[0x501FFF] 是快捷窗口展开状态：写 1 于 0x415B9C（操作码 0x06 打开分支），写 0 于 0x40700A（关闭分支）；读点 0x4137AB 在关闭前调用 0x429CAB(0x496F38)，0x42A183 在回城恢复时按原状态重建（flag==0→flag参数1 隐藏，flag!=0→0 显示），0x4119A7 与设置 +0x10 比较。",
+      "evidence": [
+        "00415B96 mov byte[0x4B09DB],dl；00415B9C mov byte[0x501FFF],1；00415BAA call 0x419949(0x496F38,0)",
+        "00407000 mov ecx,0x496F38；00407005 mov eax,0x501FFF；0040700A mov byte[eax],0；0040700D call 0x419949",
+        "004137AB cmp byte[0x501FFF],0；004137B9 call 0x429CAB",
+        "0042A183 mov eax,0x501FFF；0042A188 cmp byte[eax],0；0042A18D inc edx；0042A194 call 0x419949",
+        "004119A7 cmp byte[0x501FFF],al（与 +0x10 比较）"
+      ]
+    },
+    {
+      "id": "count-and-opcode06",
+      "claim": "byte[0x4B09DB] 是快捷窗口数量：0x415B96 写入 max(param2,1)，关闭分支 0x415BB1 写 1。操作码 0x06（0x415B4F）参数为 mode(0x2E) 与数量(4)，再由 0x415C0D 读取最多 5 个类型 0x38 的敌方 ID 写入 word[0x4B09DC+idx*2]（0x4B0A2C 循环）、最多 5 个类型 0x39 的我方 ID 写入 word[0x4B0A04+idx*2]（0x4B0A30 循环），各 20 槽。",
+      "evidence": [
+        "00415B4F push 0x2E；00415B57 call 0x4183F7；00415B63 push 4；00415B68 call 0x4183F7",
+        "00415B7F call 0x415C0D；00415B8A inc [ebp-8]；00415B8D mov dl,[ebp-8]；00415B90 cmp byte[ebp-4],0",
+        "00415BB1 mov byte[0x4B09DB],1；00415BB8 call 0x410F9D；00415BC2 call 0x420660",
+        "0x415C0D：push 0x38；0x4183F7；word[edx*2+0x4B09DC]=ax；push 0x39；word[edx*2+0x4B0A04]=ax",
+        "00415C3A cmp edx,0x14；00415C3F xor edx,edx（20 槽循环）"
+      ]
+    }
+  ],
+  "corrections": [
+    "四快捷窗口业务名：0/1/2 确认为『卖掉物资 / 买进物资 / 打开仓库』（由格式串 0x48B49B 直接证明），第 4 窗为场景切换（置 0x4AE4C0=1）。",
+    "byte[0x501FFF] 由『业务语义未定』定名为快捷窗口展开状态（1=展开/0=关闭）。",
+    "byte[0x4B09DB] 由『写入方未知』定位为快捷窗口数量（0x415B96/0x415BB1）。",
+    "操作码 0x06=快捷窗口开关/队伍槽设置（0x415B4F，参数 mode+数量+5 敌 ID+5 我 ID）。"
+  ],
+  "limitations": [
+    "第 4 窗（索引 3）的准确业务名未定（行为为隐藏主窗并置切换标志）。",
+    "0x423C4B 的图像资源类型（RT_BITMAP/RT_ICON）未核对。",
+    "0x410F9D/0x420660 与 0x461CF6/0x461C88 的完整职责未展开。",
+    "未运行游戏对照。"
+  ],
+  "conclusion": "4 个快捷窗口的点击语义由 0x4196F8 按索引分派：0=卖掉物资、1=买进物资、2=打开仓库（格式串 0x48B49B，%s 为当前武将名），3=隐藏主窗并置 0x4AE4C0=1 的场景切换。0x501FFF=快捷窗口展开状态，0x4B09DB=窗口数量，二者由脚本操作码 0x06（0x415B4F→0x415C0D）写入。"
+}

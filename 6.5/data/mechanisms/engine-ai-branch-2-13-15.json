@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.ai-branch-2-13-14-15.3ef7",
+      "title": "AI 评分剩余分支 2/13/14/15",
+      "aliases": ["AI branch 2", "AI branch 13", "AI branch 14", "AI branch 15"],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "分支 2：0x4078D1>40 且 0x43FFB9==0 时 +100，并按 [ebp+0x18] 追加 0x438917；分支 13 无追加；分支 14/15 按状态偏移 0x18/0x1A/0x35 与阈值 3 追加 10。至此 0..15 全部分支已记录。",
+      "branches": {
+        "2": {"va": "0x439B80", "threshold": 40, "weight": 100},
+        "13": {"va": "0x439C8A", "weight": 0},
+        "14": {"va": "0x439BB6", "weight": 10, "offsets": ["0x18", "0x1A"], "threshold": 3},
+        "15": {"va": "0x439C12", "weight": 10, "offsets": ["0x18", "0x1A", "0x35"], "threshold": 3}
+      },
+      "constants": ["0x28", "0x64", "0x1B", "0x35", "0x18", "0x1A", 3, "0x0A"],
+      "limitations": [
+        "辅助函数语义未命名。",
+        "状态字段名称未确定。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.strategy-ai-dispatch.3ef7",
+        "mechanism.65.ai-branch-7-12-scoring.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-ai-branch-2-13-15-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

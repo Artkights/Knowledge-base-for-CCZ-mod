@@ -1,0 +1,1540 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.script-handler-modes.3890",
+      "title": "剧本指令处理函数签名（120 项全量：96 项类型码 + 24 项固定动作/框架）",
+      "aliases": [
+        "script_handler_modes"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00410A38",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 480,
+      "semantics": "modes 为指令级回溯得到的类型码序列（含 push imm 与 push reg→立即数/码表两种来源）；tables 为码表地址（如 0x3B 的 0x41481C）。 处理函数 ABI 本轮实测：分派器 0x4109E6 在 call 前执行 push edx（ctx），因此处理函数同时从 ecx 和 [ebp+8] 拿到同一个 ctx；凡把 [ebp+8] 当参数用的读取都是 ctx，不是脚本参数。 逐条核验：0x0D 固定返回控制码 7（0x41196C 恒返回 0，pop eax 取回压入的 0 后 add al,7）；0x5A/0x49/0x0E/0x54/0x2F/0x5F/0x61/0x6A/0x1E/0x07 均无脚本参数。 第 2 批：0x49 胜、0x0E 败；0x40B922 实为「场景模式==3」判定（0x40B913 读 0x4AC63C 首字节）；0x4144AB 为战斗结算（2=胜/3=败）。 第 3 批：0x5F/0x61/0x6A 无参；0x07 读后清零 0x4AE4C0。 第 4 批：0x26 类型码 [2,4,4,4,4]（武将, x1, y1, x2, y2），首参 16 位并按 0x400/0x402 校验；0x1D 仅在场景模式 2 下清 8000 字节调色板缓冲 0x49F1C0；0x1C 按模式 2/3/其它分三路绘制；0x51 遍历 250 个单位把状态 2 恢复为 6。 收尾批：0x47/0x46 实为以常量 (0xB,0xB,0x8C,0x3C)/(0,0,0x28,0x14) 调 0x41240B 的固定动作（[ebp+8] 是 ctx）；0x42/0x43 先做胜负扫描（0x44C658/0x44CA73）再执行脚本 VM 表达式 5/6（0x40FF94）；0x44 清 256 个局部变量、0x100 个 0x508A00 字、0xFF 个单位槽并重置 0x511E40；0x0A 清 256 个局部变量与 0x140 个 dword@0x501B00；0x10 固定播放许子将指导序列并以文本 0x9D/0x48C970 收尾；0x0C 固定返回 8，0x03 固定返回 6。至此 120 个非空 opcode 全部有实测结论。",
+      "handlers": [
+        {
+          "opcode": "0x0B",
+          "title": "变量赋值",
+          "handler": "00401923",
+          "size": 76,
+          "modes": [
+            4,
+            39
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x1F",
+          "title": "地图视点切换",
+          "handler": "00402348",
+          "size": 78,
+          "modes": [
+            4,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x71",
+          "title": "特效请求",
+          "handler": "00403936",
+          "size": 63,
+          "modes": [
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x28",
+          "title": "自由R启动指令",
+          "handler": "00406FD9",
+          "size": 78,
+          "modes": [
+            54
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x6F",
+          "title": "丢弃物品",
+          "handler": "0040C5FF",
+          "size": 248,
+          "modes": [
+            23
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x73",
+          "title": "人物五围和测试",
+          "handler": "0040F244",
+          "size": 166,
+          "modes": [
+            2,
+            4,
+            36,
+            38
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x70",
+          "title": "能力选择复制",
+          "handler": "0040F2EA",
+          "size": 94,
+          "modes": [
+            2,
+            2,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x68",
+          "title": "单挑开始",
+          "handler": "004103F0",
+          "size": 129,
+          "modes": [
+            2,
+            2,
+            79,
+            85,
+            139,
+            236,
+            106,
+            0
+          ],
+          "tables": [
+            "0x0040E388"
+          ]
+        },
+        {
+          "opcode": "0x6C",
+          "title": "武将能力复制",
+          "handler": "00410C39",
+          "size": 232,
+          "modes": [
+            2
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x6D",
+          "title": "相对复活或移动",
+          "handler": "00410D21",
+          "size": 340,
+          "modes": [
+            64,
+            2,
+            4,
+            2,
+            4,
+            4,
+            43,
+            38
+          ],
+          "tables": [
+            "0x00484AC8"
+          ]
+        },
+        {
+          "opcode": "0x62",
+          "title": "单挑阵亡",
+          "handler": "004111F4",
+          "size": 48,
+          "modes": [
+            38
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x36",
+          "title": "武将状态测试",
+          "handler": "004112FA",
+          "size": 251,
+          "modes": [
+            2,
+            35,
+            4,
+            36
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x41",
+          "title": "战场人数测试",
+          "handler": "00411507",
+          "size": 206,
+          "modes": [
+            3,
+            4,
+            36,
+            63,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x3F",
+          "title": "回合测试",
+          "handler": "00411664",
+          "size": 88,
+          "modes": [
+            4,
+            36
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x40",
+          "title": "行动方测试",
+          "handler": "004116BC",
+          "size": 67,
+          "modes": [
+            72
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x04",
+          "title": "询问测试",
+          "handler": "004116FF",
+          "size": 60,
+          "modes": [
+            38
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x13",
+          "title": "case",
+          "handler": "0041173B",
+          "size": 66,
+          "modes": [
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x02",
+          "title": "内部信息",
+          "handler": "0041177D",
+          "size": 34,
+          "modes": [
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x05",
+          "title": "变量测试",
+          "handler": "0041179F",
+          "size": 136,
+          "modes": [
+            53,
+            1
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x25",
+          "title": "武将进入指定地点测试",
+          "handler": "00411827",
+          "size": 150,
+          "modes": [
+            2,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x37",
+          "title": "钱、章节编号、忠奸测试",
+          "handler": "004118BD",
+          "size": 175,
+          "modes": [
+            40,
+            4,
+            36
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x2E",
+          "title": "武将相邻测试",
+          "handler": "004119C2",
+          "size": 228,
+          "modes": [
+            2,
+            38
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x12",
+          "title": "选择框",
+          "handler": "00411AA6",
+          "size": 330,
+          "modes": [
+            5,
+            2
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x48",
+          "title": "敌方装备设定",
+          "handler": "00411CD9",
+          "size": 204,
+          "modes": [
+            2,
+            73
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x30",
+          "title": "武将出现",
+          "handler": "00411DAE",
+          "size": 203,
+          "modes": [
+            2,
+            4,
+            4,
+            43,
+            13
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x33",
+          "title": "武将转向",
+          "handler": "00411E79",
+          "size": 101,
+          "modes": [
+            2,
+            13,
+            43
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x34",
+          "title": "武将动作",
+          "handler": "00411EDE",
+          "size": 79,
+          "modes": [
+            2,
+            13
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x35",
+          "title": "武将形象改变",
+          "handler": "00411F2D",
+          "size": 72,
+          "modes": [
+            2,
+            19
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x38",
+          "title": "武将能力设定",
+          "handler": "00412007",
+          "size": 283,
+          "modes": [
+            2,
+            35,
+            52,
+            4,
+            85,
+            139,
+            236,
+            81
+          ],
+          "tables": [
+            "0x00421492"
+          ]
+        },
+        {
+          "opcode": "0x45",
+          "title": "战场全局变量",
+          "handler": "004122C1",
+          "size": 263,
+          "modes": [
+            38,
+            38,
+            4,
+            62,
+            50,
+            2,
+            50,
+            2
+          ],
+          "tables": [
+            "0x004123BE"
+          ]
+        },
+        {
+          "opcode": "0x56",
+          "title": "天气类别设定",
+          "handler": "0041264B",
+          "size": 41,
+          "modes": [
+            71
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x32",
+          "title": "武将移动",
+          "handler": "004133B2",
+          "size": 296,
+          "modes": [
+            64,
+            2,
+            4,
+            43
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x31",
+          "title": "武将消失",
+          "handler": "00413522",
+          "size": 237,
+          "modes": [
+            44,
+            2,
+            4,
+            3
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x14",
+          "title": "对话",
+          "handler": "00413661",
+          "size": 442,
+          "modes": [
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x2D",
+          "title": "武将点击测试",
+          "handler": "0041391A",
+          "size": 80,
+          "modes": [
+            2
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x15",
+          "title": "对话2",
+          "handler": "0041396A",
+          "size": 143,
+          "modes": [
+            2,
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x69",
+          "title": "旁白",
+          "handler": "004139F9",
+          "size": 77,
+          "modes": [
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x16",
+          "title": "信息",
+          "handler": "00413A46",
+          "size": 180,
+          "modes": [
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x67",
+          "title": "章名",
+          "handler": "00413B27",
+          "size": 121,
+          "modes": [
+            4,
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x19",
+          "title": "胜利条件",
+          "handler": "00413BA0",
+          "size": 59,
+          "modes": [
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x1A",
+          "title": "显示胜利条件",
+          "handler": "00413BDB",
+          "size": 60,
+          "modes": [
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x1B",
+          "title": "撤退信息是否显示设定",
+          "handler": "00413C17",
+          "size": 118,
+          "modes": [
+            2,
+            39
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x27",
+          "title": "背景显示",
+          "handler": "00413D13",
+          "size": 205,
+          "modes": [
+            45,
+            12,
+            26,
+            28,
+            21,
+            85,
+            139,
+            236
+          ],
+          "tables": [
+            "0x00413DDB"
+          ]
+        },
+        {
+          "opcode": "0x21",
+          "title": "战场物体添加",
+          "handler": "00413EF5",
+          "size": 183,
+          "modes": [
+            4,
+            4,
+            16,
+            38,
+            38,
+            85,
+            139,
+            236
+          ],
+          "tables": [
+            "0x00413B9B"
+          ]
+        },
+        {
+          "opcode": "0x6B",
+          "title": "法术",
+          "handler": "0041406F",
+          "size": 304,
+          "modes": [
+            4,
+            4,
+            75,
+            38,
+            85,
+            51,
+            201,
+            139
+          ],
+          "tables": [
+            "0x0047FD3C"
+          ]
+        },
+        {
+          "opcode": "0x08",
+          "title": "菜单处理",
+          "handler": "0041431D",
+          "size": 68,
+          "modes": [
+            46
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x3D",
+          "title": "获得物品",
+          "handler": "004143CB",
+          "size": 224,
+          "modes": [
+            23,
+            73,
+            38,
+            2,
+            85,
+            139,
+            236,
+            232
+          ],
+          "tables": [
+            "0x004144A7"
+          ]
+        },
+        {
+          "opcode": "0x4E",
+          "title": "武将方针变更",
+          "handler": "004146D4",
+          "size": 188,
+          "modes": [
+            44,
+            2,
+            4,
+            4,
+            4,
+            4,
+            3,
+            7
+          ],
+          "tables": [
+            "0x00414785"
+          ]
+        },
+        {
+          "opcode": "0x3B",
+          "title": "武将加入",
+          "handler": "00414790",
+          "size": 143,
+          "modes": [
+            2,
+            14,
+            62,
+            85,
+            139,
+            236,
+            106,
+            0
+          ],
+          "tables": [
+            "0x0041481C"
+          ]
+        },
+        {
+          "opcode": "0x3A",
+          "title": "钱、章节编号、忠奸设置",
+          "handler": "0041481F",
+          "size": 217,
+          "modes": [
+            40,
+            52,
+            4,
+            85,
+            139,
+            236,
+            131,
+            236
+          ],
+          "tables": [
+            "0x004148F5"
+          ]
+        },
+        {
+          "opcode": "0x39",
+          "title": "武将等级提升",
+          "handler": "004148F8",
+          "size": 215,
+          "modes": [
+            2,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x57",
+          "title": "当前天气设定",
+          "handler": "00414AB0",
+          "size": 44,
+          "modes": [
+            34
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x4C",
+          "title": "隐藏武将出现",
+          "handler": "00414ADC",
+          "size": 183,
+          "modes": [
+            64,
+            2,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x52",
+          "title": "兵种改变",
+          "handler": "00414BD6",
+          "size": 253,
+          "modes": [
+            2,
+            3
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x79",
+          "title": "变量测试",
+          "handler": "00415093",
+          "size": 160,
+          "modes": [
+            82,
+            4,
+            86,
+            82,
+            4
+          ],
+          "tables": [
+            "0x0043CFD0"
+          ]
+        },
+        {
+          "opcode": "0x4D",
+          "title": "武将状态变更",
+          "handler": "00415551",
+          "size": 329,
+          "modes": [
+            65,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3
+          ],
+          "tables": [
+            "0x0041568D"
+          ]
+        },
+        {
+          "opcode": "0x53",
+          "title": "战场撤退",
+          "handler": "0041569A",
+          "size": 211,
+          "modes": [
+            44,
+            2,
+            4,
+            4,
+            4,
+            4,
+            3,
+            38
+          ],
+          "tables": [
+            "0x00415765"
+          ]
+        },
+        {
+          "opcode": "0x23",
+          "title": "音效",
+          "handler": "004157B4",
+          "size": 70,
+          "modes": [
+            30,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x24",
+          "title": "CD音轨",
+          "handler": "004157FA",
+          "size": 69,
+          "modes": [
+            9
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x0F",
+          "title": "结局设定",
+          "handler": "004158AF",
+          "size": 45,
+          "modes": [
+            18
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x55",
+          "title": "战场复活",
+          "handler": "0041592E",
+          "size": 206,
+          "modes": [
+            64,
+            2,
+            4,
+            4,
+            4,
+            43,
+            85,
+            139
+          ],
+          "tables": [
+            "0x0041E5F0"
+          ]
+        },
+        {
+          "opcode": "0x09",
+          "title": "延时",
+          "handler": "00415B21",
+          "size": 46,
+          "modes": [
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x06",
+          "title": "我军出场限制",
+          "handler": "00415B4F",
+          "size": 129,
+          "modes": [
+            46,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x4A",
+          "title": "我军出场强制设定",
+          "handler": "00415BD0",
+          "size": 61,
+          "modes": [
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x3C",
+          "title": "武将加入测试",
+          "handler": "00415D31",
+          "size": 101,
+          "modes": [
+            2,
+            14,
+            58,
+            85,
+            139,
+            236,
+            232,
+            91
+          ],
+          "tables": [
+            "0x00415D93"
+          ]
+        },
+        {
+          "opcode": "0x4B",
+          "title": "我军出场设定",
+          "handler": "00415E31",
+          "size": 201,
+          "modes": [
+            4,
+            4,
+            4,
+            43,
+            38,
+            85,
+            139,
+            236
+          ],
+          "tables": [
+            "0x00414B8E"
+          ]
+        },
+        {
+          "opcode": "0x4F",
+          "title": "战场转向设置",
+          "handler": "00415F47",
+          "size": 162,
+          "modes": [
+            2,
+            2,
+            43,
+            38,
+            38,
+            38,
+            85,
+            139
+          ],
+          "tables": [
+            "0x00415FE3"
+          ]
+        },
+        {
+          "opcode": "0x50",
+          "title": "战场动作设定",
+          "handler": "00415FE9",
+          "size": 131,
+          "modes": [
+            2,
+            70,
+            38,
+            38,
+            85,
+            139,
+            236,
+            105
+          ],
+          "tables": [
+            "0x00416068"
+          ]
+        },
+        {
+          "opcode": "0x3E",
+          "title": "加入装备设定",
+          "handler": "0041631C",
+          "size": 283,
+          "modes": [
+            2,
+            59,
+            73,
+            60,
+            73,
+            61,
+            106,
+            253
+          ],
+          "tables": [
+            "0x004839AA"
+          ]
+        },
+        {
+          "opcode": "0x58",
+          "title": "战场障碍设定",
+          "handler": "00416793",
+          "size": 248,
+          "modes": [
+            66,
+            67,
+            68,
+            4,
+            4,
+            38,
+            38,
+            85
+          ],
+          "tables": [
+            "0x00416884"
+          ]
+        },
+        {
+          "opcode": "0x59",
+          "title": "战利品",
+          "handler": "0041688B",
+          "size": 385,
+          "modes": [
+            4,
+            23,
+            73,
+            38
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x5B",
+          "title": "战场高亮区域",
+          "handler": "00416AE3",
+          "size": 113,
+          "modes": [
+            4,
+            4,
+            4,
+            4,
+            38,
+            85,
+            139,
+            236
+          ],
+          "tables": [
+            "0x00416B4F"
+          ]
+        },
+        {
+          "opcode": "0x5C",
+          "title": "战场高亮人物",
+          "handler": "00416B54",
+          "size": 237,
+          "modes": [
+            2
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x76",
+          "title": "无条件跳转",
+          "handler": "00416C41",
+          "size": 70,
+          "modes": [
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x77",
+          "title": "变量运算",
+          "handler": "00416C87",
+          "size": 326,
+          "modes": [
+            81,
+            4,
+            83,
+            82,
+            4,
+            85,
+            139,
+            236
+          ],
+          "tables": [
+            "0x00416C82"
+          ]
+        },
+        {
+          "opcode": "0x78",
+          "title": "整型变量赋值",
+          "handler": "00416DCD",
+          "size": 106,
+          "modes": [
+            4,
+            84,
+            2,
+            85,
+            85,
+            139,
+            236,
+            131
+          ],
+          "tables": [
+            "0x00416DC9"
+          ]
+        },
+        {
+          "opcode": "0x20",
+          "title": "武将头像状态设置",
+          "handler": "00416FD8",
+          "size": 76,
+          "modes": [
+            74
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x5D",
+          "title": "回合上限设定",
+          "handler": "0041709C",
+          "size": 167,
+          "modes": [
+            52,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x29",
+          "title": "地图头像显示",
+          "handler": "00417143",
+          "size": 121,
+          "modes": [
+            2,
+            4,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x2A",
+          "title": "地图头像移动",
+          "handler": "004171BC",
+          "size": 121,
+          "modes": [
+            2,
+            4,
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x2C",
+          "title": "地图文字显示",
+          "handler": "00417235",
+          "size": 183,
+          "modes": [
+            5,
+            38,
+            38,
+            38
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x2B",
+          "title": "地图头像消失",
+          "handler": "004172EC",
+          "size": 56,
+          "modes": [
+            2
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x6E",
+          "title": "概率测试",
+          "handler": "0041741E",
+          "size": 41,
+          "modes": [
+            4
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x60",
+          "title": "单挑武将出场",
+          "handler": "00417447",
+          "size": 121,
+          "modes": [
+            38,
+            5,
+            76,
+            85,
+            139,
+            236,
+            185,
+            128
+          ],
+          "tables": [
+            "0x004174BD"
+          ]
+        },
+        {
+          "opcode": "0x63",
+          "title": "单挑对话",
+          "handler": "004175C2",
+          "size": 131,
+          "modes": [
+            38,
+            5,
+            38,
+            85,
+            139,
+            236,
+            106,
+            0
+          ],
+          "tables": [
+            "0x00417642"
+          ]
+        },
+        {
+          "opcode": "0x64",
+          "title": "单挑动作",
+          "handler": "00417645",
+          "size": 88,
+          "modes": [
+            38,
+            76,
+            85,
+            139,
+            236,
+            106,
+            0,
+            131
+          ],
+          "tables": [
+            "0x0041769B"
+          ]
+        },
+        {
+          "opcode": "0x65",
+          "title": "单挑攻击1",
+          "handler": "0041769D",
+          "size": 92,
+          "modes": [
+            38,
+            77,
+            38,
+            85,
+            139,
+            236,
+            106,
+            0
+          ],
+          "tables": [
+            "0x004176F6"
+          ]
+        },
+        {
+          "opcode": "0x66",
+          "title": "单挑攻击2",
+          "handler": "004176F9",
+          "size": 92,
+          "modes": [
+            38,
+            78,
+            38,
+            85,
+            139,
+            236,
+            104,
+            160
+          ],
+          "tables": [
+            "0x00417752"
+          ]
+        },
+        {
+          "opcode": "0x18",
+          "title": "事件名称设定",
+          "handler": "00417DCC",
+          "size": 42,
+          "modes": [
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x74",
+          "title": "开/禁存档",
+          "handler": "0041DD12",
+          "size": 39,
+          "modes": [
+            38
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x17",
+          "title": "场所名",
+          "handler": "0042466E",
+          "size": 62,
+          "modes": [
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x11",
+          "title": "剧本跳转",
+          "handler": "0042547A",
+          "size": 58,
+          "modes": [
+            55
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x22",
+          "title": "动画",
+          "handler": "0042F59A",
+          "size": 42,
+          "modes": [
+            27
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x5E",
+          "title": "武将不同测试",
+          "handler": "0044E642",
+          "size": 109,
+          "modes": [
+            2,
+            2
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x75",
+          "title": "S特殊形象指定",
+          "handler": "00465D8A",
+          "size": 48,
+          "modes": [
+            2,
+            80
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x72",
+          "title": "信息传送",
+          "handler": "0047D89E",
+          "size": 363,
+          "modes": [
+            4,
+            5
+          ],
+          "tables": []
+        },
+        {
+          "opcode": "0x26",
+          "title": "武将进入指定区域测试",
+          "handler": "0040F397",
+          "size": 159,
+          "modes": [
+            2,
+            4,
+            4,
+            4,
+            4
+          ],
+          "tables": [],
+          "note": "循环 i=0..4：i=0 用类型码 2（16 位武将编号，存 word），i=1..4 用类型码 4（32 位坐标）；结果压栈后按场景模式选 0x411F75（非战场）或 0x45B597（战场）做矩形判定，二者均 ret 0x14。"
+        }
+      ],
+      "relations": [
+        "global.65.script-handler-profiles.3890",
+        "global.65.script-handler-map.3890",
+        "global.65.script-message-subcommands.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ],
+      "fixedOrFramework": [
+        {
+          "opcode": "0x47",
+          "title": "敌军出场设定",
+          "handler": "00407FBC",
+          "size": 24,
+          "class": "0x407FBC 以常量 (ctx,0xB,0xB,0x8C,0x3C) 调 0x41240B；0x41240B 从 0x3C 循环到 0x8C 填敌军槽，无 0x4183F7 调用。",
+          "kind": "fixed-action",
+          "resolution": "0x407FBC 以常量 (ctx,0xB,0xB,0x8C,0x3C) 调 0x41240B；0x41240B 从 0x3C 循环到 0x8C 填敌军槽，无 0x4183F7 调用。"
+        },
+        {
+          "opcode": "0x07",
+          "title": "出战测试",
+          "handler": "0040B900",
+          "size": 19,
+          "class": "0x40B900 → ecx=0x4AE4C0；[ecx]!=0 则清零并返回 1，否则 0（读后即清）。",
+          "kind": "consume-flag",
+          "resolution": "0x40B900 → ecx=0x4AE4C0；[ecx]!=0 则清零并返回 1，否则 0（读后即清）。"
+        },
+        {
+          "opcode": "0x0D",
+          "title": "结束Scene",
+          "handler": "004103AC",
+          "size": 15,
+          "class": "0x4103AC：push 0; call 0x41196C（写入 0x4B0780，恒返回 0）; pop eax（取回 0）; add al,7 —— 恒返回控制码 7。",
+          "kind": "fixed-action",
+          "resolution": "0x4103AC：push 0; call 0x41196C（写入 0x4B0780，恒返回 0）; pop eax（取回 0）; add al,7 —— 恒返回控制码 7。"
+        },
+        {
+          "opcode": "0x5A",
+          "title": "战场操作开始",
+          "handler": "00410549",
+          "size": 20,
+          "class": "0x410549：ecx=0x4B3D08; call 0x44BAC2; return 1。",
+          "kind": "fixed-action",
+          "resolution": "0x410549：ecx=0x4B3D08; call 0x44BAC2; return 1。"
+        },
+        {
+          "opcode": "0x42",
+          "title": "战斗胜利测试",
+          "handler": "00411BF0",
+          "size": 43,
+          "class": "0x411BF0：ecx=0x4B3D08; call 0x44C658（胜利扫描）; 再 0x40FF94(ctx,5,&tmp,4) 执行脚本 VM 表达式 5，返回 tmp==1。",
+          "kind": "fixed-action",
+          "resolution": "0x411BF0：ecx=0x4B3D08; call 0x44C658（胜利扫描）; 再 0x40FF94(ctx,5,&tmp,4) 执行脚本 VM 表达式 5，返回 tmp==1。"
+        },
+        {
+          "opcode": "0x43",
+          "title": "战斗失败测试",
+          "handler": "00411C1B",
+          "size": 43,
+          "class": "0x411C1B：ecx=0x4B3D08; call 0x44CA73（失败扫描）; 再 0x40FF94(ctx,6,&tmp,4) 执行表达式 6，返回 tmp==1。",
+          "kind": "fixed-action",
+          "resolution": "0x411C1B：ecx=0x4B3D08; call 0x44CA73（失败扫描）; 再 0x40FF94(ctx,6,&tmp,4) 执行表达式 6，返回 tmp==1。"
+        },
+        {
+          "opcode": "0x44",
+          "title": "战斗初始化",
+          "handler": "00412226",
+          "size": 155,
+          "class": "0x412226：清 0x4CE79C、角色 0x3FF 的 +0x19、256 个 ctx 局部槽、0x100 个 word@0x508A00、0xF9 个 0x418DD0 槽；最后 memset(0x511E40,0,1000)+0x410F9D，返回 1。",
+          "kind": "fixed-action",
+          "resolution": "0x412226：清 0x4CE79C、角色 0x3FF 的 +0x19、256 个 ctx 局部槽、0x100 个 word@0x508A00、0xF9 个 0x418DD0 槽；最后 memset(0x511E40,0,1000)+0x410F9D，返回 1。"
+        },
+        {
+          "opcode": "0x2F",
+          "title": "清除人物",
+          "handler": "00413652",
+          "size": 15,
+          "class": "0x413652：call 0x426C3B（释放人物缓存）; return 1。",
+          "kind": "fixed-action",
+          "resolution": "0x413652：call 0x426C3B（释放人物缓存）; return 1。"
+        },
+        {
+          "opcode": "0x1C",
+          "title": "绘图",
+          "handler": "00413E49",
+          "size": 126,
+          "class": "0x413E49：按 0x40B913 场景模式分三路；模式 2 置 0x501BFB=1 并 0x41C977，模式 3 直接 0x41E5F6，其它模式执行 0x47CAE3(0)/0x47B4F7/0x41E5DB/0x47369B/0x47D1CA(7)/0x412F19/0x42B81B(0)/0x41E5F6；无脚本参数。",
+          "kind": "fixed-action",
+          "resolution": "0x413E49：按 0x40B913 场景模式分三路；模式 2 置 0x501BFB=1 并 0x41C977，模式 3 直接 0x41E5F6，其它模式执行 0x47CAE3(0)/0x47B4F7/0x41E5DB/0x47369B/0x47D1CA(7)/0x412F19/0x42B81B(0)/0x41E5F6；无脚本参数。"
+        },
+        {
+          "opcode": "0x1D",
+          "title": "调色板设定",
+          "handler": "00413EC7",
+          "size": 46,
+          "class": "0x413EC7：仅当场景模式==2 时 memset(0x49F1C0,0,0x1F40) 并 0x426C3B，随后 0x4115FB 刷新；无脚本参数。",
+          "kind": "fixed-action",
+          "resolution": "0x413EC7：仅当场景模式==2 时 memset(0x49F1C0,0,0x1F40) 并 0x426C3B，随后 0x4115FB 刷新；无脚本参数。"
+        },
+        {
+          "opcode": "0x54",
+          "title": "战场撤退确认",
+          "handler": "004144D2",
+          "size": 29,
+          "class": "0x4144D2：0x40B922 为「模式==3」；真则 ecx=0x4B3D08; call 0x40502B；返回 1。",
+          "kind": "fixed-action",
+          "resolution": "0x4144D2：0x40B922 为「模式==3」；真则 ecx=0x4B3D08; call 0x40502B；返回 1。"
+        },
+        {
+          "opcode": "0x49",
+          "title": "战斗结束",
+          "handler": "00415795",
+          "size": 31,
+          "class": "0x415795：0x40B922 真则 push 2; ecx=0x4B5DF0; call 0x4144AB；返回 1。",
+          "kind": "fixed-action",
+          "resolution": "0x415795：0x40B922 真则 push 2; ecx=0x4B5DF0; call 0x4144AB；返回 1。"
+        },
+        {
+          "opcode": "0x5F",
+          "title": "单挑结束",
+          "handler": "0041583F",
+          "size": 20,
+          "class": "0x41583F：ecx=0x4B3C80; call 0x4498E5; call 0x411991; 无返回。",
+          "kind": "fixed-action",
+          "resolution": "0x41583F：ecx=0x4B3C80; call 0x4498E5; call 0x411991; 无返回。"
+        },
+        {
+          "opcode": "0x0E",
+          "title": "战斗失败",
+          "handler": "00415890",
+          "size": 31,
+          "class": "0x415890：0x40B922 真则 push 3; ecx=0x4B5DF0; call 0x4144AB；返回 1。",
+          "kind": "fixed-action",
+          "resolution": "0x415890：0x40B922 真则 push 3; ecx=0x4B5DF0; call 0x4144AB；返回 1。"
+        },
+        {
+          "opcode": "0x0A",
+          "title": "初始化局部变量",
+          "handler": "00415ACA",
+          "size": 70,
+          "class": "0x415ACA：0x4184CC 把 ctx 局部变量 0..0xFF 清零；再把 0x501B00 起 0x140 个 dword 清零；call 0x473DF4。",
+          "kind": "fixed-action",
+          "resolution": "0x415ACA：0x4184CC 把 ctx 局部变量 0..0xFF 清零；再把 0x501B00 起 0x140 个 dword 清零；call 0x473DF4。"
+        },
+        {
+          "opcode": "0x51",
+          "title": "战场恢复行动权",
+          "handler": "0041626A",
+          "size": 124,
+          "class": "0x41626A：0x40B922 真时循环 i=0..0xF9，0x4061F9 取单位，0x418C90 读状态；状态==2 者 0x406690(6)/0x423FB9(0x1E)/0x43F6DB 恢复行动；最后 0x453AC3/0x44A88A。",
+          "kind": "fixed-action",
+          "resolution": "0x41626A：0x40B922 真时循环 i=0..0xF9，0x4061F9 取单位，0x418C90 读状态；状态==2 者 0x406690(6)/0x423FB9(0x1E)/0x43F6DB 恢复行动；最后 0x453AC3/0x44A88A。"
+        },
+        {
+          "opcode": "0x1E",
+          "title": "武将重绘",
+          "handler": "00416A0C",
+          "size": 8,
+          "class": "0x416A0C：push 2; pop eax; ret —— 空实现，返回控制码 2（重绘请求）。",
+          "kind": "control-code",
+          "resolution": "0x416A0C：push 2; pop eax; ret —— 空实现，返回控制码 2（重绘请求）。"
+        },
+        {
+          "opcode": "0x61",
+          "title": "单挑胜负显示",
+          "handler": "004174C0",
+          "size": 20,
+          "class": "0x4174C0：ecx=0x4B3C80; call 0x448CB3; return 1。",
+          "kind": "fixed-action",
+          "resolution": "0x4174C0：ecx=0x4B3C80; call 0x448CB3; return 1。"
+        },
+        {
+          "opcode": "0x46",
+          "title": "友军出场设定",
+          "handler": "00419B61",
+          "size": 21,
+          "class": "0x419B61 以常量 (ctx,0,0,0x28,0x14) 调 0x41240B；从 0x14 循环到 0x28 填友军槽，无 0x4183F7 调用。",
+          "kind": "fixed-action",
+          "resolution": "0x419B61 以常量 (ctx,0,0,0x28,0x14) 调 0x41240B；从 0x14 循环到 0x28 填友军槽，无 0x4183F7 调用。"
+        },
+        {
+          "opcode": "0x10",
+          "title": "许子将指导",
+          "handler": "0042BCE9",
+          "size": 119,
+          "class": "0x42BCE9：0x434F84 → 0x433404 → 0x43353C → 0x4333D2 → 0x4337F4 → 0x433BC8 → 0x43419F → 0x433512；再 push 0x9D,0x48C970; call 0x45965D；返回 1。",
+          "kind": "fixed-action",
+          "resolution": "0x42BCE9：0x434F84 → 0x433404 → 0x43353C → 0x4333D2 → 0x4337F4 → 0x433BC8 → 0x43419F → 0x433512；再 push 0x9D,0x48C970; call 0x45965D；返回 1。"
+        },
+        {
+          "opcode": "0x0C",
+          "title": "结束Section",
+          "handler": "00481156",
+          "size": 746,
+          "class": "0x481156：push ebp; mov ebp,esp; mov eax,8; pop ebp; ret —— 恒返回控制码 8；Section 跳转由外层完成。",
+          "kind": "control-code",
+          "resolution": "0x481156：push ebp; mov ebp,esp; mov eax,8; pop ebp; ret —— 恒返回控制码 8；Section 跳转由外层完成。"
+        },
+        {
+          "opcode": "0x6A",
+          "title": "Game Over指令",
+          "handler": "00481714",
+          "size": 60,
+          "class": "0x481714：push 0; call 0x42B5E1（Game Over）；无返回。",
+          "kind": "fixed-action",
+          "resolution": "0x481714：push 0; call 0x42B5E1（Game Over）；无返回。"
+        },
+        {
+          "opcode": "0x03",
+          "title": "else",
+          "handler": "004834C6",
+          "size": 764,
+          "class": "0x4834C6：push ebp; mov ebp,esp; mov eax,6; pop ebp; ret —— 恒返回控制码 6；else 跳转由外层完成。",
+          "kind": "control-code",
+          "resolution": "0x4834C6：push ebp; mov ebp,esp; mov eax,6; pop ebp; ret —— 恒返回控制码 6；else 跳转由外层完成。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "analysis": "current-record-pointer",
+  "date": "2026-11-12",
+  "method": "refs_to.py 列出 0x500E28 全部 7 处引用；capstone 反汇编 0x40BE7D（指针→索引）、0x456CB4（332 确认）、0x469FD1（列表选择写入）、0x4787F9（角色面板写入）。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "global": {
+    "addr": "0x500E28",
+    "type": "dword（人物记录指针）",
+    "role": "当前选中人物记录指针",
+    "writers": [
+      {"site": "0x469FD1", "context": "列表选择变化：新指针 != [obj+0x20] 时写入 0x500E28，并同步 [obj+0x20]、调 0x4698AF"},
+      {"site": "0x4787F9", "context": "角色面板打开：把 [ebp-0x7C] 记录指针写入 0x500E28，并用 0x4CE77D 调 0x401126"}
+    ],
+    "readers": ["0x401129", "0x40F0FE", "0x412A3F", "0x44D4EA", "0x456CCE"]
+  },
+  "pointerToIndex": {
+    "entry": "0x40BE7D",
+    "formula": "(ptr - dword[0x4CEA00]) / 0x48",
+    "note": "0x48=72 为人物记录大小（第29轮）；返回记录下标",
+    "use": "0x456CB4：0x40BE7D([0x500E28]) 得到当前人物下标，再 0x42ACD2(下标) 访问 0x508000 功勋表"
+  },
+  "conclusion": "0x500E28 是全局「当前选中人物记录指针」，由列表选择 0x469FD1 与角色面板 0x4787F9 写入，5 处读取。0x40BE7D 用 (ptr-0x4CEA00)/0x48 把记录指针换算为人物下标，332 对话框确认处理用它索引 0x508000 功勋分配表。",
+  "limitations": [
+    "0x469FD1 所属列表对象（控件 ID/模板）未定。",
+    "0x4CE77D 的含义未展开。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.script-number-parser.3ef7",
+      "title": "数字记号解析器 0x426E64（- 负号 / * 变量引用）与全局变量数组 0x502000",
+      "aliases": [
+        "script number parser",
+        "数字记号解析",
+        "0x426E64",
+        "0x502000",
+        "0x42C6C5"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x426E64(src) 解析十进制整数记号：起始可带 '-'（负号）与 '*'（变量引用）前缀，随后读取连续 '0'..'9'；返回 eax=数值、edx=已消费字符数（前缀数+位数），无数字返回 0。'*' 前缀表示 eax=dword[0x502000+value*4]，'-' 前缀对结果取负。0x502000 是全局 dword 变量数组：写入 0x407932/0x42CAF2/0x42CC2D；读取 0x41516B/0x416CFE/0x416D42/0x418493/0x4202E2/0x4246B4/0x425C93/0x426863/0x426EED/0x43B502。0x42C6C5(stream,N,size,dst) 循环 N 次调用 0x426E64，把 eax 写入 dst，并把 stream 前进 edx+1（跳过记号后的分隔符）。0x502000 另有按单位槽写入路径（第146轮）：0x407932 以槽 idx 写 dword[0x502000+idx*4] = (byte[unit+0xD]&2)>=2 ? 1 : 0（unit 由 0x4061F9 取得），说明该数组也被单位行动/状态分支使用。",
+      "constants": [
+        "0x426E64", "0x42C6C5", "0x502000",
+        "0x407932", "0x42CAF2", "0x42CC2D", "0x41516B", "0x416CFE", "0x416D42", "0x418493", "0x4202E2",
+        "0x4246B4", "0x425C93", "0x426863", "0x426EED", "0x43B502",
+        "0x2D", "0x2A", "0x30", "0x39", "0x0A"
+      ],
+      "identity": "0x426E64 的数字扫描 0x30..0x39、前缀 0x2D/0x2A 与 0x502000 的 *4 索引自洽；0x42C6C5 的 edx+1 推进与 0x426E64 的消费长度返回一致；0x502000 在 13 处读/写中均为 dword 数组。",
+      "siteAddresses": {
+        "parser": "0x426E64",
+        "streamReader": "0x42C6C5",
+        "varTable": "0x502000",
+        "varWrite1": "0x407932",
+        "varWrite2": "0x42CAF2",
+        "varWrite3": "0x42CC2D",
+        "varReadSample": "0x418493",
+        "negPrefix": "0x2D",
+        "varPrefix": "0x2A",
+        "digitLow": "0x30",
+        "digitHigh": "0x39"
+      },
+      "limitations": [
+        "0x502000 变量数组容量与初始化点未定位。",
+        "写入点 0x407932/0x42CAF2/0x42CC2D 的上层业务未展开。",
+        "记号分隔符完整集合未逐项确认。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.msg-dialog-class-66.3ef7",
+        "mechanism.65.script-context-caches.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-script-number-parser-20261112",
+        "src.research.engine-var-table-502000-20261112"
+      ]
+    }
+  ]
+}

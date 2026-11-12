@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "analysis": "global-grid-dimension-pair",
+  "date": "2026-11-12",
+  "method": "枚举 0x4B422C/0x4B422D 全部引用；反汇编索引函数 0x403789、边界检查 0x404E30、装载器 0x44C1C2、写入点 0x4516BF/0x4D11C7、快照恢复 0x41D2B8；三基底写入常量与函数哈希对比。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "globals": {
+    "width": "byte[0x4B422C]（行跨度/列数）",
+    "height": "byte[0x4B422D]（行数）",
+    "pairWord": "word[0x4B422C] 可一次写入，低字节=width，高字节=height",
+    "snapshot": "0x500AA0+0x12 保存/恢复该 word"
+  },
+  "sites": {
+    "index": {
+      "va": "0x403789",
+      "code": "return byte[ebp+9] * byte[0x4B422C] + byte[ebp+8]",
+      "note": "标准二维索引 y*width+x，证明 0x4B422C 为行跨度"
+    },
+    "bounds": {
+      "va": "0x404E30",
+      "code": "if x >= byte[0x4B422C] or y >= byte[0x4B422D] → 越界；否则 0x418CD0",
+      "note": "x 与 width、y 与 height 分别比较"
+    },
+    "loader": {
+      "va": "0x44C1C2",
+      "code": "读取资源头 byte0/byte1，经 0x41FBF1 转换；若 arg==0：word[0x4B422C]=pair，分配 0x640 字节，memcpy(width*height, src+2, dst)；否则返回 1",
+      "note": "0x640=1600，对应 40×40 上限的地形/网格装载"
+    },
+    "write4x1": {
+      "va": "0x4516BF",
+      "code": "word[0x4B422C]=0x0104（width=4, height=1）",
+      "note": "战斗/编成界面进入时设置为 4×1 网格"
+    },
+    "write5x1": {
+      "va": "0x4D11C7",
+      "code": "word[0x4B422C]=0x0105（width=5, height=1）",
+      "note": "另一列表界面设置为 5×1 网格"
+    },
+    "snapshotRestore": {
+      "va": "0x41D2B8",
+      "code": "word[0x4B422C]=word[0x500AA0+0x12]",
+      "note": "从上下文快照恢复网格尺寸"
+    }
+  },
+  "crossBase": {
+    "hashes": {
+      "index403789": {"6.4": "C5FDE3439566455A", "6.5": "C5FDE3439566455A", "6.6": "C5FDE3439566455A"},
+      "bounds404E12": {"6.4": "EEA4C88F423FA4F4", "6.5": "EEA4C88F423FA4F4", "6.6": "D196DB664B920E5E"},
+      "loader44C1C2": {"6.4": "73DAAC4D5C8C3CAB", "6.5": "6178E2B182028343", "6.6": "6178E2B182028343"}
+    },
+    "writeSites": {
+      "0x0104": {"6.4": "0x4516BF", "6.5": "0x4516BF", "6.6": "0x40ADDF"},
+      "0x0105": {"6.4": "0x4D11C7", "6.5": "0x4D11C7", "6.6": "未出现"}
+    }
+  },
+  "conclusion": "0x4B422C/0x4B422D 是全局二维网格尺寸对：byte[0x4B422C]=宽度/行跨度，byte[0x4B422D]=高度。0x403789 以 y*width+x 计算索引，0x404E30 以 x<width、y<height 做边界检查，0x44C1C2 从资源头读取两字节并分配 0x640 字节后按 width*height 拷贝，说明该对用于地形/网格装载；0x4516BF/0x4D11C7 分别设置为 4×1 与 5×1，说明列表 UI 复用同一全局。0x41D2B8 从 0x500AA0+0x12 快照恢复。",
+  "limitations": [
+    "宽度单位是地图格还是 UI 单元格随调用者而异，尚未逐一标注所有消费者。",
+    "0x44C1C2 的资源来源与 0x41FBF1 转换规则未展开。",
+    "0x4516BF/0x4D11C7 所属界面的具体名称未由字符串直接证明。",
+    "未运行游戏对照。"
+  ]
+}

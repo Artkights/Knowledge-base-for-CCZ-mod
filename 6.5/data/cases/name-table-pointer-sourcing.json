@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "entityType": "case-study",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "case.65.name-table-pointer-sourcing",
+      "title": "地形/兵种/兵种系名表指针来源溯源",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "objective": "确认地形、兵种、兵种系三张名称表的真实基址、取用指令形态与索引来源，判断是否存在表套表。",
+      "inputs": [
+        "基底 洗隋/Ekd5.exe",
+        "基底 加强版6.5未加密版/Ekd5.exe",
+        "基底 复刻版6.6山贼/Ekd5.exe"
+      ],
+      "procedure": [
+        "对 0x48BB00-0x48C700 全区间做 DWORD 立即数引用扫描，得到 268 处候选。",
+        "按候选地址聚类：0x48BDB0 4 处、0x48C570 3 处、0x48BEA8 1 处，其余归属特效名/字符串区。",
+        "对三张表分别用 4 字节基址模式（b0bd4800 / a8be4800 / 70c54800）在三基底重扫，结果完全一致。",
+        "反汇编取用点，确认均为 `[reg*4+imm32]` 直接寻址，无中间指针表；索引来源分别为地形号、兵种号、兵种系号。",
+        "对兵种名 getter 0x401118 做 E8 调用者与 DWORD 引用双重扫描，并检查内联形态，均为 0。"
+      ],
+      "outcome": [
+        "地形名表真实基址 = 0x48BDB0（33 项），此前 0x48BDB4 的记录偏移了 1 项。",
+        "兵种名表真实基址 = 0x48BEA8（80 项，index 0 = 群雄），此前 0x48BEAC 漏掉 index 0。",
+        "兵种系名表基址 = 0x48C570（40 项）无误，三基底 3 处取用点同址同字节。",
+        "三张表都没有「表套表」的指针来源：基址以 imm32 直接编码在取用指令中；所谓指针来源即这些立即数。",
+        "兵种名表在 6.x 中仅由叶子 getter 0x401118 引用且无静态调用者，实际显示路径需运行期确认。"
+      ],
+      "reusableLessons": [
+        "指针数组的「首项」可能因为前一个字节非 0 而被自动扫描漏掉，必须用代码里的基址反查边界。",
+        "无引用的名表未必是数据驱动：先查 [reg*4+imm32] 的 imm32 变体，再查内联 shl/add 形态，最后才判定为未使用。",
+        "同址同字节的取用点在三个基底中高度稳定，可作为版本画像的锚点。"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.dm.formulas.sample-64-20261102",
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

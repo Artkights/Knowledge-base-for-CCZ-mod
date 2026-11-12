@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "analysis": "unit-status-bitfield-and-deploy-flag",
+  "date": "2026-11-12",
+  "method": "反汇编 0x41B500（+0x10 取值）、0x423FE8（+0x1E 四位状态组）、0x426B33（组合判定）；三基底函数哈希对比。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "structure": {
+    "deployField": "dword[unit+0x10]，0x41B500 直接返回；0 表示未部署/已撤退候选",
+    "statusByte": "byte[unit+0x1E]，4 组 × 2 bit",
+    "maskSemantics": "0x423FE8(mask) 逐位移检测 mask 的 bit0..bit3，对应检查组 0..3；返回首个非零 2-bit 值（1/2/3），全零返回 0"
+  },
+  "sites": {
+    "get10": {"va": "0x41B500", "code": "return dword[ecx+0x10]"},
+    "statusBits": {"va": "0x423FE8", "code": "state=byte[ecx+0x1E]; i=0..3: if mask&1 and (state&3)!=0 return state&3; state>>=2; mask>>=1; return 0"},
+    "check": {"va": "0x426B33", "code": "if 0x41B500()==0 return 2; if 0x423FE8(8)!=0 return 该值; return 0", "note": "mask 8 对应第 3 组（bit6-7）"},
+    "apply40": {"va": "0x411072", "code": "0x426B33(目标)!=0 时追加 40% 伤害；与 byte[0x500E9A]==1 并列"}
+  },
+  "crossBase": {
+    "hashes": {
+      "get10_41B500": {"6.4": "53C5E1FDE51CF1D9", "6.5": "53C5E1FDE51CF1D9", "6.6": "53C5E1FDE51CF1D9"},
+      "statusBits423FE8": {"6.4": "FECD32433BF43D2C", "6.5": "B626A012FCDA929B", "6.6": "B626A012FCDA929B"},
+      "check426B33": {"6.4": "C533752D5A270DEF", "6.5": "7EBB3D8EE8B7E968", "6.6": "7EBB3D8EE8B7E968"}
+    }
+  },
+  "conclusion": "单位记录 +0x10 是 0x41B500 直接返回的部署/存在字段，为 0 时 0x426B33 返回 2；否则 0x426B33 返回 byte[unit+0x1E] 第 3 组 2-bit 状态值（mask 8），无状态返回 0。0x411072 在 0x426B33 非 0 时追加 40% 伤害，因此 +40% 条件为『目标未部署/已撤退』或『目标第 3 组状态非零』。0x41B500 三基底同哈希；0x423FE8/0x426B33 在 6.5 与 6.6 同哈希，6.4 不同。",
+  "limitations": [
+    "unit+0x10 的具体语义（未部署/已撤退/隐藏）未由文案证明。",
+    "unit+0x1E 四组 2-bit 状态的含义未命名。",
+    "mask 8 只覆盖第 3 组，其余组的使用点未展开。",
+    "未运行游戏对照。"
+  ]
+}

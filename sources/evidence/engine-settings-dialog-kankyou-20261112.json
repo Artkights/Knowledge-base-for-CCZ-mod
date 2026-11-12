@@ -1,0 +1,72 @@
+{
+  "id": "src.research.engine-settings-dialog-kankyou-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "环境设定对话框 KANKYOU（DIALOGEX 220×195）控件清单与设置块 +0x00/+0x01/+0x02/+0x03 写入映射",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "RT_DIALOG 命名资源解析（DIALOGEX，已修正 helpID/24 字节控制头与字体 face 偏移）+ 对话框过程 0x41BAD7 与 OK 处理 0x41B90F 反汇编",
+  "findings": [
+    {
+      "id": "dialog-resource",
+      "claim": "环境设定对话框是命名资源 KANKYOU：DIALOGEX，220×195 DLU，标题「环境设定」，宋体 9pt，25 个控件。",
+      "evidence": [
+        "dialog_resource(KANKYOU)：format=DIALOGEX bytes=1100 help=0x0 exStyle=0x0 style=0x80C808C0 items=25 rect=(0,0,220,195) title='环境设定'",
+        "0x44F915 push [0x4B6A68]; 0x44F91B push 0x48B600(\"KANKYOU\"); 0x44F926 call DialogBoxParamA；proc=0x41BAD7"
+      ]
+    },
+    {
+      "id": "controls",
+      "claim": "控件：1 确定、2 取消、0x406 听背景音乐、0x407 听音效、0x408 战斗时窗口自动最大化、0x409 战斗时自动显示战场缩小图、0x40A 会话窗口不自动关闭（以上 5 个为复选框）；0x40B/0x40C/0x40D 讯息显示速度 快/普通/慢；0x40E/0x40F/0x410 武将移动速度 快/普通/慢；0x411 为 msctls_trackbar32 音量滑条；0x412 与静态文本「音量」；0x5D0/0x5D1 加速/花色 owner-draw 按钮；0x4D3 动画预览面板。",
+      "evidence": [
+        "dialog_resource：id=0x0406 text='听背景音乐'；0x0407 '听音效'；0x0408 '战斗时，窗口自动最大化'；0x0409 '战斗时，自动显示战场缩小图'；0x040A '会话窗口不自动关闭'",
+        "id=0x040B '快' / 0x040C '普通' / 0x040D '慢'，标签 '讯息显示速度'；0x040E/0x040F/0x0410 同上，标签 '武将移动速度'",
+        "id=0x0411 class='msctls_trackbar32' text='0'；id=0x0412 text='1'；静态 '音量'",
+        "id=0x05D0/0x05D1 class=<ord 133>（owner-draw 按钮）；id=0x04D3 class=<ord 131> rect=(126,5,91,109)"
+      ]
+    },
+    {
+      "id": "settings-writeback",
+      "claim": "OK 处理 0x41B90F 把界面写入设置块：+0x00 = 0x406..0x40A 五个复选框的位掩码（bit0..bit4）；+0x01 = 讯息显示速度索引（0x40B..0x40D 中选中者，0/1/2）；+0x02 = 武将移动速度索引（0x40E..0x410，0/1/2）；+0x03 由滑条消息 0x42E218 单独写入（音量）。",
+      "evidence": [
+        "0x41B917..0x41B933 循环 i<5：0x41B91F add eax,0x406; 0x41B928 call 0x41B8ED(hwnd,id,i); 0x41B92D or [ebp-0xC],eax",
+        "0x41B935 pop ecx; 0x41B936 mov eax,0x4B0770; 0x41B93B mov byte[eax],cl",
+        "0x41B93D..0x41B985 两组 s=0..1：0x41B956 imul ecx,s,3; 0x41B95B add eax,0x40B; GetDlgItem; 0x41B96B call 0x41B8AF（取选中项）；0x41B979 add eax,s; 0x41B97F mov byte[eax+1],cl（写 +0x01/+0x02）",
+        "0x42E23A mov ecx,0x4B0770; 0x42E23F mov byte[ecx+3],al（音量）"
+      ]
+    },
+    {
+      "id": "dialog-proc",
+      "claim": "对话框过程 0x41BAD7：WM_HSCROLL(0x114) 且滚动码 0..7 → 0x42E218（音量滑条）；WM_COMMAND(0x111) 且 id=1 → 0x41B90F（保存并确定）、id=2/确定按钮 → ShowWindow 关闭；id=0x5D0 且通知码 9 → 0x4862A4/0x4862A8（owner-draw 按钮动画）；id=0x4D3 → 0x41A155（预览）；WM_INITDIALOG(0x110) → 0x41BD7F 初始化；自定义 0x30F → 0x47252B、0x311 → 0x403B14。",
+      "evidence": [
+        "0x41BADD cmp ax,0x114; 0x41BAF6 call 0x42E218",
+        "0x41BB20 cmp ax,0x111; 0x41BB32 call 0x41B90F（id=1）；0x41BB43 call [0x4862D4]",
+        "0x41BB4B cmp ax,0x5D0; 0x41BB54 shr eax,0x10; 0x41BB57 cmp eax,9; 0x41BB63 call [0x4862A4]",
+        "0x41BB74 cmp ax,0x4D3; 0x41BB80 call 0x41A155；0x41BB87 cmp ax,0x110; 0x41BB90 call 0x41BD7F"
+      ]
+    },
+    {
+      "id": "adjacent-fields",
+      "claim": "附带确认：+0x06 word 由 0x418139 在脚本处理器返回 4 时自增（非界面项）；+0x12 byte 在 0x40D3B8 以 0x64 上限钳制（0..100 百分值）。两者与 KANKYOU 三项界面设置无直接写入关系。",
+      "evidence": [
+        "0x418139 add word ptr [ecx+6],1；上下文 0x41812F cmp eax,4",
+        "0x40D3C4 movzx eax,byte[ecx+0x12]; 0x40D3D3 cmp ecx,0x64; 0x40D3DB call 0x47FAD0"
+      ]
+    }
+  ],
+  "corrections": [
+    "设置项界面文案尘埃落定：环境设定对话框中的三项为「音量」（滑条 0x411）、「讯息显示速度」（0x40B..0x40D 快/普通/慢）、「武将移动速度」（0x40E..0x410 快/普通/慢）。",
+    "设置块 +0x00 不止 bit1：实际是 0x406..0x40A 五个复选框的位掩码（bit0 背景音乐、bit1 音效、bit2 窗口最大化、bit3 战场缩小图、bit4 会话窗口不自动关闭）。"
+  ],
+  "limitations": [
+    "脚本变量 getter 0x40E1D0/0x415E19/0x408808（+0x0C/+0x06/+0x12）与三项界面设置的对应关系仍未建立。",
+    "0x5D0/0x5D1 的 owner-draw 状态位（加速/花色）写入的设置字段未定位。",
+    "0x41BD7F 初始化时逐控件回填的细节未展开。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.grid-status-map.3890",
+      "title": "战场格状态图 0x510000",
+      "aliases": [
+        "0x00510000",
+        "grid status map",
+        "格状态缓冲"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00510000",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 3200,
+      "semantics": "2 字节/格的战场状态图，长度 0xC80；0x473DF4 以 memset 清零，0x4362C2 计算格指针，0x4556F6 写 cell[0]=0xCF+覆盖物类型、cell[1]=value+1。",
+      "relations": [
+        "struct.65.grid-status-cell",
+        "fn.65.grid-status-write.3890",
+        "fn.65.battle-grid-clear.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.data-e5-block1-buffer.3890",
+      "title": "DATA.E5 块 1 解出缓冲",
+      "aliases": [
+        "0x004A1140",
+        "block1 buffer"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004A1140",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 2600,
+      "semantics": "0x4010B0 从 DATA.E5 块 1 解出 2600 字节（104×0x19）到此处；0x4A1140+0xA28=0x4A1B68 由 star.e5（0xED8 字节）紧接载入。既有实体 global.65.item-table 的 255×0x19 描述与本样本实测冲突，待该画像复核。",
+      "relations": [
+        "global.65.item-table",
+        "struct.65.data-e5-block1-record",
+        "fn.65.data-e5-block1-init.3890",
+        "format.65.data-e5-block-directory.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.ccz65.3890.datae5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.fatal-record-table.3890",
+      "title": "DATA.E5 必杀记录运行时副本",
+      "aliases": [
+        "0x004A7510",
+        "fatal record runtime table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004A7510",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 1552,
+      "semantics": "0x41B834 把 DATA.E5 块 5 尾段 0x610 字节（97×16）复制到此处；0x41E918 提供 id→记录指针访问器；表尾 0x4A7510+0x610=0x4A7B20 紧邻单位数组。",
+      "relations": [
+        "struct.65.data-e5-fatal-record",
+        "fn.65.fatal-field-d-reader.3890",
+        "fn.65.fatal-field-c-reader.3890",
+        "global.65.fatal-table"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

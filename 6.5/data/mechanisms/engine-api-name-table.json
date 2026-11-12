@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.api-name-table.3ef7",
+      "title": ".api 段动态 API 名称表：DLL 名 + 槽位组（名称VA-0x400000-2）",
+      "aliases": [
+        "api name table",
+        "API 名称表",
+        ".api",
+        "0x4BE000",
+        "GetLocalTime",
+        "LoadImageA",
+        "GdipCreateBitmapFromScan0"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": ".api 段位于 0x4BE000（VirtualSize 0x10000、可执行），先连续存放 DLL 名，再按 DLL 顺序存放槽位组（每组若干 dword、以 0 结束）。槽位静态值 = 名称字符串VA - 0x400000 - 2，运行期替换为真实函数指针，调用方统一 call dword ptr [slot]。6.4/6.5：5 个 DLL（USER32/KERNEL32/Msimg32/GDI32/Jpg）、表起 0x4BE036、12 槽（LoadImageA@0x4BE036、SetLayeredWindowAttributes@0x4BE03A、GetPrivateProfileIntA@0x4BE042、GetLocalTime@0x4BE046、TransparentBlt@0x4BE04E、AlphaBlend@0x4BE052、GetBitmapBits@0x4BE05A、SetBitmapBits@0x4BE05E、JpgInit@0x4BE066、JpgRead@0x4BE06A、JpgFree@0x4BE06E、PngRead@0x4BE072），其中 TransparentBlt/AlphaBlend 无静态消费点。6.6：增加 GDIPLUS.dll，表起 0x4BE042，新增 10 个 GDI+ 槽（GdiplusStartup@0x4BE086、GdiplusShutdown@0x4BE08A、GdipDeleteGraphics@0x4BE08E、GdipCreateBitmapFromScan0@0x4BE092、GdipBitmapLockBits@0x4BE096、GdipBitmapUnlockBits@0x4BE09A、GdipDrawImageRectRectI@0x4BE09E、GdipCreateFromHDC@0x4BE0A2、GdipCreateImageAttributes@0x4BE0A6、GdipSetImageAttributesColorMatrix@0x4BE0AA），API 名称串整体后移到 0x4BE100。GDI+ 消费链（第135轮）：启动 0x4829DB 依次 GdiplusStartup(&0x4CEA70, input v1, NULL) → GdipCreateImageAttributes(&0x4CEA74) → SetUnhandledExceptionFilter(0x482990)（旧过滤器存 0x4BCCB4）；位图链 0x42FE04 用 GdipCreateFromHDC([0x4B9948]/[0x4B9970] → 0x4CEA78/0x4CEA7C)、GdipCreateBitmapFromScan0(0x4B7750+arg, 格式 0x21808)、GdipBitmapLockBits/UnlockBits(0x4CEA80)；绘制 0x41A4D6/0x41A5D1/0x41A693 调 GdipDrawImageRectRectI(0x4CEA78, [0x4B7798], unit=2)；颜色矩阵 0x42FE84 以 0x47FD13 清 0xC8 字节、写 4 个 1.0f 对角线并用 arg/divisor 作缩放，0x42FECF 调 GdipSetImageAttributesColorMatrix(0x4CEA74)。GdiplusShutdown 与 GdipDeleteGraphics 无真实调用点。其余 API 消费点：GetPrivateProfileIntA 用于 AutoDll.ini（0x4069E4/0x4069FE/0x406A18）、GetLocalTime 用于存档时间戳（0x40535C 写 SYSTEMTIME 到 0x501AD0）、SetLayeredWindowAttributes 用于窗口透明（0x4102EE，6.6 另加 0x479BD7）、Get/SetBitmapBits（0x408A15/0x4089DC，6.6 0x408A1B/0x4089E2）、LoadImageA（0x44D2C0）、Jpg/Png 解码链（0x420DBF/0x420DDD/0x420E1D/0x420E2A/0x416236，6.6 PngRead 0x416244）。6.6 段首复用（第143轮）：0x4BE004/0x4BE006/0x4BE008 被当作对话框暂存字，0x46D0F8 以 [0x4BE006] 作自动关闭标志（-1 时下一个 WM_INITDIALOG 立即 SendMessageA(hwnd,0x591) 关闭），0x4793BB 打开模板 343「说明介绍」前写 -1、返回后清 0x4BE004/0x4BE008。",
+      "constants": [
+        "0x4BE000", "0x4BE036", "0x4BE03A", "0x4BE042", "0x4BE046", "0x4BE04E", "0x4BE052",
+        "0x4BE05A", "0x4BE05E", "0x4BE066", "0x4BE06A", "0x4BE06E", "0x4BE072",
+        "0x4BE086", "0x4BE08A", "0x4BE08E", "0x4BE092", "0x4BE096", "0x4BE09A", "0x4BE09E", "0x4BE0A2", "0x4BE0A6", "0x4BE0AA",
+        "0x400000", "0x02", "0x501AD0", "0x40535C", "0x4069E4", "0x4069FE", "0x406A18",
+        "0x4102EE", "0x408A15", "0x4089DC", "0x44D2C0", "0x420DBF", "0x420DDD", "0x420E1D", "0x420E2A", "0x416236", "0x4829EB",
+        "0x4829DB", "0x4829F6", "0x482990", "0x4BCCB4", "0x4CEA70", "0x4CEA74", "0x4CEA78", "0x4CEA7C", "0x4CEA80", "0x4B7750", "0x4B9948", "0x4B9970",
+        "0x42FE04", "0x42FE12", "0x42FE23", "0x42FE42", "0x42FE67", "0x42FE77", "0x42FE84", "0x42FECF",
+        "0x41A4D6", "0x41A5D1", "0x41A693", "0x4B7798", "0x21808", "0x3F800000", "0x486194", "0x47FD13", "0x47C966", "0x483E60",
+        "0x4BE100", "0x4BE1B5",
+        "0x4BE004", "0x4BE006", "0x4BE008", "0x46D0F8", "0x4793BB", "0x4793AB", "0x5AA", "0x591", "0x157"
+      ],
+      "identity": "对 6.5 每个槽位执行 dword+0x400000+2 后，均精确落在对应 ASCII 名称首字节（例如 0x000BE0F0+2=0x4BE0F2=\"GetLocalTime\"），且组顺序与 DLL 名顺序一致；6.6 的所有槽位同样成立。",
+      "siteAddresses": {
+        "sectionStart": "0x4BE000",
+        "sixFiveTableStart": "0x4BE036",
+        "sixSixTableStart": "0x4BE042",
+        "sixFiveDllNames": ["USER32.dll", "KERNEL32.dll", "Msimg32.dll", "GDI32.dll", "Jpg.dll"],
+        "sixSixDllNames": ["USER32.dll", "KERNEL32.dll", "Msimg32.dll", "GDI32.dll", "Jpg.dll", "GDIPLUS.dll"],
+        "getNameSlot65": "0x4BE046",
+        "getNameSlot66": "0x4BE052",
+        "autoDllIniConsumer": "0x4069E4",
+        "saveTimestampConsumer": "0x40535C",
+        "layeredWindowConsumer": "0x4102EE",
+        "gdiplusStartupConsumer": "0x4829EB",
+        "gdiplusStartupInit": "0x4829DB",
+        "gdiplusImageAttributes": "0x4829F6",
+        "gdiplusToken": "0x4CEA70",
+        "gdiplusAttr": "0x4CEA74",
+        "gdiplusGraphicsA": "0x4CEA78",
+        "gdiplusGraphicsB": "0x4CEA7C",
+        "gdiplusBitmapRect": "0x4CEA80",
+        "gdiplusBitmapChain": "0x42FE04",
+        "gdiplusBitmapScan0": "0x42FE42",
+        "gdiplusLock": "0x42FE67",
+        "gdiplusUnlock": "0x42FE77",
+        "gdiplusColorMatrix": "0x42FECF",
+        "gdiplusDrawSites": "0x41A4D6/0x41A5D1/0x41A693",
+        "gdiplusImage": "0x4B7798",
+        "gdiplusPixelFormat": "0x21808",
+        "dialogScratchBase": "0x4BE004",
+        "dialogAutoCloseFlag": "0x4BE006",
+        "dialogScratch2": "0x4BE008",
+        "genericDialogProc": "0x46D0F8",
+        "closeMessage": "0x591",
+        "descDialogOpener": "0x4793BB",
+        "descDialogTrigger": "0x4793AB",
+        "descDialogTemplate": "0x157"
+      },
+      "limitations": [
+        "槽位填充代码未静态定位（推测由启动期或外部 DLL 完成）。",
+        "GdiplusShutdown 与 GdipDeleteGraphics 无静态消费点。",
+        "TransparentBlt/AlphaBlend 三基底均无静态消费点。",
+        "0x21808 像素格式与 0x4B9948/0x4B9970 两个 HDC 来源未展开。",
+        "0x4BE004/0x4BE006/0x4BE008 的段首复用与 .api 解析时序冲突未运行期验证。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.save-file-format.3ef7",
+        "mechanism.65.save-load-constants.3ef7",
+        "mechanism.65.global-ui-state-block.3ef7",
+        "mechanism.65.dialog-framework.3ef7",
+        "mechanism.65.color-palette.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-api-name-table-20261112",
+        "src.research.engine-gdiplus-consumers-20261112",
+        "src.research.engine-4be006-dialog-flag-20261112"
+      ]
+    }
+  ]
+}

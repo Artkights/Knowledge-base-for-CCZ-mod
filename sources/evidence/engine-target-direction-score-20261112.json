@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "analysis": "target-direction-score-4101D9",
+  "date": "2026-11-12",
+  "method": "反汇编 0x4101D9 四方向枚举、0x41301E 评分、0x413009 合并、0x426A07 单位解析；三基底函数哈希对比；核对 0x426737 中的调用位置。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "sites": {
+    "score": {
+      "va": "0x4101D9",
+      "args": "[ebp+8..+0x14] 四个参数",
+      "code": "0x426A07 解析单位；比较 dword[edx] 与 0x505F78；0x40F1AC/0x425390 检查；首轮 0x41301E(4 参) 得 [ebp-8]；0x413009(ecx=[ebp+0x10],edx=[ebp-0x10]) 合并；若 [ebp-0x18]!=0 且 0x43C414 非 0，循环最多 4 次：0x41031C 取方向坐标，0x435884 查单位，0x4061F9/0x40658F 解析，再 0x41301E/0x413009 取较优值；返回 eax=[ebp-0x10]、edx=[ebp-8]"
+    },
+    "evaluate": {
+      "va": "0x41301E",
+      "code": "0x40BE7D → 0x4198BE(...,0x500C3B) → 0x43C794 → 0x413009 → 0x402CF9(...,0x50E000)"
+    },
+    "merge": {"va": "0x413009", "code": "if ecx==2 and edx==0: edx=eax; call 0x40BF2F"},
+    "wrapper": {"va": "0x413272", "code": "call 0x4101D9(0,1,0x4E,0x76)；返回评分"},
+    "consumer": {"va": "0x426737", "code": "pct = table[0x4D1A80] + 0x413272(defender) - 0x413272(attacker)；负值归零"}
+  },
+  "constants": ["4", "0xFF", "0x4E", "0x76", "0x505F78", "0x500C3B", "0x50E000"],
+  "crossBase": {
+    "hashes": {
+      "score4101D9": {"6.4": "A7B54F1B9DE5F961", "6.5": "A7B54F1B9DE5F961", "6.6": "A7B54F1B9DE5F961"},
+      "eval41301E": {"6.4": "C587E6319ACD0AFB", "6.5": "E1C8A7E0C2014441", "6.6": "D5EB1D243A5DB062"},
+      "merge413009": {"6.4": "2876E4CCE4D7FFBE", "6.5": "2876E4CCE4D7FFBE", "6.6": "2876E4CCE4D7FFBE"},
+      "get426A07": {"6.4": "419B7A89C9395B20", "6.5": "419B7A89C9395B20", "6.6": "ABAC5AA991A07BE3"}
+    }
+  },
+  "conclusion": "0x4101D9 是四方向目标/位置评分器：解析单位后先算一次基准评分，再按最多 4 个方向枚举候选位置，用 0x41301E 评分并用 0x413009 合并较优值，返回 eax 分数与 edx 附带值。0x413272 以固定参数 (0,1,0x4E,0x76) 调用它，0x426737 再把守方评分加到、攻方评分减到等级差百分比上。因此物理伤害中的守/攻修正包含方向/位置评分项，而非纯随机。0x4101D9 与 0x413009 三基底同哈希，0x41301E 三基底均不同。",
+  "limitations": [
+    "0x41301E 的评分公式未展开到字段级。",
+    "0x4198BE/0x43C794/0x402CF9 的语义未命名。",
+    "0x505F78 阈值与 0x500C3B 标志未展开。",
+    "未运行游戏对照。"
+  ]
+}

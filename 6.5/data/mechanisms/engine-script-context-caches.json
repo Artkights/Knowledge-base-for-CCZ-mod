@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.script-context-caches.3ef7",
+      "title": "剧本解释器上下文与脚本地址缓存 0x500AB0/0x500AB4",
+      "aliases": [
+        "script context",
+        "剧本上下文",
+        "0x500AB0",
+        "0x500AB4",
+        "0x4109E6",
+        "0x410857",
+        "0x4105FF"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "剧本解释器上下文是带 vtable 的对象（[ctx]=vtable）：+0x00 vtable、+0x08 脚本流累计字节计数（0x416C54 后 add [ctx+8], eax+5）、+0x0C 脚本流读取地址（绝对地址，0x4183F7 的读取起点，并参与缓存公式）、+0x10 opcode 快照、+0x14 等待中的分支目标地址（-1 哨兵）、+0x2C 执行中标志、+0x2E 当前动作码、+0x34 开关。0x500AB0=[ctx+0xC]-2（动作码 1 分支，0x410A0B）；0x500AB4=[ctx+0xC]+0x40FCB2(ctx)（[ctx+0x14]<0 分支，0x41088B）。6.4/6.5 对应槽位为 0x4CE74C（0x410A0B）与 0x4CE75C（0x410891）。消费链：操作码 0x76 处理器 0x416C41（两基底处理表 0x410A38 第 118 项）先用 0x4183F7 读 4 字节操作数推进 ctx，再以 [0x500AB0,0x500AB4] 区间判定当前位置（6.5 用 [edx-0x10] 读 0x4CE74C，6.6 用 [edx-4] 读 0x500AB0），命中时 cl=0x76 哨兵，与 0x4109E6/0x4105FF 的 0x76 特判衔接。0x4109E6 以 0x40FCB2 取得的动作码写入 +0x2E，并以其-2 索引 0x410A38 处理表（6.6 上限 0x7B，6.5 为 0x79）；0x4105FF 为解释器主分派，0x410857 为动作处理器。取参器 0x4183F7（第149轮）：先以 0x40FCB2 从 ctx+0x2E 读 token 再按 type 分派——type=1 原样返回 token，type=4 走 0x40FC90（数值/负号，负值时 byte[ebp-0x10]<0x6E 才取 -eax），type=5 走 0x40FC62 返回文本指针，type=2/0x38/0x39 读 word 且 0xEFFF<=ax<0xFFFF 时按 ~ax-1 索引 dword[0x502000+idx*4]，其余（3/9/0x4F）为纯 word。主分派表 0x410A38 在 6.5 为 126 项（索引=opcode-2，0x7A..0x7F 空实现 0x4D0000）：0x68=0x4103F0 练武场命令（操作数类型表 0x40E388={0x02,0x02,0x4F}）、0x72=0x47D89E 信息传送（类型 4,5）、0x76=0x416C41 区间守卫（类型 4）、0x77=0x416C87 变量算术（类型表 0x416C82={0x51,0x04,0x53,0x52,0x04}，按目标类型 0/1/2 解析 0x506000 字符串表或 0x502000 变量地址，运算码 p2>=3 时偶数 div、奇数 imul，经 0x425AD9 与 0x410471 写回）。0x77 的 0x506000 字符串表项上限 0x12F（303），0x502000 变量上限 0x1000。三基底 EXE 内无剧本命令中文名表（GBK「信息传送」「练武场」命中 0，仅运行时文本存在）。",
+      "constants": [
+        "0x500AB0", "0x500AB4", "0x4109E6", "0x410857", "0x4105FF",
+        "0x4108B2", "0x410A38", "0x40FCB2", "0x40FC42", "0x416C62",
+        "0x0C", "0x10", "0x14", "0x2C", "0x2E", "0x34",
+        "0x416C41", "0x416C87", "0x416DCD", "0x4183F7",
+        "0x4CE74C", "0x4CE75C", "0x08", "0x76",
+        "0x7B", "0x79", "0x09", "-1",
+        "0x40E388", "0x416C82", "0x425AD9", "0x410471", "0x41E209",
+        "0x506000", "0x502000", "0x12F", "0x1000", "0x0EFFF",
+        "0x68", "0x72", "0x77", "0x4F", "0x51", "0x52", "0x53"
+      ],
+      "identity": "0x4109E6 与 6.5 同址，仅 opcode 上限 0x7B vs 0x79；0x500AB0/AB4 写入点 0x410A0B/0x41088B 在 6.5/6.4 同址（第 68 轮已登记映射）；6.4/6.5 与 6.6 的同一消费函数 0x416C41 仅把区间下界读取位移由 [edx-0x10] 改为 [edx-4]。",
+      "siteAddresses": {
+        "cacheAction1": "0x500AB0",
+        "cacheAddress": "0x500AB4",
+        "dispatchFn": "0x4109E6",
+        "actionHandler": "0x410857",
+        "interpreter": "0x4105FF",
+        "interpreterCaller": "0x4108B2",
+        "handlerTable": "0x410A38",
+        "opcodeGetter": "0x40FCB2",
+        "ctxVtable": "+0x00",
+        "ctxByteCount": "+0x08",
+        "ctxReadAddress": "+0x0C",
+        "ctxOpcodeSnapshot": "+0x10",
+        "ctxBranchTarget": "+0x14",
+        "ctxBusy": "+0x2C",
+        "ctxOpcode": "+0x2E",
+        "ctxFlag": "+0x34",
+        "cache1_65": "0x4CE74C",
+        "cache2_65": "0x4CE75C",
+        "rangeGuardHandler": "0x416C41",
+        "nextHandler": "0x416C87",
+        "nextHandler2": "0x416DCD",
+        "operandReader": "0x4183F7",
+        "opcode76": "0x76",
+        "opcodeLimit66": "0x7B",
+        "opcodeLimit65": "0x79",
+        "specialValue": "0x76",
+        "operandTypes68": "0x40E388",
+        "operandTypes77": "0x416C82",
+        "opcode68Handler": "0x4103F0",
+        "opcode72Handler": "0x47D89E",
+        "opcode77Handler": "0x416C87",
+        "varTable": "0x502000",
+        "stringTable": "0x506000",
+        "stringIndexMax": "0x12F",
+        "varIndexMax": "0x1000",
+        "typeIndirectLow": "0x0EFFF",
+        "writeBack": "0x410471",
+        "mulDivHelper": "0x425AD9"
+      },
+      "limitations": [
+        "操作码 0x76 的中文命令名不在三基底 EXE 内（GBK 命中 0），名称需外部剧本编辑器资源。",
+        "0x416C87 的运算码 p2 完整枚举（0..6+）未逐值展开。",
+        "0x410471 的按宽度写回（0x505FB0）与 0x41E209 后续动作未展开。",
+        "0x4105FF 的 vtable[+8]/[+0x10] 方法名未定。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.script-handler-capacity.3ef7",
+        "mechanism.65.script-opcodes-7c-7d.3ef7",
+        "mechanism.65.global-ui-state-block.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-script-context-caches-20261112",
+        "src.research.engine-script-branch-range-20261112",
+        "src.research.engine-script-operand-codes-20261112"
+      ]
+    }
+  ]
+}

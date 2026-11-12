@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "analysis": "item-record-table-and-66-relocation",
+  "date": "2026-11-12",
+  "method": "以 imul ...,0x19 定位 25 字节记录访问；反汇编 0x434EAA、0x436063、0x436236、0x430390；字节统计 0x4A1140/0x49F820 引用；反汇编 6.6 访问器 0x4837C2。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "table": {
+    "6.4/6.5": {"base": "0x4A1140", "stride": "0x19（25）", "indexRange": "0..0xFF（256）", "refs": {"6.4": 54, "6.5": 55}},
+    "6.6": {"base": "0x49F820", "stride": "0x19（25）", "accessor": "0x4837C2：ecx=ecx*0x19+0x49F820; ret", "refsOldBase": 0, "refsNewBase": 4}
+  },
+  "sites": {
+    "scan65": {
+      "va": "0x434EAA",
+      "code": "i=0..0xFE：ecx=i*0x19+0x4A1140；0x44001E(record) 判定；0x40B444(record,0) 取字段；与 2 比较后 0x40D681(0x4B0770,i,0xFF/0xFF-4)"
+    },
+    "use65": {
+      "va": "0x436063",
+      "code": "byte[0x500C44]=2; ecx=eax*0x19+0x4A1140; 0x41DD72(record); 0x435829; 0x435F51; 0x4361B1"
+    },
+    "usability65": {
+      "va": "0x436236",
+      "code": "if type==0xFF and dl==0x24 → item exists; if dl==0x25 → record=eax*0x19+0x4A1140, 0x41C330(record)==2"
+    },
+    "field66": {
+      "va": "0x4303B1",
+      "code": "eax=byte[unit+0x2E]; if !=0xFF: eax*=0x19; ecx=byte[eax+0x49F831]（record+0x11）"
+    },
+    "accessors": {
+      "valid": "0x44001E",
+      "field": "0x40B444(record, fieldIndex)",
+      "init": "0x41DD72",
+      "owner": "0x41C330"
+    }
+  },
+  "constants": ["0x19", "0xFF", "0x4A1140", "0x49F820", "0x24", "0x25", "0x11", "0x13"],
+  "crossBase": {
+    "refs4A1140": {"6.4": 54, "6.5": 55, "6.6": 0},
+    "refs49F820": {"6.4": 0, "6.5": 0, "6.6": 4},
+    "imul19Sites": {"6.4": "多", "6.5": 53, "6.6": 3}
+  },
+  "conclusion": "物品/装备记录表在 6.4/6.5 基址 0x4A1140、步长 0x19（25 字节）、索引 0..0xFF；6.5 有 55 处基址引用，6.4 有 54 处。6.6 完全不再引用 0x4A1140，改用 0x49F820，并提供访问器 0x4837C2（index*0x19+0x49F820），记录 +0x11 字段在 0x4303B4 以 byte 读取。6.6 仅剩 3 处 imul 0x19，说明物品表访问被大幅重构为访问器调用。",
+  "limitations": [
+    "记录 +0x11/+0x13 字段名未确定（+0x13 为价格候选）。",
+    "0x44001E/0x40B444/0x41DD72/0x41C330 的字段偏移未逐项展开。",
+    "6.6 其余 imul 0x19 站点（0x4303B1/0x4D2765）与物品表无关或待确认。",
+    "未运行游戏对照。"
+  ]
+}

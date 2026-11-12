@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.grid-dimension-pair.3ef7",
+      "title": "全局二维网格尺寸字 0x4B422C/0x4B422D",
+      "aliases": [
+        "网格宽度",
+        "网格高度",
+        "0x4B422C",
+        "0x4B422D",
+        "行跨度"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x4B422C 为网格宽度/行跨度，0x4B422D 为高度。0x403789 以 y*width+x 计算索引，0x404E30 以 x<width、y<height 做边界检查，0x44C1C2 读取资源头两字节后分配 0x640 字节并按 width*height 拷贝。0x4516BF/0x4D11C7 分别设置 4×1 与 5×1，列表 UI 复用同一全局；0x41D2B8 从 0x500AA0+0x12 快照恢复。",
+      "global": "0x4B422C",
+      "constants": [
+        "0x4B422C",
+        "0x4B422D",
+        "0x0104",
+        "0x0105",
+        "0x640",
+        "0x500AA0"
+      ],
+      "identity": "0x403789 索引函数三基底同哈希 C5FDE3439566455A；0x0104 写入 6.4/6.5 在 0x4516BF、6.6 在 0x40ADDF；0x0105 写入仅 6.4/6.5 存在。",
+      "limitations": [
+        "宽度单位随调用者不同。",
+        "0x44C1C2 资源来源未展开。",
+        "4×1/5×1 所属界面名称未由字符串直接证明。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.movement-terrain-and-map-bounds.3ef7",
+        "mechanism.65.engine-general-constant-census.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-grid-dimension-pair-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "width": "0x4B422C",
+        "height": "0x4B422D",
+        "index": "0x403789",
+        "bounds": "0x404E30",
+        "loader": "0x44C1C2",
+        "write4x1": "0x4516BF（6.6: 0x40ADDF）",
+        "write5x1": "0x4D11C7",
+        "snapshotRestore": "0x41D2B8"
+      }
+    }
+  ]
+}

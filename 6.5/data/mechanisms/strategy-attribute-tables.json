@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.strategy-attribute-tables.3ef7",
+      "title": "策略属性子表：144 字节表映射与真实语义（6.5 3EF7）",
+      "aliases": [
+        "strategy-learning",
+        "strategy-extension",
+        "strategy-battle-ai",
+        "strategy-training-ai",
+        "strategy-hit-rate",
+        "strategy-damage-ratio",
+        "strategy-damage-type",
+        "strategy-effect-class"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "6.5 的 0xA2CE0..0xA31F0 是 10 张连续 144 字节表；每张按策略 ID 直接索引。其中 0xA2CE0 是填充区，0xA2D70 是效果类分派表，其余 8 张才是实例属性。",
+      "tables": [
+        {
+          "key": "strategy-extension",
+          "fileOffset": "0xA2CE0",
+          "va": "0x4D14E0",
+          "rows": 144,
+          "width": 1,
+          "content": "143×0x90 + 首字节 0x91",
+          "consumers": [],
+          "semantics": "填充区；没有任何代码引用，不是策略属性。",
+          "status": "padding"
+        },
+        {
+          "key": "strategy-effect-class",
+          "fileOffset": "0xA2D70",
+          "va": "0x4D1570",
+          "rows": 144,
+          "width": 1,
+          "dispatchVa": "0x4256BC",
+          "jumpTableVa": "0x4259C3",
+          "maximumClass": "0x24",
+          "consumers": [
+            "0x4256BC"
+          ],
+          "semantics": "策略 ID → 效果类索引；cmp al,0x96; jae cleanup; mov al,[eax+0x4D1570]; jmp [eax*4+0x4259C3]。48 项处理器跳表，0x25..0x2F 在 6.5 映射到默认伤害。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-battle-ai",
+          "fileOffset": "0xA2E00",
+          "va": "0x4D1600",
+          "rows": 144,
+          "width": 1,
+          "consumers": [
+            "0x439881"
+          ],
+          "semantics": "战场 AI 评分处理器编号。0x439881 在 0x505FDC==0 时读取本表，按值跳 16 项表 0x43A140；值不是限制位。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-training-ai",
+          "fileOffset": "0xA2E90",
+          "va": "0x4D1690",
+          "rows": 144,
+          "width": 1,
+          "consumers": [
+            "0x439879",
+            "0x466477"
+          ],
+          "semantics": "练武场 AI 评分处理器编号。0x439879 在 0x505FDC!=0 时读取本表并跳 0x43A140；0x466477 另把值 0x0D 当特殊分支。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-hit-rate",
+          "fileOffset": "0xA2F20",
+          "va": "0x4D1720",
+          "rows": 144,
+          "width": 1,
+          "consumers": [
+            "0x43B8FF",
+            "0x46FBC7"
+          ],
+          "semantics": "命中模式/基础命中率选择器。显示：0=90、1=100、2=100、3=34、4=50、>=5=该值。战斗：0 基础值×90/100（特殊目标条件可 0），1 绝对 100（同条件可 0），2 能力曲线，3/4 基础值×34/50，>=5 基础值×值/100；最终受效果/状态修正并封顶 100。不是命中上限。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-learning",
+          "fileOffset": "0xA2FB0",
+          "va": "0x4D17B0",
+          "rows": 144,
+          "width": 1,
+          "consumers": [
+            "0x41DCBF",
+            "0x465B0F"
+          ],
+          "semantics": "AI 策略类别位掩码。逐条 test 8 个位；0x01 四系、0x02 降能力、0x04 妨碍、0x08 补给、0x10 升能力、0x20 气候/雷、0x40 特殊/回归、0x80 连击/特殊。不是效果索引。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-damage-ratio",
+          "fileOffset": "0xA3040",
+          "va": "0x4D1840",
+          "rows": 144,
+          "width": 1,
+          "consumers": [
+            "0x43C112"
+          ],
+          "semantics": "伤害百分比系数；0x43C112 读取后与伤害相乘并 call 0x425AD9（×/100）。0x1C=28%，0x46=70%，0x5A=90%，0x64=100%。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-damage-type",
+          "fileOffset": "0xA30D0",
+          "va": "0x4D18D0",
+          "rows": 144,
+          "width": 1,
+          "consumers": [
+            "0x415F00",
+            "0x43C059",
+            "0x46FC0F"
+          ],
+          "semantics": "伤害门控：0x415EFA 返回 type<4 ? 1 : 0。0x43C022 在 0x43C059 调用门控；返回 0 且 ID!=0x46/0x16 时直接返回。0..3 行为完全等价；4 不伤血；>=4 同样被门控，但显示函数只把精确的 4 显示为 0。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-small-animation",
+          "fileOffset": "0xA3160",
+          "va": "0x4D1960",
+          "rows": 144,
+          "width": 1,
+          "consumers": [
+            "0x4215CB"
+          ],
+          "semantics": "小动画图号；0xFF=无小动画，其他值作为动画 ID 传给 0x40BCF6/0x40196F。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-big-animation",
+          "fileOffset": "0xA31F0",
+          "va": "0x4D19F0",
+          "rows": 144,
+          "width": 1,
+          "consumers": [
+            "0x40EB58",
+            "0x4214D3",
+            "0x424575",
+            "0x42566A"
+          ],
+          "semantics": "大动画图号；0xFF=无大动画，>=0x64 为特殊演出码（0x42566A 置 ctx+0x554=1，0x424575 跳过普通动画路径）。",
+          "status": "verified"
+        }
+      ],
+      "aiEvaluationHandlers": [
+        {
+          "index": "0x00/0x01/0x05",
+          "target": "0x43988C",
+          "role": "伤害类评分（调用 0x43C022）"
+        },
+        {
+          "index": "0x02",
+          "target": "0x439B80",
+          "role": "治疗/HP 评分"
+        },
+        {
+          "index": "0x03",
+          "target": "0x439A26",
+          "role": "MP/5 评分"
+        },
+        {
+          "index": "0x04",
+          "target": "0x43996C",
+          "role": "命中/状态评分（0x43B6F3）"
+        },
+        {
+          "index": "0x06",
+          "target": "0x439A70",
+          "role": "命中 + 0x4D2188 状态表评分"
+        },
+        {
+          "index": "0x07/0x08/0x09",
+          "target": "0x4399F1",
+          "role": "状态价值评分（0x439CFE）"
+        },
+        {
+          "index": "0x0A",
+          "target": "0x439AA6",
+          "role": "MP 比较评分"
+        },
+        {
+          "index": "0x0B",
+          "target": "0x4399AF",
+          "role": "属性/抗性评分"
+        },
+        {
+          "index": "0x0C",
+          "target": "0x439B21",
+          "role": "范围/穿透检查"
+        },
+        {
+          "index": "0x0D",
+          "target": "0x439C8A",
+          "role": "不行动/零分"
+        },
+        {
+          "index": "0x0E",
+          "target": "0x439BB6",
+          "role": "增益/减益评分（动作 0x1B+）"
+        },
+        {
+          "index": "0x0F",
+          "target": "0x439C12",
+          "role": "增益/减益评分（动作 0x35+）"
+        }
+      ],
+      "notes": [
+        "10 张表连续排列，步长 0x90；0xA2CE0 是唯一无消费者的填充表。",
+        "表映射：0xA2CE0 填充；0xA2D70 效果类；0xA2E00 战场AI；0xA2E90 练武场AI；0xA2F20 命中模式；0xA2FB0 AI类别位掩码；0xA3040 伤害百分比；0xA30D0 伤害门控；0xA3160 小动画；0xA31F0 大动画。",
+        "命中模式码：显示映射 0→90、1→100、2→100、3→34、4→50；战斗命中桩对 2 走无调整分支，3/4 走条件分支，>=5 直接百分比。",
+        "AI 战场/练武场表的值 0x00..0x0F 是 16 项评分处理器编号，不是限制位。",
+        "0x4D17B0 的 bit6 在样本中仅回归、bit7 仅节能连击；四神策略实际为 0x00，UI 的“绝/四神”位名不成立。",
+        "0xA2D70 效果类表不在 Profile 中，由 StrategyEffectClassProbe 的签名探测确定；6.4/6.5 最大类 0x24，6.6 最大类 0x29。",
+        "运行时只有 68 条策略记录；本页所有 144 行值中，ID>=68 的行不会被三基底启动加载器读入。"
+      ],
+      "relations": [
+        "struct.65.strategy-record.3ef7",
+        "global.65.strategy-table",
+        "mechanism.65.strategy-resolution-chain.3890",
+        "mechanism.65.dm-strategy-attribute-semantics"
+      ],
+      "sourceRefs": [
+        "src.research.strategy-attribute-verification-20261111",
+        "src.data-manager.profile65",
+        "src.data-manager.registry"
+      ]
+    }
+  ]
+}

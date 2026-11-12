@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.random-variant-table.3ef7",
+      "title": "33 项随机变体编号表 0x41CEAB 与 0x41CE8C 替换函数",
+      "aliases": [
+        "random variant table",
+        "随机变体编号表",
+        "0x41CEAB",
+        "0x41CE8C",
+        "0x401DFF",
+        "0x21 哨兵"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x41CEAB 是 33 项（索引 0..32）随机变体编号表，三基底逐字节相同（01 06 03 04 12 13 0C 08 12 1F 0A 00 0D 21 0F 16 11 12 25 0C 0C 16 22 01 20 1D 03 1C 1D 23 1F 03 24）。0x41CE8C(mod, code) 先用 0x41CDEE 计算 (0x4101D9(0x5A+mod,0x76,3,0) & mod)，非零时返回 table[code]，否则原样返回。人物模板链 0x401DFF 以模板 +0xC 为索引、mod=2 使用该表，结果被 5 个调用点作为动作/图像编号使用；6.6 物品类型动作链（0x43038B）以 mod=1 使用同一表。0x21（33）是编号越界哨兵，遇到时改走 0x43F8C0 默认计算。",
+      "constants": [
+        "0x41CEAB", "0x41CE8C", "0x41CE8B", "0x41CDEE",
+        "0x401DFF", "0x484002", "0x418C90", "0x4A3E77",
+        "0x4101D9", "0x43F8C0", "0x43038B", "0x41A10C",
+        "0x21", "0x5A", "0x76", "0x4FB", "0x4FC", "0x0C"
+      ],
+      "identity": "表体 33 字节三基底一致；0x41CE8C 与 6.5/6.4 的 0x41CE8B 仅入口地址差 1；0x41CDEE 的评分参数固定为 (0x5A+mod, 0x76, 3, 0)。",
+      "siteAddresses": {
+        "table": "0x41CEAB",
+        "replaceFn": "0x41CE8C",
+        "replaceFn65": "0x41CE8B",
+        "gateFn": "0x41CDEE",
+        "scoreFn": "0x4101D9",
+        "templateGetter": "0x401DFF",
+        "templateBase": "0x4A3E77",
+        "templateStride": "0x61",
+        "templateField": "0x0C",
+        "defaultActionFn": "0x43F8C0",
+        "itemChainFn": "0x43038B",
+        "sentinel": "0x21"
+      },
+      "limitations": [
+        "33 个编号的业务名称（动作/图像/兵种）未找到命名表。",
+        "0x43F8C0 默认编号的完整计算未展开。",
+        "0x425246 中 [unit+0x4FB]/[unit+0x4FC] 的界面用途未追踪。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.character-adaptation-table.3ef7",
+        "mechanism.65.item-type-action-mapping-66.3ef7",
+        "mechanism.65.target-direction-score.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-random-replacement-table-20261112"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "analysis": "file-io-wrappers",
+  "date": "2026-11-12",
+  "method": "dump_funcs.py 反汇编 0x418F5C、0x418ED4、0x418C34、0x46F982、0x475600；refs_to.py 取调用点；pefile 导入表确认 CreateFileA/GetCurrentDirectoryA；按 VA 读取 0x419019 的 7 项 access mask 表。仅静态分析。",
+  "samples": [
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "createFileWrapper": {
+    "entry": "0x418F5C",
+    "signature": "open(filenameArg, mode, outObject)",
+    "pathBuild": "0x418ED4：GetCurrentDirectoryA(0x104, buf) + 0x412E27(buf, [ebp+8]) 拼绝对路径",
+    "import": "0x486118 = KERNEL32.dll!CreateFileA",
+    "arguments": {
+      "dwDesiredAccess": "table[mode]（0x419019，mode>6 时取 table[0]）",
+      "dwShareMode": 1,
+      "lpSecurityAttributes": 0,
+      "dwCreationDisposition": "3（OPEN_EXISTING）",
+      "dwFlagsAndAttributes": "0x80（FILE_ATTRIBUTE_NORMAL）",
+      "hTemplateFile": 0
+    },
+    "retry": "返回 -1 时对同一 mode 重试，最多 5 次（[ebp-4]<=5）",
+    "accessTable": {
+      "address": "0x419019",
+      "values": ["0x80000000", "0x40000000", "0xC0000000", "0x80000000", "0x80000000", "0x40000000", "0xC0000000"],
+      "meaning": ["GENERIC_READ", "GENERIC_WRITE", "READ|WRITE", "READ", "READ", "WRITE", "READ|WRITE"]
+    }
+  },
+  "fileObjectWrapper": {
+    "entry": "0x418C34",
+    "behavior": "若 arg5==0 则默认 0x48C8D8；0x475600 在当前栈对象上构造 vtable 0x487410；0x46F982(obj, arg1, arg2, arg3, 0x154, arg5) 填充对象 +0xC/+0x10/+0x14 并调用 0x46D098；返回 eax==6 时返回 1，否则 0",
+    "fields": {"+0x0C": "arg5（默认 0x48C8D8）", "+0x10": "arg2", "+0x14": "arg3"},
+    "vtable": "0x487410",
+    "note": "0x475600 构造 vtable 并调用 0x40E155（基类构造）"
+  },
+  "callers": [
+    {"fn": "0x4069B0", "purpose": "读取 AutoDll.ini（0x48B7EF）", "mode": 1, "args": "push 0 / filename / 1 / [ebp-8]"},
+    {"fn": "0x418C34", "purpose": "文件/资源对象打开（vtable 0x487410）"}
+  ],
+  "conclusion": "6.6 的文件 I/O 由两个包装组成：0x418F5C 是 CreateFileA 包装（先 GetCurrentDirectoryA 拼路径，mode 经 0x419019 的 7 项表映射到 GENERIC_READ/WRITE/READ|WRITE，share=1、OPEN_EXISTING、flags=0x80、失败重试 5 次）；0x418C34 是带 vtable 0x487410 的文件对象打开包装（0x46F982 填充 +0xC/+0x10/+0x14 后调 0x46D098，结果码 6 视为成功）。",
+  "limitations": [
+    "0x46D098 的具体职责（资源加载/解包）未展开。",
+    "0x41888D 未在本轮定位到函数体。",
+    "未运行游戏对照。"
+  ]
+}

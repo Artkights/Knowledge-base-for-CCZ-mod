@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "entries": [
+    {
+      "id": "fn.64.script-event-iterate.9112",
+      "title": "剧本事件表遍历（6.4）",
+      "aliases": [
+        "0x0042A058",
+        "script_event_iterate_64"
+      ],
+      "versions": [
+        "6.4"
+      ],
+      "profile": "profile.ccz64.xisui.9112",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0042A058",
+        "profile": "profile.ccz64.xisui.9112",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "cdecl",
+      "inputs": "全局：0x4AB020、0x49CF68",
+      "returns": "无",
+      "semantics": "与 6.5 的 0x42A049 同源，但函数序言为 push ebp; mov ebp,esp; sub esp,0x30，比 6.5 多 0x30 字节栈帧并整体后移 0xF；0x42A049 在 6.4 为 nop 填充。",
+      "relations": [
+        "global.65.script-event-table.3890"
+      ],
+      "sourceRefs": [
+        "src.dm.formulas.sample-64-20261102",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

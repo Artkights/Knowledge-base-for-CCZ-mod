@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.item-type-action-mapping-66.3ef7",
+      "title": "6.6 物品类型→动作/特效编号映射表 0x4303C8 与消费链",
+      "aliases": [
+        "item type action mapping",
+        "物品类型动作映射",
+        "0x4303C8",
+        "0x43038B",
+        "0x417A38",
+        "0x43F8C0"
+      ],
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "6.6 独有 0x4303C8 为 20 字节映射表（01 06 05 13 07 08 01 20 15 16 00 01 06 0C 00 01 00 01 0C 0D），索引为物品记录 +0x11 类型码 0..0x13，输出动作/特效编号 0..32。唯一消费链为 0x43F8C0→0x417A38→0x43038B：先 0x41CE8C(1) 随机替换，再 0x430351（0x42518F(0x6D,0,1,0)）评分门控；评分==0 返回随机替换值，否则读装备槽 0 物品（rec+0x2E）类型并查表。调用方随后与哨兵 0x0B 比较，0x423FE8(4) 非零时强制 0x0B。6.5 同位置走 0x4E4000 搜索包装 + 0x417A35 随机替换，不做类型映射。",
+      "constants": [
+        "0x4303C8", "0x43038B", "0x417A38", "0x43F8C0",
+        "0x430351", "0x41CE8C", "0x42518F", "0x423FE8",
+        "0x49F831", "0x0B", "0x2E", "0x11",
+        "0x4E4000", "0x417A35", "0x4EE0C8"
+      ],
+      "identity": "表仅被 0x4303BB 一处引用；6.5 不存在 0x4303C8 与 0x43038B；调用点 0x43F931 在 6.5 被替换为 0x4E4000，且 0x417A35 比 6.6 的 0x417A38 少一层 0x43038B 调用。",
+      "siteAddresses": {
+        "table66": "0x4303C8",
+        "reader": "0x43038B",
+        "wrapper": "0x417A38",
+        "decisionFn": "0x43F8C0",
+        "decisionSite": "0x43F931",
+        "scoreGate": "0x430351",
+        "randomSub": "0x41CE8C",
+        "stateMaskCall": "0x423FE8",
+        "slot0Offset": "0x2E",
+        "typeOffset": "0x11",
+        "sentinel": "0x0B",
+        "chain65Search": "0x4E4000",
+        "wrapper65": "0x417A35"
+      },
+      "limitations": [
+        "输出编号 0..32 的具体业务名称（动作/动画/特效）未找到命名表。",
+        "评分门控 0x430351 的判定条件未完全展开。",
+        "0x43F8C0 的完整决策流程只登记与本表相关的分支。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.item-record-fields.3ef7",
+        "mechanism.65.embedded-byte-tables.3ef7",
+        "mechanism.65.target-direction-score.3ef7",
+        "mechanism.65.unit-status-bitfield.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-item-type-action-mapping-20261112"
+      ]
+    }
+  ]
+}

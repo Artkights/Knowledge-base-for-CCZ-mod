@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "analysis": "engine-general-constant-census",
+  "date": "2026-11-12",
+  "method": "pefile + capstone 线性反汇编三基底全部可执行节；以直接调用目标与标准序言建立函数边界；仅统计非地址立即数、映像内绝对位移引用和直接调用目标。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "scope": [
+    "引擎通用常量、计算公式与全局设定表的锚点普查",
+    "排除特效参数、特效 ID 与单个特效专属数值"
+  ],
+  "samples": [
+    {
+      "version": "6.4",
+      "label": "洗隋",
+      "engine": "基底/洗隋/Ekd5.exe",
+      "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"
+    },
+    {
+      "version": "6.5",
+      "label": "加强版6.5未加密版",
+      "engine": "基底/加强版6.5未加密版/Ekd5.exe",
+      "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    },
+    {
+      "version": "6.6",
+      "label": "复刻版6.6山贼",
+      "engine": "基底/复刻版6.6山贼/Ekd5.exe",
+      "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    }
+  ],
+  "census": {
+    "6.4": {"instructions": 481963, "functions": 3287, "directCallTargets": 2746},
+    "6.5": {"instructions": 488079, "functions": 3372, "directCallTargets": 2822},
+    "6.6": {"instructions": 503694, "functions": 3552, "directCallTargets": 3006},
+    "signatureClusters": {
+      "total": 5070,
+      "sharedByAllThree": 1508,
+      "onlyIn65": 326,
+      "matchedIn65": 3088
+    }
+  },
+  "sections65": [
+    {"name": ".code", "va": "0x401000", "raw": "0x400", "rawSize": "0x84E00", "execute": true},
+    {"name": ".text1", "va": "0x486000", "raw": "0x85200", "rawSize": "0x4800", "execute": false},
+    {"name": ".text2", "va": "0x48B000", "raw": "0x89A00", "rawSize": "0x6800", "execute": false},
+    {"name": ".api", "va": "0x4BE000", "raw": "0x90200", "rawSize": "0xF600", "execute": true},
+    {"name": ".text3", "va": "0x4CE000", "raw": "0x9F800", "rawSize": "0x64000", "execute": true},
+    {"name": ".rsrc", "va": "0x532000", "raw": "0x103800", "rawSize": "0x20800", "execute": false}
+  ],
+  "embeddedTableAnchors": [
+    {"key": "job-series-counter", "va": "0x4D1A80", "fileOffset": "0xA3280", "rows": 40, "rowSize": 40, "consumerCounts": {"6.4": 1, "6.5": 1, "6.6": 1}, "consumer": "0x426737"},
+    {"key": "job-series-attributes", "va": "0x4D20C0", "fileOffset": "0xA38C0", "rows": 8, "rowSize": 40, "consumerCounts": {"6.4": 11, "6.5": 12, "6.6": 12}, "consumerSample": ["0x4395DC", "0x40CB92", "0x4281AF"]},
+    {"key": "strategy-battle-ai", "va": "0x4D1600", "fileOffset": "0xA2E00", "rows": 144, "rowSize": 1, "consumerCounts": {"6.4": 1, "6.5": 1, "6.6": 1}, "consumer": "0x4395DC"},
+    {"key": "strategy-training-ai", "va": "0x4D1690", "fileOffset": "0xA2E90", "rows": 144, "rowSize": 1, "consumerCounts": {"6.4": 2, "6.5": 2, "6.6": 2}, "consumerSample": ["0x4395DC", "0x466443"]},
+    {"key": "strategy-terrain-availability", "va": "0x420ACC", "fileOffset": "0x1FECC", "rows": 30, "rowSize": 1, "consumerCounts": {"6.4": 1, "6.5": 1, "6.6": 1}, "consumer": "0x419587"},
+    {"key": "detailed-job-penetration", "va": "0x407881", "fileOffset": "0x6C81", "rows": 80, "rowSize": 1, "consumerCounts": {"6.4": 1, "6.5": 1, "6.6": 1}, "consumer": "0x40782D"}
+  ],
+  "constantHistogram65": [
+    {"value": 4, "functionCount": 846}, {"value": 2, "functionCount": 833},
+    {"value": 8, "functionCount": 576}, {"value": 255, "functionCount": 572},
+    {"value": 12, "functionCount": 511}, {"value": 5, "functionCount": 405},
+    {"value": 16, "functionCount": 401}, {"value": 6, "functionCount": 260},
+    {"value": 48, "functionCount": 215}, {"value": 20, "functionCount": 212},
+    {"value": 10, "functionCount": 199}, {"value": 65535, "functionCount": 190},
+    {"value": 32, "functionCount": 172}, {"value": 24, "functionCount": 162},
+    {"value": 40, "functionCount": 129}, {"value": 64, "functionCount": 124},
+    {"value": 15, "functionCount": 117}, {"value": 100, "functionCount": 115},
+    {"value": 128, "functionCount": 104}, {"value": 18, "functionCount": 96},
+    {"value": 1024, "functionCount": 94}, {"value": 32768, "functionCount": 90},
+    {"value": 80, "functionCount": 82}, {"value": 250, "functionCount": 72},
+    {"value": 60, "functionCount": 72}, {"value": 25, "functionCount": 59},
+    {"value": 50, "functionCount": 56}
+  ],
+  "candidateWorklist": [
+    {"start": "0x4395DC", "topic": "策略 AI 评估与兵种属性矩阵消费", "insnCount": 971},
+    {"start": "0x466443", "topic": "策略训练 AI 选择", "insnCount": 62},
+    {"start": "0x419587", "topic": "策略地形可用性", "insnCount": 7},
+    {"start": "0x426737", "topic": "兵种相克百分比查表", "insnCount": 24},
+    {"start": "0x40BF0C", "topic": "兵种 ID 到兵种系映射", "insnCount": 11},
+    {"start": "0x4061E4", "topic": "单位 ID 到 72 字节记录指针", "insnCount": 6},
+    {"start": "0x43B53A", "topic": "命中率能力曲线（既有知识复核）", "insnCount": 125},
+    {"start": "0x43BC62", "topic": "物理伤害主链（既有知识复核）", "insnCount": 300}
+  ],
+  "coverage": [
+    {"domain": "兵种相克", "status": "resolved-round-02", "evidence": "sources/evidence/engine-counter-table-20261112.json"},
+    {"domain": "兵种属性矩阵", "status": "open", "note": "0x4D20C0，8×40；消费者已定位，字段语义未解析"},
+    {"domain": "策略 AI 评分", "status": "open", "note": "0x4395DC 与 0x466443；AI 权重常量待逐条解析"},
+    {"domain": "策略地形可用性", "status": "open", "note": "0x420ACC 30 字节表与 0x419587"},
+    {"domain": "移动与地形消耗", "status": "unlocated", "note": "表位于 Data.e5（0xA8A4/0xA8C2），运行时基址未定位"},
+    {"domain": "经验与升级", "status": "partial", "note": "知识库已有公式条目；全局上限与分段表需补全"},
+    {"domain": "商店与经济", "status": "partial", "note": "已有卖出比例常量；买入/价格曲线未解析"},
+    {"domain": "回合与行动规则", "status": "unlocated"},
+    {"domain": "状态与天气", "status": "unlocated"},
+    {"domain": "全局上限与容量", "status": "partial", "note": "单位记录步长 0x48、兵种映射已确认"}
+  ],
+  "limitations": [
+    "函数边界由直接调用目标和标准序言启发式建立，尾部共享与嵌入数据会造成函数合并或拆分；本普查用于建立可复核工作清单，不把函数计数当作语义结论。",
+    "签名聚类只比较前 32 条指令的助记符与非地址立即数，不证明函数整体等价。",
+    "常量为指令立即数候选，是否参与公式必须逐函数反汇编确认；本文件不把统计频次当作语义。",
+    "未运行游戏，未修改任一基底文件。"
+  ]
+}

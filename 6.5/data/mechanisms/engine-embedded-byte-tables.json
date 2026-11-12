@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.embedded-byte-tables.3ef7",
+      "title": "内嵌字节映射表 0x41CEAB（33项）与 0x4303C8（20项，6.6）",
+      "aliases": [
+        "0x41CEAB",
+        "0x4303C8",
+        "0x41CE8B",
+        "0x43038B",
+        "随机替换表",
+        "武器类型表"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x41CEAB 是 33 字节随机替换表，三基底字节完全一致（hash 1b66f63ab303fa0a）：读取函数 f(mod,idx)=(0x4101D9 随机值 & mod)!=0 ? table[idx] : idx，6.4/6.5 入口 0x41CE8B、6.6 入口 0x41CE8C，索引来自对象 +0xC（getter 0x418C90）。0x4303C8 是 6.6 独有的 20 字节物品类型表（hash c54301dd32761700），0x43038B 读取装备槽0物品的 +0x11 类型后查表，调用链 0x43F931→0x417A38→0x43038B；表仅覆盖类型 0..0x13，之后为 0x90 填充。",
+      "constants": [
+        "0x41CEAB",
+        "0x21",
+        "0x4303C8",
+        "0x14",
+        "0x2E",
+        "0x11",
+        "0x19",
+        "0x90",
+        "0x6D"
+      ],
+      "identity": "0x41CEAB 表体三基底同哈希 1b66f63ab303fa0a；0x4303C8 仅 6.6，表体 hash c54301dd32761700；6.6 读取函数 0x43038B 体 hash 98ccb5949ada46e2，调用者 0x417A38 体 hash 99da7750feb5a382。",
+      "limitations": [
+        "0x41CEAB 索引已定位为人物模板表 0x4A3E77 的 +0xC 字节（见 mechanism.65.character-adaptation-table.3ef7）。",
+        "0x4303C8 的 20 个值语义未定名（候选：武器特效/动作字节）。",
+        "0x43038B 对类型 >=0x14 的越界读取风险未运行期验证。",
+        "6.4/6.5 的 0x41CE8B 无直接调用点，死代码或跳转表调用未证明。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.item-record-fields.3ef7",
+        "mechanism.65.item-type-classification.3ef7",
+        "mechanism.65.target-direction-score.3ef7",
+        "mechanism.65.character-adaptation-table.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-embedded-byte-tables-20261112"
+      ],
+      "siteAddresses": {
+        "tableRandom": "0x41CEAB",
+        "randomReader65": "0x41CE8B",
+        "randomReader66": "0x41CE8C",
+        "randomHelper": "0x41CDEE",
+        "indexGetter": "0x418C90",
+        "randomCaller1": "0x401E12",
+        "randomCaller2": "0x430391",
+        "tableWeapon": "0x4303C8",
+        "weaponReader": "0x43038B",
+        "weaponCaller": "0x417A38",
+        "descriptorBuilder": "0x43F931",
+        "precondition": "0x430351"
+      }
+    }
+  ]
+}

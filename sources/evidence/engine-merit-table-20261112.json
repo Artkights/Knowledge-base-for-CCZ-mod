@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "analysis": "merit-table",
+  "date": "2026-11-12",
+  "method": "refs_to.py 定位 0x508000 仅 0x408FCB/0x42ACF0 两处；capstone 反汇编 0x408FA0（按掩码清零）、0x423EAD（重置分配）、0x456CB4（332 确认处理）与 0x42ACD2（表访问器）；refs_to.py 统计 0x505F3C/0x505F40。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "table": {
+    "base": "0x508000",
+    "entries": 102,
+    "entrySize": "0x0A（5 个 word）",
+    "index": "人物/单位索引 0..0x65",
+    "accessor": "0x42ACD2(index)：index<0x66 且 ([ebp+8]==1 或 byte[record+0x2A]!=0xFF) 时返回 index*0x0A+0x508000，否则 al=0xFF",
+    "refs": ["0x408FCB", "0x42ACF0"]
+  },
+  "globals": [
+    {"addr": "0x505F3C", "type": "byte", "role": "功勋分配系统启用标志（0 时 0x408FA0 直接返回、0x423EE5 不累计）"},
+    {"addr": "0x505F40", "type": "dword", "role": "剩余功勋点数池；被 0x408FFE/0x423EE5 累加，作为参数传给 0x40BE7D（332 确认）"}
+  ],
+  "functions": {
+    "clearUnchecked": {
+      "entry": "0x408FA0",
+      "steps": [
+        "若 byte[0x505F3C]==0 返回",
+        "循环 i=0..0x65：record=0x4061E4(i)；mask=byte[record+2]；ptr=i*0x0A+0x508000",
+        "内层 j=0..4：若 mask 的第 j 位为 0，则把 word[ptr+j*2] 清零（xchg 0）",
+        "循环结束后 dword[0x505F40] += 累计值（当前实现累计恒为 0）"
+      ],
+      "note": "与 332 确认处理写入的 byte[对象+2] 掩码配合：只保留被勾选维度的值"
+    },
+    "resetAllocation": {
+      "entry": "0x423EAD",
+      "steps": [
+        "0x42ACD2(0)：无效（0xFF）则返回",
+        "循环 j=0..4：清零 word[ptr+j*2]",
+        "若 [ebp+8]!=0 且 byte[0x505F3C]!=0：dword[0x505F40] += 累计值（当前实现恒为 0）"
+      ]
+    },
+    "confirm332": "0x456CB4 以 0x40BE7D(hwnd=0x500E28, 0x505F40, 0x4FFF68, 0, 0) 读取/显示点数池，再按 0x406..0x40A 复选框掩码写对象 +2（第96轮）"
+  },
+  "conclusion": "0x508000 是 102 人 × 5 word 的功勋分配结果表（每人对应 武/统/智/敏/运 五项），由 0x42ACD2(index)=index*0x0A+0x508000 访问。332 对话框确认时按复选框掩码写单位记录 +2；0x408FA0 在功勋系统启用（byte[0x505F3C]!=0）时清零未勾选维度的值；0x423EAD 重置某人的五项分配。0x505F40 为剩余功勋点数池，0x505F3C 为系统启用标志。",
+  "limitations": [
+    "0x505F40 的累加路径当前实现恒加 0，点数产出公式未定位。",
+    "0x4FFF68 缓冲区的字段含义未展开。",
+    "0x40BE7D 的参数含义未展开。",
+    "未运行游戏对照。"
+  ]
+}

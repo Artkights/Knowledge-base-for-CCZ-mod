@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.sound-settings.3ef7",
+      "title": "音效播放与设置位 0x4B0770：SE_* 分段、sndPlaySoundA 标志、0x474777 模式",
+      "aliases": [
+        "sound settings",
+        "音效设置",
+        "0x474777",
+        "0x474596",
+        "0x4B0770",
+        "SE00.WAV",
+        "sndPlaySoundA"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "音效统一由 0x474777(voice, soundId, mode, force) 播放：先以 0x474596(2)=byte[0x4B0770]&2 判断音效总开关，soundId 分三段——<0x64 用 WAV\\SE00.WAV（0x48E825），0x64..0xC7 用 WAV\\SE_M_xx.WAV（0x48E830，id-=0x64），0xC8..0xD0 用 WAV\\SE_E_xx.WAV（0x48E83C，id-=0xC8），>=0xD1 返回 0；两位十进制数按 idiv 10 写入路径 +9/+10，0x418ED4 转绝对路径。sndPlaySoundA 标志基值 3（SND_ASYNC|SND_NODEFAULT），循环 |8（SND_LOOP），不打断 |0x10（SND_NOSTOP）。mode=1 时同曲或 force 不重启；0xFFFF 强制一次性；0 循环；其他 N 为最多 N 次重试（间隔 0x42C522(6)）。停止函数 0x474652 调 sndPlaySoundA(0,0) 并清 voice。语音由 0x4090EE 走 SE_V_%03u.WAV（0x48E810）。设置块 0x4B0770：0x41EDEF 返回 byte[0]（bit1=音效开关），0x415E19 返回 min(word[+6]/2,0x7F)，两者分别写入存档区块B 的 +0x02/+0x03。",
+      "constants": [
+        "0x474777", "0x474652", "0x474596", "0x4090EE", "0x409009", "0x418ED4", "0x418F5C", "0x4192C5",
+        "0x41EDEF", "0x415E19", "0x4B0770", "0x42C522", "0x4863C8", "0x4863CC",
+        "0x48E810", "0x48E81E", "0x48E825", "0x48E830", "0x48E83C",
+        "0x64", "0xC8", "0xD1", "0x03", "0x08", "0x10", "0xFFFF", "0x7F", "0x0A", "0x30"
+      ],
+      "identity": "0x48E825/0x48E830/0x48E83C 解码为 SE00.WAV / SE_M_00.WAV / SE_E_00.WAV，与三段阈值 0x64/0xC8 及 id 偏移一一对应；0x474777 的 flags 组合与 sndPlaySoundA 的 SND_ASYNC/SND_NODEFAULT/SND_LOOP/SND_NOSTOP 位值完全一致。",
+      "siteAddresses": {
+        "player": "0x474777",
+        "stop": "0x474652",
+        "gate": "0x474596",
+        "settingsBits": "0x41EDEF",
+        "settingsHalfByte": "0x415E19",
+        "settingsBase": "0x4B0770",
+        "voicePlayer": "0x4090EE",
+        "pathResolver": "0x409009",
+        "absolutePath": "0x418ED4",
+        "sndPlaySoundA": "0x4863C8",
+        "mciSendCommandA": "0x4863CC",
+        "retryDelay": "0x42C522",
+        "soundOnMask": "0x02"
+      },
+      "limitations": [
+        "mciSendCommandA 的 CD 音频命令常量未展开。",
+        "0x4B0770 其余位含义未定。",
+        "0x415E19 对应设置项（音量/速度/难度）未由文案确认。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.save-file-format.3ef7",
+        "mechanism.65.global-ui-state-block.3ef7",
+        "mechanism.65.file-io-wrappers.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-sound-settings-20261112"
+      ]
+    }
+  ]
+}

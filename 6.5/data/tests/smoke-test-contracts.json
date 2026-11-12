@@ -58,7 +58,7 @@
     },
     {
       "id": "test.65.smoke-write",
-      "title": "R/S eex 核心写入烟测",
+      "title": "R/S eex 核心写入烟测（smoke-write）",
       "aliases": [
         "--write",
         "R/S eex 核心写入烟测"
@@ -85,7 +85,7 @@
     },
     {
       "id": "test.65.smoke-rs-write-smoke",
-      "title": "R/S eex 核心写入烟测",
+      "title": "R/S eex 核心写入烟测（rs-write-smoke）",
       "aliases": [
         "--rs-write-smoke",
         "R/S eex 核心写入烟测"

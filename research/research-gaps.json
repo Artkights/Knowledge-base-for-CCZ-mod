@@ -28,25 +28,28 @@
     },
     {
       "id": "research.65.strategy-fields",
-      "title": "解析 0x61 字节策略记录全部字段",
+      "title": "补齐策略运行时 68 行边界与未验证 UI 选项",
       "versions": [
         "6.5"
       ],
       "status": "open",
-      "evidence": "base-and-stride-known",
+      "evidence": "static-verified-partial",
       "known": [
-        "base=0x004A3E77",
-        "stride=0x61",
-        "lookup=0x00484002"
+        "文件表 Data.e5+0xB204 共 144 行×0x61，运行时 0x4A3E77 只初始化 0x44=68 行",
+        "0x484002 = 0x4A3E77 + id*0x61，无上界检查",
+        "0x40D73C 加载循环重排字段：文件 +0x0B..+0x0F → 运行时 +0x0F/+0x0B/+0x0C/+0x0D/+0x0E",
+        "文件 +0x0F 是 MP，运行时 +0x0E 是 MP；KB fn.65.strategy-mp-cost 结论正确",
+        "文件 +0x0B 类型、+0x0C 对象、+0x0D 范围、+0x0E 穿透、+0x10 图标、+0x11..+0x60 学习等级"
       ],
       "needed": [
-        "字段偏移",
-        "宽度",
-        "枚举/编码",
-        "读写调用点"
+        "确认 ID>=68 是否会被脚本或其他非 0x484002 路径读取",
+        "确认“施展对象”5/6 是否在未覆盖的版本/分支中使用",
+        "确认 6.6 的 0xA2CE0 bit1 语义",
+        "确认穿透范围位掩码 7 与组合位的界面显示约定"
       ],
       "sourceRefs": [
-        "src.ccz.runtime-registry"
+        "src.ccz65.3890.ekd5",
+        "src.research.strategy-attribute-verification-20261111"
       ]
     },
     {

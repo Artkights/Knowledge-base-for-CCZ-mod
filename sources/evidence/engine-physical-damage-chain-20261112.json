@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "analysis": "physical-damage-constant-chain",
+  "date": "2026-11-12",
+  "method": "pefile + capstone 精确反汇编 0x43BC62 的非特效主路径 0x43BCE5..0x43BDB6，并核对 6.4/6.5/6.6 的关键字节；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "function": {
+    "va": "0x43BC62",
+    "args": "[ebp+8]=攻方单位对象，[ebp+0xC]=是否反击/模式，ecx=[ebp-0x2C]=守方单位对象",
+    "mainPath": "0x43BCE5..0x43BDB6",
+    "steps": [
+      {"va": "0x43BCF5", "code": "0x40D2B2(守方, 攻方, 0, 1, 0) 返回两个能力值到 [ebp-0x10]/[ebp-0x20]"},
+      {"va": "0x43BD2F", "code": "0x412674() 取攻方等级"},
+      {"va": "0x43BD34", "bytes": "83 C0 19", "code": "add eax, 0x19", "constant": 25, "meaning": "基础伤害 = 攻方等级 + 25"},
+      {"va": "0x43BD3A", "code": "比较两个能力值 A=[ebp-0x20]、B=[ebp-0x10]"},
+      {"va": "0x43BD42", "code": "A >= B：damage += (A-B)/2（0x43BD45 shr eax,1）"},
+      {"va": "0x43BD4C", "code": "A < B：damage = max(damage-(B-A)/2, 0)；为 0 时 inc 到 1（0x47FA9E + 0x43BD64）", "floor": 1},
+      {"va": "0x43BD68", "code": "0x413260(守方) 非零时，比较 0x43F74F(攻方)"},
+      {"va": "0x43BD84", "versions": "6.4/6.5", "code": "diff<0 时 damage += damage * (abs(diff)*5) / 100", "constant": 5, "note": "0x43BD86 imul eax,eax,5；0x425AD9 乘算"},
+      {"va": "0x43BD7E", "versions": "6.6", "code": "diff 取负后 +0xC，再乘 edx，damage = damage * (该值) / 100", "constant": 12, "note": "0x43BD80 add eax,0xC；与 6.4/6.5 的固定 5 不同"},
+      {"va": "0x43BD9B", "code": "兵种相克 0x426737，counter!=100 时 damage = max(1, damage*counter/100)"},
+      {"va": "0x43BDBF", "code": "0x4E6000(攻方, 守方, damage) 最终处理"}
+    ]
+  },
+  "constants": [
+    {"value": 25, "role": "基础伤害加值", "va": "0x43BD34", "versions": "三基底相同"},
+    {"value": 2, "role": "能力差除数", "va": "0x43BD45/0x43BD52", "versions": "三基底相同"},
+    {"value": 1, "role": "伤害保底", "va": "0x43BD64", "versions": "三基底相同"},
+    {"value": 5, "role": "特殊差值每点百分比（6.4/6.5）", "va": "0x43BD86", "versions": "6.4/6.5"},
+    {"value": 12, "role": "6.6 特殊差值补正", "va": "0x43BD80", "versions": "6.6"},
+    {"value": 100, "role": "相克百分比基准", "va": "0x43BDA0", "versions": "三基底相同"}
+  ],
+  "versionDifferences": {
+    "6.4/6.5": "关键字节：0x43BD34=83 C0 19；0x43BD45=D1 E8；0x43BD86=6B C0 05；0x43BDA0=83 F8 64。",
+    "6.6": "0x43BD34/0x43BD45/0x43BDA0 相同；0x43BD86 变为 0F AF C2（imul eax,edx），并在 0x43BD80 加 0xC。"
+  },
+  "conclusion": "物理伤害主链的通用常量：攻方等级+25、能力差/2、保底 1、兵种相克百分比、最终 0x4E6000。特殊差值分支在 6.4/6.5 为 abs(diff)*5%，6.6 改为 (12-diff)*N% 形式；这是三基底中唯一的关键公式差异。",
+  "limitations": [
+    "0x413260/0x43F74F 的单位属性名称未命名。",
+    "0x40D2B2 返回的两个能力值未映射到界面字段。",
+    "0x4E6000 的最终处理未展开。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "entityType": "case-study",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "case.65.attack-range-q1-q10-closure",
+      "title": "6.5 攻击/穿透范围剩余十问闭合复盘",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "objective": "在已定位 0x4D1400/0x4D2228/0x407881 的基础上，闭合 Q1–Q10：格状态写入者、0x4A1140 构建者、ctx+0x424 语义、AI 兵种表路径、地形参与性、0x505FCC 读写者、低位误用、0x4B2C44/4C 读写者、6.6 等价定位、必杀 +0xC/+0xD 消费者。",
+      "inputs": [
+        "基底 加强版6.5未加密版/Ekd5.exe（原始 SHA-256 3890CC32…）",
+        "基底 加强版6.5未加密版/Data.e5（SHA-256 638744E0…，61379 字节）",
+        "既有实体 global.65.range-pointer-table、fn.65.attack-append-target、fn.65.pierce-loader、global.65.fatal-table",
+        "函数锚点扫描脚本 scananchors.py 与 capstone 32 位反汇编"
+      ],
+      "procedure": [
+        "用 55 8B EC / 55 89 E5 建立 3207 个函数锚点，替代会失步的全段线性扫描。",
+        "扫描 0x510000 区间，定位 0x473DF4 的 memset 与 0x4556F6 的 cell[0]=dl+0xCF 写入。",
+        "反汇编 0x4010B0/0x41B639，解析 DATA.E5 块 1 载入与 104×0x19 整理循环。",
+        "解析 DATA.E5 0x110 目录：10 项×12 字节大端，数据 0x18C 起，块 5 在 0xE894 拆分。",
+        "反汇编 0x406232/0x4064F1，确认 ctx+0x424 写 0x40628A、读 0x40CE03，仅用于特殊判定。",
+        "反汇编 0x438AC0 窗口，确认 0x438AC8 call 0x40782D，AI 与玩家共用兵种表。",
+        "复读 0x435884：返回 P 层槽号，撤销 0x42399B 低位误用结论。",
+        "定位 0x41B834 的 memcpy(0x4A7510, 必杀段, 0x610)，再扫 0x4A7510 得 0x41E918 访问器。",
+        "反汇编 0x43F8EA 与 0x484E27，确认 +0xC/+0xD 的真实消费者。",
+        "比对 6.5/6.6 0x435CE9 字节，改用 0x4D13A0/0x4D1400 特征定位 6.6 分派点。"
+      ],
+      "outcome": [
+        "Q1–Q10 全部闭合。",
+        "4 条旧结论被推翻或修正：Q3 链条、Q7 低位误用、Q10 必杀消费者、Q1 cell[0] 写入者。",
+        "已发布工具无需改代码，说明文档已修正“必杀无消费者”的错误。"
+      ],
+      "reusableLessons": [
+        "线性反汇编在数据区失步会漏掉关键立即数，应使用函数锚点或 CFG 定向解码。",
+        "同一 E5 容器可以是多子表合并块，记录偏移必须与目录项对照，不能假设独立块。",
+        "验证“有无消费者”要同时查绝对地址、访问器函数和指针字段偏移，三者缺一不可。",
+        "同址不等于等价函数：6.6 的 0x435CE9 需要按立即数特征而不是地址差定位。",
+        "引用寄存器计算的地址（如 0x4362C2 返回值）无法用立即数扫描找到写入者，必须追调用点。"
+      ],
+      "sourceRefs": [
+        "src.local.round101.report",
+        "src.local.round101.scananchors",
+        "src.ccz65.3890.ekd5",
+        "src.ccz65.3890.datae5"
+      ]
+    }
+  ]
+}

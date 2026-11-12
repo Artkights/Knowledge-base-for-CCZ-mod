@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "analysis": "physical-level-difference-table",
+  "date": "2026-11-12",
+  "method": "反汇编 0x426737 等级差百分比、0x413272 随机浮动、0x43B4A7/0x40BF0C 等级映射；读取三基底 0x4D1A80 表首字节与函数哈希。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "sites": {
+    "percent": {
+      "va": "0x426737",
+      "code": "d=0x43B4A7(defender); a=0x43B4A7(attacker); idx=a + d*0x28; pct=byte[0x4D1A80+idx]; pct += 0x413272(defender); pct -= 0x413272(attacker); if pct<0 pct=0; return pct",
+      "callSite": "0x43BD9B；返回 0x64 时跳过，否则 damage=damage*pct/100（0x425AD9），结果至少 1"
+    },
+    "roll": {"va": "0x413272", "code": "call 0x4101D9(0,1,0x4E,0x76)；返回随机/条件值"},
+    "grade": {"va": "0x43B4A7", "code": "0x40658F 取单位指针后转 0x40BF0C"},
+    "gradeMap": {"va": "0x40BF0C", "code": "al=byte[ecx+0x2B]; al<=0x3B → al/3；al<0x50 → al-0x28；否则 0x28"},
+    "table": {"va": "0x4D1A80", "shape": "41×41 byte，stride 0x28", "index": "attackerGrade + defenderGrade*0x28"}
+  },
+  "constants": ["0x28", "0x4E", "0x76", "0x64", "0x4D1A80"],
+  "crossBase": {
+    "hashes": {
+      "percent426737": {"6.4": "AA4CFE1F6830FE95", "6.5": "AA4CFE1F6830FE95", "6.6": "AA4CFE1F6830FE95"},
+      "roll413272": {"6.4": "291F7915C1F7A288", "6.5": "291F7915C1F7A288", "6.6": "291F7915C1F7A288"},
+      "grade43B4A7": {"6.4": "19DB3BDA32C962CE", "6.5": "19DB3BDA32C962CE", "6.6": "19DB3BDA32C962CE"},
+      "gradeMap40BF0C": {"6.4": "20F06BAC3DE1874A", "6.5": "20F06BAC3DE1874A", "6.6": "20F06BAC3DE1874A"}
+    },
+    "tableHead": {
+      "6.4": "64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64",
+      "6.5": "64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64",
+      "6.6": "50 5F 64 64 64 64 64 64 64 64 64 64 64 64 64 64"
+    }
+  },
+  "conclusion": "0x426737 是物理伤害的等级差百分比：以攻方/守方等级映射值 a、d 计算 idx=a+d*40，查 41×41 表 0x4D1A80，再叠加守方随机值、减去攻方随机值，负值归零。返回 100 时不缩放，否则 damage=damage*pct/100 且至少 1。四个函数在 6.4/6.5/6.6 完全同哈希，差异只在表 0x4D1A80：6.4/6.5 首字节为 100，6.6 首字节为 80/95，说明 6.6 重平衡了等级差伤害表。该函数不读取天气或临时属性块。",
+  "limitations": [
+    "0x4101D9 的随机/条件语义未完全确认。",
+    "41×41 表仅核对表首，未逐项导出。",
+    "等级映射值 a/d 与界面等级字段的对应未命名。",
+    "未运行游戏对照。"
+  ]
+}

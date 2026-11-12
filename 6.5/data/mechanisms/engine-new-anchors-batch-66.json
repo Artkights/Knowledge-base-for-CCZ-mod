@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.new-anchors-batch-66.3ef7",
+      "title": "6.6 独占/搬移锚点批语义：0x487634、0x48693E、0x500BA0、0x493AF0、0x4934B0、0x501BD2、0x501BF0",
+      "aliases": [
+        "new anchors batch",
+        "6.6 独占锚点",
+        "0x487634",
+        "0x48693E",
+        "0x500BA0",
+        "0x493AF0",
+        "0x4934B0",
+        "0x501BD2",
+        "0x501BF0"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "7 个 6.6 独占/搬移锚点：0x487634 为视口像素尺寸打包 dword（low16=宽×48，high16=高×48；0x451B3F 由网格字 0x4B422C/0x4B422D 计算，0x47B59D 置 640×400=0x1900280）；0x48693E 为 BMP 位深标志（0x20=32bpp，否则 24bpp；0x41625B 从图像头写入，0x40E87E 决定 ×4/×3），6.5/6.4 对应 0x4CE73C；0x500BA0 为 0xFFFF 空哨兵的 word 数组（6.5/6.4 为 0x4FFDF6）；0x493AF0 为按 ID-0xA0 索引的字节计数数组（带 0xFF/cl 钳位增减）；0x4934B0 为 0xC/0xD 掩码字节标志数组；0x501BD2 为 >=2 时启用新分支的模式字节；0x501BF0 为地图可见矩形缓存 dword（b0=left、b1=top、b2=width、b3=height；0=不受限；0x4362E6 点-矩形判定，宽高×0x30 驱动视口）。",
+      "constants": [
+        "0x487634", "0x48693E", "0x4CE73C", "0x500BA0", "0x4FFDF6",
+        "0x493AF0", "0x4934B0", "0x501BD2", "0x501BF0",
+        "0x42D260", "0x47D89E", "0x47D8DF", "0x4362E6", "0x40B922",
+        "0x4B422C", "0x4B422D", "0x1900280", "0xBB800", "0x4D42",
+        "0xA0", "0x20", "0xC", "0xD", "0xFFFF", "0x30", "0x72"
+      ],
+      "identity": "0x48693E↔0x4CE73C、0x500BA0↔0x4FFDF6 依据同一指令地址同址操作判定（0x40261C/0x40E773/0x40E880/0x41624D 与 0x401A57/0x40B6D9/0x411041/0x426A5B/0x426C42）。0x493AF0/0x501BD2 的字节模式在 6.5/6.4 中不存在。0x501BF0 的矩形四字节布局由 0x4362E6 的 dl/dh/cl/ch 比较确定，写入链为 0x410A38 表操作码 0x72 → 0x47D89E → 0x47D8DF 第 31 项 → 0x42D260。",
+      "siteAddresses": {
+        "viewportPacked": "0x487634",
+        "viewportWriter1": "0x451B3F",
+        "viewportWriter2": "0x47B59D",
+        "bmpDepth66": "0x48693E",
+        "bmpDepth65": "0x4CE73C",
+        "bmpDepthDecision": "0x40E87E",
+        "bmpHeaderWrite": "0x41625B",
+        "wordArray66": "0x500BA0",
+        "wordArray65": "0x4FFDF6",
+        "byteCounter": "0x493AF0",
+        "byteFlags": "0x4934B0",
+        "modeByte66": "0x501BD2",
+        "dwordCache66": "0x501BF0"
+      },
+      "limitations": [
+        "0x500BA0 数组长度与索引来源未定。",
+        "0x493AF0/0x4934B0 的索引域（0xA0 基址、掩码 0xC/0xD 含义）未定名。",
+        "0x501BD2 的取值来源与 >=2 分支业务含义未定。",
+        "0x501BF0 已定名为地图可见矩形缓存（脚本操作码 0x72 子命令 31），操作码中文命令名仍待定。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.grid-dimension-pair.3ef7",
+        "mechanism.65.battle-viewport-context.3ef7",
+        "mechanism.65.anchor-relocation-66.3ef7",
+        "mechanism.65.color-palette.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-new-anchors-batch-20261112",
+        "src.research.engine-map-rect-cache-20261112"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "analysis": "coverage-ledger-v9",
+  "date": "2026-11-12",
+  "rounds": "1-99",
+  "method": "汇总第 1–99 轮已集成的证据/机制条目，按域重算 resolved/partial/unresolved；新增第 91–99 轮七个域，并把第 84/87/79/97 轮四处更正计入。无新增运行时观测。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "counts": {"total": 85, "resolved": 63, "partial": 20, "unresolved": 2},
+  "newResolved": [
+    "音效播放 0x474777 与设置位 0x4B0770（第91轮）",
+    "AVI 动画模块 avivideo MCI（第92轮）",
+    "6.6 文本对象表 0x512640 与掩码文字链（第93轮）",
+    "设置块 0x4B0770 字段与索引 0/1/2（第94轮）",
+    "11 层图层块 0x12900 与块拷贝（第95轮）",
+    "模板 332 对话框类 vtable 0x44A6B5/确认 0x456CB4（第96轮）",
+    "功勋分配表 0x508000 与点数池 0x505F40（第97–98轮）"
+  ],
+  "partialToResolved": [
+    "0x41EB48 文本对象 +0x19/+0x1A/+0x1B 字段名 → 字体索引/字号/加粗位（第93轮）",
+    "模板 332 控件读写与 0x418BC8 回调 → vtable 0x44A6B5/0x456CB4（第96轮）"
+  ],
+  "corrections": [
+    "第84轮 0x418C34 文件对象 → 确认框包装（第86轮）",
+    "第87轮 0x4BE046 语义未定 → GetLocalTime（第88轮）",
+    "第79轮 0x500AE0 泛称关卡结构 → 练武场上下文（第89轮）",
+    "第97轮 0x505F40 累计恒 0 → xchg 累计被清零原值（第98轮）"
+  ],
+  "unresolved": [
+    "0x423842 的 edx 来源（需运行期）",
+    "0x4A3E77 68 之后槽位的运行期写入来源"
+  ],
+  "remainingGaps": [
+    "0x4303C8 的 20 个值语义与运行期用途",
+    "0x41CEAB 的 33 个值语义",
+    "人物模板表 +0x0C/+0x0D 命名与 68 之后槽位来源",
+    "0x4B4250 +0x64/+0x68 写入路径与 +0x20/+0x22 实际数值",
+    "0x423842 的 edx 来源",
+    "11 层各层用途与 0x1E900/0x24C00 语义",
+    "0x505F40 消费路径",
+    "0x500AA0 +0x04/+0x08/+0x09 与 0x3FE 记录",
+    "6.6 GDI+ 10 槽的消费链",
+    "区块B 两段字符串来源与三个头字节 getter 语义",
+    "AVI 模块其余 MCI 子命令"
+  ],
+  "conclusion": "第 1–99 轮覆盖 85 个通用域：63 resolved、20 partial、2 unresolved。第 91–99 轮把音效、AVI、文本对象表、设置块、11 层图层块、332 对话框类、功勋分配表纳入 resolved，并更正四处旧结论。",
+  "limitations": [
+    "覆盖状态是条目级汇总，不等价于逐函数全量证明。",
+    "未运行游戏对照。"
+  ]
+}

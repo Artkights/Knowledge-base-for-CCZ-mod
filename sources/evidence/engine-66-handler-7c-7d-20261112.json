@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "analysis": "script-opcodes-7a-7d-and-66-7c-7d",
+  "date": "2026-11-12",
+  "method": "读取三基底 0x410A38 处理表 0x7A..0x7F 项；反汇编 0x7A 处理体 0x416DCD/0x4202D8、0x7B 处理体 0x415093、6.6 的 0x7C 处理体 0x4284A2/0x42DB2C、0x7D 处理体 0x47E9F0 及子表 0x47EA2F 的 5 个处理体；解码 0x500CC0 字符串。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "handlerTable": {
+    "base": "0x410A38",
+    "index": "opcode-2",
+    "entries": {
+      "0x7A": {"6.4": "0x416DCB", "6.5": "0x416DCD", "6.6": "0x416DCD"},
+      "0x7B": {"6.4": "0x415093", "6.5": "0x415093", "6.6": "0x415093"},
+      "0x7C": {"6.4": "0x4D0000", "6.5": "0x4D0000", "6.6": "0x4284A2"},
+      "0x7D": {"6.4": "0x4D0000", "6.5": "0x4D0000", "6.6": "0x47E9F0"},
+      "0x7E": {"6.4": "0x4D0000", "6.5": "0x4D0000", "6.6": "0x4D0000"},
+      "0x7F": {"6.4": "0x4D0000", "6.5": "0x4D0000", "6.6": "0x4D0000"}
+    }
+  },
+  "sites": {
+    "opcode7A": {
+      "va": "0x416DCD",
+      "code": "循环最多 4 次取参（0x4183F7）；arg0>=0x1000 时显示 0x500CC0『变量值溢出』并返回 1；否则 call 0x4202D8(arg0..arg3)",
+      "callee": "0x4202D8：变量表 0x502000 + arg4*4，按变量类型跳转 0x4203FC"
+    },
+    "opcode7B": {
+      "va": "0x415093",
+      "code": "循环最多 5 次取参；整理两值后按操作码 0..5 比较：==、>=、<=、!=、>、<，返回 1/0"
+    },
+    "opcode7C": {
+      "va": "0x4284A2",
+      "code": "arg5=0x4183F7(5)；无效返回 5；否则 0x42DB2C(arg)",
+      "callee": "0x42DB2C：解析最多 5 个操作数，0x26('&') 跳过 2 字节，<=0x39 走 0x426E64，否则 0x413656；>=0x400 置 -1；最后 call 0x40CB00"
+    },
+    "opcode7D": {
+      "va": "0x47E9F0",
+      "code": "arg4=0x4183F7(4)，arg5=0x4183F7(5)；任一为 0x80000000 返回 5；否则 call [0x47EA2F + arg5*4](arg4)",
+      "subTable": {
+        "0x47EA2F": [
+          {"index": 0, "va": "0x42FB85", "semantics": "单位 id<0x28，0x46CEA4 后检查 [ecx+0x18]!=0、byte[+8]!=0xFF、byte[+0xE]==byte[+0xF]"},
+          {"index": 1, "va": "0x42FBB5", "semantics": "0x42C6C5 取两值，0x42FAB3 结果 >= 阈值"},
+          {"index": 2, "va": "0x42FAEE", "semantics": "0x42C6C5 取两值，0x42AC58 查单位后与字节值相等"},
+          {"index": 3, "va": "0x42FB17", "semantics": "0x42C6C5 取三值，单位 byte[+0xC]==2，+6 后 0x435991 取地形与参数相等"},
+          {"index": 4, "va": "0x42FB62", "semantics": "0x426E64 取单位/索引，0x41553B(0x4B3D08, id) 取天气与参数相等"}
+        ]
+      }
+    }
+  },
+  "correction": {
+    "target": "mechanism.65.script-handler-capacity.3ef7",
+    "old": "6.6 新增 0x7A/0x7B（0x4284A2/0x47E9F0），仅 0x7C..0x7F 为空",
+    "correct": "0x7A/0x7B 自 6.4 已实现；6.6 新增的是 0x7C/0x7D（0x4284A2/0x47E9F0），6.6 空实现仅 0x7E/0x7F"
+  },
+  "conclusion": "处理表 0x410A38 的 0x7A/0x7B 在 6.4 起已实现：0x7A 为变量赋值/表达式写入（溢出提示 0x500CC0『变量值溢出』，变量表 0x502000），0x7B 为六种比较条件的条件跳转。6.6 新增 0x7C/0x7D：0x7C 通过 0x42DB2C 解析最多 5 个操作数的表达式并调用 0x40CB00；0x7D 为 5 类条件分派（装备/状态相等、数值阈值、单位存在、地形、天气）。先前台账把 0x7C/0x7D 记作 0x7A/0x7B，偏移了 2 个 opcode，本轮更正。",
+  "limitations": [
+    "0x40CB00、0x4203FC、0x4183F7 的内部实现未完全展开。",
+    "0x7D 子条件 0 的 [+0xE]/[+0xF] 字段名未确定。",
+    "0x7C 表达式语法仅由字节 0x26/0x39 推断。",
+    "未运行游戏对照。"
+  ]
+}

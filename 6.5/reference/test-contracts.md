@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/test-contracts/data-manager-formulas.json`、`6.5/data/tests/data-manager-current-contracts.json`、`6.5/data/tests/data-manager-exchange-resources.json`、`6.5/data/tests/data-manager-test-contracts.json`、`6.5/data/tests/effect-assignment-layouts.json`、`6.5/data/tests/engine-assignment-final-results.json`、`6.5/data/tests/reverse-engineering-evidence-contracts.json`、`6.5/data/tests/smoke-test-contracts.json`
+结构化事实来源：`6.5/data/test-contracts/data-manager-formulas.json`、`6.5/data/test-contracts/strategy-attribute-semantics.json`、`6.5/data/tests/attack-range-deep-probe.json`、`6.5/data/tests/data-manager-current-contracts.json`、`6.5/data/tests/data-manager-exchange-resources.json`、`6.5/data/tests/data-manager-test-contracts.json`、`6.5/data/tests/effect-assignment-layouts.json`、`6.5/data/tests/engine-assignment-final-results.json`、`6.5/data/tests/reverse-engineering-evidence-contracts.json`、`6.5/data/tests/smoke-test-contracts.json`
 
 ## 6.5 33项公式与88项常量副本回归契约
 
@@ -47,6 +47,62 @@ ID: `test.65.dm-formulas-and-constant-audit`；状态: `candidate`；证据: `so
 - `runIds`：["6.5-battle-formulas", "6.5-battle-formula-write", "6.5-engine-constant-audit", "6.5-engine-constant-relocations"]
 - `exitCodes`：[0, 0, 0, 0]
 - `gameRuntimeVerified`：false
+## 策略属性语义、取值上限与 CSV 旧名兼容回归
+
+ID: `test.data-manager.strategy-attribute-semantics`；状态: `canonical`；证据: `test-verified`
+
+命令: `dotnet run --project src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --strategy-extension "<基底>/复刻版6.6山贼"；dotnet run --project src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --strategy-effect-classes "<基底>/加强版6.5未加密版"`
+
+目标: data 管理器策略页原有显示名、位名、施展对象上限、AI/伤害类型上限、6.4/6.5 填充型扩展表隐藏、6.6 扩展位 bit0/bit1 读写、保留位与实体切换、是否伤血/命中模式全量语义、CSV 旧名导入。；变更范围: 只写测试复制目录；基底 Ekd5.exe/Data.e5 原件不写回；测试结束校验原件 SHA。
+
+断言：
+
+- strategy-learning 界面显示为 类型索引（Profile 显示效果索引），旧 CSV 名 策略类型索引/策略效果索引/效果索引 仍解析到 strategy-learning。
+- 策略页标签包含 类型索引、命中上限、伤害系数、战场AI策略、练武场AI策略、效果索引。
+- strategies 的 施展对象 Maximum=2，策略页下拉不再提供 5/6。
+- strategy-battle-ai 与 strategy-training-ai 单字段 Maximum=0x0F，strategy-damage-type 单字段 Maximum=4。
+- 6.6 策略页只显示两个可写复选框：策略模仿(bit0) 与 辅助穿透(bit1)；bits2-7 不显示但写回保留。
+- 6.4/6.5 策略页完全隐藏 strategy-extension，不显示说明或灰显控件。
+- 6.6 在未保存草稿状态下切换策略 ID 不产生瞬时草稿；取消 bit0/bit1 只写 strategy-extension 单字节，磁盘只改变 Ekd5.exe+0xA2CE0+策略ID。
+- 是否伤血 0..3 行为等价，4 不伤血，>=4 同样被门控；6.4/6.5 由 ID 0x46/0x16 绕过，6.6 由策略类型 0x1E/0x06 绕过；显示只把精确的 4 显示为 0。
+- 命中模式 0=基础×90/100、1=绝对100、2=能力曲线、3=基础×34/100、4=基础×50/100；>=5 为基础×值/100；最终封顶 100。
+- 策略页 CSV 导出使用原有显示名，旧名导入别名仍可回导同一物理表。
+- 测试前后基底文件 SHA 不变
+
+必需产物：
+
+- STRATEGY_EXTENSION_TESTS_OK
+- STRATEGY_EFFECT_CLASS_TESTS_OK
+- 策略专项测试退出码 0
+- 测试输出目录下的布局截图或控制台结果
+
+失败含义：策略标签、位名、Profile 上限、6.4/6.5 扩展表隐藏、6.6 扩展位 bit0/bit1 读写、保留位、实体切换或 CSV 旧名兼容出现回归。
+
+## 函数锚点引用扫描与 Q1–Q10 断言
+
+ID: `test.65.attack-range-anchor-scan`；状态: `candidate`；证据: `static-verified`
+
+命令: `python tools/query_kb.py "0x00484E27" --version 6.5 && python -B tools/validate_kb.py`
+
+目标: 确认本轮新增实体可检索、来源快照哈希一致、实体关系与画像绑定完整，并复现函数锚点扫描的关键命中。；变更范围: 只读：查询索引、运行校验器；不修改 Ekd5.exe、Data.e5 或游戏资源。
+
+断言：
+
+- 查询 0x00484E27 返回 fn.65.fatal-field-d-reader.3890，且语义为读取记录 +0xD。
+- 查询 0x004556F6 返回 fn.65.grid-status-write.3890，且语义包含 cell[0]=dl+0xCF。
+- 查询 0x00510000 返回 global.65.grid-status-map.3890。
+- validate_kb.py 输出 validation_ok，来源数较基线增加 4 条。
+- 来源快照 sources/evidence/round101-attack-range-q1-q10.md 的 SHA-256 与清单登记一致。
+
+必需产物：
+
+- query_kb.py 查询输出
+- validate_kb.py 输出
+- sources/evidence/round101-attack-range-q1-q10.md
+- sources/evidence/scananchors-round101.py
+
+失败含义：实体未进入索引、来源哈希漂移或画像绑定缺失；此时固定地址不得用于工具实现或写回。
+
 ## 严格GBK预算、原槽保护与统一保存边界契约
 
 ID: `test.shared.data-manager-text-payload-writeback`；状态: `canonical`；证据: `source-reviewed-test-contract`
@@ -963,7 +1019,7 @@ ID: `test.65.smoke-legacy-scenario-depth-smoke`；状态: `candidate`；证据: 
 
 失败含义：该领域的读写、结构或回归契约未满足；不能用其它无关烟测通过来覆盖。
 
-## R/S eex 核心写入烟测
+## R/S eex 核心写入烟测（smoke-write）
 
 ID: `test.65.smoke-write`；状态: `candidate`；证据: `legacy-structured`
 
@@ -982,7 +1038,7 @@ ID: `test.65.smoke-write`；状态: `candidate`；证据: `legacy-structured`
 
 失败含义：该领域的读写、结构或回归契约未满足；不能用其它无关烟测通过来覆盖。
 
-## R/S eex 核心写入烟测
+## R/S eex 核心写入烟测（rs-write-smoke）
 
 ID: `test.65.smoke-rs-write-smoke`；状态: `candidate`；证据: `legacy-structured`
 

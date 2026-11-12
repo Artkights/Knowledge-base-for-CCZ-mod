@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "analysis": "physical-damage-range-correction",
+  "date": "2026-11-12",
+  "method": "精确反汇编物理伤害收尾 0x4E6000、范围查询 0x4E0000、坐标读取 0x4E004A、距离差 0x4E0060、距离比较 0x4E008F；三基底函数哈希对比。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "callSite": {
+    "va": "0x43BDBF",
+    "code": "push 伤害; push 防守方; push 攻方; call 0x4E6000; 返回值覆盖伤害"
+  },
+  "sites": {
+    "entry": {
+      "va": "0x4E6000",
+      "code": "r=0x4E0000(ecx=arg2, 0,0xFF,0xFF,0xC4,0xFF,1,0)；若 r==0 直接返回 base；若 0x4E008F(arg2,arg3,1)!=0 且 0x4E008F(arg2,arg3,0)==0 → result=0x425AD9(base,[ebp-4])（base*percent/100）；否则 result=0；最终返回 base+result",
+      "note": "0x425AD9 为乘除 100 的缩放函数"
+    },
+    "rangeQuery": {
+      "va": "0x4E0000",
+      "code": "两次 call 0x4101D9 组合坐标/范围参数（0,0xFF,0xFF,0xC4,0xFF,1,0），按 arg+0x1C 是否为 0 选择 min/max 或相加，返回范围值"
+    },
+    "coordinate": {
+      "va": "0x4E004A",
+      "code": "word[0x403360(ecx)] 拆成低字节/高字节返回",
+      "note": "0x403360 返回 job 记录 +6 的坐标字"
+    },
+    "distance": {
+      "va": "0x4E0060",
+      "code": "对两单位坐标做绝对差，返回 (|dx|,|dy|)"
+    },
+    "compare": {
+      "va": "0x4E008F",
+      "code": "mode==1: ecx<2 且 eax<2 → 1；mode>1: ecx+eax<=2 → 1；mode==0: ecx+eax==1 → 1；其余 0",
+      "note": "曼哈顿/相邻/对角距离判定"
+    }
+  },
+  "constants": ["0xFF", "0xC4", 1, 0, 2, 0x64],
+  "crossBase": {
+    "hashes": {
+      "entry4E6000": {"6.4": "30274F1A3E86D58C", "6.5": "E876F3A438FF94E6", "6.6": "885128BE96DE1DEF"},
+      "range4E0000": {"6.4": "834A709BA2534EBE", "6.5": "5EA0AEADCE6ECA95", "6.6": "5EA0AEADCE6ECA95"},
+      "coord4E004A": {"6.4": "6A4875DDACEAA91F", "6.5": "330E89382508EB3F", "6.6": "330E89382508EB3F"},
+      "dist4E0060": {"6.4": "8A1020634191C27B", "6.5": "0DA40CBC0DCF9F9A", "6.6": "0DA40CBC0DCF9F9A"},
+      "cmp4E008F": {"6.4": "65A16CB7861335D5", "6.5": "539D8E2844E58BB8", "6.6": "539D8E2844E58BB8"}
+    }
+  },
+  "conclusion": "0x4E6000 是物理伤害链末尾的距离/范围修正：先用 0x4E0000 以 0/0xFF/0xFF/0xC4/0xFF/1/0 参数查询范围，再用 0x4E008F 以 mode 1 与 mode 0 判定距离关系；仅当 mode1 命中且 mode0 未命中时按 0x425AD9 对伤害做百分比缩放，其余情况不加成。坐标取自 job 记录 +6 字的低/高字节，距离判定为曼哈顿/相邻/对角三类。该函数不读取天气 0x4B3D0C 或临时属性块 +0x18，说明物理侧的天气/状态修正不在此处，而在更早的伤害链或策略修正中。",
+  "limitations": [
+    "0x4E604C 使用 [ebp-4]，该槽在函数体内未见初始化，可能为编译器复用或不可达路径，百分比含义未确定。",
+    "0x4101D9 的范围参数语义未完全展开。",
+    "0xC4/0xFF 常量对应的范围图案未命名。",
+    "未运行游戏对照。"
+  ]
+}

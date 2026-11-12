@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.ai-handler-constants-66.3ef7",
+      "title": "6.6 AI 处理体常量与调用目标逐项重定位",
+      "aliases": [
+        "6.6 AI 处理体",
+        "0x43A140",
+        "0x43988C",
+        "0x4399F1",
+        "处理体常量替换"
+      ],
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "6.6 的 16 个 AI 处理体入口与 6.5 完全一致，但同位置常量被系统性替换：0x1B→0x23、0x35→0x41、0x39→0x59、0x27/0x28/0x2B→0x37/0x38/0x3B、0x44→0x2B、0x14→0x1E、0x10→0x13、0x0F→0x12；调用目标 0x43FFB9→0x4190E8、0x438917→0x438914、0x43B6F3→0x43B730、0x406764→0x41832B、0x43C022→0x43C01D、0x417A5E→0x417A61；内嵌评分下限表 0x4395D8 搬到 0x412793（4 字节 19/1E/23/19=25/30/35/25，内容不变），配套方向掩码表 0x4240D2 为 03/0C/30/C0。处理体 0/1/5 另有结构重排。",
+      "constants": [
+        "0x1B", "0x23", "0x35", "0x41", "0x39", "0x59",
+        "0x27", "0x37", "0x28", "0x38", "0x2B", "0x3B",
+        "0x44", "0x14", "0x1E", "0x10", "0x13", "0x0F", "0x12"
+      ],
+      "identity": "处理体入口 16 项两版完全相同；差分模式为 cmp/sub 立即数替换 + 调用目标重定位 + 一处内嵌表搬迁（0x4395D8→0x412793）。",
+      "limitations": [
+        "常量替换的语义（策略 ID 重编号/状态阈值）未与策略表逐项对照。",
+        "评分下限表 25/30/35/25 对应的兵种/方向语义未定名。",
+        "处理体 0/1/5 的结构重排未逐指令等价性证明。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.ai-dispatch-handler-cross-base.3ef7",
+        "mechanism.65.ai-damage-ratio-scoring.3ef7",
+        "mechanism.65.ai-branch-3-4-6-scoring.3ef7",
+        "mechanism.65.ai-branch-7-12-scoring.3ef7",
+        "mechanism.65.ai-branch-2-13-14-15.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-ai-handler-constants-66-20261112"
+      ],
+      "siteAddresses": {
+        "dispatchTable": "0x43A140",
+        "handler0": "0x43988C",
+        "handler2": "0x439B80",
+        "handler3": "0x439A26",
+        "handler4": "0x43996C",
+        "handler6": "0x439A70",
+        "handler7": "0x4399F1",
+        "handler10": "0x439AA6",
+        "handler11": "0x4399AF",
+        "handler12": "0x439B21",
+        "handler13": "0x439C8A",
+        "handler14": "0x439BB6",
+        "handler15": "0x439C12",
+        "tableMove65": "0x4395D8",
+        "tableMove66": "0x412793",
+        "scoreFloorTable": "0x4395D8",
+        "maskTable": "0x4240D2"
+      }
+    }
+  ]
+}

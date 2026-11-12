@@ -21,7 +21,7 @@
         "src.data-manager.incremental-20261102.xlsx-tests",
         "src.data-manager.incremental-20261102.xlsx-native-tests",
         "src.data-manager.incremental-20261102.xlsx-text-tests",
-        "src.data-manager.incremental-20261102.exchange-test-runner",
+        "src.dm.core-current-20261102.test-runner",
         "src.dm.current-validation-20261102",
         "src.dm.current-source-inventory-20261102"
       ],
@@ -195,7 +195,7 @@
         "src.data-manager.incremental-20261102.pmap-doc",
         "src.data-manager.incremental-20261102.pmap-tests",
         "src.data-manager.incremental-20261102.pmap-integration-tests",
-        "src.data-manager.incremental-20261102.exchange-test-runner",
+        "src.dm.core-current-20261102.test-runner",
         "src.data-manager.incremental-20261102.image-test-runner",
         "src.dm.current-validation-20261102",
         "src.dm.current-source-inventory-20261102"

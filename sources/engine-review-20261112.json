@@ -1,0 +1,1783 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-12",
+  "baselineCommit": "658c4e0b8d17e0f49c7178e6e4b1ba0b1802d422",
+  "scope": [
+    "三基底引擎通用常量与全局表锚点普查",
+    "兵种相克 40×40 百分比表与物理伤害乘算",
+    "沿用 2026-11-11 策略/范围复核对新实体的覆盖",
+    "6.6 全局状态区 0x500AAC..0x500ADF 字段语义与 Z 键热补丁开关",
+    "人物能力显示值跳转表 0x430000/0x46902B 与记录能力字段",
+    "256项RGB调色板 0x4CB1C0/0x511400 与转换链",
+    "6.6 物品类型→动作/特效编号映射表 0x4303C8",
+    "33项随机变体编号表 0x41CEAB 与替换函数",
+    "6.6 独占/搬移锚点批语义",
+    "三基底算术立即数普查与 6.6 新结构",
+    "6.6 字体名称表 0x500030 与 CreateFontA 包装",
+    "6.6 地图格标志数组与物品计数数组",
+    "图层/图块缓冲常量与 0x430020 拷贝函数",
+    "0x500AE0 关卡/地图全局结构字段",
+    "剧本解释器上下文与脚本地址缓存",
+    "0x501BF0 视口尺寸缓存与 0x423842 edx 追踪"
+  ],
+  "method": "本轮对 8 个新增策略实体做 pefile+capstone 静态复核；其余 132 个既有增量来自 2026-11-09 策略/范围复核回执，未在本轮改动，仅因基线提交 658c4e0 较早而计入差异。",
+  "documentCount": 37,
+  "entries": [
+    {
+      "path": "sources/evidence/strategy-attribute-verification-20261111.json",
+      "sha256": "A8EF53093818E16C7E3365D5EA5E4C84B0C1CC6BE5F92F73BAE9D16D5E88E69F",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.64.strategy-attribute-tables.9112",
+        "mechanism.65.dm-strategy-attribute-semantics",
+        "mechanism.65.strategy-attribute-tables.3ef7",
+        "mechanism.66.strategy-attribute-tables.25d",
+        "profile.ccz65.unencrypted.3ef7",
+        "struct.64.strategy-record.9112",
+        "struct.65.strategy-record.3ef7",
+        "struct.66.strategy-record.25d",
+        "test.data-manager.strategy-attribute-semantics",
+        "mechanism.65.strategy-mimic-and-penetration.3890",
+        "mechanism.66.strategy-extension-flags.25d",
+        "mechanism.64.strategy-mimic-and-penetration.9112",
+        "fn.65.strategy-mimic-effect.3890",
+        "fn.65.strategy-mimic-selection.3890",
+        "fn.65.strategy-penetration-enhancement.3890",
+        "mechanism.65.strategy-damage-hit-resolution.3ef7"
+      ],
+      "researchIds": [
+        "research.65.strategy-fields"
+      ],
+      "reason": "新增三基底策略记录字段、10 张 144 字节属性子表映射、data 管理器语义对照；并补充 2026-11-12 是否伤血与命中模式的全量反汇编（门控例外、命中模式分派、能力曲线、修正与版本差异）；同时把原“策略字段未知”研究项收窄为 MP 成本字节归属与 68 行运行时边界两项残余问题。"
+    },
+    {
+      "path": "sources/strategy-range-review-20261109.json",
+      "sha256": "D6CE2E74763AE3238523DB396AB61C94AE21D20FC8867E5005023620BBCADD2F",
+      "disposition": "existing-entities",
+      "targetIds": [
+        "case.65.attack-range-q1-q10-closure",
+        "case.65.effect-range-binding-cross-base-verification",
+        "case.65.name-table-inventory",
+        "case.65.name-table-pointer-sourcing",
+        "case.65.script-command-implementation",
+        "case.65.script-command-parsing",
+        "case.65.script-command-verification",
+        "fn.64.attack-range-tier-check.9112",
+        "fn.64.attack-range-tier-map.9112",
+        "fn.64.attack-range-wrapper.9112",
+        "fn.64.effect-group-query.9112",
+        "fn.64.effect-presence.9112",
+        "fn.64.fatal-range-selector.9112",
+        "fn.64.pierce-loader.9112",
+        "fn.64.script-event-iterate.9112",
+        "fn.64.state-range-remap.9112",
+        "fn.64.strategy-animation-tier.9112",
+        "fn.64.strategy-cast-entry.9112",
+        "fn.64.strategy-damage.9112",
+        "fn.64.strategy-exp.9112",
+        "fn.64.strategy-hit-curve.9112",
+        "fn.64.strategy-hit-stub.9112",
+        "fn.64.strategy-mp-check.9112",
+        "fn.64.strategy-mp-cost.9112",
+        "fn.64.strategy-range-dispatch.9112",
+        "fn.64.strategy-status-value.9112",
+        "fn.65.attack-range-tier-check.3890",
+        "fn.65.attack-range-tier-map.3890",
+        "fn.65.attack-range-wrapper.3890",
+        "fn.65.battle-grid-clear.3890",
+        "fn.65.cell-slot-reader.3890",
+        "fn.65.data-e5-block1-init.3890",
+        "fn.65.data-table-init-root.3890",
+        "fn.65.fatal-field-c-reader.3890",
+        "fn.65.fatal-field-d-reader.3890",
+        "fn.65.fatal-range-selector.3890",
+        "fn.65.grid-status-write.3890",
+        "fn.65.longrange-effect-chain.3890",
+        "fn.65.longrange-effect-helper-9d.3890",
+        "fn.65.longrange-effect-helper-9e.3890",
+        "fn.65.param-getter-gated.3890",
+        "fn.65.pierce-effect-chain.3890",
+        "fn.65.script-ascii-number.3890",
+        "fn.65.script-command-dispatch.3890",
+        "fn.65.script-event-iterate.3890",
+        "fn.65.script-event-slot.3890",
+        "fn.65.script-interpret-frame.3890",
+        "fn.65.script-param-get.3890",
+        "fn.65.script-record-field-reader.3890",
+        "fn.65.script-stream-readers.3890",
+        "fn.65.script-token-reader.3890",
+        "fn.65.strategy-animation-tier.3890",
+        "fn.65.strategy-cast-entry.3890",
+        "fn.65.strategy-damage.3890",
+        "fn.65.strategy-exp.3890",
+        "fn.65.strategy-heal.3890",
+        "fn.65.strategy-hit-curve.3890",
+        "fn.65.strategy-hit-stub.3890",
+        "fn.65.strategy-mp-check.3890",
+        "fn.65.strategy-mp-cost.3890",
+        "fn.65.strategy-range-dispatch.3890",
+        "fn.65.strategy-status-value.3890",
+        "fn.66.attack-range-tier-check.aa0f",
+        "fn.66.attack-range-tier-map.aa0f",
+        "fn.66.attack-range-wrapper.aa0f",
+        "fn.66.fatal-range-selector.aa0f",
+        "fn.66.longrange-effect-chain.aa0f",
+        "fn.66.pierce-effect-chain.aa0f",
+        "fn.66.pierce-loader.aa0f",
+        "fn.66.strategy-animation-tier.aa0f",
+        "fn.66.strategy-cast-entry.aa0f",
+        "fn.66.strategy-damage.aa0f",
+        "fn.66.strategy-exp.aa0f",
+        "fn.66.strategy-heal.aa0f",
+        "fn.66.strategy-hit-curve.aa0f",
+        "fn.66.strategy-hit-stub.aa0f",
+        "fn.66.strategy-mp-check.aa0f",
+        "fn.66.strategy-mp-cost.aa0f",
+        "fn.66.strategy-range-dispatch.aa0f",
+        "fn.66.strategy-status-value.aa0f",
+        "format.65.data-e5-block-directory.3890",
+        "format.65.script-command-record.3890",
+        "global.64.effect-name-table.9112",
+        "global.64.effect-name-tables-split.9112",
+        "global.64.misc-name-tables.9112",
+        "global.64.range-code-name-table.9112",
+        "global.64.strategy-name-table.9112",
+        "global.65.ability-name-table.3890",
+        "global.65.attack-range-tier-table.3890",
+        "global.65.classgroup-name-table.3890",
+        "global.65.data-e5-block1-buffer.3890",
+        "global.65.effect-name-table.3890",
+        "global.65.effect-name-tables.3890",
+        "global.65.fatal-record-table.3890",
+        "global.65.grid-status-map.3890",
+        "global.65.hotweapon-name-table.3890",
+        "global.65.range-code-name-table.3890",
+        "global.65.script-command-dispatch-table.3890",
+        "global.65.script-control-codes.3890",
+        "global.65.script-event-table.3890",
+        "global.65.script-handler-map.3890",
+        "global.65.script-handler-modes.3890",
+        "global.65.script-handler-profiles.3890",
+        "global.65.script-message-subcommands.3890",
+        "global.65.script-vtable.3890",
+        "global.65.strategy-name-table.3890",
+        "global.65.terrain-name-table.3890",
+        "global.65.ui-label-tables.3890",
+        "global.65.unitclass-name-table.3890",
+        "global.65.weapon-type-name-table.3890",
+        "global.66.effect-name-table.f20c",
+        "global.66.misc-name-tables.f20c",
+        "global.66.range-code-name-table.f20c",
+        "mechanism.65.attack-range-grid-write.3890",
+        "mechanism.65.attack-range-tier-expansion.3890",
+        "mechanism.65.fatal-range-consumption.3890",
+        "mechanism.65.longrange-attack-overlay.3890",
+        "mechanism.65.param-display-name-resolution.3890",
+        "mechanism.65.pierce-attack-replacement.3890",
+        "mechanism.65.pierce-range-chain.3890",
+        "mechanism.65.script-command-dispatch.3890",
+        "mechanism.65.script-execution.3890",
+        "mechanism.65.script-jump-window.3890",
+        "mechanism.65.script-main-loop.3890",
+        "mechanism.65.script-short-param.3890",
+        "mechanism.65.strategy-resolution-chain.3890",
+        "struct.65.data-e5-block1-record",
+        "struct.65.data-e5-fatal-record",
+        "struct.65.grid-status-cell",
+        "struct.65.script-context.3890",
+        "test.65.attack-range-anchor-scan",
+        "workflow.65.anchor-based-reference-tracing",
+        "struct.65.strategy-record"
+      ],
+      "reason": "沿用 2026-11-09 策略/范围复核回执的既有实体；本轮未修改其余既有实体。另按 0x40D73C/0x406640 静态复核修正上述 5 个候选的命中码、目标侧经验、范围/动画等级、MP 字段对应与效果类型名表命名。"
+    },
+    {
+      "path": "sources/evidence/engine-constant-census-20261112.json",
+      "sha256": "AFB116A370FBBA359E97DCA9254FDE8A5C8E378A9A78AC924AA126D30AF581A4",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-constant-census.3ef7"
+      ],
+      "reason": "新增三基底函数级常量/数据引用普查与 EXE 内嵌通用表锚点工作清单。"
+    },
+    {
+      "path": "sources/evidence/engine-counter-table-20261112.json",
+      "sha256": "657971899AEDAC863B400778EFD3ED015415C430EFB198ED69A2875CF530FB74",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.job-series-counter.3ef7"
+      ],
+      "reason": "新增兵种相克 40×40 百分比表、兵种 ID→兵种系映射、单位记录步长与物理伤害乘算的静态全量证据。"
+    },
+    {
+      "path": "sources/evidence/engine-ai-terrain-20261112.json",
+      "sha256": "651522468A11088F603C8CD38F7A5D49CE32ADBF8A111B1AD84C87719EEBAE69",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.strategy-ai-dispatch.3ef7",
+        "mechanism.65.strategy-terrain-bitmask.3ef7"
+      ],
+      "reason": "新增策略 AI 16 分支评分分派、战斗/训练 AI 表差异与地形可用性位掩码的静态证据。"
+    },
+    {
+      "path": "sources/evidence/engine-shop-growth-20261112.json",
+      "sha256": "969A4A3036A1FAA539916060F489F38F0DD2F21C7877F5446F17FAD549DC230A",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.shop-runtime-and-item-usability.3ef7",
+        "mechanism.65.job-growth-equipment-compatibility.3ef7"
+      ],
+      "reason": "新增商店运行时 127×40 表、16 槽列表、物品可用性布尔判定与兵种成长 80×35 装备适性字节的静态证据。"
+    },
+    {
+      "path": "sources/evidence/engine-job-attribute-matrix-20261112.json",
+      "sha256": "A1F01CA7F8BF258E1952474B8292ED6D1A7550CF02B5D123C07C6DFB3213008B",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.job-series-attribute-matrix.3ef7"
+      ],
+      "reason": "新增兵种属性矩阵 8×40 的逐行分布、消费点与第 6 行策略伤害百分比乘算的静态证据。"
+    },
+    {
+      "path": "sources/evidence/engine-job-penetration-20261112.json",
+      "sha256": "F3D9D33B642A2350B76DF2BB38D9552B7743C6019A0152C1425D0031817C92D1",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.detailed-job-penetration.3ef7"
+      ],
+      "reason": "新增 detailed-job-penetration 80 字节表的取值、守卫条件与三基底分布。"
+    },
+    {
+      "path": "sources/evidence/engine-physical-damage-chain-20261112.json",
+      "sha256": "5ED3EE1CCC0284F0BC7787998C009F26B2831792F26580D9B47F29D9B3BF74C4",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.physical-damage-constant-chain.3ef7"
+      ],
+      "reason": "新增物理伤害主链 25/2/1/5/12/100 常量与 6.6 特殊分支差异。"
+    },
+    {
+      "path": "sources/evidence/engine-movement-terrain-20261112.json",
+      "sha256": "A7025AA2A9E9DDE4B0EDE9DA64B709F358FDFC82032B81C049A1C88568B50CED",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.movement-terrain-and-map-bounds.3ef7"
+      ],
+      "reason": "新增 Data.e5 块 4 移动消耗/地形适应表、运行时访问器、0xFF 哨兵与地图宽高边界。"
+    },
+    {
+      "path": "sources/evidence/engine-turn-weather-state-20261112.json",
+      "sha256": "8733FC718E797CF0DF04A3EE62D826646FEEA267C5DD10D4872761D7951FEB45",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.turn-action-weather-state.3ef7"
+      ],
+      "reason": "新增战场状态 0x4B3D08 的回合/上限/行动方/天气字段、指令处理与 5×6 天气转换表。"
+    },
+    {
+      "path": "sources/evidence/engine-global-caps-20261112.json",
+      "sha256": "D359B2FD4088884C64DE4AC02635D331C87B64D3EAB571CE09A165A4E9989262",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.engine-capacity-and-sentinels.3ef7"
+      ],
+      "reason": "新增全局容量、循环上限与空值/越界哨兵的三基底汇总。"
+    },
+    {
+      "path": "sources/evidence/engine-battle-script-actions-20261112.json",
+      "sha256": "3741E0509FA9B04BA205B9FA124864087E5EBFF9A1D29A45F59DA8FB5160475B",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.battle-script-action-family.3ef7"
+      ],
+      "reason": "新增剧本战斗指令族与 0x51 恢复行动权的 250 循环、6/0x1E 掩码与写回常量。"
+    },
+    {
+      "path": "sources/evidence/engine-strategy-direction-weather-20261112.json",
+      "sha256": "8503525AF4E32BE462F0ECFE9BAA3E92EA417C218C5ADAAFE5AB49688F33DE60",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.strategy-damage-direction-weather.3ef7"
+      ],
+      "reason": "新增策略伤害方向/天气/地形 +25/+40 百分比修正与三基底差异。"
+    },
+    {
+      "path": "sources/evidence/engine-hit-height-modifier-20261112.json",
+      "sha256": "E543D6678D82BC8A6098EF039DFD6701378664182435001CBDE3B494AE612925",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.hit-height-direction-modifier.3ef7"
+      ],
+      "reason": "新增命中率高度/方向坐标修正的 class 0/1/2、+5/+10、+5% 开关、100 上限与下限。"
+    },
+    {
+      "path": "sources/evidence/engine-formula-site-audit-20261112.json",
+      "sha256": "D47E2B8F3129ABA8133565493F64CC60745B2A9D08237D7D7C6CDDBA769AF4EB",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.formula-site-cross-base-audit.3ef7"
+      ],
+      "reason": "新增 160 常量/464 站点/91 精确站点契约的三基底同址字节审计与差异清单。"
+    },
+    {
+      "path": "sources/evidence/engine-equipment-growth-20261112.json",
+      "sha256": "E0B28ABAAB716FB0D9BD060FCA7CB9DF2B13FF76C0D021D7A0EB5B88074E6443",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.equipment-growth-thresholds.3ef7"
+      ],
+      "reason": "新增装备升级阈值与等级上限的三基底同址差异：普通 100/150、特殊 200、上限 5/9/15。"
+    },
+    {
+      "path": "sources/evidence/engine-hit-retry-cross-base-20261112.json",
+      "sha256": "8F5F0B003C1D6A4A319FF0F1E394DD71F99D9912970FACC8FFEFD3B06B5B61F1",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.hit-retry-cross-base.3ef7"
+      ],
+      "reason": "新增命中重试 2 次/85/10 循环与 6.6 0xFB2/0x4B3D18 门控的三基底差异。"
+    },
+    {
+      "path": "sources/evidence/engine-char-exp-cross-base-20261112.json",
+      "sha256": "264411DAE051B1694415926FCDC6DB4589D936B291FDE826E5568BF3281B9662",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.char-level-exp-cross-base.3ef7"
+      ],
+      "reason": "新增角色经验 0x4088CD 的等级/阈值三基底对照：80/150、60/分段、99/250。"
+    },
+    {
+      "path": "sources/evidence/engine-personal-exp-cross-base-20261112.json",
+      "sha256": "0949A72B5F9115261249647CA264A1C4E74D1EECE110717527FC1180F8A0C5EF",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.personal-exp-cross-base.3ef7"
+      ],
+      "reason": "新增个人经验 2×等级差+6、-1..47、+48、64/(差+2) 的三基底一致性核对。"
+    },
+    {
+      "path": "sources/evidence/engine-weapon-exp-cross-base-20261112.json",
+      "sha256": "2BF9E5DCE41460005FF25C7503975B0AC4D3E79DE809B0C27E65B8CBEFBE7354",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.weapon-exp-cross-base.3ef7"
+      ],
+      "reason": "新增武器经验基础值/无伤害路径三基底对照 3/2/3 与 2/2/1。"
+    },
+    {
+      "path": "sources/evidence/engine-armor-exp-cross-base-20261112.json",
+      "sha256": "A8E9C6A96869FB02D86017DDA1CABD873D66CA526025F3002F964791C00A64FE",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.armor-exp-cross-base.3ef7"
+      ],
+      "reason": "新增防具经验基础值/无伤害扣减三基底对照 3/3/4 与 1/2/3。"
+    },
+    {
+      "path": "sources/evidence/engine-global-mode-flags-20261112.json",
+      "sha256": "16E4A948121CE56A957AB014DA41CC822F2746ABD6F322E3219F38376C16CDD4",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.global-mode-flags-hit-gate.3ef7"
+      ],
+      "reason": "新增 0x502000+0xFB2*4=0x505EC8 的地址解析与 6.6 命中三条件门控。"
+    },
+    {
+      "path": "sources/evidence/engine-grid-bound-correction-20261112.json",
+      "sha256": "D1C479394DC3E73321FA4C1B326CA1BDB0B7512AC27BAAEC929DF1500C4911EA",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.grid-bound-word-correction.3ef7"
+      ],
+      "reason": "新增 0x4B422C 网格边界字更正，否定地图宽高初判。"
+    },
+    {
+      "path": "sources/evidence/engine-ai-damage-scoring-20261112.json",
+      "sha256": "B83F41C83421B445CB5E17B5C66DF0B40D534094559F2B181CC0E9A55EE7DD31",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.ai-damage-ratio-scoring.3ef7"
+      ],
+      "reason": "新增 AI 分支 0/1/5 的 damage*100/HP 评分与策略 0x44 追加。"
+    },
+    {
+      "path": "sources/evidence/engine-ai-branch-346-scoring-20261112.json",
+      "sha256": "1A80AF8450EE0D85AD9137EE3D57343E82DC4AE60D3EA29F6B33C74FD61866A2",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.ai-branch-3-4-6-scoring.3ef7"
+      ],
+      "reason": "新增 AI 分支 3/4/6 的权重与阈值。"
+    },
+    {
+      "path": "sources/evidence/engine-ai-branch-712-scoring-20261112.json",
+      "sha256": "16A1CF3FEDFD03340234126420A63E409897754374FEA310F4453EA721C36AC4",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.ai-branch-7-12-scoring.3ef7"
+      ],
+      "reason": "新增 AI 分支 7/8/9/10/11/12 的权重与策略/兵种特判。"
+    },
+    {
+      "path": "sources/evidence/engine-ai-branch-2-13-15-20261112.json",
+      "sha256": "24E118C7AAD0CCA7DC228B8D728816802F50B2B9B809A273D78F773D49254B05",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.ai-branch-2-13-14-15.3ef7"
+      ],
+      "reason": "新增 AI 剩余分支 2/13/14/15 的权重与状态阈值。"
+    },
+    {
+      "path": "sources/evidence/engine-item-price-boundary-20261112.json",
+      "sha256": "FE96157D7578A449CEBEE59A987BFF8039A4FAADC2DBBE651E0CBC3430CF50E8",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.item-price-consumption-boundary.3ef7"
+      ],
+      "reason": "新增商店价格字段 item+0x13 的消费边界负结果。"
+    },
+    {
+      "path": "sources/evidence/engine-ai-cross-base-audit-20261112.json",
+      "sha256": "DE2A472E07D78CE414B571D3D34F4A98B462C1827A074C3A084CBEA6A0053CF5",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.ai-dispatch-handler-cross-base.3ef7"
+      ],
+      "reason": "新增 AI 跳转表三基底一致与 12 个处理体哈希对照。"
+    },
+    {
+      "path": "sources/evidence/engine-character-accessors-20261112.json",
+      "sha256": "32A2AD37C5189C5A6DC70BBE5AF5B0FA1CE9D5F1AC0DDBA139B3B1B5EC7E3847",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.runtime-character-accessors.3ef7"
+      ],
+      "reason": "新增人物记录 72 字节访问器簇与装备槽 3 字节布局。"
+    },
+    {
+      "path": "sources/evidence/engine-equipment-slot-bound-20261112.json",
+      "sha256": "E881BCED4F373A04FAC4C07657A74C762AE6396360472E7CD74F6A59AC57CD7C",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.equipment-slot-bound.3ef7"
+      ],
+      "reason": "新增装备槽数量 3 与 slot<3 上界比较。"
+    },
+    {
+      "path": "sources/evidence/engine-script-handler-capacity-20261112.json",
+      "sha256": "79E9301E87C023E40DC10FB9D282D9460C5E450B3746293917372A618613C0DA",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.script-handler-capacity.3ef7"
+      ],
+      "reason": "新增剧本处理表 126 项容量、index=opcode-2 与 0x4D0000 空实现区间。"
+    },
+    {
+      "path": "sources/evidence/engine-item-type-mapping-20261112.json",
+      "sha256": "BFD0FFFB1CFAEAFCBAC3368390A0A5B9886B07A0CA7C1D211E3116745F05B68B",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.item-type-classification.3ef7"
+      ],
+      "reason": "新增物品类型分类与子类型映射的 20/26/11/2 常量。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-20261112.json",
+      "sha256": "B8136C78C499F2C227A2F92BB03B5935510AD5235A3B752832C83692B90C86DE",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "新增第 1–32 轮通用常量覆盖台账与剩余缺口。"
+    },
+    {
+      "path": "sources/evidence/engine-item-record-normalization-20261112.json",
+      "sha256": "B0A330CB6EA4B61BE4C0045A39014B364C346CBE37994A0DC47686D8F2DCC659",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.item-record-normalization.3ef7"
+      ],
+      "reason": "新增物品记录 0x12..0x14 旋转与 6.5/6.6 装载差异。"
+    },
+    {
+      "path": "sources/evidence/engine-slot-type-candidate-20261112.json",
+      "sha256": "7BFD9817A477C64AFA83E9116B7E207C38F483C0265D2182ECB25684C87D0C67",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.equipment-slot-type-candidate.3ef7"
+      ],
+      "reason": "新增装备槽3与物品类型阈值20/26的候选对应。"
+    },
+    {
+      "path": "sources/evidence/engine-money-global-20261112.json",
+      "sha256": "A6CDE3E91EACA8D7181CA85FB677A613EF918926A0DB2358735CDAA7417D0F8F",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.money-global.3ef7"
+      ],
+      "reason": "新增金钱全局 0x4B077C 与 999999 上限、价格检查与扣款点。"
+    },
+    {
+      "path": "sources/evidence/engine-payment-chain-20261112.json",
+      "sha256": "DF47C2E54BE19FB129E6D30D86F48FEE4C5476F98D2057C16B41246A7F8F29F3",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.payment-chain.3ef7"
+      ],
+      "reason": "新增统一支付链、练武菜单价格与 6.6 支付/槽位函数重定位。"
+    },
+    {
+      "path": "sources/evidence/engine-battle-mode-byte-20261112.json",
+      "sha256": "EEC6727B42D072725076A4790F226B37057BDA5B74972BAFCD258434C23EEE8E",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.battle-mode-byte.3ef7"
+      ],
+      "reason": "新增战场模式字节 0x4B3D18 消费者图谱与移动力覆盖 0x48E8C2 链。"
+    },
+    {
+      "path": "sources/evidence/engine-crit-combo-mode-20261112.json",
+      "sha256": "A11855C9B35FDD0331B59BA60AEFB1158C14DEE6CB78A05027A2FAB4598C58DD",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.crit-combo-mode.3ef7"
+      ],
+      "reason": "新增暴击/连击模式 0x505EC8、暴击值数组与 6.4/6.6 差异。"
+    },
+    {
+      "path": "sources/evidence/engine-save-load-constants-20261112.json",
+      "sha256": "FDA805E9C33A609B2622007D33024AFB8C88A2906B3007A5966093404F4CB260",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.save-load-constants.3ef7"
+      ],
+      "reason": "新增存档/读档槽位公式、文件命名与 6.4/6.6 差异。"
+    },
+    {
+      "path": "sources/evidence/engine-temp-attribute-block-20261112.json",
+      "sha256": "61CA860CC6653CAE5BD85D87924FBC10255826D614619F6713F91EA5119FA665",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.temp-attribute-block.3ef7"
+      ],
+      "reason": "新增单位 +0x18 六槽临时属性块与三档语义。"
+    },
+    {
+      "path": "sources/evidence/engine-grid-dimension-pair-20261112.json",
+      "sha256": "4923F465BBB81A6FEBA53C300F53F090B7369B9D9A610C39748ABE6EA40BE8C5",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.grid-dimension-pair.3ef7"
+      ],
+      "reason": "新增全局二维网格尺寸字 0x4B422C/0x4B422D 与索引/边界/装载链。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v3-20261112.json",
+      "sha256": "9BF3EAD9DFA1D2D5436C952ADC5021F67FFEC0B09C3494B42351F3C7AC360C19",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "覆盖台账升级到第1–42轮，重算域状态与剩余缺口。"
+    },
+    {
+      "path": "sources/evidence/engine-66-handler-7c-7d-20261112.json",
+      "sha256": "298DCAC2CD5598D37394CE45DD7CE1A5984993215362A6DA624C400B5AE5E8F0",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.script-opcodes-7c-7d.3ef7",
+        "mechanism.65.script-handler-capacity.3ef7"
+      ],
+      "reason": "新增 0x7C/0x7D 处理体机制，并更正处理表 0x7A/0x7B 已存在的偏移记录。"
+    },
+    {
+      "path": "sources/evidence/engine-physical-range-correction-20261112.json",
+      "sha256": "820BABF7649507D1C5AF0D2EFF437E0864266BA8CEC2D139FA5C0F88A550C4D0",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.physical-range-correction.3ef7"
+      ],
+      "reason": "新增物理伤害距离/范围修正 0x4E6000 与距离判定链。"
+    },
+    {
+      "path": "sources/evidence/engine-physical-level-table-20261112.json",
+      "sha256": "2A3D6ACE2584EEF5962ABE742BF3D25D72332C3C91FADA92E2C4C34AD0C4A2C1",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.physical-level-table.3ef7"
+      ],
+      "reason": "新增物理伤害等级差百分比表 0x4D1A80 与随机浮动。"
+    },
+    {
+      "path": "sources/evidence/engine-damage-apply-mode-20261112.json",
+      "sha256": "99AEAD8A167C64996DE37495A3CFDFC1D3DE5EC81A875F7E667D4473B9D3D3FC",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.damage-apply-mode.3ef7"
+      ],
+      "reason": "新增伤害落点 0x411072 与战斗模式字节 0x500E9A/0x500E9B。"
+    },
+    {
+      "path": "sources/evidence/engine-unit-status-bitfield-20261112.json",
+      "sha256": "4B47F87205566BF37D94779FCF1AED88C50C1A4A965ABB84E2A1E21CB5482C77",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.unit-status-bitfield.3ef7"
+      ],
+      "reason": "新增 unit+0x1E 状态位组与 40% 伤害条件。"
+    },
+    {
+      "path": "sources/evidence/engine-money-delta-20261112.json",
+      "sha256": "CF0C8D81C37F79D2A451100A3B31F3EDCB0C03B12A9049E20E6AC6ECAD5866F2",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.money-global.3ef7"
+      ],
+      "reason": "更正 0x48E8BD 为待结算金额累加器，补充加/扣钱分支与清零点。"
+    },
+    {
+      "path": "sources/evidence/engine-unit-slot-arrays-20261112.json",
+      "sha256": "517D0D438737E70C5F5BDEFB341D58BEBA5034CEAEFFC1D65637A8FFAB1F1AFB",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.unit-slot-arrays.3ef7"
+      ],
+      "reason": "新增单位槽位数组与金钱/HP 联动。"
+    },
+    {
+      "path": "sources/evidence/engine-target-direction-score-20261112.json",
+      "sha256": "92EE4782DDEC73D116F0BB5CC21162E110EFB04ED61D42A7D3F708ACD1FDE009",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.target-direction-score.3ef7"
+      ],
+      "reason": "新增四方向目标/位置评分及其物理百分比修正。"
+    },
+    {
+      "path": "sources/evidence/engine-battle-unit-table-20261112.json",
+      "sha256": "09850E118A317D19EEACB7BD5D74054CC7A24AD174D17CAF8CF3CBED80F98E6E",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.battle-unit-table.3ef7"
+      ],
+      "reason": "新增战场单位占位表 0x4B3D21 结构与扫描函数。"
+    },
+    {
+      "path": "sources/evidence/engine-battle-unit-table-fields-20261112.json",
+      "sha256": "EB8589FE1AE2BD6EA92EDC01D16FCCF41964358DBEF6D01E5F8CF5374B9D121D",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.battle-unit-table.3ef7"
+      ],
+      "reason": "补全占位表五字段语义与 0x1B00 层大小。"
+    },
+    {
+      "path": "sources/evidence/engine-item-record-table-20261112.json",
+      "sha256": "7FBC2EEBF63B70C028515E4F3CA70EC926AE18411C482E343D6AB0846DBDFBE4",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.item-record-table.3ef7"
+      ],
+      "reason": "新增物品/装备记录表基址、25字节步长与6.6重定位。"
+    },
+    {
+      "path": "sources/evidence/engine-item-record-fields-20261112.json",
+      "sha256": "BF0CA6EA28232E2A499915C19E612F30CA75B6D2A9F169FF6E50AE9F504E9A20",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.item-record-fields.3ef7"
+      ],
+      "reason": "新增物品记录字段语义、DATA.E5+star.e5 装载链、买卖价公式与6.6类型表0x4303C8。"
+    },
+    {
+      "path": "sources/evidence/engine-embedded-byte-tables-20261112.json",
+      "sha256": "2AA3D28E80600B14DEDCE2E5B780518AE350BB056555F8F481C5993A0A57442E",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.embedded-byte-tables.3ef7"
+      ],
+      "reason": "新增33项随机替换表0x41CEAB与6.6武器类型表0x4303C8的结构、读取函数与调用链。"
+    },
+    {
+      "path": "sources/evidence/engine-item-effect-code-and-range-table-20261112.json",
+      "sha256": "25EC60C5B6C5226BDF6A4ACB1B7A692D37F6B2AA524D4FEF63AC97B3E866ECC2",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.item-effect-code-and-range-table.3ef7"
+      ],
+      "reason": "新增物品使用效果码+0x10、4槽效果缓冲与36项效果范围表0x4D1400的四角矩形语义。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v4-20261112.json",
+      "sha256": "9F6F8A94D636273A364FDA5648B5CE47E7912B3FA46A0748370EF8A0C0D87BEC",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "覆盖台账升到v4：第1–57轮50域（37 resolved / 8 partial / 5 unresolved）。"
+    },
+    {
+      "path": "sources/evidence/engine-battle-viewport-context-20261112.json",
+      "sha256": "B1DC2668D6969492BB4DD55832297FD515BE903F693B1D98EFE7CD7B475E6B63",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.battle-viewport-context.3ef7"
+      ],
+      "reason": "新增战场视口/滚动上下文0x4B4250的19项字段布局、像素/瓦片换算与三基底差异。"
+    },
+    {
+      "path": "sources/evidence/engine-item-loader-64-parser-20261112.json",
+      "sha256": "2B92A8BA7A37A048AB7A901FD162CD85F6FBB5E2B6987CF587F5025EF5F6DEE7",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.item-loader-64-parser.3ef7"
+      ],
+      "reason": "新增6.4物品装载链、0x41FECC解析式旋转、star.e5容量0x1022与槽位上限255，并更正第55轮“6.4无旋转”。"
+    },
+    {
+      "path": "sources/evidence/engine-character-adaptation-table-20261112.json",
+      "sha256": "239E9983B18C7861E711BC66BD334023F9FC01286823C976575CA90E672D8D98",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.character-adaptation-table.3ef7"
+      ],
+      "reason": "新增人物模板表0x4A3E77（68×97，+0x11起80兵种字节）、0x41CEAB索引解析与0x4303C8消费链负向结论。"
+    },
+    {
+      "path": "sources/evidence/engine-character-template-header-capacity-20261112.json",
+      "sha256": "E639FFD7770B9D548206BCDA27A2DA9DC9FFD6ED8A531E54B719110B800330B0",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.character-adaptation-table.3ef7"
+      ],
+      "reason": "补全0x4A3E77头部字段（名称%s、+0x0C/+0x0D/+0x0F）与144槽容量上界（下一表基址0x4A7510）。"
+    },
+    {
+      "path": "sources/evidence/engine-ai-handler-constants-66-20261112.json",
+      "sha256": "8C250BF603D4175CDCD521462213FED169149DC4C6D02A9FF077B4DA7296BE09",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.ai-handler-constants-66.3ef7"
+      ],
+      "reason": "新增6.6 AI 16个处理体的常量替换表（0x1B→0x23等）、调用重定位与内嵌表0x4395D8→0x412793搬迁。"
+    },
+    {
+      "path": "sources/evidence/engine-ai-direction-score-tables-20261112.json",
+      "sha256": "1B12F4CA9B2611C9823CAFF33FA402A29087589DE2DC200D303D6584C3686B24",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.ai-handler-constants-66.3ef7",
+        "mechanism.65.battle-viewport-context.3ef7"
+      ],
+      "reason": "补全评分下限表25/30/35/25、方向掩码表0x4240D2，并登记0x4B4250 +0x64/+0x68只读模式标志。"
+    },
+    {
+      "path": "sources/evidence/engine-character-template-fields-20261112.json",
+      "sha256": "E9CDEEC90C05B005D49910E33A6DB15F94E22131781A04128E0D87B56F9DB75D",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.character-adaptation-table.3ef7"
+      ],
+      "reason": "补全名称字段起点（0x42B4F0 只清name[0]）与+0x0D分类ID的栈上排序/写入单位链。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v5-20261112.json",
+      "sha256": "29EE9FD6736AF7A16BC0549518A55C76E57AEB1A8B688B1B3C72C50629ACBB9D",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "覆盖台账升到v5：第1–65轮55域（41 resolved / 11 partial / 3 unresolved）。"
+    },
+    {
+      "path": "sources/evidence/engine-anchor-relocation-65-66-20261112.json",
+      "sha256": "A7724E25F6864C7847737FA642324FEE60B45D61834D87A9BAE15061CA74129C",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.anchor-relocation-66.3ef7"
+      ],
+      "reason": "新增6.5→6.6全局锚点重定位映射27组（0x4CE7xx→0x500ADx块、0x511E40→0x4930C8等）。"
+    },
+    {
+      "path": "sources/evidence/engine-global-ui-state-block-20261112.json",
+      "sha256": "82526A6B0C3C9B31372B2023ABB6CA46FBD45AAC8E21550CE886B839BB221F94",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.global-ui-state-block.3ef7",
+        "mechanism.65.hotpatch-toggle-66.3ef7",
+        "mechanism.65.anchor-relocation-66.3ef7"
+      ],
+      "reason": "第68轮：登记6.6全局状态区0x500AAC..0x500ADF的24个字段语义与6.5字段级映射，新增Z键热补丁开关0x500ADB（7处代码改写），并更正UI模式字段映射为0x4CE79F→0x500AD7。"
+    },
+    {
+      "path": "sources/evidence/engine-ability-display-table-20261112.json",
+      "sha256": "2C49142C629B754A7EFB16156FC440F435902A62214B0DAA5D90408958ACA81C",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.ability-display-table.3ef7"
+      ],
+      "reason": "第69轮：登记人物能力显示值跳转表0x430000（6.5/6.4 0x46902B）、人物记录+0x11..+0x25能力字段、索引5/6资源上限与6.6处理器常量差异（0x19→0x32、0x414D81→0x405B86、删除0x42518F加成）。"
+    },
+    {
+      "path": "sources/evidence/engine-color-palette-20261112.json",
+      "sha256": "E22BB18267D3B3B6C673CC9389892334F0DB032E537DB707EBE0FD54370B3BD9",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.color-palette.3ef7"
+      ],
+      "reason": "第70轮：登记256项RGB调色板0x4CB1C0（6.5/6.4 0x511400）、0x45B6E3转换到0x497770、透明色键0x00F700FF与6.6新增消费点。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v6-20261112.json",
+      "sha256": "69E4CC2DC474E2B20AFC228EC0794D55A4EFAAD82E72C3AF0F6479C5817F1AE8",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "覆盖台账升到v6：第1–70轮67域（46 resolved / 18 partial / 3 unresolved），并登记第67轮两处更正。"
+    },
+    {
+      "path": "sources/evidence/engine-item-type-action-mapping-20261112.json",
+      "sha256": "5DDAEB0F48ADCD6F10CAB81919B43257348B89F0972690FA751BA6BD84C457B2",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.item-type-action-mapping-66.3ef7"
+      ],
+      "reason": "第72轮：登记6.6物品类型→动作/特效编号映射表0x4303C8（20项）及0x43F8C0→0x417A38→0x43038B消费链，对照6.5的0x4E4000/0x417A35实现。"
+    },
+    {
+      "path": "sources/evidence/engine-random-replacement-table-20261112.json",
+      "sha256": "79FE9A15654475919B05D0A7FA92CF8FA35CD5B204B88E14E712B3AF7E9387FB",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.random-variant-table.3ef7"
+      ],
+      "reason": "第73轮：登记33项随机变体编号表0x41CEAB（三基底一致）、0x41CE8C(mod,code)替换函数、0x401DFF模板+0xC链与0x21哨兵。"
+    },
+    {
+      "path": "sources/evidence/engine-new-anchors-batch-20261112.json",
+      "sha256": "824FC85DCA8BFB12C9675D3E0E35D1D623FF37F760F7EA3187ACA01DA3D323AD",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.new-anchors-batch-66.3ef7"
+      ],
+      "reason": "第74轮：批量登记6.6独占/搬移锚点语义（视口尺寸0x487634、位深0x48693E↔0x4CE73C、word数组0x500BA0↔0x4FFDF6、0x493AF0/0x4934B0/0x501BD2/0x501BF0）。"
+    },
+    {
+      "path": "sources/evidence/engine-arithmetic-immediates-census-20261112.json",
+      "sha256": "4533351779327A4D4F8FAB0C56725FB7A615B9153B88DE5B63F193711B12A8D7",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.arithmetic-immediates-census.3ef7"
+      ],
+      "reason": "第75轮：三基底算术立即数普查（imul 107/106/122种），发现6.6新增21字节文本记录表（0x15/+0x662）与0x12C图标间距/0x500030表。"
+    },
+    {
+      "path": "sources/evidence/engine-font-name-table-20261112.json",
+      "sha256": "7855022F649E929609FFB190B9DE90BBB5AADEA5F0ABA647E66675EDE3B6416E",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.font-name-table.3ef7"
+      ],
+      "reason": "第76轮：登记6.6字体名称表0x500030（5项GBK字体名）、CreateFontA包装0x41EBA3（GB2312/0x86、PROOF_QUALITY、字重0x190/0x258/0x2BC）与MulDiv字高换算。"
+    },
+    {
+      "path": "sources/evidence/engine-cell-flag-item-count-20261112.json",
+      "sha256": "71026A8C71B5A8C46B004005AEA10795CE210586B7558F68CB590008DBBC2F70",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.cell-flag-item-count.3ef7"
+      ],
+      "reason": "第77轮：登记6.6地图格标志数组0x4934B0（掩码0xD/0x0C、y*width+x索引）与物品计数数组0x493AF0（物品ID-0xA0、0xFF上限）。"
+    },
+    {
+      "path": "sources/evidence/engine-highfreq-imul-constants-20261112.json",
+      "sha256": "997171B11E0546CE6B3FE29157A1C5652D188DAFEA6609FF686B8EBA4CC7C320",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.layer-block-constants.3ef7"
+      ],
+      "reason": "第78轮：解析高频imul常量0x6C00=4×0x1B00、0x12900=11×0x1B00、0x3000=64×64×3、0xC000=4×0x3000，及0x430020矩形拷贝函数与0x4927F0选择字节。"
+    },
+    {
+      "path": "sources/evidence/engine-level-context-struct-20261112.json",
+      "sha256": "74AA01ACEAD0ED8D5E94F323ADB81F7FB9F8DA9B9FE8E563EFE5C9B7E4FABB48",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.level-context-struct.3ef7"
+      ],
+      "reason": "第79轮：登记0x500AE0关卡/地图描述结构（0x90字节）的10个字段：+0x12地图宽高对、+0x14窗口句柄、+0x0C状态ID等。"
+    },
+    {
+      "path": "sources/evidence/engine-script-context-caches-20261112.json",
+      "sha256": "52ECF1D1541B871650710D8B7D23808AB137ECFC13122DB4A99C84CC067AB42B",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.script-context-caches.3ef7"
+      ],
+      "reason": "第80轮：登记剧本解释器上下文（vtable对象+0x0C/0x10/0x14/0x2C/0x2E/0x34字段）与0x500AB0/0x500AB4脚本地址缓存公式。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v7-20261112.json",
+      "sha256": "E3B50D2E869900DF671D4C304CA0C230557C9757BC656267D9BE9A2F2E4D7F0E",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "覆盖台账升到v7：第1–80轮76域（51 resolved / 22 partial / 3 unresolved）。"
+    },
+    {
+      "path": "sources/evidence/engine-viewport-cache-edx-trace-20261112.json",
+      "sha256": "62477CCD2E84BB097F2269F22F222A1E355B06DE7459934C3C43D66CFFDA02BB",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.viewport-size-cache.3ef7",
+        "mechanism.65.payment-chain.3ef7"
+      ],
+      "reason": "第82轮：登记0x501BF0地图/视口尺寸缓存（打包宽高、0回退0x4B422C、更新0x4B4250+0x34/+0x38），并把0x423842的edx追踪结果写入支付链机制。"
+    },
+    {
+      "path": "sources/evidence/engine-cell-flag-bits-20261112.json",
+      "sha256": "F1A24438F4D82E8E28463003CCBA087465F014F1A744BC6EDB4F8F3D796C6EF8",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.cell-flag-item-count.3ef7"
+      ],
+      "reason": "第83轮：细化0x4934B0位语义——长度0x640(40×40)、bit0地形/状态判定、bit2/bit3移动范围/路径标记，更新机制摘要与站点。"
+    },
+    {
+      "path": "sources/evidence/engine-file-io-wrappers-20261112.json",
+      "sha256": "A582505FE8766901B4715396FB5DD3A5C496CCCEFB0DFFBC70E2F06481B618B2",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.file-io-wrappers.3ef7",
+        "mechanism.65.save-load-constants.3ef7"
+      ],
+      "reason": "第84轮：登记CreateFileA包装0x418F5C（路径拼接、0x419019 access表、重试5次）与文件对象包装0x418C34（vtable 0x487410、0x46F982/0x46D098）。"
+    },
+    {
+      "path": "sources/evidence/engine-character-template-fields-0c-0d-20261112.json",
+      "sha256": "336C64C967187F82FE1325BB0ECF1ACCADC26040E470A40C9BC50E841319C06F",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.character-adaptation-table.3ef7"
+      ],
+      "reason": "第85轮：补充人物模板+0x0C（动作/图像编号，0x401DFF→0x41CE8B(2)）与+0x0D（组别/候选索引，0x4244E5 索引栈上候选列表并写入单位+0xC/+0xD）。"
+    },
+    {
+      "path": "sources/evidence/engine-dialog-framework-20261112.json",
+      "sha256": "31B0A63364AA94C3D1B8ACA9F8F653BD82738B8A6313C1EAD1FDB59B0035DB17",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.dialog-framework.3ef7",
+        "mechanism.65.file-io-wrappers.3ef7",
+        "mechanism.65.font-name-table.3ef7",
+        "mechanism.65.save-load-constants.3ef7"
+      ],
+      "reason": "第86轮：登记通用模态对话框框架（模板332/340/341、0x418C34确认框包装、DlgProc 0x46D0F8、分派器 0x46D221、vtable 0x487410、状态字节 0x48E8C1、6.6 拖动与 0x46D345），并更正第84轮把 0x418C34 误记为文件对象包装。"
+    },
+    {
+      "path": "sources/evidence/engine-save-file-format-20261112.json",
+      "sha256": "44163056DFF1EFFA0599044012F308D8D23EFD04C684AF621AD4B1CA15CCDA16",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.save-file-format.3ef7",
+        "mechanism.65.save-load-constants.3ef7",
+        "mechanism.65.file-io-wrappers.3ef7"
+      ],
+      "reason": "第87轮：登记存档四区块布局（A 0x30000、B 0xD4F0 含 0x24/0x30 记录、C 0x313D、D 战场状态）、魔数5校验、0x418F5C/0x419102/0x419184/0x41923C/0x4192C5 文件对象包装与 .api 段 0x4BE046 间接钩子。"
+    },
+    {
+      "path": "sources/evidence/engine-api-name-table-20261112.json",
+      "sha256": "CD7B01413744BF5F0401FC97B0A2640CF47609DB0A2F7C86655AA7DA5B7DB984",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.api-name-table.3ef7",
+        "mechanism.65.save-file-format.3ef7",
+        "mechanism.65.file-io-wrappers.3ef7"
+      ],
+      "reason": "第88轮：解析 .api 段（DLL 名 + 槽位组，槽位值 = 名称VA-0x400000-2），登记 6.5 的 12 槽与 6.6 新增的 GDIPLUS 10 槽及消费点；把第87轮 0x4BE046 间接钩子更正为 GetLocalTime（6.6 槽位 0x4BE052）。"
+    },
+    {
+      "path": "sources/evidence/engine-training-ground-context-20261112.json",
+      "sha256": "7DC27B2287AFAAB1EF96E6AC4DB2C9C8DB738F3F2B5D5602CDD5EE3A38BECE2C",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.training-ground-context.3ef7",
+        "mechanism.65.level-context-struct.3ef7",
+        "mechanism.65.dialog-framework.3ef7",
+        "mechanism.65.grid-dimension-pair.3ef7"
+      ],
+      "reason": "第89轮：把 0x500AA0/0x500AE0 由泛称「关卡/地图结构」细化为练武场上下文，登记 0x418F05 初始化字段（+0x00/+0x04/+0x08/+0x09/+0x0A/+0x10/+0x11/+0x1C）与 RT_DIALOG 330「练武场」48 控件 ID。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v8-20261112.json",
+      "sha256": "5A4C740232641147F945C8D1A460CE95D2F1D0E5F1D3AD99B42309EE88296DC7",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "第90轮：覆盖台账 v8（第1–89轮）重算为 80 域 56 resolved/22 partial/2 unresolved；新增对话框框架/模板332/340/341、存档四区块、.api 名称表、练武场上下文，登记第84/87/79轮三处更正。"
+    },
+    {
+      "path": "sources/evidence/engine-sound-settings-20261112.json",
+      "sha256": "BBA017127ADB581D9622284423AFF94C712C105F0E4D233333842B2D3EBD127E",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.sound-settings.3ef7",
+        "mechanism.65.save-file-format.3ef7",
+        "mechanism.65.global-ui-state-block.3ef7"
+      ],
+      "reason": "第91轮：登记音效播放 0x474777（SE00/SE_M/SE_E 三段 0x64/0xC8/0xD1、flags 3/8/0x10）、语音 SE_V_%03u.WAV、设置位 0x4B0770（byte[0]&2 开关、word[+6]/2 钳 0x7F）。"
+    },
+    {
+      "path": "sources/evidence/engine-avi-player-20261112.json",
+      "sha256": "CD1BD36F4B135F92385556A6A426B2783FB506B4BF33846A5563DA54104F2059",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.avi-player.3ef7",
+        "mechanism.65.sound-settings.3ef7"
+      ],
+      "reason": "第92轮：登记 AVI 动画模块（avivideo MCI 0x803/0x806/0x841/0x814/0x804、WH_GETMESSAGE 钩子 0x41EF96 的 WM_LBUTTONDOWN 0x201 跳过、LOGO/OPEN/END/PRESS.AVI 与错误文案）。"
+    },
+    {
+      "path": "sources/evidence/engine-text-object-table-20261112.json",
+      "sha256": "8CBDC28D51C13EFA8D6D81E791101FD04C18E69BAEDC91770AD6B97A86A58C90",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.text-object-table.3ef7",
+        "mechanism.65.font-name-table.3ef7",
+        "mechanism.65.color-palette.3ef7"
+      ],
+      "reason": "第93轮：登记 6.6 文本对象表 0x512640（40×0x30，+0x17 颜色/+0x19 字体/+0x1A 字号/+0x1B 加粗位/+0x24 坐标）与 0x41EB48/0x41EA66/0x41EAD3/0x42AEC7 的 1bpp 掩码文字绘制链。"
+    },
+    {
+      "path": "sources/evidence/engine-settings-block-fields-20261112.json",
+      "sha256": "5333BFCB041A10FEDD20DCA52300E7FBE6F39037F26ADAF313415E42E3696E16",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.settings-block-fields.3ef7",
+        "mechanism.65.sound-settings.3ef7",
+        "mechanism.65.save-file-format.3ef7"
+      ],
+      "reason": "第94轮：登记设置块 0x4B0770 的 +0x00 选项位/+0x06 word/+0x0C dword/+0x10 标志/+0x12 byte，及 0x40E1D0/0x415E19/0x408808 三个 getter、0x4118DB 索引比较与 0x41196C 写 +0x10。"
+    },
+    {
+      "path": "sources/evidence/engine-layer-buffer-11-20261112.json",
+      "sha256": "87A417D872904085DC8AAD84DF148E34118B64A75364B24588391D1854811268",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.layer-buffer-11.3ef7",
+        "mechanism.65.layer-block-constants.3ef7",
+        "mechanism.65.color-palette.3ef7"
+      ],
+      "reason": "第95轮：登记 11 层图层块 0x12900（0xF300=9层/0x6C00=4层/0x1B00=单层）、0x41ED07 的第 9/10 层 0x30×0x30 复制、0x4303C4+0x41C444 alpha 合并与 0x43E549 方向映射。"
+    },
+    {
+      "path": "sources/evidence/engine-dialog332-confirm-20261112.json",
+      "sha256": "864DDB702B2CFC4CB018DC311708292F00804C92145B75A80915EF712672C800",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.dialog332-confirm.3ef7",
+        "mechanism.65.dialog-framework.3ef7",
+        "mechanism.65.ability-display-table.3ef7"
+      ],
+      "reason": "第96轮：登记模板 332 对话框类 vtable 0x44A6B5、WM_COMMAND 0x456CB4（0x406..0x40A 五个 BS_AUTOCHECKBOX 的 BM_GETCHECK 位掩码、EndDialog 0xFF）、0x41B8AF 与 0x508000 的 102×0x0A 表访问器。"
+    },
+    {
+      "path": "sources/evidence/engine-merit-table-20261112.json",
+      "sha256": "FD85B3FAC85B46587177654D117D5D5B32A5F0DA9ABBA35298C404E85CD885AA",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.merit-table.3ef7",
+        "mechanism.65.dialog332-confirm.3ef7",
+        "mechanism.65.runtime-character-accessors.3ef7"
+      ],
+      "reason": "第97轮：登记功勋分配表 0x508000（102×5 word）、点数池 0x505F40、启用标志 0x505F3C、0x408FA0 按掩码清零未勾选项与 0x423EAD 重置某人分配。"
+    },
+    {
+      "path": "sources/evidence/engine-merit-pool-refund-20261112.json",
+      "sha256": "DAA8816F153BFC8D67F27D9D8A4C4520E41FA1A509026625C81903D6AB22B7A4",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.merit-table.3ef7"
+      ],
+      "reason": "第98轮：更正第97轮累计恒 0 的误读——xchg 把被清零 word 的原值交换到 bx/cx 并累计，0x505F40 返还=被清除项之和；补充 0x4108DB/0x456DA6 显示链，并记录未发现减法消费点。"
+    },
+    {
+      "path": "sources/evidence/engine-training-context-record-pointer-20261112.json",
+      "sha256": "C3DAA52798216E79D8D2FCBDEC9B55AEAD51BDE76419F97265C7B8296A0F23DA",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.training-ground-context.3ef7",
+        "mechanism.65.runtime-character-accessors.3ef7"
+      ],
+      "reason": "第99轮：确认练武场 +0x00 为人物记录指针（0x4065D0=byte[record+0x2C] 等级 → SetDlgItemInt 0x559），并登记 0x418F05 仅 0x41E6D6/0x41ECD6 两个调用者（后者经 0x4237F9 计价与 0x4061E4(0x3FE)）。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v9-20261112.json",
+      "sha256": "EF7D595883A370DC93490EB9F7FD522FF7A1851BA19F945DAE1402ED77915162",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "第100轮：覆盖台账 v9（第1–99轮）重算为 85 域 63 resolved/20 partial/2 unresolved；新增音效/AVI/文本对象表/设置块/11层图层块/332 对话框类/功勋分配表，登记四处更正。"
+    },
+    {
+      "path": "sources/evidence/engine-current-record-pointer-20261112.json",
+      "sha256": "741D4BA9344807DD5ED06D341FF7A0D2279BFF89365F04DD56B5C6487BE23EFB",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.current-record-pointer.3ef7",
+        "mechanism.65.merit-table.3ef7",
+        "mechanism.65.runtime-character-accessors.3ef7"
+      ],
+      "reason": "第101轮：登记全局当前人物记录指针 0x500E28（写入 0x469FD1 列表选择、0x4787F9 角色面板；5 处读取）与指针→索引 (ptr-0x4CEA00)/0x48 的 0x40BE7D，并把它与 332 确认处理访问 0x508000 闭环。"
+    },
+    {
+      "path": "sources/evidence/engine-auto-battle-flags-20261112.json",
+      "sha256": "A1FCD789D4D033076A5E14C8B511509D0ED64A51295A45E49D41DC2FAD41BC92",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.auto-battle-flags.3ef7",
+        "mechanism.65.battle-viewport-context.3ef7",
+        "mechanism.65.ai-dispatch-handler-cross-base.3ef7"
+      ],
+      "reason": "第102轮：把 0x4B4250+0x64/+0x68 命名为自动战斗标志（0x412F84 走 0x4389BD AI 选目标、0x43E823 触发 0x44DA7A(0/1) 自动结算），并记录静态未发现写入点（推测 AutoDll 插件写入）。"
+    },
+    {
+      "path": "sources/evidence/engine-text-buffers-save-header-20261112.json",
+      "sha256": "DD47CC83DEC25B5CF5AE47378971806BF6942F6442BA2D9C00F66A5970978FD7",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.text-buffers-save-header.3ef7",
+        "mechanism.65.save-file-format.3ef7",
+        "mechanism.65.script-context-caches.3ef7"
+      ],
+      "reason": "第103轮：登记 0x4A1128（0x16 字节脚本文本缓冲，0x417DF6 解析 '*' 与 '\\n&'）与 0x4B0758（UI 文本缓冲），并闭合存档区块B +0x005/+0x01B 两段字符串来源。"
+    },
+    {
+      "path": "sources/evidence/engine-dialog332-refresh-20261112.json",
+      "sha256": "C158CA955FCDB27C5048F950F2A2B06842D40115226F31F7B0526FF9A7D51E91",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.dialog332-refresh.3ef7",
+        "mechanism.65.dialog332-confirm.3ef7",
+        "mechanism.65.merit-table.3ef7"
+      ],
+      "reason": "第104轮：登记 332 刷新链 0x4108DB（记录变化→0x456DA6；否则按复选框状态 0x41F952 写 0x7EB+i）与 0x456DA6→0x42ACD2/0x4781C6 的 5 项显示。"
+    },
+    {
+      "path": "sources/evidence/engine-points-adjust-20261112.json",
+      "sha256": "E37B447D705D05AF02A9D462047122F37BBBD3DFF15C1F2DA9E3D21F705ECAD3",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.dialog332-refresh.3ef7",
+        "mechanism.65.merit-table.3ef7"
+      ],
+      "reason": "第105轮：更正第104轮 0x41F952 为加减点数处理（0x7E6..0x7EA 加号扣池、0x7EB..0x7EF 减号返还，池在 0x4FFF68+0x14），并补齐加号控件区间。"
+    },
+    {
+      "path": "sources/evidence/engine-dialog-workarea-4fff68-20261112.json",
+      "sha256": "197097E550729AFF941A35EC0D15C00C0A7D638C2EB3C665F8D79CC33B565DDA",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.dialog-workarea-4fff68.3ef7",
+        "mechanism.65.dialog332-refresh.3ef7",
+        "mechanism.65.merit-table.3ef7"
+      ],
+      "reason": "第106轮：登记 332 工作区 0x4FFF68 布局（+0x00..0x09 五项值、+0x14 池、+0x0A 第二数组、+0x21 字段）与 5 处引用，并记录全局池 0x505F40 与对话框池未找到静态同步点。"
+    },
+    {
+      "path": "sources/evidence/engine-cell-flag-writer-20261112.json",
+      "sha256": "FC72566E6AC5C4E5A460EBE526F71E9C71C144FB745D3116C7C90034173C59E7",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.cell-flag-writer.3ef7",
+        "mechanism.65.cell-flag-item-count.3ef7",
+        "mechanism.65.grid-dimension-pair.3ef7"
+      ],
+      "reason": "第107轮：登记 0x4934B0 写入函数 0x42A5D6（OR/XOR mask、test 0xD 状态变化）、全图 byte&=0x0C（0x42AAA5）与全图 0xD 遍历（0x42A43E 结合 0x1B00 层偏移）。"
+    },
+    {
+      "path": "sources/evidence/engine-cell-flag-callers-20261112.json",
+      "sha256": "879E40ADBEA22AF3CBFA473E88822015760C9D329745917D59C5F6FBA00B4B79",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.cell-flag-writer.3ef7",
+        "mechanism.65.cell-flag-item-count.3ef7"
+      ],
+      "reason": "第108轮：补全 0x42A5D6 仅两个调用点——0x42A666 矩形固定 mask=8（bit3 范围标记），0x42A717/0x42A73F 通用包装（mask 由上层传入、on==0 先经 0x42A74A 矩形判定）。"
+    },
+    {
+      "path": "sources/evidence/engine-effect-range-flag-callback-20261112.json",
+      "sha256": "F8CEE2BCBF747AE9BBC5D480F14244209C793B3581A81BBD9ECA9903F1B2B252",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.cell-flag-writer.3ef7",
+        "mechanism.65.item-effect-code-and-range-table.3ef7"
+      ],
+      "reason": "第109轮：确认 0x42A717 为回调 0x42A708 中段；整链为 0x4D1400 效果范围表 → 0x41E254 枚举 → 0x42A708 边界检查 → 0x42A5D6 写 0x4934B0，把范围表与格标志连接。"
+    },
+    {
+      "path": "sources/evidence/engine-memory-arenas-20261112.json",
+      "sha256": "A773BB15A650C3F50457C2EA59AF5EC5A4B6E6646490348D08FD6C7CB35CB4EE",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.memory-arenas.3ef7",
+        "mechanism.65.layer-buffer-11.3ef7"
+      ],
+      "reason": "第110轮：登记三个全局内存池 0x4AE4A8/0x4AE4C8/0x4AB00C 与分配器 0x47FA40（容量钳位 + 模式 1/2/4），并注明图层缓冲经 0x401655 从 0x4AB00C 分配。"
+    },
+    {
+      "path": "sources/evidence/engine-allocator-mode2-20261112.json",
+      "sha256": "9A8A919F9F41E8578007C4CF0C8AE7CC1CD18F65260F29083B79A2DF50ECA7B0",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.memory-arenas.3ef7"
+      ],
+      "reason": "第111轮：补全模式 2 细节——0x47F9E2 以 0x4000（16KB）为块粒度、size>>14 与 size&0x3FFF、最多 4 次调用空桩 0x47F96C。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v10-20261112.json",
+      "sha256": "BACB6F2FB8FE4D595DE8F5D6DDE2A08F460922BA1B6AECF5D4E35010624F0E74",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "第112轮：覆盖台账 v10（第1–111轮）重算为 93 域 71 resolved/20 partial/2 unresolved；新增当前人物指针/自动战斗/文本缓冲/332 刷新与工作区/格标志写入/范围标记链/内存池，登记第104、108轮两处更正。"
+    },
+    {
+      "path": "sources/evidence/engine-cross-base-hash-audit-late-20261112.json",
+      "sha256": "EE830E8763C696E4272F51246A4E2D7D6C66539AC1529639083AAABBC5F71297",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.cross-base-audit-late.3ef7",
+        "mechanism.65.cell-flag-writer.3ef7",
+        "mechanism.65.memory-arenas.3ef7"
+      ],
+      "reason": "第113轮：对第96–111轮新函数做三基底同址哈希审计，确认 0x42A5D6/0x42A708/0x47FA40/0x47F9E2 为 6.4=6.5、6.6 不同（非 6.6 专属），0x40BE7D 三基底一致，0x41F952/0x456CB4/0x42A43E 各异。"
+    },
+    {
+      "path": "sources/evidence/engine-layer-offsets-20261112.json",
+      "sha256": "7DB58E37E91C7E08D3AF6D4D02AADFA3B5558EDFEAEC08DB7616481E8EAD320C",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.layer-buffer-11.3ef7",
+        "mechanism.65.memory-arenas.3ef7"
+      ],
+      "reason": "第114轮：列全 6.5 的 22 处 0x12900 引用，确定层偏移 0x6C00=4 层、0xA200=6 层、0xF300=9 层，并登记 0x43FE2C 的按对象分配+整块清零。"
+    },
+    {
+      "path": "sources/evidence/engine-layer-offsets-scan-20261112.json",
+      "sha256": "351D7ADFB91BFF2FC13D1BEA88E22B966C046C3ECC1C3549E1A7181A33B70F4F",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.layer-buffer-11.3ef7"
+      ],
+      "reason": "第115轮：imul 0x12900 立即数普查补全 0xD800=第8层（0x443D0E/0x444D45/0x446E2F/0x448BCE），并确认 0x448BCE 的 0x37800 是 0x4AE4C8 池独立缓冲。"
+    },
+    {
+      "path": "sources/evidence/engine-viewport-center-20261112.json",
+      "sha256": "5A6D591AF72A06A0A104DCD8DB87F63BDA2DC7C271C2E28658F920FDA836A7FE",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.battle-viewport-context.3ef7"
+      ],
+      "reason": "第116轮：确认 +0x14/+0x18 为视口像素宽高，0x45503F 以 /0x30 得瓦片数、0x47FAD0 限位、按 0x4B422C/D 夹紧后调 0x454CEF 设滚动。"
+    },
+    {
+      "path": "sources/evidence/engine-scroll-setter-20261112.json",
+      "sha256": "2CFD16D530CA9D9BBCE6EFF771938AF261E654AF9E646BDA1462743353C5D6B6",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.battle-viewport-context.3ef7"
+      ],
+      "reason": "第117轮：0x454CEF 确认 +0x04/+0x08 为像素原点、除以 0x30 得瓦片、调 0x45461C 预处理、同瓦片提前返回、否则算 delta 进滚动分支。"
+    },
+    {
+      "path": "sources/evidence/engine-scroll-preprocess-20261112.json",
+      "sha256": "89BA68E58BC73A90DF53B2C297EBDCA6D1DFE4CB972208A583F07CD09FC81E62",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.battle-viewport-context.3ef7"
+      ],
+      "reason": "第118轮：确认 +0x54/+0x55 待处理滚动目标字节对与 0xFF 哨兵、+0x61 模式 0/1/2/3 对应位移 1/3/5，并由 0x45218F 执行、0x476882 刷新。"
+    },
+    {
+      "path": "sources/evidence/engine-scroll-core-20261112.json",
+      "sha256": "DD2F6C26A9632A13CDB3F49310576C76572C5C827D4BC60B4D9092BA63AD79F3",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.battle-viewport-context.3ef7"
+      ],
+      "reason": "第119轮：0x45218F 记录像素→瓦片、0x403789 索引、0x1B00 层步长、全局格数组 0x4BE880、标志 0x4B3D08+5 bit0 与 0x1E000/0x40155F 分支。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v11-20261112.json",
+      "sha256": "7BD24446DD4E59BC6C83B4B02BA1210127CD884254DBBF3C8BB9C97F45499C9F",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "第120轮：覆盖台账 v11（第1–119轮）94 域 72 resolved/20 partial/2 unresolved；新增视口滚动链为 resolved 域，remainingGaps 补 0x4BE880 数组用途。"
+    },
+    {
+      "path": "sources/evidence/engine-cell-byte-map-20261112.json",
+      "sha256": "939F6C45C5BD9EDC674C681D6C1BD4FB21DDA2EAC38C78BFA1C11CA9B18C60FE",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.cell-byte-map.3ef7",
+        "mechanism.65.battle-viewport-context.3ef7"
+      ],
+      "reason": "第121轮：新建 0x4BE880 逐格字节数组机制（0x640 字节、0xFF 空、0x403789 索引、8 处引用、0x506800 表），并在滚动核心侧登记该数组。"
+    },
+    {
+      "path": "sources/evidence/engine-table-506800-20261112.json",
+      "sha256": "527F9F82371F743A08AD538F079B19ABB1041A70508D47DA8D132D948B8B6BB1",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.table-506800.3ef7",
+        "mechanism.65.cell-byte-map.3ef7"
+      ],
+      "reason": "第122轮：新建 0x506800 十二字节定长表机制（dword0 三字节打包、0xFFFF 空项、+4 参数、+8 位标志 &3），并登记写入 0x415EA1、搬移 0x4263B3、读取 0x405063 与格字节联动 0x40513A。"
+    },
+    {
+      "path": "sources/evidence/engine-save-header-writer-20261112.json",
+      "sha256": "317674A9374CDE66A1E013CDEF290D4B9007C1F94C4C6784B52BE357A6F1183D",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.settings-block-fields.3ef7",
+        "mechanism.65.save-file-format.3ef7"
+      ],
+      "reason": "第123轮：补齐存档区块B头写入链 0x4053E4..0x40543B（+0x01/+0x02 章节、+0x03 设置项1、+0x04 场景类别3取 0x4B0770+0x05 否则 0x44F9A0、+0x05 起 strcpy 0x4A1128）；确认 +0x10 独立字节 getter 0x4034D2。"
+    },
+    {
+      "path": "sources/evidence/engine-script-branch-range-20261112.json",
+      "sha256": "FA1670BB9A1826CC435846382E0143394F18885636F09A4B673497BDAC13413C",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.script-context-caches.3ef7",
+        "mechanism.65.global-ui-state-block.3ef7"
+      ],
+      "reason": "第124轮：定名脚本上下文 +0x08 累计字节计数/+0x0C 脚本读取地址/+0x14 分支等待目标；确认 0x4CE74C/0x4CE75C（6.6 0x500AB0/0x500AB4）为分支区间上下界缓存，消费链为操作码 0x76 处理器 0x416C41（两基底处理表第 118 项），区间判定命中返回 0x76 哨兵；补 6.4 同址同体。"
+    },
+    {
+      "path": "sources/evidence/engine-map-rect-cache-20261112.json",
+      "sha256": "423507A14CAD8D5CAB0E42EEB918F2CC2E09612024EB756CF043191A70C9734E",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.viewport-size-cache.3ef7",
+        "mechanism.65.new-anchors-batch-66.3ef7"
+      ],
+      "reason": "第125轮：0x501BF0 定名为地图可见矩形缓存（b0=left/b1=top/b2=width/b3=height，0 不受限）；唯一写入者 0x42D260 经 0x42C6C5 读 4 字节并受章节3（0x40B922=0x41EDEF(0x4AC63C)==3）门控；写入链为操作码 0x72 → 0x47D89E → 表 0x47D8DF 第31项 → 0x42D260；0x4362E6 为点-矩形判定，6.4/6.5 字节模式比对确认 6.6 独占。"
+    },
+    {
+      "path": "sources/evidence/engine-quick-window-host-20261112.json",
+      "sha256": "B3A96A117DD69DB3A03D280174C903B9C80FEBD4FADCF37B5C70EB6462DC7208",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.quick-window-host.3ef7",
+        "mechanism.65.settings-block-fields.3ef7"
+      ],
+      "reason": "第126轮：新建 0x496F38 四快捷窗口宿主机制（+0x00..+0x0C 句柄、+0x10 隐藏掩码），确认设置 +0x10 为该组窗口显示开关；0x426BA0=0x426B52(0x4034D2()) 经 GetMenuState 菜单勾选+WM_USER+1 广播应用，0x419949 创建 4 个模板 297（53×56）窗口并 MoveWindow 50×50、ShowWindow/RedrawWindow。"
+    },
+    {
+      "path": "sources/evidence/engine-training-state-save-20261112.json",
+      "sha256": "1B16C18D890A33E8E6C929C303716F6CE0FAF69BB6E330DF067192D7F5E444C5",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.training-ground-context.3ef7"
+      ],
+      "reason": "第127轮：补齐练武场上下文保存/恢复字段：+0x0C dword[engine+0xC80] 备份（写 0x003CFFFF）、+0x12 网格 word 备份（写 0x0104）、+0x1A word[engine+0x642] 备份、+0x14 窗口句柄、+0x1C 记录 +0x1B/+0x1F；保存 0x45165F（6.6 0x40ADA3），WM_DESTROY 由 0x4207B2→0x41D27A 恢复并 0x40762F 恢复字符串。"
+    },
+    {
+      "path": "sources/evidence/engine-msg-dialog-class-20261112.json",
+      "sha256": "EDCBC08F3EF913C2A00D628043929F7BF08967957769E43A26BCB39204A3A0B2",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.msg-dialog-class-66.3ef7"
+      ],
+      "reason": "第128轮：新建 6.6 独占文本提示对话框类机制：0x42CA5E 为对象 +0xC 创建期回调（6.5 同址 NOP），构造 0x42C992 位于脚本子命令表 0x47D8DF 第 34 项（操作码 0x72），读 2 个 dword、经 0x42C9FC/0x417DF6 生成 0x398 文本区，以 0x46D098/0x46D0F8 打开模板 342（158×60，图标+确定 id10），0x46D34C 以 [obj+0xC]==0x42CA5E 识别该类。"
+    },
+    {
+      "path": "sources/evidence/engine-map-graphics-page-20261112.json",
+      "sha256": "1794F43DF78353F47AF00B118C2D1ABD953B77C3B63DF63B0ECE9F78B252EB43",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.layer-buffer-11.3ef7"
+      ],
+      "reason": "第129轮：0x1E900 定为地图图形页步长=0x12900 层块+0xC000 尾块；页0 基址 0x24C00、页1 0x43500、尾块 0x37500=页0+0x12900、页内第4层 0x2B800；0x40155F(offset)=0x47FA40(0x4AAFF4,0,0,4)；三条上传路径 cl=0/1/其他 的源偏移 0x1B00/0x6C00/0x18000 与长度 0x6C00/0xBD00/0xC000。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v12-20261112.json",
+      "sha256": "A8E0BFE9BAE5BB241F4496518EACC38E76F3DD9A812D43EB0A3FB4CE10E58397",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "第130轮：覆盖台账升 v12（第1–129轮），按 domains 列表实数计 91 域（68 resolved/21 partial/2 unresolved），更正 v11 摘要 94/72/20 与列表 85 项不一致；纳入第120–129轮 9 份新证据与 4 项 resolved 提升。"
+    },
+    {
+      "path": "sources/evidence/engine-level-threshold-formula-20261112.json",
+      "sha256": "B8EE79039506BA16799AD7B55E4B8DA8E2F0ABD66F60208738ACF3DBC77C0028",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.dialog-workarea-4fff68.3ef7"
+      ],
+      "reason": "第131轮：补全升级阈值公式 0x42AC8F（level>=0x6E 无效；<0x50 阈值 0x32；>=0x50 阈值=(level-0x4F)*0x0A+0x37）与 332 工作区 +0x0A 五项阈值、+0x21 等级字节；0x40123E 五维刷新链含 0x4129E5(0x7D6)/0x415F10(i+0x7E6)。"
+    },
+    {
+      "path": "sources/evidence/engine-auto-battle-flag-scan-20261112.json",
+      "sha256": "4724653426E0EDE3405B13BEC122BBA6A5B292282E12D54D4C8260BED5933BD1",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.auto-battle-flags.3ef7"
+      ],
+      "reason": "第132轮：0x4B4250+0x64/+0x68 写入方穷举仍为负（Ekd5.exe 266 处基址窗口、绝对地址 0x4B42B4/B8、add 偏移、7 个插件 DLL 全无写入）；补 0x44DA7A 双方单位状态处理（槽 0x00..0x3A/0x3C..0xF9、0x44F980(0xFF)、9 项跳转表 0x44DC37）与 AutoDLL.ini 候选开关。"
+    },
+    {
+      "path": "sources/evidence/engine-table-506800-capacity-20261112.json",
+      "sha256": "AC3FA9F29FE605F3D7F5A51D6E7CF3FE799B2B2E5FF45D6607896304D5AEB72E",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.table-506800.3ef7"
+      ],
+      "reason": "第133轮：0x506800 定为小地图 tile 描述符表（3 字节/项、容量 0x14=20 项、byte0/1 源坐标×0xC、byte2 页×0x21C0、目标 i*0x1B0、byte0==0xFF 终止）；写入 0x415EA1 的 dword 打包更正为 b0=v1/b1=v2/b2=v4/b3=0xFF（高字节兼作下一项哨兵）；同基址 4 处 index*0xC 的 12 字节视图（+8 指针，0x2828/0xFF 判定）登记为第二视图。"
+    },
+    {
+      "path": "sources/evidence/engine-temp-compose-buffer-20261112.json",
+      "sha256": "F839051B87D7656A57BEC76BEF81B6EBB32D516C1A33375AE9D25DCC333AC823",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.layer-buffer-11.3ef7"
+      ],
+      "reason": "第134轮：0x37800 定名为 0x448B96 的临时合成区（0x4015B1/0x4AE4C8 池）：0x4303C4 拷入 0x30×0x30 块（源 byte[+0xD]*0x12900+0xD800），循环 9 次各拷 0x6C00（60×60×3 帧）、0x40690C 白色绘制、0x443C1D 贴图；0x37800=0x6C00×8+0x1800；调用点 0x4174AF/0x425F93。"
+    },
+    {
+      "path": "sources/evidence/engine-gdiplus-consumers-20261112.json",
+      "sha256": "3B0C5F1374434EB86AEF09035CC25BD999F2F134C48D5228414C07FA10726203",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.api-name-table.3ef7"
+      ],
+      "reason": "第135轮：6.6 GDI+ 10 槽消费链补全——Startup 0x4829EB/初始化 0x4829DB（token 0x4CEA70、attr 0x4CEA74、SetUnhandledExceptionFilter 0x482990）、FromHDC 0x42FE12/0x42FE23（0x4CEA78/7C）、CreateBitmap 0x42FE42（格式 0x21808）、Lock/Unlock 0x42FE67/0x42FE77、DrawImageRectRectI 0x41A4D6/A5D1/A693、ImageAttributes 0x4829F6、ColorMatrix 0x42FECF；更正『仅 Startup 有消费点』。"
+    },
+    {
+      "path": "sources/evidence/engine-mci-command-map-20261112.json",
+      "sha256": "48D3A689C180C586C13B8E384F5C856B3F0FD5BE1E72DE3B2A5B4BB5D47D5BD7",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.avi-player.3ef7",
+        "mechanism.65.settings-block-fields.3ef7"
+      ],
+      "reason": "第136轮：MCI 19 调用点消息全图——avivideo 链（OPEN 0x803/SEEK 0x807 TO_START/PLAY 0x806/WHERE 0x843/WINDOW 0x841/STATUS 0x814 模式 0x20E/0x211/PAUSE 0x809/STOP 0x808/CLOSE 0x804）与 sequencer MP3 链（0x486934、格式串 0x486910 SoundTrk、SET 0x873）；更正 0x41F08D 为 SEEK、0x42F76D 为 STOP；设置 +0x03 定为音量（0x42E218 TBM_GETPOS→0x42F7FC×0xA）。"
+    },
+    {
+      "path": "sources/evidence/engine-settings-dialog-kankyou-20261112.json",
+      "sha256": "F226EBEAE715597C16290DAE23338B7754322B3F36E1C3EF4B98A7A44F3EAB08",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.settings-dialog-kankyou.3ef7",
+        "mechanism.65.settings-block-fields.3ef7"
+      ],
+      "reason": "第137轮：新建环境设定对话框 KANKYOU 机制并闭合设置块写入映射——+0x00 为 0x406..0x40A 五复选框位掩码（背景音乐/音效/窗口最大化/战场缩小图/会话不自动关闭）、+0x01 讯息显示速度（0x40B..0x40D 快/普通/慢）、+0x02 武将移动速度（0x40E..0x410）、+0x03 音量滑条 0x411；OK 处理 0x41B90F、过程 0x41BAD7、DIALOGEX 220×195 25 控件。"
+    },
+    {
+      "path": "sources/evidence/engine-unit-alloc-records-20261112.json",
+      "sha256": "28D361BB65B9BB5359C77868779AF1D1209ADAFEB55D0C3EA02D431E75A52380",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.unit-alloc-records.3ef7"
+      ],
+      "reason": "第138轮：新建单位五维分配记录机制——0x508000 槽 0x66×0x0A（5 word）、0x42ACD2(slot,mode) 取指针（>=0x66 或 byte[unit+0x2A]==0xFF 返回 0xFF）、0x408FA0 按 byte[unit+2] 五位掩码清零对应 word 并回退累加进 0x505F40 全局池；与 332 工作区 0x4FFF68 五维结构同构。"
+    },
+    {
+      "path": "sources/evidence/engine-kankyou-init-20261112.json",
+      "sha256": "8CF3A669B743353D41225682B5F3393DCF5991AEF1BCC734A4C66FCAC8228C6D",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.settings-dialog-kankyou.3ef7"
+      ],
+      "reason": "第139轮：初始化回填 0x41BD7F 与 OK 写入 0x41B90F 完全对称——+0x00 位掩码→0x406..0x40A、byte[0x4B0770+1+s]→0x40B+s*3+i（s=0 讯息显示速度、s=1 武将移动速度）；0x4D3 收 0x13 次消息 0x180，0x5D0/0x5D1 发 0x14B。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v13-20261112.json",
+      "sha256": "370A26170754680C1F209A667DE7EBA721D8922D41384858A77B7E21B5B9DC20",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "第140轮：覆盖台账升 v13（第1–139轮），列表实数 95 域（73 resolved/20 partial/2 unresolved）；新增 KANKYOU、MCI 全图、0x508000、0x37800、GDI+ 消费链 5 项 resolved，partial 移除 GDI+/0x508000 五项并新增双池同步点。"
+    },
+    {
+      "path": "sources/evidence/engine-kankyou-combos-20261112.json",
+      "sha256": "F5049459563F7736A3DDD6FABE3EF1728F28FFAACFD9668E1214E8555A71FDA7",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.settings-dialog-kankyou.3ef7"
+      ],
+      "reason": "第141轮：0x5D0/0x5D1 由 owner-draw 按钮更正为下拉框（CB_RESETCONTENT 0x14B、CB_ADDSTRING 0x143、CB_SETCURSEL 0x14E，5 项候选由 0x4077C4 生成；初值 s=0 取 0x41EDEF(0x492E20)，s=1 取 word[0x4CE7BC] 低/高字节）；0x4D3 更正为 19 段状态条（0x180=SB_SETPARTS）。"
+    },
+    {
+      "path": "sources/evidence/engine-kankyou-combo-strings-20261112.json",
+      "sha256": "F9C9F447ACCE7189184B67E6AF8217A40E336F501D82B7F672F2DB110FB1AD0A",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.settings-dialog-kankyou.3ef7"
+      ],
+      "reason": "第142轮：下拉候选串 0x4077C4 用 wsprintfA 生成——0x486444=\"花色%d\" 对应 0x5D0、0x48644B=\"加速%d\" 对应 0x5D1（按资源标签坐标复核）；更正 141 轮把 0x5D0 记为加速、0x5D1 记为花色的错误。"
+    },
+    {
+      "path": "sources/evidence/engine-4be006-dialog-flag-20261112.json",
+      "sha256": "75A56F56C3E07F3405CE1F1950E7715861B444A7E867BAE34663C645A9A9E75C",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.api-name-table.3ef7"
+      ],
+      "reason": "第143轮：0x4BE004/0x4BE006/0x4BE008 段首复用定为对话框暂存字——0x46D0F8 以 [0x4BE006] 作自动关闭标志（-1 时 WM_INITDIALOG 即 SendMessageA(hwnd,0x591)），0x4793BB 打开模板 343「说明介绍」前写 -1、返回后清 0x4BE004/0x4BE008。"
+    },
+    {
+      "path": "sources/evidence/engine-history-intel-341-20261112.json",
+      "sha256": "12B4DEBF4B481854A68B58BD9B03D3A1D47253B2C15913A005F4A9F9E4654CDF",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.history-intel-341.3ef7"
+      ],
+      "reason": "第144轮：新建历史情报 341 机制——宿主 0x41C3D7（工作区 0x4FFF80、文本基 0x48E88C、章节>=4 用 +0xB 变体、0x42F699(0,base) 打开文本）、模板 341 DLGTEMPLATE 241×265「历史情报」+0x407 信息筛选下拉。"
+    },
+    {
+      "path": "sources/evidence/engine-script-number-parser-20261112.json",
+      "sha256": "B045C8A5E6069029A0BD81BCE55DA69C97735BD5A08019FF0C7B296D26A6154F",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.script-number-parser.3ef7"
+      ],
+      "reason": "第145轮：新建数字记号解析器机制——0x426E64 支持 '-' 负号与 '*' 变量引用（eax=dword[0x502000+value*4]）、十进制累乘、返回 edx=消费长度；0x502000 为全局 dword 变量数组（写入 0x407932/0x42CAF2/0x42CC2D，读取 10 处）；0x42C6C5 按 edx+1 推进。"
+    },
+    {
+      "path": "sources/evidence/engine-var-table-502000-20261112.json",
+      "sha256": "C657B3CA88C1D75C81C39708C18C2D103A57BCA8CEF425E1CD3B7D619DCC0E8A",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.script-number-parser.3ef7"
+      ],
+      "reason": "第146轮：补 0x502000 按单位槽写入路径——0x407932 写 dword[0x502000+idx*4]=(byte[unit+0xD]&2)>=2?1:0（unit 由 0x4061F9 取得），周边 0x442718/0x406690/0x44A88A 为单位行动分支。"
+    },
+    {
+      "path": "sources/evidence/engine-text-object-writer-20261112.json",
+      "sha256": "4DB0F2A24FADB45593337EA7081AE4C205CE2891DA987006B43A9300451D2496",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.text-object-table.3ef7"
+      ],
+      "reason": "第147轮：定位 40 条文本对象表的写入方 0x42AF6F（索引>=0x28 跳过、'0' 停用、'*' 引用 0x506000 字符串指针表、[rec+0x20] 忙门控），补齐 0x41EB3E 六个调用点与 0x506000 七个引用点。"
+    },
+    {
+      "path": "sources/evidence/engine-training-ctx-fields-20261112.json",
+      "sha256": "33A17E5DC0DF65D1ABED856FC172C1CC20697F863F2A5E217F38A82C26EA30B2",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.training-ground-context.3ef7"
+      ],
+      "reason": "第148轮：闭合练武场上下文 +0x04/+0x08/+0x09 与 0x3FE 记录——+0x08 为数量（0x40A56F byte[+8]+5）、+0x04 为第二单位记录指针（仅写）、+0x09..+0x0C 为瞬态参数；补 0x4237F9 费用公式（等级×10 或 2×0x40D8A9）、0x423820 资金校验、0x43BFD4 确认扣款；0x42DE63 三模式选择框与 0x423842 分派；0x3FE 为单位表上界哨兵（0..0x3FD 有效）。"
+    },
+    {
+      "path": "sources/evidence/engine-script-operand-codes-20261112.json",
+      "sha256": "89A14E961F48AA6A13BDAEC53B8C3C3D2CD75DD5C76BDF1974703EB1127DF69D",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.script-context-caches.3ef7",
+        "mechanism.65.script-handler-capacity.3ef7"
+      ],
+      "reason": "第149轮：解码 0x4183F7 类型码（1 原样/4 数值/5 文本/2·0x38·0x39 变量间接/其余纯 word），导出主分派表 0x410A38 全 126 项，确认 0x68=练武场、0x72=信息传送、0x76=区间守卫、0x77=变量算术；并给出三基底 EXE 不含命令中文名表的负证据。"
+    },
+    {
+      "path": "sources/evidence/engine-settings-plus05-and-edx-20261112.json",
+      "sha256": "FBFBA3361B9C2599D8B85A13CE794AC8059DAE304166F50DD67004734D64BA1A",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.settings-block-fields.3ef7",
+        "mechanism.65.viewport-size-cache.3ef7"
+      ],
+      "reason": "第150轮：定名设置块 +0x05 场景类别缓存，并把 0x423842 的 edx 定性为残留寄存器值（调用链无赋值）。"
+    },
+    {
+      "path": "sources/evidence/engine-coverage-ledger-v14-20261112.json",
+      "sha256": "C53F6DDF58B8B5615E4E38C9EEA0EB2382A024A69A53B689F1992154F86C1AAF",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "reason": "第150轮：刷新覆盖台账到 v14（77/19/2=98 域）。"
+    },
+    {
+      "path": "sources/evidence/engine-auto-settle-pass-table-20261112.json",
+      "sha256": "CD5784C5F051DD5A62ACE3305C9A3CB631B94E65A956BC2B0BD1830AE992FBE2",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.auto-battle-flags.3ef7"
+      ],
+      "reason": "第151轮：把 0x44DA7A 的『9 项状态跳转表』更正为 9 个行动顺序优先级分支（0x44DC37 全表展开），补 +0x0B 读写器、+0x0C==2 过滤、兵种系桶表 0x44DCCC 与四张兵种系表，并确认 0x505F7C 在 EXE 内无静态写入者（原版恒 0）。"
+    },
+    {
+      "path": "sources/evidence/engine-quick-window-names-20261112.json",
+      "sha256": "6ABB7F3632F822E19289945C9741C8C5BC0FD6BEFDD0AEB39EE98583F330FBC1",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.quick-window-host.3ef7"
+      ],
+      "reason": "第152轮：四快捷窗口业务名由格式串 0x48B49B 确认为卖掉物资/买进物资/打开仓库（第4窗为场景切换），并定名 0x501FFF=快捷窗口展开状态、0x4B09DB=窗口数量；补操作码 0x06（0x415B4F→0x415C0D 写 20 槽双方名单）。"
+    },
+    {
+      "path": "sources/evidence/engine-mci-flags-decode-20261112.json",
+      "sha256": "96B1380674D178CBE4A717F2A663DCF17AA8C15BABFFA01110D56E6AFE0A0ACE",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.avi-player.3ef7"
+      ],
+      "reason": "第154轮：确认 MCI 0x873=MCI_SETAUDIO（flags 0x1800000=ITEM|VALUE、item 0x4002=VOLUME、值=音量×10），并拆解 0x41F11D 的 flags 0x30200=MCI_ANIM_OPEN_PARENT|MCI_ANIM_OPEN_WS|MCI_OPEN_ELEMENT（5 次重试）。"
+    },
+    {
+      "path": "sources/evidence/engine-tile-markers-20261112.json",
+      "sha256": "B8A67410D56320B7222030596020A5916CBD2E78D3962E9681B76341BA76018D",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.table-506800.3ef7",
+        "mechanism.65.quick-window-host.3ef7"
+      ],
+      "reason": "第155轮：明确 0x506800 两视图启用条件（小地图标记视图 vs 地图记录视图，页步长 0x21C0/0x1B0 vs 0x4BE880+0x1B00），并把 0x4B09DB 从『快捷窗口数量』更正为『出战部队数量』（补全写入/读取点）。"
+    },
+    {
+      "path": "sources/evidence/engine-listbox-class-20261112.json",
+      "sha256": "FA0F92CB11C2155333D252C47DBDA19E876B0EA9BFC425150070626FD69E7DD7",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.dialog332-confirm.3ef7",
+        "mechanism.65.settings-dialog-kankyou.3ef7"
+      ],
+      "reason": "第156轮：确认对话框 class ord131=ListBox(0x83)、消息 0x180=LB_ADDSTRING 等，并把模板 330/332 与 KANKYOU 中的 0x4D3 从『状态条/预览面板』更正为 ListBox；补 0x40F436 填充链。"
+    },
+    {
+      "path": "sources/source-cleanup-20261112.json",
+      "sha256": "7AF8869DD246B1D5B9AD5361E4FB41232362F5CA11BBF2690EB6821C0122745A",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "fn.64.script-event-iterate.9112",
+        "format.data-manager.extended-tables",
+        "format.data-manager.item-codecs",
+        "mechanism.65.cell-flag-item-count.3ef7",
+        "mechanism.65.dm-constant-active-combo-chance",
+        "mechanism.65.dm-constant-adversity-reduction-cap",
+        "mechanism.65.dm-constant-armor-exp-base",
+        "mechanism.65.dm-constant-armor-exp-no-damage",
+        "mechanism.65.dm-constant-aura-range",
+        "mechanism.65.dm-constant-breakthrough-damage-bonus",
+        "mechanism.65.dm-constant-breakthrough-quote",
+        "mechanism.65.dm-constant-chaos-yin-yang-hit-bonus",
+        "mechanism.65.dm-constant-char-exp-band-65",
+        "mechanism.65.dm-constant-char-exp-max-level",
+        "mechanism.65.dm-constant-char-exp-step-65",
+        "mechanism.65.dm-constant-combo-damage-bonus",
+        "mechanism.65.dm-constant-combo-pool",
+        "mechanism.65.dm-constant-convert-heal-mp-cost",
+        "mechanism.65.dm-constant-counter-damage-share",
+        "mechanism.65.dm-constant-demon-stat-cap",
+        "mechanism.65.dm-constant-drain-attack-cap",
+        "mechanism.65.dm-constant-effect-screen-directions",
+        "mechanism.65.dm-constant-equip-exp-threshold-normal",
+        "mechanism.65.dm-constant-equip-exp-threshold-special",
+        "mechanism.65.dm-constant-equip-level-cap-normal",
+        "mechanism.65.dm-constant-equip-level-cap-special",
+        "mechanism.65.dm-constant-exp-multiplier-base",
+        "mechanism.65.dm-constant-exploit-weakness-threshold",
+        "mechanism.65.dm-constant-fengfeng-floor-bonus",
+        "mechanism.65.dm-constant-fixed-damage-basis",
+        "mechanism.65.dm-constant-furious-attack-targets",
+        "mechanism.65.dm-constant-guided-attack-count",
+        "mechanism.65.dm-constant-heavy-strike-cap",
+        "mechanism.65.dm-constant-hit-curve-cap",
+        "mechanism.65.dm-constant-hit-curve-high-base",
+        "mechanism.65.dm-constant-hit-curve-high-coef",
+        "mechanism.65.dm-constant-hit-curve-low-base",
+        "mechanism.65.dm-constant-hit-curve-low-coef",
+        "mechanism.65.dm-constant-hit-curve-low-divisor",
+        "mechanism.65.dm-constant-hit-curve-mid-base",
+        "mechanism.65.dm-constant-hit-curve-mid-coef",
+        "mechanism.65.dm-constant-hit-retry-count",
+        "mechanism.65.dm-constant-hit-retry-deduction",
+        "mechanism.65.dm-constant-hit-retry-threshold",
+        "mechanism.65.dm-constant-iron-chain-directions",
+        "mechanism.65.dm-constant-money-absorb-multiplier",
+        "mechanism.65.dm-constant-pass-through-directions",
+        "mechanism.65.dm-constant-personal-exp-base",
+        "mechanism.65.dm-constant-personal-exp-kill-flat",
+        "mechanism.65.dm-constant-personal-exp-kill-ratio-num",
+        "mechanism.65.dm-constant-personal-exp-kill-ratio-offset",
+        "mechanism.65.dm-constant-physical-crit-cap",
+        "mechanism.65.dm-constant-physical-crit-pool",
+        "mechanism.65.dm-constant-physical-damage-base",
+        "mechanism.65.dm-constant-rate-curve-cap",
+        "mechanism.65.dm-constant-rate-curve-full-multiplier",
+        "mechanism.65.dm-constant-rate-curve-high-base",
+        "mechanism.65.dm-constant-rate-curve-high-coef",
+        "mechanism.65.dm-constant-rate-curve-low-base",
+        "mechanism.65.dm-constant-rate-curve-low-coef",
+        "mechanism.65.dm-constant-screen-inner-directions",
+        "mechanism.65.dm-constant-sharpen-attack-cap",
+        "mechanism.65.dm-constant-shield-counter-cap",
+        "mechanism.65.dm-constant-shop-sell-price-numerator",
+        "mechanism.65.dm-constant-sneak-attack-step",
+        "mechanism.65.dm-constant-strategy-crit-cap",
+        "mechanism.65.dm-constant-strategy-crit-pool",
+        "mechanism.65.dm-constant-strategy-damage-base",
+        "mechanism.65.dm-constant-strategy-damage-divisor",
+        "mechanism.65.dm-constant-strategy-floor-bonus",
+        "mechanism.65.dm-constant-strategy-hit-cap",
+        "mechanism.65.dm-constant-swift-attack-bonus",
+        "mechanism.65.dm-constant-weapon-exp-base",
+        "mechanism.65.dm-constant-weapon-exp-no-damage",
+        "mechanism.65.dm-constant-wind-rush-damage-divisor",
+        "mechanism.65.dm-formula-constant-contract",
+        "mechanism.65.file-io-wrappers.3ef7",
+        "mechanism.65.hotpatch-toggle-66.3ef7",
+        "mechanism.65.msg-dialog-class-66.3ef7",
+        "mechanism.65.text-object-table.3ef7",
+        "mechanism.65.viewport-size-cache.3ef7",
+        "mechanism.shared.data-manager-extension-runtime-boundary",
+        "patch.65.legacy-54b2fc7fb712",
+        "patch.65.legacy-d602c42968b0",
+        "profile.ccz66.weather-reviewed.2594",
+        "script.65.opcode-05",
+        "script.65.opcode-55",
+        "script.65.opcode-79",
+        "struct.64.disk.64-xisui-v1.items-extended",
+        "struct.64.disk.64-xisui-v1.items-high",
+        "struct.64.disk.64-xisui-v1.items-low",
+        "struct.64.disk.64-xisui-v1.job-series-attributes",
+        "struct.64.disk.64-xisui-v1.person-critical-special-map",
+        "struct.65.disk.65-standard-v1.items-extended",
+        "struct.65.disk.65-standard-v1.items-high",
+        "struct.65.disk.65-standard-v1.items-low",
+        "struct.65.item-category-semantics",
+        "struct.66.disk.66-legacy-data-v1.items-extended",
+        "struct.66.disk.66-legacy-data-v1.items-high",
+        "struct.66.disk.66-legacy-data-v1.items-low",
+        "struct.66.disk.66-shanzhai-legacy.items-extended",
+        "struct.66.disk.66-shanzhai-legacy.items-high",
+        "struct.66.disk.66-shanzhai-legacy.items-low",
+        "struct.66.disk.66-standard-v1.items-extended",
+        "struct.66.disk.66-standard-v1.items-high",
+        "struct.66.disk.66-standard-v1.items-low",
+        "struct.66.item-category-semantics",
+        "test.65.smoke-rs-write-smoke",
+        "test.65.smoke-write",
+        "test.data-manager.business-xlsx-contract",
+        "test.data-manager.scene-terrain-pair-contract",
+        "test.shared.effect-assignment-layout-recognition",
+        "test.shared.three-base-assignment-transaction"
+      ],
+      "reason": "同 path+sha256 的来源记录合并为单一 id，实体 sourceRefs 随之改写；重复标题消歧；8 个跨版本实体按 versions 迁入 6.4/6.6 对应目录；实体语义未变。"
+    }
+  ]
+}

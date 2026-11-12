@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.cell-byte-map.3ef7",
+      "title": "40×40 逐格字节数组 0x4BE880",
+      "aliases": [
+        "cell byte map",
+        "逐格字节数组",
+        "0x4BE880",
+        "0x640 格数组"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4BE880 为 40×40（0x640=1600 字节）逐格字节数组，0xFF 表示空；0x40DC1D 用 0x47FD13 以 0xFF 初始化整个 0x640 字节（参数 !=1 时另写 word[0x5073B8]=0xFFFF）。索引与格标志一致：0x403789(coord)=y*width+x。8 处引用：0x405123（取格字节，并按层号*0x1B00 选层、按 0xC 步长读 0x506800 表，表项 +8 为指针、0x2828 为标记）、0x40AF38、0x40B0A6、0x40B134、0x415407（同址加基址后读取）、0x40D4B5（≠0xFF 走 0x4525DA，==0xFF 走 0x41606C 绘制）、0x40DC2A（memset 初始化）、0x452218（滚动核心内 index += 0x4BE880）。",
+      "constants": [
+        "0x4BE880", "0x640", "0xFF", "0x47FD13", "0x403789", "0x1B00", "0xC", "0x506800", "0x2828",
+        "0x4525DA", "0x41606C", "0x30", "0x5073B8", "0xFFFF", "0x405123", "0x40D4B5", "0x40DC1D", "0x452218"
+      ],
+      "identity": "0x640 与 40×40 地图格数一致；初始化值 0xFF 与 0x4B3D21 单位占位表的空哨兵一致；索引函数 0x403789 与 0x4934B0 格标志数组相同。",
+      "siteAddresses": {
+        "base": "0x4BE880",
+        "init": "0x40DC1D",
+        "readDraw": "0x40D4B5",
+        "layerSelect": "0x405123",
+        "scrollCore": "0x452218"
+      },
+      "limitations": [
+        "格字节取值语义未定（单位/贴图索引）。",
+        "0x506800 表容量与字段未展开。",
+        "0x4525DA 绘制行为未追踪。",
+        "6.4/6.6 同址是否一致未验证。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.cell-flag-item-count.3ef7",
+        "mechanism.65.cell-flag-writer.3ef7",
+        "mechanism.65.battle-viewport-context.3ef7",
+        "mechanism.65.battle-unit-table.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-cell-byte-map-20261112"
+      ]
+    }
+  ]
+}

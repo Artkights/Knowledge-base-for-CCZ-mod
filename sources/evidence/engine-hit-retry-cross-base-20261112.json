@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "analysis": "hit-retry-cross-base-difference",
+  "date": "2026-11-12",
+  "method": "精确反汇编 6.5/6.4/6.6 的命中重试段（0x43B4E1..0x43B534 同址窗口），核对循环上限、阈值、扣减与 6.6 新分支；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "retry64": {
+    "loop": "0x43B4E6 cmp byte[ebp-8],2；0x43B4E3 inc byte[ebp-8]",
+    "threshold": "0x43B4FA cmp dword[ebp-4],0x55 (85)",
+    "deduction": "0x43B500 sub dword[ebp-4],0x0A (10)",
+    "recheck": "0x43B4F1 call 0x437896"
+  },
+  "retry65": {
+    "loop": "0x43B507 cmp byte[ebp-0x10],2；0x43B52F inc byte[ebp-0x10]",
+    "threshold": "0x43B525 cmp dword[ebp-0xc],0x55 (85)",
+    "deduction": "0x43B52B sub dword[ebp-0xc],0x0A (10)",
+    "recheck": "0x43B513 call 0x4287A8",
+    "extraGate": "0x43B518 cmp byte[0x505EC8],1；等于 1 时跳过重试"
+  },
+  "retry66": {
+    "loop": "无 2 次上限/85 阈值/10 扣减循环",
+    "newGate": [
+      "0x43B4FD mov ecx,0xFB2",
+      "0x43B502 cmp dword[ecx*4 + 0x502000],0",
+      "0x43B50C cmp byte[0x4B3D18],0",
+      "0x43B518 cmp byte[unit+5],0"
+    ],
+    "specialResult": "0x43B51E mov eax,0x64（条件全满足时命中置 100）",
+    "recheck": "0x43B523 cmp eax,0x64；小于 100 时 0x43B52F call 0x4287A8"
+  },
+  "conclusion": "6.4/6.5 的命中重试是“最多 2 次判定、命中>=85 才重试、每次扣 10”的循环；6.5 额外在 byte[0x505EC8]==1 时跳过。6.6 删除了该循环，改为表项 dword[0x502000+0xFB2*4]、byte[0x4B3D18]、byte[unit+5] 的三条件门控；条件全满足时命中直接置 100，否则仅在命中<100 时调用 0x4287A8。",
+  "limitations": [
+    "0x4B3D18 与 byte[unit+5] 的玩法名称未确定。",
+    "0x502000+0xFB2*4 的表项语义未追踪。",
+    "0x4287A8/0x437896 的完整实现未展开。",
+    "未运行游戏对照重试概率。"
+  ]
+}

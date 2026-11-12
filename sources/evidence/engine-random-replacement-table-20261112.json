@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "analysis": "random-replacement-table-41ceab",
+  "date": "2026-11-12",
+  "method": "读取三基底 0x41CEAB 的 33 字节并比对；dump_funcs.py 精确反汇编 0x41CE8C、0x41CDEE、0x401DFF；refs_to.py 列出 0x41CE8C/0x401DFF 全部调用点；context.py 检查 5 个 0x401DFF 调用点的后续用法。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "table": {
+    "address": "0x41CEAB",
+    "size": 33,
+    "values": [1, 6, 3, 4, 18, 19, 12, 8, 18, 31, 10, 0, 13, 33, 15, 22, 17, 18, 37, 12, 12, 22, 34, 1, 32, 29, 3, 28, 29, 35, 31, 3, 36],
+    "hex": "01 06 03 04 12 13 0C 08 12 1F 0A 00 0D 21 0F 16 11 12 25 0C 0C 16 22 01 20 1D 03 1C 1D 23 1F 03 24",
+    "identicalAcrossBases": true
+  },
+  "function": {
+    "entry": "0x41CE8C",
+    "signature": "f(mod, code)",
+    "body": "push [ebp+8] -> call 0x41CDEE; ecx=[ebp+0xC]; if eax != 0: al = byte[ecx+0x41CEAB] else al = code; ret 8",
+    "gate": {
+      "entry": "0x41CDEE",
+      "body": "0x4101D9(0x5A+mod, 0x76, 3, 0); and eax, mod; ret 4",
+      "meaning": "以四方向评分结果与 mod 做按位与，非零时触发替换（mod=1 约半数，mod=2 约 1/4）"
+    }
+  },
+  "consumers": [
+    {
+      "fn": "0x401DFF",
+      "signature": "g(templateIndex) -> code",
+      "body": "template = 0x4A3E77 + idx*0x61 (0x484002); value = byte[template+0xC] (0x418C90); return 0x41CE8C(2, value)",
+      "meaning": "按人物模板 +0xC 取基准编号，再以 mod=2 概率替换为 0x41CEAB 中的变体编号",
+      "callSites": [
+        {"site": "0x41CE2D", "context": "0x417AF6 判定为真时取模板编号，否则调用 0x43F8C0 计算默认编号"},
+        {"site": "0x425246", "context": "结果写入 [unit+0x4FB]，随后 0x41A10C 再写入 [unit+0x4FC]"},
+        {"site": "0x4391D4", "context": "记录字节==0x21 时改走 0x43F8C0；结果存入 [ebp-0x14] 并与 0x423CB3 返回值比较"},
+        {"site": "0x43961F", "context": "结果存 [ebp-0x20]，随后以同一 unit 调用 0x41A10C 取另一值存 [ebp-0x24] 并比较"},
+        {"site": "0x4415B2", "context": "参数==0xFF 时改走 0x43F8C0；结果与 0xFF 比较后调用后续流程"}
+      ]
+    },
+    {
+      "fn": "0x43038B",
+      "signature": "h(record) -> code",
+      "body": "0x41CE8C(1, al)；然后 0x430351 评分门控，按装备槽 0 物品类型查 0x4303C8",
+      "meaning": "第 72 轮登记：物品类型动作链以 mod=1 使用同一随机替换表"
+    }
+  ],
+  "sentinel": {
+    "value": "0x21（33）",
+    "evidence": "0x4391D1 cmp al,0x21; je 0x4391DB（改走 0x43F8C0）；表长正好 33（索引 0..32），0x21 作为越界哨兵。",
+    "note": "表值可超过 0x21（最大 0x25=37），说明输出是编号而非索引，不再回查本表。"
+  },
+  "crossBase": {
+    "tableIdentical": true,
+    "entry65": "0x41CE8B",
+    "entry64": "0x41CE8B",
+    "entry66": "0x41CE8C",
+    "difference": "入口地址仅差 1 字节；函数体与调用点三基底一致。"
+  },
+  "conclusion": "0x41CEAB 是 33 项（0..32）随机变体编号表，三基底逐字节相同；0x41CE8C(mod, code) 在 0x41CDEE 的评分位掩码非零时返回 table[code]，否则原样返回。人物模板链 0x401DFF 以模板 +0xC 为索引、mod=2 使用该表；6.6 物品类型动作链以 mod=1 使用同一表。0x21（33）是模板/动作编号的越界哨兵，遇到时改走 0x43F8C0 默认计算。",
+  "limitations": [
+    "33 个编号的业务名称（动作/图像/兵种）仍未找到命名表。",
+    "0x43F8C0 的完整默认编号计算未在本轮展开。",
+    "0x425246 中 [unit+0x4FB]/[unit+0x4FC] 的界面用途未追踪。",
+    "未运行游戏对照。"
+  ]
+}

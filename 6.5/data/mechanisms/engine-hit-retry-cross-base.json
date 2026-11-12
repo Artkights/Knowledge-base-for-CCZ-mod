@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.hit-retry-cross-base.3ef7",
+      "title": "命中重试机制的三基底差异",
+      "aliases": [
+        "hit-retry",
+        "命中重试",
+        "85 阈值",
+        "二次判定"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "6.4/6.5 使用“最多 2 次、命中>=85、每次扣 10”的重试循环；6.5 额外在 byte[0x505EC8]==1 时跳过。6.6 删除循环，改为 dword[0x502000+0xFB2*4]、byte[0x4B3D18]、byte[unit+5] 三条件门控，条件全满足时命中置 100。",
+      "versionsDetail": {
+        "6.4": {
+          "loopLimit": 2,
+          "threshold": "0x55 (85)",
+          "deduction": "0x0A (10)",
+          "recheck": "0x437896"
+        },
+        "6.5": {
+          "loopLimit": 2,
+          "threshold": "0x55 (85)",
+          "deduction": "0x0A (10)",
+          "recheck": "0x4287A8",
+          "extraGate": "byte[0x505EC8]==1 时跳过重试"
+        },
+        "6.6": {
+          "loop": "无",
+          "gate": ["dword[0x502000+0xFB2*4]", "byte[0x4B3D18]", "byte[unit+5]"],
+          "specialResult": "条件全满足时命中=100",
+          "recheck": "命中<100 时 0x4287A8"
+        }
+      },
+      "constants": [2, "0x55", "0x0A", "0x505EC8", "0xFB2", "0x502000", "0x4B3D18", "0x64"],
+      "limitations": [
+        "0x4B3D18 与 unit+5 名称未确定。",
+        "0x502000+0xFB2*4 表项语义未追踪。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.strategy-damage-hit-resolution.3ef7",
+        "mechanism.65.formula-site-cross-base-audit.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-hit-retry-cross-base-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

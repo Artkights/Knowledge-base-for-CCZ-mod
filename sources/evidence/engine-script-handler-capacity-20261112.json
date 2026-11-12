@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "analysis": "script-handler-table-capacity-and-empty-range",
+  "date": "2026-11-12",
+  "method": "读取三基底 0x410A38 的 128 个 dword，定位 0x4D0000 空实现区间，并与既有剧本处理函数映射对照；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "table": {
+    "va": "0x410A38",
+    "entries": 126,
+    "entrySize": 4,
+    "indexMapping": "index = opcode - 2；有效范围 opcode 0x02..0x7D",
+    "emptyHandler": "0x4D0000"
+  },
+  "emptyRanges": {
+    "6.4": {"indices": ["0x78", "0x79", "0x7A", "0x7B", "0x7C", "0x7D"], "opcodes": ["0x7A", "0x7B", "0x7C", "0x7D", "0x7E", "0x7F"]},
+    "6.5": {"indices": ["0x78", "0x79", "0x7A", "0x7B", "0x7C", "0x7D"], "opcodes": ["0x7A", "0x7B", "0x7C", "0x7D", "0x7E", "0x7F"]},
+    "6.6": {"indices": ["0x7A", "0x7B", "0x7C", "0x7D"], "opcodes": ["0x7C", "0x7D", "0x7E", "0x7F"], "extraHandlers": {"index0x78": "0x4284A2", "index0x79": "0x47E9F0"}}
+  },
+  "conclusion": "剧本处理表 0x410A38 为 126 项 dword，索引 = opcode-2，覆盖 opcode 0x02..0x7D。6.4/6.5 的 0x7A..0x7F 全部为 0x4D0000 空实现；6.6 新增 0x7A/0x7B 处理体（0x4284A2/0x47E9F0），仅 0x7C..0x7F 为空。表尾 0x7E/0x7F 索引读取到表外字节，不属于有效表。",
+  "limitations": [
+    "opcode 0x00/0x01 由另一路径处理，未在本表内。",
+    "0x4D0000 空实现的返回值语义未展开。",
+    "未运行游戏对照。"
+  ]
+}

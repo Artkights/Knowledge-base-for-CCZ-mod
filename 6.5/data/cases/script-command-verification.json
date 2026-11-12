@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "entityType": "case-study",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "case.65.script-command-verification",
+      "title": "剧本指令全解与三基底分派表校对",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "objective": "把《剧本指令全解》的 158 条清单与三基底真实分派表逐项校对，确定版本归属与差异。",
+      "inputs": [
+        "三基底 Ekd5.exe 的 0x410A38 表（126 项）",
+        "6.5/data/scripts/script-commands.json（158 条）",
+        "6.5/data/globals/script-handler-map.json（120 条实测）"
+      ],
+      "procedure": [
+        "逐项导出 6.4/6.5/6.6 的 0x410A38[110..125]，对照实现上界。",
+        "统计清单的唯一 opcode：0x00–0x7B 连续无缺口，共 124 个主指令 + 0x72 的 29 个 6.5 实装子指令（0..28）。",
+        "反汇编 6.6 新增表项 0x7A→0x4284A2、0x7B→0x47E9F0。",
+        "导出 0x72 处理函数 0x47D89E 的子分派表 0x47D8DF，计数有效项。",
+        "比对 0x74/0x78 的 6.4 与 6.5/6.6 地址差异。"
+      ],
+      "outcome": [
+        "【版本归属修正】清单包含 0x7A 对话3、0x7B 信息传送测试，而 6.4/6.5 的 0x7A/0x7B 表项为空（0x004D0000），只有 6.6 实现了这两条 → 158 条清单实际对应 6.6 指令集，不是 6.5。",
+        "实现上界：6.4/6.5 为 0x79（分派器 cmp 0x79），6.6 为 0x7B（cmp 0x7B）。",
+        "0x7A 对话3 = 0x4284A2：读类型码 5 的文本指针，非负则交 0x42DB2C 显示，返回 1。",
+        "0x7B 信息传送测试 = 0x47E9F0：读类型码 4、5 各一次，再走 0x47EA2F 子分派表（与 0x72 同构）。",
+        "0x72 的子分派表 0x47D8DF 只有 29 项（0..28）；子号就是第一个参数（类型 4），直接索引该表。清单中的 29..33 在表后已越界（0x90 填充），6.5 无实现。",
+        "同址但不同实现的项：0x74（6.4 0x41DD12 / 6.5·6.6 0x41DD12·0x41DD26）、0x78（6.4 0x416DCB / 6.5·6.6 0x416DCD）。"
+      ],
+      "reusableLessons": [
+        "版本归属不能只看文件名或标题，必须核对分派表上界与新增表项。",
+        "旧清单可能混入后续版本的新指令；一条指令是否存在于某基底，以表项是否为 0x004D0000 为准。",
+        "子指令数量与子分派表项数不一致时，以表项数为准；索引方式要用处理函数的实际指令（0x4183F7(4)）确认。"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.dm.formulas.sample-64-20261102",
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

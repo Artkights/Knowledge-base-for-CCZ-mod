@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.cross-base-audit-late.3ef7",
+      "title": "第 96–111 轮新函数的三基底同址哈希审计",
+      "aliases": [
+        "cross base audit late",
+        "后段跨基底审计",
+        "0x42A5D6 跨基底",
+        "0x47FA40 跨基底"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "对第 96–111 轮新函数做同址 SHA1 对照：0x40BE7D（指针→索引）三基底完全一致；0x42A5D6（格标志写入）与 0x42A708（范围回调）为 6.4=6.5、6.6 不同；0x47FA40/0x47F9E2（内存池分配）同样 6.4=6.5、6.6 不同；0x41F952（点数加减）、0x456CB4（332 确认）、0x42A43E（全图遍历）三基底各异。",
+      "constants": [
+        "0x40BE7D", "0x41F952", "0x456CB4", "0x42A5D6", "0x42A708", "0x42A43E", "0x47FA40", "0x47F9E2"
+      ],
+      "identity": "同址哈希直接由 hash_regions.py 对三基底同名函数区间计算，前缀 16 位十六进制对比。",
+      "siteAddresses": {
+        "pointerToIndex": "0x40BE7D",
+        "pointsAdjust": "0x41F952",
+        "confirm332": "0x456CB4",
+        "cellFlagWriter": "0x42A5D6",
+        "rangeCallback": "0x42A708",
+        "fullMapPass": "0x42A43E",
+        "arenaAlloc": "0x47FA40",
+        "arenaMode2": "0x47F9E2"
+      },
+      "limitations": [
+        "仅同址对照，未跟踪 6.6 等价函数。",
+        "哈希仅覆盖指定长度。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.cell-flag-writer.3ef7",
+        "mechanism.65.memory-arenas.3ef7",
+        "mechanism.65.dialog332-confirm.3ef7",
+        "mechanism.65.current-record-pointer.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-cross-base-hash-audit-late-20261112"
+      ]
+    }
+  ]
+}

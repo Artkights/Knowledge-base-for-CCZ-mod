@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.physical-damage-constant-chain.3ef7",
+      "title": "物理伤害主链通用常量与 6.6 分支差异",
+      "aliases": [
+        "physical-damage",
+        "物理伤害",
+        "等级+25",
+        "能力差",
+        "物理伤害常量"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "物理伤害主函数 0x43BC62 的非特效路径：攻方等级+25，双方能力差/2（低方保底 1），特殊差值分支 6.4/6.5 为 abs(diff)*5%，6.6 为 (12-diff)*N%，随后兵种相克百分比，最后 0x4E6000 处理。关键常量 25/2/1/5/12/100 均给出站点字节。",
+      "function": "0x43BC62",
+      "mainPath": "0x43BCE5..0x43BDB6",
+      "constants": [
+        {"value": 25, "role": "基础伤害", "va": "0x43BD34", "bytes": "83 C0 19", "versions": "6.4/6.5/6.6"},
+        {"value": 2, "role": "能力差除数", "va": "0x43BD45", "bytes": "D1 E8", "versions": "6.4/6.5/6.6"},
+        {"value": 1, "role": "伤害保底", "va": "0x43BD64", "bytes": "40", "versions": "6.4/6.5/6.6"},
+        {"value": 5, "role": "特殊差值每点百分比", "va": "0x43BD86", "bytes": "6B C0 05", "versions": "6.4/6.5"},
+        {"value": 12, "role": "6.6 特殊差值补正", "va": "0x43BD80", "bytes": "83 C0 0C", "versions": "6.6"},
+        {"value": 100, "role": "相克百分比基准", "va": "0x43BDA0", "bytes": "83 F8 64", "versions": "6.4/6.5/6.6"}
+      ],
+      "formula": [
+        "damage = attackerLevel + 25",
+        "damage += (A - B) / 2 或 damage = max(damage - (B - A)/2, 0)，为 0 时置 1",
+        "特殊差值：6.4/6.5 damage += damage * abs(diff) * 5 / 100；6.6 damage += damage * (12 - diff) * N / 100",
+        "damage = damage * counter / 100（counter != 100 时，结果至少 1）",
+        "damage = 0x4E6000(attacker, defender, damage)"
+      ],
+      "versionDifferences": {
+        "6.4/6.5": "0x43BD86 = 6B C0 05；无 0xC 补正。",
+        "6.6": "0x43BD86 = 0F AF C2；0x43BD80 = 83 C0 0C。"
+      },
+      "limitations": [
+        "0x413260/0x43F74F 属性名未命名。",
+        "0x40D2B2 返回的两个能力未映射到界面字段。",
+        "0x4E6000 未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.job-series-counter.3ef7",
+        "mechanism.65.strategy-damage-hit-resolution.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-physical-damage-chain-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

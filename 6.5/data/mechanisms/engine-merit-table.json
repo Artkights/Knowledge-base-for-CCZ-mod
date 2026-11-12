@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.merit-table.3ef7",
+      "title": "功勋分配表 0x508000（102×5 word）与点数池 0x505F40/0x505F3C",
+      "aliases": [
+        "merit table",
+        "功勋分配表",
+        "0x508000",
+        "0x505F40",
+        "0x505F3C",
+        "0x408FA0",
+        "0x423EAD"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x508000 是 102 人（0x66）× 5 个 word（0x0A 字节）的功勋分配结果表，由 0x42ACD2(index)=index*0x0A+0x508000 访问（index<0x66 且 [arg]==1 或 byte[record+0x2A]!=0xFF 时有效，否则 0xFF）。332 确认处理 0x456CB4 把 0x406..0x40A 五个复选框（武/统/智/敏/运）的掩码写入单位记录 +2，并把 0x505F40 传给 0x40BE7D 显示。0x408FA0：byte[0x505F3C]==0 时返回，否则遍历 i=0..0x65，按 byte[record+2] 掩码把未勾选维度的 word 清零，并通过 xchg 把原值累计后加回 dword[0x505F40]（返还公式=被清除项之和）。0x423EAD：0x42ACD2(0) 有效时清零五项，arg!=0 且 byte[0x505F3C]!=0 时同样把原值之和加回 0x505F40。0x505F40 的 5 处静态引用只有两处累加与三处传参，未发现减法点。",
+      "constants": [
+        "0x508000", "0x42ACD2", "0x408FA0", "0x423EAD", "0x456CB4", "0x456DA6", "0x4108DB", "0x40BE7D", "0x4781C6", "0x4061E4",
+        "0x505F3C", "0x505F40", "0x4FFF68", "0x500E28", "0x406", "0x40A", "0x66", "0x0A", "0x02", "0x2A", "0x05", "0xFF"
+      ],
+      "identity": "0x42ACD2 的 0x0A 步长与 0x408F2E 单位序列化的步长不同但同源于 5×word；0x408FA0 的内层上界 5 与表项 0x0A 字节一致；332 模板的 5 个复选框 ID 0x406..0x40A 与掩码 5 位一一对应。",
+      "siteAddresses": {
+        "table": "0x508000",
+        "accessor": "0x42ACD2",
+        "clearUnchecked": "0x408FA0",
+        "resetAllocation": "0x423EAD",
+        "confirm332": "0x456CB4",
+        "pointsPool": "0x505F40",
+        "systemFlag": "0x505F3C",
+        "pointsBuffer": "0x4FFF68"
+      },
+      "limitations": [
+        "0x505F40 的扣除（消费）路径未静态定位。",
+        "0x4FFF68 已由第153轮定为 5×word 分配缓冲（+0x14 为剩余点数），0x40BE7D 参数含义仍未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.dialog332-confirm.3ef7",
+        "mechanism.65.dialog-framework.3ef7",
+        "mechanism.65.runtime-character-accessors.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-merit-table-20261112",
+        "src.research.engine-merit-pool-refund-20261112",
+        "src.research.engine-dialog332-refresh-20261112"
+      ]
+    }
+  ]
+}

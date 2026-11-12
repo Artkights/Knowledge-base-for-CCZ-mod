@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "analysis": "item-type-classification-mapping",
+  "date": "2026-11-12",
+  "method": "精确反汇编 0x40B444 与 0x40B460，并核对三基底字节；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "classifier": {
+    "va": "0x40B444",
+    "code": [
+      "type = byte[item+0x11]",
+      "type < 0x14 (20) → 0",
+      "0x14 <= type < 0x1A (26) → 1",
+      "type >= 0x1A → byte[item+0x14]"
+    ]
+  },
+  "subtypeMap": {
+    "va": "0x40B460",
+    "code": [
+      "type = byte[item+0x11]",
+      "type < 0x1A → type / 2（sar eax,1）",
+      "type >= 0x1A → byte[item+0x14] + 0x0B (11)"
+    ]
+  },
+  "constants": [20, 26, 11, 2],
+  "identity": "0x40B444 与 0x40B460 前 40 字节哈希三基底完全一致：CE6FB382 / 3BE3021C。",
+  "conclusion": "物品类型分类使用 item+0x11 的原始类型：<20→0；20..25→1；>=26→读取 item+0x14 作为子类型。子类型映射：<26 时 type/2；>=26 时 item+0x14+11。该映射三基底字节一致。",
+  "limitations": [
+    "0/1/子类型编号未映射到界面名称。",
+    "未运行游戏对照。"
+  ]
+}

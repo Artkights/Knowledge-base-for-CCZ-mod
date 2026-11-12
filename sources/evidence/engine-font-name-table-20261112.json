@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "analysis": "font-name-table",
+  "date": "2026-11-12",
+  "method": "按 VA 读取 6.6 0x500030 的 0x50 字节并按 GBK 解码；refs_to.py 列出全部引用；dump_funcs.py 反汇编 0x41EBA3 与 0x41EB48；pefile 导入表确认 CreateFontA/MulDiv/GetDeviceCaps/SelectObject；对比 6.5/6.4 同址数据。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "fontTable": {
+    "address": "0x500030",
+    "entrySize": 16,
+    "entries": [
+      {"index": 0, "offset": "+0x00", "gbkHex": "CB CE CC E5", "text": "宋体"},
+      {"index": 1, "offset": "+0x10", "gbkHex": "BF AC CC E5", "text": "楷体"},
+      {"index": 2, "offset": "+0x20", "gbkHex": "BA DA CC E5", "text": "黑体"},
+      {"index": 3, "offset": "+0x30", "gbkHex": "B7 C2 CB CE", "text": "仿宋"},
+      {"index": 4, "offset": "+0x40", "gbkHex": "CE A2 C8 ED D1 C5 BA DA", "text": "微软雅黑"}
+    ],
+    "trailing": "+0x50 起为 0 填充",
+    "section66": ".text3",
+    "sixOnly": true,
+    "sixFiveSameAddress": "6.5 0x500030 为指针表（0x48C421/0x48C42A/...，随后 0x4CEC6D...）；6.4 为 0x61/0x64 等小值数据，均非字体名"
+  },
+  "fontWrapper": {
+    "entry": "0x41EBA3",
+    "signature": "CreateFont(faceIndexPtr, nHeight, nWidth, nWeight)",
+    "import": "0x486088 = GDI32.dll!CreateFontA",
+    "arguments": "nHeight=[ebp+8], nWidth=[ebp+0xC], nWeight=[ebp+0x10], lpszFace=[ebp+0x14]",
+    "fixedConstants": {
+      "nEscapement": 0,
+      "nOrientation": 0,
+      "fdwItalic": 0,
+      "fdwUnderline": 0,
+      "fdwStrikeOut": 0,
+      "fdwCharSet": "0x86（134 = GB2312_CHARSET）",
+      "fdwOutputPrecision": 0,
+      "fdwClipPrecision": 0,
+      "fdwQuality": "4（PROOF_QUALITY）",
+      "fdwPitchAndFamily": 0
+    }
+  },
+  "consumers": [
+    {"site": "0x41BF8B", "behavior": "push 0x500030（默认宋体）；push 0x258（600 字重）；CreateFontA 后 SelectObject 到 DC。"},
+    {"site": "0x41E9B2", "behavior": "CreateCompatibleDC 后以 0x500030 为字体名、0x2BC（700 字重）调用 CreateFontA 并 SelectObject。"},
+    {"site": "0x42A280", "behavior": "GetDeviceCaps(0x5A=LOGPIXELSY) → MulDiv(9, px, 72) 求 9pt 像素高 → CreateFontA(负高, 0, 0x190=400, 0x500030)。"},
+    {"site": "0x46C9B9", "behavior": "GetDeviceCaps(LOGPIXELSY) → MulDiv(0x3C=60, px, 72) → CreateFontA(…, 0x500030)。"},
+    {"site": "0x47CC20", "behavior": "push 0x500030；CreateFontA(-0x10, 8, 0, …) 后保存返回值到 0x4B9E04。"},
+    {"site": "0x41EB78", "behavior": "byte[unit+0x19]*0x10 + 0x500030 作为 lpszFace 传入后续 CreateFont/绘制：即位 0..4 选择宋体/楷体/黑体/仿宋/微软雅黑。"}
+  ],
+  "heightFormula": {
+    "pattern": "MulDiv(ptSize, GetDeviceCaps(hdc, LOGPIXELSY=0x5A), 72)",
+    "observed": ["9pt（0x42A280）", "60pt（0x46C9B9，0x3C）", "固定负高 -0x10（0x47CC20）"],
+    "weights": ["0x190=400 常规", "0x258=600 半粗", "0x2BC=700 粗体"]
+  },
+  "conclusion": "0x500030 是 6.6 新增的 5 项字体名称表（16 字节/项：宋体、楷体、黑体、仿宋、微软雅黑），由 0x41EBA3 包装的 CreateFontA 消费，字符集固定 0x86（GB2312），字重常量 0x190/0x258/0x2BC，字高统一按 MulDiv(pt, LOGPIXELSY, 72) 换算。0x41EB48 用 byte[unit+0x19] 作为字体索引。6.5/6.4 同址不是字体表。",
+  "limitations": [
+    "0x41EB48 中 byte[+0x19] 的业务字段名未定（取值 0..4 的字体索引）。",
+    "0x47CC20 的 CreateFont 结果 0x4B9E04 的后续用途未追踪。",
+    "未运行游戏对照。"
+  ]
+}

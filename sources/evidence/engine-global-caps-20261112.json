@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "analysis": "engine-global-capacity-and-sentinel-contract",
+  "date": "2026-11-12",
+  "method": "汇总本轮与前九轮已静态核对的全局容量、记录步长、循环上限与哨兵；对 0x41626A 的 0xFA 单位上限和 Data.e5 块 2/3/4/5 装载循环做三基底字节核对。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "capacities": [
+    {"name": "运行时人物记录", "count": 1024, "stride": 72, "base": "DWORD[0x4CEA00]", "evidence": "0x4061E4 = word[id]*0x48 + [0x4CEA00]；调用方 0x43A060 使用 0x3FF"},
+    {"name": "战场单位/对象", "count": 250, "loop": "0x41626A: cl < 0xFA", "versions": "6.4/6.5/6.6 同值"},
+    {"name": "物品记录", "count": 255, "stride": 25, "base": "0x4A1140", "evidence": "0x4837C2 = id*0x19 + 0x4A1140"},
+    {"name": "详细兵种", "count": 80, "stride": 35, "base": "0x4A2A27", "evidence": "0x41B782 = job*0x23 + 0x4A2A27"},
+    {"name": "兵种系", "count": 40, "stride": 60, "base": "0x4A3517", "evidence": "0x41B7D4 = family*0x3C + 0x4A3517"},
+    {"name": "策略", "count": 144, "stride": 97, "base": "0x4A3E77", "evidence": "struct.65.strategy-record"},
+    {"name": "效果", "count": 255, "stride": 8, "base": "DWORD[0x500C3B]", "evidence": "struct.65.effect-assignment"},
+    {"name": "必杀分配", "count": 80, "stride": 16, "base": "0x511800", "evidence": "struct.65.fatal-assignment"},
+    {"name": "仓库槽", "count": 200, "stride": 3, "base": "0x4B0783", "evidence": "struct.65.warehouse-record"},
+    {"name": "攻击范围段", "count": 256, "stride": 4, "base": "DWORD[0x4D1400 + range*4]", "evidence": "struct.65.range-segment"},
+    {"name": "地形类型", "count": 30, "evidence": "Data.e5 块 4 每行两半各 30 字节"},
+    {"name": "天气类别", "count": 5, "slots": 6, "evidence": "0x48E100 5×6"},
+    {"name": "Data.e5 块 2 商店", "count": 127, "stride": 40, "evidence": "0x41B7F0 循环 0x7F；0x41B7E2"},
+    {"name": "Data.e5 块 5 策略", "count": 144, "evidence": "0x41B834 循环 0x90"}
+  ],
+  "loopChecks": {
+    "block2Shop": {"6.4": "cmp ecx,0x7F", "6.5": "cmp ecx,0x7F", "6.6": "cmp ecx,0x7F"},
+    "block3Growth": {"6.4": "cmp ecx,0x50", "6.5": "cmp ecx,0x50", "6.6": "cmp ecx,0x50"},
+    "block4Terrain": {"6.4": "cmp ecx,0x28", "6.5": "cmp ecx,0x28", "6.6": "cmp ecx,0x28"},
+    "block5Strategy": {"6.4": "cmp cl,0x90", "6.5": "cmp cl,0x90", "6.6": "cmp cl,0x90"},
+    "battleUnit": {"6.4": "cmp cl,0xFA @0x416281", "6.5": "cmp cl,0xFA @0x416281", "6.6": "cmp cl,0xFA @0x416288"}
+  },
+  "sentinels": [
+    {"value": "0xFF", "role": "物品空槽；地形不可通行；天气/变量无效候选"},
+    {"value": "0x8000", "role": "剧本处理函数 16 位参数“无值”哨兵，返回 5"},
+    {"value": "0x80000000", "role": "剧本处理函数 32 位参数“无值”哨兵"},
+    {"value": "0xFFFF", "role": "回合上限模式的无操作哨兵（0x41709C）"},
+    {"value": "0x50", "role": "兵种 ID 越界阈值（>=0x50 返回 0/哨兵）"},
+    {"value": "0xFA", "role": "战场单位循环上限 250"},
+    {"value": "0x3FF", "role": "人物记录初始化最大 ID 1023"},
+    {"value": "0xFF/0x8000", "role": "属性矩阵/脚本参数的越界或空值"}
+  ],
+  "conclusion": "三基底共享的主要容量为：人物 1024×72、战场单位 250、物品 255×25、兵种 80×35、兵种系 40×60、策略 144×97、效果 255×8、必杀 80×16、仓库 200×3、范围段 256、地形 30、天气 5×6、商店 127×40。0xFF/0x8000/0x80000000/0xFFFF/0x50/0xFA/0x3FF 是反复出现的空值、越界或无操作哨兵。",
+  "limitations": [
+    "本条是前九轮与既有结构实体的容量汇总，不重新证明每个结构的全部字段。",
+    "部分容量来自 data 管理器 profile 或既有结构实体，已在条目内注明；未运行游戏。",
+    "0x41626A 的 0xFA 循环是战场单位上限的直接证据；其它循环上限来自装载器比较指令。"
+  ]
+}

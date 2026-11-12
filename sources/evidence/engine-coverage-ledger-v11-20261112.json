@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "analysis": "coverage-ledger-v11",
+  "date": "2026-11-12",
+  "rounds": "1-119",
+  "method": "汇总第 1–119 轮已集成条目，按域重算；新增第 116–119 轮的视口滚动链为一个 resolved 域；余量顺延。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "counts": {"total": 94, "resolved": 72, "partial": 20, "unresolved": 2},
+  "newResolved": [
+    "视口滚动链：0x45503F 居中 → 0x454CEF 设滚动 → 0x45461C 预处理 → 0x45218F 核心（第116–119轮）"
+  ],
+  "corrections": [],
+  "unresolved": [
+    "0x423842 的 edx 来源（需运行期）",
+    "0x4A3E77 68 之后槽位的运行期写入来源"
+  ],
+  "remainingGaps": [
+    "0x4303C8 的 20 个值语义与运行期用途",
+    "0x41CEAB 的 33 个值语义",
+    "人物模板表 +0x0C/+0x0D 命名与 68 之后槽位来源",
+    "0x4B4250 +0x64/+0x68 写入方与 +0x20/+0x22 实际数值",
+    "0x423842 的 edx 来源",
+    "11 层各层用途与 0x1E900/0x24C00 语义",
+    "0x508000 五项语义与两个点数池同步",
+    "0x500AE0/0x500AA0 +0x04/+0x08/+0x09 与 0x3FE 记录",
+    "6.6 GDI+ 10 槽的消费链",
+    "AVI 模块其余 MCI 子命令",
+    "0x4BE880 数组元素宽度与用途",
+    "三个内存池的服务模块统计"
+  ],
+  "conclusion": "第 1–119 轮覆盖 94 个通用域：72 resolved、20 partial、2 unresolved。视口滚动链（居中→设置→预处理→核心）作为新域并入 resolved；remainingGaps 增至 12 项（新增 0x4BE880 数组用途）。",
+  "limitations": [
+    "覆盖状态是条目级汇总，不等价于逐函数全量证明。",
+    "未运行游戏对照。"
+  ]
+}

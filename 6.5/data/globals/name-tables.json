@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.effect-name-tables.3890",
+      "title": "特效名分表（按类别与 ID 段拆分）",
+      "aliases": [
+        "0x0048BC50",
+        "0x005003A0",
+        "0x004CE170",
+        "0x005003F8",
+        "effect_name_tables"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0048BC50",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 240,
+      "semantics": "特效名由 4 张指针数组按「记录类别 + 特效号段」分派，解析函数 0x4230D5（调用点 0x423103/0x4230EB）：① 记录 +0x14==3（宝物类）：特效号 <0x24 查 0x4CE170（36 项），≥0x24 查 0x5003A0（下标 -0x24）；② 其他类别：特效号 <0x3C 查 0x48BC50（60 项），≥0x3C 查 0x5003F8（下标 -0x3C，39 项）。0x48BC50 之后紧邻 0x48BC88/0x48BD34 等其它数组，扫描时会被连成 88 项，实际按 <0x3C 截断。",
+      "relations": [
+        "fn.65.fatal-field-c-reader.3890",
+        "global.65.effect-name-table.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.strategy-name-table.3890",
+      "title": "效果类型名表（0x1C+ 段，0x004FFFF0）",
+      "aliases": [
+        "0x004FFFF0",
+        "0x00500060",
+        "strategy_name_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004FFFF0",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 108,
+      "semantics": "0x406640 在索引>=0x1C 时从 0x4FFFF0 取指针；表项为“全部下降/连续移动/生命交换/经验加倍/连续攻击/控制敌军/以火阻敌/建造鹿砦/诱敌深入/瞬间移动/攻击(雷)/苌弘碧血/召唤大法/空白0002…”等效果类型名，不是 Data.e5 策略记录名称。0x48BD40 为 0..0x1B 段的同类名表。",
+      "relations": [
+        "global.65.effect-name-tables.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.terrain-name-table.3890",
+      "title": "地形名表",
+      "aliases": [
+        "0x0048BDB0",
+        "0x0048BDB4",
+        "terrain_name_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0048BDB0",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 132,
+      "semantics": "33 项 DWORD 字符指针，索引=地形号：0 平原(0x48C470)、1 草原、2 树林、3 荒地、4 山地、5 岩山、6 山崖、7 雪原 …。【已复核基址为 0x48BDB0（不是 0x48BDB4）】取用方式全部是「直接立即数寻址」，没有中间指针表：`push dword[eax*4 + 0x48BDB0]`。三基底各 4 处使用点：6.4 0x4302B7/0x440C47/0x45590A/0x46C94F；6.5 0x4302B4/0x440C1C/0x4558DF/0x46C94F；6.6 0x430278/0x440C1F/0x4558DF/0x46C94F。均与格式串（0x48E07C / 0x48E8AA）拼接后绘制。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.unitclass-name-table.3890",
+      "title": "兵种名表",
+      "aliases": [
+        "0x0048BEA8",
+        "0x0048BEAC",
+        "unitclass_name_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0048BEA8",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 320,
+      "semantics": "80 项 DWORD 字符指针，索引=兵种号：0 群雄(0x5000D0)、1 英雄、2 霸王、3 轻步兵、4 重步兵、5 近卫兵 …。【已复核基址为 0x48BEA8（不是 0x48BEAC）】全映像唯一引用是一条叶子 getter：`0x401118  mov eax,[eax*4 + 0x48BEA8]  ret`（指令在 0x401120，三基底同址同字节）。该 getter 没有 E8 调用者、没有 DWORD 函数指针引用，也不存在 `shl eax,2; add eax,0x48BEA8` 的内联形式，说明 6.x 构建中它未被静态调用（可能由运行期注册或为保留代码）；兵种名的实际显示可能走其它分支或数据驱动。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.classgroup-name-table.3890",
+      "title": "兵种系名表",
+      "aliases": [
+        "0x0048C570",
+        "classgroup_name_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0048C570",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 160,
+      "semantics": "40 项 DWORD 字符指针，索引=兵种系：0 君主(0x48C610)、1 步兵、2 弓兵、3 骑兵、4 弓骑兵、5 炮车、6 武术家、7 贼兵 …。三基底同址同字节，3 处取用点：0x45A65D（`push dword[eax*4+0x48C570]`，索引来自 0x4CEF6A[i]，并以 0x464211[type]==1 判启用，用于论战文本）、0x46C4FD（`(arg-1)*4+0x48C570` 后按字符串长度算文本宽度）、0x46C5C3（`type*4+0x48C570` 与格式串 0x48E744 拼接）。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.ability-name-table.3890",
+      "title": "能力名表（两项来源）",
+      "aliases": [
+        "0x00479DF4",
+        "0x0047A4B5",
+        "0x00486AE0",
+        "ability_name_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00479DF4",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 20,
+      "semantics": "两项来源：① 指针数组 0x479DF4 与 0x47A4B5 各 5 项（攻击/防御/精神/爆发/士气，6.6 第 4 项为「反应」）；② 0x486AE0 起 NUL 分隔串「攻击/防御/精神/爆发/士气/移动」，供 0x43C880 状态文本绘制使用（六能力）。",
+      "relations": [
+        "global.65.range-code-name-table.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.ui-label-tables.3890",
+      "title": "UI 列名/菜单项名表",
+      "aliases": [
+        "0x00466627",
+        "0x00466F17",
+        "0x004750BD",
+        "0x004867B4",
+        "ui_label_tables"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00466627",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 40,
+      "semantics": "四组界面文本数组：0x466627(10 项：效果/价格/总数/装备/卖价/特殊效果/库存/持有者…)、0x466F17(12 项：属性/兵种上升/效果/价格…)、0x4750BD(7 项菜单：武将一览/胜利条件/环境设定…)、0x4867B4(5 项表头：武将名/等级/攻击/防御/精神)。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.weapon-type-name-table.3890",
+      "title": "武器类别名表",
+      "aliases": [
+        "0x0048BC04",
+        "weapon_type_name_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0048BC04",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 60,
+      "semantics": "15 项指针数组：剑/枪/弓/刀/炮车/锤/斧/扇…（6.4 佩剑/长柄/弓弩/船具…，6.6 将剑/长柄/弓弩/砍刀…）。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.hotweapon-name-table.3890",
+      "title": "热兵器占位名表",
+      "aliases": [
+        "0x005003B4",
+        "hotweapon_name_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x005003B4",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 76,
+      "semantics": "19 项占位名「43热兵器…4a热兵器」等，属扩展位未正式命名项。",
+      "relations": [
+        "global.65.effect-name-tables.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

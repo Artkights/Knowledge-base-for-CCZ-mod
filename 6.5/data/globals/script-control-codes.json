@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.script-control-codes.3890",
+      "title": "剧本指令控制码（处理函数返回值）",
+      "aliases": [
+        "0x004109E6",
+        "0x00486618",
+        "script_control_codes"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00486618",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 4,
+      "semantics": "分派器 0x4109E6 返回 EAX 作为控制码，由外层解释器消费；分派器地址本身存放在全局函数指针 0x486618，全映像无 E8 直接调用（运行期间接调用）。已实测控制码：1=正常执行；5=失败/终止（opcode 越界或取值失败）；6=else（处理函数 0x4834C6 仅 `mov eax,6; ret`，分支逻辑在解释器侧）；8=结束 Section（处理函数 0x481156 仅 `mov eax,8; ret`）。因此 0x03/0x0C 等框架指令的“实现”只是返回控制码，真正跳转由外层循环完成。 补充：控制码 3 是解释循环的唯一退出条件（0x410189 cmp eax,3）；0/1 参与成功标志累积；6/8 不中断循环。 补充：else/Section 通过半开窗口 [0x4CE74C, 0x4CE75C) 判定跳过，窗口外打 0x76 标记；跳转目标由 0x41085D 写入 0x4CE75C。 补充实测：0x1E 武将重绘的处理函数 0x416A0C 仅 `mov eax,2; ret`，即返回控制码 2；0x0D 结束Scene 返回 0x41196C 结果+7。故控制码至少含 0/1/2/3/5/6/7/8。",
+      "relations": [
+        "fn.65.script-command-dispatch.3890",
+        "global.65.script-command-dispatch-table.3890",
+        "global.65.script-vtable.3890",
+        "mechanism.65.script-jump-window.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

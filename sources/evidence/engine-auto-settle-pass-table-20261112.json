@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "src.research.engine-auto-settle-pass-table-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "0x44DA7A 行动顺序生成：9 项分派表 0x44DC37 与兵种系优先级表",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密版",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 0x44DA7A、0x44DC5B、0x43B4A7、0x418C90、0x44F980、0x425AC7、0x4225FB、0x417B5A、0x439CFE、0x43FFB9、0x4281AF、0x43FF6E、0x41B782、0x436CA3；读取 0x44DC37 九项 dword 表与 0x44DCCC/0x4D20E8/0x4D2138/0x4D2188/0x4D2200 五张 40 字节兵种系表。仅静态分析。",
+  "findings": [
+    {
+      "id": "pass-table",
+      "claim": "0x44DC37 的 9 项分派表依次为 0x44DB12、0x44DB3F、0x44DB5D、0x44DB6B、0x44DBAA、0x44DBEF、0x44DBFA、0x44DC10、0x44DC05；0x44DA7A 用外层 i=0..8、内层遍历一方单位槽的方式执行这 9 个分支。",
+      "evidence": [
+        "0x44DC37 dword 表：44DB12 44DB3F 44DB5D 44DB6B 44DBAA 44DBEF 44DBFA 44DC10 44DC05",
+        "0044DACA cmp byte[ebp-0x28],9；0044DB07 movzx eax,byte[ebp-0x28]；0044DB0B jmp dword[eax*4+0x44DC37]"
+      ]
+    },
+    {
+      "id": "state-accessors",
+      "claim": "单位结构 +0x0B 是行动顺序/状态字节：0x44F980(unit,val) 写入 byte[unit+0xB]，0x425AC7(unit) 读取 byte[unit+0xB]；0x418C90(unit) 读取 byte[unit+0xC]，仅当其为 2 时参与处理。0x44DA7A 先把一方全体单位 +0xB 置 0xFF，再用全局计数器 [ebp-4] 从 0 递增分配顺序号。",
+      "evidence": [
+        "0044F980 mov al,[ebp+8]；mov byte[ecx+0xB],al；ret 4",
+        "00425AC7 movzx eax,byte[ecx+0xB]；ret",
+        "00418C90 movzx eax,byte[ecx+0xC]；ret",
+        "0044DAB5 push 0xFF；0044DABA call 0x44F980（全体清 0xFF）",
+        "0044DC1C push dword[ebp-4]；0044DC1F call 0x44F980；0044DC24 inc byte[ebp-4]"
+      ]
+    },
+    {
+      "id": "branch-0",
+      "claim": "分支 0（0x44DB12）：0x4225FB(unit) 返回非 0 且兵种系 byte[0x4D2200+兵种系]==9 时，把该单位 +0x0B 置 0x75（延后处理）；6.5 表中仅兵种系 0x12 的值为 9。",
+      "evidence": [
+        "0044DB12 mov eax,[ecx]；0044DB19 call 0x4225FB；0044DB1E test eax,eax；0044DB20 je 0x44DADC",
+        "0044DB25 call 0x43B4A7（=0x40658F→0x40BF0C 兵种系）；0044DB2D cmp byte[eax+0x4D2200],9",
+        "0044DB36 push 0x75；0044DB38 call 0x44F980",
+        "0x4D2200 40 字节：第 0x12 项=09"
+      ]
+    },
+    {
+      "id": "branch-1-2-3",
+      "claim": "分支 1：word[unit+0x06] 经 0x417B5A 判定非 0 则分配顺序号。分支 2：0x439CFE(unit) 非 0 则分配。分支 3：byte[0x505F7C]==2 时调 0x44DC5B 按兵种系优先级桶 0x44DCCC 分配并把 i 跳到 8；否则（原版 0x505F7C 无写入者，恒 0）用 0x43FFB9 的 0x4D2188 兵种系谓词，非 0 且兵种系!=9 时分配。",
+      "evidence": [
+        "0044DB3F call 0x403360（返回 unit+6）；0044DB4F call 0x417B5A；0044DB59 jne 0x44DB66→0x44DC10",
+        "0044DB5D call 0x439CFE；0044DB64 je 0x44DB3D（跳过）",
+        "0044DB6B cmp byte[0x505F7C],2；0044DB7D call 0x44DC5B；0044DB8A add byte[ebp-0x28],4",
+        "0044DB93 call 0x43FFB9；0044DB98 test eax,eax；0044DB9C call 0x43B4A7；0044DBA4 cmp al,9",
+        "0x43FFB9：兵种系<=0x27 时 al=byte[0x4D2188+系]，==1 直接返回 1，否则返回 al^2"
+      ]
+    },
+    {
+      "id": "branch-4-5-6",
+      "claim": "分支 4：byte[0x505F7C]==0 时直接跳到分支 8；非 0 时取 0x40658F(unit) 记录的 byte[+0x2B]（兵种 ID），经 0x41B782 定位 0x4A2A27+ID*0x23 的 0x23 字节兵种记录，用 0x436CA3 读取 +0x02/+0x03 两字节，任一 >=4 则分配顺序号。分支 5：0x4281AF 用 0x4D2138 兵种系表，非 0 则分配。分支 6：0x43FF6E 在 0x4D20E8 兵种系表项==0 时分配。",
+      "evidence": [
+        "0044DBAA cmp byte[0x505F7C],0；0044DBB1 je 0x44DB8E（i+=4）",
+        "0044DBB3 mov ecx,[ebp-0x2C]；0044DBB6 movzx ecx,byte[ecx+0x2B]；0044DBBA call 0x41B782（imul 0x23 + 0x4A2A27）",
+        "0044DBC7 call 0x436CA3（byte[ecx+arg+2]）；0044DBCC cmp al,4；0044DBE4 call 0x436CA3（arg=1）",
+        "0x4281AF：byte[0x4D2138+兵种系]（兵种系>0x27 返回 0）",
+        "0x43FF6E：byte[0x4D20E8+兵种系]==0 返回 1"
+      ]
+    },
+    {
+      "id": "branch-7-8",
+      "claim": "分支 7（0x44DC10）：若 +0x0B==0xFF 则分配顺序号并自增计数器。分支 8（0x44DC05）：若 +0x0B==0x75 则跳到 0x44DC1C 分配顺序号。两者共同保证所有存活单位最终都有唯一顺序号。",
+      "evidence": [
+        "0044DC10 mov ecx,[ebp-0x24]；0044DC13 call 0x425AC7；0044DC18 cmp al,0xFF；0044DC1A jne 0x44DC27",
+        "0044DC05 call 0x425AC7；0044DC0A cmp al,0x75；0044DC0C jne 0x44DC27；0044DC0E jmp 0x44DC1C"
+      ]
+    },
+    {
+      "id": "priority-tables",
+      "claim": "0x44DC5B(slotStart,slotEnd,counter) 以 k=0..5 外层、槽内层，对 +0x0B==0xFF 且 +0xC==2 的单位比较 byte[0x44DCCC+兵种系] 与 k，命中即分配 counter。相关 40 字节兵种系表：0x44DCCC 取值 0..3（桶号）、0x4D20E8、0x4D2138、0x4D2188、0x4D2200（0x12 项=9）。",
+      "evidence": [
+        "0044DC68 cmp byte[ebp-4],6；0044DCA1 call 0x43B4A7；0044DCA6 mov al,byte[eax+0x44DCCC]；0044DCAC cmp byte[ebp-4],al；0044DCB7 call 0x44F980",
+        "0x44DCCC 40B：02 02 00 02 00 00 02 02 01 03 01 01 02 02 02 01 02 02 02 02 02 02 02 02 00 00 00 01 02 01 02 02 02 02 00 02 02 02 02 00",
+        "0x4D20E8 40B：00 01 01 00 00 01 01 01 01 01 01 00 01 01 01 01 01 00 00 00 00 00 00 01 01 01 01 00 01 00 01 00 00 00 01 01 01 01 00 00",
+        "0x4D2138 40B：00 00 01 00 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 01 00 00 00 00 00",
+        "0x4D2188 40B：00 02 02 02 02 02 02 02 01 01 01 00 00 02 02 02 02 02 02 00 02 02 02 02 02 00 01 00 02 02 02 02 00 02 02 02 02 02 02 00"
+      ]
+    },
+    {
+      "id": "switch-byte",
+      "claim": "0x505F7C 在 6.5 Ekd5.exe 内只有 0x44DB6B/0x44DBAA 两个读取点，无任何静态写入点；原版运行期恒为 0，因此有效分支为 0、1、2、3（走 0x43FFB9 路径）、8；仅当外部插件写入 2 时才走 0x44DC5B 的 6 桶排序。",
+      "evidence": [
+        "refs_to 0x505F7C：仅 0044DB6B cmp byte[0x505F7C],2 与 0044DBAA cmp byte[0x505F7C],0",
+        "全 EXE 无 mov byte[0x505F7C],imm 类写入"
+      ]
+    }
+  ],
+  "corrections": [
+    "『0x44DA7A 的 9 项状态跳转表』更正为『9 个优先级分配分支』：不是 9 种状态处理，而是按兵种系与特殊谓词分 9 个 pass 为一方单位分配 +0x0B 行动顺序号。",
+    "0x44F980 的作用确认为写 byte[unit+0x0B]（此前只记为 0x44F980(0xFF)）。"
+  ],
+  "limitations": [
+    "0x4225FB、0x417B5A、0x439CFE 的业务名未定（分别依赖 0x4D2200 兵种系值、word[unit+6]、兵种记录 [0]/[+0x10]）。",
+    "0x505F7C 的外部写入者（疑为 AutoDLL 类插件）未定位。",
+    "未运行游戏对照。"
+  ],
+  "conclusion": "0x44DA7A(side) 是一方单位的行动顺序生成器：先把一方所有单位 byte[+0x0B] 置 0xFF，再按 0x44DC37 的 9 个分支（兵种系谓词/优先级桶/特殊标记 0x75）以全局计数器从 0 递增分配顺序号；0x44DC5B 在 0x505F7C==2（插件开关）时按 0x44DCCC 兵种系桶做 6 级排序。原版 0x505F7C 恒 0，有效 pass 为 0/1/2/3/8。"
+}

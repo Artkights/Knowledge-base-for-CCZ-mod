@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "fn.65.script-interpret-frame.3890",
+      "title": "剧本单帧解释函数（计数驱动）",
+      "aliases": [
+        "0x004100A1",
+        "0x00410140",
+        "script_interpret_frame"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004100A1",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX = 脚本上下文",
+      "inputs": "ECX=ctx；ctx+0x10 为 0xFFFF 哨兵，ctx+0x24 为本次要执行的指令条数",
+      "returns": "EAX 由内部分支决定；异常路径直接跳到收尾 0x4101C2",
+      "semantics": "入口先检查 word[ctx+0x10] 是否为 0xFFFF；非哨兵时虚调用 [vtable+0xC]（0x480612），失败则置 ctx+0x10=0xFFFF 并返回。随后 0x410950/0x410970 做前置检查，0x40FB6C 初始化，0x40FCB2 读取一个 token 存入 ctx+0x24（计数 N）。循环 i=0..N-1：0x40FBA5(i) 取第 i 项；0x41016E 执行 `mov eax,[ecx]; call [eax+8]` 虚调用分派器；返回 0/1 时累积成功标志，返回 3 时退出循环。因此“一帧执行多少条指令”由脚本流中的计数 token 决定，而不是遇到 0x00 才停。 其包装为 0x4180C1（保存上下文 → 单帧 → 0x41811F 后处理），主循环 0x4180F9 以 0x492F90 为上下文反复调用 0x4180C1，直到 [0x4ABF9C] & 0x6E != 0。",
+      "relations": [
+        "global.65.script-vtable.3890",
+        "global.65.script-control-codes.3890",
+        "fn.65.script-command-dispatch.3890",
+        "mechanism.65.script-main-loop.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

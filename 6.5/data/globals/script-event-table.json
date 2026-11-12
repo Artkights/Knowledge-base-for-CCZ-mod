@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.script-event-table.3890",
+      "title": "运行时记录表（128×0x40）",
+      "aliases": [
+        "0x0049CF68",
+        "0x00426AA8",
+        "script_event_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0049CF68",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 8192,
+      "semantics": "128 槽 × 0x40 字节，槽 n 地址 = 0x49CF68 + n*0x40；取槽函数 0x426AA8。槽内字段：+0x28 标志（&0x8000 判有效）、+0x3A 16 位对象句柄（tag 0x1000|id）、+0x04/+0x08/+0x0C 由处理函数写入的坐标/参数。【定性修正】它是运行时动作/单位记录表，不是剧本指令表；指令表是 0x410A38。与之并行的 0x24 步长数组由 0x427C43/0x427C47 处理。",
+      "relations": [
+        "fn.65.script-event-slot.3890",
+        "fn.65.script-event-iterate.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

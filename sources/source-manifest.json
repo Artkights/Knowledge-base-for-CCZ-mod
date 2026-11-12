@@ -2534,22 +2534,6 @@
       }
     },
     {
-      "id": "src.data-manager64.quotes",
-      "path": "data管理器/src/DataManager.Core/Domain/PersonQuoteService.cs",
-      "sha256": "2CB7116E5444D0B2E6644C0564846BA3965B3DE79A11A27B85C6D2548BB94A54",
-      "sourceType": "first-party-source",
-      "published": false,
-      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
-      "verification": {
-        "kind": "remote-git",
-        "repository": "https://github.com/Artkights/CCZ-DataManager",
-        "commit": "cb651cbc335cbef635bffb17f2825deecb111e61",
-        "path": "data管理器/src/DataManager.Core/Domain/PersonQuoteService.cs",
-        "sha256": "2CB7116E5444D0B2E6644C0564846BA3965B3DE79A11A27B85C6D2548BB94A54",
-        "reason": "已从本地Git对象读取固定提交原字节并核对SHA256；CI仅离线检查固定提交元数据。"
-      }
-    },
-    {
       "id": "src.data-manager64.registry",
       "path": "data管理器/src/DataManager.Core/Profiles/ProfileRegistry.cs",
       "sha256": "9918741D58CD71157E9C14345367E4DD7D512E042EF385E6A3EB03B4A550E316",
@@ -2580,38 +2564,6 @@
       }
     },
     {
-      "id": "src.data-manager64.studio-icon-mapping",
-      "path": "工具整合包/CCZModStudio/Core/ItemIconMappingService.cs",
-      "sha256": "15C42BDCFFD6EAEF156CB2D366D449603F451A40C99DDD6569F114EB23E4ACA8",
-      "sourceType": "first-party-source",
-      "published": false,
-      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
-      "verification": {
-        "kind": "remote-git",
-        "repository": "https://github.com/Artkights/AI-For-CCZ",
-        "commit": "29efecfedebdb021fb3bfc695fb4efee645c953e",
-        "path": "工具整合包/CCZModStudio/Core/ItemIconMappingService.cs",
-        "sha256": "15C42BDCFFD6EAEF156CB2D366D449603F451A40C99DDD6569F114EB23E4ACA8",
-        "reason": "已从本地Git对象读取固定提交原字节并核对SHA256；CI仅离线检查固定提交元数据。"
-      }
-    },
-    {
-      "id": "src.data-manager64.studio-item-layout",
-      "path": "工具整合包/CCZModStudio/Core/Ccz66ItemLayoutService.cs",
-      "sha256": "C0AB9A7976BA06BC7FD85E516A14EF1323C9ECF226339550E8262261E3EA045A",
-      "sourceType": "first-party-source",
-      "published": false,
-      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
-      "verification": {
-        "kind": "remote-git",
-        "repository": "https://github.com/Artkights/AI-For-CCZ",
-        "commit": "29efecfedebdb021fb3bfc695fb4efee645c953e",
-        "path": "工具整合包/CCZModStudio/Core/Ccz66ItemLayoutService.cs",
-        "sha256": "C0AB9A7976BA06BC7FD85E516A14EF1323C9ECF226339550E8262261E3EA045A",
-        "reason": "已从本地Git对象读取固定提交原字节并核对SHA256；CI仅离线检查固定提交元数据。"
-      }
-    },
-    {
       "id": "src.data-manager64.test-profile-write",
       "path": "data管理器/src/DataManager.Tests/ProfileWriteTests.cs",
       "sha256": "DA40A2A1896A4647C81E336D1723D7839B2C8B1E98754E5866084AD3DCB6F8DE",
@@ -2624,22 +2576,6 @@
         "commit": "08f54f84a87e28c7bc6d0a8181e320533ea602d3",
         "path": "data管理器/src/DataManager.Tests/ProfileWriteTests.cs",
         "sha256": "DA40A2A1896A4647C81E336D1723D7839B2C8B1E98754E5866084AD3DCB6F8DE",
-        "reason": "已从本地Git对象读取固定提交原字节并核对SHA256；CI仅离线检查固定提交元数据。"
-      }
-    },
-    {
-      "id": "src.data-manager64.test-quotes",
-      "path": "data管理器/src/DataManager.Tests/PersonQuoteTests.cs",
-      "sha256": "20113237D68740203BBCD942C6875FFB5F63B257FB77DCFC34DD76EFEEA6B1FF",
-      "sourceType": "first-party-source",
-      "published": false,
-      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁",
-      "verification": {
-        "kind": "remote-git",
-        "repository": "https://github.com/Artkights/CCZ-DataManager",
-        "commit": "cb651cbc335cbef635bffb17f2825deecb111e61",
-        "path": "data管理器/src/DataManager.Tests/PersonQuoteTests.cs",
-        "sha256": "20113237D68740203BBCD942C6875FFB5F63B257FB77DCFC34DD76EFEEA6B1FF",
         "reason": "已从本地Git对象读取固定提交原字节并核对SHA256；CI仅离线检查固定提交元数据。"
       }
     },
@@ -2718,18 +2654,6 @@
         "sha256": "964EBE5ED35B90850EF85C55E3303C54D5EBDA290A688940099C67A2DB913949",
         "reason": "原件匹配SHA256的完整UTF-8文本快照。",
         "normalizedSha256": "964EBE5ED35B90850EF85C55E3303C54D5EBDA290A688940099C67A2DB913949"
-      }
-    },
-    {
-      "id": "src.data-manager64.user-attribute-enums",
-      "path": "sources/data-manager-user-confirmed-enums.md",
-      "sha256": "F7BF7F1D79F23E427B0C808DF1814ACC3B4356C28D085544EC38BA288186550C",
-      "sourceType": "user-confirmation",
-      "published": true,
-      "usedFor": "用户确认的兵种系属性枚举名称；不是逆向或引擎运行时验证证据",
-      "verification": {
-        "kind": "repository-file",
-        "reason": "来源文件保存在本地工作区；本仓库仅记录原始SHA和处置结论，未发布原件。"
       }
     },
     {
@@ -3237,22 +3161,6 @@
         "normalizedSha256": "F87D31D84DDD6DAADF11B7729F1608E1304967E2321717A8F2BA1B5499871C04"
       },
       "originalPathNotation": "../data管理器/验证/引擎扫描性能等价-20261027/summary.json"
-    },
-    {
-      "id": "src.dm.three-base-assignment-tests-20261027",
-      "path": "data管理器/src/DataManager.Tests/ThreeBaseAssignmentTests.cs",
-      "sha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E",
-      "sourceType": "first-party-test-source",
-      "usedFor": "三基底临时副本共享/独立N与完整事务测试",
-      "published": false,
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/06dd4258bc28a171e209.txt",
-        "sha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E",
-        "reason": "原件匹配SHA256的完整UTF-8文本快照。",
-        "normalizedSha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E"
-      },
-      "originalPathNotation": "../data管理器/src/DataManager.Tests/ThreeBaseAssignmentTests.cs"
     },
     {
       "id": "src.dm.ui-input-results-20261027",
@@ -4365,22 +4273,6 @@
         "commit": "15a8984bf59bef82ec466f80e3e2be2386b55572",
         "path": "工具整合包/本地知识库/09-版本与外部资料/godtype-OllyDbg教程与复刻版6.6山贼验证.md",
         "sha256": "C47AE5FA71DCC128BD112B201304106173CAB9BCB0994A2C98D03B3E7C1E0762",
-        "reason": "已从本地Git对象读取固定提交原字节并核对SHA256；CI仅离线检查固定提交元数据。"
-      }
-    },
-    {
-      "id": "src.integration.record-codecs-current",
-      "path": "data管理器/src/DataManager.Core/Binary/RecordCodecs.cs",
-      "sha256": "6C3D5950FBA0A4808D0A78ECC0B1B96D420B500C4B51A70DA1A6C621C754773E",
-      "sourceType": "first-party-source",
-      "published": false,
-      "usedFor": "2026-10-28全文复核原生类型>=26与类别2/3的联合Codec守卫；不据此重述未复核布局",
-      "verification": {
-        "kind": "remote-git",
-        "repository": "https://github.com/Artkights/CCZ-DataManager",
-        "commit": "84eea116ccbf166f82330a35ceacb12e1d51314f",
-        "path": "data管理器/src/DataManager.Core/Binary/RecordCodecs.cs",
-        "sha256": "6C3D5950FBA0A4808D0A78ECC0B1B96D420B500C4B51A70DA1A6C621C754773E",
         "reason": "已从本地Git对象读取固定提交原字节并核对SHA256；CI仅离线检查固定提交元数据。"
       }
     },
@@ -5568,18 +5460,6 @@
       }
     },
     {
-      "id": "src.dm.formulas.sample-65-20261102",
-      "path": "基底/加强版6.5未加密版/Ekd5.exe",
-      "sha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
-      "sourceType": "sample-binary",
-      "usedFor": "公式与常量精确样本身份；不分发游戏EXE",
-      "published": false,
-      "verification": {
-        "kind": "identity-only",
-        "reason": "只登记样本身份与SHA256，复核原始字节需自备完全匹配样本；仓库保留小型静态字段报告。"
-      }
-    },
-    {
       "id": "src.dm.formulas.fields-65-20261102",
       "path": "_tmp/kb-incremental-20261102/formula-fields-65.json",
       "sha256": "8FD71C4594A4AB75F5CB8980E45768353F5334ED92D8A761CDE9EC8F794D4CBB",
@@ -6087,21 +5967,6 @@
       }
     },
     {
-      "id": "src.data-manager.incremental-20261102.exchange-test-runner",
-      "path": "data管理器/src/DataManager.Tests/Program.cs",
-      "sha256": "D91EDD06FE1709180097327D3EAA451491D1D70AC583ADCB33D18E48A6F817BB",
-      "sourceType": "first-party-source",
-      "usedFor": "业务XLSX和地形自定义console runner分派及参数语义",
-      "published": false,
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/8b70abb1f5d7f1345e56.txt",
-        "sha256": "8B70ABB1F5D7F1345E5648F181D31F842DACFC099DC14E93B1685E7EF9D58A77",
-        "normalizedSha256": "8B70ABB1F5D7F1345E5648F181D31F842DACFC099DC14E93B1685E7EF9D58A77",
-        "reason": "2026-11-02 当前文本派生快照；只删除UTF-8 BOM或将本机绝对路径/目录口令替换为占位符，保留结构与测试断言；原字节SHA另在顶层登记。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。 本轮发布快照另归一化LF、移除BOM及行尾空白；语义未改，原字节SHA保留在来源sha256。"
-      }
-    },
-    {
       "id": "src.data-manager.incremental-20261102.image-test-runner",
       "path": "形象管理器/src/ImageManager.Tests/Program.cs",
       "sha256": "2E0DFE81782264E81A311820A465DA518BA3F6B6392C14648BE223BB80121CE6",
@@ -6129,21 +5994,6 @@
         "sha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
         "normalizedSha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
         "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。"
-      }
-    },
-    {
-      "id": "src.data-manager.incremental-20261102.extend-geometry",
-      "path": "data管理器/src/DataManager.Core/Profiles/ProfileAugmentationService.cs",
-      "sha256": "44FC522BB09449C487617CA2CEB177419DDEF30D568DE47E9A2B8EB618643CD7",
-      "sourceType": "first-party-source",
-      "usedFor": "无头定宽拓展表按实际完整记录数确定行数而非JSON默认行数",
-      "published": false,
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/f05d6b73b0efd40ebdfd.txt",
-        "sha256": "F05D6B73B0EFD40EBDFD56978425C55954B69C3326FC9EA4EB94E41DA5F9557A",
-        "normalizedSha256": "F05D6B73B0EFD40EBDFD56978425C55954B69C3326FC9EA4EB94E41DA5F9557A",
-        "reason": "2026-11-02 当前完整UTF-8文本原字节快照，未派生或删节。 源码/文档审阅证据，不代表本轮已执行测试或游戏运行验收。 本轮发布快照另归一化LF、移除BOM及行尾空白；语义未改，原字节SHA保留在来源sha256。"
       }
     },
     {
@@ -6207,21 +6057,6 @@
       }
     },
     {
-      "id": "src.dm.core-current-20261102.extend-service",
-      "path": "data管理器/src/DataManager.Core/Domain/ExtendDataService.cs",
-      "sha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
-      "sourceType": "first-party-source",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/0daa61a08d568d423d06.txt",
-        "sha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
-        "normalizedSha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
       "id": "src.dm.core-current-20261102.extend-reference",
       "path": "data管理器/src/DataManager.Core/Domain/EngineEffectReferenceService.cs",
       "sha256": "254F83DEB66693FFBE065359EA656BFA7329D625DF5C207EE92F0D8B7365A59E",
@@ -6233,36 +6068,6 @@
         "snapshotPath": "sources/evidence/1cf0ba7d0b2849e87264.txt",
         "sha256": "1CF0BA7D0B2849E872643C7FA48602AC69219632139B39F3A9A44274D05231C2",
         "normalizedSha256": "1CF0BA7D0B2849E872643C7FA48602AC69219632139B39F3A9A44274D05231C2",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.table-reader",
-      "path": "data管理器/src/DataManager.Core/Binary/BinaryTableReader.cs",
-      "sha256": "C7CBA4D6C9D34B0005AAC6E5E11FCF1DBDB118C9F767DC96271D13EF36CA2710",
-      "sourceType": "first-party-source",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/c7cba4d6c9d34b0005aa.txt",
-        "sha256": "C7CBA4D6C9D34B0005AAC6E5E11FCF1DBDB118C9F767DC96271D13EF36CA2710",
-        "normalizedSha256": "C7CBA4D6C9D34B0005AAC6E5E11FCF1DBDB118C9F767DC96271D13EF36CA2710",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.augmentation",
-      "path": "data管理器/src/DataManager.Core/Profiles/ProfileAugmentationService.cs",
-      "sha256": "44FC522BB09449C487617CA2CEB177419DDEF30D568DE47E9A2B8EB618643CD7",
-      "sourceType": "first-party-source",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/f05d6b73b0efd40ebdfd.txt",
-        "sha256": "F05D6B73B0EFD40EBDFD56978425C55954B69C3326FC9EA4EB94E41DA5F9557A",
-        "normalizedSha256": "F05D6B73B0EFD40EBDFD56978425C55954B69C3326FC9EA4EB94E41DA5F9557A",
         "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
       }
     },
@@ -6447,36 +6252,6 @@
       }
     },
     {
-      "id": "src.dm.core-current-20261102.profile-64",
-      "path": "data管理器/config/profiles/ccz-6.4.json",
-      "sha256": "7E7143DE7EE29E5DF1293751C9ED818C050C02DAE385981A1A268EE45FAE7366",
-      "sourceType": "first-party-source",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/87c0d3be482e81fc069e.txt",
-        "sha256": "87C0D3BE482E81FC069EB0BECE59BFA1D70E4378C91F78051A91F9F0AF8BBAAA",
-        "normalizedSha256": "87C0D3BE482E81FC069EB0BECE59BFA1D70E4378C91F78051A91F9F0AF8BBAAA",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.profile-65",
-      "path": "data管理器/config/profiles/ccz-6.5.json",
-      "sha256": "8FD880D538BC021D231AA8E8FD601CC3266962CDE59A585C73C07B73F644CD09",
-      "sourceType": "first-party-source",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/8fd880d538bc021d231a.txt",
-        "sha256": "8FD880D538BC021D231AA8E8FD601CC3266962CDE59A585C73C07B73F644CD09",
-        "normalizedSha256": "8FD880D538BC021D231AA8E8FD601CC3266962CDE59A585C73C07B73F644CD09",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
       "id": "src.dm.core-current-20261102.profile-66",
       "path": "data管理器/config/profiles/ccz-6.6.json",
       "sha256": "6AABB1BE5A4657A6933E403CFA187D7D7F68178F80BDC667F6202DDB0B92A1E5",
@@ -6488,21 +6263,6 @@
         "snapshotPath": "sources/evidence/6aabb1be5a4657a6933e.txt",
         "sha256": "6AABB1BE5A4657A6933E403CFA187D7D7F68178F80BDC667F6202DDB0B92A1E5",
         "normalizedSha256": "6AABB1BE5A4657A6933E403CFA187D7D7F68178F80BDC667F6202DDB0B92A1E5",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-894958174b09",
-      "path": "data管理器/文档/6.4洗隋兼容适配.md",
-      "sha256": "13F7D981B0246575AD068B1BF3CB751BC7548BA999785B62993F9462846CBF03",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/2a47e93d6ab534f7748d.txt",
-        "sha256": "2A47E93D6AB534F7748D0DBC5C06DE9C94B5DCA4330D207D866FDDF67C063B28",
-        "normalizedSha256": "2A47E93D6AB534F7748D0DBC5C06DE9C94B5DCA4330D207D866FDDF67C063B28",
         "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
       }
     },
@@ -6522,51 +6282,6 @@
       }
     },
     {
-      "id": "src.dm.core-current-20261102.doc-71165a44d5a7",
-      "path": "data管理器/文档/业务工作簿交换.md",
-      "sha256": "9A9F88CC07ED4448BA7897F42E0E9D8E9F3CC5035444E7DE6CBE14E337155863",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/661113684351d7ab9db5.txt",
-        "sha256": "661113684351D7AB9DB56385767A9BCE6CF6D305E3B53A0903A26C5B216116FD",
-        "normalizedSha256": "661113684351D7AB9DB56385767A9BCE6CF6D305E3B53A0903A26C5B216116FD",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-b69907b927fb",
-      "path": "data管理器/文档/人物R-S形象存档自动同步.md",
-      "sha256": "87F2BE157E52F11280E1739A7D62251A56D8B15556A8B84677C2DDD15B7EC291",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/87f2be157e52f11280e1.txt",
-        "sha256": "87F2BE157E52F11280E1739A7D62251A56D8B15556A8B84677C2DDD15B7EC291",
-        "normalizedSha256": "87F2BE157E52F11280E1739A7D62251A56D8B15556A8B84677C2DDD15B7EC291",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-b58a5df54733",
-      "path": "data管理器/文档/内场景地形编辑.md",
-      "sha256": "4A4D9F9431F750D4DCE22952745B134ED2DA092CFA63C4DC5653038A0F1DEA93",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/4a4d9f9431f750d4dce2.txt",
-        "sha256": "4A4D9F9431F750D4DCE22952745B134ED2DA092CFA63C4DC5653038A0F1DEA93",
-        "normalizedSha256": "4A4D9F9431F750D4DCE22952745B134ED2DA092CFA63C4DC5653038A0F1DEA93",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
       "id": "src.dm.core-current-20261102.doc-b809b51f1178",
       "path": "data管理器/文档/写入约束证据.md",
       "sha256": "F4FD53A7C8035A9C50F03EDEA965E7246E2DB35101A6FC6214485896F6D26475",
@@ -6578,21 +6293,6 @@
         "snapshotPath": "sources/evidence/f4fd53a7c8035a9c50f0.txt",
         "sha256": "F4FD53A7C8035A9C50F03EDEA965E7246E2DB35101A6FC6214485896F6D26475",
         "normalizedSha256": "F4FD53A7C8035A9C50F03EDEA965E7246E2DB35101A6FC6214485896F6D26475",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-c28c8ca77c30",
-      "path": "data管理器/文档/参考图灵活回导.md",
-      "sha256": "499A71FA6967C660A0984A31876093A525532EFA01DA489AF16B2EA0AB1203F6",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/499a71fa6967c660a098.txt",
-        "sha256": "499A71FA6967C660A0984A31876093A525532EFA01DA489AF16B2EA0AB1203F6",
-        "normalizedSha256": "499A71FA6967C660A0984A31876093A525532EFA01DA489AF16B2EA0AB1203F6",
         "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
       }
     },
@@ -6623,21 +6323,6 @@
         "snapshotPath": "sources/evidence/34a1303d305cecee6771.txt",
         "sha256": "34A1303D305CECEE677113F6747E131DE77943DF16D45A98A2F0B65525B08D59",
         "normalizedSha256": "34A1303D305CECEE677113F6747E131DE77943DF16D45A98A2F0B65525B08D59",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-4479b5cf50ed",
-      "path": "data管理器/文档/拓展数据实现与验收.md",
-      "sha256": "43EDBE0C58269097075339488B6EBE99D7610D7C6471E61DE7F152540D8E00F1",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/43edbe0c582690970753.txt",
-        "sha256": "43EDBE0C58269097075339488B6EBE99D7610D7C6471E61DE7F152540D8E00F1",
-        "normalizedSha256": "43EDBE0C58269097075339488B6EBE99D7610D7C6471E61DE7F152540D8E00F1",
         "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
       }
     },
@@ -6713,111 +6398,6 @@
         "snapshotPath": "sources/evidence/e81effd3088f0b3952c6.txt",
         "sha256": "E81EFFD3088F0B3952C6C179FBFADB0FAD21DFD10AA15D367994519E3D18C37E",
         "normalizedSha256": "E81EFFD3088F0B3952C6C179FBFADB0FAD21DFD10AA15D367994519E3D18C37E",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-dc245c04aa64",
-      "path": "data管理器/知识库/01-核心引擎/人物槽与兵种槽-特效号读取规则.md",
-      "sha256": "C19487FA5C9E9E8ED9D86636EA2162250416DD77982160F7DA8C71D0F1BC2BBE",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/c19487fa5c9e9e8ed9d8.txt",
-        "sha256": "C19487FA5C9E9E8ED9D86636EA2162250416DD77982160F7DA8C71D0F1BC2BBE",
-        "normalizedSha256": "C19487FA5C9E9E8ED9D86636EA2162250416DD77982160F7DA8C71D0F1BC2BBE",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-01967bcbf677",
-      "path": "data管理器/知识库/01-核心引擎/公式设定页-读写与语义验证.md",
-      "sha256": "E42CCBAC6BAFB2023E9978BF1536C140012111085DA19F53C2AD654A5D35B640",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/e42ccbac6bafb2023e99.txt",
-        "sha256": "E42CCBAC6BAFB2023E9978BF1536C140012111085DA19F53C2AD654A5D35B640",
-        "normalizedSha256": "E42CCBAC6BAFB2023E9978BF1536C140012111085DA19F53C2AD654A5D35B640",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-522689750d9c",
-      "path": "data管理器/知识库/01-核心引擎/引擎特效复合绑定与三子页分配池.md",
-      "sha256": "4106A6654D3D90575ED027DCBA25E2603A00FA65A976BD17CD5ED0F691A32757",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/7b80accaf306cbf0c8be.txt",
-        "sha256": "7B80ACCAF306CBF0C8BEB02F7A9A00EE6CEB7342A219ACCF23B7F66ED0AD4BA2",
-        "normalizedSha256": "7B80ACCAF306CBF0C8BEB02F7A9A00EE6CEB7342A219ACCF23B7F66ED0AD4BA2",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-184ccc8418d2",
-      "path": "data管理器/知识库/01-核心引擎/战斗公式-三基底公式与常量.md",
-      "sha256": "01543EFEFA27C45F492EC2BF16B1B8FBCF5FFA7CA8FE17CA94745743E33FBCE7",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/7197e6209e500889e8c7.txt",
-        "sha256": "7197E6209E500889E8C74B3B68178055532F1A6ECD58684F934544BC096355FB",
-        "normalizedSha256": "7197E6209E500889E8C74B3B68178055532F1A6ECD58684F934544BC096355FB",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-898d0f569cea",
-      "path": "data管理器/知识库/01-核心引擎/活动表版本差异与字段写入契约.md",
-      "sha256": "9D2C165EDEEFEEC096DC4841A3E85A997002C237BE39DF99DB46991010006198",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/9d2c165edeefeec096dc.txt",
-        "sha256": "9D2C165EDEEFEEC096DC4841A3E85A997002C237BE39DF99DB46991010006198",
-        "normalizedSha256": "9D2C165EDEEFEEC096DC4841A3E85A997002C237BE39DF99DB46991010006198",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-f5521a8e2a16",
-      "path": "data管理器/知识库/01-核心引擎/特效常量-三基底证据与相对定位.md",
-      "sha256": "C8E381593902871FF91617A8482A58415B2F3A317F2DB0097BA476845758BF85",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/241930a84733f43b9e00.txt",
-        "sha256": "241930A84733F43B9E003DAF4A42FC0ED8091DCAB2AABA13281486B0E512A529",
-        "normalizedSha256": "241930A84733F43B9E003DAF4A42FC0ED8091DCAB2AABA13281486B0E512A529",
-        "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
-      }
-    },
-    {
-      "id": "src.dm.core-current-20261102.doc-28003bccc3f1",
-      "path": "data管理器/知识库/01-核心引擎/疾风攻击公式与常量-特效值区分.md",
-      "sha256": "93C08EAA861DB5586EFC3E24AACD1817C43A40AC3996FEE17E4091A52AF2871A",
-      "sourceType": "technical-document",
-      "published": true,
-      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。",
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/93c08eaa861db5586efc.txt",
-        "sha256": "93C08EAA861DB5586EFC3E24AACD1817C43A40AC3996FEE17E4091A52AF2871A",
-        "normalizedSha256": "93C08EAA861DB5586EFC3E24AACD1817C43A40AC3996FEE17E4091A52AF2871A",
         "reason": "从当前输入工作区读取原字节并核对原始SHA；快照仅去除UTF-8 BOM、规范LF并移除本机绝对路径。快照哈希独立于原件，不把文本源码快照当成游戏运行证据。"
       }
     },
@@ -6984,21 +6564,6 @@
       }
     },
     {
-      "id": "src.dm.current-assignment-layout-tests-20261102",
-      "path": "data管理器/src/DataManager.Tests/EffectAssignmentLayoutTests.cs",
-      "sha256": "974440C7CB7825ECD83F74234FF08F159BF8D4FAE960371C6E17ACFA9F695BB5",
-      "sourceType": "first-party-source",
-      "usedFor": "核对活动表测试入口需要完整repository-root及固定基底布局",
-      "published": false,
-      "verification": {
-        "kind": "repository-snapshot",
-        "snapshotPath": "sources/evidence/974440c7cb7825ecd83f.txt",
-        "sha256": "974440C7CB7825ECD83F74234FF08F159BF8D4FAE960371C6E17ACFA9F695BB5",
-        "normalizedSha256": "974440C7CB7825ECD83F74234FF08F159BF8D4FAE960371C6E17ACFA9F695BB5",
-        "reason": "完整源码文本快照；仅移除UTF-8 BOM并归一化LF，原字节SHA另保留。"
-      }
-    },
-    {
       "id": "src.dm.current-three-base-assignment-tests-20261102",
       "path": "data管理器/src/DataManager.Tests/ThreeBaseAssignmentTests.cs",
       "sha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E",
@@ -7011,6 +6576,1968 @@
         "sha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E",
         "normalizedSha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E",
         "reason": "完整源码文本快照；仅移除UTF-8 BOM并归一化LF，原字节SHA另保留。"
+      }
+    },
+    {
+      "id": "src.ccz65.3890.ekd5",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+      "sourceType": "game-binary-identity",
+      "usedFor": "6.5 未加密样本的静态反汇编与代码段校验",
+      "published": false,
+      "verification": {
+        "kind": "external-local",
+        "reason": "游戏基底不进入仓库，仅登记原始 SHA-256 与尺寸；本轮分析时工作副本已被工具保存改动，但 0x400..0xA2C00 代码段与原始样本零差异。"
+      }
+    },
+    {
+      "id": "src.ccz65.3890.datae5",
+      "path": "基底/加强版6.5未加密版/Data.e5",
+      "sha256": "638744E07B39A12DB2D807892D1FBC7EA69F7E43CAD2771DAA9003574B92B846",
+      "sourceType": "game-resource-identity",
+      "usedFor": "DATA.E5 分块目录与记录布局校验",
+      "published": false,
+      "verification": {
+        "kind": "external-local",
+        "reason": "游戏资源不进入仓库，仅登记原始 SHA-256 与 61379 字节尺寸。"
+      }
+    },
+    {
+      "id": "src.local.round101.report",
+      "path": "data管理器/验证/2026-11-08-调用链深挖/分析-第一百零一轮.md",
+      "sha256": "0883657864B65B763B8D28FAF0CCA505E677A761DD9FE97783A96E4487AB9D12",
+      "sourceType": "local-verification-report",
+      "usedFor": "Q1–Q10 闭合证据与本轮验证记录",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/round101-attack-range-q1-q10.md",
+        "sha256": "0883657864B65B763B8D28FAF0CCA505E677A761DD9FE97783A96E4487AB9D12",
+        "reason": "本报告完整快照，内容与本地原文件逐字节一致。",
+        "normalizedSha256": "0883657864B65B763B8D28FAF0CCA505E677A761DD9FE97783A96E4487AB9D12"
+      }
+    },
+    {
+      "id": "src.local.round101.scananchors",
+      "path": "data管理器/.tmp/scananchors.py",
+      "sha256": "E2FBD7D50D17F58748AE993DAFCF9D9BBF43E3CB625CEDBD77474A7D281427F9",
+      "sourceType": "local-probe-script",
+      "usedFor": "函数锚点引用扫描方法复现",
+      "published": false,
+      "verification": {
+        "kind": "repository-snapshot",
+        "snapshotPath": "sources/evidence/scananchors-round101.py",
+        "sha256": "E2FBD7D50D17F58748AE993DAFCF9D9BBF43E3CB625CEDBD77474A7D281427F9",
+        "reason": "探针脚本完整快照；运行需同目录 disasm.py 与本地基底，仓库只保留方法代码。",
+        "normalizedSha256": "E2FBD7D50D17F58748AE993DAFCF9D9BBF43E3CB625CEDBD77474A7D281427F9"
+      }
+    },
+    {
+      "id": "src.research.strategy-attribute-verification-20261111",
+      "path": "sources/evidence/strategy-attribute-verification-20261111.json",
+      "sha256": "A8EF53093818E16C7E3365D5EA5E4C84B0C1CC6BE5F92F73BAE9D16D5E88E69F",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "三基底策略记录字段、144字节策略属性子表、运行时68行边界与 data 管理器/知识库语义差异的静态证据",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A8EF53093818E16C7E3365D5EA5E4C84B0C1CC6BE5F92F73BAE9D16D5E88E69F"
+      }
+    },
+    {
+      "id": "src.research.strategy-damage-hit-resolution-20261112",
+      "path": "sources/evidence/strategy-damage-hit-resolution-20261112.json",
+      "sha256": "E59485F08621E740506D61BA922952F3692AD248C9FCF0DA2669704EDA32AA7D",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "三基底是否伤血与命中模式的全量反汇编：位表全部直接引用、门控例外、命中模式分派、能力曲线、修正与版本差异",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "E59485F08621E740506D61BA922952F3692AD248C9FCF0DA2669704EDA32AA7D"
+      }
+    },
+    {
+      "id": "src.research.engine-constant-census-20261112",
+      "path": "sources/evidence/engine-constant-census-20261112.json",
+      "sha256": "AFB116A370FBBA359E97DCA9254FDE8A5C8E378A9A78AC924AA126D30AF581A4",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "三基底全部可执行节的函数级常量/数据引用普查、EXE 内嵌通用表锚点与后续解析工作清单",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "AFB116A370FBBA359E97DCA9254FDE8A5C8E378A9A78AC924AA126D30AF581A4"
+      }
+    },
+    {
+      "id": "src.research.engine-counter-table-20261112",
+      "path": "sources/evidence/engine-counter-table-20261112.json",
+      "sha256": "657971899AEDAC863B400778EFD3ED015415C430EFB198ED69A2875CF530FB74",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "兵种相克 40×40 百分比表、兵种 ID→兵种系映射、单位记录步长与物理伤害乘算的全量反汇编",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "657971899AEDAC863B400778EFD3ED015415C430EFB198ED69A2875CF530FB74"
+      }
+    },
+    {
+      "id": "src.research.engine-ai-terrain-20261112",
+      "path": "sources/evidence/engine-ai-terrain-20261112.json",
+      "sha256": "651522468A11088F603C8CD38F7A5D49CE32ADBF8A111B1AD84C87719EEBAE69",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "策略 AI 战斗/训练字节的 16 分支跳转表、各分支评分权重与阈值，以及策略地形可用性位掩码表",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "651522468A11088F603C8CD38F7A5D49CE32ADBF8A111B1AD84C87719EEBAE69"
+      }
+    },
+    {
+      "id": "src.research.engine-shop-growth-20261112",
+      "path": "sources/evidence/engine-shop-growth-20261112.json",
+      "sha256": "969A4A3036A1FAA539916060F489F38F0DD2F21C7877F5446F17FAD549DC230A",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "商店 Data.e5 块 2 的 127×40 运行时解码、16 槽列表构造、物品可用性判定，以及兵种成长 80×35 表的装备适性字节",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "969A4A3036A1FAA539916060F489F38F0DD2F21C7877F5446F17FAD549DC230A"
+      }
+    },
+    {
+      "id": "src.research.engine-job-attribute-matrix-20261112",
+      "path": "sources/evidence/engine-job-attribute-matrix-20261112.json",
+      "sha256": "A1F01CA7F8BF258E1952474B8292ED6D1A7550CF02B5D123C07C6DFB3213008B",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "兵种属性矩阵 8×40 的逐行分布、消费点，以及第 6 行 90..130 百分比在策略伤害中的乘算",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A1F01CA7F8BF258E1952474B8292ED6D1A7550CF02B5D123C07C6DFB3213008B"
+      }
+    },
+    {
+      "id": "src.research.engine-job-penetration-20261112",
+      "path": "sources/evidence/engine-job-penetration-20261112.json",
+      "sha256": "F3D9D33B642A2350B76DF2BB38D9552B7743C6019A0152C1425D0031817C92D1",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "detailed-job-penetration 80 字节表、0x40782D 守卫条件与 0x406610 兵种 ID 取值",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "F3D9D33B642A2350B76DF2BB38D9552B7743C6019A0152C1425D0031817C92D1"
+      }
+    },
+    {
+      "id": "src.research.engine-physical-damage-chain-20261112",
+      "path": "sources/evidence/engine-physical-damage-chain-20261112.json",
+      "sha256": "5ED3EE1CCC0284F0BC7787998C009F26B2831792F26580D9B47F29D9B3BF74C4",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "物理伤害主链 0x43BC62 的等级+25、能力差/2、保底 1、5%/12 特殊分支与 6.6 差异",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "5ED3EE1CCC0284F0BC7787998C009F26B2831792F26580D9B47F29D9B3BF74C4"
+      }
+    },
+    {
+      "id": "src.research.engine-movement-terrain-20261112",
+      "path": "sources/evidence/engine-movement-terrain-20261112.json",
+      "sha256": "A7025AA2A9E9DDE4B0EDE9DA64B709F358FDFC82032B81C049A1C88568B50CED",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "Data.e5 块 4 的 40×60 移动消耗/地形适应表、运行时访问器、不可通行哨兵与地图宽高边界",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A7025AA2A9E9DDE4B0EDE9DA64B709F358FDFC82032B81C049A1C88568B50CED"
+      }
+    },
+    {
+      "id": "src.research.engine-turn-weather-state-20261112",
+      "path": "sources/evidence/engine-turn-weather-state-20261112.json",
+      "sha256": "8733FC718E797CF0DF04A3EE62D826646FEEA267C5DD10D4872761D7951FEB45",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "战场状态 0x4B3D08 的当前回合/回合上限/当前天气/天气类别，以及回合测试、回合上限、行动方、天气指令与 5×6 转换表",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "8733FC718E797CF0DF04A3EE62D826646FEEA267C5DD10D4872761D7951FEB45"
+      }
+    },
+    {
+      "id": "src.research.engine-global-caps-20261112",
+      "path": "sources/evidence/engine-global-caps-20261112.json",
+      "sha256": "D359B2FD4088884C64DE4AC02635D331C87B64D3EAB571CE09A165A4E9989262",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "引擎全局容量、循环上限与 0xFF/0x8000/0x80000000/0xFFFF/0x50/0xFA/0x3FF 哨兵契约的三基底汇总",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "D359B2FD4088884C64DE4AC02635D331C87B64D3EAB571CE09A165A4E9989262"
+      }
+    },
+    {
+      "id": "src.research.engine-battle-script-actions-20261112",
+      "path": "sources/evidence/engine-battle-script-actions-20261112.json",
+      "sha256": "3741E0509FA9B04BA205B9FA124864087E5EBFF9A1D29A45F59DA8FB5160475B",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "剧本战斗指令族 0x3F/0x40/0x51/0x56/0x57/0x5D 的处理器、250 单位行动权重置与 6/0x1E 掩码常量",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "3741E0509FA9B04BA205B9FA124864087E5EBFF9A1D29A45F59DA8FB5160475B"
+      }
+    },
+    {
+      "id": "src.research.engine-strategy-direction-weather-20261112",
+      "path": "sources/evidence/engine-strategy-direction-weather-20261112.json",
+      "sha256": "8503525AF4E32BE462F0ECFE9BAA3E92EA417C218C5ADAAFE5AB49688F33DE60",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "策略伤害 0x43C15E 段的方向/天气/地形百分比修正：+25/+40、地形码 2/0x17、天气 ID>=2、兵种系 0x1E/7",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "8503525AF4E32BE462F0ECFE9BAA3E92EA417C218C5ADAAFE5AB49688F33DE60"
+      }
+    },
+    {
+      "id": "src.research.engine-hit-height-modifier-20261112",
+      "path": "sources/evidence/engine-hit-height-modifier-20261112.json",
+      "sha256": "E543D6678D82BC8A6098EF039DFD6701378664182435001CBDE3B494AE612925",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "命中率 0x408DB1/0x408EEE 的坐标与朝向 class 0/1/2、+5/+10 百分比、+5% 全局开关、100 上限与 0x410EDB 下限",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "E543D6678D82BC8A6098EF039DFD6701378664182435001CBDE3B494AE612925"
+      }
+    },
+    {
+      "id": "src.research.engine-formula-site-audit-20261112",
+      "path": "sources/evidence/engine-formula-site-audit-20261112.json",
+      "sha256": "D47E2B8F3129ABA8133565493F64CC60745B2A9D08237D7D7C6CDDBA769AF4EB",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "160 个公式常量/464 个站点/91 个精确站点契约的三基底同址字节审计与差异清单",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "D47E2B8F3129ABA8133565493F64CC60745B2A9D08237D7D7C6CDDBA769AF4EB"
+      }
+    },
+    {
+      "id": "src.research.engine-equipment-growth-20261112",
+      "path": "sources/evidence/engine-equipment-growth-20261112.json",
+      "sha256": "E0B28ABAAB716FB0D9BD060FCA7CB9DF2B13FF76C0D021D7A0EB5B88074E6443",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "装备升级经验阈值与等级上限的三基底同址立即数：普通 100/150、特殊 200、上限 5/9/15",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "E0B28ABAAB716FB0D9BD060FCA7CB9DF2B13FF76C0D021D7A0EB5B88074E6443"
+      }
+    },
+    {
+      "id": "src.research.engine-hit-retry-cross-base-20261112",
+      "path": "sources/evidence/engine-hit-retry-cross-base-20261112.json",
+      "sha256": "8F5F0B003C1D6A4A319FF0F1E394DD71F99D9912970FACC8FFEFD3B06B5B61F1",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "命中重试机制三基底差异：6.4/6.5 的 2 次/85/10 循环与 6.6 的 0xFB2/0x4B3D18 门控",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "8F5F0B003C1D6A4A319FF0F1E394DD71F99D9912970FACC8FFEFD3B06B5B61F1"
+      }
+    },
+    {
+      "id": "src.research.engine-char-exp-cross-base-20261112",
+      "path": "sources/evidence/engine-char-exp-cross-base-20261112.json",
+      "sha256": "264411DAE051B1694415926FCDC6DB4589D936B291FDE826E5568BF3281B9662",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "角色经验结算 0x4088CD 的等级/阈值三基底对照：80/150、60/分段、99/250",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "264411DAE051B1694415926FCDC6DB4589D936B291FDE826E5568BF3281B9662"
+      }
+    },
+    {
+      "id": "src.research.engine-personal-exp-cross-base-20261112",
+      "path": "sources/evidence/engine-personal-exp-cross-base-20261112.json",
+      "sha256": "0949A72B5F9115261249647CA264A1C4E74D1EECE110717527FC1180F8A0C5EF",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "个人经验 0x4037A3 的 2×等级差+6、-1..47 钳位、+48、64/(差+2) 三基底一致性",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "0949A72B5F9115261249647CA264A1C4E74D1EECE110717527FC1180F8A0C5EF"
+      }
+    },
+    {
+      "id": "src.research.engine-weapon-exp-cross-base-20261112",
+      "path": "sources/evidence/engine-weapon-exp-cross-base-20261112.json",
+      "sha256": "2BF9E5DCE41460005FF25C7503975B0AC4D3E79DE809B0C27E65B8CBEFBE7354",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "武器经验基础值/无伤害路径三基底对照：3/2/3 与 2/2/1，伤害比较与 ctx+0x604 修正",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "2BF9E5DCE41460005FF25C7503975B0AC4D3E79DE809B0C27E65B8CBEFBE7354"
+      }
+    },
+    {
+      "id": "src.research.engine-armor-exp-cross-base-20261112",
+      "path": "sources/evidence/engine-armor-exp-cross-base-20261112.json",
+      "sha256": "A8E9C6A96869FB02D86017DDA1CABD873D66CA526025F3002F964791C00A64FE",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "防具经验基础值/无伤害扣减三基底对照：3/3/4 与 1/2/3",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A8E9C6A96869FB02D86017DDA1CABD873D66CA526025F3002F964791C00A64FE"
+      }
+    },
+    {
+      "id": "src.research.engine-global-mode-flags-20261112",
+      "path": "sources/evidence/engine-global-mode-flags-20261112.json",
+      "sha256": "16E4A948121CE56A957AB014DA41CC822F2746ABD6F322E3219F38376C16CDD4",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x502000+0xFB2*4=0x505EC8 的地址解析，6.6 命中三条件门控与 0x505EC8/0x4B3D18 的 6.5 引用",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "16E4A948121CE56A957AB014DA41CC822F2746ABD6F322E3219F38376C16CDD4"
+      }
+    },
+    {
+      "id": "src.research.engine-grid-bound-correction-20261112",
+      "path": "sources/evidence/engine-grid-bound-correction-20261112.json",
+      "sha256": "D1C479394DC3E73321FA4C1B326CA1BDB0B7512AC27BAAEC929DF1500C4911EA",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x4B422C 网格边界字更正：0x0104/0x0105 的保存/恢复写入，否定“地图宽高”初判",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "D1C479394DC3E73321FA4C1B326CA1BDB0B7512AC27BAAEC929DF1500C4911EA"
+      }
+    },
+    {
+      "id": "src.research.engine-ai-damage-scoring-20261112",
+      "path": "sources/evidence/engine-ai-damage-scoring-20261112.json",
+      "sha256": "B83F41C83421B445CB5E17B5C66DF0B40D534094559F2B181CC0E9A55EE7DD31",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "AI 分支 0/1/5 的 damage*100/HP 评分、100 累加/覆盖、策略 0x44 追加与 0x14..0x24 特判",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "B83F41C83421B445CB5E17B5C66DF0B40D534094559F2B181CC0E9A55EE7DD31"
+      }
+    },
+    {
+      "id": "src.research.engine-ai-branch-346-scoring-20261112",
+      "path": "sources/evidence/engine-ai-branch-346-scoring-20261112.json",
+      "sha256": "1A80AF8450EE0D85AD9137EE3D57343E82DC4AE60D3EA29F6B33C74FD61866A2",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "AI 分支 3/4/6 的 +20/+26/+25/+7 权重与 5/30/35/60/80 阈值",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "1A80AF8450EE0D85AD9137EE3D57343E82DC4AE60D3EA29F6B33C74FD61866A2"
+      }
+    },
+    {
+      "id": "src.research.engine-ai-branch-712-scoring-20261112",
+      "path": "sources/evidence/engine-ai-branch-712-scoring-20261112.json",
+      "sha256": "16A1CF3FEDFD03340234126420A63E409897754374FEA310F4453EA721C36AC4",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "AI 分支 7/8/9/10/11/12 的 +50/+6/+5/+15 权重与策略/兵种特判",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "16A1CF3FEDFD03340234126420A63E409897754374FEA310F4453EA721C36AC4"
+      }
+    },
+    {
+      "id": "src.research.engine-ai-branch-2-13-15-20261112",
+      "path": "sources/evidence/engine-ai-branch-2-13-15-20261112.json",
+      "sha256": "24E118C7AAD0CCA7DC228B8D728816802F50B2B9B809A273D78F773D49254B05",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "AI 剩余分支 2/13/14/15 的 +100/+0/+10 权重与状态阈值 3",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "24E118C7AAD0CCA7DC228B8D728816802F50B2B9B809A273D78F773D49254B05"
+      }
+    },
+    {
+      "id": "src.research.engine-item-price-boundary-20261112",
+      "path": "sources/evidence/engine-item-price-boundary-20261112.json",
+      "sha256": "FE96157D7578A449CEBEE59A987BFF8039A4FAADC2DBBE651E0CBC3430CF50E8",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "商店价格字段 item+0x13 的消费边界负结果：仅 0x4010EE 记录重排，无价格计算",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "FE96157D7578A449CEBEE59A987BFF8039A4FAADC2DBBE651E0CBC3430CF50E8"
+      }
+    },
+    {
+      "id": "src.research.engine-ai-cross-base-audit-20261112",
+      "path": "sources/evidence/engine-ai-cross-base-audit-20261112.json",
+      "sha256": "DE2A472E07D78CE414B571D3D34F4A98B462C1827A074C3A084CBEA6A0053CF5",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "策略 AI 0x43A140 跳转表三基底一致与 12 个处理体前 64 字节哈希对照",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "DE2A472E07D78CE414B571D3D34F4A98B462C1827A074C3A084CBEA6A0053CF5"
+      }
+    },
+    {
+      "id": "src.research.engine-character-accessors-20261112",
+      "path": "sources/evidence/engine-character-accessors-20261112.json",
+      "sha256": "32A2AD37C5189C5A6DC70BBE5AF5B0FA1CE9D5F1AC0DDBA139B3B1B5EC7E3847",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "运行时人物记录 1024×72 的 6 个访问器与 +0x2B/+0x2C/+0x2D/+0x2E 装备槽布局，三基底一致",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "32A2AD37C5189C5A6DC70BBE5AF5B0FA1CE9D5F1AC0DDBA139B3B1B5EC7E3847"
+      }
+    },
+    {
+      "id": "src.research.engine-equipment-slot-bound-20261112",
+      "path": "sources/evidence/engine-equipment-slot-bound-20261112.json",
+      "sha256": "E881BCED4F373A04FAC4C07657A74C762AE6396360472E7CD74F6A59AC57CD7C",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "装备槽数量 3、slot*3 布局与 7 处 slot<3 上界比较",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "E881BCED4F373A04FAC4C07657A74C762AE6396360472E7CD74F6A59AC57CD7C"
+      }
+    },
+    {
+      "id": "src.research.engine-script-handler-capacity-20261112",
+      "path": "sources/evidence/engine-script-handler-capacity-20261112.json",
+      "sha256": "79E9301E87C023E40DC10FB9D282D9460C5E450B3746293917372A618613C0DA",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "剧本处理表 0x410A38 的 126 项容量、index=opcode-2、0x4D0000 空实现区间与 6.6 新增 0x7A/0x7B",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "79E9301E87C023E40DC10FB9D282D9460C5E450B3746293917372A618613C0DA"
+      }
+    },
+    {
+      "id": "src.research.engine-item-type-mapping-20261112",
+      "path": "sources/evidence/engine-item-type-mapping-20261112.json",
+      "sha256": "BFD0FFFB1CFAEAFCBAC3368390A0A5B9886B07A0CA7C1D211E3116745F05B68B",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "物品类型分类 0x40B444 与子类型映射 0x40B460 的 20/26/11/2 常量，三基底一致",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "BFD0FFFB1CFAEAFCBAC3368390A0A5B9886B07A0CA7C1D211E3116745F05B68B"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-20261112.json",
+      "sha256": "B8136C78C499F2C227A2F92BB03B5935510AD5235A3B752832C83692B90C86DE",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "第 1–32 轮通用常量覆盖台账：22 resolved/4 partial/1 unresolved 与剩余缺口",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "B8136C78C499F2C227A2F92BB03B5935510AD5235A3B752832C83692B90C86DE"
+      }
+    },
+    {
+      "id": "src.research.engine-item-record-normalization-20261112",
+      "path": "sources/evidence/engine-item-record-normalization-20261112.json",
+      "sha256": "B0A330CB6EA4B61BE4C0045A39014B364C346CBE37994A0DC47686D8F2DCC659",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "物品记录装载后的 0x12..0x14 旋转与 6.5/6.6 装载目标、循环上界差异",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "B0A330CB6EA4B61BE4C0045A39014B364C346CBE37994A0DC47686D8F2DCC659"
+      }
+    },
+    {
+      "id": "src.research.engine-slot-type-candidate-20261112",
+      "path": "sources/evidence/engine-slot-type-candidate-20261112.json",
+      "sha256": "7BFD9817A477C64AFA83E9116B7E207C38F483C0265D2182ECB25684C87D0C67",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "装备槽 3 与物品类型阈值 20/26 的候选对应：slot0<20、slot1 20..25、slot2>=26",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "7BFD9817A477C64AFA83E9116B7E207C38F483C0265D2182ECB25684C87D0C67"
+      }
+    },
+    {
+      "id": "src.research.engine-money-global-20261112",
+      "path": "sources/evidence/engine-money-global-20261112.json",
+      "sha256": "A6CDE3E91EACA8D7181CA85FB677A613EF918926A0DB2358735CDAA7417D0F8F",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "金钱全局 0x4B077C：0x406C00 加钱封顶 0xF423F、0x423820 价格检查、0x414E92/0x43C00F 扣款点",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A6CDE3E91EACA8D7181CA85FB677A613EF918926A0DB2358735CDAA7417D0F8F"
+      }
+    },
+    {
+      "id": "src.research.engine-payment-chain-20261112",
+      "path": "sources/evidence/engine-payment-chain-20261112.json",
+      "sha256": "DF47C2E54BE19FB129E6D30D86F48FEE4C5476F98D2057C16B41246A7F8F29F3",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "统一支付链：0x4237F9 价格、0x423820 资金检查、0x43BFD4 支付确认、0x474E0E/0x423842 练武菜单、0x421278 槽位消耗与 6.6 重定位",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "DF47C2E54BE19FB129E6D30D86F48FEE4C5476F98D2057C16B41246A7F8F29F3"
+      }
+    },
+    {
+      "id": "src.research.engine-battle-mode-byte-20261112",
+      "path": "sources/evidence/engine-battle-mode-byte-20261112.json",
+      "sha256": "EEC6727B42D072725076A4790F226B37057BDA5B74972BAFCD258434C23EEE8E",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "战场模式字节 0x4B3D18 的读取点、0x48E8C2 移动力覆盖写入/复位/读取与三基底版本差异",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "EEC6727B42D072725076A4790F226B37057BDA5B74972BAFCD258434C23EEE8E"
+      }
+    },
+    {
+      "id": "src.research.engine-crit-combo-mode-20261112",
+      "path": "sources/evidence/engine-crit-combo-mode-20261112.json",
+      "sha256": "A11855C9B35FDD0331B59BA60AEFB1158C14DEE6CB78A05027A2FAB4598C58DD",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "暴击/连击模式 0x505EC8、初值 0x505EC4、暴击值数组 0x511E40（6.6:0x4930C8）及三基底引用差异",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A11855C9B35FDD0331B59BA60AEFB1158C14DEE6CB78A05027A2FAB4598C58DD"
+      }
+    },
+    {
+      "id": "src.research.engine-save-load-constants-20261112",
+      "path": "sources/evidence/engine-save-load-constants-20261112.json",
+      "sha256": "FDA805E9C33A609B2622007D33024AFB8C88A2906B3007A5966093404F4CB260",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "存档/读档槽位编号、SV 文件命名、页全局 0x4CE78F/0x500ACF 与三基底差异",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "FDA805E9C33A609B2622007D33024AFB8C88A2906B3007A5966093404F4CB260"
+      }
+    },
+    {
+      "id": "src.research.engine-temp-attribute-block-20261112",
+      "path": "sources/evidence/engine-temp-attribute-block-20261112.json",
+      "sha256": "61CA860CC6653CAE5BD85D87924FBC10255826D614619F6713F91EA5119FA665",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "单位 +0x18 六槽临时属性块：0/3/6 三档、过渡帧、增减/写入/清理/计数与 AI 分支14/15",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "61CA860CC6653CAE5BD85D87924FBC10255826D614619F6713F91EA5119FA665"
+      }
+    },
+    {
+      "id": "src.research.engine-grid-dimension-pair-20261112",
+      "path": "sources/evidence/engine-grid-dimension-pair-20261112.json",
+      "sha256": "4923F465BBB81A6FEBA53C300F53F090B7369B9D9A610C39748ABE6EA40BE8C5",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "全局二维网格尺寸字 0x4B422C/0x4B422D：索引公式、边界检查、装载器与 4x1/5x1 写入点",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "4923F465BBB81A6FEBA53C300F53F090B7369B9D9A610C39748ABE6EA40BE8C5"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v3-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v3-20261112.json",
+      "sha256": "9BF3EAD9DFA1D2D5436C952ADC5021F67FFEC0B09C3494B42351F3C7AC360C19",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "覆盖台账 v3：第1–42轮域状态重算（26 resolved/5 partial/3 unresolved）与剩余缺口",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "9BF3EAD9DFA1D2D5436C952ADC5021F67FFEC0B09C3494B42351F3C7AC360C19"
+      }
+    },
+    {
+      "id": "src.research.engine-66-handler-7c-7d-20261112",
+      "path": "sources/evidence/engine-66-handler-7c-7d-20261112.json",
+      "sha256": "298DCAC2CD5598D37394CE45DD7CE1A5984993215362A6DA624C400B5AE5E8F0",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "脚本处理体 0x7A/0x7B 与 6.6 新增 0x7C/0x7D 的入口、子表与常量；更正原 0x7A/0x7B 偏移 2 的记录",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "298DCAC2CD5598D37394CE45DD7CE1A5984993215362A6DA624C400B5AE5E8F0"
+      }
+    },
+    {
+      "id": "src.research.engine-physical-range-correction-20261112",
+      "path": "sources/evidence/engine-physical-range-correction-20261112.json",
+      "sha256": "820BABF7649507D1C5AF0D2EFF437E0864266BA8CEC2D139FA5C0F88A550C4D0",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "物理伤害距离/范围修正 0x4E6000 及 0x4E0000/0x4E008F 距离判定与三基底差异",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "820BABF7649507D1C5AF0D2EFF437E0864266BA8CEC2D139FA5C0F88A550C4D0"
+      }
+    },
+    {
+      "id": "src.research.engine-physical-level-table-20261112",
+      "path": "sources/evidence/engine-physical-level-table-20261112.json",
+      "sha256": "2A3D6ACE2584EEF5962ABE742BF3D25D72332C3C91FADA92E2C4C34AD0C4A2C1",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "物理伤害等级差百分比表 0x4D1A80、随机浮动 0x413272 与 6.6 表首差异",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "2A3D6ACE2584EEF5962ABE742BF3D25D72332C3C91FADA92E2C4C34AD0C4A2C1"
+      }
+    },
+    {
+      "id": "src.research.engine-damage-apply-mode-20261112",
+      "path": "sources/evidence/engine-damage-apply-mode-20261112.json",
+      "sha256": "99AEAD8A167C64996DE37495A3CFDFC1D3DE5EC81A875F7E667D4473B9D3D3FC",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "伤害落点 0x411072 的 40% 加成、0x500E9A/0x500E9B 战斗模式字节与三基底差异",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "99AEAD8A167C64996DE37495A3CFDFC1D3DE5EC81A875F7E667D4473B9D3D3FC"
+      }
+    },
+    {
+      "id": "src.research.engine-unit-status-bitfield-20261112",
+      "path": "sources/evidence/engine-unit-status-bitfield-20261112.json",
+      "sha256": "4B47F87205566BF37D94779FCF1AED88C50C1A4A965ABB84E2A1E21CB5482C77",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "unit+0x1E 四位状态组、unit+0x10 部署字段与 0x411072 的 40% 伤害条件",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "4B47F87205566BF37D94779FCF1AED88C50C1A4A965ABB84E2A1E21CB5482C77"
+      }
+    },
+    {
+      "id": "src.research.engine-money-delta-20261112",
+      "path": "sources/evidence/engine-money-delta-20261112.json",
+      "sha256": "CF0C8D81C37F79D2A451100A3B31F3EDCB0C03B12A9049E20E6AC6ECAD5866F2",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x48E8BD 待结算金额累加器、0x406C00 加/扣钱分支与清零点",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "CF0C8D81C37F79D2A451100A3B31F3EDCB0C03B12A9049E20E6AC6ECAD5866F2"
+      }
+    },
+    {
+      "id": "src.research.engine-unit-slot-arrays-20261112",
+      "path": "sources/evidence/engine-unit-slot-arrays-20261112.json",
+      "sha256": "517D0D438737E70C5F5BDEFB341D58BEBA5034CEAEFFC1D65637A8FFAB1F1AFB",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "单位槽位数组 +0x84/+0x254/+0x430 与 0x48E8BD 金钱/HP 联动",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "517D0D438737E70C5F5BDEFB341D58BEBA5034CEAEFFC1D65637A8FFAB1F1AFB"
+      }
+    },
+    {
+      "id": "src.research.engine-target-direction-score-20261112",
+      "path": "sources/evidence/engine-target-direction-score-20261112.json",
+      "sha256": "92EE4782DDEC73D116F0BB5CC21162E110EFB04ED61D42A7D3F708ACD1FDE009",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "四方向目标/位置评分 0x4101D9 及其在 0x426737 物理百分比中的加减项",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "92EE4782DDEC73D116F0BB5CC21162E110EFB04ED61D42A7D3F708ACD1FDE009"
+      }
+    },
+    {
+      "id": "src.research.engine-battle-unit-table-20261112",
+      "path": "sources/evidence/engine-battle-unit-table-20261112.json",
+      "sha256": "09850E118A317D19EEACB7BD5D74054CC7A24AD174D17CAF8CF3CBED80F98E6E",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "战场单位占位表 0x4B3D21（250x5）：x/y、0xFF 哨兵与扫描/比较函数",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "09850E118A317D19EEACB7BD5D74054CC7A24AD174D17CAF8CF3CBED80F98E6E"
+      }
+    },
+    {
+      "id": "src.research.engine-battle-unit-table-fields-20261112",
+      "path": "sources/evidence/engine-battle-unit-table-fields-20261112.json",
+      "sha256": "EB8589FE1AE2BD6EA92EDC01D16FCCF41964358DBEF6D01E5F8CF5374B9D121D",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "占位表 0x4B3D21 的 x/y/type/objectId/layer 五字段与 0x1B00 层大小",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "EB8589FE1AE2BD6EA92EDC01D16FCCF41964358DBEF6D01E5F8CF5374B9D121D"
+      }
+    },
+    {
+      "id": "src.research.engine-item-record-table-20261112",
+      "path": "sources/evidence/engine-item-record-table-20261112.json",
+      "sha256": "7FBC2EEBF63B70C028515E4F3CA70EC926AE18411C482E343D6AB0846DBDFBE4",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "物品记录表 0x4A1140/0x49F820、25字节步长、6.6 访问器 0x4837C2",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "7FBC2EEBF63B70C028515E4F3CA70EC926AE18411C482E343D6AB0846DBDFBE4"
+      }
+    },
+    {
+      "id": "src.research.engine-item-record-fields-20261112",
+      "path": "sources/evidence/engine-item-record-fields-20261112.json",
+      "sha256": "BF0CA6EA28232E2A499915C19E612F30CA75B6D2A9F169FF6E50AE9F504E9A20",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "物品记录字段语义、DATA.E5+star.e5 装载链、价格链与 6.6 类型表 0x4303C8",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "BF0CA6EA28232E2A499915C19E612F30CA75B6D2A9F169FF6E50AE9F504E9A20"
+      }
+    },
+    {
+      "id": "src.research.engine-embedded-byte-tables-20261112",
+      "path": "sources/evidence/engine-embedded-byte-tables-20261112.json",
+      "sha256": "2AA3D28E80600B14DEDCE2E5B780518AE350BB056555F8F481C5993A0A57442E",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "内嵌字节表 0x41CEAB（33项）与 6.6 类型表 0x4303C8（20项）的结构与读取链",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "2AA3D28E80600B14DEDCE2E5B780518AE350BB056555F8F481C5993A0A57442E"
+      }
+    },
+    {
+      "id": "src.research.engine-item-effect-code-and-range-table-20261112",
+      "path": "sources/evidence/engine-item-effect-code-and-range-table-20261112.json",
+      "sha256": "25EC60C5B6C5226BDF6A4ACB1B7A692D37F6B2AA524D4FEF63AC97B3E866ECC2",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "物品使用效果码 +0x10、4 槽效果缓冲与效果范围表 0x4D1400（36项）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "25EC60C5B6C5226BDF6A4ACB1B7A692D37F6B2AA524D4FEF63AC97B3E866ECC2"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v4-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v4-20261112.json",
+      "sha256": "9F6F8A94D636273A364FDA5648B5CE47E7912B3FA46A0748370EF8A0C0D87BEC",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "第1–57轮通用常量覆盖台账 v4（50域：37 resolved / 8 partial / 5 unresolved）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "9F6F8A94D636273A364FDA5648B5CE47E7912B3FA46A0748370EF8A0C0D87BEC"
+      }
+    },
+    {
+      "id": "src.research.engine-battle-viewport-context-20261112",
+      "path": "sources/evidence/engine-battle-viewport-context-20261112.json",
+      "sha256": "B1DC2668D6969492BB4DD55832297FD515BE903F693B1D98EFE7CD7B475E6B63",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "战场视口/滚动上下文 0x4B4250 的 19 项字段布局与像素/瓦片换算",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "B1DC2668D6969492BB4DD55832297FD515BE903F693B1D98EFE7CD7B475E6B63"
+      }
+    },
+    {
+      "id": "src.research.engine-item-loader-64-parser-20261112",
+      "path": "sources/evidence/engine-item-loader-64-parser-20261112.json",
+      "sha256": "2B92A8BA7A37A048AB7A901FD162CD85F6FBB5E2B6987CF587F5025EF5F6DEE7",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.4 物品装载链、0x41FECC 解析式旋转与 star.e5 0x1022 读取容量",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "2B92A8BA7A37A048AB7A901FD162CD85F6FBB5E2B6987CF587F5025EF5F6DEE7"
+      }
+    },
+    {
+      "id": "src.research.engine-character-adaptation-table-20261112",
+      "path": "sources/evidence/engine-character-adaptation-table-20261112.json",
+      "sha256": "239E9983B18C7861E711BC66BD334023F9FC01286823C976575CA90E672D8D98",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "人物模板表 0x4A3E77（68×97，+0x11 起 80 兵种字节）与 0x41CEAB 索引解析",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "239E9983B18C7861E711BC66BD334023F9FC01286823C976575CA90E672D8D98"
+      }
+    },
+    {
+      "id": "src.research.engine-character-template-header-capacity-20261112",
+      "path": "sources/evidence/engine-character-template-header-capacity-20261112.json",
+      "sha256": "E639FFD7770B9D548206BCDA27A2DA9DC9FFD6ED8A531E54B719110B800330B0",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x4A3E77 头部字段（名称/%s、+0x0C/+0x0D/+0x0F）与 144 槽容量上界",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "E639FFD7770B9D548206BCDA27A2DA9DC9FFD6ED8A531E54B719110B800330B0"
+      }
+    },
+    {
+      "id": "src.research.engine-ai-handler-constants-66-20261112",
+      "path": "sources/evidence/engine-ai-handler-constants-66-20261112.json",
+      "sha256": "8C250BF603D4175CDCD521462213FED169149DC4C6D02A9FF077B4DA7296BE09",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.6 AI 16 个处理体的常量替换、调用重定位与内嵌表搬迁",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "8C250BF603D4175CDCD521462213FED169149DC4C6D02A9FF077B4DA7296BE09"
+      }
+    },
+    {
+      "id": "src.research.engine-ai-direction-score-tables-20261112",
+      "path": "sources/evidence/engine-ai-direction-score-tables-20261112.json",
+      "sha256": "1B12F4CA9B2611C9823CAFF33FA402A29087589DE2DC200D303D6584C3686B24",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "AI 4 字节评分下限表 25/30/35/25、方向掩码表 0x4240D2 与 0x4B4250 模式标志只读结论",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "1B12F4CA9B2611C9823CAFF33FA402A29087589DE2DC200D303D6584C3686B24"
+      }
+    },
+    {
+      "id": "src.research.engine-character-template-fields-20261112",
+      "path": "sources/evidence/engine-character-template-fields-20261112.json",
+      "sha256": "E9CDEEC90C05B005D49910E33A6DB15F94E22131781A04128E0D87B56F9DB75D",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x4A3E77 名称字段起点（0x42B4F0 回调）与 +0x0D 分类 ID 的排序/写入链",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "E9CDEEC90C05B005D49910E33A6DB15F94E22131781A04128E0D87B56F9DB75D"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v5-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v5-20261112.json",
+      "sha256": "29EE9FD6736AF7A16BC0549518A55C76E57AEB1A8B688B1B3C72C50629ACBB9D",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "第1–65轮通用常量覆盖台账 v5（55域：41 resolved / 11 partial / 3 unresolved）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "29EE9FD6736AF7A16BC0549518A55C76E57AEB1A8B688B1B3C72C50629ACBB9D"
+      }
+    },
+    {
+      "id": "src.research.engine-anchor-relocation-65-66-20261112",
+      "path": "sources/evidence/engine-anchor-relocation-65-66-20261112.json",
+      "sha256": "A7724E25F6864C7847737FA642324FEE60B45D61834D87A9BAE15061CA74129C",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.5→6.6 全局数据锚点重定位映射（27组配对，含 0x4CE7xx→0x500ADx 块迁移）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A7724E25F6864C7847737FA642324FEE60B45D61834D87A9BAE15061CA74129C"
+      }
+    },
+    {
+      "id": "src.research.engine-global-ui-state-block-20261112",
+      "path": "sources/evidence/engine-global-ui-state-block-20261112.json",
+      "sha256": "82526A6B0C3C9B31372B2023ABB6CA46FBD45AAC8E21550CE886B839BB221F94",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.6 全局状态区 0x500AAC..0x500ADF 字段语义、6.5 字段映射与 Z 键热补丁开关 0x500ADB",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "82526A6B0C3C9B31372B2023ABB6CA46FBD45AAC8E21550CE886B839BB221F94"
+      }
+    },
+    {
+      "id": "src.research.engine-ability-display-table-20261112",
+      "path": "sources/evidence/engine-ability-display-table-20261112.json",
+      "sha256": "2C49142C629B754A7EFB16156FC440F435902A62214B0DAA5D90408958ACA81C",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "人物能力显示值跳转表 0x430000/0x46902B、人物记录 +0x11..+0x25 能力字段与 6.6 处理器常量差异",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "2C49142C629B754A7EFB16156FC440F435902A62214B0DAA5D90408958ACA81C"
+      }
+    },
+    {
+      "id": "src.research.engine-color-palette-20261112",
+      "path": "sources/evidence/engine-color-palette-20261112.json",
+      "sha256": "E22BB18267D3B3B6C673CC9389892334F0DB032E537DB707EBE0FD54370B3BD9",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "256项RGB调色板0x4CB1C0/0x511400、转换函数0x45B6E3与0x497770目标表、透明色键0x00F700FF",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "E22BB18267D3B3B6C673CC9389892334F0DB032E537DB707EBE0FD54370B3BD9"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v6-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v6-20261112.json",
+      "sha256": "69E4CC2DC474E2B20AFC228EC0794D55A4EFAAD82E72C3AF0F6479C5817F1AE8",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "覆盖台账 v6：第1–70轮67域（46 resolved/18 partial/3 unresolved）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "69E4CC2DC474E2B20AFC228EC0794D55A4EFAAD82E72C3AF0F6479C5817F1AE8"
+      }
+    },
+    {
+      "id": "src.research.engine-item-type-action-mapping-20261112",
+      "path": "sources/evidence/engine-item-type-action-mapping-20261112.json",
+      "sha256": "5DDAEB0F48ADCD6F10CAB81919B43257348B89F0972690FA751BA6BD84C457B2",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.6物品类型→动作/特效编号映射表0x4303C8与0x43F8C0→0x417A38→0x43038B消费链",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "5DDAEB0F48ADCD6F10CAB81919B43257348B89F0972690FA751BA6BD84C457B2"
+      }
+    },
+    {
+      "id": "src.research.engine-random-replacement-table-20261112",
+      "path": "sources/evidence/engine-random-replacement-table-20261112.json",
+      "sha256": "79FE9A15654475919B05D0A7FA92CF8FA35CD5B204B88E14E712B3AF7E9387FB",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "33项随机变体编号表0x41CEAB、0x41CE8C替换函数、0x401DFF模板链与0x21哨兵",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "79FE9A15654475919B05D0A7FA92CF8FA35CD5B204B88E14E712B3AF7E9387FB"
+      }
+    },
+    {
+      "id": "src.research.engine-new-anchors-batch-20261112",
+      "path": "sources/evidence/engine-new-anchors-batch-20261112.json",
+      "sha256": "824FC85DCA8BFB12C9675D3E0E35D1D623FF37F760F7EA3187ACA01DA3D323AD",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.6独占/搬移锚点批语义：0x487634视口尺寸、0x48693E位深、0x500BA0 word数组、0x493AF0计数、0x4934B0标志、0x501BD2模式、0x501BF0缓存",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "824FC85DCA8BFB12C9675D3E0E35D1D623FF37F760F7EA3187ACA01DA3D323AD"
+      }
+    },
+    {
+      "id": "src.research.engine-arithmetic-immediates-census-20261112",
+      "path": "sources/evidence/engine-arithmetic-immediates-census-20261112.json",
+      "sha256": "4533351779327A4D4F8FAB0C56725FB7A615B9153B88DE5B63F193711B12A8D7",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "三基底算术立即数普查；6.6新增21字节文本表步长0x15/+0x662；0x12C图标间距与0x500030表",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "4533351779327A4D4F8FAB0C56725FB7A615B9153B88DE5B63F193711B12A8D7"
+      }
+    },
+    {
+      "id": "src.research.engine-font-name-table-20261112",
+      "path": "sources/evidence/engine-font-name-table-20261112.json",
+      "sha256": "7855022F649E929609FFB190B9DE90BBB5AADEA5F0ABA647E66675EDE3B6416E",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.6字体名称表0x500030（宋体/楷体/黑体/仿宋/微软雅黑）与CreateFontA包装0x41EBA3",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "7855022F649E929609FFB190B9DE90BBB5AADEA5F0ABA647E66675EDE3B6416E"
+      }
+    },
+    {
+      "id": "src.research.engine-cell-flag-item-count-20261112",
+      "path": "sources/evidence/engine-cell-flag-item-count-20261112.json",
+      "sha256": "71026A8C71B5A8C46B004005AEA10795CE210586B7558F68CB590008DBBC2F70",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.6地图格标志数组0x4934B0与物品计数数组0x493AF0的索引域/掩码/增减规则",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "71026A8C71B5A8C46B004005AEA10795CE210586B7558F68CB590008DBBC2F70"
+      }
+    },
+    {
+      "id": "src.research.engine-highfreq-imul-constants-20261112",
+      "path": "sources/evidence/engine-highfreq-imul-constants-20261112.json",
+      "sha256": "997171B11E0546CE6B3FE29157A1C5652D188DAFEA6609FF686B8EBA4CC7C320",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "高频imul常量0x6C00/0x12900/0x3000/0xC000的图层与图块语义，0x430020矩形拷贝函数",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "997171B11E0546CE6B3FE29157A1C5652D188DAFEA6609FF686B8EBA4CC7C320"
+      }
+    },
+    {
+      "id": "src.research.engine-level-context-struct-20261112",
+      "path": "sources/evidence/engine-level-context-struct-20261112.json",
+      "sha256": "74AA01ACEAD0ED8D5E94F323ADB81F7FB9F8DA9B9FE8E563EFE5C9B7E4FABB48",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x500AE0关卡/地图全局结构（0x90字节）字段布局与6.5 0x500AA0对应",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "74AA01ACEAD0ED8D5E94F323ADB81F7FB9F8DA9B9FE8E563EFE5C9B7E4FABB48"
+      }
+    },
+    {
+      "id": "src.research.engine-script-context-caches-20261112",
+      "path": "sources/evidence/engine-script-context-caches-20261112.json",
+      "sha256": "52ECF1D1541B871650710D8B7D23808AB137ECFC13122DB4A99C84CC067AB42B",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "剧本解释器上下文vtable对象字段与0x500AB0/0x500AB4脚本地址缓存",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "52ECF1D1541B871650710D8B7D23808AB137ECFC13122DB4A99C84CC067AB42B"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v7-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v7-20261112.json",
+      "sha256": "E3B50D2E869900DF671D4C304CA0C230557C9757BC656267D9BE9A2F2E4D7F0E",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "覆盖台账v7：第1–80轮76域（51 resolved/22 partial/3 unresolved）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "E3B50D2E869900DF671D4C304CA0C230557C9757BC656267D9BE9A2F2E4D7F0E"
+      }
+    },
+    {
+      "id": "src.research.engine-viewport-cache-edx-trace-20261112",
+      "path": "sources/evidence/engine-viewport-cache-edx-trace-20261112.json",
+      "sha256": "62477CCD2E84BB097F2269F22F222A1E355B06DE7459934C3C43D66CFFDA02BB",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x501BF0地图/视口尺寸缓存与0x423842的edx隐式来源追踪",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "62477CCD2E84BB097F2269F22F222A1E355B06DE7459934C3C43D66CFFDA02BB"
+      }
+    },
+    {
+      "id": "src.research.engine-cell-flag-bits-20261112",
+      "path": "sources/evidence/engine-cell-flag-bits-20261112.json",
+      "sha256": "F1A24438F4D82E8E28463003CCBA087465F014F1A744BC6EDB4F8F3D796C6EF8",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x4934B0数组长度0x640与bit0/bit2/bit3语义",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "F1A24438F4D82E8E28463003CCBA087465F014F1A744BC6EDB4F8F3D796C6EF8"
+      }
+    },
+    {
+      "id": "src.research.engine-file-io-wrappers-20261112",
+      "path": "sources/evidence/engine-file-io-wrappers-20261112.json",
+      "sha256": "A582505FE8766901B4715396FB5DD3A5C496CCCEFB0DFFBC70E2F06481B618B2",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "CreateFileA包装0x418F5C（0x419019 access表/重试5次）与文件对象包装0x418C34（vtable 0x487410）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A582505FE8766901B4715396FB5DD3A5C496CCCEFB0DFFBC70E2F06481B618B2"
+      }
+    },
+    {
+      "id": "src.research.engine-character-template-fields-0c-0d-20261112",
+      "path": "sources/evidence/engine-character-template-fields-0c-0d-20261112.json",
+      "sha256": "336C64C967187F82FE1325BB0ECF1ACCADC26040E470A40C9BC50E841319C06F",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "人物模板+0x0C动作/图像编号与+0x0D组别/候选索引的语义证据",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "336C64C967187F82FE1325BB0ECF1ACCADC26040E470A40C9BC50E841319C06F"
+      }
+    },
+    {
+      "id": "src.research.engine-dialog-framework-20261112",
+      "path": "sources/evidence/engine-dialog-framework-20261112.json",
+      "sha256": "31B0A63364AA94C3D1B8ACA9F8F653BD82738B8A6313C1EAD1FDB59B0035DB17",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "通用对话框框架：模板332/340/341、0x418C34确认框包装、DlgProc 0x46D0F8、分派器 0x46D221、vtable 0x487410、状态字节 0x48E8C1",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "31B0A63364AA94C3D1B8ACA9F8F653BD82738B8A6313C1EAD1FDB59B0035DB17"
+      }
+    },
+    {
+      "id": "src.research.engine-save-file-format-20261112",
+      "path": "sources/evidence/engine-save-file-format-20261112.json",
+      "sha256": "44163056DFF1EFFA0599044012F308D8D23EFD04C684AF621AD4B1CA15CCDA16",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "存档四区块布局 A 0x30000/B 0xD4F0/C 0x313D/D 战场状态与文件对象读写包装",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "44163056DFF1EFFA0599044012F308D8D23EFD04C684AF621AD4B1CA15CCDA16"
+      }
+    },
+    {
+      "id": "src.research.engine-api-name-table-20261112",
+      "path": "sources/evidence/engine-api-name-table-20261112.json",
+      "sha256": "CD7B01413744BF5F0401FC97B0A2640CF47609DB0A2F7C86655AA7DA5B7DB984",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": ".api 段动态 API 名称表：DLL 名、槽位组（名称VA-0x400000-2）、6.6 GDI+ 扩展与消费点",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "CD7B01413744BF5F0401FC97B0A2640CF47609DB0A2F7C86655AA7DA5B7DB984"
+      }
+    },
+    {
+      "id": "src.research.engine-training-ground-context-20261112",
+      "path": "sources/evidence/engine-training-ground-context-20261112.json",
+      "sha256": "7DC27B2287AFAAB1EF96E6AC4DB2C9C8DB738F3F2B5D5602CDD5EE3A38BECE2C",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "练武场上下文 0x500AA0/0x500AE0：0x418F05 初始化字段与 RT_DIALOG 330「练武场」48 控件 ID",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "7DC27B2287AFAAB1EF96E6AC4DB2C9C8DB738F3F2B5D5602CDD5EE3A38BECE2C"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v8-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v8-20261112.json",
+      "sha256": "5A4C740232641147F945C8D1A460CE95D2F1D0E5F1D3AD99B42309EE88296DC7",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "通用常量覆盖台账 v8（第1–89轮）：80 域 56 resolved/22 partial/2 unresolved 与三处更正",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "5A4C740232641147F945C8D1A460CE95D2F1D0E5F1D3AD99B42309EE88296DC7"
+      }
+    },
+    {
+      "id": "src.research.engine-sound-settings-20261112",
+      "path": "sources/evidence/engine-sound-settings-20261112.json",
+      "sha256": "BBA017127ADB581D9622284423AFF94C712C105F0E4D233333842B2D3EBD127E",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "音效播放 0x474777、SE_* 分段（0x64/0xC8/0xD1）、sndPlaySoundA 标志与设置位 0x4B0770",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "BBA017127ADB581D9622284423AFF94C712C105F0E4D233333842B2D3EBD127E"
+      }
+    },
+    {
+      "id": "src.research.engine-avi-player-20261112",
+      "path": "sources/evidence/engine-avi-player-20261112.json",
+      "sha256": "CD1BD36F4B135F92385556A6A426B2783FB506B4BF33846A5563DA54104F2059",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "AVI 动画模块：avivideo MCI 命令 0x803/0x806/0x841/0x814/0x804、0x41EF96 点击跳过钩子与 LOGO/OPEN/END/PRESS.AVI",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "CD1BD36F4B135F92385556A6A426B2783FB506B4BF33846A5563DA54104F2059"
+      }
+    },
+    {
+      "id": "src.research.engine-text-object-table-20261112",
+      "path": "sources/evidence/engine-text-object-table-20261112.json",
+      "sha256": "8CBDC28D51C13EFA8D6D81E791101FD04C18E69BAEDC91770AD6B97A86A58C90",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.6 文本对象表 0x512640（40×0x30）字段与 0x41EB48/0x41EA66/0x42AEC7 掩码文字绘制链",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "8CBDC28D51C13EFA8D6D81E791101FD04C18E69BAEDC91770AD6B97A86A58C90"
+      }
+    },
+    {
+      "id": "src.research.engine-settings-block-fields-20261112",
+      "path": "sources/evidence/engine-settings-block-fields-20261112.json",
+      "sha256": "5333BFCB041A10FEDD20DCA52300E7FBE6F39037F26ADAF313415E42E3696E16",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "设置块 0x4B0770 字段（+0x00/+0x06/+0x0C/+0x10/+0x12）与设置项索引 0/1/2 的 getter/比较/setter",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "5333BFCB041A10FEDD20DCA52300E7FBE6F39037F26ADAF313415E42E3696E16"
+      }
+    },
+    {
+      "id": "src.research.engine-layer-buffer-11-20261112",
+      "path": "sources/evidence/engine-layer-buffer-11-20261112.json",
+      "sha256": "87A417D872904085DC8AAD84DF148E34118B64A75364B24588391D1854811268",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "11 层图层块 0x12900（0xF300/0x6C00/0x1B00）、0x4303C4 的 3 字节块拷贝与 0x41C444 alpha 合并、0x43E549 方向映射",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "87A417D872904085DC8AAD84DF148E34118B64A75364B24588391D1854811268"
+      }
+    },
+    {
+      "id": "src.research.engine-dialog332-confirm-20261112",
+      "path": "sources/evidence/engine-dialog332-confirm-20261112.json",
+      "sha256": "864DDB702B2CFC4CB018DC311708292F00804C92145B75A80915EF712672C800",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "模板 332 对话框类 vtable 0x44A6B5、WM_COMMAND 0x456CB4 的五维复选框掩码与 0x508000 的 102×0x0A 表访问器",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "864DDB702B2CFC4CB018DC311708292F00804C92145B75A80915EF712672C800"
+      }
+    },
+    {
+      "id": "src.research.engine-merit-table-20261112",
+      "path": "sources/evidence/engine-merit-table-20261112.json",
+      "sha256": "FD85B3FAC85B46587177654D117D5D5B32A5F0DA9ABBA35298C404E85CD885AA",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "功勋分配表 0x508000（102×5 word）、点数池 0x505F40/0x505F3C、0x408FA0 按掩码清零与 0x423EAD 重置",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "FD85B3FAC85B46587177654D117D5D5B32A5F0DA9ABBA35298C404E85CD885AA"
+      }
+    },
+    {
+      "id": "src.research.engine-merit-pool-refund-20261112",
+      "path": "sources/evidence/engine-merit-pool-refund-20261112.json",
+      "sha256": "DAA8816F153BFC8D67F27D9D8A4C4520E41FA1A509026625C81903D6AB22B7A4",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "更正第97轮：xchg 累计旧值，0x505F40 返还=被清除项之和；0x4108DB/0x456DA6 显示链",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "DAA8816F153BFC8D67F27D9D8A4C4520E41FA1A509026625C81903D6AB22B7A4"
+      }
+    },
+    {
+      "id": "src.research.engine-training-context-record-pointer-20261112",
+      "path": "sources/evidence/engine-training-context-record-pointer-20261112.json",
+      "sha256": "C3DAA52798216E79D8D2FCBDEC9B55AEAD51BDE76419F97265C7B8296A0F23DA",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "练武场上下文 +0x00 人物记录指针确认（0x4065D0=byte[+0x2C] 等级→SetDlgItemInt 0x559）与 0x418F05 两个调用者",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "C3DAA52798216E79D8D2FCBDEC9B55AEAD51BDE76419F97265C7B8296A0F23DA"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v9-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v9-20261112.json",
+      "sha256": "EF7D595883A370DC93490EB9F7FD522FF7A1851BA19F945DAE1402ED77915162",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "通用常量覆盖台账 v9（第1–99轮）：85 域 63 resolved/20 partial/2 unresolved 与四处更正",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "EF7D595883A370DC93490EB9F7FD522FF7A1851BA19F945DAE1402ED77915162"
+      }
+    },
+    {
+      "id": "src.research.engine-current-record-pointer-20261112",
+      "path": "sources/evidence/engine-current-record-pointer-20261112.json",
+      "sha256": "741D4BA9344807DD5ED06D341FF7A0D2279BFF89365F04DD56B5C6487BE23EFB",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "全局当前人物记录指针 0x500E28（写入 0x469FD1/0x4787F9）与指针→索引 (ptr-0x4CEA00)/0x48 的 0x40BE7D",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "741D4BA9344807DD5ED06D341FF7A0D2279BFF89365F04DD56B5C6487BE23EFB"
+      }
+    },
+    {
+      "id": "src.research.engine-auto-battle-flags-20261112",
+      "path": "sources/evidence/engine-auto-battle-flags-20261112.json",
+      "sha256": "A1FCD789D4D033076A5E14C8B511509D0ED64A51295A45E49D41DC2FAD41BC92",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "自动战斗标志 0x4B4250+0x64/+0x68：0x412F84/0x412F9B 的 AI 选目标分支与 0x43E823 的 0x44DA7A(0/1) 自动结算",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A1FCD789D4D033076A5E14C8B511509D0ED64A51295A45E49D41DC2FAD41BC92"
+      }
+    },
+    {
+      "id": "src.research.engine-text-buffers-save-header-20261112",
+      "path": "sources/evidence/engine-text-buffers-save-header-20261112.json",
+      "sha256": "DD47CC83DEC25B5CF5AE47378971806BF6942F6442BA2D9C00F66A5970978FD7",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "存档头文本缓冲 0x4A1128（0x16 字节）/0x4B0758 与脚本解析 0x417DF6（'*' 控制码、'\\n&' 结束）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "DD47CC83DEC25B5CF5AE47378971806BF6942F6442BA2D9C00F66A5970978FD7"
+      }
+    },
+    {
+      "id": "src.research.engine-dialog332-refresh-20261112",
+      "path": "sources/evidence/engine-dialog332-refresh-20261112.json",
+      "sha256": "C158CA955FCDB27C5048F950F2A2B06842D40115226F31F7B0526FF9A7D51E91",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "模板 332 刷新链 0x4108DB/0x456DA6/0x41F952（分配缓冲 0x4FFF68、剩余点数 +0x14）与 0x4129E5/0x423EF1/0x415F10（%d/%d、%s(%d)、EnableWindow 对）；控件 0x406..0x40A/0x7D6..0x7EF/0x7DB/0x7D1；IAT 映射",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "C158CA955FCDB27C5048F950F2A2B06842D40115226F31F7B0526FF9A7D51E91"
+      }
+    },
+    {
+      "id": "src.research.engine-points-adjust-20261112",
+      "path": "sources/evidence/engine-points-adjust-20261112.json",
+      "sha256": "E37B447D705D05AF02A9D462047122F37BBBD3DFF15C1F2DA9E3D21F705ECAD3",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x41F952 加减点数处理：0x7E6..0x7EA 加号扣池、0x7EB..0x7EF 减号返还，池在 0x4FFF68+0x14",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "E37B447D705D05AF02A9D462047122F37BBBD3DFF15C1F2DA9E3D21F705ECAD3"
+      }
+    },
+    {
+      "id": "src.research.engine-dialog-workarea-4fff68-20261112",
+      "path": "sources/evidence/engine-dialog-workarea-4fff68-20261112.json",
+      "sha256": "197097E550729AFF941A35EC0D15C00C0A7D638C2EB3C665F8D79CC33B565DDA",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "332 工作区 0x4FFF68 布局（五项值/+0x14 池/+0x0A 第二数组/+0x21 字段）与 5 处引用点",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "197097E550729AFF941A35EC0D15C00C0A7D638C2EB3C665F8D79CC33B565DDA"
+      }
+    },
+    {
+      "id": "src.research.engine-cell-flag-writer-20261112",
+      "path": "sources/evidence/engine-cell-flag-writer-20261112.json",
+      "sha256": "FC72566E6AC5C4E5A460EBE526F71E9C71C144FB745D3116C7C90034173C59E7",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "地图格标志写入 0x42A5D6（OR/XOR mask）、全图 byte&=0x0C（0x42AAA5）与全图 test 0xD（0x42A43E）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "FC72566E6AC5C4E5A460EBE526F71E9C71C144FB745D3116C7C90034173C59E7"
+      }
+    },
+    {
+      "id": "src.research.engine-cell-flag-callers-20261112",
+      "path": "sources/evidence/engine-cell-flag-callers-20261112.json",
+      "sha256": "879E40ADBEA22AF3CBFA473E88822015760C9D329745917D59C5F6FBA00B4B79",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x42A5D6 两个调用点：0x42A666 矩形 mask=8（bit3 范围标记）与 0x42A717/0x42A73F 通用包装、0x42A74A 矩形判定",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "879E40ADBEA22AF3CBFA473E88822015760C9D329745917D59C5F6FBA00B4B79"
+      }
+    },
+    {
+      "id": "src.research.engine-effect-range-flag-callback-20261112",
+      "path": "sources/evidence/engine-effect-range-flag-callback-20261112.json",
+      "sha256": "F8CEE2BCBF747AE9BBC5D480F14244209C793B3581A81BBD9ECA9903F1B2B252",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "范围标记链：0x4D1400 范围表 → 0x41E254 枚举 → 回调 0x42A708 → 0x42A5D6 写 0x4934B0",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "F8CEE2BCBF747AE9BBC5D480F14244209C793B3581A81BBD9ECA9903F1B2B252"
+      }
+    },
+    {
+      "id": "src.research.engine-memory-arenas-20261112",
+      "path": "sources/evidence/engine-memory-arenas-20261112.json",
+      "sha256": "A773BB15A650C3F50457C2EA59AF5EC5A4B6E6646490348D08FD6C7CB35CB4EE",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "三个全局内存池 0x4AE4A8/0x4AE4C8/0x4AB00C、包装 0x40162C/0x4015B1/0x401655 与分配器 0x47FA40 的模式 1/2/4",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A773BB15A650C3F50457C2EA59AF5EC5A4B6E6646490348D08FD6C7CB35CB4EE"
+      }
+    },
+    {
+      "id": "src.research.engine-allocator-mode2-20261112",
+      "path": "sources/evidence/engine-allocator-mode2-20261112.json",
+      "sha256": "9A8A919F9F41E8578007C4CF0C8AE7CC1CD18F65260F29083B79A2DF50ECA7B0",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "分配器模式 2：0x4000（16KB）块粒度、size>>14 与 size&0x3FFF、0x47F96C 空桩",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "9A8A919F9F41E8578007C4CF0C8AE7CC1CD18F65260F29083B79A2DF50ECA7B0"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v10-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v10-20261112.json",
+      "sha256": "BACB6F2FB8FE4D595DE8F5D6DDE2A08F460922BA1B6AECF5D4E35010624F0E74",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "通用常量覆盖台账 v10（第1–111轮）：93 域 71 resolved/20 partial/2 unresolved 与两处更正",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "BACB6F2FB8FE4D595DE8F5D6DDE2A08F460922BA1B6AECF5D4E35010624F0E74"
+      }
+    },
+    {
+      "id": "src.research.engine-cross-base-hash-audit-late-20261112",
+      "path": "sources/evidence/engine-cross-base-hash-audit-late-20261112.json",
+      "sha256": "EE830E8763C696E4272F51246A4E2D7D6C66539AC1529639083AAABBC5F71297",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "第96–111轮新函数的 6.4/6.5/6.6 同址哈希对照（0x40BE7D 全同、0x42A5D6/0x42A708/0x47FA40/0x47F9E2 为 6.4=6.5、0x41F952/0x456CB4/0x42A43E 各异）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "EE830E8763C696E4272F51246A4E2D7D6C66539AC1529639083AAABBC5F71297"
+      }
+    },
+    {
+      "id": "src.research.engine-layer-offsets-20261112",
+      "path": "sources/evidence/engine-layer-offsets-20261112.json",
+      "sha256": "7DB58E37E91C7E08D3AF6D4D02AADFA3B5558EDFEAEC08DB7616481E8EAD320C",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x12900 的 22 处引用与层偏移（0x6C00=4 层、0xA200=6 层、0xF300=9 层）、0x43FE2C 的分配+清零",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "7DB58E37E91C7E08D3AF6D4D02AADFA3B5558EDFEAEC08DB7616481E8EAD320C"
+      }
+    },
+    {
+      "id": "src.research.engine-layer-offsets-scan-20261112",
+      "path": "sources/evidence/engine-layer-offsets-scan-20261112.json",
+      "sha256": "351D7ADFB91BFF2FC13D1BEA88E22B966C046C3ECC1C3549E1A7181A33B70F4F",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "imul 0x12900 后立即数普查：0x6C00/0xA200/0xD800/0xF300 对应第 4/6/8/9 层，0x37800 为独立缓冲",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "351D7ADFB91BFF2FC13D1BEA88E22B966C046C3ECC1C3549E1A7181A33B70F4F"
+      }
+    },
+    {
+      "id": "src.research.engine-viewport-center-20261112",
+      "path": "sources/evidence/engine-viewport-center-20261112.json",
+      "sha256": "5A6D591AF72A06A0A104DCD8DB87F63BDA2DC7C271C2E28658F920FDA836A7FE",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "视口居中 0x45503F：+0x14/+0x18 像素尺寸、/0x30 瓦片换算、0x47FAD0 限制器、0x4B422C/D 边界夹紧、0x454CEF 设滚动",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "5A6D591AF72A06A0A104DCD8DB87F63BDA2DC7C271C2E28658F920FDA836A7FE"
+      }
+    },
+    {
+      "id": "src.research.engine-scroll-setter-20261112",
+      "path": "sources/evidence/engine-scroll-setter-20261112.json",
+      "sha256": "2CFD16D530CA9D9BBCE6EFF771938AF261E654AF9E646BDA1462743353C5D6B6",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "滚动设置 0x454CEF：+0x04/+0x08 像素原点 /0x30 得瓦片、0x45461C 预处理、同瓦片提前返回、delta 分支",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "2CFD16D530CA9D9BBCE6EFF771938AF261E654AF9E646BDA1462743353C5D6B6"
+      }
+    },
+    {
+      "id": "src.research.engine-scroll-preprocess-20261112",
+      "path": "sources/evidence/engine-scroll-preprocess-20261112.json",
+      "sha256": "89BA68E58BC73A90DF53B2C297EBDCA6D1DFE4CB972208A583F07CD09FC81E62",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x45461C：+0x54/+0x55 待处理滚动目标（0xFF 哨兵）、+0x61 模式 0/1/2/3 的限位与位移 1/3/5、0x45218F 与 0x476882",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "89BA68E58BC73A90DF53B2C297EBDCA6D1DFE4CB972208A583F07CD09FC81E62"
+      }
+    },
+    {
+      "id": "src.research.engine-scroll-core-20261112",
+      "path": "sources/evidence/engine-scroll-core-20261112.json",
+      "sha256": "DD2F6C26A9632A13CDB3F49310576C76572C5C827D4BC60B4D9092BA63AD79F3",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x45218F 滚动核心：像素→瓦片 0x40D344、0x403789 格索引、0x1B00 层步长、0x4BE880 全局格数组、0x4B3D08+5 bit0、0x1E000/0x40155F 双缓冲",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "DD2F6C26A9632A13CDB3F49310576C76572C5C827D4BC60B4D9092BA63AD79F3"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v11-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v11-20261112.json",
+      "sha256": "7BD24446DD4E59BC6C83B4B02BA1210127CD884254DBBF3C8BB9C97F45499C9F",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "通用常量覆盖台账 v11（第1–119轮）：94 域 72 resolved/20 partial/2 unresolved，新增视口滚动链",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "7BD24446DD4E59BC6C83B4B02BA1210127CD884254DBBF3C8BB9C97F45499C9F"
+      }
+    },
+    {
+      "id": "src.research.engine-cell-byte-map-20261112",
+      "path": "sources/evidence/engine-cell-byte-map-20261112.json",
+      "sha256": "939F6C45C5BD9EDC674C681D6C1BD4FB21DDA2EAC38C78BFA1C11CA9B18C60FE",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x4BE880 逐格字节数组：0x640 字节、0xFF 空、0x403789 索引、8 处引用与 0x506800 表",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "939F6C45C5BD9EDC674C681D6C1BD4FB21DDA2EAC38C78BFA1C11CA9B18C60FE"
+      }
+    },
+    {
+      "id": "src.research.engine-table-506800-20261112",
+      "path": "sources/evidence/engine-table-506800-20261112.json",
+      "sha256": "527F9F82371F743A08AD538F079B19ABB1041A70508D47DA8D132D948B8B6BB1",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x506800 十二字节表：dword0 打包 (b0,0xFF,b2,b3)、0xFFFF 空项、+4 参数、+8 位标志 &3、写入/搬移/读取六站点",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "527F9F82371F743A08AD538F079B19ABB1041A70508D47DA8D132D948B8B6BB1"
+      }
+    },
+    {
+      "id": "src.research.engine-save-header-writer-20261112",
+      "path": "sources/evidence/engine-save-header-writer-20261112.json",
+      "sha256": "317674A9374CDE66A1E013CDEF290D4B9007C1F94C4C6784B52BE357A6F1183D",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "存档区块B头写入链 0x4053E4..0x40543B：+0x01/+0x02 章节、+0x03 设置项1、+0x04 场景类别3时的 0x4B0770+0x05、+0x05 字符串；+0x10 独立 getter 0x4034D2",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "317674A9374CDE66A1E013CDEF290D4B9007C1F94C4C6784B52BE357A6F1183D"
+      }
+    },
+    {
+      "id": "src.research.engine-script-branch-range-20261112",
+      "path": "sources/evidence/engine-script-branch-range-20261112.json",
+      "sha256": "FA1670BB9A1826CC435846382E0143394F18885636F09A4B673497BDAC13413C",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "脚本上下文 +0x08/+0x0C/+0x14 语义；分支区间缓存 0x4CE74C/0x4CE75C（6.6 0x500AB0/0x500AB4）写点公式与操作码 0x76 处理器 0x416C41 消费链",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "FA1670BB9A1826CC435846382E0143394F18885636F09A4B673497BDAC13413C"
+      }
+    },
+    {
+      "id": "src.research.engine-map-rect-cache-20261112",
+      "path": "sources/evidence/engine-map-rect-cache-20261112.json",
+      "sha256": "423507A14CAD8D5CAB0E42EEB918F2CC2E09612024EB756CF043191A70C9734E",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x501BF0 地图可见矩形缓存（b0..b3=左/上/宽/高）：脚本操作码 0x72→0x47D89E→表 0x47D8DF 第31项→0x42D260，章节3 条件，0x4362E6 点-矩形判定",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "423507A14CAD8D5CAB0E42EEB918F2CC2E09612024EB756CF043191A70C9734E"
+      }
+    },
+    {
+      "id": "src.research.engine-quick-window-host-20261112",
+      "path": "sources/evidence/engine-quick-window-host-20261112.json",
+      "sha256": "B3A96A117DD69DB3A03D280174C903B9C80FEBD4FADCF37B5C70EB6462DC7208",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x496F38 四快捷窗口宿主（模板 297 53×56）与设置 +0x10 显示开关：0x426BA0/0x426B52 菜单勾选+WM_USER+1 广播、0x419949 创建/MoveWindow/ShowWindow/RedrawWindow",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "B3A96A117DD69DB3A03D280174C903B9C80FEBD4FADCF37B5C70EB6462DC7208"
+      }
+    },
+    {
+      "id": "src.research.engine-training-state-save-20261112",
+      "path": "sources/evidence/engine-training-state-save-20261112.json",
+      "sha256": "1B16C18D890A33E8E6C929C303716F6CE0FAF69BB6E330DF067192D7F5E444C5",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "练武场上下文保存/恢复：+0x0C 尺寸 dword、+0x12 网格 word、+0x1A engine+0x642、+0x14 窗口句柄、+0x1C 记录 +0x1B/+0x1F；6.6 0x40ADA3/0x500AE0",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "1B16C18D890A33E8E6C929C303716F6CE0FAF69BB6E330DF067192D7F5E444C5"
+      }
+    },
+    {
+      "id": "src.research.engine-msg-dialog-class-20261112",
+      "path": "sources/evidence/engine-msg-dialog-class-20261112.json",
+      "sha256": "EDCBC08F3EF913C2A00D628043929F7BF08967957769E43A26BCB39204A3A0B2",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.6 独占文本提示对话框类：0x42CA5E 回调、构造 0x42C992（脚本操作码 0x72 子命令 34，读 2 dword）、模板 342（158×60 图标+确定）、0x46D098/0x46D0F8 框架",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "EDCBC08F3EF913C2A00D628043929F7BF08967957769E43A26BCB39204A3A0B2"
+      }
+    },
+    {
+      "id": "src.research.engine-map-graphics-page-20261112",
+      "path": "sources/evidence/engine-map-graphics-page-20261112.json",
+      "sha256": "1794F43DF78353F47AF00B118C2D1ABD953B77C3B63DF63B0ECE9F78B252EB43",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x1E900 地图图形页步长=0x12900 层块+0xC000 尾块；页 0 基址 0x24C00、尾块 0x37500、页 1 0x43500；0x40155F/0x4AAFF4 竞技场指针链与三条上传路径",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "1794F43DF78353F47AF00B118C2D1ABD953B77C3B63DF63B0ECE9F78B252EB43"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v12-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v12-20261112.json",
+      "sha256": "A8E0BFE9BAE5BB241F4496518EACC38E76F3DD9A812D43EB0A3FB4CE10E58397",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "覆盖台账 v12（第1–129轮）：列表实数 91 域/68 resolved/21 partial/2 unresolved，更正 v11 摘要 94/72/20 与列表 85 项不一致",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "A8E0BFE9BAE5BB241F4496518EACC38E76F3DD9A812D43EB0A3FB4CE10E58397"
+      }
+    },
+    {
+      "id": "src.research.engine-level-threshold-formula-20261112",
+      "path": "sources/evidence/engine-level-threshold-formula-20261112.json",
+      "sha256": "B8EE79039506BA16799AD7B55E4B8DA8E2F0ABD66F60208738ACF3DBC77C0028",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "升级阈值公式 0x42AC8F（<80 级 50；>=80 级 (lvl-79)*10+55；>=110 无效）与 332 工作区 +0x0A 五项阈值、+0x21 等级字节",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "B8EE79039506BA16799AD7B55E4B8DA8E2F0ABD66F60208738ACF3DBC77C0028"
+      }
+    },
+    {
+      "id": "src.research.engine-auto-battle-flag-scan-20261112",
+      "path": "sources/evidence/engine-auto-battle-flag-scan-20261112.json",
+      "sha256": "4724653426E0EDE3405B13BEC122BBA6A5B292282E12D54D4C8260BED5933BD1",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x4B4250+0x64/+0x68 写入方穷举（Ekd5.exe 266 处基址窗口 + 绝对地址 + add 偏移 + 7 个插件 DLL 均无写入）、两处读取门控与 0x44DA7A 双方单位状态处理",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "4724653426E0EDE3405B13BEC122BBA6A5B292282E12D54D4C8260BED5933BD1"
+      }
+    },
+    {
+      "id": "src.research.engine-table-506800-capacity-20261112",
+      "path": "sources/evidence/engine-table-506800-capacity-20261112.json",
+      "sha256": "AC3FA9F29FE605F3D7F5A51D6E7CF3FE799B2B2E5FF45D6607896304D5AEB72E",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x506800 容量 0x14（20 项×3 字节）与小地图 tile 语义（byte0/1=源坐标×0xC、byte2=页×0x21C0、目标 i*0x1B0）；更正 dword0 打包为 b0=v1/b1=v2/b2=v4/b3=0xFF；12 字节视图 4 处",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "AC3FA9F29FE605F3D7F5A51D6E7CF3FE799B2B2E5FF45D6607896304D5AEB72E"
+      }
+    },
+    {
+      "id": "src.research.engine-temp-compose-buffer-20261112",
+      "path": "sources/evidence/engine-temp-compose-buffer-20261112.json",
+      "sha256": "F839051B87D7656A57BEC76BEF81B6EBB32D516C1A33375AE9D25DCC333AC823",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x37800 临时合成区（0x448B96）：0x30×0x30 块→0x6C00 帧（60×60×3）→0x443C1D 贴图，9 次循环；0x37800=0x6C00×8+0x1800；调用点 0x4174AF/0x425F93",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "F839051B87D7656A57BEC76BEF81B6EBB32D516C1A33375AE9D25DCC333AC823"
+      }
+    },
+    {
+      "id": "src.research.engine-gdiplus-consumers-20261112",
+      "path": "sources/evidence/engine-gdiplus-consumers-20261112.json",
+      "sha256": "3B0C5F1374434EB86AEF09035CC25BD999F2F134C48D5228414C07FA10726203",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.6 GDI+ 10 槽消费链：Startup 0x4829EB、FromHDC 0x42FE12/23、CreateBitmap 0x42FE42、Lock/Unlock 0x42FE67/77、DrawImageRectRectI 0x41A4D6/A5D1/A693、ImageAttributes 0x4829F6、ColorMatrix 0x42FECF；Shutdown/DeleteGraphics 无消费",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "3B0C5F1374434EB86AEF09035CC25BD999F2F134C48D5228414C07FA10726203"
+      }
+    },
+    {
+      "id": "src.research.engine-mci-command-map-20261112",
+      "path": "sources/evidence/engine-mci-command-map-20261112.json",
+      "sha256": "48D3A689C180C586C13B8E384F5C856B3F0FD5BE1E72DE3B2A5B4BB5D47D5BD7",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "MCI 19 调用点消息全图：avivideo 动画链（OPEN/SEEK/PLAY/WINDOW/STATUS/WHERE/PAUSE/STOP/CLOSE）与 sequencer MP3 链（0x486910 SoundTrk 格式串、SET 0x873）；设置 +0x03 音量（0x42E218→0x42F7FC×0xA）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "48D3A689C180C586C13B8E384F5C856B3F0FD5BE1E72DE3B2A5B4BB5D47D5BD7"
+      }
+    },
+    {
+      "id": "src.research.engine-settings-dialog-kankyou-20261112",
+      "path": "sources/evidence/engine-settings-dialog-kankyou-20261112.json",
+      "sha256": "F226EBEAE715597C16290DAE23338B7754322B3F36E1C3EF4B98A7A44F3EAB08",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "环境设定对话框 KANKYOU（DIALOGEX 220×195、25 控件）与设置块写入：+0x00 五复选框位掩码 0x406..0x40A、+0x01 讯息显示速度、+0x02 武将移动速度、+0x03 音量滑条 0x411",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "F226EBEAE715597C16290DAE23338B7754322B3F36E1C3EF4B98A7A44F3EAB08"
+      }
+    },
+    {
+      "id": "src.research.engine-unit-alloc-records-20261112",
+      "path": "sources/evidence/engine-unit-alloc-records-20261112.json",
+      "sha256": "28D361BB65B9BB5359C77868779AF1D1209ADAFEB55D0C3EA02D431E75A52380",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x508000 单位五维分配记录（0x66 槽×0x0A=5 word）、0x42ACD2 取指针、0x408FA0 按 byte[unit+2] 掩码清零并回退到 0x505F40 全局池",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "28D361BB65B9BB5359C77868779AF1D1209ADAFEB55D0C3EA02D431E75A52380"
+      }
+    },
+    {
+      "id": "src.research.engine-kankyou-init-20261112",
+      "path": "sources/evidence/engine-kankyou-init-20261112.json",
+      "sha256": "8CF3A669B743353D41225682B5F3393DCF5991AEF1BCC734A4C66FCAC8228C6D",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "环境设定初始化回填 0x41BD7F：+0x00 位掩码→0x406..0x40A、+0x01/+0x02→0x40B..0x40D/0x40E..0x410、0x4D3 收 0x13 次 0x180、0x5D0/0x5D1 发 0x14B",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "8CF3A669B743353D41225682B5F3393DCF5991AEF1BCC734A4C66FCAC8228C6D"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v13-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v13-20261112.json",
+      "sha256": "370A26170754680C1F209A667DE7EBA721D8922D41384858A77B7E21B5B9DC20",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "覆盖台账 v13（第1–139轮）：列表实数 95 域/73 resolved/20 partial/2 unresolved，纳入第131–139轮 8 份证据与 5 项 resolved 提升",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "370A26170754680C1F209A667DE7EBA721D8922D41384858A77B7E21B5B9DC20"
+      }
+    },
+    {
+      "id": "src.research.engine-kankyou-combos-20261112",
+      "path": "sources/evidence/engine-kankyou-combos-20261112.json",
+      "sha256": "F5049459563F7736A3DDD6FABE3EF1728F28FFAACFD9668E1214E8555A71FDA7",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "环境设定 0x5D0/0x5D1 更正为下拉框（CB_RESETCONTENT 0x14B/CB_ADDSTRING 0x143/CB_SETCURSEL 0x14E，5 项由 0x4077C4 生成）；0x4D3 为 19 段状态条（0x180=SB_SETPARTS）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "F5049459563F7736A3DDD6FABE3EF1728F28FFAACFD9668E1214E8555A71FDA7"
+      }
+    },
+    {
+      "id": "src.research.engine-kankyou-combo-strings-20261112",
+      "path": "sources/evidence/engine-kankyou-combo-strings-20261112.json",
+      "sha256": "F9C9F447ACCE7189184B67E6AF8217A40E336F501D82B7F672F2DB110FB1AD0A",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "环境设定下拉候选串：0x4077C4 用 wsprintfA 生成，0x486444=\"花色%d\"→0x5D0、0x48644B=\"加速%d\"→0x5D1；更正 141 轮的 0x5D0/0x5D1 归属",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "F9C9F447ACCE7189184B67E6AF8217A40E336F501D82B7F672F2DB110FB1AD0A"
+      }
+    },
+    {
+      "id": "src.research.engine-4be006-dialog-flag-20261112",
+      "path": "sources/evidence/engine-4be006-dialog-flag-20261112.json",
+      "sha256": "75A56F56C3E07F3405CE1F1950E7715861B444A7E867BAE34663C645A9A9E75C",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "6.6 0x4BE004/0x4BE006/0x4BE008 对话框暂存字：0x4BE006 自动关闭标志（-1 → WM_INITDIALOG 即 0x591 关闭）、0x4793BB 打开模板 343「说明介绍」",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "75A56F56C3E07F3405CE1F1950E7715861B444A7E867BAE34663C645A9A9E75C"
+      }
+    },
+    {
+      "id": "src.research.engine-history-intel-341-20261112",
+      "path": "sources/evidence/engine-history-intel-341-20261112.json",
+      "sha256": "12B4DEBF4B481854A68B58BD9B03D3A1D47253B2C15913A005F4A9F9E4654CDF",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "历史情报 341：宿主 0x41C3D7（工作区 0x4FFF80、文本基 0x48E88C/+0xB 变体）、文本打开 0x42F699、DLGTEMPLATE 241×265 信息筛选下拉 0x407",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "12B4DEBF4B481854A68B58BD9B03D3A1D47253B2C15913A005F4A9F9E4654CDF"
+      }
+    },
+    {
+      "id": "src.research.engine-script-number-parser-20261112",
+      "path": "sources/evidence/engine-script-number-parser-20261112.json",
+      "sha256": "B045C8A5E6069029A0BD81BCE55DA69C97735BD5A08019FF0C7B296D26A6154F",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "数字记号解析器 0x426E64（- 负号/* 变量引用/十进制），* 引用全局变量数组 0x502000（13 处读写），0x42C6C5 按 edx+1 推进",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "B045C8A5E6069029A0BD81BCE55DA69C97735BD5A08019FF0C7B296D26A6154F"
+      }
+    },
+    {
+      "id": "src.research.engine-var-table-502000-20261112",
+      "path": "sources/evidence/engine-var-table-502000-20261112.json",
+      "sha256": "C657B3CA88C1D75C81C39708C18C2D103A57BCA8CEF425E1CD3B7D619DCC0E8A",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x502000 按单位槽写入标志：0x407932 写 (byte[unit+0xD]&2)>=2 ? 1:0，周边 0x442718/0x406690/0x44A88A 单位行动分支",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "C657B3CA88C1D75C81C39708C18C2D103A57BCA8CEF425E1CD3B7D619DCC0E8A"
+      }
+    },
+    {
+      "id": "src.research.engine-text-object-writer-20261112",
+      "path": "sources/evidence/engine-text-object-writer-20261112.json",
+      "sha256": "4DB0F2A24FADB45593337EA7081AE4C205CE2891DA987006B43A9300451D2496",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "40 条文本对象表的写入方 0x42AF6F：0x426E64 读索引、>=0x28 跳过、'0' 停用 [rec] 并 0x47F9C3(rec+0x20)、'*' 从字符串指针表 0x506000 取 dword[n] 逐字拷贝；0x41EB3E 六个调用点与 0x506000 七个引用点",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "4DB0F2A24FADB45593337EA7081AE4C205CE2891DA987006B43A9300451D2496"
+      }
+    },
+    {
+      "id": "src.research.engine-training-ctx-fields-20261112",
+      "path": "sources/evidence/engine-training-ctx-fields-20261112.json",
+      "sha256": "33A17E5DC0DF65D1ABED856FC172C1CC20697F863F2A5E217F38A82C26EA30B2",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "练武场上下文 +0x04/+0x08/+0x09/+0x0A 字段：+0x08=数量（0x40A56F byte[+8]+5）、+0x04=第二单位记录指针（仅写）、+0x09..+0x0C 瞬态参数、+0x0A 回合计数；0x4237F9 费用公式与 0x423820/0x43BFD4 资金校验扣款；0x42DE63 三模式选择框与 0x423842 分派；0x3FE 单位表上界哨兵（有效 0..0x3FD）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "33A17E5DC0DF65D1ABED856FC172C1CC20697F863F2A5E217F38A82C26EA30B2"
+      }
+    },
+    {
+      "id": "src.research.engine-script-operand-codes-20261112",
+      "path": "sources/evidence/engine-script-operand-codes-20261112.json",
+      "sha256": "89A14E961F48AA6A13BDAEC53B8C3C3D2CD75DD5C76BDF1974703EB1127DF69D",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x4183F7 操作数类型码（1/4/5/2/0x38/0x39 与变量间接 ~ax-1→0x502000）；主分派表 0x410A38 126 项全表；0x68=0x4103F0 练武场（类型 2,2,0x4F）、0x72=0x47D89E 信息传送（4,5）、0x76=0x416C41 区间守卫（4）、0x77=0x416C87 变量算术（0x51,4,0x53,0x52,4）；三基底 EXE 无命令中文名表",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "89A14E961F48AA6A13BDAEC53B8C3C3D2CD75DD5C76BDF1974703EB1127DF69D"
+      }
+    },
+    {
+      "id": "src.research.engine-settings-plus05-and-edx-20261112",
+      "path": "sources/evidence/engine-settings-plus05-and-edx-20261112.json",
+      "sha256": "FBFBA3361B9C2599D8B85A13CE794AC8059DAE304166F50DD67004734D64BA1A",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "设置块 +0x05 场景类别缓存（章节 3 存档头 +0x04 来源；写入 0x44D2FF/0x42C0BA，读取 0x405412，否则 0x44F9A0=byte[0x4AC63D]）；0x423842 edx 为 0x42DE63 返回路径残留（0x473623→0x401692→0x47D1F1），非显式参数；0x474E0E 为 WndProc 菜单分支",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "FBFBA3361B9C2599D8B85A13CE794AC8059DAE304166F50DD67004734D64BA1A"
+      }
+    },
+    {
+      "id": "src.research.engine-coverage-ledger-v14-20261112",
+      "path": "sources/evidence/engine-coverage-ledger-v14-20261112.json",
+      "sha256": "C53F6DDF58B8B5615E4E38C9EEA0EB2382A024A69A53B689F1992154F86C1AAF",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "覆盖台账 v14：98 域=77 resolved+19 partial+2 unresolved（第 140–149 轮新增 4 项 resolved）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "C53F6DDF58B8B5615E4E38C9EEA0EB2382A024A69A53B689F1992154F86C1AAF"
+      }
+    },
+    {
+      "id": "src.research.engine-auto-settle-pass-table-20261112",
+      "path": "sources/evidence/engine-auto-settle-pass-table-20261112.json",
+      "sha256": "CD5784C5F051DD5A62ACE3305C9A3CB631B94E65A956BC2B0BD1830AE992FBE2",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x44DA7A 行动顺序生成器：9 项分派表 0x44DC37 逐分支展开、单位 +0x0B 顺序字节读写（0x425AC7/0x44F980）、仅 +0x0C==2 参与（0x418C90）、兵种系桶表 0x44DCCC 与 0x4D20E8/0x4D2138/0x4D2188/0x4D2200、0x505F7C 无静态写入者",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "CD5784C5F051DD5A62ACE3305C9A3CB631B94E65A956BC2B0BD1830AE992FBE2"
+      }
+    },
+    {
+      "id": "src.research.engine-quick-window-names-20261112",
+      "path": "sources/evidence/engine-quick-window-names-20261112.json",
+      "sha256": "6ABB7F3632F822E19289945C9741C8C5BC0FD6BEFDD0AEB39EE98583F330FBC1",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "四快捷窗口业务名（0 卖掉物资/1 买进物资/2 打开仓库/3 场景切换）、0x501FFF 展开状态、0x4B09DB 窗口数量、操作码 0x06（0x415B4F）与队伍槽写入 0x415C0D",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "6ABB7F3632F822E19289945C9741C8C5BC0FD6BEFDD0AEB39EE98583F330FBC1"
+      }
+    },
+    {
+      "id": "src.research.engine-mci-flags-decode-20261112",
+      "path": "sources/evidence/engine-mci-flags-decode-20261112.json",
+      "sha256": "96B1380674D178CBE4A717F2A663DCF17AA8C15BABFFA01110D56E6AFE0A0ACE",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "MCI 0x873=MCI_SETAUDIO（flags 0x1800000=ITEM|VALUE，item 0x4002=VOLUME，值=音量×10）；0x41F11D MCI_OPEN flags 0x30200=MCI_ANIM_OPEN_PARENT|MCI_ANIM_OPEN_WS|MCI_OPEN_ELEMENT 且 5 次重试；MCI_WINDOW/STATUS/PAUSE/RESUME/STOP/CLOSE 调用点",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "96B1380674D178CBE4A717F2A663DCF17AA8C15BABFFA01110D56E6AFE0A0ACE"
+      }
+    },
+    {
+      "id": "src.research.engine-tile-markers-20261112",
+      "path": "sources/evidence/engine-tile-markers-20261112.json",
+      "sha256": "B8A67410D56320B7222030596020A5916CBD2E78D3962E9681B76341BA76018D",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "0x506800 两视图启用条件（3 字节小地图标记视图 0x41E898/0x21C0/0x1B0 vs 12 字节地图记录视图 0x405063/0x405101/0x4263B3/0x4BE880+0x1B00）；0x4B09DB 更正为出战部队数量（写 0x415B96/0x415BB1/0x415BF3，读 0x416526/0x418628/0x4186D9/0x41E8AB）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "B8A67410D56320B7222030596020A5916CBD2E78D3962E9681B76341BA76018D"
+      }
+    },
+    {
+      "id": "src.research.engine-listbox-class-20261112",
+      "path": "sources/evidence/engine-listbox-class-20261112.json",
+      "sha256": "FA0F92CB11C2155333D252C47DBDA19E876B0EA9BFC425150070626FD69E7DD7",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "对话框 class ord131=0x83=ListBox；消息 0x180=LB_ADDSTRING、0x184=LB_RESETCONTENT、0x18B=LB_GETCOUNT、0x1A1=LB_GETITEMHEIGHT；0x4D3 列表框由 0x40F436 按 0xB 前缀表 + 8/16 行表填充",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "FA0F92CB11C2155333D252C47DBDA19E876B0EA9BFC425150070626FD69E7DD7"
+      }
+    },
+    {
+      "id": "src.maintenance.source-cleanup-20261112",
+      "path": "sources/source-cleanup-20261112.json",
+      "sha256": "7AF8869DD246B1D5B9AD5361E4FB41232362F5CA11BBF2690EB6821C0122745A",
+      "sourceType": "maintenance-record",
+      "published": true,
+      "usedFor": "来源清单同 path+sha256 去重合并记录（29 条合并）",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "7AF8869DD246B1D5B9AD5361E4FB41232362F5CA11BBF2690EB6821C0122745A"
       }
     }
   ]

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.auto-battle-flags.3ef7",
+      "title": "自动战斗标志 0x4B4250+0x64/+0x68（AI 托管选目标与自动结算）",
+      "aliases": [
+        "auto battle flags",
+        "自动战斗",
+        "0x4B4250+0x64",
+        "0x4B4250+0x68",
+        "0x4389BD",
+        "0x44DA7A"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4B4250+0x64（dword）与 +0x68（dword）是自动战斗/AI 托管标志。0x412F84：+0x64==1 时交换目标指针并 call 0x4389BD(候选,0)（AI 最优单位评分选择）；0x412F9B：+0x68==1 且 [ebp-0xC]==1 时进入同一 AI 分支；0x43E823：byte[0x501A6E]!=0 且 0x41C330(0x4B3D08)==0 且 +0x64!=0 时依次 call 0x44DA7A(0)/0x44DA7A(1)（自动结算/结束）。0x44DA7A(side) 是一方单位的行动顺序生成器：arg!=0 遍历槽 0x00..0x3A、arg==0 遍历 0x3C..0xF9，先把全体单位 byte[unit+0x0B] 置 0xFF（0x44F980），再按 9 项分派表 0x44DC37 逐 pass 处理，用全局计数器从 0 递增写回 +0x0B。9 项依次为 0x44DB12/0x44DB3F/0x44DB5D/0x44DB6B/0x44DBAA/0x44DBEF/0x44DBFA/0x44DC10/0x44DC05：分支0 若 0x4225FB(unit)!=0 且兵种系 byte[0x4D2200+系]==9（仅系 0x12）则置 0x75 延后；分支1 word[unit+6] 经 0x417B5A 判定；分支2 0x439CFE；分支3 若 byte[0x505F7C]==2 调 0x44DC5B 按桶表 0x44DCCC 做 6 级排序并跳到分支8，否则用 0x43FFB9（0x4D2188 表，1 特判、否则 al^2）且兵种系!=9 才分配；分支4 若 0x505F7C==0 直接跳分支8，否则取 0x40658F(unit) 记录 byte[+0x2B] 兵种 ID→0x41B782(0x4A2A27+ID*0x23) 的 0x23 字节记录，0x436CA3 读 +0x02/+0x03，任一>=4 即分配；分支5 0x4281AF（0x4D2138 表）；分支6 0x43FF6E（0x4D20E8 表项==0）；分支7 剩余 +0x0B==0xFF 者分配；分支8 +0x0B==0x75 者分配。0x418C90 读 byte[unit+0x0C]，仅==2 的单位参与。0x505F7C 在 6.5 EXE 内无静态写入点（原版恒 0，有效 pass 为 0/1/2/3/8）。写入方穷举：6.5 Ekd5.exe 中 266 处 mov reg,0x4B4250 的 45 条窗口内只有两处读取，绝对地址 0x4B42B4/0x4B42B8 无引用，add reg,0x64/0x68 间接写入也不存在；Cmdicon/Mgcicon/GearNtKe/Itemicon/Mapatr/Jpg/zlib 七个 DLL 也无 0x4B42B4/0x4B42B8 立即数。同目录 AutoDLL.ini 提供 EnableAutoSave/Resize/EnableFastKey 开关，与读取分支语义相容但无静态一一对应证据。",
+      "constants": [
+        "0x4B4250", "0x64", "0x68", "0x4B42B4", "0x4B42B8", "0x412F84", "0x412F9B", "0x4389BD", "0x43E823", "0x44DA7A", "0x501A6E", "0x4B3D08", "0x41C330",
+        "0x4061F9", "0x44F980", "0x44DC37", "0x3B", "0x3C", "0xFA",
+        "0x418C90", "0x425AC7", "0x44DC5B", "0x44DCCC", "0x4225FB", "0x417B5A", "0x439CFE",
+        "0x43FFB9", "0x4281AF", "0x43FF6E", "0x41B782", "0x436CA3", "0x4A2A27",
+        "0x4D20E8", "0x4D2138", "0x4D2188", "0x4D2200", "0x505F7C", "0x403360",
+        "0x0B", "0x0C", "0x75", "0x23", "0x2B", "0x4", "0x12"
+      ],
+      "identity": "0x412F84/0x412F9B 的 +0x64/+0x68 偏移与第59轮 0x4B4250 字段集合一致；0x4389BD 与第38轮 AI 最优单位选择一致；0x43E823 的 0x41C330 门控与第55轮物品 +0x10 getter 一致（此处用于状态判定）；0x44DA7A 的双区间 0x00..0x3A/0x3C..0xF9 与单位槽总数 0xFA 自洽。",
+      "siteAddresses": {
+        "flagBase": "0x4B4250",
+        "flagAutoTarget": "0x64",
+        "flagAutoSecond": "0x68",
+        "autoTargetBranch": "0x412F84",
+        "autoSecondBranch": "0x412F9B",
+        "aiSelect": "0x4389BD",
+        "autoSettle": "0x43E823",
+        "autoSettleCall": "0x44DA7A",
+        "unitGetter": "0x4061F9",
+        "unitStatusCall": "0x44F980",
+        "statusJumpTable": "0x44DC37",
+        "gateByte": "0x501A6E",
+        "gateBattle": "0x4B3D08",
+        "passTable": "0x44DC37",
+        "unitOrderGet": "0x425AC7",
+        "unitOrderSet": "0x44F980",
+        "unitFilterByte": "0x418C90",
+        "bucketSorter": "0x44DC5B",
+        "bucketTable": "0x44DCCC",
+        "switchByte": "0x505F7C",
+        "jobSeriesGetter": "0x43B4A7",
+        "jobTableA": "0x4D20E8",
+        "jobTableB": "0x4D2138",
+        "jobTableC": "0x4D2188",
+        "jobTableD": "0x4D2200",
+        "predicate0": "0x4225FB",
+        "predicate1": "0x417B5A",
+        "predicate2": "0x439CFE",
+        "predicate3": "0x43FFB9",
+        "predicate5": "0x4281AF",
+        "predicate6": "0x43FF6E",
+        "jobRecordTable": "0x4A2A27",
+        "jobRecordByte": "0x436CA3"
+      },
+      "limitations": [
+        "未找到 +0x64/+0x68 的静态写入点（Ekd5.exe 与 7 个插件 DLL 均无，写入方疑为运行期热补丁/外部工具）。",
+        "AutoDLL.ini 三项开关与 +0x64/+0x68 的一一对应未证实。",
+        "0x501A6E、0x41C330 语义未展开。",
+        "0x4225FB、0x417B5A、0x439CFE 的业务名未定（分别依赖 0x4D2200 兵种系值、word[unit+6]、兵种记录 [0]/[+0x10]）。",
+        "0x505F7C 的外部写入者（疑为插件）未定位。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.battle-viewport-context.3ef7",
+        "mechanism.65.ai-dispatch-handler-cross-base.3ef7",
+        "mechanism.65.file-io-wrappers.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-auto-battle-flags-20261112",
+        "src.research.engine-auto-battle-flag-scan-20261112",
+        "src.research.engine-auto-settle-pass-table-20261112"
+      ]
+    }
+  ]
+}

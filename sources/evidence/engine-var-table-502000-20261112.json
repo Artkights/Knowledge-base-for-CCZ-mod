@@ -1,0 +1,43 @@
+{
+  "id": "src.research.engine-var-table-502000-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "0x502000 变量数组的按槽写入语义：0x407932 以单位槽为索引写 0/1 标志",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 0x407915..0x40795E 与 0x502000 写入点上下文",
+  "findings": [
+    {
+      "id": "slot-flag-write",
+      "claim": "0x407932 以 [ebp-4] 为索引写 dword[0x502000+idx*4]：值为 byte[unit+0xD]&2 >=2 ? 1 : 0；unit 由 0x4061F9(槽) 取得，说明该数组在此处按单位槽位保存 0/1 标志。",
+      "evidence": [
+        "0x407915 mov ecx,[ebp-8]; 0x407918 call 0x4061F9（槽→unit）",
+        "0x407923 mov al,[ecx+0xD]; 0x407926 and al,2; 0x40792A cmp al,2; 0x40792E inc ecx",
+        "0x40792F mov eax,[ebp-4]; 0x407932 mov [eax*4+0x502000],ecx"
+      ]
+    },
+    {
+      "id": "surrounding-path",
+      "claim": "同函数在 [ebp-0xC]==0 时走标志写入；否则按 [ebp-4]==0 与否分别调 0x442718(6)/0x406690(6)，随后以 0x4B3D08 调 0x44A88A，属单位行动/状态分支。",
+      "evidence": [
+        "0x40791D cmp [ebp-0xC],0; 0x407921 jne 0x40793B",
+        "0x40793B cmp [ebp-4],0; 0x407943 call 0x442718；0x40794C call 0x406690",
+        "0x407951 mov ecx,0x4B3D08; 0x407956 call 0x44A88A"
+      ]
+    }
+  ],
+  "corrections": [
+    "0x502000 除被 '*' 记号读取外，也按单位槽位写入 0/1 标志（0x407932），并非纯脚本变量表。"
+  ],
+  "limitations": [
+    "0x502000 数组容量与初始化点仍未定位。",
+    "0x407932 所在函数的完整职责未展开。",
+    "0x43B502 的读取点位于 NOP 区附近，指令对齐存疑，本次不作为证据。",
+    "未运行游戏对照。"
+  ]
+}

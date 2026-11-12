@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "analysis": "formula-constant-site-cross-base-audit",
+  "date": "2026-11-12",
+  "method": "读取 6.5 知识库 data-manager-formulas 的 160 个带地址提示常量与 91 个 dm-constant 精确站点，按 VA 在三基底同址读取 8 字节/期望字节并比较；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "audit": {
+    "constantsWithAddressHints": 160,
+    "siteObservations": 464,
+    "uniqueSiteVA": 394,
+    "siteIdentity": {
+      "allThreeIdentical": 235,
+      "divergent": 229,
+      "notPresentInAllThree": 0
+    },
+    "expectedByteSites": {
+      "total": 91,
+      "match65": 91,
+      "match64": 38,
+      "match66": 45,
+      "mismatch64": 53,
+      "mismatch66": 46
+    }
+  },
+  "findings": [
+    "6.5 的 91 个 dm-constant 精确站点全部匹配 expectedFieldBytes，说明现有 6.5 站点契约自洽。",
+    "同一 VA 在 6.4 只有 38/91 匹配、6.6 只有 45/91 匹配；跨基底不能继承站点字节。",
+    "160 个带地址提示常量共 464 个站点观测，其中 229 个在至少一个基底上不同；既有版本差异（如角色最大等级 80/60/99、经验阈值 150/250、部分函数重排）是主要原因之一。",
+    "部分分歧来自地址提示指向的指令块在其它基底整体偏移或重排，不等价于常量值改变；必须按基底重新定位签名。",
+    "审计脚本与原始结果保存在本地分析目录，未写入游戏基底。"
+  ],
+  "knownDivergenceExamples": [
+    {"va": "0x004088CD", "bytes": {"6.4": "55 8B EC 33 C0 B0 50", "6.5": "55 8B EC 33 C0 B0 3C", "6.6": "55 8B EC 33 C0 B0 63"}, "meaning": "角色最大等级 6.4=0x50(80)、6.5=0x3C(60)、6.6=0x63(99)"},
+    {"va": "0x0043B50C", "bytes": {"6.4": "55 8B EC 33 C0 8B 55 0C", "6.5": "27 FF 75 F8 FF 75 F4 E8", "6.6": "80 3D 18 3D 4B 00 00 75"}, "meaning": "命中率曲线函数在 6.4 与 6.5/6.6 的站点位置不同"},
+    {"va": "0x00409639", "bytes": {"6.4": "6A 01 FF 75 EC E8 29 8A", "6.5": "6A 19 FF 75 EC E8 29 8A", "6.6": "6A 32 FF 75 EC E8 29 8A"}, "meaning": "同一指令立即数在 6.4/6.5/6.6 分别为 1/0x19/0x32"}
+  ],
+  "conclusion": "知识库的 6.5 精确站点契约通过全量字节核对（91/91），但三基底站点一致性只有约一半（235/464）；6.4 与 6.6 必须按各自函数重定位和重新核对，不能从 6.5 地址或字节直接继承。该审计给出了后续 6.4/6.6 全量解析的优先级：先处理 53/46 个不匹配的精确常量站点。",
+  "limitations": [
+    "地址提示来自源码审阅条目，部分为历史定位提示或函数起点，不全是唯一常量字节站点。",
+    "同址比较只证明该 VA 的字节不同，不证明玩法语义差异。",
+    "未运行游戏对照。"
+  ]
+}

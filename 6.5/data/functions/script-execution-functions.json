@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "fn.65.script-event-iterate.3890",
+      "title": "剧本事件表遍历",
+      "aliases": [
+        "0x0042A049",
+        "script_event_iterate"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0042A049",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "cdecl（无显式栈参）",
+      "inputs": "全局：0x4AB020 模式开关、0x49CF68 事件表",
+      "returns": "无（内部驱动事件处理）",
+      "semantics": "入口 push ebp; mov ebp,esp; xor eax,eax; push eax; mov word[0x49EFA8],ax; cmp byte[0x4AB020],1; jne 跳过整段。随后两轮 0x80 次循环：第一轮同时推进 0x40 步长与 0x24 步长两个数组并调 0x427C43；第二轮 0x418E50 取标志、0x40E009 取指针、0x40E8EE 比较 0x1000 后进入 0x42A100 分支。",
+      "relations": [
+        "global.65.script-event-table.3890",
+        "fn.65.script-record-field-reader.3890",
+        "format.65.script-command-record.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.script-record-field-reader.3890",
+      "title": "剧本记录字段读取样例",
+      "aliases": [
+        "0x0042A100",
+        "script_record_field_reader"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0042A100",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "内部跳转目标；ECX/EDX 由 0x42A049 第二轮循环准备",
+      "inputs": "记录指针；读取 +4/+6/+8/+0xA/+0xC/+0xE/+0x2C/+0x2E 八个 word",
+      "returns": "无（调用 0x428EB0）",
+      "semantics": "依次 movzx 八个字段并 push，连同 [ebp-0xC] 共 9 个参数调用 0x428EB0；证明记录内参数字段从 +4 起按 2 字节连续排列，与「1 字节 opcode + 13 个 2 字节槽」的编辑器布局吻合。6.6 同址同字节（仅内部 call 位移不同）；6.4 该段整体换址。",
+      "relations": [
+        "fn.65.script-event-iterate.3890",
+        "format.65.script-command-record.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.script-event-slot.3890",
+      "title": "剧本事件表取槽",
+      "aliases": [
+        "0x00426AA8",
+        "script_event_slot"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00426AA8",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "cdecl；1 个 16 位栈参，ret 4",
+      "inputs": "[ebp+8] = 槽号（0..0x7F）",
+      "returns": "EAX = 0x49CF68 + 槽号 × 0x40",
+      "semantics": "movzx eax,word[ebp+8]; shl eax,6; add eax,0x49CF68; ret 4。三基底 0x426AA8 起 0x14 字节完全相同。6.5 中有 15 处调用者（0x40A97C、0x40B578、0x425BA5、0x425C27、0x426D9F、0x4274CD、0x4278A5、0x428F01、0x4299EF、0x429BF6、0x429C2F、0x42AED7、0x460942、0x478BFC、0x478C14），是访问事件槽的统一入口。",
+      "relations": [
+        "global.65.script-event-table.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

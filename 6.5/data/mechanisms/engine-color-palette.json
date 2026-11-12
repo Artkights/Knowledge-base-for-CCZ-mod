@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.color-palette.3ef7",
+      "title": "256 项 RGB 调色板 0x4CB1C0（6.5/6.4 为 0x511400）",
+      "aliases": [
+        "color palette",
+        "调色板",
+        "0x4CB1C0",
+        "0x511400",
+        "0x497770",
+        "0x00F700FF"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4CB1C0（6.6）/0x511400（6.5、6.4）是 256 项 dword 调色板（0x400 字节，格式 0x00RRGGBB，三基底逐字节相同，sha256 6BC92B09…）。0x00F700FF 为透明色键。颜色用于像素合成（0x4034F6）、GDI 画刷（0x4647E8 CreateSolidBrush）、阵营/伤害数字颜色（0x42E195 取索引 0x1F/0x3A/0x12 或 0x12/0x28/0x12）。0x45B6E3 把调色板转换为 0x497770 的 256×3 4-bit RGB 表：6.5/6.4 由调用方传入源/目的，6.6 硬编码源 0x4CB1C0、目的 0x497770，调用点 0x42B9FB 位于战斗初始化链。",
+      "constants": [
+        "0x4CB1C0", "0x511400", "0x497770",
+        "0x45B6E3", "0x42B9FB", "0x42B9D3",
+        "0x4034F6", "0x40A4D1", "0x40E835", "0x40E83A",
+        "0x41734A", "0x41734F", "0x42E195", "0x4647E8",
+        "0x42AEF4", "0x42AF3A", "0x41307D",
+        "0x00F700FF", "0x1F", "0x3A", "0x12", "0x28"
+      ],
+      "identity": "调色板内容按 0x400 字节哈希比对，三基底一致；索引常量 0x1F/0x3A/0x12/0x28 的选择逻辑在 0x42E195 由 neg/sbb/and al,0xF3/add 0x1F 与 and ecx,0xFFFFFFEE/add 0x3A 两条无分支序列实现。",
+      "siteAddresses": {
+        "palette66": "0x4CB1C0",
+        "palette65": "0x511400",
+        "palette64": "0x511400",
+        "convertFn": "0x45B6E3",
+        "convertDest": "0x497770",
+        "convertCaller66": "0x42B9FB",
+        "convertCaller65": "0x42B9D3",
+        "pixelSite": "0x4034F6",
+        "indexToRgbSite": "0x40A4D1",
+        "brushSite": "0x4647E8",
+        "colorSelectSite": "0x42E195",
+        "maskPixelSite66": "0x42AEF4",
+        "drawColorSite66": "0x42AF3A",
+        "transparentKey": "0x00F700FF"
+      },
+      "limitations": [
+        "除主要梯度段外的完整色相命名未逐一登记。",
+        "0x42AEF4/0x42AF3A 的具体绘制对象（特效/头像/地图）未追踪。",
+        "调色板运行期是否可写未验证（静态仅见读取）。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.battle-viewport-context.3ef7",
+        "mechanism.65.damage-apply-mode.3ef7",
+        "mechanism.65.crit-combo-mode.3ef7",
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-color-palette-20261112"
+      ]
+    }
+  ]
+}

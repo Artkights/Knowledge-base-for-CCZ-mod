@@ -1,0 +1,71 @@
+{
+  "id": "src.research.engine-mci-command-map-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "MCI 命令全图（19 调用点）：avivideo 动画链与 sequencer MP3 音乐链；设置 +0x03 音量",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 全代码扫描 call [0x4863CC] 的 19 个调用点 + 回溯 push 立即数得到每条消息/标志 + 字符串读取（0x48B714/0x486910/0x486934）",
+  "findings": [
+    {
+      "id": "mci-iat",
+      "claim": "0x4863CC 是 WINMM.dll!mciSendCommandA；设备 ID 存 word[0x497AE0]（AVI），BGM 设备 ID 存 [0x4B69B8+4]（sequencer）。",
+      "evidence": [
+        "IAT 0x4863CC → WINMM.dll mciSendCommandA",
+        "0x41F5F6/… 前均 movzx edx,word[0x497AE0]；0x42F7E1 前 mov eax,[ecx+4]（ecx=0x4B69B8）"
+      ]
+    },
+    {
+      "id": "avi-chain",
+      "claim": "avivideo 动画链消息：0x41F032 MCI_OPEN(0x803, flags 0x2000)（类型串 0x48B714=\"avivideo\"）；0x41F08D 与 0x41F5F6 MCI_SEEK(0x807, flags 0x100=TO_START)；0x41EFE7/0x41F0A1/0x41F7C5 MCI_PLAY(0x806, flags 1=MCI_NOTIFY)；0x41F16A MCI_WINDOW(0x841, flags 0x40000)；0x41F188 与 0x41F81A MCI_STATUS(0x814, flags 0x100=MCI_STATUS_ITEM)，状态值 0x20E=MCI_MODE_PLAY、0x211=MCI_MODE_PAUSE；0x41F737 MCI_WHERE(0x843, flags 0x20000=SOURCE)；0x41F8C1 MCI_PAUSE(0x809)；0x41F11D MCI_OPEN(0x803, flags 0x30200)。",
+      "evidence": [
+        "0x41F04B push 0x2000; 0x41F050 push 0x803; 0x41F03D push 0x48B714(\"avivideo\")",
+        "0x41F080 push 0x100; 0x41F085 push 0x807; 0x41F5E4 push 0x100; 0x41F5E9 push 0x807",
+        "0x41F097 push 1; 0x41F099 push 0x806；0x41EFE7/0x41F0A1 同",
+        "0x41F16A 前 push 0x40000; 0x841；0x41F81A 后 cmp [ebp-0xC],0x20E / 0x211",
+        "0x41F72A push 0x843; 0x41F725 push 0x20000；0x41F8B4 push 0x809"
+      ]
+    },
+    {
+      "id": "bgm-chain",
+      "claim": "sequencer MP3 音乐链：0x42F7C3 MCI_OPEN(0x803, flags 0x202=MCI_WAIT|MCI_OPEN_ELEMENT)，类型串 0x486934=\"sequencer\"，元素名由格式串 0x486910=\".\\SoundTrk\\%02u-AudioTrack %02u.mp3\" 生成；0x42F7E1 MCI_PLAY(0x806, flags 0x10000)；0x42F820 MCI 0x873（MCI_SETAUDIO 类，flags 0x1800000，参数 0x4002 与音量*10）；0x42F840 MCI_PAUSE(0x809)；0x42F862 MCI_RESUME(0x855)；0x42F76D MCI_STOP(0x808)；0x42F77F MCI_CLOSE(0x804)。",
+      "evidence": [
+        "0x42F795 push 0x486910; 0x42F79A call [0x4862C0]（格式化）; 0x42F7B7 push 0x202; 0x42F7BC push 0x803",
+        "0x42F7A6 mov dword[ebp-0x4C],0x486934(\"sequencer\")",
+        "0x42F7D6 push 0x10000; 0x42F7DB push 0x806",
+        "0x42F813 push 0x1800000; 0x42F818 push 0x873; 0x42F806 push 0x4002",
+        "0x42F840 前 push 0x809；0x42F862 前 push 0x855；0x42F76D 前 push 0x808；0x42F77F 前 push 0x804"
+      ]
+    },
+    {
+      "id": "volume-setting",
+      "claim": "设置块 0x4B0770+0x03 是音量（0..100）：0x42E218(hwnd) 取控件 0x411 的 TBM_GETPOS(0x400) 值写入 +0x03，再调 0x42F7FC：0x42F7FC 把值×0xA 作为 MCI 0x873 的参数发出（音量应用）。",
+      "evidence": [
+        "0x42E21B push 0x411; 0x42E223 call [0x4862DC]=GetDlgItem",
+        "0x42E22D push 0x400; 0x42E233 call [0x4862F4]=SendMessageA（TBM_GETPOS）",
+        "0x42E23A mov ecx,0x4B0770; 0x42E23F mov byte[ecx+3],al; 0x42E243 call 0x42F7FC",
+        "0x42F7FF mov eax,[ebp+8]; 0x42F802 imul eax,eax,0xA; 0x42F813 push 0x1800000; 0x42F818 push 0x873"
+      ]
+    },
+    {
+      "id": "corrections",
+      "claim": "旧记录把 0x41F08D/0x41F0A1 记为 MCI_PLAY、0x42F76D 记为 MCI_CLOSE：按回溯 push 立即数，0x41F08D 实为 MCI_SEEK(0x807, TO_START)，0x41F0A1 为 MCI_PLAY(0x806,1)，0x42F76D 为 MCI_STOP(0x808)，0x42F77F 才是 MCI_CLOSE(0x804)。",
+      "evidence": [
+        "0x41F080 push 0x100; 0x41F085 push 0x807 → 0x41F08D",
+        "0x41F097 push 1; 0x41F099 push 0x806 → 0x41F0A1",
+        "0x42F773 push 0; 0x42F775 push 0; 0x42F777 push 0x808 → 0x42F76D；0x42F777 后 0x42F77F 前 push 0x804"
+      ]
+    }
+  ],
+  "limitations": [
+    "MCI 0x873 的具体常量名（MCI_SETAUDIO 或 MCI_DGV_SET）与 0x4002 参数项未由文档确认。",
+    "0x41F11D 的 flags 0x30200 组合未拆解。",
+    "MCI_WINDOW 的 state=5 未由文档确认。",
+    "未运行游戏对照。"
+  ]
+}

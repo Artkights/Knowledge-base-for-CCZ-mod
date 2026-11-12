@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.unit-status-bitfield.3ef7",
+      "title": "单位 +0x1E 四位状态组与 +0x10 部署字段",
+      "aliases": [
+        "unit+0x1E",
+        "unit+0x10",
+        "0x423FE8",
+        "0x426B33",
+        "40%伤害条件"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "unit+0x10 由 0x41B500 直接返回，为 0 时 0x426B33 返回 2（未部署/已撤退候选）；否则 0x426B33 返回 byte[unit+0x1E] 第 3 组 2-bit 状态值（mask 8）。0x411072 在 0x426B33 非 0 时追加 40% 伤害。unit+0x1E 为 4 组 × 2 bit 状态字节。",
+      "constants": [
+        "0x10",
+        "0x1E",
+        "8",
+        "2",
+        "0x28"
+      ],
+      "identity": "0x41B500 三基底同哈希 53C5E1FDE51CF1D9；0x423FE8/0x426B33 在 6.5/6.6 同哈希，6.4 不同。",
+      "limitations": [
+        "unit+0x10 语义未由文案证明。",
+        "四组 2-bit 状态未命名。",
+        "其余 mask 使用点未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.damage-apply-mode.3ef7",
+        "mechanism.65.temp-attribute-block.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-unit-status-bitfield-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "deployField": "unit+0x10",
+        "statusByte": "unit+0x1E",
+        "get10": "0x41B500",
+        "statusBits": "0x423FE8",
+        "check": "0x426B33",
+        "apply40": "0x411072"
+      }
+    }
+  ]
+}

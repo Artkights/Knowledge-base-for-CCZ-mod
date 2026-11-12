@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.6/data/structures/data-manager-physical-tables.json`、`6.6/data/structures/engine-effect-job-slots.json`、`6.6/data/structures/f36-shanzai-structures.json`、`6.6/data/structures/item-category-semantics.json`、`6.6/data/structures/runtime-structures.json`
+结构化事实来源：`6.6/data/structures/data-manager-physical-tables.json`、`6.6/data/structures/engine-effect-job-slots.json`、`6.6/data/structures/f36-shanzai-structures.json`、`6.6/data/structures/item-category-semantics.json`、`6.6/data/structures/runtime-structures.json`、`6.6/data/structures/strategy-records.json`
 
 ## 66-standard-v1 人物（persons 物理表）
 
@@ -9871,3 +9871,30 @@ ID: `struct.66.item-record`；状态: `canonical`；证据: `source-reviewed`
 | `effect_value` | `0x16` | 1 | `uint8` | 普通装备特效值；辅助保留；消耗品参数高字节。运行时该字段消费仍按原静态证据边界，不推广为所有类别通用效果值。 |
 | `growth` | `0x17` | 1 | `uint8` | 普通装备成长；辅助适用兵种；消耗品保留。 |
 | `catalog_flag` | `0x18` | 1 | `uint8` | 图鉴/宝物标志 |
+
+## 策略记录（0x61 字节，6.6 山贼 25D4 复核）
+
+ID: `struct.66.strategy-record.25d`；状态: `canonical`；证据: `static-verified`
+
+步长: `0x61` (97)
+
+索引公式: `文件：Data.e5 + 0xB204 + strategy_id * 0x61 + field_offset（0 <= id < 144）`
+
+画像：`profile.ccz66.xiaoan.fixture.25d`；记录数：`68`。
+
+- 0x40D73C 加载循环重排字段：文件 +0x0B 类型→运行时 +0x0F；文件 +0x0C 对象→运行时 +0x0B；文件 +0x0D 范围→运行时 +0x0C；文件 +0x0E 穿透→运行时 +0x0D；文件 +0x0F MP→运行时 +0x0E；图标/学习等级不变。
+- data 管理器按文件偏移编辑是正确的；任何直接读 0x4A3E77 的工具必须使用 runtimeOffset，不能套用文件偏移。
+- 6.6 启动加载器 0x42B160 同样只初始化 0x44=68 行到 0x4A3E77。
+- 字段偏移与 6.4/6.5 一致；差异在 0xA2CE0 的含义与 0x4D1570 的最大效果类 0x29。
+- 6.6 的 0x4D14E0（0xA2CE0）是真实位掩码表：bit0 决定 AI 是否接受策略，bit2 置位时 call 0x45D316(2)。
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `名称` | `0x00` | 11 | `fixed-string` | 文件 0x00..0x0A 共 11 字节；运行时 0x00..0x09 共 10 字节 +0x0A NUL。0x40D73C 循环每次 memcpy 10 字节、dest+=0x0A、src+=0x0B、写 NUL。 |
+| `策略类型` | `0x0B` | 1 | `uint8` | 文件 +0x0B 在运行时搬到 +0x0F；0x44270C 读取运行时 +0x0F。0x425AC7 读取的是运行时 +0x0B（施展对象），不是类型。 |
+| `施展对象` | `0x0C` | 1 | `uint8` | 文件 +0x0C 在运行时搬到 +0x0B；0x425AC7 读取；0x420F19 经验函数按 2/1 分支；代码/数据只支持 0/1/2。 |
+| `施法范围` | `0x0D` | 1 | `uint8` | 文件 +0x0D 在运行时搬到 +0x0C；0x418C93/0x401DFF 作为范围/动画模板等级读取；不是位掩码。 |
+| `穿透范围` | `0x0E` | 1 | `uint8` | 文件 +0x0E 在运行时搬到 +0x0D；0x425AD0 读取的是运行时 +0x0E（MP），不是穿透。运行时 +0x0D 的专属消费者尚未唯一隔离；0x425AF0 是通用 +0x0D 位测试函数。 |
+| `策略消耗` | `0x0F` | 1 | `uint8` | 文件 +0x0F 在运行时搬到 +0x0E；0x425AD0 读取；KB fn.65.strategy-mp-cost 的 base=+0x0E 结论正确。 |
+| `策略图标` | `0x10` | 1 | `uint8` | 文件与运行时同为 +0x10；编辑器按 Mtem.e5 / Mgcicon.dll 预览；引擎专属消费者未确认。 |
+| `兵种学习等级` | `0x11` | 80 | `uint8[80]` | 文件与运行时同为 +0x11..+0x60，80 项；0x40D77A 把源 +0x11 的 0x50 字节复制到运行时 +0x11。 |

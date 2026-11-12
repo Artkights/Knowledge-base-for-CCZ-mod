@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.grid-bound-word-correction.3ef7",
+      "title": "0x4B422C 网格边界字语义更正",
+      "aliases": [
+        "0x4B422C",
+        "0x4B422D",
+        "网格边界字",
+        "地图宽高更正"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4B422C（word）不是地图宽高，而是可保存/恢复的 2 字节网格/光标边界字。6.4/6.5 在 0x4516BF 写 0x0104、在 0x4D11C7 写 0x0105；6.6 同址为 NOP。该条更正第 8 轮“地图宽高”的初判。",
+      "address": "0x4B422C",
+      "initializers": ["0x4516BF = 0x0104", "0x4D11C7 = 0x0105"],
+      "saveRestore": "0x4516B4 读旧值存入 0x500AA0+0x12，再写 0x0104",
+      "valueShape": "0x0104 = 4×1；0x0105 = 5×1",
+      "versionBytes": {
+        "6.4/6.5": "66 C7 05 2C 42 4B 00 04 01 / 05 01",
+        "6.6": "同址 NOP，需重定位"
+      },
+      "limitations": [
+        "最终玩法名称未确定（网格/光标边界候选）。",
+        "6.6 新站点未定位。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.movement-terrain-and-map-bounds.3ef7",
+        "mechanism.65.formula-site-cross-base-audit.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-grid-bound-correction-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

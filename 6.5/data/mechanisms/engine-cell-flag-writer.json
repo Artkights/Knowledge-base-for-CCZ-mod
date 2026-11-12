@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.cell-flag-writer.3ef7",
+      "title": "地图格标志 0x4934B0 写入函数 0x42A5D6 与全图 and 0x0C/test 0xD 遍历",
+      "aliases": [
+        "cell flag writer",
+        "格标志写入",
+        "0x42A5D6",
+        "0x42A43E",
+        "0x42AAA5"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x42A5D6(coord, mask, on)：index=0x403789(coord)=y*width+x，addr=0x4934B0+index；on!=0 时 byte |= mask（置位前若 (byte&0xD)==0 记 edx=1），on==0 时 byte ^= mask；随后 test 0xD 并返回状态变化。mask 由调用方传入（常见 1/4/8/0xC）。唯一直接调用点 0x42A666 以固定 mask=8 在矩形区域内逐格标记（bit3=范围标记）；另一条链为 0x4D1400 效果范围表 → 0x41E254 枚举 → 回调 0x42A708（x<[0x4B422C]、y<[0x4B422D] 检查，on==0 时先经 0x42A74A 矩形判定）→ 0x42A5D6。0x42AAA5 在 [ebp-8]!=1 且 [ebp+8]<2 时对 0..0x63F 全图执行 byte &= 0x0C（清 bit0/1、保留 bit2/3）。0x42A43E 以 x<[0x4B422C]、y<[0x4B422D] 遍历全图，每格 test 0xD 并用 0x1B00 计算层偏移。",
+      "constants": [
+        "0x4934B0", "0x42A5D6", "0x42A43E", "0x42AAA5", "0x42A666", "0x42A6B0", "0x42A708", "0x42A73F", "0x42A74A", "0x41E254", "0x4D1400", "0x403789", "0x4B422C", "0x4B422D",
+        "0x0D", "0x0C", "0x1B00", "0x640", "0x01", "0x02", "0x04", "0x08"
+      ],
+      "identity": "0x42A5D6 的 OR/XOR 分支与 on 参数一一对应；0x42A666 的固定 mask=8 与 bit3 范围标记一致；0x42AAA5 的 0x0C 掩码是 0xD 的子集（保留 bit2/3）；0x403789 与第42轮网格索引同址同体。",
+      "siteAddresses": {
+        "array": "0x4934B0",
+        "writer": "0x42A5D6",
+        "rectMask8": "0x42A666",
+        "rangeEnumerator": "0x42A6B0",
+        "rangeCallback": "0x42A708",
+        "rangeEnumCall": "0x41E254",
+        "rangeTable": "0x4D1400",
+        "rectHelper": "0x42A74A",
+        "fullMapTest": "0x42A43E",
+        "fullMapClear": "0x42AAA5",
+        "indexHelper": "0x403789",
+        "width": "0x4B422C",
+        "height": "0x4B422D"
+      },
+      "limitations": [
+        "0x42A6B0 的上层调用者与 mask 取值未统计。",
+        "0x41E254 的参数顺序未完全确认。",
+        "0x42AAA5 的条件来源未定。",
+        "0x42A43E 的 [ecx-2]/[ecx-1] 数组未定名。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.cell-flag-item-count.3ef7",
+        "mechanism.65.grid-dimension-pair.3ef7",
+        "mechanism.65.layer-buffer-11.3ef7",
+        "mechanism.65.item-effect-code-and-range-table.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-cell-flag-writer-20261112",
+        "src.research.engine-cell-flag-callers-20261112",
+        "src.research.engine-effect-range-flag-callback-20261112",
+        "src.research.engine-cross-base-hash-audit-late-20261112"
+      ]
+    }
+  ]
+}

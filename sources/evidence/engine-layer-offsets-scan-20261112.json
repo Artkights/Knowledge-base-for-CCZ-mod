@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "analysis": "layer-offsets-scan",
+  "date": "2026-11-12",
+  "method": "新增 layer_offsets.py：扫描 .text/.text2 中全部 imul reg,reg,0x12900，反汇编其后 6 条指令，提取立即数层偏移。仅静态分析。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"}
+  ],
+  "offsets": [
+    {"offset": "0x6C00", "layers": 4, "sites": ["0x43FD55", "0x444961", "0x444AA4", "0x444DD5", "0x446A75", "0x44829D"]},
+    {"offset": "0xA200", "layers": 6, "sites": ["0x41C7F0", "0x441A77"]},
+    {"offset": "0xD800", "layers": 8, "sites": ["0x443D0E", "0x444D45", "0x446E2F", "0x448BCE"]},
+    {"offset": "0xF300", "layers": 9, "sites": ["0x41ED07", "0x441B1E", "0x44426B"]},
+    {"offset": "register", "layers": "n", "sites": ["0x43E5FD: imul eax,eax,0x1B00; add eax,edx", "0x442211: add eax,edx"]},
+    {"offset": "0x1B00", "layers": 1, "sites": ["0x40449D 之后 push 0x1b00（单层）"]}
+  ],
+  "separateBuffers": [
+    {"site": "0x448BCE", "size": "0x37800", "arena": "0x4015B1 → 0x4AE4C8", "note": "0x37800/0x1B00 非整数（≈32.89 层），应不是 11 层块，而是独立缓冲"}
+  ],
+  "conclusion": "层偏移集合确定为 0x6C00/0xA200/0xD800/0xF300（第 4/6/8/9 层），另有 register 计算的任意层与 0x1B00 单层步长；0x37800 是经 0x4AE4C8 池分配的独立缓冲。第 0/1/2/3/5/7/10 层的访问通过基址+n*0x1B00 或寄存器偏移完成。",
+  "limitations": [
+    "未逐站点确认访问的层业务用途。",
+    "0x37800 缓冲用途未定。",
+    "未运行游戏对照。"
+  ]
+}

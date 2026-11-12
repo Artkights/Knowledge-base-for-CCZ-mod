@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "analysis": "dialog-framework",
+  "date": "2026-11-12",
+  "method": "pefile 解析 RT_DIALOG 资源（DLGTEMPLATE/DIALOGEX）并用 dialog_resource.py 输出控件 ID/类/文本；capstone 反汇编 0x418C34/0x46F982/0x46D098/0x46D0F8/0x46D221/0x475600/0x418BC8/0x4706E9/0x46F335/0x46F2E7/0x46D345/0x42124E/0x42A269；refs_to.py 取出 DialogBoxParamA(0x4862A0)、EndDialog(0x4862D4)、CreateFontA(0x486088) 全部站点；hash_regions.py 对同一 VA 区间做三基底 SHA1 对照。仅静态分析，未运行游戏。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "dialogTemplates": [
+    {
+      "id": 332,
+      "hex": "0x14C",
+      "role": "功勋点数分配对话框（0x418BC8 打开）",
+      "entries": {
+        "6.4": {"bytes": 776, "sha1Prefix": "3bf5114c1692747b", "sizeDlu": "230x111", "title": "", "note": "比 6.5/6.6 宽 9 DLU；数值列 x=169，+/- 列 x=204/215"},
+        "6.5": {"bytes": 776, "sha1Prefix": "3e7867045e5a48b7", "sizeDlu": "221x111", "title": ""},
+        "6.6": {"bytes": 776, "sha1Prefix": "3e7867045e5a48b7", "sizeDlu": "221x111", "title": ""}
+      },
+      "format": "DLGTEMPLATE",
+      "style": "0x800002C1",
+      "font": "9pt 宋体",
+      "controls": [
+        {"id": "0x0002", "dec": 2, "class": "Button", "text": "确认", "rect": "70,94,44,16", "style": "0x50010000"},
+        {"id": "0xFFFF", "dec": 65535, "class": "Static", "text": "功勋", "rect": "117,0,103,109", "style": "0x50000307"},
+        {"id": "0x0406", "dec": 1030, "class": "Button", "text": "武", "rect": "119,12,39,8", "style": "0x50010003"},
+        {"id": "0x07D6", "dec": 2006, "class": "Static", "text": "", "rect": "160,12,34,8", "style": "0x50020002"},
+        {"id": "0x07E6", "dec": 2022, "class": "Button", "text": "+", "rect": "195,12,11,8", "style": "0x50010000"},
+        {"id": "0x07EB", "dec": 2027, "class": "Button", "text": "-", "rect": "206,12,11,8", "style": "0x58010000"},
+        {"id": "0x0407", "dec": 1031, "class": "Button", "text": "统", "rect": "119,28,39,8", "style": "0x50010003"},
+        {"id": "0x07D7", "dec": 2007, "class": "Static", "text": "", "rect": "160,28,34,8", "style": "0x50020002"},
+        {"id": "0x07E7", "dec": 2023, "class": "Button", "text": "+", "rect": "195,28,11,8", "style": "0x50010000"},
+        {"id": "0x07EC", "dec": 2028, "class": "Button", "text": "-", "rect": "206,28,11,8", "style": "0x58010000"},
+        {"id": "0x0408", "dec": 1032, "class": "Button", "text": "智", "rect": "119,44,39,8", "style": "0x50010003"},
+        {"id": "0x07D8", "dec": 2008, "class": "Static", "text": "", "rect": "160,44,34,8", "style": "0x50020002"},
+        {"id": "0x07E8", "dec": 2024, "class": "Button", "text": "+", "rect": "195,44,11,8", "style": "0x50010000"},
+        {"id": "0x07ED", "dec": 2029, "class": "Button", "text": "-", "rect": "206,44,11,8", "style": "0x58010000"},
+        {"id": "0x0409", "dec": 1033, "class": "Button", "text": "敏", "rect": "119,60,39,8", "style": "0x50010003"},
+        {"id": "0x07D9", "dec": 2009, "class": "Static", "text": "", "rect": "160,60,34,8", "style": "0x50020002"},
+        {"id": "0x07E9", "dec": 2025, "class": "Button", "text": "+", "rect": "195,60,11,8", "style": "0x50010000"},
+        {"id": "0x07EE", "dec": 2030, "class": "Button", "text": "-", "rect": "206,60,11,8", "style": "0x58010000"},
+        {"id": "0x040A", "dec": 1034, "class": "Button", "text": "运", "rect": "119,76,39,8", "style": "0x50010003"},
+        {"id": "0x07DA", "dec": 2010, "class": "Static", "text": "", "rect": "160,76,34,8", "style": "0x50020002"},
+        {"id": "0x07EA", "dec": 2026, "class": "Button", "text": "+", "rect": "195,76,11,8", "style": "0x50010000"},
+        {"id": "0x07EF", "dec": 2031, "class": "Button", "text": "-", "rect": "206,76,11,8", "style": "0x58010000"},
+        {"id": "0xFFFF", "dec": 65535, "class": "Static", "text": "点数：", "rect": "131,92,24,8", "style": "0x50000000"},
+        {"id": "0x07DB", "dec": 2011, "class": "Static", "text": "", "rect": "160,92,34,8", "style": "0x50020000"},
+        {"id": "0x07D1", "dec": 2001, "class": "Button", "text": "重置", "rect": "195,89,22,14", "style": "0x50010000"},
+        {"id": "0x04D3", "dec": 1235, "class": "ListBox", "text": "", "rect": "1,4,113,88", "style": "0x50A00010"}
+      ],
+      "idGroups": {
+        "confirm": 2,
+        "statLabels": [1030, 1031, 1032, 1033, 1034],
+        "valueLabels": [2006, 2007, 2008, 2009, 2010],
+        "plusButtons": [2022, 2023, 2024, 2025, 2026],
+        "minusButtons": [2027, 2028, 2029, 2030, 2031],
+        "remainingPoints": 2011,
+        "reset": 2001,
+        "characterList": 1235
+      }
+    },
+    {
+      "id": 340,
+      "hex": "0x154",
+      "role": "通用「是/否」确认框（0x418C34 包装）",
+      "entries": {
+        "6.4": {"bytes": 158, "sha1Prefix": "be0c56c23bcf15e8", "title": "三国志刘备传"},
+        "6.5": {"bytes": 156, "sha1Prefix": "3071fa96593e66f9", "title": "三国志曹操传"},
+        "6.6": {"bytes": 158, "sha1Prefix": "be0c56c23bcf15e8", "title": "三国志刘备传"}
+      },
+      "format": "DLGTEMPLATE",
+      "style": "0x80C002C0",
+      "sizeDlu": "121x57",
+      "font": "9pt 宋体",
+      "controls": [
+        {"id": "0x0006", "dec": 6, "class": "Button", "text": "是", "rect": "7,36,50,14", "style": "0x50010001", "note": "BS_DEFPUSHBUTTON，对应 IDYES"},
+        {"id": "0x0007", "dec": 7, "class": "Button", "text": "否", "rect": "64,36,50,14", "style": "0x50010000", "note": "对应 IDNO"},
+        {"id": "0xFFFF", "dec": 65535, "class": "Static", "text": "<ord 137>", "rect": "7,7,18,20", "style": "0x50000003", "note": "SS_ICON，图标资源 ID 137"},
+        {"id": "0x0534", "dec": 1332, "class": "Static", "text": "", "rect": "32,7,82,21", "style": "0x50020000", "note": "消息正文控件；0x46F511 用 GetDlgItem(hwnd,0x534) 取句柄后按文本宽度调整"}
+      ]
+    },
+    {
+      "id": 341,
+      "hex": "0x155",
+      "role": "历史情报对话框（0x41C412 直接打开）",
+      "entries": {
+        "6.4": {"bytes": 68, "sha1Prefix": "0d5d91415fe712a2", "sizeDlu": "241x265", "controls": "1: ListBox id=1031"},
+        "6.5": {"bytes": 104, "sha1Prefix": "4942a938f4607038", "sizeDlu": "241x265", "controls": "2: ListBox id=1031 + Static「信息筛选」"},
+        "6.6": {"bytes": 96, "sha1Prefix": "3e4855561791807d", "sizeDlu": "205x194", "controls": "1: SysTabControl32 id=1029"}
+      },
+      "format": "DLGTEMPLATE",
+      "style": {"6.4": "0x80C800C0", "6.5": "0x80C800C0", "6.6": "0x80C800C0"},
+      "title": "历史情报",
+      "font": "9pt 宋体"
+    }
+  ],
+  "confirmWrapper": {
+    "entry": "0x418C34",
+    "signature": "int ConfirmDialog(HWND parent, const char* text, const char* caption, int mode)",
+    "argumentMap": {
+      "[ebp+8]": "parent HWND",
+      "[ebp+0xC]": "消息正文指针（写入对象 +0x10）",
+      "[ebp+0x10]": "标题指针（写入对象 +0x14，缺省 0x48C8D8）",
+      "[ebp+0x14]": "模式/标志（写入对象 +0x0C，调用点常见 1）"
+    },
+    "objectCtor": "0x475600（先 call 0x40E155，再把 vtable 0x487410 写入 [obj]）",
+    "objectInit": "0x46F982：obj+0x0C=[ebp+0x18]、obj+0x10=[ebp+0xC]、obj+0x14=[ebp+0x10]，然后 0x46D098(obj,[ebp+8],0x154)",
+    "dialogCall": "0x46D098：DialogBoxParamA(hInstance=dword[0x4B6A60], lpTemplateName=MAKEINTRESOURCE(0x154), hWndParent=[ebp+0xC], lpDialogFunc=0x46D0F8, dwInitParam=<保存的 ecx>)",
+    "initParam": "DialogBoxParamA 的第 5 个参数未被显式压栈，取的是 0x46D098 入口 push ecx 的槽位；该 ecx 由 0x46F982 传入，即 0x418C34 栈上对象 [ebp-0x18] 的地址。DlgProc 在 WM_INITDIALOG 用 [ebp+0x14] 当对象指针。",
+    "returnSemantics": "DialogBoxParamA 返回 6（IDYES/「是」）时函数返回 1，否则 0（0x418C68 cmp eax,6）",
+    "defaultCaption": {"address": "0x48C8D8", "6.4": "江南洗隋录0.6", "6.5": "三国志曹操传", "6.6": "AAA蜀汉6.6KFC"},
+    "callers": [
+      {"site": "0x4052D6", "context": "保存进度确认：wsprintfA「进度No.%03u: %s，可以保存吗？」→ 是 则 0x40531A 保存"},
+      {"site": "0x40570E", "context": "读取进度确认：wsprintfA「进度No.%03u: %s，可以读取吗？」→ 是 则 0x41888D 读档"},
+      {"site": "0x46DA23", "context": "其它通用确认"},
+      {"site": "0x474B02", "context": "其它通用确认"}
+    ]
+  },
+  "dialogProc": {
+    "entry": "0x46D0F8",
+    "handlerOwner": "0x46D221",
+    "messageFlow": [
+      "WM_INITDIALOG(0x110)：若 dword[0x4B68E8]==0，则 0x480FE0(4) 分配 + 0x482225 构造，结果写入 0x4B68E8",
+      "0x46254D(helper, hwnd, lParam)：内部 0x480FE0(0xC)+0x4624CB 建立 12 字节控件对象",
+      "写入 [lParam+4]=hwnd（对象 +0x04 保存对话框句柄）",
+      "0x462650(helper, hwnd, &out) 取分派对象，再 0x46D221(out, msg, wParam, lParam)"
+    ],
+    "dispatcherMap": {
+      "0x0002": "vtable+0x14（0x46D207，销毁清理 0x462696）",
+      "0x0110": "vtable+0x08（0x42B510，空实现）→ 若 byte[0x48E8C1]==1 额外压 4 个值（1/ecx/edx/this）→ vtable+0x0C（0x46F335，初始化/排版）",
+      "0x0111": "wParam==2（IDCANCEL）：lParam==0 且 [obj+8]!=0 时先调 0x4746AD(0x4B69B0,1)，再 vtable+0x10；wParam==0x42F 时调 0x412A5F",
+      "0x030F": "0x47252B(hwnd) 后 vtable[0]",
+      "0x0311": "0x403B14([obj+4])",
+      "0x0135": "vtable+0x20（WM_CTLCOLORBTN）",
+      "0x0136": "vtable+0x18（WM_CTLCOLORDLG）",
+      "0x0138": "vtable+0x1C（WM_CTLCOLORSTATIC）",
+      "default": "vtable[0]（0x46F2E7，通用消息处理）"
+    },
+    "vtable": {
+      "address": "0x487410",
+      "slots": [{"index": 0, "target": "0x46F2E7"}, {"index": 1, "target": "0x4758A0"}, {"index": 2, "target": "0x42B510"}, {"index": 3, "target": "0x46F335"}, {"index": 4, "target": "0x4758B0"}, {"index": 5, "target": "0x46D207"}, {"index": 6, "target": "0x40E310"}, {"index": 7, "target": "0x40E340"}, {"index": 8, "target": "0x40E370"}, {"index": 9, "target": "0x480612"}]
+    },
+    "defaultHandler": "0x46F2E7：若 msg==WM_COMMAND(0x111)，调用 EndDialog(hwnd=dword[obj+4], nResult=wParam&0xFFFF)，随后 vtable+0x04；因此按钮 ID 直接成为 DialogBoxParamA 返回码（是=6/否=7）",
+    "initLayout": "0x46F335：GetDC→GetDeviceCaps(LOGPIXELSY=0x5A)→MulDiv(9,px,72)→weight 0x190(400) 建 9pt 宋体；0x46F511 GetDlgItem(hwnd,0x534) 后 GetWindowRect 量宽并调整静态文本控件"
+  },
+  "dialogStateByte": {
+    "address": "0x48E8C1",
+    "values": {"0": "无对话框", "1": "模板 332（功勋分配）打开中（0x418BC8 激活）", "2": "模板 341（历史情报）打开中（0x41C412 设置）"},
+    "writers": [
+      {"site": "0x418BC8", "behavior": "保存旧值→写 1→DialogBoxParamA(0x14C)→恢复旧值（参数为 byte*）"},
+      {"site": "0x41C412", "behavior": "写 2 → DialogBoxParamA(0x155) → 0x41C43B 写回 0"},
+      {"site": "0x47F21C", "behavior": "6.6：仅当值==0 时调用 0x418BC8(hwnd,&0x48E8C1)"}
+    ],
+    "readers": ["0x40F105（==1 时按 0x500E28 重定位活动窗口）", "0x46D246（WM_INITDIALOG 内 ==1）", "0x4706E9（==0）"],
+    "note": "与 0x48E8C2（移动力覆盖 word，第38轮）相邻但独立"
+  },
+  "auxDialogWrapper": {
+    "entry": "0x418BC8",
+    "signature": "int ShowEditDialog(HWND parent, unsigned char* state)",
+    "behavior": "保存 *state，置 1，0x410EED 构造栈上对象，DialogBoxParamA(hInstance, 0x14C, parent, 0x46D0F8, &obj)，结束后 0x40DF20 析构并恢复 *state",
+    "callers": ["0x408E90（0x408E69 守卫 byte[0x4B750C]==0）", "0x47F223（6.6）"]
+  },
+  "historyDialogLauncher": {
+    "entry": "0x41C3D7",
+    "behavior": "若 dword[[0x4FFF80+8]] 非空且 byte[0x492E20]>=4，则设置 0x48E8C1=2，DialogBoxParamA(hInstance, 0x155, hwnd=dword[0x4B6A68], 0x46D0F8, &local)，完成后置 0；否则走 0x42F699 文本路径（0x48E88C，+0x0B 两条文案）",
+    "comparisonConstants": ["0x492E20 >= 4", "0x155", "0x4B6A68"]
+  },
+  "fontHelper": {
+    "sixFiveEntry": "0x42124E",
+    "sixFiveSignature": "HFONT MakeDialogFont(int nHeight, int nWidth, int nWeight)",
+    "sixFiveArgs": "nHeight=[ebp+8], nWidth=[ebp+0xC], nWeight=[ebp+0x10]；lpszFace 固定 0x48B6CC",
+    "fixedFace": {"6.4": "宋体", "6.5": "宋体", "6.6": "0x48B6CC 已非字符串（被搬移）"},
+    "fixedConstants": {"fdwCharSet": "0x86（GB2312_CHARSET）", "fdwOutputPrecision": "4（OUT_TT_ONLY_PRECIS）", "其他": "0"},
+    "callSites65": ["0x41BF96", "0x41E9F9", "0x461972", "0x46C9C2", "0x46F3A8", "0x471438", "0x47CC2C"],
+    "sixSixReplacement": "0x42A269：GetDeviceCaps(0x5A)→MulDiv(9,px,0x48)→0x41EBA3(nHeight=-h, nWidth=0, nWeight=0x190, face=0x500030)；0x46F384 调 0x42A269，原 0x46F389..0x46F3B8 以 NOP 填充",
+    "sixSixNoRefsTo42124E": true
+  },
+  "crossBaseHashes": {
+    "0x418C34": {"6.4": "0f5718d93b095768", "6.5": "0f5718d93b095768", "6.6": "0f5718d93b095768"},
+    "0x46F982": {"6.4": "ed82c4e2edac79e7", "6.5": "ed82c4e2edac79e7", "6.6": "ed82c4e2edac79e7"},
+    "0x46D098": {"6.4": "82a947fbbada1ec0", "6.5": "82a947fbbada1ec0", "6.6": "82a947fbbada1ec0"},
+    "0x475600": {"6.4": "29c0b2aa79beb649", "6.5": "29c0b2aa79beb649", "6.6": "29c0b2aa79beb649"},
+    "0x46D0F8": {"6.4": "a8ec37576d8eff08", "6.5": "a8ec37576d8eff08", "6.6": "869a375adf6662df"},
+    "0x46D221": {"6.4": "df7a24dff59a76d6", "6.5": "ae9cd342e6b0ebcb", "6.6": "d0e32061cf46833b"},
+    "0x46F2E7": {"6.4": "d857bde1ecbbc9c8", "6.5": "d857bde1ecbbc9c8", "6.6": "d857bde1ecbbc9c8"},
+    "0x46F335(0x30)": {"6.4": "3f649a2ccd8b9ff9", "6.5": "3f649a2ccd8b9ff9", "6.6": "3f649a2ccd8b9ff9"},
+    "0x4758A0": {"6.4": "40905d5a6fd5389a", "6.5": "40905d5a6fd5389a", "6.6": "c5ce029db3b0527b"},
+    "0x4758B0": {"6.4": "710d94b20a6fd1f6", "6.5": "710d94b20a6fd1f6", "6.6": "5940ab53e2456431"},
+    "0x46D207": {"6.4": "13e207d9b31eed57", "6.5": "13e207d9b31eed57", "6.6": "6ff8d724531fe5ba"}
+  },
+  "sixSixDialogDelta": {
+    "procAdditions": [
+      "读取 dword[0x4BE006]+1，非零则跳过全部新增处理",
+      "WM_INITDIALOG(0x110) 时 SendMessageA(hwnd, 0x591, 0, 0)",
+      "WM_LBUTTONDOWN(0x201) 时 SendMessageA(hwnd, 0xA1（WM_NCLBUTTONDOWN）, 2（HTCAPTION）, 0)，实现客户区拖动窗口",
+      "0x591 消息时调用 0x4C0600(hwnd)"
+    ],
+    "dispatcherCommandHelper": "0x46D345：wParam==2 时比较 vtable+0xC 是否为 0x42CA5E（特定对话框类判定），不等则走取消清理；wParam==0xAD9→0x42BA77；wParam<0x14→0x42CB42；wParam==0x42F→0x412A5F",
+    "defaultHelperRelocation": "0x47252B → 0x415FA4",
+    "dialogProcs": "6.4 DialogProc 与 6.5 同哈希；6.4 分发器仅 0x42F 处理目标不同（0x46FFE9 vs 0x412A5F）"
+  },
+  "conclusion": "0x418C34 不是文件对象包装，而是通用「是/否」确认对话框包装：以模板 0x154（RT_DIALOG 340）打开 DialogBoxParamA，消息正文控件 ID 0x534，按钮「是」=6/「否」=7，返回值 6 视为确认。0x46D0F8 为对话框过程，0x46D221 为消息分派器，vtable 0x487410 的 slot0 0x46F2E7 在 WM_COMMAND 时用按钮 ID 结束对话框，因此 6 即 IDYES。0x48E8C1 是模态对话框状态字节（0=空闲、1=模板332、2=模板341）。模板 332 为功勋点数分配（26 控件，ID 1030..1034/2006..2031/2011/2001/1235），模板 341 为历史情报（三基底布局各不相同）。6.5/6.4 的 9pt 宋体对话框字体由 0x42124E（固定字面 0x48B6CC）创建，6.6 改为 0x42A269→0x41EBA3(face=0x500030)。",
+  "corrections": [
+    "第84轮把 0x418C34 记为「带 vtable 0x487410 的文件对象打开包装」不成立：0x418C34 的 0x46D098 调用的是 DialogBoxParamA（导入 0x4862A0），模板 0x154，返回码 6 是 IDYES。文件 I/O 仅是 0x418F5C 的 CreateFileA 包装。"
+  ],
+  "limitations": [
+    "0x4BE006 指向的结构未展开（6.6 DialogProc 的新增分支门控）。",
+    "0x42CA5E（6.6 WM_COMMAND 中比较的虚函数指针）对应哪个派生对话框类未定。",
+    "模板 341 的宿主函数 0x41C3D7 仍有一段 0x42F699 文本路径未解析。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.table-506800.3ef7",
+      "title": "小地图 tile 描述符表 0x506800（20 项×3 字节，含 12 字节视图）",
+      "aliases": [
+        "table 506800",
+        "0x506800 表",
+        "0x506800",
+        "小地图 tile 表",
+        "0x41E898",
+        "0x4B09DB"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x506800 是共享基址的两种记录视图。3 字节标记视图（每项 3 字节、容量 0x14=20）：绘制循环 0x41E898 以 i<byte[0x4B09DB]（出战部队数）且 i<0x14 为界，条目 byte0=源 y×0xC、byte1=源 x×0xC、byte2=源页×0x21C0，目标=页基+i×0x1B0，调 0x47E09B 绘 12×12；byte0==0xFF 终止；即每个出战单位一项小地图标记。12 字节记录视图（0x405063/0x405101/0x4263B3）：0x405063 取 [rec]/[rec+4] 两 dword 交 0x4376EA 并按 byte[0x4B422D] 地图高度遍历；0x405101 以 [rec+8] 为 word 数组指针（0x2828 或 0xFF 终止）线性查找单位 ID，按 0x4BE880+0x1B00×page 地图页缓冲写入；0x4263B3 以 0xC 步长 memmove 删除记录并调整后续 [rec+8]。两视图启用条件由页缓冲/步长区分：标记视图 0x21C0 源页 + 0x1B0 槽步长（战斗小地图刷新），记录视图 0x4BE880+0x1B00×page + 0xA8C000 临时分配（地图记录构建期）。写入 0x415EA1 以 index*3+0x506800 写 dword：b0=v1、b1=v2、b2=v4、b3=0xFF（高字节落在下一项首字节作终止哨兵）。",
+      "constants": [
+        "0x506800", "0x3", "0xC", "0x14", "0xFF", "0x4B09DB",
+        "0x41E898", "0x47E09B", "0x21C0", "0x1B0", "0x415EA1",
+        "0x405063", "0x40506D", "0x40513A", "0x4263B3", "0x4263BB", "0x4263CA",
+        "0x4819E0", "0x4376EA", "0x48BBFA", "0x2828", "0x418DD0", "0x449B29"
+      ],
+      "identity": "3 字节步长由 0x41E8B7（imul 3）与 0x415EA1（imul 3）两处独立确认；容量 20 由 0x41E8B3 的 cmp al,0x14 与 0x41E8AB 的 byte[0x4B09DB] 双重限制；12 字节视图的 0xC 步长在 4 处一致；b3=0xFF 与 0x41E8C0 的终止判定吻合。",
+      "siteAddresses": {
+        "base": "0x506800",
+        "entrySize": "0x3",
+        "capacity": "0x14",
+        "countByte": "0x4B09DB",
+        "drawLoop": "0x41E898",
+        "drawCall": "0x47E09B",
+        "pageStride": "0x21C0",
+        "destStride": "0x1B0",
+        "writer": "0x415EA1",
+        "writerObjectFn": "0x418DD0",
+        "writerFlagCall": "0x449B29",
+        "recordView1": "0x405063",
+        "recordView2": "0x40513A",
+        "recordMover": "0x4263B3",
+        "recordMoveStride": "0xC",
+        "recordPtrOffset": "+0x08",
+        "recordTerminator": "0x2828"
+      },
+      "limitations": [
+        "0x405063 的 0x4376EA 参数含义未展开。",
+        "12 字节记录 +0/+4/+8 三字段的业务名未定。",
+        "0x4B09DB 同时服务于脚本操作码 0x06（设部队）与小地图标记绘制，二者关系未运行期确认。",
+        "0x21C0 页数据来源与 0x1B0 目标步长对应关系未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.cell-byte-map.3ef7",
+        "mechanism.65.font-name-table.3ef7",
+        "mechanism.65.text-object-table.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-table-506800-20261112",
+        "src.research.engine-table-506800-capacity-20261112",
+        "src.research.engine-tile-markers-20261112"
+      ]
+    }
+  ]
+}

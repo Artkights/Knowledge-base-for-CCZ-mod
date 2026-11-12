@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "kind": "source-cleanup",
+  "date": "2026-11-12",
+  "rule": "same path + same sha256 => one source record; keep the id with most sourceRefs; rewrite refs",
+  "mergedCount": 29,
+  "merges": [
+    {
+      "id": "src.data-manager64.quotes",
+      "mergedInto": "src.data-manager.quotes",
+      "path": "data管理器/src/DataManager.Core/Domain/PersonQuoteService.cs",
+      "sha256": "2CB7116E5444D0B2E6644C0564846BA3965B3DE79A11A27B85C6D2548BB94A54",
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager64.studio-icon-mapping",
+      "mergedInto": "src.data-manager.studio-icon-mapping",
+      "path": "工具整合包/CCZModStudio/Core/ItemIconMappingService.cs",
+      "sha256": "15C42BDCFFD6EAEF156CB2D366D449603F451A40C99DDD6569F114EB23E4ACA8",
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager64.studio-item-layout",
+      "mergedInto": "src.data-manager.studio-item-layout",
+      "path": "工具整合包/CCZModStudio/Core/Ccz66ItemLayoutService.cs",
+      "sha256": "C0AB9A7976BA06BC7FD85E516A14EF1323C9ECF226339550E8262261E3EA045A",
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager64.test-quotes",
+      "mergedInto": "src.data-manager.test-quotes",
+      "path": "data管理器/src/DataManager.Tests/PersonQuoteTests.cs",
+      "sha256": "20113237D68740203BBCD942C6875FFB5F63B257FB77DCFC34DD76EFEEA6B1FF",
+      "usedFor": "6.4/6.5/6.6 一体化编辑器的物理布局、专用编解码和可复现写入门禁"
+    },
+    {
+      "id": "src.data-manager64.user-attribute-enums",
+      "mergedInto": "src.data-manager.user-attribute-enums",
+      "path": "sources/data-manager-user-confirmed-enums.md",
+      "sha256": "F7BF7F1D79F23E427B0C808DF1814ACC3B4356C28D085544EC38BA288186550C",
+      "usedFor": "用户确认的兵种系属性枚举名称；不是逆向或引擎运行时验证证据"
+    },
+    {
+      "id": "src.dm.core-current-20261102.table-reader",
+      "mergedInto": "src.data-manager64.attribute-reader",
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryTableReader.cs",
+      "sha256": "C7CBA4D6C9D34B0005AAC6E5E11FCF1DBDB118C9F767DC96271D13EF36CA2710",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.extend-geometry",
+      "mergedInto": "src.data-manager64.augmentation",
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileAugmentationService.cs",
+      "sha256": "44FC522BB09449C487617CA2CEB177419DDEF30D568DE47E9A2B8EB618643CD7",
+      "usedFor": "无头定宽拓展表按实际完整记录数确定行数而非JSON默认行数"
+    },
+    {
+      "id": "src.dm.core-current-20261102.augmentation",
+      "mergedInto": "src.data-manager64.augmentation",
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileAugmentationService.cs",
+      "sha256": "44FC522BB09449C487617CA2CEB177419DDEF30D568DE47E9A2B8EB618643CD7",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.integration.record-codecs-current",
+      "mergedInto": "src.data-manager64.codecs",
+      "path": "data管理器/src/DataManager.Core/Binary/RecordCodecs.cs",
+      "sha256": "6C3D5950FBA0A4808D0A78ECC0B1B96D420B500C4B51A70DA1A6C621C754773E",
+      "usedFor": "2026-10-28全文复核原生类型>=26与类别2/3的联合Codec守卫；不据此重述未复核布局"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-894958174b09",
+      "mergedInto": "src.data-manager64.guide64",
+      "path": "data管理器/文档/6.4洗隋兼容适配.md",
+      "sha256": "13F7D981B0246575AD068B1BF3CB751BC7548BA999785B62993F9462846CBF03",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.profile-64",
+      "mergedInto": "src.data-manager64.profile64",
+      "path": "data管理器/config/profiles/ccz-6.4.json",
+      "sha256": "7E7143DE7EE29E5DF1293751C9ED818C050C02DAE385981A1A268EE45FAE7366",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.profile-65",
+      "mergedInto": "src.data-manager64.profile65",
+      "path": "data管理器/config/profiles/ccz-6.5.json",
+      "sha256": "8FD880D538BC021D231AA8E8FD601CC3266962CDE59A585C73C07B73F644CD09",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.current-assignment-layout-tests-20261102",
+      "mergedInto": "src.dm.assignment-layout-tests-20261027",
+      "path": "data管理器/src/DataManager.Tests/EffectAssignmentLayoutTests.cs",
+      "sha256": "974440C7CB7825ECD83F74234FF08F159BF8D4FAE960371C6E17ACFA9F695BB5",
+      "usedFor": "核对活动表测试入口需要完整repository-root及固定基底布局"
+    },
+    {
+      "id": "src.dm.three-base-assignment-tests-20261027",
+      "mergedInto": "src.dm.current-three-base-assignment-tests-20261102",
+      "path": "data管理器/src/DataManager.Tests/ThreeBaseAssignmentTests.cs",
+      "sha256": "06DD4258BC28A171E2091245443CE3AEBE2E224225A0D8502F36503CC436BC2E",
+      "usedFor": "三基底临时副本共享/独立N与完整事务测试"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-b69907b927fb",
+      "mergedInto": "src.local-review.b69907b927fb7718",
+      "path": "data管理器/文档/人物R-S形象存档自动同步.md",
+      "sha256": "87F2BE157E52F11280E1739A7D62251A56D8B15556A8B84677C2DDD15B7EC291",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-28003bccc3f1",
+      "mergedInto": "src.dm.formulas.doc-swift-20261102",
+      "path": "data管理器/知识库/01-核心引擎/疾风攻击公式与常量-特效值区分.md",
+      "sha256": "93C08EAA861DB5586EFC3E24AACD1817C43A40AC3996FEE17E4091A52AF2871A",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-f5521a8e2a16",
+      "mergedInto": "src.dm.formulas.doc-constant-contract-20261102",
+      "path": "data管理器/知识库/01-核心引擎/特效常量-三基底证据与相对定位.md",
+      "sha256": "C8E381593902871FF91617A8482A58415B2F3A317F2DB0097BA476845758BF85",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-184ccc8418d2",
+      "mergedInto": "src.dm.formulas.doc-battle-formulas-20261102",
+      "path": "data管理器/知识库/01-核心引擎/战斗公式-三基底公式与常量.md",
+      "sha256": "01543EFEFA27C45F492EC2BF16B1B8FBCF5FFA7CA8FE17CA94745743E33FBCE7",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-01967bcbf677",
+      "mergedInto": "src.dm.formulas.doc-formula-validation-20261102",
+      "path": "data管理器/知识库/01-核心引擎/公式设定页-读写与语义验证.md",
+      "sha256": "E42CCBAC6BAFB2023E9978BF1536C140012111085DA19F53C2AD654A5D35B640",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-898d0f569cea",
+      "mergedInto": "src.dm.formulas.doc-active-table-20261102",
+      "path": "data管理器/知识库/01-核心引擎/活动表版本差异与字段写入契约.md",
+      "sha256": "9D2C165EDEEFEEC096DC4841A3E85A997002C237BE39DF99DB46991010006198",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-dc245c04aa64",
+      "mergedInto": "src.dm.formulas.doc-person-job-slots-20261102",
+      "path": "data管理器/知识库/01-核心引擎/人物槽与兵种槽-特效号读取规则.md",
+      "sha256": "C19487FA5C9E9E8ED9D86636EA2162250416DD77982160F7DA8C71D0F1BC2BBE",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-522689750d9c",
+      "mergedInto": "src.dm.formulas.doc-three-pools-20261102",
+      "path": "data管理器/知识库/01-核心引擎/引擎特效复合绑定与三子页分配池.md",
+      "sha256": "4106A6654D3D90575ED027DCBA25E2603A00FA65A976BD17CD5ED0F691A32757",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.formulas.sample-65-20261102",
+      "mergedInto": "src.ccz65.3890.ekd5",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3890CC3247163D30CD0A2F3412E06A83E7270AA9324B6E358D84EFAED07DC08C",
+      "usedFor": "公式与常量精确样本身份；不分发游戏EXE"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-71165a44d5a7",
+      "mergedInto": "src.data-manager.incremental-20261102.xlsx-doc",
+      "path": "data管理器/文档/业务工作簿交换.md",
+      "sha256": "9A9F88CC07ED4448BA7897F42E0E9D8E9F3CC5035444E7DE6CBE14E337155863",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-c28c8ca77c30",
+      "mergedInto": "src.data-manager.incremental-20261102.atlas-doc",
+      "path": "data管理器/文档/参考图灵活回导.md",
+      "sha256": "499A71FA6967C660A0984A31876093A525532EFA01DA489AF16B2EA0AB1203F6",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-b58a5df54733",
+      "mergedInto": "src.data-manager.incremental-20261102.pmap-doc",
+      "path": "data管理器/文档/内场景地形编辑.md",
+      "sha256": "4A4D9F9431F750D4DCE22952745B134ED2DA092CFA63C4DC5653038A0F1DEA93",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.data-manager.incremental-20261102.exchange-test-runner",
+      "mergedInto": "src.dm.core-current-20261102.test-runner",
+      "path": "data管理器/src/DataManager.Tests/Program.cs",
+      "sha256": "D91EDD06FE1709180097327D3EAA451491D1D70AC583ADCB33D18E48A6F817BB",
+      "usedFor": "业务XLSX和地形自定义console runner分派及参数语义"
+    },
+    {
+      "id": "src.dm.core-current-20261102.extend-service",
+      "mergedInto": "src.data-manager.incremental-20261102.extend-service",
+      "path": "data管理器/src/DataManager.Core/Domain/ExtendDataService.cs",
+      "sha256": "0DAA61A08D568D423D06C23791DC77E9B47DA805EF63CE09B75D7B80757F74B8",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    },
+    {
+      "id": "src.dm.core-current-20261102.doc-4479b5cf50ed",
+      "mergedInto": "src.data-manager.incremental-20261102.extend-doc",
+      "path": "data管理器/文档/拓展数据实现与验收.md",
+      "sha256": "43EDBE0C58269097075339488B6EBE99D7610D7C6471E61DE7F152540D8E00F1",
+      "usedFor": "2026-11-02 data管理器当前源码、资料与测试契约的定点审阅；不代表重新执行历史游戏验收。"
+    }
+  ]
+}

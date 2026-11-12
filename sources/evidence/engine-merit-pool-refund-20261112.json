@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "analysis": "merit-pool-refund",
+  "date": "2026-11-12",
+  "method": "复核第97轮 0x408FA0 与 0x423EAD 的 xchg 语义；capstone 反汇编 0x4108DB（刷新入口）、0x456DA6（分配显示）；refs_to.py 复核 0x505F40 的 5 处引用。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "correction": {
+    "target": "第97轮 0x408FA0/0x423EAD 的累计值",
+    "old": "累计恒为 0",
+    "new": "xchg word ptr [ptr], bx（bx=0）会把旧 word 交换到 bx，随后 add dword[ebp-0x10], ebx 累计的是被清零项的原值；0x423EAD 同理（cx）",
+    "effect": "0x505F40 的返还量 = 被清除项 word 之和，而非 0"
+  },
+  "refundFormula": {
+    "clearUnchecked": "0x408FA0：对每个 i=0..0x65，按 byte[record+2] 掩码；未勾选维度 j 执行 word[0x508000+i*0x0A+j*2] → 0 并累加原值；循环后 dword[0x505F40] += 累加值",
+    "resetAllocation": "0x423EAD：对某人的 5 个 word 全部清零并累加；若 [ebp+8]!=0 且 byte[0x505F3C]!=0，则 dword[0x505F40] += 累加值"
+  },
+  "poolConsumers": {
+    "0x4108DB": "刷新入口：push 0x505F40、0x4FFF68；比较 [ecx+0x14] 与 [edx]，不等时走 0x456DA6(1,...)，否则循环 GetDlgItem(hwnd,0x406+i) 更新 5 个控件",
+    "0x456DA6": "分配显示：push 0x505F40、0x4FFF68；0x42ACD2(索引) 取表项；循环 5 项调用 0x4781C6(index, value, 0, 0)",
+    "0x456CC9": "332 确认处理：0x40BE7D(hwnd=0x500E28, 0x505F40, 0x4FFF68, 0, 0)",
+    "staticSubtract": "对 0x505F40 的 5 处引用中未出现 sub；扣除路径未定位"
+  },
+  "conclusion": "更正第97轮：0x408FA0 与 0x423EAD 通过 xchg 把被清零的分配值累计后加回 0x505F40，因此点数池的返还公式为「被清除项 word 之和」。0x505F40 的静态引用只有 0x408FFE/0x423EE5 两处累加与 0x4108E5/0x456CC9/0x456DB0 三处作为参数传递，未发现减法点，扣除/消费路径需继续追踪。",
+  "limitations": [
+    "0x505F40 的扣除（消费）路径未静态定位。",
+    "0x40BE7D 与 0x4781C6 的参数/职责未展开。",
+    "0x4FFF68 缓冲区字段未定。",
+    "未运行游戏对照。"
+  ]
+}

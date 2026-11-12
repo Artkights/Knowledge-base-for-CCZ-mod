@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.target-direction-score.3ef7",
+      "title": "四方向目标/位置评分 0x4101D9 与物理百分比修正",
+      "aliases": [
+        "0x4101D9",
+        "0x413272",
+        "方向评分",
+        "位置评分",
+        "0x41301E"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4101D9 解析单位后计算基准评分，再按最多 4 个方向枚举候选位置，用 0x41301E 评分、0x413009 合并较优值，返回 eax 分数与 edx 附带值。0x413272 以 (0,1,0x4E,0x76) 调用；0x426737 把守方评分加到、攻方评分减到等级差百分比上。",
+      "constants": [
+        "4",
+        "0xFF",
+        "0x4E",
+        "0x76",
+        "0x505F78",
+        "0x500C3B",
+        "0x50E000"
+      ],
+      "identity": "0x4101D9 与 0x413009 三基底同哈希；0x41301E 三基底均不同；0x426A07 在 6.4/6.5 同哈希，6.6 不同。",
+      "limitations": [
+        "0x41301E 评分公式未展开。",
+        "0x4198BE/0x43C794/0x402CF9 语义未命名。",
+        "0x505F78/0x500C3B 未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.physical-level-table.3ef7",
+        "mechanism.65.physical-damage-constant-chain.3ef7",
+        "mechanism.65.strategy-ai-dispatch.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-target-direction-score-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "score": "0x4101D9",
+        "evaluate": "0x41301E",
+        "merge": "0x413009",
+        "wrapper": "0x413272",
+        "consumer": "0x426737"
+      }
+    }
+  ]
+}

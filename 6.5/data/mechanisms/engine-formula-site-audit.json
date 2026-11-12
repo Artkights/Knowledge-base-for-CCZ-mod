@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.formula-site-cross-base-audit.3ef7",
+      "title": "公式常量站点三基底一致性审计",
+      "aliases": [
+        "公式站点审计",
+        "常量跨基底核对",
+        "expectedFieldBytes 审计"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "对 160 个带地址提示的公式常量和 91 个 dm-constant 精确站点做三基底同址比较：6.5 的 91 个期望字节全部匹配；同一 VA 在 6.4 仅 38/91、6.6 仅 45/91 匹配；464 个站点观测中 235 个三基底完全一致、229 个存在差异。",
+      "audit": {
+        "constantsWithHints": 160,
+        "siteObservations": 464,
+        "uniqueSiteVA": 394,
+        "allThreeIdentical": 235,
+        "divergent": 229,
+        "expectedTotal": 91,
+        "match65": 91,
+        "match64": 38,
+        "match66": 45
+      },
+      "findings": [
+        "6.5 精确站点契约自洽（91/91）。",
+        "6.4/6.6 不能继承 6.5 的站点地址或字节。",
+        "229 个站点差异中包含真实版本值差异与函数重排两类。",
+        "后续优先级：6.4 的 53 个、6.6 的 46 个不匹配精确站点。"
+      ],
+      "knownExamples": [
+        {"va": "0x004088CD", "meaning": "角色最大等级 6.4=80、6.5=60、6.6=99"},
+        {"va": "0x0043B50C", "meaning": "命中曲线函数站点移位"},
+        {"va": "0x00409639", "meaning": "同址立即数 1/0x19/0x32"}
+      ],
+      "limitations": [
+        "地址提示不全是唯一常量字节站点。",
+        "同址字节不同不等价于玩法语义差异。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.dm-formula-constant-contract",
+        "mechanism.65.engine-general-constant-census.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-formula-site-audit-20261112",
+        "src.dm.formulas.constants-20261102",
+        "src.dm.formulas.constant-definitions-20261102"
+      ]
+    }
+  ]
+}

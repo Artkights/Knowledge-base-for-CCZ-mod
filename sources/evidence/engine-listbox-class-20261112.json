@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "src.research.engine-listbox-class-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "对话框控件类序号 ord 131=ListBox 与消息 0x180=LB_ADDSTRING",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密版",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "dialog_resource 解析模板 332/330 的 class 字段；capstone 反汇编 0x40F436、0x40115C、0x419141、0x4011B7；立即数 0x180/0x184/0x18B/0x1A1 全量枚举与 SendMessageA 调用点核对；GBK 串 0x48B441。仅静态分析。",
+  "findings": [
+    {
+      "id": "class-ordinals",
+      "claim": "对话框模板里的 class=<ord N> 使用 Windows 预定义控件类序号：0x80=Button、0x81=Edit、0x82=Static、0x83=ListBox、0x84=ScrollBar、0x85=ComboBox。模板 332 左侧 0x4D3 控件 class=<ord 131> 即 0x83=ListBox（113×88 DLU）；模板 330 的 0x4D3 同为 ListBox，不是自绘状态条。",
+      "evidence": [
+        "dialog_resource 332：[25] id=0x04D3(1235) class='<ord 131>' rect=(1,4,113,88)",
+        "dialog_resource 330：同 id 0x4D3 为 class ord 131",
+        "Win32 预定义类原子：0x80 Button / 0x81 Edit / 0x82 Static / 0x83 ListBox / 0x84 ScrollBar / 0x85 ComboBox"
+      ]
+    },
+    {
+      "id": "messages",
+      "claim": "0x180=LB_ADDSTRING、0x184=LB_RESETCONTENT、0x18B=LB_GETCOUNT、0x1A1=LB_GETITEMHEIGHT。0x40F436(list, ?, resetFlag, prefixTable, first, last) 先按 resetFlag 决定 LB_RESETCONTENT，再用 0xB 步长前缀表 0x48EC91 加前缀，然后按行表（步长 8 或 0x10，count==0xFE 取 8）逐行 LB_ADDSTRING。0x4011E7 用固定串 0x48B441=\"  --\" 补空项到指定数量。0x419141 以 LB_GETITEMHEIGHT 取行高用于布局。",
+      "evidence": [
+        "0040F449 push 0x184；0040F451 call SendMessageA（LB_RESETCONTENT）",
+        "0040F45A imul eax,eax,0xB；0040F45D add eax,0x48EC91；0040F465 push 0x180（LB_ADDSTRING）",
+        "0040F486 cmp cl,0xFE；0040F48B shl eax,3；0040F490 shl eax,4（行步长 8/16）",
+        "004011C9 push 0x18B（LB_GETCOUNT）；004011EE push 0x180；004011E7 push 0x48B441（\"  --\"）",
+        "0041915A push 0x1A1（LB_GETITEMHEIGHT）；00419160 call SendMessageA",
+        "0x40115C 以 GetDlgItem(hDlg,0x4D3) 取列表框后调用 0x40F436/0x4011xx 填充"
+      ]
+    },
+    {
+      "id": "listbox-role",
+      "claim": "模板 332 的 0x4D3 是左侧武将候选列表：0x40115C 先取单位记录并 0x40BE7D 生成行文本，再向 0x4D3 追加；模板 330（练武场）与 KANKYOU 的 0x4D3 复用同一 ListBox 类，承载可选/预览条目。",
+      "evidence": [
+        "00401139 push ecx；0040113B call 0x40BE7D（行文本）",
+        "0040115C push 0x4D3；00401167 call GetDlgItem；00401186 call 0x40F436",
+        "00419147 push 0x4D3；0041914F call GetDlgItem；0041915A push 0x1A1"
+      ]
+    }
+  ],
+  "corrections": [
+    "『0x4D3 class ord131 与消息 0x180 语义』：ord131=标准 ListBox(0x83)；0x180=LB_ADDSTRING，非 WM_ 消息。",
+    "模板 330/KANKYOU 的 0x4D3 由『19 段状态条/预览面板』更正为 ListBox 列表框。"
+  ],
+  "limitations": [
+    "0x40F436 的行表结构与 0x48EC91 前缀表条目内容未逐项展开。",
+    "0x4D3 在 KANKYOU 中承载的具体 19 条目文本未逐一还原。",
+    "未运行游戏对照。"
+  ],
+  "conclusion": "对话框 class=<ord 131> 即 0x83=ListBox；0x4D3 是 ListBox 控件，消息 0x180=LB_ADDSTRING、0x184=LB_RESETCONTENT、0x18B=LB_GETCOUNT、0x1A1=LB_GETITEMHEIGHT。0x4D3 由 0x40F436 按 0xB 步长前缀表与 8/16 步长行表填充。"
+}

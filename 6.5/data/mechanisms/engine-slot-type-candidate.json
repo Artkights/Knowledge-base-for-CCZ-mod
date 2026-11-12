@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.equipment-slot-type-candidate.3ef7",
+      "title": "装备槽与物品类型区间对应候选",
+      "aliases": ["slot type mapping", "装备槽类型", "slot0/1/2"],
+      "versions": ["6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "装备槽 3 个，物品类型阈值 20/26 分成三段；提出候选对应 slot0=type<20、slot1=20..25、slot2=>=26。尚未由命名表或界面文案直接证明。",
+      "facts": {
+        "slotCount": 3,
+        "slotAccessor": "0x4065F0",
+        "typeClassifier": "0x40B444（20/26/子类型）"
+      },
+      "candidateMapping": [
+        {"slot": 0, "typeRange": "<20"},
+        {"slot": 1, "typeRange": "20..25"},
+        {"slot": 2, "typeRange": ">=26"}
+      ],
+      "limitations": [
+        "槽位名称与区间对应未直接命名。",
+        "0x4500xx 未完整展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.equipment-slot-bound.3ef7",
+        "mechanism.65.item-type-classification.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-slot-type-candidate-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

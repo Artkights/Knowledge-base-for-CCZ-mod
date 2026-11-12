@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "analysis": "dialog-workarea-4fff68",
+  "date": "2026-11-12",
+  "method": "refs_to.py 列出 0x4FFF68 全部 5 处引用；capstone 反汇编 0x41F952（+0x14 池）、0x40123E（+0x0A 第二数组、+0x21 字段）、0x4108DB/0x456DA6/0x456CB4 传参。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "refs": [
+    {"site": "0x401241", "behavior": "以 0x4FFF68 为基址：按 index*2 读 word，写入 [ebp-4] 数组；随后以 +0x0A + index*2 + 0x21 访问字段并调 0x42AC8F"},
+    {"site": "0x41F956", "behavior": "ecx=0x4FFF68；word[+i*2] 为五项分配值，dword[+0x14] 为剩余点数池"},
+    {"site": "0x4108E0", "behavior": "0x4108DB 刷新时压入"},
+    {"site": "0x456CC4", "behavior": "332 确认处理压入（与 0x505F40 并列）"},
+    {"site": "0x456DAB", "behavior": "0x456DA6 显示时压入"}
+  ],
+  "layout": [
+    {"offset": "+0x00..0x09", "role": "5 个 word 的分配值（武/统/智/敏/运）"},
+    {"offset": "+0x0A..", "role": "第二组 word 数组（0x40123E 使用，语义未定）"},
+    {"offset": "+0x14", "role": "dword 剩余点数池（0x41F952 加减）"},
+    {"offset": "+0x21", "role": "dword/字段（0x40123E 读取后传给 0x42AC8F，语义未定）"}
+  ],
+  "conclusion": "0x4FFF68 是 332 对话框的工作区：+0x00..0x09 为五项分配值、+0x14 为剩余点数池、+0x0A 起有第二组数组、+0x21 有附加字段。0x41F952 直接修改前两者；0x40123E 使用第二数组与 +0x21。0x505F40（全局池）与 0x4FFF68+0x14（对话框池）的同步点仍未在静态代码中定位。",
+  "limitations": [
+    "0x4FFF68+0x0A 第二数组与 +0x21 字段语义未定。",
+    "0x505F40 与 0x4FFF68+0x14 的同步点未定位。",
+    "0x40123E 的函数入口/用途未定。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.strategy-ai-dispatch.3ef7",
+      "title": "策略 AI 字节的 16 分支评分分派",
+      "aliases": [
+        "strategy-battle-ai",
+        "strategy-training-ai",
+        "策略AI评分",
+        "AI分派表"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "strategy-battle-ai 与 strategy-training-ai 的每策略字节不是位掩码，而是 0..15 的处理分支索引。0x4395DC 按 strategy_id 取字节，经固定 16 项跳转表 0x43A140 进入对应评分分支，把权重累加到 [ebp-4]。byte[0x505FDC] 选择战斗表或训练表。",
+      "tables": {
+        "strategy-battle-ai": {"va": "0x4D1600", "rows": 144, "width": 1},
+        "strategy-training-ai": {"va": "0x4D1690", "rows": 144, "width": 1}
+      },
+      "dispatch": {
+        "va": "0x439877",
+        "modeFlag": "byte[0x505FDC]：0=battle，非0=training",
+        "jumpTable": "0x43A140，16 项，6.4/6.5/6.6 完全相同",
+        "handlers": {
+          "0": "0x43988C",
+          "1": "0x43988C",
+          "2": "0x439B80",
+          "3": "0x439A26",
+          "4": "0x43996C",
+          "5": "0x43988C",
+          "6": "0x439A70",
+          "7": "0x4399F1",
+          "8": "0x4399F1",
+          "9": "0x4399F1",
+          "10": "0x439AA6",
+          "11": "0x4399AF",
+          "12": "0x439B21",
+          "13": "0x439C8A",
+          "14": "0x439BB6",
+          "15": "0x439C12"
+        }
+      },
+      "handlerWeights": [
+        {"index": [0, 1, 5], "va": "0x43988C", "calls": ["0x43C022", "0x41B500"], "constant": "×100 伤害/HP 比例", "note": "策略伤害评分；伤害 <0 跳过。"},
+        {"index": [2], "va": "0x439B80", "calls": ["0x4078D1", "0x43FFB9", "0x438917"], "add": [100], "note": "条件满足时 +100，再追加 0x438917 的返回值。"},
+        {"index": [3], "va": "0x439A26", "calls": ["0x40728F", "0x472840"], "add": [20], "thresholds": [5, 30]},
+        {"index": [4], "va": "0x43996C", "calls": ["0x43B6F3"], "add": [26], "thresholds": [35, 80]},
+        {"index": [6], "va": "0x439A70", "refs": ["0x4D2188"], "add": [25, 7], "thresholds": [60, 80]},
+        {"index": [7, 8, 9], "va": "0x4399F1", "calls": ["0x439CFE"], "add": [50, 5, 10], "strategyIds": [40, 43]},
+        {"index": [10], "va": "0x439AA6", "calls": ["0x472840", "0x40728F", "0x425AD0", "0x43B4A7"], "add": [6]},
+        {"index": [11], "va": "0x4399AF", "refs": ["0x4240D2", "0x4395D8"], "add": [5], "note": "循环 4 项，取最大权重并累计命中项数。"},
+        {"index": [12], "va": "0x439B21", "calls": ["0x425AD0", "0x406764", "0x43B4A7"], "add": [15], "strategyIds": [57], "jobs": [9, 0, 19]},
+        {"index": [13], "va": "0x439C8A", "add": [0], "note": "直接返回累计分，无追加。"},
+        {"index": [14], "va": "0x439BB6", "calls": ["0x43FFB9"], "add": [10], "statusOffsets": [24, 26]},
+        {"index": [15], "va": "0x439C12", "calls": ["0x43FFB9"], "add": [10], "statusOffsets": [24, 26, 53]}
+      ],
+      "valueDistribution": {
+        "battle": {
+          "6.4": {"2": 1, "3": 1, "5": 30, "6": 1, "7": 5, "10": 2, "11": 2, "12": 1, "13": 93, "14": 4, "15": 4},
+          "6.5": {"2": 3, "3": 1, "4": 2, "5": 30, "7": 5, "10": 2, "11": 2, "12": 1, "13": 94, "15": 4},
+          "6.6": {"2": 1, "3": 1, "4": 2, "5": 40, "6": 2, "7": 5, "10": 2, "11": 2, "12": 2, "13": 79, "14": 4, "15": 4}
+        },
+        "training": {
+          "6.4/6.5": {"3": 1, "5": 22, "7": 3, "13": 110, "14": 4, "15": 4},
+          "6.6": {"3": 1, "5": 22, "7": 3, "13": 110, "14": 4, "15": 4}
+        },
+        "diffs": {"battle_64_65": 9, "battle_65_66": 65, "training_64_65": 0, "training_65_66": 43}
+      },
+      "trainingFunction": {
+        "va": "0x466443",
+        "observed": "训练 AI 读取 byte[0x4D1690+strategy_id] 与 0xD 比较，并读取 0x4664C1 的 20 字节小表。"
+      },
+      "limitations": [
+        "各分支的战术名称未命名；只记录调用链、阈值和权重。",
+        "6.6 训练表计数分布与 6.5 相同，但 43 个位置的值不同。",
+        "未运行游戏，未做 AI 行为对照。"
+      ],
+      "relations": ["mechanism.65.engine-general-constant-census.3ef7"],
+      "sourceRefs": [
+        "src.research.engine-ai-terrain-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    },
+    {
+      "id": "mechanism.65.strategy-terrain-bitmask.3ef7",
+      "title": "策略地形可用性位掩码",
+      "aliases": [
+        "strategy-terrain-availability",
+        "地形可用性",
+        "地形位掩码"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x420ACC 是 30 字节地形位掩码表（每种地形一个字节）。0x419587(terrain, mask) 返回 table[terrain] & mask。策略使用检查在 mask 为 0 时返回“不能在这里使用。”；同一链路还使用“不能对我方部队使用。”。表在 6.4/6.5/6.6 完全相同。",
+      "tableLayout": {
+        "va": "0x420ACC",
+        "rows": 30,
+        "width": 1,
+        "bytes": [5, 5, 1, 12, 12, 0, 0, 6, 7, 6, 6, 0, 0, 6, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+        "identity": "三基底完全相同"
+      },
+      "function": {
+        "va": "0x419587",
+        "bytes": "55 8B EC 0F B6 45 08 8A 80 CC 0A 42 00 23 45 0C 5D C2 08 00",
+        "signature": "byte(terrain, mask) = table[terrain] & mask"
+      },
+      "bitSource": {
+        "va": "0x420630",
+        "rows": 25,
+        "bytes": [0, 1, 3, 2, 12, 4, 5, 6, 6, 6, 6, 10, 10, 10, 10, 2, 4, 0, 1, 7, 8, 9, 12, 12, 12],
+        "observedUse": "class<=3 时 mask = 1 << table[class]；class 15..18 走 2<<bit 分支。"
+      },
+      "callSites": {
+        "primary": {
+          "va": "0x4204B8",
+          "chain": "0x4204A1 生成 mask → 0x4204AF 取地形 → 0x4204B8 检查 → 0 时返回 0x48B85C",
+          "failureString": "0x48B85C = 不能在这里使用。",
+          "relatedString": "0x48B86E = 不能对我方部队使用。"
+        },
+        "others": ["0x420A8B", "0x4559AE", "0x46C8DC"]
+      },
+      "limitations": [
+        "0x420630 的 class 编号未映射到界面术语。",
+        "0x4559AE/0x46C8DC 两个调用点未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": ["mechanism.65.engine-general-constant-census.3ef7"],
+      "sourceRefs": [
+        "src.research.engine-ai-terrain-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

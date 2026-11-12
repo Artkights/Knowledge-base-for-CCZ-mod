@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "analysis": "cell-flag-bit-semantics",
+  "date": "2026-11-12",
+  "method": "dump_funcs.py 反汇编 0x41D716 与 0x42AA82 段；context.py 核对 0x4088B4 调用参数与 0x425AD9 缩放；结合第 8 轮 40×60/40×40 移动表与第 3 轮 0x505FDC 模式位。仅静态分析。",
+  "samples": [
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "array": {
+    "address": "0x4934B0",
+    "lengthHint": "0x640 = 1600 = 40×40（0x42AA9E cmp cx,0x640）",
+    "bitFields": [
+      {
+        "bit": 0,
+        "mask": 0x01,
+        "evidence": "0x41D716：0x505FDC==0 且 0x501BD2>=2 时，比较 0x4088B4(0xD) 与 0x4088B4(unit)；若 al!=2 则 cl=1，test byte[cell],cl（即 bit0）；bit0=1 直接返回原值，否则调用 0x425AD9(arg,0x50) 按 50% 缩放。",
+        "semantic": "地形/状态判定位（影响 50% 缩放）",
+        "confidence": "medium"
+      },
+      {
+        "bit": 2,
+        "mask": 0x04,
+        "evidence": "0x42AAA5：循环 ecx<0x640，and byte[ecx+0x4934B0],0xC（同时清 bit2/bit3）；0x42A47F 以 0xD 掩码统计。",
+        "semantic": "移动范围/可达标记（候选）",
+        "confidence": "medium"
+      },
+      {
+        "bit": 3,
+        "mask": 0x08,
+        "evidence": "同上，与 bit2 一起被 0x42AAA5 清除、被 0x42A47F 统计。",
+        "semantic": "路径/选择标记（候选）",
+        "confidence": "low"
+      }
+    ],
+    "unusedObserved": "位 1、4..7 未在现有引用中出现"
+  },
+  "gates": {
+    "0x505FDC": "战斗/训练模式选择位（第 3 轮）；为 0 时才走 0x41D716 新逻辑",
+    "0x501BD2": "6.6 模式字节，>=2 时启用"
+  },
+  "helpers": {
+    "0x4088B4": "取单位/常量 0xD 对应的分类值（0x41D72B 与 0x41D736 两次调用），比较是否相等",
+    "0x425AD9": "百分比缩放（0x41D75A 传 0x50=50）",
+    "0x403789": "格索引 y*width+x（第 42 轮）"
+  },
+  "conclusion": "0x4934B0 数组长度至少 0x640=1600（40×40）。已定位 bit0 = 地形/状态判定位（0x41D716 中决定是否按 50% 缩放），bit2/bit3 = 移动范围/路径标记（0x42AAA5 对前 1600 格清除 0xC，0x42A47F 以 0xD 统计）。位 1 与 4..7 未被现有代码使用。",
+  "limitations": [
+    "bit2/bit3 的具体分工（可达/路径/已访问）未逐一证明。",
+    "0x4088B4(0xD) 的返回语义未定名。",
+    "未运行游戏对照。"
+  ]
+}

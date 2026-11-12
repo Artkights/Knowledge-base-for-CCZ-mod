@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "mechanism.65.script-jump-window.3890",
+      "title": "剧本跳转窗口（else / Section 的实现）",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.script-command-dispatch.3890",
+          "role": "0x4109E6 写 0x4CE74C（窗口起点）"
+        },
+        {
+          "order": 2,
+          "entity": "struct.65.script-context.3890",
+          "role": "ctx+0x0C 当前偏移"
+        },
+        {
+          "order": 3,
+          "entity": "global.65.script-control-codes.3890",
+          "role": "控制码 6/8 只作信号"
+        }
+      ],
+      "semantics": [
+        "两个全局构成半开窗口 [0x4CE74C, 0x4CE75C)：0x4CE74C 由分派器在 opcode<=1 的特殊分支写入（值 = [ctx+0xC]-2），0x4CE75C 由 0x41085D 写入（值 = 读到的 token + ctx+0x0C）。",
+        "判定函数（约 0x416C58）：eax=[ctx+0xC]；edx=0x4CE75C；若 eax <= [edx-0x10] 或 eax < [edx] 或 [ebp-4] >= [edx] → 置 cl=0x76；否则保持。即：当前偏移不在窗口内时打上 0x76 “跳过”标记。",
+        "0x4109E6 收尾处有 `cmp [ebp-8],0x76; jne; mov [ebp-8],ecx`，把该标记并入返回值/状态。",
+        "因此 0x03 else 与 0x0C 结束Section 的分支语义 = 由窗口区间决定哪些指令被跳过，处理函数本身只返回 6/8。",
+        "另一处 0x416C96 显示存在一张 ≤5 项的类型码小表（地址 0x416C82），供 0x4183F7 逐个取参使用。",
+        "窗口起点的写入条件已细化：分派器 opcode<=1 分支中 `add eax,3; cmp al,4` 仅 opcode==1 成立，故 0x01 子事件设定写入 0x4CE74C=[ctx+0xC]-2；opcode 0 不写窗口。"
+      ],
+      "relations": [
+        "global.65.script-control-codes.3890",
+        "struct.65.script-context.3890",
+        "mechanism.65.script-main-loop.3890",
+        "mechanism.65.script-short-param.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

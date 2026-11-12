@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "entityType": "case-study",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "case.65.script-command-implementation",
+      "title": "剧本指令真实实现定位（分派器与 126 项处理函数表）",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "objective": "在引擎中定位剧本指令的实际执行机制，并导出 opcode → 处理函数地址全表。",
+      "inputs": [
+        "三基底 Ekd5.exe",
+        "既有 158 条指令清单（legacy-structured）"
+      ],
+      "procedure": [
+        "扫描 jmp/call 分派表、MSVC 字节偏移表、158 项指针数组，均未命中，说明不是单一大表。",
+        "从 TR.E5 断言串定位剧本模块，反汇编 0x425B70/0x425BF2，发现其调用 0x426E64 解析参数。",
+        "反汇编 0x426E64：确认参数是 ASCII 文本，支持 '-' 与 '*'（0x502000 变量表）。",
+        "由 0x426E64 反向追踪，在 0x47D94F 发现 0x425BF2 的函数指针，进而找到 0x410A38 的 126 项表。",
+        "反汇编 0x4109E6：确认取 token → opcode → call [0x410A38 + (opcode-2)*4]。",
+        "三基底比对：表头 32 字节一致；分派器 6.4/6.5 上界 0x79，6.6 上界 0x7B。",
+        "导出全部 126 项，写入《剧本指令全解.md》附录 A。"
+      ],
+      "outcome": [
+        "分派器 = 0x4109E6；分派表 = 0x410A38（126 项，index=opcode-2）。",
+        "token 读取 = 0x40FCB2（16 位字，低字节为 opcode）。",
+        "参数取值 = 0x4183F7；文本参数解析 = 0x426E64（ASCII、'-'、'*'）。",
+        "opcode 0x7A–0x7F 的表项为 0x004D0000，即未实现/哨兵。",
+        "此前的 0x49CF68（128×0x40）是运行时记录表，不是指令表；指令表是 0x410A38。"
+      ],
+      "reusableLessons": [
+        "先找“参数解析器”，再反向追调用者，比直接找分派表更快。",
+        "ASCII 文本 token + 返回消耗字节数，是本引擎参数编码的关键特征。",
+        "0x004D0000 这种落在数据段的值应识别为空实现哨兵，而不是代码指针。"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.dm.formulas.sample-64-20261102",
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

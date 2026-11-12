@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "analysis": "engine-general-constant-coverage-ledger-v2",
+  "date": "2026-11-12",
+  "method": "汇总第 1–32 轮已写入知识库的证据与机制，按通用常量/公式/全局设定域标注 resolved/partial/unresolved，并列出下一阶段缺口；不改动游戏基底。",
+  "roundsCovered": "1-32",
+  "domains": [
+    {"domain": "函数级常量普查", "status": "resolved", "rounds": [1], "note": "三基底指令/函数计数与表锚点"},
+    {"domain": "兵种相克", "status": "resolved", "rounds": [2], "note": "40×40 百分比表与物理伤害乘算"},
+    {"domain": "策略 AI 分派", "status": "resolved", "rounds": [3, 23, 24, 25, 26, 28], "note": "16 分支、权重、阈值、跨基底处理体对照"},
+    {"domain": "策略地形可用性", "status": "resolved", "rounds": [3], "note": "30 字节位掩码"},
+    {"domain": "商店运行时表/物品可用性", "status": "partial", "rounds": [4, 32], "note": "127×40 表与可用性；价格消费链未闭合"},
+    {"domain": "兵种成长/装备适性", "status": "resolved", "rounds": [4, 15, 30], "note": "80×35、装备适性与 3 槽"},
+    {"domain": "兵种属性矩阵", "status": "partial", "rounds": [5], "note": "8×40 布局与第 6 行百分比；其余行名称未定"},
+    {"domain": "兵种穿透/属性码", "status": "partial", "rounds": [6], "note": "80 字节表；码值名称未定"},
+    {"domain": "物理伤害", "status": "resolved", "rounds": [7], "note": "25/2/1/5/12/100 与 6.6 分支"},
+    {"domain": "移动消耗/地形适应", "status": "resolved", "rounds": [8], "note": "40×60 表、0xFF 哨兵"},
+    {"domain": "回合/行动/天气", "status": "resolved", "rounds": [9, 11, 21], "note": "0x4B3D08 状态、天气表、行动权重置"},
+    {"domain": "全局容量/哨兵", "status": "resolved", "rounds": [10, 31], "note": "记录容量、0xFF/0x8000 哨兵、剧本表 126 项"},
+    {"domain": "策略伤害方向/天气/地形修正", "status": "resolved", "rounds": [12], "note": "+25/+40 与方向码"},
+    {"domain": "命中高度/方向修正", "status": "resolved", "rounds": [13], "note": "class 0/1/2 → 0/5/10，100 上限"},
+    {"domain": "公式站点跨基底审计", "status": "resolved", "rounds": [14], "note": "6.5 91/91；6.4 38/91、6.6 45/91"},
+    {"domain": "装备升级阈值/等级上限", "status": "resolved", "rounds": [15], "note": "普通 100/150、特殊 200、上限 5/9/15"},
+    {"domain": "命中重试", "status": "resolved", "rounds": [16], "note": "6.4/6.5 2 次/85/10；6.6 门控"},
+    {"domain": "角色经验", "status": "resolved", "rounds": [17], "note": "80/150、60/分段、99/250"},
+    {"domain": "个人经验", "status": "resolved", "rounds": [18], "note": "2×差+6、-1..47、+48、64/(差+2)"},
+    {"domain": "武器/防具经验", "status": "resolved", "rounds": [19, 20], "note": "基础/无伤害路径三基底"},
+    {"domain": "全局模式/命中门控", "status": "partial", "rounds": [21], "note": "0x505EC8/0x4B3D18 名称未定"},
+    {"domain": "网格边界字", "status": "partial", "rounds": [22], "note": "0x4B422C 非地图宽高；最终名称未定"},
+    {"domain": "物品价格消费", "status": "unresolved", "rounds": [27], "note": "未发现 item+0x13 直接读取/×100；需商店 UI"},
+    {"domain": "人物记录访问器", "status": "resolved", "rounds": [29, 30], "note": "72 字节布局、3 装备槽"},
+    {"domain": "物品类型分类", "status": "resolved", "rounds": [32], "note": "20/26/11/2 映射"}
+  ],
+  "remainingGaps": [
+    "商店买卖 UI 与金钱结算，价格字段真实消费点",
+    "战术单位临时属性块 +0x18 的字段语义",
+    "状态/天气对物理命中与伤害的完整修正链（策略侧已解析）",
+    "6.6 处理体常量逐项重定位（9 个处理体变化）",
+    "存档/读档相关通用常量（若属于引擎全局设定）",
+    "0x505EC8/0x4B3D18/0x4B422C 的最终玩法名称"
+  ],
+  "conclusion": "第 1–32 轮已覆盖 25 个通用域：22 个 resolved、4 个 partial、1 个 unresolved。主要剩余缺口集中在商店经济、战术单位临时属性、物理侧状态/天气修正、6.6 处理体常量与少量全局命名。",
+  "limitations": [
+    "覆盖状态是知识库条目层面的汇总，不等价于每个函数/常量的逐条全量证明。",
+    "未运行游戏对照。"
+  ]
+}

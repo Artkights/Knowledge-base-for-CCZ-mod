@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz66.shanzai.work.aa0f",
+  "entries": [
+    {
+      "id": "global.66.effect-name-table.f20c",
+      "title": "特效名称表与范围码名称表",
+      "aliases": [
+        "0x004CC600",
+        "0x0040620A",
+        "effect_name_table_66"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004CC600",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "static-verified"
+      },
+      "width": 16,
+      "semantics": "16 字节/条，索引=特效号，+0x0F 为分类码。穿透攻击 149..151 位于 0x4CCF50..0x4CCF70，远距攻击 155..157 位于 0x4CCFB0..0x4CCFD0（名称均只写「穿透攻击」/「远距攻击」，后缀由范围码决定）。范围码名称表在 0x40620A，12 个 DWORD 字符指针（0..11），内容与 6.5 的 0x40CEE9 表一致。",
+      "relations": [
+        "fn.66.pierce-effect-chain.aa0f",
+        "fn.66.longrange-effect-chain.aa0f"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

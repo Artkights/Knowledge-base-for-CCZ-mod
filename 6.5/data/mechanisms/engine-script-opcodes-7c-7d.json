@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.script-opcodes-7c-7d.3ef7",
+      "title": "脚本处理体 0x7A/0x7B/0x7C/0x7D 与 6.6 新增项",
+      "aliases": [
+        "0x7A",
+        "0x7B",
+        "0x7C",
+        "0x7D",
+        "变量赋值",
+        "条件分派",
+        "0x4284A2",
+        "0x47E9F0"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x7A 自 6.4 已实现：0x416DCD 取参后 call 0x4202D8，变量表 0x502000，溢出提示 0x500CC0『变量值溢出』。0x7B 自 6.4 已实现：0x415093 按 0..5 六种操作符比较。6.6 新增 0x7C/0x7D：0x7C 用 0x42DB2C 解析最多 5 个操作数并 call 0x40CB00；0x7D 用子表 0x47EA2F 分派 5 类条件（装备/状态、数值阈值、单位存在、地形、天气）。",
+      "constants": [
+        "0x410A38",
+        "0x4D0000",
+        "0x416DCD",
+        "0x415093",
+        "0x4284A2",
+        "0x47E9F0",
+        "0x47EA2F",
+        "0x42DB2C",
+        "0x40CB00",
+        "0x502000",
+        "0x500CC0"
+      ],
+      "identity": "0x7A 项 6.4=0x416DCB、6.5/6.6=0x416DCD；0x7B 项三基底均 0x415093；0x7C/0x7D 项仅 6.6 为 0x4284A2/0x47E9F0，6.4/6.5 均为 0x4D0000。",
+      "limitations": [
+        "0x40CB00/0x4203FC/0x4183F7 内部未完全展开。",
+        "0x7D 子条件 0 的字段名未定。",
+        "表达式语法仅由字节推断。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.script-handler-capacity.3ef7",
+        "mechanism.65.battle-script-action-family.3ef7",
+        "mechanism.65.temp-attribute-block.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-66-handler-7c-7d-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "handlerTable": "0x410A38",
+        "empty": "0x4D0000",
+        "opcode7A": "0x416DCD（6.4: 0x416DCB）",
+        "opcode7A_callee": "0x4202D8",
+        "opcode7B": "0x415093",
+        "opcode7C": "0x4284A2",
+        "opcode7C_callee": "0x42DB2C",
+        "opcode7D": "0x47E9F0",
+        "opcode7D_subTable": "0x47EA2F"
+      }
+    }
+  ]
+}

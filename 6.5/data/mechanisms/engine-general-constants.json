@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.engine-general-constant-census.3ef7",
+      "title": "引擎通用常量与全局表锚点普查（三基底）",
+      "aliases": [
+        "通用常量普查",
+        "全局设定表锚点",
+        "引擎公式常量",
+        "constant-census"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "对三基底全部可执行节做线性反汇编并建立函数级常量/数据引用索引：6.4 为 481963 条指令/3287 个函数，6.5 为 488079/3372，6.6 为 503694/3552。以 EXE 内嵌表地址为锚点定位通用系统：兵种相克 0x4D1A80、兵种属性矩阵 0x4D20C0、策略战斗 AI 0x4D1600、策略训练 AI 0x4D1690、策略地形可用性 0x420ACC；特效专属表被排除在通用常量清单之外。",
+      "method": [
+        "pefile 读取节表，capstone 32 位线性反汇编所有可执行节；失败处单字节重同步。",
+        "函数起点取直接 call 目标、标准 push ebp/mov ebp,esp 序言和节入口。",
+        "常量只记录非映像地址的立即数；数据引用记录映像内绝对位移，包括 [index+table_base] 形式的表基址。",
+        "用 data 管理器 profile 的 EXE 表偏移映射到 VA，再按函数数据引用聚合消费者。",
+        "跨基底用前 32 条指令的助记符与非地址立即数做签名聚类。"
+      ],
+      "census": {
+        "6.4": {"instructions": 481963, "functions": 3287, "directCallTargets": 2746},
+        "6.5": {"instructions": 488079, "functions": 3372, "directCallTargets": 2822},
+        "6.6": {"instructions": 503694, "functions": 3552, "directCallTargets": 3006},
+        "signatures": {"total": 5070, "sharedByAllThree": 1508, "onlyIn65": 326, "matchedIn65": 3088}
+      },
+      "anchors": [
+        {"key": "job-series-counter", "va": "0x4D1A80", "rows": 40, "rowSize": 40, "consumer": "0x426737"},
+        {"key": "job-series-attributes", "va": "0x4D20C0", "rows": 8, "rowSize": 40, "consumerSample": ["0x4395DC", "0x40CB92", "0x4281AF"]},
+        {"key": "strategy-battle-ai", "va": "0x4D1600", "rows": 144, "rowSize": 1, "consumer": "0x4395DC"},
+        {"key": "strategy-training-ai", "va": "0x4D1690", "rows": 144, "rowSize": 1, "consumerSample": ["0x4395DC", "0x466443"]},
+        {"key": "strategy-terrain-availability", "va": "0x420ACC", "rows": 30, "rowSize": 1, "consumer": "0x419587"},
+        {"key": "detailed-job-penetration", "va": "0x407881", "rows": 80, "rowSize": 1, "consumer": "0x40782D"}
+      ],
+      "worklist": [
+        "0x4395DC：策略 AI 评分与兵种属性矩阵消费（971 条指令）",
+        "0x466443：策略训练 AI 选择",
+        "0x419587：策略地形可用性",
+        "0x40782D：兵种穿透属性",
+        "Data.e5 的移动消耗/地形发挥表：运行时基址尚未定位",
+        "全局上限、回合规则、状态与天气常量：尚未定位"
+      ],
+      "boundaries": [
+        "函数计数依赖启发式边界，嵌入数据和尾部共享会造成合并/拆分，不能当作语义等价证明。",
+        "签名聚类只比较前 32 条指令，不证明函数整体相同。",
+        "常量频次只用于排序工作清单，不用于推断语义。",
+        "普查不包含特效参数、特效 ID 和单个特效专属数值。"
+      ],
+      "limitations": [
+        "未运行游戏，未修改任一基底文件。",
+        "Data.e5 中表的运行时装载基址未定位，移动/地形表暂不能按绝对地址聚合消费者。"
+      ],
+      "sourceRefs": [
+        "src.research.engine-constant-census-20261112",
+        "src.ccz65.3890.ekd5",
+        "src.data-manager.profile65"
+      ]
+    },
+    {
+      "id": "mechanism.65.job-series-counter.3ef7",
+      "title": "兵种相克百分比表与物理伤害乘算",
+      "aliases": [
+        "job-series-counter",
+        "兵种相克",
+        "兵种系相克",
+        "相克百分比"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "兵种相克是 EXE 内嵌的 40×40 字节表，索引为攻击方兵种系×40+防守方兵种系，值为百分比（100 中性）。物理伤害在基础值、能力差与随机修正之后按该百分比乘算，非 100 时结果至少为 1。三基底共用字节完全一致的查表与乘算代码，但表值分别不同。",
+      "tableLayout": {
+        "key": "job-series-counter",
+        "file": "Ekd5.exe",
+        "fileOffset": "0xA3280",
+        "va": "0x4D1A80",
+        "rows": 40,
+        "columns": 40,
+        "rowStride": 40,
+        "indexFormula": "index = 40 * series(attacker) + series(defender)"
+      },
+      "seriesMapping": {
+        "function": "0x40BF0C",
+        "input": "单位记录 byte[+0x2B]（兵种 ID 0..79）",
+        "rules": [
+          "id <= 59：series = id / 3",
+          "60 <= id <= 79：series = id - 40",
+          "id >= 80：series = 40（越界哨兵）"
+        ],
+        "interpretation": "前 20 个兵种系各 3 个兵种，后 20 个兵种系各 1 个兵种。"
+      },
+      "lookup": {
+        "va": "0x426737",
+        "steps": [
+          "series(second) * 40 + series(first)",
+          "movzx byte[table + index]",
+          "加上 property(second) - property(first)",
+          "小于 0 时钳制为 0"
+        ],
+        "propertyDelta": {
+          "getter": "0x413272",
+          "args": "0x4101D9(unit, 0x76, 0x4E, 1, 0)",
+          "status": "属性 0x76 未命名；双方默认时差值抵消"
+        },
+        "byteIdentity": "0x426737 与 0x40BF0C 在三基底字节完全一致。"
+      },
+      "callConvention": {
+        "order": "调用点先压防守方，再压攻击方；0x426737 的 [ebp+8] 为防守方、[ebp+0xC] 为攻击方。",
+        "consequence": "表行号为攻击方兵种系，列号为防守方兵种系。"
+      },
+      "damageApplication": {
+        "va": "0x43BD9B",
+        "formula": "damage = (counter == 100) ? damage : max(1, damage * counter / 100)",
+        "helper": "0x425AD9(a,b)=a*b/100（整数除法）",
+        "position": "位于物理伤害基础值/能力差/随机修正之后，0x4E6000 最终处理之前。",
+        "versions": "6.4/6.5/6.6 同址同结构。"
+      },
+      "valueDistribution": {
+        "6.4": {"80": 1, "90": 9, "100": 1365, "105": 17, "110": 138, "115": 14, "120": 45, "125": 4, "130": 3, "140": 1, "150": 3},
+        "6.5": {"80": 1, "100": 1501, "110": 53, "120": 39, "130": 4, "150": 2},
+        "6.6": {"30": 37, "50": 2, "60": 1, "70": 1, "80": 32, "90": 22, "95": 8, "100": 1133, "105": 101, "110": 146, "115": 17, "120": 54, "125": 39, "130": 1, "140": 3, "150": 3},
+        "diffCounts": {"6.4_vs_6.5": 292, "6.5_vs_6.6": 528}
+      },
+      "consumers": {
+        "6.4": ["0x43BD9B", "0x413205", "0x413213"],
+        "6.5": ["0x43BD9B", "0x428A87", "0x428A95"],
+        "6.6": ["0x43BD9B", "0x413231", "0x41323F"]
+      },
+      "unitRecord": {
+        "lookup": "0x4061E4",
+        "behavior": "record = word[id] * 0x48 + dword[0x4CEA00]",
+        "stride": "0x48 (72 bytes)",
+        "baseGlobal": "0x4CEA00"
+      },
+      "limitations": [
+        "属性 0x76 的玩法名称未确定；只确认双方默认时差值抵消。",
+        "未做游戏内对照验证行/列方向。",
+        "0x4E6000 的最终伤害处理不在本条范围内。"
+      ],
+      "relations": [
+        "mechanism.65.engine-general-constant-census.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-counter-table-20261112",
+        "src.research.engine-constant-census-20261112",
+        "src.ccz65.3890.ekd5",
+        "src.data-manager.profile65"
+      ]
+    }
+  ]
+}

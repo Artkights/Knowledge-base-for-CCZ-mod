@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.item-record-normalization.3ef7",
+      "title": "物品记录装载后的 0x12..0x14 旋转",
+      "aliases": ["item record rotation", "0x4010B0", "物品记录规整"],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "物品表装载后对每条记录清空 +0x0E，并旋转 +0x12..0x14：新[0x12]=旧[0x13]，新[0x13]=旧[0x14]，新[0x14]=旧[0x12]。6.5 装载到 0x4A1140，循环 0xFF；6.6 装载到 0x49F820，循环 0x200；6.4 已重定位。",
+      "function": "0x4010B0",
+      "core": ["byte[item+0x0E]=0", "dl=byte[item+0x12]", "eax=dword[item+0x13]", "word[item+0x12]=ax", "byte[item+0x14]=dl"],
+      "rotation": {"0x12": "旧0x13", "0x13": "旧0x14", "0x14": "旧0x12"},
+      "versionsDetail": {
+        "6.4": "重定位，未确认",
+        "6.5": "目标 0x4A1140，循环 0xFF",
+        "6.6": "目标 0x49F820，循环 0x200"
+      },
+      "limitations": [
+        "6.6 循环上界 0x200 与 255 条关系未解释。",
+        "6.4 新站点未定位。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "struct.65.item-record",
+        "mechanism.65.item-price-consumption-boundary.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-item-record-normalization-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

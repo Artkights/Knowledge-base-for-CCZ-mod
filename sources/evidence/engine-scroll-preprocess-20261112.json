@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "analysis": "scroll-preprocess",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 0x45461C 与 0x4546C8 尾部。仅静态分析。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"}
+  ],
+  "preprocess": {
+    "entry": "0x45461C",
+    "object": "0x4B4250（ecx）",
+    "steps": [
+      "v1 = byte[obj+0x54]，v2 = byte[obj+0x55]",
+      "byte[obj+0x54] = 0xFF，byte[obj+0x55] = 0xFF（哨兵重置）",
+      "mode = byte[obj+0x61]",
+      "mode 1/2：v1 = 0x47FAD0(v1, 1)、v2 = 0x47FAD0(v2, 1)，shift = 3/3",
+      "mode 3：v1 = 0x47FAD0(v1, 2)、v2 = 0x47FAD0(v2, 2)，shift = 5/5",
+      "mode 0/其他：shift = 1/1",
+      "if v1 != 0xFF && v2 != 0xFF：call 0x45218F(obj, v1, v2, shift1, shift2)",
+      "call 0x476882（重绘/刷新）"
+    ]
+  },
+  "conclusion": "0x4B4250 +0x54/+0x55 是一对「待处理滚动目标」字节，0xFF 为哨兵；+0x61 为滚动模式（0=默认，1/2=限位 1、位移 3，3=限位 2、位移 5）。0x45461C 消费这对值、清回 0xFF，有效时调用 0x45218F 并刷新。0x47FAD0 再次作为「值/上限」限制器出现。",
+  "limitations": [
+    "0x45218F 的实际滚动算法未展开。",
+    "0x476882 仅为刷新调用，具体 API 未确认。",
+    "+0x61 的模式命名未取得文案。",
+    "未运行游戏对照。"
+  ]
+}

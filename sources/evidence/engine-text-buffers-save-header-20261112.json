@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "analysis": "text-buffers-save-header",
+  "date": "2026-11-12",
+  "method": "va 检查 0x4A1128/0x4B0758 均为 .text2 虚拟尾部未初始化缓冲（raw 未映射）；refs_to.py 列出引用；capstone 反汇编 0x404C80..0x404CA5（memset 0x16）、0x417DF6（文本解析/换行）、0x4125BB（0x47622D 绘制）。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "buffers": [
+    {
+      "addr": "0x4A1128",
+      "size": "0x16（22 字节）",
+      "init": "启动 0x404C80 序列中 0x47FD13(0x4A1128, 0, 0x16) 清零",
+      "writers": ["0x417DF6（文本解析：'*' 控制码、'\\n&' 结束、逐字符写入）"],
+      "saveUse": "保存区块B +0x005 以 0x47FC7D(strcpy) 复制"
+    },
+    {
+      "addr": "0x4B0758",
+      "size": "未定（BSS 文本缓冲）",
+      "writers": ["0x4125BB 经 0x47622D 使用（绘制/刷新链）"],
+      "saveUse": "保存区块B +0x01B 以 0x47FC7D(strcpy) 复制"
+    }
+  ],
+  "saveHeaderContext": "区块B 布局（第87轮）：+0x005/+0x01B 两段字符串即这两个运行时文本缓冲的内容",
+  "conclusion": "0x4A1128（0x16 字节，启动清零）是脚本文本解析缓冲，0x417DF6 处理 '*' 控制码与 '\\n&' 结束并逐字符写入；0x4B0758 是另一段 UI 文本缓冲。两者在保存时分别写入区块B +0x005 与 +0x01B，因此存档会保留当时的消息文本。",
+  "limitations": [
+    "0x4B0758 的容量与写入内容未定。",
+    "0x417DF6 的完整控制码集合未穷举。",
+    "两段文本在界面上的具体用途未确认。",
+    "未运行游戏对照。"
+  ]
+}

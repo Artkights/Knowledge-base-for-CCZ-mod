@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "analysis": "job-series-counter-table-and-damage-multiplier",
+  "date": "2026-11-12",
+  "method": "pefile + capstone 精确反汇编 0x426737、0x40BF0C、0x4061E4、0x43BD9B，并用文件偏移读取三基底 40×40 表；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {
+      "version": "6.4",
+      "label": "洗隋",
+      "engine": "基底/洗隋/Ekd5.exe",
+      "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"
+    },
+    {
+      "version": "6.5",
+      "label": "加强版6.5未加密版",
+      "engine": "基底/加强版6.5未加密版/Ekd5.exe",
+      "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    },
+    {
+      "version": "6.6",
+      "label": "复刻版6.6山贼",
+      "engine": "基底/复刻版6.6山贼/Ekd5.exe",
+      "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    }
+  ],
+  "tableLayout": {
+    "key": "job-series-counter",
+    "displayName": "兵种系·兵种相克",
+    "file": "Ekd5.exe",
+    "fileOffset": "0xA3280",
+    "va": "0x4D1A80",
+    "rows": 40,
+    "columns": 40,
+    "rowStride": 40,
+    "valueWidth": 1,
+    "indexFormula": "index = 40 * series(arg2) + series(arg1)",
+    "direction": "调用点先压入防守方、再压入攻击方；0x426737 读取 [ebp+8]=第一个参数=防守方、[ebp+0xC]=第二个参数=攻击方。因此行号为攻击方兵种系，列号为防守方兵种系。"
+  },
+  "valueSemantics": {
+    "unit": "百分比",
+    "neutral": 100,
+    "meaning": "物理伤害在基础值与能力差之后，乘以该百分比再除以 100；100 表示无修正。",
+    "observedValues": {
+      "6.4": {"80": 1, "90": 9, "100": 1365, "105": 17, "110": 138, "115": 14, "120": 45, "125": 4, "130": 3, "140": 1, "150": 3},
+      "6.5": {"80": 1, "100": 1501, "110": 53, "120": 39, "130": 4, "150": 2},
+      "6.6": {"30": 37, "50": 2, "60": 1, "70": 1, "80": 32, "90": 22, "95": 8, "100": 1133, "105": 101, "110": 146, "115": 17, "120": 54, "125": 39, "130": 1, "140": 3, "150": 3}
+    },
+    "tableDiff": {
+      "6.4_vs_6.5": 292,
+      "6.5_vs_6.6": 528,
+      "note": "差异字节数按 1600 个格逐格比较；三基底不是同一张相克表，不能跨基底继承具体格值。"
+    }
+  },
+  "seriesMapping": {
+    "function": "0x40BF0C",
+    "bytes": "55 8B EC 51 0F B6 41 2B 99 3C 3B 77 09 B9 03 00 00 00 F7 F9 EB 0A 3C 50 73 04 2C 28 EB 02 B0 28 59 5D C3",
+    "input": "单位记录 byte[+0x2B]（兵种 ID）",
+    "output": "兵种系 0..39；>=0x50(80) 返回 0x28(40) 作为越界哨兵",
+    "rules": [
+      "id <= 0x3B(59)：series = id / 3（整数除法），得到 0..19",
+      "0x3C..0x4F(60..79)：series = id - 0x28(40)，得到 20..39",
+      "id >= 0x50(80)：series = 0x28(40)"
+    ],
+    "interpretation": "前 20 个兵种系各含 3 个兵种（0..59），后 20 个兵种系各含 1 个兵种（60..79）；与 data 管理器 40 行兵种系的布局一致。"
+  },
+  "unitRecordLookup": {
+    "function": "0x4061E4",
+    "bytes": "55 8B EC 0F B7 4D 08 6B C9 48 03 0D 00 EA 4C 00 5D C2 04 00",
+    "behavior": "record = word[id] * 0x48 + dword[0x4CEA00]",
+    "recordStride": "0x48 (72 bytes)",
+    "baseGlobal": "0x4CEA00",
+    "note": "0x40658F 先取 [ecx] 再调用 0x4061E4；0x43B4A7 等于 0x40658F + 0x40BF0C，即“单位对象 → 单位记录 → 兵种 ID → 兵种系”。"
+  },
+  "lookupFunction": {
+    "va": "0x426737",
+    "bytes": "55 8B EC 8B 4D 0C E8 65 4D 01 00 6B C0 28 50 8B 4D 08 E8 59 4D 01 00 03 45 FC 0F B6 80 80 1A 4D 00 89 45 FC 8B 4D 0C E8 0F CB FE FF 01 45 FC 8B 4D 08 E8 04 CB FE FF 29 45 FC 33 C0 39 45 FC 7D 03 89 45 FC 58 5D C2 08 00",
+    "steps": [
+      "series(arg2) * 40，压栈暂存到 [ebp-4]",
+      "series(arg1) 加到行偏移",
+      "movzx byte[行偏移 + 0x4D1A80] → 基础百分比",
+      "加上 property(arg2) - property(arg1)",
+      "结果小于 0 时钳制为 0",
+      "返回百分比"
+    ],
+    "propertyDelta": {
+      "getter": "0x413272",
+      "args": "0x4101D9(unit, 0x76, 0x4E, 1, 0)",
+      "role": "对攻守双方取同一属性 0x76（回退参数 0x4E）后相减；双方取默认值时差值抵消，普通战斗只剩表值。",
+      "status": "未命名"
+    },
+    "byteIdentity": "0x426737 与 0x40BF0C 在 6.4/6.5/6.6 三基底字节完全一致。"
+  },
+  "consumers": {
+    "6.4": ["0x43BD9B（物理伤害）", "0x413205（AI/评估）", "0x413213（AI/评估，攻守反向）"],
+    "6.5": ["0x43BD9B（物理伤害）", "0x428A87（AI/评估）", "0x428A95（AI/评估，攻守反向）"],
+    "6.6": ["0x43BD9B（物理伤害）", "0x413231（AI/评估）", "0x41323F（AI/评估，攻守反向）"]
+  },
+  "damageApplication": {
+    "va": "0x43BD9B",
+    "versions": "6.4/6.5/6.6 同址同结构",
+    "sequence": [
+      "0x43BD95 push 防守方；0x43BD98 push 攻击方；0x43BD9B call 0x426737",
+      "0x43BDA0 cmp eax,0x64",
+      "等于 100 时跳过乘算",
+      "不等于 100 时：push 当前伤害；push 百分比；call 0x425AD9（a*b/100）",
+      "0x43BDAE test eax,eax；为 0 时 0x43BDB2 inc eax，保证至少 1",
+      "0x43BDB3 写回伤害，随后 0x43BDB6..0x43BDBF 调用 0x4E6000 做后续处理"
+    ],
+    "formula": "damage = (counter == 100) ? damage : max(1, damage * counter / 100)，整数除法",
+    "ordering": "相克乘算发生在物理伤害的基础值/能力差/随机修正之后、0x4E6000 最终处理之前。"
+  },
+  "conclusion": "兵种相克是一张 40×40 的百分比表，索引为攻击方兵种系×40+防守方兵种系；物理伤害在最终处理前按该百分比乘算，100 为中性，非 100 时结果至少为 1。兵种 ID 通过 0x40BF0C 映射到兵种系，单位 ID 通过 0x4061E4 映射到 72 字节记录。三基底共用同一查表与乘算代码，但表值分别不同，必须按基底分别读取。",
+  "limitations": [
+    "0x413272 读取的属性 0x76 尚未命名；只知道默认参数为 0x4E，双方默认时差值抵消。",
+    "0x43B4A7 的更上层单位对象结构只确认了 [ecx] 为 ID；未展开单位对象全部字段。",
+    "行/列方向由调用点压栈顺序与函数内 [ebp+8]/[ebp+0xC] 读取确定，但未做游戏内对照。",
+    "0x4E6000 的最终伤害处理不在本条范围内。"
+  ]
+}

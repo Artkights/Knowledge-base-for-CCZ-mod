@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "analysis": "settings-block-fields",
+  "date": "2026-11-12",
+  "method": "refs_to.py 列出 0x4B0770 全部 80+ 引用；capstone 反汇编 0x4118DB..0x41196B（设置项读取/比较）、0x41196C（+0x10 写入）、0x411991（+0x10 检查）、0x40E1D0、0x415E19、0x408808（三个 getter）。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "settingsBlock": {
+    "base": "0x4B0770",
+    "size": "0x2BC（存档区块B +0x32 整体复制）",
+    "fields": [
+      {"offset": "+0x00", "type": "byte", "role": "选项位（bit1=音效开关，0x474596(2)=byte&2）"},
+      {"offset": "+0x06", "type": "word", "role": "设置项索引 1：0x415E19 = min(word/2, 0x7F)"},
+      {"offset": "+0x0C", "type": "dword", "role": "设置项索引 0：0x40E1D0 = dword[+0x0C]"},
+      {"offset": "+0x10", "type": "byte", "role": "标志位：0x41196C 写入；0x411991 与 byte[0x501FFF] 比较"},
+      {"offset": "+0x12", "type": "byte", "role": "设置项索引 2：0x408808 = byte[+0x12]"}
+    ]
+  },
+  "compareFunction": {
+    "region": "0x4118DB..0x41196B",
+    "inputs": "[ebp+8]=旧值，[ebp-0xC]=设置项索引（0/1/2）",
+    "dispatch": [
+      {"index": 0, "getter": "0x40E1D0（dword[+0x0C]）", "compare": "arg==0 时取 old<=new 的布尔"},
+      {"index": 1, "getter": "0x415E19（min(word[+0x06]/2,0x7F)）", "compare": "arg==1 时按 new-old 符号返回"},
+      {"index": 2, "getter": "0x408808（byte[+0x12]）", "compare": "arg==2 时返回是否相等"}
+    ],
+    "sentinel": "0x4183F7 读到 0x80000000 或 0x8000 时返回 5（无效）",
+    "returns": "-1/0/1 或 0/1，用于设置列表的变更检测"
+  },
+  "setter": {
+    "entry": "0x41196C",
+    "behavior": "byte[0x4B0770+0x10] = al（[ebp+8]）；若 0x41EDEF(0x4AC63C)==2 则 call 0x426BA0（章节=2 时刷新某状态）",
+    "return": "0"
+  },
+  "flagCheck": {
+    "entry": "0x411991",
+    "behavior": "0x40B922()==0 且 byte[0x4B0770+0x10] != 0 时，比较 byte[0x501FFF] 并 push 0/1 调 0x419949(0x496F38, flag)；返回 1"
+  },
+  "conclusion": "0x4B0770 是 0x2BC 字节的设置块：+0x0C（dword）、+0x06（word/2 钳 0x7F）、+0x12（byte）分别由 0x40E1D0/0x415E19/0x408808 读取，并被 0x4118DB..0x41196B 的索引分派比较（0/1/2）；+0x10 由 0x41196C 写入、0x411991 与 0x501FFF 比较；+0x00 的 bit1 为音效开关。",
+  "limitations": [
+    "三个设置项对应的界面文案（音量/速度/难度）未确认。",
+    "0x40E1D0 的 dword[+0x0C] 取值范围与单位未定。",
+    "0x426BA0 与 0x419949 的职责只知在特定章节/标志下触发，未展开。",
+    "未运行游戏对照。"
+  ]
+}

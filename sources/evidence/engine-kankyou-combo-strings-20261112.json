@@ -1,0 +1,51 @@
+{
+  "id": "src.research.engine-kankyou-combo-strings-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "环境设定下拉候选串：0x486444=\"花色%d\"、0x48644B=\"加速%d\"，更正 0x5D0/0x5D1 归属",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 0x4077C4 + 字符串读取 0x486444/0x486452 + 资源控件坐标复核",
+  "findings": [
+    {
+      "id": "strings",
+      "claim": "0x4077C4(index, combo, buf)：index<5 时以 wsprintfA(buf, fmt, index) 生成候选串，fmt = 0x486444 + combo*7；0x486444=\"花色%d\"、0x48644B=\"加速%d\"；index>=5 返回 0x486452（空串/默认串）。",
+      "evidence": [
+        "0x4077CA cmp al,5; 0x4077CC jae 0x4077ED（返回 0x486452）",
+        "0x4077D1 imul ecx,ecx,7; 0x4077D4 add ecx,0x486444; 0x4077DF call [0x4862C0]=wsprintfA",
+        "strings_at 0x486444：\"花色%d\"；0x48644B：\"加速%d\""
+      ]
+    },
+    {
+      "id": "control-mapping",
+      "claim": "combo=0（\"花色%d\"）对应控件 0x5D0，combo=1（\"加速%d\"）对应 0x5D1：资源中标签「加速」位于 y=127、紧邻 0x5D1（y=125）；标签「花色」位于 y=154、紧邻 0x5D0（y=152）。",
+      "evidence": [
+        "dialog_resource：id=0x05D1 rect=(160,125,45,51)，标签 '加速' rect=(140,127,19,8)",
+        "dialog_resource：id=0x05D0 rect=(160,152,45,51)，标签 '花色' rect=(140,154,19,8)",
+        "0x41BE4A add eax,0x5D0（combo s=0 → 0x5D0）"
+      ]
+    },
+    {
+      "id": "initial-selection",
+      "claim": "初值：combo=0（花色）取 0x41EDEF(0x492E20)；combo=1（加速）取 word[0x4CE7BC]——低字节非 0 时用高字节，低字节为 0 时用 4。",
+      "evidence": [
+        "0x41BE9B cmp [ebp-8],0; 0x41BEA6 call 0x41EDEF（s=0）",
+        "0x41BEAD movzx ecx,word[0x4CE7BC]; 0x41BEB7 test eax,eax; 0x41BEBB add al,4; 0x41BEBF shr ecx,8（s=1）"
+      ]
+    }
+  ],
+  "corrections": [
+    "第141轮把 0x5D0 记为加速、0x5D1 记为花色有误：按格式串与控件坐标，0x5D0=花色、0x5D1=加速。",
+    "第141轮『s=0 初值取 0x41EDEF(0x492E20)』应归属花色下拉；s=1（加速）取 word[0x4CE7BC]。"
+  ],
+  "limitations": [
+    "0x486452 默认串的实际内容未逐字节解读。",
+    "花色/加速各 5 档的业务含义与 +0x05 等设置字段的对应未建立。",
+    "未运行游戏对照。"
+  ]
+}

@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.4/data/mechanisms/configuration-consumers.json`、`6.4/data/mechanisms/data-manager-formulas.json`
+结构化事实来源：`6.4/data/mechanisms/configuration-consumers.json`、`6.4/data/mechanisms/data-manager-formulas.json`、`6.4/data/mechanisms/strategy-attribute-tables.json`
 
 ## 洗隋6.4原生装备分类优先级与磁盘/运行时字段
 
@@ -5565,3 +5565,21 @@ ID: `mechanism.64.dm-constant-equip-level-cap-normal`；状态: `candidate`；�
 - 必须重验样本身份、当前PE映射、字段原字节及前后签名；掩码0为通配，非0必须精确匹配。
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
+
+## 策略属性子表：6.4 洗隋映射与填充区确认
+
+ID: `mechanism.64.strategy-attribute-tables.9112`；状态: `canonical`；证据: `static-verified`
+
+6.4 与 6.5 共用 0xA2CE0..0xA31F0 的 144 字节表布局和字段偏移；唯一区别是 0xA2CE0 全为 0x90 填充，且 Profile 已将其标为不可用。
+
+
+补充说明：
+
+- 6.4 Profile 已正确禁用 strategy-extension 与 strategy-terrain-availability。
+- 表映射：0xA2CE0 全 0x90 填充；0xA2D70 效果类（上限 0x24）；0xA2E00 战场AI；0xA2E90 练武场AI；0xA2F20 命中模式；0xA2FB0 AI类别位掩码；0xA3040 伤害百分比；0xA30D0 伤害门控；0xA3160 小动画；0xA31F0 大动画。
+- 6.4 命中模式、AI 评分处理器、效果类分派与 6.5 同构；字段偏移与 6.5 3EF7 一致。
+- 运行时同样只加载 68 行；文件 144 行中的后 76 行不在 0x4A3E77 数组内。
+
+## 6.4 策略模仿可用性与强化策略穿透的缺失确认
+
+ID: `mechanism.64.strategy-mimic-and-penetration.9112`；状态: `candidate`；证据: `static-verified`

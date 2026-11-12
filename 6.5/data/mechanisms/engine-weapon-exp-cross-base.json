@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.weapon-exp-cross-base.3ef7",
+      "title": "武器经验基础值与无伤害路径（三基底）",
+      "aliases": [
+        "weapon-exp-base",
+        "weapon-exp-no-damage",
+        "武器经验"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "武器经验段 0x4038DF..0x403930：基础值 6.4=3、6.5=2、6.6=3；无伤害路径 6.4=2、6.5=2、6.6=1。伤害高于攻击前值时减 1，ctx+0x604 非零时加 1。",
+      "function": "0x4038DF..0x403930",
+      "values": {
+        "base": {"6.4": 3, "6.5": 2, "6.6": 3},
+        "noDamage": {"6.4": 2, "6.5": 2, "6.6": 1}
+      },
+      "siteAddresses": {
+        "base": "0x4038F9 mov cl,imm",
+        "damageCompare": "0x4038FE cmp；0x403903 dec ecx",
+        "flag": "0x403910 inc ecx",
+        "noDamage": "0x403916 mov byte[ebp-4],imm",
+        "apply": "6.5 0x421053；6.4/6.6 0x42104F"
+      },
+      "limitations": [
+        "ctx+0x604 名称未确定。",
+        "0x42104F/0x421053 未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.dm-formula-weapon-exp",
+        "mechanism.65.formula-site-cross-base-audit.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-weapon-exp-cross-base-20261112",
+        "src.dm.formulas.constants-20261102"
+      ]
+    }
+  ]
+}

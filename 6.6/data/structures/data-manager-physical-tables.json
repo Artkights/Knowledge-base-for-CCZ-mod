@@ -508,7 +508,7 @@
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
         "src.data-manager.studio-icon-mapping",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -693,7 +693,7 @@
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
         "src.data-manager.studio-icon-mapping",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -17868,7 +17868,7 @@
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
         "src.data-manager.studio-icon-mapping",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -18517,7 +18517,7 @@
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
         "src.data-manager.studio-icon-mapping",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -18657,7 +18657,7 @@
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
         "src.data-manager.studio-icon-mapping",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -34422,7 +34422,7 @@
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
         "src.data-manager.studio-icon-mapping",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -35029,7 +35029,7 @@
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
         "src.data-manager.studio-icon-mapping",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -35185,7 +35185,7 @@
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
         "src.data-manager.studio-icon-mapping",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ],
       "relations": [
         "format.item.split-data-star",
@@ -51034,7 +51034,7 @@
         "src.data-manager.test-profile-write",
         "src.data-manager.studio-item-layout",
         "src.data-manager.studio-icon-mapping",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ],
       "relations": [
         "format.item.split-data-star",

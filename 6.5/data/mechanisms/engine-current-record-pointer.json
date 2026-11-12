@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.current-record-pointer.3ef7",
+      "title": "全局当前人物记录指针 0x500E28 与指针→索引 0x40BE7D",
+      "aliases": [
+        "current record pointer",
+        "当前人物指针",
+        "0x500E28",
+        "0x40BE7D",
+        "0x469FD1",
+        "0x4787F9"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x500E28 存当前选中人物的记录指针。写入点：0x469FD1（列表选择变化，新指针 != [obj+0x20] 时写 0x500E28、同步 [obj+0x20] 并调 0x4698AF）与 0x4787F9（角色面板打开，把 [ebp-0x7C] 写入并用 0x4CE77D 调 0x401126）。读取点：0x401129/0x40F0FE/0x412A3F/0x44D4EA/0x456CCE。0x40BE7D(ptr) 用 (ptr-dword[0x4CEA00])/0x48 把记录指针换算为人物下标（0x48=72 为记录大小）；332 确认处理 0x456CB4 用它把 0x500E28 转成下标后经 0x42ACD2 访问 0x508000 功勋表。",
+      "constants": [
+        "0x500E28", "0x40BE7D", "0x469FD1", "0x4787F9", "0x4698AF", "0x401126", "0x4CE77D",
+        "0x4CEA00", "0x48", "0x42ACD2", "0x508000", "0x456CB4", "0x20"
+      ],
+      "identity": "0x40BE7D 的 0x48 与第29轮人物记录 72 字节一致，且减基址 dword[0x4CEA00] 与第29轮记录表基址吻合；0x456CB4 的 0x42ACD2 下标来源与 0x40BE7D 闭环。",
+      "siteAddresses": {
+        "global": "0x500E28",
+        "pointerToIndex": "0x40BE7D",
+        "writerList": "0x469FD1",
+        "writerPanel": "0x4787F9",
+        "readerConfirm": "0x456CCE",
+        "tableAccessor": "0x42ACD2"
+      },
+      "limitations": [
+        "0x469FD1 所属列表对象未定。",
+        "0x4CE77D 含义未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.runtime-character-accessors.3ef7",
+        "mechanism.65.merit-table.3ef7",
+        "mechanism.65.dialog332-confirm.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-current-record-pointer-20261112"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "analysis": "level-context-struct-500ae0",
+  "date": "2026-11-12",
+  "method": "refs_to.py 收集 6.6 0x500AE0 全部 20 处引用；context.py 逐点反汇编字段读写；结合第 42 轮 0x4B422C 网格尺寸字、第 68 轮 0x500AE0 初始化（0x47FD13(0,0x90,0x500AE0)）与 0x4B6A68 主窗口句柄。仅静态分析。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "struct": {
+    "address": "0x500AE0",
+    "size": "0x90",
+    "address65": "0x500AA0",
+    "initialization": "0x415CD5：push 0x500AE0 / push 0x90 / push 0 / call 0x47FD13（清零）",
+    "fields": [
+      {"offset": "+0x00", "size": 4, "semantic": "结构首指针/句柄（0x420173 作为 ecx 传入 0x41D0AE；0x44814A 由 [ecx+0x30] 写入）", "confidence": "medium"},
+      {"offset": "+0x04", "size": 4, "semantic": "第二 dword（0x44814A 由 [ecx+4] 写入）", "confidence": "low"},
+      {"offset": "+0x08", "size": 1, "semantic": "计数/序号（0x40A56F movzx 后 +5 参与计算）", "confidence": "medium"},
+      {"offset": "+0x0C", "size": 4, "semantic": "关卡/资源状态 ID（0x41D29B 读出写到 [eax+0xC80]；0x40ADAB 反向恢复并把源置 0x3CFFFF）", "confidence": "medium"},
+      {"offset": "+0x10", "size": 1, "semantic": "模式字节（0x4221E0 cmp 2、0x4794F6 cmp 1、0x4207B5 压栈）", "confidence": "medium"},
+      {"offset": "+0x11", "size": 1, "semantic": "开关字节（0x40327D cmp 1、0x46FD2E cmp 0、0x4207B5 压栈）", "confidence": "medium"},
+      {"offset": "+0x12", "size": 2, "semantic": "地图宽高字节对（0x41D2B8 mov word[0x4B422C], dx），即网格尺寸来源", "confidence": "high"},
+      {"offset": "+0x14", "size": 4, "semantic": "子窗口/渲染窗口句柄（0x408803/0x40B3B2：非 0 时替代 0x4B6A68 主窗口）", "confidence": "medium"},
+      {"offset": "+0x1A", "size": 2, "semantic": "word 字段（0x41D2A9 写到 [eax+0x642]）", "confidence": "low"},
+      {"offset": "+0x1C", "size": 4, "semantic": "表指针（0x436F95/0x420986/0x4794F6 读取后作为基址/参数）", "confidence": "medium"}
+    ]
+  },
+  "consumers": [
+    {"site": "0x41D29B", "behavior": "+0x0C→[eax+0xC80]；+0x1A→[eax+0x642]；+0x12→word[0x4B422C]"},
+    {"site": "0x40ADAB", "behavior": "[0x500AE0+0x0C]←[eax+0xC80]；[eax+0xC80]=0x3CFFFF；随后读 word[eax+0x642]"},
+    {"site": "0x403278", "behavior": "byte[+0x11]==1 时返回真"},
+    {"site": "0x4207B5", "behavior": "压入 struct 指针、byte[+0x10]、byte[+0x11]"},
+    {"site": "0x4221E0", "behavior": "byte[+0x10]==2 分支，否则调用 0x41B500/0x40658F/0x407263"},
+    {"site": "0x436F95", "behavior": "dword[+0x1C] 作为表基址"},
+    {"site": "0x438353", "behavior": "push 0x500AE0 传入 0x43837E"},
+    {"site": "0x44814A", "behavior": "[ecx+0x30]→[0x500AE0+0x00]；[ecx+4]→[+0x04]"},
+    {"site": "0x46FD2E", "behavior": "byte[+0x11]==0 时跳过 0x41FF0F 分支"},
+    {"site": "0x4794F6", "behavior": "byte[+0x10]==1 时跳过；否则取 dword[+0x1C] 压栈"},
+    {"site": "0x408803", "behavior": "dword[+0x14] 非 0 时作为窗口句柄返回，否则用 0x4B6A68"},
+    {"site": "0x40B3B2", "behavior": "同上，替代 GetActiveWindow(0x486260)"},
+    {"site": "0x420173", "behavior": "dword[0x500AE0] 作为 ecx 传入 0x41D0AE(0x559, arg)"}
+  ],
+  "conclusion": "0x500AE0 是 0x90 字节的关卡/地图全局描述结构（6.5 对应 0x500AA0，20 处引用同址）：+0x00 首指针、+0x08 计数、+0x0C 关卡状态 ID、+0x10 模式、+0x11 开关、+0x12 地图宽高字节对（写入 0x4B422C）、+0x14 子窗口句柄、+0x1A 辅助 word、+0x1C 表指针。",
+  "limitations": [
+    "+0x00/+0x04/+0x1A 的业务名称未定。",
+    "+0x10 模式 1/2 的含义未与界面/剧本对照。",
+    "0x500AE0 与 6.5 0x500AA0 的字段偏移是否完全一致未逐项验证。",
+    "未运行游戏对照。"
+  ]
+}

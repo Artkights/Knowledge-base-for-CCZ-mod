@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.6/data/profiles/data-manager-layouts.json`、`6.6/data/profiles/engine-profiles.json`、`6.6/data/profiles/legacy-patch-profiles.json`、`6.6/data/profiles/local-review-20261028.json`
+结构化事实来源：`6.6/data/profiles/data-manager-layouts.json`、`6.6/data/profiles/engine-profiles.json`、`6.6/data/profiles/legacy-patch-profiles.json`、`6.6/data/profiles/local-review-20261028.json`、`6.6/data/profiles/reclassified-66.json`
 
 | ID | 版本 | 样本 SHA256 | 状态 | 证据 |
 |---|---|---|---|---|
@@ -17,3 +17,4 @@
 | `profile.ccz66x.legacy-patch-family` | 6.6 | `-` | `candidate` | `legacy-patch-bytes` |
 | `profile.ccz66.shanzai.6929.local-review` | 6.6 | `6929FE0DB049935EEC793CE785D431947E48BED406ED94233F9B3A9C6DB4BCB8` | `candidate` | `source-reviewed` |
 | `profile.ccz66.extenddata.6562.local-review` | 6.6 | `6562791F4E1AF07B8DBE0C12A8695FF6CB129D4803DF14BC9B21FDEF918EF062` | `candidate` | `source-reviewed` |
+| `profile.ccz66.weather-reviewed.2594` | 6.6 | `2594711168EA58258E40F3D804BF982DC376B58711C8E562EBE6B16E87A56B82` | `canonical` | `static-verified` |

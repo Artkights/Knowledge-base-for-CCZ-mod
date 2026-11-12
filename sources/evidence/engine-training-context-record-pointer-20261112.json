@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "analysis": "training-context-record-pointer",
+  "date": "2026-11-12",
+  "method": "refs_to.py 确认 0x418F05 仅 0x41E6D6/0x41ECD6 两个调用者；capstone 反汇编 0x4065D0（byte[+0x2C]）、0x41D0AE（SetDlgItemInt 包装）、0x405BA2（0x559 刷新）、0x41ECAE（0x4237F9 付费 + 0x4061E4(0x3FE)）。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "fieldResolution": {
+    "+0x00": {
+      "semantics": "人物记录指针（0x72 字节记录）",
+      "evidence": "0x405BA2 以 dword[0x500AA0] 作 ecx 调 0x41D0AE；0x41D0AE 调 0x4065D0(ecx)=byte[ecx+0x2C]（第29轮：等级）后 SetDlgItemInt(hwnd, nID=0x559, 等级, FALSE)",
+      "confidence": "confirmed"
+    },
+    "+0x04": {"semantics": "初始化参数 1（0x418F05 自 [ebp+8] 写入）", "confidence": "partial"},
+    "+0x08": {"semantics": "初始化参数 2（0x418F05 自 [ebp+0xC] 写入）", "confidence": "partial"},
+    "+0x09": {"semantics": "初始化参数 3（edx）", "confidence": "partial"}
+  },
+  "initializerCallers": [
+    {"site": "0x41E6D6", "behavior": "0x4061E4(两次) 取两个人物记录后初始化；eax=第二个记录 → +0x00"},
+    {"site": "0x41ECD6", "behavior": "0x4237F9(索引) 计价非 0 → 0x4061E4(0x3FE) 取记录 → push 1、push 记录 → 0x418F05"}
+  ],
+  "levelDisplay": {
+    "getter": "0x4065D0(ecx)=byte[ecx+0x2C]",
+    "wrapper": "0x41D0AE(hDlg, nID)：push 0（bSigned）、push 值、push nID、push hDlg → SetDlgItemInt(0x4862E4)",
+    "site": "0x405BA2 以 nID=0x559 刷新右方面板 Lv"
+  },
+  "conclusion": "练武场上下文 +0x00 确认为人物记录指针：0x405BA2→0x41D0AE→0x4065D0(byte[record+0x2C]=等级)→SetDlgItemInt(hwnd,0x559,...)。0x418F05 只有两个调用者，分别来自双人初始化（0x41E6D6）与付费入场（0x41ECD6，0x4237F9 计价 + 0x4061E4(0x3FE)）；+0x04/+0x08/+0x09 仍为初始化参数。",
+  "limitations": [
+    "+0x04/+0x08/+0x09 的业务名未定。",
+    "0x3FE（1022）记录的作用未追踪。",
+    "0x4237F9 在此处的计价模式（等级×20 或 ×10）未确认。",
+    "未运行游戏对照。"
+  ]
+}

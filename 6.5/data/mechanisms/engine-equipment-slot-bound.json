@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.equipment-slot-bound.3ef7",
+      "title": "装备槽数量与访问边界",
+      "aliases": ["equipment slot", "装备槽", "0x4065F0", "slot 3"],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "装备槽数量为 3（下标 0..2），每槽 3 字节；0x4065F0 = byte[record+0x2E+slot*3]，多个调用点用 slot<3 上界比较。",
+      "accessor": "0x4065F0",
+      "slotStride": 3,
+      "slotCount": 3,
+      "slotFields": ["ID", "等级", "经验"],
+      "bounds": ["0x4079E9", "0x4114E1", "0x419DC9", "0x45B8C2", "0x468EDD", "0x476EBE", "0x46A8A4"],
+      "limitations": [
+        "未展开装备替换规则。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.runtime-character-accessors.3ef7",
+        "struct.65.runtime-character"
+      ],
+      "sourceRefs": [
+        "src.research.engine-equipment-slot-bound-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "analysis": "layer-buffer-11",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 6.5 的 0x40446E 邻域（byte[0x4927F0]*0x12900）、0x41ED07（byte[rec+0xD]*0x12900+0xF300）、0x4303C4（3 字节像素块拷贝）、0x41C444（0xFF000000 掩码合并）、0x43E549（方向重映射）、0x408ECA（表面偏移公式）；结合第78轮 0x12900=11×0x1B00 结论。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "buffer": {
+    "blockSize": "0x12900 = 11 × 0x1B00 = 76032",
+    "singleLayer": "0x1B00 = 6912",
+    "fourLayers": "0x6C00 = 4 × 0x1B00",
+    "nineLayers": "0xF300 = 9 × 0x1B00",
+    "groupIndex": "byte[0x4927F0]（0x40446E：imul esi, byte[0x4927F0], 0x12900）"
+  },
+  "users": [
+    {
+      "site": "0x40446E",
+      "behavior": "按 byte[0x4927F0] 选 11 层块；随后 0x43E549 把单位方向 0/1/2/3 映射为 1/2/0/2；0x505FDC!=0 时以 0x1B00 为参调 0x408ECA"
+    },
+    {
+      "site": "0x41ED07",
+      "behavior": "byte[record+0xD]*0x12900 + 0xF300（第 9 层起点）→ 0x401655；循环 2 次：源 +0x6C00*i，目标 +0x1B00*i，调 0x4303C4 做 0x30×0x30 块拷贝"
+    }
+  ],
+  "blockCopy": {
+    "entry": "0x4303C4",
+    "args": "src=[ebp+8]、dst=[ebp+0xC]、宽=[ebp+0x10]、高=[ebp+0x14]",
+    "pixel": "3 字节/像素；先用 dst 的 dword 写入，再 0x41C444 合并",
+    "blend": "0x41C444：and dword[dst],0xFF000000；and edx,0x00FFFFFF；xor dword[dst],edx → 保留目标 alpha，写入源 RGB"
+  },
+  "directionMap": {
+    "entry": "0x43E549",
+    "mapping": {"0": 1, "1": 2, "2": 0, "3": 2},
+    "note": "输入来自 0x44270C（单位方向/攻击码，与 0x500300+ 相关），输出作为层/图块选择"
+  },
+  "surfaceOffset": {
+    "entry": "0x408ECA",
+    "formula": "eax = (cl==0x20 ? 0 : 1) * 0x1E900 + 0x24C00 + [ebp+8]",
+    "note": "cl 为层/标志，[ebp+8]=0x1B00（单层大小）；0x1E900 与 0x24C00 的含义未定"
+  },
+  "conclusion": "0x12900 是 11 层 × 0x1B00 的图层块：0xF300=9 层偏移、0x6C00=4 层、0x1B00=单层。0x41ED07 以记录 +0xD 选块，源取 +0xF300 起的两层（第 9/10 层），目标按 0x6C00（4 层）步长，各复制 0x30×0x30 块；0x4303C4 以 3 字节/像素复制并用 0x41C444 保留目标 alpha。0x43E549 提供 4 方向重映射（0→1、1→2、2→0、3→2）。0x408ECA 的表面偏移公式为 0x24C00 + n*0x1E900 + size。",
+  "limitations": [
+    "11 层各自用途（地形/单位/特效/遮罩等）未逐层确认。",
+    "0x1E900/0x24C00 的地址语义未定。",
+    "0x4927F0 的取值来源与范围未追踪。",
+    "未运行游戏对照。"
+  ]
+}

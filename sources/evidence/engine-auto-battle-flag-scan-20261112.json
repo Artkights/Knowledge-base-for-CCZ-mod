@@ -1,0 +1,66 @@
+{
+  "id": "src.research.engine-auto-battle-flag-scan-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "0x4B4250+0x64/+0x68 写入方穷举扫描（Ekd5.exe 与 7 个插件 DLL 均无写入）及 0x44DA7A 行为",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 全代码线性扫描：266 处 mov reg,0x4B4250 后 45 条指令窗口内的 [reg+0x64]/[reg+0x68] 写/读；绝对地址 0x4B42B4/0x4B42B8 检索；add reg,0x64/0x68 间接寻址检索；7 个插件 DLL 的 dword 字节检索",
+  "findings": [
+    {
+      "id": "no-writer",
+      "claim": "6.5 Ekd5.exe 中不存在 +0x64/+0x68 的写入点：266 处基址加载窗口内只有两处读取（0x412F84 与 0x43E823），绝对地址 0x4B42B4/0x4B42B8 无引用，add reg,0x64/0x68 间接写入也不存在。",
+      "evidence": [
+        "0x412F7F mov ecx,0x4B4250; 0x412F84 cmp dword[ecx+0x64],1; 0x412F9B cmp dword[ecx+0x68],1",
+        "0x43E81E mov ecx,0x4B4250; 0x43E823 cmp dword[ecx+0x64],0",
+        "refs_to 0x4B42B4 → 空；refs_to 0x4B42B8 → 空",
+        "add reg,0x64/0x68 邻域扫描 → 空"
+      ]
+    },
+    {
+      "id": "plugins-negative",
+      "claim": "Cmdicon.dll、Mgcicon.dll、GearNtKe.dll、Itemicon.dll、Mapatr.dll、Jpg.dll、zlib.dll 中均无 0x4B42B4/0x4B42B8 的 dword 立即数，因此这些插件也未直接写这两个标志。",
+      "evidence": [
+        "对 7 个 DLL 全文件检索 b4 42 4b 00 / b8 42 4b 00 → 全部 0 命中"
+      ]
+    },
+    {
+      "id": "readers",
+      "claim": "读取语义：0x412F84 在 +0x64==1 时交换目标指针并进入 AI 分支（0x4389BD），否则在 +0x68==1 且 [ebp-0xC]==1 时进入同一分支；0x43E823 在 byte[0x501A6E]!=0、0x41C330(0x4B3D08)==0 且 +0x64!=0 时对双方依次调用 0x44DA7A(0)/(1)。",
+      "evidence": [
+        "0x43E807 cmp byte[0x501A6E],0; 0x43E810 mov ecx,0x4B3D08; 0x43E815 call 0x41C330; 0x43E81A test eax,eax; 0x43E823 cmp dword[ecx+0x64],0; 0x43E829 push 0; 0x43E82B call 0x44DA7A; 0x43E830 push 1; 0x43E832 call 0x44DA7A"
+      ]
+    },
+    {
+      "id": "auto-settle-body",
+      "claim": "0x44DA7A(side) 是对一方全体单位的状态处理：arg!=0 时遍历槽 0x00..0x3A，arg==0 时遍历 0x3C..0xF9；每个槽经 0x4061F9 取单位后调 0x44F980(0xFF)，再对 9 项状态走跳转表 0x44DC37。",
+      "evidence": [
+        "0x44DA85 cmp dword[ebp+8],0; 0x44DA8B/0x44DA95 设置 [ebp-8]/[ebp-0x10]=0x3B/0x3C/0xFA",
+        "0x44DAB0 call 0x4061F9; 0x44DABA call 0x44F980（push 0xFF）",
+        "0x44DACA cmp byte[ebp-0x28],9; 0x44DB0B jmp dword[eax*4+0x44DC37]"
+      ]
+    },
+    {
+      "id": "external-source-candidates",
+      "claim": "同目录 AutoDLL.ini 提供 EnableAutoSave/Resize/EnableFastKey 三个外部补丁开关，语义上与 +0x64/+0x68 的“自动托管/自动结算”读取分支相容，但静态证据不足以把任一字段与具体配置项一一对应。",
+      "evidence": [
+        "AutoDLL.ini: [DEFAULT] EnableAutoSave=1、Resize=0、EnableFastKey=1；[FastKey] DelayTime=10；[AutoSave] AutoSaveSlot=10",
+        "Ekd5.exe 内无写入点，插件 DLL 也无直接引用"
+      ]
+    }
+  ],
+  "corrections": [
+    "『AutoDll 插件写入』假设经 7 个 DLL 与 Ekd5.exe 双端穷举后仍无直接证据，只能保留为待运行期/外部工具验证的候选。"
+  ],
+  "limitations": [
+    "写入方仍未定位（可能由运行期热补丁、外部修改器或动态指针写入）。",
+    "0x501A6E、0x41C330 的语义未展开。",
+    "0x44DA7A 的 9 项跳转表分支未逐项展开。",
+    "未运行游戏对照。"
+  ]
+}

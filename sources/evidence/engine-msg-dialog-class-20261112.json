@@ -1,0 +1,77 @@
+{
+  "id": "src.research.engine-msg-dialog-class-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "6.6 独占文本提示对话框类：回调 0x42CA5E、构造 0x42C992（脚本操作码 0x72 子命令 34）、模板 342",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    },
+    {
+      "name": "6.6 复刻版山贼",
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    }
+  ],
+  "method": "capstone 反汇编 + 全节指针扫描 + 处理表索引解码 + RT_DIALOG 342 资源解析 + IAT 名称解析",
+  "findings": [
+    {
+      "id": "class-anchor",
+      "claim": "0x42CA5E 是 6.6 独占的对话框类创建期回调（对象 +0xC）；6.5 同址为 NOP 填充。构造器 0x42C992 先写 +4=0x4758A0、+0xC=0x42CA5E，创建对话框后改写 +4=0x46E81F、+0xC=0x42B510（运行期回调）。类型判定 0x46D34C 以 [obj+0xC]==0x42CA5E 识别该类。",
+      "evidence": [
+        "6.5 0x42CA5E 起连续 NOP（0x42CA40..0x42CA7C 全 0x90）",
+        "6.6 0x42C9C4 mov [ecx+4],0x4758A0; 0x42C9CB mov [ecx+0xC],0x42CA5E",
+        "6.6 0x42C9E8 mov [ecx+4],0x46E81F; 0x42C9EF mov [ecx+0xC],0x42B510",
+        "6.6 0x46D34A mov edx,[ecx]; 0x46D34C cmp dword[edx+0xC],0x42CA5E; 0x46D353 je 返回 1",
+        "全节指针扫描：0x42CA5E 仅出现于 0x42C9CE（构造器写入）与 0x46D34F（类型判定）"
+      ]
+    },
+    {
+      "id": "constructor-input",
+      "claim": "构造器 0x42C992 从脚本流读 2 个 4 字节参数（0x42C6C5(stream,2,4,&buf)），再把第 2 个参数经 0x42C9FC(9,param2,buffer) 转成 0x398 字节文本区（0x417DF6 解析 '*' 与 '\\n&'），随后以对象打开模板 0x156 对话框。",
+      "evidence": [
+        "6.6 0x42C997 push esp; 0x42C998 push 4; 0x42C99A push 2; 0x42C99C push [ebp+8]; 0x42C99F call 0x42C6C5",
+        "0x42C9A4 sub esp,0x398; 0x42C9AA push esp; 0x42C9AB push eax; 0x42C9AC push 9; 0x42C9AE call 0x42C9FC",
+        "0x42C9FC: 循环 i<arg8，mov dword[dst],i+0x2E31（指针仅前进 2）后拷贝以 0x0A 结尾的字符串；0x42CA11 call 0x417DF6",
+        "0x42C9BC call 0x40E03D（对象分配/初始化）"
+      ]
+    },
+    {
+      "id": "dialog-open",
+      "claim": "0x46D098(this,template,hwnd) = DialogBoxParamA(hInstance=[0x4B6A60], template=0x156(342), parent=hwnd, proc=0x46D0F8, initParam=this)；0x46D0F8 是共享对话框过程（处理 WM_INITDIALOG=0x110、WM_LBUTTONDOWN=0x201、自定义 0x591=关闭），随后按对象 +4/+0xC 回调分派。",
+      "evidence": [
+        "0x46D09B push ecx; 0x46D09C push 0x46D0F8; 0x46D0A1 push [ebp+0xC]; 0x46D0A4 push [ebp+8]; 0x46D0A7 push [0x4B6A60]; 0x46D0AD call [0x4862A0]=DialogBoxParamA",
+        "0x46D121 cmp eax,0x110; 0x46D13C cmp eax,0x201; 0x46D157 cmp eax,0x591 → call 0x4C0600",
+        "0x42C9D8 push 0x156; 0x42C9E0 call 0x46D098"
+      ]
+    },
+    {
+      "id": "dialog-resource",
+      "claim": "RT_DIALOG 342：DLGTEMPLATE 158×60 DLU、9pt 宋体、2 个控件——id=0xFFFF 的图标/图片控件（class ord 130，text ord 137，10,10,21,21）与 id=10「确定」按钮（3,43,37,14）。",
+      "evidence": [
+        "dialog_resource(6.6, 342)：format=DLGTEMPLATE bytes=92 style=0x800000C0 items=2 rect=(0,0,158,60)",
+        "[00] id=0xFFFF class=<ord 130> text=<ord 137> rect=(10,10,21,21)",
+        "[01] id=0x000A(10) class=<ord 128> text='确定' rect=(3,43,37,14)"
+      ]
+    },
+    {
+      "id": "script-subcommand",
+      "claim": "0x42C992 位于脚本子命令表 0x47D8DF：索引 (0x47D967-0x47D8DF)/4 = 34，即主脚本操作码 0x72 的子命令 34（与第125轮子命令 31=0x42D260 同表）。",
+      "evidence": [
+        "全节指针扫描：0x42C992 仅被 0x47D967 指向",
+        "0x47D8DF 表基址与 0x47D89E 分派器（操作码 0x72）已在第125轮确认"
+      ]
+    }
+  ],
+  "corrections": [
+    "0x42CA5E 不是普通函数或 vtable 项，而是该 6.6 独占对话框类对象的 +0xC 创建期回调，用于创建阶段消息处理与类型识别。"
+  ],
+  "limitations": [
+    "两个构造参数（dword1/dword2）的业务含义未定。",
+    "0x42C9FC 的 u16 编号 0x2E31+i 对应哪张文本表未确认。",
+    "0x42B510 为多类共用的运行期回调，不能作为类标识。",
+    "未运行游戏对照。"
+  ]
+}

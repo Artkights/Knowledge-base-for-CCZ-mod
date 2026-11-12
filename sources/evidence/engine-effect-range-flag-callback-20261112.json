@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "analysis": "effect-range-flag-callback",
+  "date": "2026-11-12",
+  "method": "refs_to.py 显示 0x42A717 无直接引用；capstone 反汇编 0x42A6B0..0x42A705（0x4D1400 范围表 + 0x41E254 枚举 + 回调 0x42A708）与 0x42A708..0x42A747（回调体）。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "enumerator": {
+    "entry": "0x42A6B0（含调用点 0x42A6F7）",
+    "behavior": "取 dword[eax*4+0x4D1400]（第57轮效果范围表）作为范围描述，push 回调 0x42A708、[ebp+0xC]（mask）、[ebp+0x14]（on）后 call 0x41E254 枚举范围内坐标",
+    "rangeTable": "0x4D1400（36 项 dword 指针，指向 word 半径对列表）"
+  },
+  "callback": {
+    "entry": "0x42A708",
+    "signature": "void __stdcall MarkRangeCell(int x, int y, ..., unsigned char mask, int on)",
+    "steps": [
+      "x < byte[0x4B422C]、y < byte[0x4B422D] 才继续",
+      "on==0 时先调 0x42A74A 做矩形判定",
+      "call 0x42A5D6(coord, mask, on) → 0x4934B0 相应位置位/清位"
+    ]
+  },
+  "conclusion": "0x42A717 并非独立函数而是回调 0x42A708 的中段；整条链为：0x4D1400 效果范围表 → 0x41E254 枚举范围坐标 → 回调 0x42A708 边界检查 → 0x42A5D6 写 0x4934B0 标志（mask/on 由调用方给出）。这把第57轮范围表与第107–108轮格标志写入连接起来，说明 0x4934B0 的标志用于标记技能/攻击范围。",
+  "limitations": [
+    "0x42A6B0 的上层调用者与 mask 取值未统计。",
+    "0x41E254 的参数顺序未完全确认。",
+    "未运行游戏对照。"
+  ]
+}

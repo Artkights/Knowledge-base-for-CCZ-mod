@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "analysis": "payment-chain-and-training-menu",
+  "date": "2026-11-12",
+  "method": "精确反汇编 0x4237F9 支付入口、0x423820 资金检查、0x43BFD4 支付确认、0x474E0E/0x423842 练武菜单、0x421278 槽位消耗函数；读取 0x500C9C/0x500CA7/0x500CB1/0x500C7E 字符串；对三基底做同址与重定位字节哈希。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "globals": {
+    "money": "0x4B077C（dword）",
+    "paymentState": "0x4AC63C，支付成功后写 3",
+    "trainingGate": "0x510CF8，非 0 时启用练武等级门限",
+    "menuObject": "0x4B5EE0",
+    "paymentUi": "0x4B69B0"
+  },
+  "strings": {
+    "0x500C9C": "支付%d金？",
+    "0x500CA7": "资金不足",
+    "0x500CB1": "目前无需练武了",
+    "0x500C7E": "普通模式 / 单挑模式 / 自动提升"
+  },
+  "sites": {
+    "payEntry": {
+      "va": "0x4237F9",
+      "code": "if mode==0: v=0x40D8A9(); if v==0 return 0; price=v*2; else: price=0x4065D0(); price*=10; call 0x423820(price)",
+      "note": "0x40D8A9 在 byte[0x510CF8]!=0 且 byte[unit+0x19]>=5 时提示 0x500CB1 并返回 0，否则返回 byte[unit+0x17]。0x4065D0 返回 byte[unit+0x2C]。"
+    },
+    "moneyCheck": {
+      "va": "0x423820",
+      "code": "if price > dword[0x4B077C]: show 0x500CA7, return 0; else push price; call 0x43BFD4",
+      "note": "比较不修改金钱；实际扣款在 0x43BFD4。"
+    },
+    "payDialog": {
+      "va": "0x43BFD4",
+      "code": "sprintf(buf,0x500C9C,price); call 0x42F699(1,buf); if confirmed: call 0x47467A(0x4B69B0,0xA,1); money-=price; byte[0x4AC63C]=3"
+    },
+    "trainingMenu": {
+      "va": "0x474E0E",
+      "code": "call 0x426B52(0); call [0x4862E0](0,0x4B7508); result=0x42DE63(0x500C7E,0x3FE,3); selected=result+1; if selected!=3 store; call 0x423842(selected); byte[arg+8]=2; byte[arg+0xC]=0; call 0x426BA0",
+      "note": "菜单文本为 普通模式/单挑模式/自动提升；0x423842 为选项处理器。"
+    },
+    "trainingHandler": {
+      "va": "0x423842",
+      "code": "if option==2: call 0x43DBBE; else candidates=0x4222AB(); if candidates==0 show 0x500CB1; if option==1: 0x41B4AE(2), ...; else price=edx*1000; call 0x423820",
+      "note": "0x43DBBE 扫描 0x400 个单位返回首个有效索引或 -1。"
+    },
+    "consumeSlot": {
+      "va65": "0x421278",
+      "va66": "0x42128A",
+      "code": "slot=&dword[unit+0x84+index*4]; count=*slot; if count<=1 return 0; job=0x4061F9(byte[unitarg+1]) (jobTable=0x4A7B20+id*0x30); gate=0x43FF54(job) in 6.5 / 0x425AD0(job)=byte[job+0xE] in 6.6; if gate passes: cost=(count-1)*10; if money<cost return 0; money-=cost; *slot=1; return 1",
+      "note": "6.5 的 0x43FF54 返回 0/1，随后 cmp ecx,2 恒不跳过扣款；6.6 改为 byte[job+0xE]==7 才扣款。"
+    },
+    "priceByte": {
+      "va": "0x4065D0",
+      "code": "return byte[ecx+0x2C]"
+    },
+    "trainingLevel": {
+      "va": "0x40D8A9",
+      "code": "if byte[0x510CF8]==0 return 1; u=dword[0x4CEA08]; if byte[u+0x19]>=5 show 0x500CB1 return 0; return byte[u+0x17]"
+    }
+  },
+  "crossBase": {
+    "payEntry": {"6.4": "0x4237F9 sha256:7912EE5F9ECAABF8", "6.5": "0x4237F9 sha256:7912EE5F9ECAABF8", "6.6": "0x4237F9 sha256:7912EE5F9ECAABF8"},
+    "moneyCheck": {"6.4": "0x423820 sha256:57D7D529802443A1", "6.5": "0x423820 sha256:57D7D529802443A1", "6.6": "0x423820 sha256:54CF6D38507F9608，仅 call 目标 0x43BFD4→0x43BFD2 不同"},
+    "payDialog": {"6.4": "0x43BFD4 sha256:9361DC1588391632", "6.5": "0x43BFD4 sha256:9361DC1588391632", "6.6": "0x43BFD2 sha256:B7DAF187077362E9，函数整体前移 2 字节，0x43BFFB 起改为 push 0xA; nop; call 0x46D0B7"},
+    "consume": {"6.4": "0x421278 sha256:E3D4A5733A9B25E0", "6.5": "0x421278 sha256:E3D4A5733A9B25E0", "6.6": "0x42128A sha256:F634A9E2FAA57624，函数后移 0x12，删去 0x40BF0C/0xFF 分支，改为 cmp al,7"},
+    "priceByte": {"6.4": "0x4065D0 sha256:C6EB5D7838590A52", "6.5": "0x4065D0 sha256:C6EB5D7838590A52", "6.6": "0x4065D0 sha256:C6EB5D7838590A52"},
+    "trainingGate": {"6.4": "0x40D8A9 sha256:709275C70F1B26E8", "6.5": "0x40D8A9 sha256:709275C70F1B26E8", "6.6": "0x40D8A9 sha256:709275C70F1B26E8"}
+  },
+  "conclusion": "0x4B077C 的实际消费链为 0x4237F9 计算价格 → 0x423820 检查资金并提示 0x500CA7 → 0x43BFD4 弹 0x500C9C『支付%d金？』确认后扣款并写 0x4AC63C=3。练武入口 0x474E0E 以 0x500C7E 的 普通模式/单挑模式/自动提升 三项菜单调用 0x423842：自动提升走 0x43DBBE 扫描首个有效单位，单挑走 0x41B4AE 分支，普通模式按 edx*1000 计价。6.6 将支付函数前移 2 字节、槽位消耗函数后移 0x12 并改为 byte[job+0xE]==7 才扣款。",
+  "limitations": [
+    "0x423842 的 edx 具体来源（候选单位或数量）尚未完全展开。",
+    "0x421278 的 unit+0x84 槽位语义（数量/库存）仅有结构证据，未由界面文案直接证明。",
+    "0x47467A、0x42F699、0x426B52、0x426BA0 的 UI 语义未逐项展开。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.item-effect-code-and-range-table.3ef7",
+      "title": "物品使用效果码 +0x10 与效果范围表 0x4D1400（36项）",
+      "aliases": [
+        "item+0x10",
+        "使用效果码",
+        "0x4D1400",
+        "0x436511",
+        "0x45288B",
+        "0x436616",
+        "0x437AFF",
+        "4槽效果缓冲"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "物品 +0x10 为使用效果码（0xFF=无，有效 0x01..0x25）；使用时写入 0x4B4250+0x1B85 的 4 槽效果缓冲，0x41E307 逐槽调用 0x45288B。效果码经 0x4D1400 的 36 项 dword 指针表映射到 0xFFFF 结尾的 word 列表；每个 word 的低/高字节为两个半径，0x436616 生成四角并调用 0x437AFF 写地图格，6.6 的 0x42A840 以同样四角做命中判定。该表三基底 hash 不同，差异集中在 [03]/[06]/[09]/[10]/[18]，6.6 新增 0x42A6B8/0x42A7FD 两个消费者。",
+      "constants": [
+        "0xFF",
+        "0x25",
+        "0x0A",
+        "0x0B",
+        "0x4B4250",
+        "0x1B85",
+        "0x4D1400",
+        "0xFFFF",
+        "0x12C0",
+        "0xC80",
+        "0xC9",
+        "0xCD",
+        "0x0D"
+      ],
+      "identity": "范围表 hash：6.4=a20ee1c8012850cc、6.5=12a7b036e7fd92c2、6.6=41580ed6ed758be8；0x4D1400 引用数 6.4=2、6.5=2、6.6=4。",
+      "limitations": [
+        "“使用效果码”名称由消费链行为推断。",
+        "word 四角语义已由算法证明，但是否代表完整范围形状需运行期确认。",
+        "0x4B4250 结构体布局未展开。",
+        "6.6 的 0x452958 内嵌表是否有别名引用未穷举。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.item-record-fields.3ef7",
+        "mechanism.65.embedded-byte-tables.3ef7",
+        "mechanism.65.item-type-classification.3ef7",
+        "mechanism.65.grid-dimension-pair.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-item-effect-code-and-range-table-20261112"
+      ],
+      "siteAddresses": {
+        "field10Getter65": "0x41C330",
+        "field10Getter66": "0x41C325",
+        "menuDispatch": "0x412685",
+        "useFlow": "0x45533D",
+        "validateApply": "0x436511",
+        "bufferWrite": "0x4539EF",
+        "bufferIterate": "0x41E307",
+        "slotApply": "0x45288B",
+        "rangeTable": "0x4D1400",
+        "rectApplier": "0x436616",
+        "cellWriter": "0x437AFF",
+        "hitTest66": "0x42A840",
+        "newConsumer66a": "0x42A6B8",
+        "newConsumer66b": "0x42A7FD",
+        "usability": "0x436236"
+      }
+    }
+  ]
+}

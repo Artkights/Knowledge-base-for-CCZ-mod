@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "analysis": "coverage-ledger-v4",
+  "date": "2026-11-12",
+  "method": "汇总第 1–57 轮已集成机制，重算通用域 resolved/partial/unresolved 状态；不新增反汇编，仅核对知识库现有实体与轮次台账。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe"}
+  ],
+  "roundsAdded": [
+    {"round": 44, "topic": "脚本处理体 0x7A–0x7D", "mechanism": "mechanism.65.script-opcodes-7c-7d.3ef7"},
+    {"round": 45, "topic": "物理伤害距离/范围修正 0x4E6000", "mechanism": "mechanism.65.physical-range-correction.3ef7"},
+    {"round": 46, "topic": "物理等级差百分比表 0x4D1A80", "mechanism": "mechanism.65.physical-level-table.3ef7"},
+    {"round": 47, "topic": "伤害落点与战斗模式字节", "mechanism": "mechanism.65.damage-apply-mode.3ef7"},
+    {"round": 48, "topic": "单位 +0x1E 状态位组与 +0x10 部署字段", "mechanism": "mechanism.65.unit-status-bitfield.3ef7"},
+    {"round": 49, "topic": "待结算金额累加器 0x48E8BD", "mechanism": "mechanism.65.money-global.3ef7"},
+    {"round": 50, "topic": "单位槽位数组 +0x84/+0x254/+0x430", "mechanism": "mechanism.65.unit-slot-arrays.3ef7"},
+    {"round": 51, "topic": "四方向目标/位置评分 0x4101D9", "mechanism": "mechanism.65.target-direction-score.3ef7"},
+    {"round": 52, "topic": "战场单位占位表 0x4B3D21", "mechanism": "mechanism.65.battle-unit-table.3ef7"},
+    {"round": 53, "topic": "占位表五字段与 0x1B00 层大小", "mechanism": "mechanism.65.battle-unit-table.3ef7"},
+    {"round": 54, "topic": "物品记录表 0x4A1140/0x49F820", "mechanism": "mechanism.65.item-record-table.3ef7"},
+    {"round": 55, "topic": "物品字段语义与 DATA.E5+star.e5 装载链", "mechanism": "mechanism.65.item-record-fields.3ef7"},
+    {"round": 56, "topic": "内嵌字节表 0x41CEAB 与 0x4303C8", "mechanism": "mechanism.65.embedded-byte-tables.3ef7"},
+    {"round": 57, "topic": "物品使用效果码 +0x10 与范围表 0x4D1400", "mechanism": "mechanism.65.item-effect-code-and-range-table.3ef7"}
+  ],
+  "domains": {
+    "resolved": [
+      "函数级常量普查",
+      "兵种相克",
+      "策略 AI 分派",
+      "策略地形位掩码",
+      "兵种成长/装备适性",
+      "物理伤害主链",
+      "移动消耗/地形适应",
+      "回合/行动/天气",
+      "全局容量/哨兵",
+      "策略伤害方向修正",
+      "命中高度修正",
+      "公式站点审计",
+      "装备阈值/上限",
+      "命中重试",
+      "角色经验",
+      "个人经验",
+      "武器/防具经验",
+      "人物记录访问器",
+      "装备槽边界",
+      "物品类型分类",
+      "金钱全局与 999999 上限",
+      "统一支付链与练武菜单价格",
+      "暴击/连击模式与暴击值数组",
+      "存档/读档槽位与文件命名",
+      "单位临时属性块三档语义",
+      "全局二维网格尺寸字",
+      "剧本处理体 0x7A–0x7D",
+      "物理伤害距离/范围修正 0x4E6000",
+      "物理等级差百分比表 0x4D1A80",
+      "伤害落点与战斗模式字节",
+      "单位 +0x1E 状态位组与 +0x10 部署字段",
+      "待结算金额累加器 0x48E8BD",
+      "单位槽位数组 +0x84/+0x254/+0x430",
+      "四方向目标/位置评分 0x4101D9",
+      "战场单位占位表 0x4B3D21 五字段",
+      "物品记录字段/装载链/价格链",
+      "物品使用效果码与范围表 0x4D1400"
+    ],
+    "partial": [
+      "战场模式字节 0x4B3D18 命名（候选：普通/单挑）",
+      "兵种属性矩阵字段名",
+      "兵种穿透码",
+      "六槽临时属性的具体属性名",
+      "物理侧状态/天气完整修正",
+      "6.6 武器类型表 0x4303C8 值语义",
+      "33 项随机替换表 0x41CEAB 语义与索引 +0xC",
+      "物品 +0x13 字段"
+    ],
+    "unresolved": [
+      "6.6 处理体常量逐项重定位",
+      "0x423842 的 edx 来源",
+      "0x4B4250 结构体布局与 0x1B85 效果缓冲上下文",
+      "6.4 物品槽位上限与 star.e5 装载链细节",
+      "0x418C34/0x418F5C/0x41888D 等存档 I/O 内部实现"
+    ]
+  },
+  "remainingGaps": [
+    "6.6 处理体常量与函数入口逐项重定位",
+    "0x4B4250 结构体布局与效果缓冲上下文",
+    "0x423842 的 edx 来源",
+    "6.4 物品槽位上限与 star.e5 装载链",
+    "存档 I/O 内部实现",
+    "0x4303C8 的 20 个值语义与类型越界约束",
+    "0x41CEAB 的索引字段 +0xC 所属结构",
+    "物品 +0x13 字段、兵种属性矩阵/穿透码/六槽属性命名"
+  ],
+  "conclusion": "第 1–57 轮共覆盖 50 个通用域：37 resolved、8 partial、5 unresolved。第 44–57 轮新增了剧本处理体、物理范围/等级差、伤害落点、单位状态位组、待结算金额、单位槽位数组、四方向评分、战场占位表、物品记录字段/装载链/价格链、内嵌字节表与物品使用效果码/范围表；剩余缺口集中在 0x4B4250 结构、6.4 star.e5 装载链、6.6 处理体与少量字段命名。",
+  "limitations": [
+    "覆盖状态是条目级汇总，不等价于逐函数全量证明。",
+    "未运行游戏对照。"
+  ]
+}

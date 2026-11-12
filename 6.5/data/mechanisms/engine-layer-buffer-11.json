@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.layer-buffer-11.3ef7",
+      "title": "11 层图层块 0x12900：0xF300/0x6C00 偏移、0x4303C4 块拷贝与 0x43E549 方向映射",
+      "aliases": [
+        "layer buffer 11",
+        "11 层图层块",
+        "0x12900",
+        "0xF300",
+        "0x4303C4",
+        "0x43E549"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "图层块大小 0x12900 = 11 × 0x1B00（单层 0x1B00=6912，4 层 0x6C00，6 层 0xA200，8 层 0xD800，9 层 0xF300）。6.5 中共 22 处 0x12900 引用；层偏移按 0x1B00 对齐：0x6C00=第 4 层、0xA200=第 6 层、0xD800=第 8 层、0xF300=第 9 层，其余层经基址+n*0x1B00 或寄存器偏移访问。0x43FE2C 按 byte[obj+4]*0x12900 从 0x4AB00C 池分配并整块清零；0x41C7E9 在非战斗模式（0x505FDC==0）以 byte[rec+2]*0x12900+0xA200 取块，否则 push 0x6C00 + 0x4B7A20 调 0x408ECA。0x40446E 以 byte[0x4927F0]*0x12900 选块，并用 0x43E549 把方向 0/1/2/3 映射为 1/2/0/2；0x41ED07 以 byte[record+0xD]*0x12900+0xF300 取源（第 9/10 层），按 0x6C00 目标步长循环 2 次调 0x4303C4 复制 0x30×0x30 块。0x4303C4(src,dst,w,h)：3 字节/像素，经 0x41C444 保留目标 alpha 写入源 RGB。0x448BCE 另经 0x4015B1（0x4AE4C8 池）分配 0x37800 临时合成区（0x448B96）：源为 byte[+0xD]*0x12900+0xD800 的 0x30×0x30 块，经 0x4303C4 拷入后循环 9 次，每次 0x47FCFD 拷 0x6C00（=0x60×0x60×3 帧）、0x40690C 白色 0xFFFFFF 绘制、0x443C1D 按 0x60×0x60 贴图；0x37800=0x6C00×8+0x1800，实际单帧仅用 0x6C00。地图图形页（第129轮）：0x1E900 = 0x12900 层块 + 0xC000 尾块，是 0x4AAFF4 竞技场内的页步长；页 0 基址 0x24C00、页 1 基址 0x43500；页尾缓冲基址 0x37500=页0+0x12900（每页步长同为 0x1E900），页内第 4 层 0x2B800=页0+0x6C00；0x40155F(offset)=0x47FA40(0x4AAFF4,0,0,4)。",
+      "constants": [
+        "0x12900", "0x1B00", "0x6C00", "0xA200", "0xD800", "0xF300", "0x37800", "0x1E900", "0x24C00",
+        "0x37500", "0x2B800", "0x43500", "0x55E00", "0xC000", "0xBD00", "0x18000", "0x4AAFF4", "0x40155F", "0x47FA40",
+        "0x4927F0", "0x505FDC", "0x40446E", "0x41C7E0", "0x43FE2C", "0x41ED07", "0x4303C4", "0x41C444", "0x43E549", "0x408ECA", "0x401655", "0x4015B1", "0x4B7A20",
+        "0x408ED5", "0x411230", "0x41CB2B", "0x41CCA9", "0x41CB22", "0x47E09B", "0x47FCFD",
+        "0x448B96", "0x448BCE", "0x443C1D", "0x40690C", "0x40159C", "0x423971", "0xFFFFFF", "0x60",
+        "0x44270C", "0x30", "0x38", "0x0D", "0x20", "0x02", "0xFF000000", "0x00FFFFFF"
+      ],
+      "identity": "0xF300=9×0x1B00、0x6C00=4×0x1B00、0x12900=11×0x1B00 三个立即数互相自洽；0x4303C4 的 3 字节步长与 0x41C444 的 0xFF000000/0x00FFFFFF 掩码互补；0x41ED07 的源偏移 0xF300 与 2 次循环对应第 9/10 层；0x1E900-0x12900=0xC000 且 0x37500=0x24C00+0x12900，页步长与派生偏移自洽。",
+      "siteAddresses": {
+        "blockSize": "0x12900",
+        "singleLayer": "0x1B00",
+        "fourLayers": "0x6C00",
+        "nineLayers": "0xF300",
+        "pageSize": "0x1E900",
+        "page0Base": "0x24C00",
+        "tailBuffer": "0x37500",
+        "page1Base": "0x43500",
+        "layer4InPage": "0x2B800",
+        "tailSize": "0xC000",
+        "arenaStruct": "0x4AAFF4",
+        "arenaPointer": "0x40155F",
+        "pageUser1": "0x408ECA",
+        "pageUser2": "0x411224",
+        "pageUser3": "0x41CB22",
+        "pageUser4": "0x41CCA9",
+        "tempComposeFn": "0x448B96",
+        "tempComposeSize": "0x37800",
+        "tempFrameSize": "0x6C00",
+        "tempCopier": "0x47FCFD",
+        "tempDraw": "0x40690C",
+        "tempBlit": "0x443C1D",
+        "tempPoolAlloc": "0x4015B1",
+        "tempTargetAlloc": "0x40159C",
+        "groupIndexByte": "0x4927F0",
+        "groupUser": "0x40446E",
+        "recordLayerUser": "0x41ED07",
+        "blockCopy": "0x4303C4",
+        "alphaMerge": "0x41C444",
+        "directionMap": "0x43E549",
+        "surfaceOffset": "0x408ECA"
+      },
+      "limitations": [
+        "11 层各自用途未逐层确认。",
+        "0xC000 尾块内部结构（0x30 步长图块）与 0x18000 源记录布局未展开。",
+        "0x4AAFF4 竞技场容量与分配上限未定。",
+        "0x4927F0 的取值来源未追踪。",
+        "0x40690C 绘制模式与 0x443C1D 贴图参数未展开。",
+        "0x37800 缓冲循环 9 次的业务含义未定。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.layer-block-constants.3ef7",
+        "mechanism.65.battle-viewport-context.3ef7",
+        "mechanism.65.color-palette.3ef7",
+        "mechanism.65.memory-arenas.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-layer-buffer-11-20261112",
+        "src.research.engine-layer-offsets-20261112",
+        "src.research.engine-layer-offsets-scan-20261112",
+        "src.research.engine-map-graphics-page-20261112",
+        "src.research.engine-temp-compose-buffer-20261112"
+      ]
+    }
+  ]
+}

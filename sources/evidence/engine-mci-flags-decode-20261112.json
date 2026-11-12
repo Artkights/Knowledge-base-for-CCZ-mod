@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "src.research.engine-mci-flags-decode-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "MCI 常量名确认：0x873=MCI_SETAUDIO、0x41F11D flags 0x30200 拆解",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密版",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 0x41F0D5/0x41F11D（avivideo 打开）、0x42F7FC（音量）、0x42F789（MP3 sequencer 打开）、0x42F75F（停止/关闭）、0x42F82C（暂停）、0x42F848（恢复）；GBK 串 0x486910/0x486934；立即数 0x803/0x806/0x808/0x809/0x841/0x855/0x873 全量枚举。仅静态分析。",
+  "findings": [
+    {
+      "id": "setaudio",
+      "claim": "0x873 是 winmm 的 MCI_SETAUDIO（数字视频音频设置）。0x42F7FC(volume) 构造 MCI_DGV_SETAUDIO_PARMS：dwCallback=0、dwItem=0x4002（MCI_DGV_SETAUDIO_VOLUME）、dwValue=volume×10（0..1000），flags=0x1800000=MCI_DGV_SETAUDIO_ITEM(0x00800000)|MCI_DGV_SETAUDIO_VALUE(0x01000000)，对设备 [0x4B69B8+4] 调用 mciSendCommand。",
+      "evidence": [
+        "0042F7FF mov eax,[ebp+8]；0042F802 imul eax,eax,0xA；0042F805 push eax（dwValue）",
+        "0042F806 push 0x4002（dwItem=MCI_DGV_SETAUDIO_VOLUME）；0042F80B push 0（dwCallback）",
+        "0042F812 push esp（&parms）；0042F813 push 0x1800000（ITEM|VALUE）；0042F818 push 0x873（MCI_SETAUDIO）；0042F81D push [0x4B69B8+4]（设备 ID）",
+        "设置 +0x03 音量→0x42F7FC×0xA 与第137轮音量控件链一致"
+      ]
+    },
+    {
+      "id": "anim-open-flags",
+      "claim": "0x41F11D 是 avivideo 的 MCI_OPEN(0x803)，flags=0x30200=MCI_ANIM_OPEN_PARENT(0x00020000)|MCI_ANIM_OPEN_WS(0x00010000)|MCI_OPEN_ELEMENT(0x00000200)；参数块为 MCI_ANIM_OPEN_PARMS（含 dwStyle 与 hWndParent）。调用包在 i=0..4 的重试循环内，返回非 0 重试，成功则 wDeviceID 写入 word[0x497AE0] 与对象 +4。",
+      "evidence": [
+        "0041F107 cmp dword[ebp-8],5；0041F10B jae 0x41F12A（最多 5 次）",
+        "0041F10D lea edx,[ebp-0x2C]；0041F111 push 0x30200；0041F116 push 0x803；0041F11B push 0；0041F11D call mciSendCommandA",
+        "0041F123 test eax,eax；0041F125 jne 0x41F104（失败重试）",
+        "0041F134 movzx eax,word[ebp-0x28]（wDeviceID）；0041F138 mov word[0x497AE0],ax"
+      ]
+    },
+    {
+      "id": "other-commands",
+      "claim": "同链其余 MCI 常量：0x41F162 MCI_WINDOW(0x841) flags 0x40000(MCI_ANIM_WINDOW_STATE)，nCmdShow=5(SW_SHOW)；0x41F180 与 0x41F80D MCI_STATUS(0x814) flags 0x100(MCI_STATUS_ITEM)，item 0x4001；0x41F737 MCI_WHERE(0x843)；0x41F8C1 MCI_PAUSE(0x809)；0x42F75F MCI_STOP(0x808)+MCI_CLOSE(0x804)；0x42F82C MCI_PAUSE(0x809)；0x42F848 在 [0x4B69B8+0xC]!=0 时 MCI_RESUME(0x855)。",
+      "evidence": [
+        "0041F15D push 0x40000；0041F162 push 0x841；0041F170 mov dword[ebp-0x24],0x4001",
+        "0041F17B push 0x100；0041F180 push 0x814；0041F80D push 0x814",
+        "0042F765 push 0x808；0042F777 push 0x804",
+        "0042F833 push 0x809（暂停）；0042F85A push 0x855（恢复）"
+      ]
+    },
+    {
+      "id": "sequencer-open",
+      "claim": "BGM 链 0x42F789 用 MCI_OPEN(0x803) flags 0x202=MCI_OPEN_ELEMENT(0x200)|MCI_WAIT(0x2)，设备类型 0x486934=\"sequencer\"，元素名由 0x486910=\".\\SoundTrk\\%02u-AudioTrack %02u.mp3\" 生成；随后 0x42F7E1 MCI_PLAY(0x806) flags 0x10000 并以 +0x03 音量调 0x42F7FC。",
+      "evidence": [
+        "0042F795 push 0x486910；0042F79D call wsprintfA",
+        "0042F7A6 mov dword[ebp-0x4C],0x486934（\"sequencer\"）",
+        "0042F7B7 push 0x202；0042F7BC push 0x803；0042F7C3 call mciSendCommandA",
+        "0042F7DB push 0x806；0042F7E0 push eax（设备 ID）；0042F7E1 call mciSendCommandA",
+        "0042F7EC movzx eax,byte[0x4B0770+3]；0042F7F1 call 0x42F7FC"
+      ]
+    }
+  ],
+  "corrections": [
+    "MCI 0x873 由『setaudio 类待确认』确认为 winmm MCI_SETAUDIO，flags 0x1800000=MCI_DGV_SETAUDIO_ITEM|MCI_DGV_SETAUDIO_VALUE，item 0x4002=MCI_DGV_SETAUDIO_VOLUME，value=音量×10。",
+    "0x41F11D 的 flags 0x30200 拆解为 MCI_ANIM_OPEN_PARENT|MCI_ANIM_OPEN_WS|MCI_OPEN_ELEMENT（MCI_OPEN 的动画设备专用位）。"
+  ],
+  "limitations": [
+    "0x4001/0x20E/0x211 等 MCI_STATUS 项的官方常量名未逐一对照 mmsystem.h。",
+    "MCI_WINDOW 的 dwState 具体位组合未展开。",
+    "未运行游戏对照。"
+  ],
+  "conclusion": "0x873=MCI_SETAUDIO（flags 0x1800000=ITEM|VALUE，item 0x4002=MCI_DGV_SETAUDIO_VOLUME，值=音量×10）；0x41F11D=MCI_OPEN(0x803)，flags 0x30200=MCI_ANIM_OPEN_PARENT|MCI_ANIM_OPEN_WS|MCI_OPEN_ELEMENT，最多重试 5 次。"
+}

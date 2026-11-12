@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.script-handler-capacity.3ef7",
+      "title": "剧本处理表容量、索引偏移与空实现区间",
+      "aliases": ["0x410A38", "script handler table", "0x4D0000", "opcode 0x7A"],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x410A38 为 126 项 dword，索引=opcode-2，覆盖 0x02..0x7F。0x7A/0x7B 自 6.4 已实现（0x416DCD/0x415093）；6.4/6.5 的 0x7C..0x7F 全为 0x4D0000；6.6 新增 0x7C/0x7D（0x4284A2/0x47E9F0），仅 0x7E..0x7F 为空。第149轮补：0x68=0x4103F0（练武场命令，操作数类型 0x40E388={0x02,0x02,0x4F}）、0x72=0x47D89E（信息传送，类型 4/5）、0x76=0x416C41（区间守卫，类型 4）、0x77=0x416C87（变量算术，类型 0x416C82={0x51,0x04,0x53,0x52,0x04}）；6.5 去重后 121 个不同处理器，6.4 同，6.6 为 123（新增 0x7C/0x7D）；6.6 的 0x68 处理器地址偏移为 0x4103EE。",
+      "table": {"va": "0x410A38", "entries": 126, "entrySize": 4, "index": "opcode-2", "empty": "0x4D0000"},
+      "emptyRanges": {
+        "6.4/6.5": "opcode 0x7C..0x7F",
+        "6.6": "opcode 0x7E..0x7F；0x7C/0x7D 已实现"
+      },
+      "preexisting": {"0x7A": "0x416DCD（6.4: 0x416DCB）", "0x7B": "0x415093"},
+      "extra66": {"0x7C": "0x4284A2", "0x7D": "0x47E9F0"},
+      "limitations": [
+        "0x00/0x01 另路径处理。",
+        "空实现返回值未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "global.65.script-handler-map.3890",
+        "mechanism.65.battle-script-action-family.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-script-handler-capacity-20261112",
+        "src.research.engine-script-operand-codes-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

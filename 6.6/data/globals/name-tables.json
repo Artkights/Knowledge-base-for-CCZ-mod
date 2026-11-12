@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz66.shanzai.work.aa0f",
+  "entries": [
+    {
+      "id": "global.66.range-code-name-table.f20c",
+      "title": "范围码名称表（12 槽）",
+      "aliases": [
+        "0x0040620A",
+        "range_code_name_table_66"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040620A",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "static-verified"
+      },
+      "width": 48,
+      "semantics": "12 个指针槽（0..11），内容与 6.5 的 0x40CEE9 一致；末项 0x48E7F3（溅射）所在字符串区已被改写，按字符串扫描仅 11 项可解析。消费者两处：0x428385（参数类型 0x0B）与 0x460558（参数类型 0x0C）。",
+      "relations": [
+        "global.66.effect-name-table.f20c"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.66.misc-name-tables.f20c",
+      "title": "地形/兵种/兵种系/武器名表",
+      "aliases": [
+        "0x0048BDB0",
+        "0x0048BEA8",
+        "0x0048C570",
+        "0x0048BC04",
+        "misc_name_tables_66"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0048BDB4",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "static-verified"
+      },
+      "width": 132,
+      "semantics": "地形 33 项基址 0x48BDB0（0 平原 … 7 雪原，6.6 起第 7 项改为「雪原」）；兵种 80 项基址 0x48BEA8（0 群雄/1 人杰/2 小刀手…）；兵种系 40 项基址 0x48C570；武器类别 15 项基址 0x48BC04。取用方式同为直接立即数寻址 [reg*4+imm32]，无中间指针表；兵种名唯一引用为叶子 getter 0x401120（三基底同址），无静态调用者。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,321 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.script-message-subcommands.3890",
+      "title": "0x72 信息传送子指令表（29 项全量）",
+      "aliases": [
+        "script_message_subcommands"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0047D8DF",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 116,
+      "semantics": "0x72 的容器实现 0x47D89E：0x4183F7(4) 取子指令号、0x4183F7(5) 取文本指针，把文本压栈后 call [0x47D8DF + sub*4]。表有效 29 项（sub=0..28），每项均为独立函数，统一以 ecx=ctx、[ebp+8]=文本指针工作；子 0 直接使用整段文本，其余用 0x426E64 顺序解析数字。子号 29..33 在 6.5 越界（表后为 0x90 填充），对应外部清单中的 29..33 无实现。名称 0..28 来自外部清单，地址、尺寸与参数形态为本轮反汇编实测。 三基底对照（本轮实测 0x47D8DF 连续有效项）：6.4 洗隋 26 项（0..25），6.5 加强版 29 项（0..28），6.6 复刻版山贼 38 项（0..37，表后 0x90 填充从下标 38 开始）。外部清单的 34 项只覆盖到 6.6 的子号 33，6.6 另有 34..37 四项无清单名称；6.5 的 29..33 与 6.4 的 26..33 越界。",
+      "subcommands": [
+        {
+          "sub": 0,
+          "title": "武将改名",
+          "handler": "004081F2",
+          "size": 151,
+          "params": "文本=新名字",
+          "semantics": "整段文本写入当前武将 0x505F58 的名字槽（名字表 0x510D00，每项 0x10 字节），再 0x421D4E(9)。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 1,
+          "title": "对指定人物释放法术",
+          "handler": "0040C4B7",
+          "size": 303,
+          "params": "文本=武将编号列表",
+          "semantics": "0x407356 建列表，0x426E64 逐个解析；只收集状态==2 的单位到 0x497AF8，最后 0x406D66 批量施放。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 2,
+          "title": "对指定地点释放法术",
+          "handler": "0041419F",
+          "size": 129,
+          "params": "文本=x,y 坐标对",
+          "semantics": "0x407356 建列表，循环解析 x,y 并写入列表，最后 0x4022CE 施放。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 3,
+          "title": "对指定范围施放法术",
+          "handler": "0040221B",
+          "size": 179,
+          "params": "文本=x1,y1,x2,y2",
+          "semantics": "解析 4 个边界后对矩形逐格填充坐标，最后 0x4022CE 施放。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 4,
+          "title": "习得策略",
+          "handler": "00402AA6",
+          "size": 210,
+          "params": "文本=武将,策略,等级",
+          "semantics": "在 0x508C00 的 0xFF 结尾、步长 3 的表中查找/插入；必要时 0x40BB4B 取名称并用 0x47FCFD 复制。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 5,
+          "title": "习得特技",
+          "handler": "00408811",
+          "size": 90,
+          "params": "文本=武将,槽位,特技",
+          "semantics": "基址 [0x500C3B]，索引 武将*8+槽位*2；槽位==3 时写字节，否则写 word。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 6,
+          "title": "习得必杀",
+          "handler": "0040886B",
+          "size": 98,
+          "params": "文本=武将,槽位,必杀,值",
+          "semantics": "基址 [0x500C37]，索引 武将*0x10+槽位*3；写 word+byte 两个字段。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 7,
+          "title": "商店商家变更",
+          "handler": "0041104B",
+          "size": 39,
+          "params": "文本=编号,值",
+          "semantics": "解析两个数字后写入两个商店全局。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 8,
+          "title": "战场地图扩展",
+          "handler": "0040C96E",
+          "size": 32,
+          "params": "文本=编号",
+          "semantics": "解析一个数字后 call 0x413509。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 9,
+          "title": "结局角色展示",
+          "handler": "00414571",
+          "size": 58,
+          "params": "文本=编号",
+          "semantics": "解析一个数字并写入结局角色展示缓冲。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 10,
+          "title": "装备专属和套装",
+          "handler": "00411C46",
+          "size": 147,
+          "params": "文本=编号,值",
+          "semantics": "解析两个数字，按装备/套装表写入。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 11,
+          "title": "限定AI行动范围(逐个)",
+          "handler": "0044CE20",
+          "size": 118,
+          "params": "文本=武将,范围",
+          "semantics": "0x45258D 建上下文，0x426E64 解析，0x4061F9 取单位后 0x43E4D6 设置。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 12,
+          "title": "S插图",
+          "handler": "00404F17",
+          "size": 166,
+          "params": "文本=编号,参数1,参数2",
+          "semantics": "0x4153F2 初始化，解析 3 个数字，0x40DA9C 应用；写 0x497B05 与 0x501BF8。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 13,
+          "title": "剧本调用函数",
+          "handler": "00404E6C",
+          "size": 171,
+          "params": "文本=文件/函数名",
+          "semantics": "0x426E64 解析参数，0x426840 两次取资源/函数名。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 14,
+          "title": "战场明暗变化",
+          "handler": "0040DC49",
+          "size": 102,
+          "params": "文本=亮度",
+          "semantics": "解析一个数字后 call 0x4081A8。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 15,
+          "title": "更换动图",
+          "handler": "0040DCAF",
+          "size": 90,
+          "params": "文本=编号,帧",
+          "semantics": "解析两个数字，分别 0x40DD09/0x40DDE5，写 0x501AAC。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 16,
+          "title": "清理离队武将信息",
+          "handler": "004107A7",
+          "size": 28,
+          "params": "文本=武将",
+          "semantics": "解析一个数字后 call 0x4773AE。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 17,
+          "title": "限制区域AI行动范围（范围）",
+          "handler": "00452523",
+          "size": 106,
+          "params": "文本=范围",
+          "semantics": "0x45258D 建上下文，0x435884 解析范围，0x4061F9 遍历单位。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 18,
+          "title": "全队成员提升到平均等级",
+          "handler": "00406CFA",
+          "size": 108,
+          "params": "文本=无（忽略）",
+          "semantics": "0x40C231/0x42AC58/0x4061E4/0x4065D0/0x4073F3 内部完成平均等级提升，不解析文本。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 19,
+          "title": "清除一个特殊指针变量",
+          "handler": "0041360F",
+          "size": 67,
+          "params": "文本=变量号",
+          "semantics": "解析一个数字后清除对应的特殊指针变量。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 20,
+          "title": "待开发（引擎已有实现）",
+          "handler": "0041648E",
+          "size": 147,
+          "params": "文本=类型,数量",
+          "semantics": "类型 3/4/1 分别批量登记 0x48B394/0x48B3A0 的 12 字节动画描述，再由 0x416531 提交；外部清单标为待开发，但引擎实现存在。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 21,
+          "title": "部队行动标识",
+          "handler": "004078ED",
+          "size": 116,
+          "params": "文本=武将,标识",
+          "semantics": "解析后 0x4061F9 取单位，0x442718/0x406690 设置，最后 0x44A88A。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 22,
+          "title": "结局设置",
+          "handler": "004211F4",
+          "size": 57,
+          "params": "文本=编号",
+          "semantics": "解析一个数字后 call 0x42122D。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 23,
+          "title": "指定武将列传",
+          "handler": "00408CFA",
+          "size": 62,
+          "params": "文本=武将,列传号",
+          "semantics": "解析两个数字，0x4061E4 取角色记录后写入列传号。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 24,
+          "title": "指定武将点击语音",
+          "handler": "0042368B",
+          "size": 135,
+          "params": "文本=武将,语音号",
+          "semantics": "解析两个数字，0x47FCFD 复制语音资源名。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 25,
+          "title": "R数字",
+          "handler": "00425B66",
+          "size": 140,
+          "params": "文本=数值",
+          "semantics": "0x426AA8 取资源槽，0x425C68/0x42789D 处理；资源基址 0x48BBA0，参数 0x72、0x10E7800。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 26,
+          "title": "产生一个随机数",
+          "handler": "00426404",
+          "size": 26,
+          "params": "文本=上限",
+          "semantics": "0x426E64 解析上限，0x47FB13 取随机数并写入 0x505EE4。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 27,
+          "title": "清空指定武将的功勋",
+          "handler": "00423E63",
+          "size": 74,
+          "params": "文本=武将,值",
+          "semantics": "解析两个数字，0x423EAD 定位，0x47EF1E 写入功勋。",
+          "evidence": "static-verified"
+        },
+        {
+          "sub": 28,
+          "title": "R插图",
+          "handler": "00425BF2",
+          "size": 146,
+          "params": "文本=数值",
+          "semantics": "0x426AA8 取资源槽，0x425C68/0x42789D 处理；资源基址 0x48BB7B，参数 0x6A、0x1033800。",
+          "evidence": "static-verified"
+        }
+      ],
+      "relations": [
+        "mechanism.65.script-command-dispatch.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ],
+      "crossVersion": [
+        {
+          "version": "6.4",
+          "sample": "profile.ccz64.xisui.9112",
+          "count": 26,
+          "range": "0..25",
+          "note": "子 1 处理函数为 0x40C4B2（6.5 为 0x40C4B7），子 9 为 0x41456D（6.5 为 0x414571）。"
+        },
+        {
+          "version": "6.5",
+          "sample": "profile.ccz65.unencrypted.3890.scan",
+          "count": 29,
+          "range": "0..28",
+          "note": "子 1 为 0x40C4B7，子 9 为 0x414571；表后 0x90 填充从下标 29 开始。"
+        },
+        {
+          "version": "6.6",
+          "sample": "profile.ccz66.shanzai.fixture.25d",
+          "count": 38,
+          "range": "0..37",
+          "note": "子 4 为 0x402A96，子 6 为 0x40886E，子 8 为 0x41E5BB，子 12 为 0x4295FB；34..37 无外部清单名称。"
+        }
+      ]
+    }
+  ]
+}

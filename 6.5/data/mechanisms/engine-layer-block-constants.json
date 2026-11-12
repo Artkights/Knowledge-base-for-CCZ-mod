@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.layer-block-constants.3ef7",
+      "title": "图层/图块缓冲常量：0x1B00、0x6C00、0x12900、0x3000、0xC000 与 0x430020 拷贝函数",
+      "aliases": [
+        "layer block constants",
+        "图层缓冲常量",
+        "0x6C00",
+        "0x12900",
+        "0x3000",
+        "0xC000",
+        "0x430020"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "高频 imul 常量构成本图块/图层缓冲布局：0x1B00=6912 为战场单层字节数（第 53 轮），0x6C00=27648=4×0x1B00（4 层），0x12900=76032=11×0x1B00（11 层）；0x3000=12288=64×64×3（24bpp 图块），0xC000=49152=4×0x3000（128×128）。0x430020（紧随 0x430000 跳转表之后）接受宽高参数，观察到 0x30(48)/0x40(64) 两种块拷贝。0x40446E 以 byte[0x4927F0]×0x12900 选择记录块；0x41ED07 以 byte[rec+0xD]×0x12900+0xF300 定位图像数据。",
+      "constants": [
+        "0x1B00", "0x6C00", "0x12900", "0x3000", "0xC000",
+        "0x430020", "0x30", "0x40", "0x4927F0", "0xF300", "0x0D"
+      ],
+      "identity": "0x6C00/0x12900 均为 0x1B00 的整数倍（4/11）；0xC000 为 0x3000 的 4 倍；站点由 imul 立即数直方图给出，三基底计数相同。",
+      "siteAddresses": {
+        "singleLayer": "0x1B00",
+        "fourLayers": "0x6C00",
+        "elevenLayers": "0x12900",
+        "tile64": "0x3000",
+        "tile128": "0xC000",
+        "blitFn": "0x430020",
+        "blitSize48": "0x30",
+        "blitSize64": "0x40",
+        "selectorByte": "0x4927F0",
+        "recordImageOffset": "0xF300"
+      },
+      "limitations": [
+        "11 层各层用途未定名。",
+        "0x4927F0 业务名称未定。",
+        "0x430020 源/目的参数顺序未逐字段验证。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.battle-unit-table.3ef7",
+        "mechanism.65.arithmetic-immediates-census.3ef7",
+        "mechanism.65.item-type-action-mapping-66.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-highfreq-imul-constants-20261112"
+      ]
+    }
+  ]
+}

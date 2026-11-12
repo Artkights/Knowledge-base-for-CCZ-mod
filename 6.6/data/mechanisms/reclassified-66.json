@@ -1,0 +1,509 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "entries": [
+    {
+      "id": "mechanism.65.cell-flag-item-count.3ef7",
+      "title": "6.6 地图格标志数组 0x4934B0 与物品计数数组 0x493AF0",
+      "aliases": [
+        "cell flag array",
+        "item count array",
+        "0x4934B0",
+        "0x493AF0",
+        "0x501BD2"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4934B0 是 6.6 独有地图格标志字节数组（1 字节/格，索引 = 0x403789 的 y*width+x；数组长度至少 0x640=1600（40×40），bit0=地形/状态判定位（0x41D716 决定是否按 50% 缩放），bit2/bit3=移动范围/路径标记（0x42AAA5 清除 0xC、0x42A47F 以 0xD 统计），位1/4..7 未使用），被 0x42A2AF 全图扫描（0x501BD2>=2 门控）、0x41D716 判定与 0x42AAA5 清除使用。0x493AF0 是 6.6 独有物品计数数组（索引 = 物品 ID-0xA0，0x408E96 循环 0..0x15F 覆盖物品 ID 0xA0..0x1FF；0xFF 为上限，0 表示未拥有），被 0x408E96 的拥有物品枚举（+0xA0 后经 0x4837C2 取物品记录）与 0x420299 的钳位增减使用。",
+      "constants": [
+        "0x4934B0",
+        "0x493AF0",
+        "0x403789",
+        "0x4B422C",
+        "0x4B422D",
+        "0x42A2AF",
+        "0x41D716",
+        "0x42AAA5",
+        "0x408E96",
+        "0x420299",
+        "0x4837C2",
+        "0x49F820",
+        "0x501BD2",
+        "0xA0",
+        "0x160",
+        "0xFF",
+        "0x0D",
+        "0x0C"
+      ],
+      "identity": "0x4934B0 的索引由 0x403789([ecx+6]) 产生（与第 42 轮网格索引一致）；0x493AF0 的索引在 0x420299 明确为 arg-0xA0，在 0x408E96 明确为 ecx+0xA0 后送入物品记录基址 0x4837C2。",
+      "siteAddresses": {
+        "cellFlags": "0x4934B0",
+        "itemCounts": "0x493AF0",
+        "gridIndex": "0x403789",
+        "itemRecordBase": "0x4837C2",
+        "itemRecordTable": "0x49F820",
+        "itemCountBase": "0xA0",
+        "itemCountSpan": "0x160",
+        "cellMaskUsed": "0x0D",
+        "cellMaskCleared": "0x0C",
+        "modeGate": "0x501BD2",
+        "cellBit0": "0x01",
+        "cellBit2": "0x04",
+        "cellBit3": "0x08",
+        "cellLengthHint": "0x640",
+        "bit0Fn": "0x41D716",
+        "bitClearFn": "0x42AA82",
+        "classGetter": "0x4088B4",
+        "scaleFn": "0x425AD9"
+      },
+      "limitations": [
+        "bit2/bit3 的具体分工（可达/路径/已访问）未逐一证明。",
+        "0x4088B4(0xD) 的返回语义未定名。",
+        "0x493AF0 计数是拥有数量还是剩余次数未与界面文案对照。",
+        "0x408E96 中 0x46708C 的用途未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.grid-dimension-pair.3ef7",
+        "mechanism.65.item-record-fields.3ef7",
+        "mechanism.65.new-anchors-batch-66.3ef7",
+        "mechanism.65.battle-unit-table.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-cell-flag-item-count-20261112"
+      ]
+    },
+    {
+      "id": "mechanism.65.file-io-wrappers.3ef7",
+      "title": "文件 I/O 包装：CreateFileA 包装 0x418F5C 与路径拼接 0x418ED4",
+      "aliases": [
+        "file io wrappers",
+        "文件 IO 包装",
+        "0x418F5C",
+        "0x419019",
+        "CreateFileA"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x418F5C 是 CreateFileA 包装：0x418ED4 先用 GetCurrentDirectoryA(0x104) 拼绝对路径，再以 0x419019 的 7 项 access 表（0x80000000/0x40000000/0xC0000000 循环）映射 mode→dwDesiredAccess，share=1、OPEN_EXISTING=3、flags=0x80、hTemplate=0，失败重试最多 5 次。AutoDll.ini 读取（0x4069B0）使用 mode=1。注：第84轮曾把 0x418C34 记为文件对象包装，第86轮已更正——0x418C34 是 DialogBoxParamA(模板 0x154) 的确认框包装，vtable 0x487410 属于对话框对象，详见 mechanism.65.dialog-framework.3ef7。",
+      "constants": [
+        "0x418F5C",
+        "0x418ED4",
+        "0x419019",
+        "0x48B7EF",
+        "0x104",
+        "0x80",
+        "0x03",
+        "0x01",
+        "0x06",
+        "0xFFFFFFFF",
+        "0x80000000",
+        "0x40000000",
+        "0xC0000000",
+        "0x4069B0"
+      ],
+      "identity": "0x419019 恰为 7 项 dword 且值与 GENERIC_READ/GENERIC_WRITE 组合一致；CreateFileA 的 7 个参数与压栈顺序逐项对应。",
+      "siteAddresses": {
+        "createFileWrapper": "0x418F5C",
+        "pathBuild": "0x418ED4",
+        "pathJoin": "0x412E27",
+        "getCurrentDir": "0x486110",
+        "accessTable": "0x419019",
+        "autoDllName": "0x48B7EF"
+      },
+      "limitations": [
+        "0x41888D 未定位到函数体。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.dialog-framework.3ef7",
+        "mechanism.65.global-ui-state-block.3ef7",
+        "mechanism.65.font-name-table.3ef7",
+        "mechanism.65.save-load-constants.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-file-io-wrappers-20261112"
+      ]
+    },
+    {
+      "id": "mechanism.65.hotpatch-toggle-66.3ef7",
+      "title": "6.6 Z 键热补丁开关 0x500ADB 与 7 处代码改写",
+      "aliases": [
+        "hotpatch toggle",
+        "热补丁开关",
+        "0x500ADB",
+        "0x4250E6",
+        "0x4132E3",
+        "0x42DB2C"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "6.6 独占函数 0x4250E6 由键盘处理函数 0x413296 在按键码 eax==0x5A（'Z'）时调用：先检查后台线程忙标志 byte[0x500E0C]，为 0 则置 1，随后 xor byte[0x500ADB],1；为 1 时把 7 处代码改写为“跳过”版本，为 0 时恢复原始字节。改写包括 3 个函数入口改为 ret n（0x42DB2C→ret 4、0x42D5B0→ret 0xC、0x4332A6→ret 0x10）和 4 处调用/循环跳过（0x415B40、0x42C4EF、0x42C812、0x455CE5）。6.5/6.4 中不存在该开关。",
+      "constants": [
+        "0x500ADB",
+        "0x500E0C",
+        "0x4250E6",
+        "0x4132E3",
+        "0x413296",
+        "0x42DB2C",
+        "0x415B40",
+        "0x42C4EF",
+        "0x42C812",
+        "0x42D5B0",
+        "0x4332A6",
+        "0x455CE5",
+        "0x422B40",
+        "0x422DBA",
+        "0x406A4B"
+      ],
+      "identity": "开关字节 0x500ADB 只有一个引用函数 0x4250E6；调用条件是 0x4132E3 处 eax==0x5A；补丁字节成对出现（on/off 各 7 组），off 组与文件原始字节完全一致，on 组由 0x425107..0x425149 写入、off 组由 0x42514B..0x425184 恢复。",
+      "siteAddresses": {
+        "toggleFn": "0x4250E6",
+        "callerSite": "0x4132E3",
+        "keyboardFn": "0x413296",
+        "stateByte": "0x500ADB",
+        "busyGuard": "0x500E0C",
+        "patch1": "0x42DB2C",
+        "patch2": "0x415B40",
+        "patch3": "0x42C4EF",
+        "patch4": "0x42C812",
+        "patch5": "0x42D5B0",
+        "patch6": "0x4332A6",
+        "patch7": "0x455CE5",
+        "waitCall": "0x422B40",
+        "sleepCall": "0x422DBA",
+        "threadProc": "0x406A4B"
+      },
+      "limitations": [
+        "补丁后的用户可见名称（菜单/提示文本）未在文件中找到，暂按按键码 0x5A 与补丁效果命名。",
+        "0x42DB2C/0x42D5B0/0x4332A6 的业务语义只能从代码形态推断（文本标记扫描、0x40B922/0x41B882 分支、0xB34C0 缓冲），未运行验证。",
+        "0x500E0C 在 0x42FD94 处与 CreateThread 同用，判定为后台线程忙标志；未证明与热补丁互斥的完整时序。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.global-ui-state-block.3ef7",
+        "mechanism.65.anchor-relocation-66.3ef7",
+        "mechanism.65.engine-general-coverage.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-global-ui-state-block-20261112"
+      ]
+    },
+    {
+      "id": "mechanism.65.msg-dialog-class-66.3ef7",
+      "title": "6.6 独占文本提示对话框类：0x42CA5E 回调、构造 0x42C992、模板 342",
+      "aliases": [
+        "msg dialog class",
+        "文本提示对话框",
+        "0x42CA5E",
+        "0x42C992",
+        "0x46D098",
+        "0x46D0F8",
+        "RT_DIALOG 342"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x42CA5E 是 6.6 独占对话框类对象的 +0xC 创建期回调（6.5 同址为 NOP）。构造器 0x42C992 位于脚本子命令表 0x47D8DF 第 34 项（主操作码 0x72 的子命令）：以 0x42C6C5(stream,2,4,&buf) 读 2 个 dword，把第 2 个经 0x42C9FC(9,param2,buf) 生成 0x398 文本区（0x417DF6 解析 '*' 与 '\\n&'），再由 0x40E03D 取对象，写 +4=0x4758A0、+0xC=0x42CA5E 后用 0x46D098(this,0x156=342,hwnd) 打开对话框。0x46D098 = DialogBoxParamA(hInstance=[0x4B6A60], template, parent, proc=0x46D0F8, initParam=this)；0x46D0F8 处理 WM_INITDIALOG(0x110)、WM_LBUTTONDOWN(0x201) 与自定义 0x591（关闭，转 0x4C0600），其后按对象 +4/+0xC 回调分派。对话框 342 为 DLGTEMPLATE 158×60、9pt 宋体、2 控件：id=0xFFFF 图标/图片（class ord 130、text ord 137、10,10,21,21）与 id=10「确定」（3,43,37,14）。返回后构造器把回调改为 +4=0x46E81F、+0xC=0x42B510。类型判定 0x46D34C 以 [obj+0xC]==0x42CA5E 识别该类。",
+      "constants": [
+        "0x42CA5E",
+        "0x42C992",
+        "0x42C9FC",
+        "0x42C6C5",
+        "0x417DF6",
+        "0x40E03D",
+        "0x4758A0",
+        "0x46E81F",
+        "0x42B510",
+        "0x46D098",
+        "0x46D0F8",
+        "0x46D34C",
+        "0x4862A0",
+        "0x4862F4",
+        "0x4B6A60",
+        "0x4C0600",
+        "0x47D8DF",
+        "0x47D967",
+        "0x47D89E",
+        "0x156",
+        "0x342",
+        "0x398",
+        "0x0A",
+        "0x0D",
+        "0x2E31",
+        "0x110",
+        "0x201",
+        "0x591",
+        "0x0C"
+      ],
+      "identity": "0x42CA5E 在 6.5 同址为 NOP，6.6 仅被 0x42C9CE（构造器写入）与 0x46D34F（类型判定）引用；0x42C992 仅被 0x47D967 指向，索引 (0x47D967-0x47D8DF)/4=34，与第125轮子命令 31=0x42D260 同表；模板 0x156=342 的资源尺寸 158×60 与 2 控件结构由 dialog_resource 解析确认。",
+      "siteAddresses": {
+        "classCallback": "0x42CA5E",
+        "constructor": "0x42C992",
+        "textBuilder": "0x42C9FC",
+        "streamReader": "0x42C6C5",
+        "textParser": "0x417DF6",
+        "objectAlloc": "0x40E03D",
+        "createCallback": "0x4758A0",
+        "runCallback": "0x46E81F",
+        "runCallback2": "0x42B510",
+        "dialogOpener": "0x46D098",
+        "dialogProc": "0x46D0F8",
+        "classCheck": "0x46D34C",
+        "dialogBoxParam": "0x4862A0",
+        "template": "0x156",
+        "templateId": "342",
+        "textBufferSize": "0x398",
+        "subHandlerTable": "0x47D8DF",
+        "subHandlerSlot": "0x47D967",
+        "subCommand": "0x22",
+        "scriptOpcode": "0x72",
+        "initMessage": "0x110",
+        "lbuttonMessage": "0x201",
+        "closeMessage": "0x591",
+        "closeHandler": "0x4C0600"
+      },
+      "limitations": [
+        "两个构造参数（dword1/dword2）的业务含义未定。",
+        "0x42C9FC 的编号 0x2E31+i 对应哪张文本表未确认。",
+        "0x42B510 为多类共用运行期回调，不能作为类标识。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.viewport-size-cache.3ef7",
+        "mechanism.65.dialog-framework.3ef7",
+        "mechanism.65.script-context-caches.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-msg-dialog-class-20261112"
+      ]
+    },
+    {
+      "id": "mechanism.65.text-object-table.3ef7",
+      "title": "6.6 文本对象表 0x512640（40×0x30）与掩码文字绘制链",
+      "aliases": [
+        "text object table",
+        "文本对象表",
+        "0x512640",
+        "0x41EB3E",
+        "0x41EB48",
+        "0x42AEC7",
+        "掩码文字"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "6.6 新增 40 条 × 0x30 字节的文本对象表 0x512640，仅由 0x41EB3E(index)=index*0x30+0x512640 索引（6.4/6.5 无该地址引用）。字段：+0x00 有效标志（0 跳过）、+0x17 调色板颜色索引、+0x18 附加样式、+0x19 字体索引（0x500030 五项）、+0x1A 字号、+0x1B 样式位（bit3 使字重 0x190→0x2BC）、+0x20 绘制前清 0 的临时标志、+0x24 打包坐标（y<<16|x）。绘制链 0x429ECC：GetDC/CreateCompatibleDC → 0x41EB48 以 byte[+0x19]/[0x1A]/[0x1B] 建字体 → 0x42B054 量文本（上限 0x28=40）→ 0x41EA66 建 1bpp 掩码 DIB（宽按 32 对齐）→ 0x41EAD3 设 SetBkColor(0xFFFFFF)/SetTextColor(0) → 0x42AEC7 以 0x4CB1C0 调色板把每 bit 扩展为 RGB（空位写透明色 0x00F700FF）→ BitBlt。调度器 0x429F77 遍历 0..0x27 共 40 条；0x42B049 在文本缓冲处理后同样调用。写入方为 0x42AF6F 命令解析器：0x426E64 读索引，>=0x28 跳过；0x41EB3E(index) 取记录后，若命令后紧跟 '0' 则把 [rec+0x00] 置 0 停用并对 rec+0x20 调 0x47F9C3，否则 [rec+0x20]!=0（临时忙）直接返回；再以 '*' 开头解析编号 n 并从字符串指针表 0x506000 取 dword[n] 指针，按 UTF-16 逐字拷入记录文本区（遇 NUL/0x0A 停止）。",
+      "constants": [
+        "0x512640",
+        "0x41EB3E",
+        "0x41EB48",
+        "0x41EA66",
+        "0x41EAD3",
+        "0x42AEC7",
+        "0x429ECC",
+        "0x429F77",
+        "0x42B049",
+        "0x42B054",
+        "0x42AF6F",
+        "0x426E64",
+        "0x506000",
+        "0x47F9C3",
+        "0x2A",
+        "0x0A",
+        "0x4CB1C0",
+        "0x500030",
+        "0x4B6A68",
+        "0x486064",
+        "0x48606C",
+        "0x48607C",
+        "0x486080",
+        "0x486084",
+        "0x486088",
+        "0x47FD13",
+        "0x28",
+        "0x30",
+        "0x27",
+        "0x19",
+        "0x1A",
+        "0x1B",
+        "0x17",
+        "0x18",
+        "0x20",
+        "0x24",
+        "0x190",
+        "0x12C",
+        "0x0F700FF",
+        "0xFFFFFF",
+        "0x08",
+        "0x80"
+      ],
+      "identity": "0x41EB3E 的 imul 0x30 + 基址 0x512640 与调用循环上界 0x28 共同确定 40 条记录；0x41EB48 的 face=0x500030+byte[+0x19]*0x10 与第76轮字体表一致；0x42AEC7 读取 0x4CB1C0 与第70轮调色板一致。",
+      "siteAddresses": {
+        "tableBase": "0x512640",
+        "indexHelper": "0x41EB3E",
+        "fontCreate": "0x41EB48",
+        "maskDib": "0x41EA66",
+        "maskDraw": "0x41EAD3",
+        "bitExpand": "0x42AEC7",
+        "singleDraw": "0x429ECC",
+        "dispatcher": "0x429F77",
+        "bufferDraw": "0x42B049",
+        "measure": "0x42B054",
+        "palette": "0x4CB1C0",
+        "transparent": "0x00F700FF",
+        "entryCount": "0x28",
+        "writer": "0x42AF6F",
+        "stringTable": "0x506000",
+        "busyClear": "0x47F9C3"
+      },
+      "limitations": [
+        "+0x17/+0x18 语义（前景/阴影/描边）未确认。",
+        "0x42AEC7 的参数 +0x18/+0x1C 未定。",
+        "0x506000 字符串表的初始化点与容量未定位。",
+        "0x47F9C3 对 rec+0x20 的作用未展开。",
+        "6.5 是否存在对应文本对象表/写入方未核对。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.font-name-table.3ef7",
+        "mechanism.65.color-palette.3ef7",
+        "mechanism.65.dialog-framework.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-text-object-table-20261112",
+        "src.research.engine-text-object-writer-20261112"
+      ]
+    },
+    {
+      "id": "mechanism.65.viewport-size-cache.3ef7",
+      "title": "地图可见矩形缓存 0x501BF0（脚本操作码 0x72 子命令 31）与 0x423842 的 edx 隐式来源",
+      "aliases": [
+        "viewport size cache",
+        "map rect cache",
+        "地图可见矩形缓存",
+        "0x501BF0",
+        "0x42D260",
+        "0x47D89E",
+        "0x47D8DF",
+        "0x423842 edx"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x501BF0 是 6.6 的地图可见矩形缓存（dword 四字节 b0=left、b1=top、b2=width、b3=height，0 表示不受限）。唯一写入者 0x42D260：经 0x42C6C5(stream,4,1,&dst) 逐字节读 4 字节，0x40B922 判定 0x41EDEF(0x4AC63C)==3（章节 3）后才比较并写入；写入后仅用高字解宽高，width*0x30 → 0x4B4250+0x34、height*0x30 → +0x38，为 0 时回退 word[0x4B422C] 网格尺寸，随后 0x47BBC0/0x454B7E 重绘。写入链上游：子命令分派器 0x47D89E 经表 0x47D8DF 第 31 项调用 0x42D260，而 0x47D89E 位于主脚本处理表 0x410A38 的操作码 0x72 项。消费：0x4362E6 为点-矩形判定（dl/dh 左上、cl/ch 宽高，0 视为内；调用点 0x4386CE/0x459375），其余 6 处（0x442013、0x451AB9、0x45473A、0x454CF3、0x460ECE、0x47BF54）作为绘制/计算参数传入 0x42C075/0x47FD13 等。另 0x423842 的 edx（×1000 计价）不是显式参数，而是 0x42DE7D→0x473613→0x401692→0x47D1F1 链末寄存器残留，静态无法确定其稳定语义。",
+      "constants": [
+        "0x501BF0",
+        "0x42D260",
+        "0x42C6C5",
+        "0x426E64",
+        "0x40B922",
+        "0x40B913",
+        "0x4B422C",
+        "0x4B4250",
+        "0x41EDEF",
+        "0x4AC63C",
+        "0x34",
+        "0x38",
+        "0x30",
+        "0x47BBC0",
+        "0x454B7E",
+        "0x47D89E",
+        "0x47D8DF",
+        "0x47D95B",
+        "0x410A38",
+        "0x410BF8",
+        "0x72",
+        "0x1F",
+        "0x4362E6",
+        "0x4386CE",
+        "0x459375",
+        "0x436310",
+        "0x442013",
+        "0x451AB9",
+        "0x45473A",
+        "0x454CF3",
+        "0x460ECE",
+        "0x47BF54",
+        "0x42C075",
+        "0x47FD13",
+        "0x70",
+        "0xFF",
+        "0x423842",
+        "0x474E45",
+        "0x474E0E",
+        "0x42DE7D",
+        "0x473613",
+        "0x401692",
+        "0x47D1F1",
+        "0x3E8"
+      ],
+      "identity": "0x501BF0 的写入点唯一（0x42D287）；四字节布局由 0x4362E6 的 dl/dh/cl/ch 比较与 0x42D299 的 shr eax,0x10 拆分共同确定。0x410A38 表反查得 0x47D89E=操作码 0x72；0x47D8DF 表第 31 项=（0x47D95B-0x47D8DF)/4=0x42D260。字节模式 c1 e8 10 0f b6 d0 6b d2 30 在 6.4/6.5 不存在，确认 6.6 独占。",
+      "siteAddresses": {
+        "cache": "0x501BF0",
+        "writerFn": "0x42D260",
+        "writerSite": "0x42D287",
+        "rectReader": "0x4362E6",
+        "rectHitSite1": "0x4386CE",
+        "rectHitSite2": "0x459375",
+        "subDispatcher": "0x47D89E",
+        "subHandlerTable": "0x47D8DF",
+        "subHandlerIndex": "0x1F",
+        "mainHandlerTable": "0x410A38",
+        "scriptOpcode": "0x72",
+        "chapterPredicate": "0x40B922",
+        "chapterGetter": "0x40B913",
+        "streamReader": "0x42C6C5",
+        "fallbackGrid": "0x4B422C",
+        "viewport": "0x4B4250",
+        "viewportW": "+0x34",
+        "viewportH": "+0x38",
+        "scale": "0x30",
+        "redrawCall1": "0x47BBC0",
+        "redrawCall2": "0x454B7E",
+        "edxCallSite": "0x474E45",
+        "edxChain": "0x42DE7D→0x473613→0x401692→0x47D1F1",
+        "priceMultiplier": "0x3E8"
+      },
+      "limitations": [
+        "操作码 0x72 的中文命令名未确认（已确认子命令 31 读 4 字节矩形）。",
+        "0x426E64 变长字节读取编码未展开。",
+        "0x436310 返回值语义未展开。",
+        "0x47D1F1 内部未展开，edx 出口无法静态确定。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.battle-viewport-context.3ef7",
+        "mechanism.65.grid-dimension-pair.3ef7",
+        "mechanism.65.payment-chain.3ef7",
+        "mechanism.65.new-anchors-batch-66.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-viewport-cache-edx-trace-20261112",
+        "src.research.engine-map-rect-cache-20261112",
+        "src.research.engine-settings-plus05-and-edx-20261112"
+      ]
+    }
+  ]
+}

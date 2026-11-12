@@ -1,0 +1,1985 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.script-handler-map.3890",
+      "title": "剧本指令处理函数映射与实测参数签名（120 项）",
+      "aliases": [
+        "0x00410A38",
+        "script_handler_map"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00410A38",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 480,
+      "semantics": "每行 = {opcode, handler, size, modes, getterCalls}。modes 是处理函数调用 0x4183F7 时压入的类型码序列（按调用顺序）：1=特殊/当前码，2=武将或对象编号（0x38/0x39 同族，支持 0xEFFF 以上的负编号编码 ~n-1），3=普通 16 位数值，4=有符号数值/变量，5=文本指针（GBK 字符串 token）。getterCalls=0 表示该处理函数不经 0x4183F7 取参。【校对】6.4/6.5 实现 0x00–0x79；6.6 额外实现 0x7A（0x4284A2，对话3）与 0x7B（0x47E9F0，信息传送测试）；0x7C–0x7F 在三基底均为 0x004D0000 空实现。0x74 与 0x78 的处理函数在 6.4/6.6 间有 2–0x14 字节偏移。",
+      "handlers": [
+        {
+          "opcode": "0x0B",
+          "title": "变量赋值",
+          "handler": "00401923",
+          "start": "00401923",
+          "end": "0040196F",
+          "size": 76,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x1F",
+          "title": "地图视点切换",
+          "handler": "00402348",
+          "start": "00402348",
+          "end": "00402396",
+          "size": 78,
+          "params": [
+            4,
+            4
+          ],
+          "modes": [
+            4,
+            4
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x71",
+          "title": "特效请求",
+          "handler": "00403936",
+          "start": "00403936",
+          "end": "00403975",
+          "size": 63,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x28",
+          "title": "自由R启动指令",
+          "handler": "00406FD9",
+          "start": "00406FD9",
+          "end": "00407027",
+          "size": 78,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x47",
+          "title": "敌军出场设定",
+          "handler": "00407FBC",
+          "start": "00407FBC",
+          "end": "00407FD4",
+          "size": 24,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x07",
+          "title": "出战测试",
+          "handler": "0040B900",
+          "start": "0040B900",
+          "end": "0040B913",
+          "size": 19,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x6F",
+          "title": "丢弃物品",
+          "handler": "0040C5FF",
+          "start": "0040C5FF",
+          "end": "0040C6F7",
+          "size": 248,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x73",
+          "title": "人物五围和测试",
+          "handler": "0040F244",
+          "start": "0040F244",
+          "end": "0040F2EA",
+          "size": 166,
+          "params": [
+            2,
+            4
+          ],
+          "modes": [
+            2,
+            4
+          ],
+          "getterCalls": 4,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x70",
+          "title": "能力选择复制",
+          "handler": "0040F2EA",
+          "start": "0040F2EA",
+          "end": "0040F348",
+          "size": 94,
+          "params": [
+            2,
+            2,
+            4
+          ],
+          "modes": [
+            2,
+            2,
+            4
+          ],
+          "getterCalls": 3,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x26",
+          "title": "武将进入指定区域测试",
+          "handler": "0040F397",
+          "start": "0040F397",
+          "end": "0040F436",
+          "size": 159,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x0D",
+          "title": "结束Scene",
+          "handler": "004103AC",
+          "start": "004103AC",
+          "end": "004103BB",
+          "size": 15,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x68",
+          "title": "单挑开始",
+          "handler": "004103F0",
+          "start": "004103F0",
+          "end": "00410471",
+          "size": 129,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x5A",
+          "title": "战场操作开始",
+          "handler": "00410549",
+          "start": "00410549",
+          "end": "0041055D",
+          "size": 20,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x6C",
+          "title": "武将能力复制",
+          "handler": "00410C39",
+          "start": "00410C39",
+          "end": "00410D21",
+          "size": 232,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x6D",
+          "title": "相对复活或移动",
+          "handler": "00410D21",
+          "start": "00410D21",
+          "end": "00410E75",
+          "size": 340,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x62",
+          "title": "单挑阵亡",
+          "handler": "004111F4",
+          "start": "004111F4",
+          "end": "00411224",
+          "size": 48,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x36",
+          "title": "武将状态测试",
+          "handler": "004112FA",
+          "start": "004112FA",
+          "end": "004113F5",
+          "size": 251,
+          "params": [
+            2,
+            4
+          ],
+          "modes": [
+            2,
+            4
+          ],
+          "getterCalls": 4,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x41",
+          "title": "战场人数测试",
+          "handler": "00411507",
+          "start": "00411507",
+          "end": "004115D5",
+          "size": 206,
+          "params": [
+            3,
+            4,
+            4
+          ],
+          "modes": [
+            3,
+            4,
+            4
+          ],
+          "getterCalls": 5,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x3F",
+          "title": "回合测试",
+          "handler": "00411664",
+          "start": "00411664",
+          "end": "004116BC",
+          "size": 88,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x40",
+          "title": "行动方测试",
+          "handler": "004116BC",
+          "start": "004116BC",
+          "end": "004116FF",
+          "size": 67,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x04",
+          "title": "询问测试",
+          "handler": "004116FF",
+          "start": "004116FF",
+          "end": "0041173B",
+          "size": 60,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x13",
+          "title": "case",
+          "handler": "0041173B",
+          "start": "0041173B",
+          "end": "0041177D",
+          "size": 66,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x02",
+          "title": "内部信息",
+          "handler": "0041177D",
+          "start": "0041177D",
+          "end": "0041179F",
+          "size": 34,
+          "params": [
+            5
+          ],
+          "modes": [
+            5
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x05",
+          "title": "变量测试",
+          "handler": "0041179F",
+          "start": "0041179F",
+          "end": "00411827",
+          "size": 136,
+          "params": [
+            1
+          ],
+          "modes": [
+            1
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x25",
+          "title": "武将进入指定地点测试",
+          "handler": "00411827",
+          "start": "00411827",
+          "end": "004118BD",
+          "size": 150,
+          "params": [
+            2,
+            4
+          ],
+          "modes": [
+            2,
+            4
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x37",
+          "title": "钱、章节编号、忠奸测试",
+          "handler": "004118BD",
+          "start": "004118BD",
+          "end": "0041196C",
+          "size": 175,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 3,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x2E",
+          "title": "武将相邻测试",
+          "handler": "004119C2",
+          "start": "004119C2",
+          "end": "00411AA6",
+          "size": 228,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x12",
+          "title": "选择框",
+          "handler": "00411AA6",
+          "start": "00411AA6",
+          "end": "00411BF0",
+          "size": 330,
+          "params": [
+            5,
+            2
+          ],
+          "modes": [
+            5,
+            2
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x42",
+          "title": "战斗胜利测试",
+          "handler": "00411BF0",
+          "start": "00411BF0",
+          "end": "00411C1B",
+          "size": 43,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x43",
+          "title": "战斗失败测试",
+          "handler": "00411C1B",
+          "start": "00411C1B",
+          "end": "00411C46",
+          "size": 43,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x48",
+          "title": "敌方装备设定",
+          "handler": "00411CD9",
+          "start": "00411CD9",
+          "end": "00411DA5",
+          "size": 204,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 3,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x30",
+          "title": "武将出现",
+          "handler": "00411DAE",
+          "start": "00411DAE",
+          "end": "00411E79",
+          "size": 203,
+          "params": [
+            2,
+            4,
+            4
+          ],
+          "modes": [
+            2,
+            4,
+            4
+          ],
+          "getterCalls": 5,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x33",
+          "title": "武将转向",
+          "handler": "00411E79",
+          "start": "00411E79",
+          "end": "00411EDE",
+          "size": 101,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 3,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x34",
+          "title": "武将动作",
+          "handler": "00411EDE",
+          "start": "00411EDE",
+          "end": "00411F2D",
+          "size": 79,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x35",
+          "title": "武将形象改变",
+          "handler": "00411F2D",
+          "start": "00411F2D",
+          "end": "00411F75",
+          "size": 72,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x38",
+          "title": "武将能力设定",
+          "handler": "00412007",
+          "start": "00412007",
+          "end": "00412122",
+          "size": 283,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x44",
+          "title": "战斗初始化",
+          "handler": "00412226",
+          "start": "00412226",
+          "end": "004122C1",
+          "size": 155,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x45",
+          "title": "战场全局变量",
+          "handler": "004122C1",
+          "start": "004122C1",
+          "end": "004123C8",
+          "size": 263,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x56",
+          "title": "天气类别设定",
+          "handler": "0041264B",
+          "start": "0041264B",
+          "end": "00412674",
+          "size": 41,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x32",
+          "title": "武将移动",
+          "handler": "004133B2",
+          "start": "004133B2",
+          "end": "004134DA",
+          "size": 296,
+          "params": [
+            2,
+            4
+          ],
+          "modes": [
+            2,
+            4
+          ],
+          "getterCalls": 4,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x31",
+          "title": "武将消失",
+          "handler": "00413522",
+          "start": "00413522",
+          "end": "0041360F",
+          "size": 237,
+          "params": [
+            2,
+            4,
+            3
+          ],
+          "modes": [
+            2,
+            4,
+            3
+          ],
+          "getterCalls": 4,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x2F",
+          "title": "清除人物",
+          "handler": "00413652",
+          "start": "00413652",
+          "end": "00413661",
+          "size": 15,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x14",
+          "title": "对话",
+          "handler": "00413661",
+          "start": "00413661",
+          "end": "0041381B",
+          "size": 442,
+          "params": [
+            5
+          ],
+          "modes": [
+            5
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x2D",
+          "title": "武将点击测试",
+          "handler": "0041391A",
+          "start": "0041391A",
+          "end": "0041396A",
+          "size": 80,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x15",
+          "title": "对话2",
+          "handler": "0041396A",
+          "start": "0041396A",
+          "end": "004139F9",
+          "size": 143,
+          "params": [
+            2,
+            5
+          ],
+          "modes": [
+            2,
+            5
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x69",
+          "title": "旁白",
+          "handler": "004139F9",
+          "start": "004139F9",
+          "end": "00413A46",
+          "size": 77,
+          "params": [
+            5
+          ],
+          "modes": [
+            5
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x16",
+          "title": "信息",
+          "handler": "00413A46",
+          "start": "00413A46",
+          "end": "00413AFA",
+          "size": 180,
+          "params": [
+            5
+          ],
+          "modes": [
+            5
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x67",
+          "title": "章名",
+          "handler": "00413B27",
+          "start": "00413B27",
+          "end": "00413BA0",
+          "size": 121,
+          "params": [
+            4,
+            5
+          ],
+          "modes": [
+            4,
+            5
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x19",
+          "title": "胜利条件",
+          "handler": "00413BA0",
+          "start": "00413BA0",
+          "end": "00413BDB",
+          "size": 59,
+          "params": [
+            5
+          ],
+          "modes": [
+            5
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x1A",
+          "title": "显示胜利条件",
+          "handler": "00413BDB",
+          "start": "00413BDB",
+          "end": "00413C17",
+          "size": 60,
+          "params": [
+            5
+          ],
+          "modes": [
+            5
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x1B",
+          "title": "撤退信息是否显示设定",
+          "handler": "00413C17",
+          "start": "00413C17",
+          "end": "00413C8D",
+          "size": 118,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x27",
+          "title": "背景显示",
+          "handler": "00413D13",
+          "start": "00413D13",
+          "end": "00413DE0",
+          "size": 205,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x1C",
+          "title": "绘图",
+          "handler": "00413E49",
+          "start": "00413E49",
+          "end": "00413EC7",
+          "size": 126,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x1D",
+          "title": "调色板设定",
+          "handler": "00413EC7",
+          "start": "00413EC7",
+          "end": "00413EF5",
+          "size": 46,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x21",
+          "title": "战场物体添加",
+          "handler": "00413EF5",
+          "start": "00413EF5",
+          "end": "00413FAC",
+          "size": 183,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x6B",
+          "title": "法术",
+          "handler": "0041406F",
+          "start": "0041406F",
+          "end": "0041419F",
+          "size": 304,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x08",
+          "title": "菜单处理",
+          "handler": "0041431D",
+          "start": "0041431D",
+          "end": "00414361",
+          "size": 68,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x3D",
+          "title": "获得物品",
+          "handler": "004143CB",
+          "start": "004143CB",
+          "end": "004144AB",
+          "size": 224,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x54",
+          "title": "战场撤退确认",
+          "handler": "004144D2",
+          "start": "004144D2",
+          "end": "004144EF",
+          "size": 29,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x4E",
+          "title": "武将方针变更",
+          "handler": "004146D4",
+          "start": "004146D4",
+          "end": "00414790",
+          "size": 188,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x3B",
+          "title": "武将加入",
+          "handler": "00414790",
+          "start": "00414790",
+          "end": "0041481F",
+          "size": 143,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x3A",
+          "title": "钱、章节编号、忠奸设置",
+          "handler": "0041481F",
+          "start": "0041481F",
+          "end": "004148F8",
+          "size": 217,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x39",
+          "title": "武将等级提升",
+          "handler": "004148F8",
+          "start": "004148F8",
+          "end": "004149CF",
+          "size": 215,
+          "params": [
+            2,
+            4
+          ],
+          "modes": [
+            2,
+            4
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x57",
+          "title": "当前天气设定",
+          "handler": "00414AB0",
+          "start": "00414AB0",
+          "end": "00414ADC",
+          "size": 44,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x4C",
+          "title": "隐藏武将出现",
+          "handler": "00414ADC",
+          "start": "00414ADC",
+          "end": "00414B93",
+          "size": 183,
+          "params": [
+            2,
+            4
+          ],
+          "modes": [
+            2,
+            4
+          ],
+          "getterCalls": 3,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x52",
+          "title": "兵种改变",
+          "handler": "00414BD6",
+          "start": "00414BD6",
+          "end": "00414CD3",
+          "size": 253,
+          "params": [
+            2,
+            3
+          ],
+          "modes": [
+            2,
+            3
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x79",
+          "title": "变量测试",
+          "handler": "00415093",
+          "start": "00415093",
+          "end": "00415133",
+          "size": 160,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x4D",
+          "title": "武将状态变更",
+          "handler": "00415551",
+          "start": "00415551",
+          "end": "0041569A",
+          "size": 329,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x53",
+          "title": "战场撤退",
+          "handler": "0041569A",
+          "start": "0041569A",
+          "end": "0041576D",
+          "size": 211,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x49",
+          "title": "战斗结束",
+          "handler": "00415795",
+          "start": "00415795",
+          "end": "004157B4",
+          "size": 31,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x23",
+          "title": "音效",
+          "handler": "004157B4",
+          "start": "004157B4",
+          "end": "004157FA",
+          "size": 70,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x24",
+          "title": "CD音轨",
+          "handler": "004157FA",
+          "start": "004157FA",
+          "end": "0041583F",
+          "size": 69,
+          "params": [
+            9
+          ],
+          "modes": [
+            9
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x5F",
+          "title": "单挑结束",
+          "handler": "0041583F",
+          "start": "0041583F",
+          "end": "00415853",
+          "size": 20,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x0E",
+          "title": "战斗失败",
+          "handler": "00415890",
+          "start": "00415890",
+          "end": "004158AF",
+          "size": 31,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x0F",
+          "title": "结局设定",
+          "handler": "004158AF",
+          "start": "004158AF",
+          "end": "004158DC",
+          "size": 45,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x55",
+          "title": "战场复活",
+          "handler": "0041592E",
+          "start": "0041592E",
+          "end": "004159FC",
+          "size": 206,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x0A",
+          "title": "初始化局部变量",
+          "handler": "00415ACA",
+          "start": "00415ACA",
+          "end": "00415B10",
+          "size": 70,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x09",
+          "title": "延时",
+          "handler": "00415B21",
+          "start": "00415B21",
+          "end": "00415B4F",
+          "size": 46,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x06",
+          "title": "我军出场限制",
+          "handler": "00415B4F",
+          "start": "00415B4F",
+          "end": "00415BD0",
+          "size": 129,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x4A",
+          "title": "我军出场强制设定",
+          "handler": "00415BD0",
+          "start": "00415BD0",
+          "end": "00415C0D",
+          "size": 61,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x3C",
+          "title": "武将加入测试",
+          "handler": "00415D31",
+          "start": "00415D31",
+          "end": "00415D96",
+          "size": 101,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x4B",
+          "title": "我军出场设定",
+          "handler": "00415E31",
+          "start": "00415E31",
+          "end": "00415EFA",
+          "size": 201,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x4F",
+          "title": "战场转向设置",
+          "handler": "00415F47",
+          "start": "00415F47",
+          "end": "00415FE9",
+          "size": 162,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x50",
+          "title": "战场动作设定",
+          "handler": "00415FE9",
+          "start": "00415FE9",
+          "end": "0041606C",
+          "size": 131,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x51",
+          "title": "战场恢复行动权",
+          "handler": "0041626A",
+          "start": "0041626A",
+          "end": "004162E6",
+          "size": 124,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x3E",
+          "title": "加入装备设定",
+          "handler": "0041631C",
+          "start": "0041631C",
+          "end": "00416437",
+          "size": 283,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x58",
+          "title": "战场障碍设定",
+          "handler": "00416793",
+          "start": "00416793",
+          "end": "0041688B",
+          "size": 248,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x59",
+          "title": "战利品",
+          "handler": "0041688B",
+          "start": "0041688B",
+          "end": "00416A0C",
+          "size": 385,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 4,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x1E",
+          "title": "武将重绘",
+          "handler": "00416A0C",
+          "start": "00416A0C",
+          "end": "00416A14",
+          "size": 8,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x5B",
+          "title": "战场高亮区域",
+          "handler": "00416AE3",
+          "start": "00416AE3",
+          "end": "00416B54",
+          "size": 113,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x5C",
+          "title": "战场高亮人物",
+          "handler": "00416B54",
+          "start": "00416B54",
+          "end": "00416C41",
+          "size": 237,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x76",
+          "title": "无条件跳转",
+          "handler": "00416C41",
+          "start": "00416C41",
+          "end": "00416C87",
+          "size": 70,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x77",
+          "title": "变量运算",
+          "handler": "00416C87",
+          "start": "00416C87",
+          "end": "00416DCD",
+          "size": 326,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x78",
+          "title": "整型变量赋值",
+          "handler": "00416DCD",
+          "start": "00416DCD",
+          "end": "00416E37",
+          "size": 106,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x20",
+          "title": "武将头像状态设置",
+          "handler": "00416FD8",
+          "start": "00416FD8",
+          "end": "00417024",
+          "size": 76,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x5D",
+          "title": "回合上限设定",
+          "handler": "0041709C",
+          "start": "0041709C",
+          "end": "00417143",
+          "size": 167,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x29",
+          "title": "地图头像显示",
+          "handler": "00417143",
+          "start": "00417143",
+          "end": "004171BC",
+          "size": 121,
+          "params": [
+            2,
+            4,
+            4
+          ],
+          "modes": [
+            2,
+            4,
+            4
+          ],
+          "getterCalls": 3,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x2A",
+          "title": "地图头像移动",
+          "handler": "004171BC",
+          "start": "004171BC",
+          "end": "00417235",
+          "size": 121,
+          "params": [
+            2,
+            4,
+            4
+          ],
+          "modes": [
+            2,
+            4,
+            4
+          ],
+          "getterCalls": 3,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x2C",
+          "title": "地图文字显示",
+          "handler": "00417235",
+          "start": "00417235",
+          "end": "004172EC",
+          "size": 183,
+          "params": [
+            5
+          ],
+          "modes": [
+            5
+          ],
+          "getterCalls": 4,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x2B",
+          "title": "地图头像消失",
+          "handler": "004172EC",
+          "start": "004172EC",
+          "end": "00417324",
+          "size": 56,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x6E",
+          "title": "概率测试",
+          "handler": "0041741E",
+          "start": "0041741E",
+          "end": "00417447",
+          "size": 41,
+          "params": [
+            4
+          ],
+          "modes": [
+            4
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x60",
+          "title": "单挑武将出场",
+          "handler": "00417447",
+          "start": "00417447",
+          "end": "004174C0",
+          "size": 121,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x61",
+          "title": "单挑胜负显示",
+          "handler": "004174C0",
+          "start": "004174C0",
+          "end": "004174D4",
+          "size": 20,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x63",
+          "title": "单挑对话",
+          "handler": "004175C2",
+          "start": "004175C2",
+          "end": "00417645",
+          "size": 131,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x64",
+          "title": "单挑动作",
+          "handler": "00417645",
+          "start": "00417645",
+          "end": "0041769D",
+          "size": 88,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x65",
+          "title": "单挑攻击1",
+          "handler": "0041769D",
+          "start": "0041769D",
+          "end": "004176F9",
+          "size": 92,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x66",
+          "title": "单挑攻击2",
+          "handler": "004176F9",
+          "start": "004176F9",
+          "end": "00417755",
+          "size": 92,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x18",
+          "title": "事件名称设定",
+          "handler": "00417DCC",
+          "start": "00417DCC",
+          "end": "00417DF6",
+          "size": 42,
+          "params": [
+            5
+          ],
+          "modes": [
+            5
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x46",
+          "title": "友军出场设定",
+          "handler": "00419B61",
+          "start": "00419B61",
+          "end": "00419B76",
+          "size": 21,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x74",
+          "title": "开/禁存档",
+          "handler": "0041DD12",
+          "start": "0041DD12",
+          "end": "0041DD39",
+          "size": 39,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x17",
+          "title": "场所名",
+          "handler": "0042466E",
+          "start": "0042466E",
+          "end": "004246AC",
+          "size": 62,
+          "params": [
+            5
+          ],
+          "modes": [
+            5
+          ],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x11",
+          "title": "剧本跳转",
+          "handler": "0042547A",
+          "start": "0042547A",
+          "end": "004254B4",
+          "size": 58,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x10",
+          "title": "许子将指导",
+          "handler": "0042BCE9",
+          "start": "0042BCE9",
+          "end": "0042BD60",
+          "size": 119,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x22",
+          "title": "动画",
+          "handler": "0042F59A",
+          "start": "0042F59A",
+          "end": "0042F5C4",
+          "size": 42,
+          "params": [],
+          "modes": [],
+          "getterCalls": 1,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x5E",
+          "title": "武将不同测试",
+          "handler": "0044E642",
+          "start": "0044E642",
+          "end": "0044E6AF",
+          "size": 109,
+          "params": [
+            2,
+            2
+          ],
+          "modes": [
+            2,
+            2
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x75",
+          "title": "S特殊形象指定",
+          "handler": "00465D8A",
+          "start": "00465D8A",
+          "end": "00465DBA",
+          "size": 48,
+          "params": [
+            2
+          ],
+          "modes": [
+            2
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x72",
+          "title": "信息传送",
+          "handler": "0047D89E",
+          "start": "0047D89E",
+          "end": "0047DA09",
+          "size": 363,
+          "params": [
+            4,
+            5
+          ],
+          "modes": [
+            4,
+            5
+          ],
+          "getterCalls": 2,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x0C",
+          "title": "结束Section",
+          "handler": "00481156",
+          "start": "00481156",
+          "end": "00481440",
+          "size": 746,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x6A",
+          "title": "Game Over指令",
+          "handler": "00481714",
+          "start": "00481714",
+          "end": "00481750",
+          "size": 60,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        },
+        {
+          "opcode": "0x03",
+          "title": "else",
+          "handler": "004834C6",
+          "start": "004834C6",
+          "end": "004837C2",
+          "size": 764,
+          "params": [],
+          "modes": [],
+          "getterCalls": 0,
+          "tokenCalls": 0,
+          "asciiCalls": 0,
+          "slotCalls": 0
+        }
+      ],
+      "relations": [
+        "global.65.script-command-dispatch-table.3890",
+        "fn.65.script-param-get.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

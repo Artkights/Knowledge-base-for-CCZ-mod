@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "analysis": "cross-base-hash-audit-late",
+  "date": "2026-11-12",
+  "method": "hash_regions.py 对第 96–111 轮新发现的关键函数在 6.4/6.5/6.6 同址做 SHA1 前 16 位对照。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "hashes": [
+    {"entry": "0x40BE7D", "size": "0x15", "sixFour": "3b5c75ab85bb2574", "sixFive": "3b5c75ab85bb2574", "sixSix": "3b5c75ab85bb2574", "verdict": "三基底完全一致"},
+    {"entry": "0x41F952", "size": "0x45", "sixFour": "eeff175476bbccb4", "sixFive": "a48c499fb1259d28", "sixSix": "67590222a73ce1e2", "verdict": "三基底各异"},
+    {"entry": "0x456CB4", "size": "0xF2", "sixFour": "7f29831c889dfe19", "sixFive": "9d02b11e8626c9f1", "sixSix": "e41c859a81866ca0", "verdict": "三基底各异"},
+    {"entry": "0x42A5D6", "size": "0x22", "sixFour": "07ca3e248366acc0", "sixFive": "07ca3e248366acc0", "sixSix": "dbbd06958426788c", "verdict": "6.4=6.5，6.6 不同"},
+    {"entry": "0x42A708", "size": "0x40", "sixFour": "f6ab583dde21ae43", "sixFive": "f6ab583dde21ae43", "sixSix": "0c5e56f3dbefc237", "verdict": "6.4=6.5，6.6 不同"},
+    {"entry": "0x42A43E", "size": "0x76", "sixFour": "f40764b6af4dfc8f", "sixFive": "0af6db74401558aa", "sixSix": "c825f6a1ef906a68", "verdict": "三基底各异"},
+    {"entry": "0x47FA40", "size": "0x36", "sixFour": "4ffab2a6aa764d7c", "sixFive": "4ffab2a6aa764d7c", "sixSix": "e6a816af2136f98e", "verdict": "6.4=6.5，6.6 不同"},
+    {"entry": "0x47F9E2", "size": "0x58", "sixFour": "b1ef61f425b26afa", "sixFive": "b1ef61f425b26afa", "sixSix": "591e6dc0c84c4f4d", "verdict": "6.4=6.5，6.6 不同"}
+  ],
+  "conclusion": "第 96–111 轮新函数的三基底同址审计：0x40BE7D（指针→索引）三基底完全一致；0x42A5D6（格标志写入）、0x42A708（范围回调）、0x47FA40/0x47F9E2（内存池）均为 6.4=6.5、6.6 不同；0x41F952（点数加减）、0x456CB4（332 确认）、0x42A43E（全图遍历）三基底各异。",
+  "corrections": [
+    "第107–108轮把 0x42A5D6/0x42A708 记为 6.6 专属不准确：6.4/6.5 同址同体，6.6 为改写版",
+    "第110–111轮的 0x47FA40/0x47F9E2 同样为 6.4=6.5、6.6 不同，不是 6.6 独有"
+  ],
+  "limitations": [
+    "仅对照同址，未跟踪 6.6 中是否另有等价函数。",
+    "哈希只覆盖前若干字节，可能漏掉尾部差异。",
+    "未运行游戏对照。"
+  ]
+}

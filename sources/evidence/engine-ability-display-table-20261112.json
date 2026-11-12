@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "analysis": "ability-display-table",
+  "date": "2026-11-12",
+  "method": "对 6.6 0x430000 的 8 项 dword 跳转表与 6.5/6.4 同址 0x46902B 逐项比对；用 dump_funcs.py 精确反汇编 8 个处理体与辅助函数；用 refs_to.py 统计调用点；用 pefile 导入表解析 SetDlgItemInt 等调用。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "table": {
+    "address66": "0x430000",
+    "address65": "0x46902B",
+    "address64": "0x46902B",
+    "entries": 8,
+    "targets": [
+      "0x40715A", "0x40718F", "0x4071C4", "0x4071F9",
+      "0x40722E", "0x407263", "0x40728F", "0x4072BB"
+    ],
+    "identicalAcrossBases": true,
+    "layout": "6.4/6.5 表后（0x46904B 起）为 0x90 填充；6.6 表后（0x430020 起）紧接代码，表体本身 8 项完全一致。",
+    "callsites66": [
+      {"site": "0x448FD0", "index": "edx（外部）"},
+      {"site": "0x45C97E", "index": "0..4 循环，结果写 SetDlgItemInt(0x400+idx)"},
+      {"site": "0x468FC1", "index": "eax"},
+      {"site": "0x476BFD", "index": "0..4 循环，结果存栈数组"},
+      {"site": "0x47A0A8", "index": "eax-6（6/7）"},
+      {"site": "0x47A0B6", "index": "eax-6（6/7）"},
+      {"site": "0x47A86D", "index": "eax"}
+    ]
+  },
+  "handlers": [
+    {"index": 0, "address": "0x40715A", "formula66": "min(word[rec+0x11] + (0x407C29(rec,0) + 0x436E02(0)), 0x270F)", "formula65": "min(word[rec+0x11] + (0x407C35(rec,0) + 0x436DE1(0)), 0x270F)", "field": "+0x11（能力 0，候选武力）"},
+    {"index": 1, "address": "0x40718F", "formula66": "min(word[rec+0x13] + (0x407C29(rec,1) + 0x436E02(1)), 0x270F)", "field": "+0x13（能力 1，候选智力）"},
+    {"index": 2, "address": "0x4071C4", "formula66": "min(word[rec+0x15] + (0x407C29(rec,2) + 0x436E02(2)), 0x270F)", "field": "+0x15（能力 2，候选统率）"},
+    {"index": 3, "address": "0x4071F9", "formula66": "min(word[rec+0x17] + (0x407C29(rec,3) + 0x436E02(3)), 0x270F)", "field": "+0x17（能力 3，候选敏捷）"},
+    {"index": 4, "address": "0x40722E", "formula66": "min(word[rec+0x19] + (0x407C29(rec,4) + 0x436E02(4)), 0x270F)", "field": "+0x19（能力 4，候选运气）"},
+    {"index": 5, "address": "0x407263", "formula66": "min(0x407C29(rec,5) + 0x405B86(0x32, word[rec+0x1B]), 0xFFFF)", "formula65": "min(0x407C35(rec,5) + 0x414D81(0x19, word[rec+0x1B]), 0xFFFF)", "field": "+0x1B word（候选体力/HP 上限）", "difference": "6.6 加成常量 0x19→0x32，辅助函数 0x414D81→0x405B86（函数体同构）"},
+    {"index": 6, "address": "0x40728F", "formula66": "min(0x407C29(rec,6) + 0x405B86(0x32, word[rec+0x1F]), 0x270F)", "formula65": "min(0x407C35(rec,6) + 0x414D81(0x19, word[rec+0x1F]), 0x270F)", "field": "+0x1F word（候选策略值/MP 上限）", "difference": "6.6 加成常量 0x19→0x32，辅助函数 0x414D81→0x405B86"},
+    {"index": 7, "address": "0x4072BB", "formula66": "0x407C29(rec,7) + 0x405B86(0x7F, 0x41EDEF(0x41B782(byte[rec+0x2B])))，再经 0x42E568", "formula65": "额外执行 0x42518F(0xC5,0,1,0) 并把返回值加到栈参数后，再经 0x414D81(0x7F, job 结果)", "field": "+0x2B byte 兵种 ID", "difference": "6.6 删除 0x42518F 随机/评分加成，改用 0x405B86 直接加成"}
+  ],
+  "recordLayout": {
+    "base": "人物记录 1024×72，基址 [0x4CEA00]（第 29 轮）",
+    "fields": [
+      {"offset": "+0x11", "size": 2, "semantic": "能力 0（候选武力）"},
+      {"offset": "+0x13", "size": 2, "semantic": "能力 1（候选智力）"},
+      {"offset": "+0x15", "size": 2, "semantic": "能力 2（候选统率）"},
+      {"offset": "+0x17", "size": 2, "semantic": "能力 3（候选敏捷）"},
+      {"offset": "+0x19", "size": 2, "semantic": "能力 4（候选运气）"},
+      {"offset": "+0x1B", "size": 2, "semantic": "候选体力/HP 上限"},
+      {"offset": "+0x1F", "size": 2, "semantic": "候选策略值/MP 上限"},
+      {"offset": "+0x21..+0x25", "size": 5, "semantic": "五项能力成长修正字节（>0x64 时减 0x64 后加成，受 0x505FA4 开关控制）"},
+      {"offset": "+0x2B", "size": 1, "semantic": "兵种 ID（第 29 轮已确认）"}
+    ],
+    "evidence": "0x43C4C0(6.6)/0x43C4D3(6.5)/0x43C4D3(6.4) 均为 movzx eax, word[ecx+idx*2+0x11]；随后 6.5 直接 call 0x414D81(0x32, eax)，6.6 call 0x43C5A4(idx) 后再 call 0x405B86(0x50, eax)；两版都继续 cmp byte[0x505FA4],0 并读 byte[ecx+idx+0x21] 与 0x64 比较。"
+  },
+  "helpers": [
+    {"address66": "0x47FA89", "address65": "0x47FA89", "address64": "0x47FA89", "semantic": "min(a+b, cap)：ecx=arg3(+=arg1)，eax=arg2 上限，返回较小者", "note": "三基底同址同体"},
+    {"address66": "0x405B86", "address65": "0x414D81", "address64": "0x414D81", "semantic": "百分比/条件加成：byte[0x505F38] 为 0 直接返回 arg2+0；否则读 word[this+0x35]，arg1==0x7F 时按 >=0x64 返回 0/1，否则 0x40C7C8(1,arg1)→0x425AD9 求百分比后加到 arg2。", "note": "函数体同构，仅地址搬移"},
+    {"address66": "0x436E02", "address65": "0x436DE1", "address64": "0x436DE1", "semantic": "能力 0..4 的额外加成（内部 0x42518F(0x3D,0x5C,2,0)，0 与 0xFF 结果归一为 0；再调 0x407D48(rec,idx)）", "note": "6.6 版本删除了 6.5 开头的 sub esp,8 与部分分支"},
+    {"address66": "0x407C29", "address65": "0x407C35", "address64": "0x407C35", "semantic": "装备加成：按 idx 选装备槽（0x4065F0），0x4837C2 取物品记录，0x40B3D7 计算基础值，0x40B4E1/0x40678E/0x44661A 处理强化与适性", "note": "6.6 用 0x4837C2（0x49F820 物品表），6.5 用 0x4A1140 系访问器"},
+    {"address66": "0x43C5A4", "address65": null, "address64": null, "semantic": "6.6 新增能力加成：0x42518F(0x81, idx+0x49, 1, 0) 结果非 0 时经 0x425AD9 折算百分比加到栈参数", "note": "6.6 独有；6.5 对应逻辑内联在 0x43C4D3 的成长修正分支"},
+    {"address66": "0x42518F", "address65": "0x42518F", "address64": "0x42518F", "semantic": "目标/位置评分包装：0x40B922(a,b,c,d)!=0 时走 0x4101D9(四方向评分)，否则 0x41301E(单目标评分)", "note": "第 51 轮已登记 0x4101D9/0x41301E，本轮补出包装函数"}
+  ],
+  "uiConsumption": {
+    "site": "0x45C97E",
+    "loop": "al 0..4",
+    "call": "SetDlgItemInt([0x4862E4], id=0x400+idx, value=table[idx](rec), 0)",
+    "meaning": "状态/人物对话框把五项能力显示到控件 0x400..0x404",
+    "evidence": "导入表 0x4862E4=USER32.dll!SetDlgItemInt；0x45C98B add eax,0x400 后压栈调用。"
+  },
+  "crossBaseNotes": [
+    "表体 8 项三基底完全相同；差异在处理器内部常量与辅助函数地址。",
+    "6.5/6.4 处理器 5/6 使用 0x414D81(0x19, value)；6.6 改用 0x405B86(0x32, value)。",
+    "6.5/6.4 处理器 7 先执行 0x42518F(0xC5,0,1,0) 随机/评分加成；6.6 删除。",
+    "6.6 新增 0x43C5A4，用于 0x43C4C0 的能力成长加成。"
+  ],
+  "conclusion": "0x430000（6.5/6.4 为 0x46902B）是人物能力显示值计算的 8 项跳转表：索引 0..4 计算五项能力（记录 +0x11/+0x13/+0x15/+0x17/+0x19 的 word + 装备加成 + 额外加成，封顶 9999），索引 5/6 计算 +0x1B/+0x1F 两项 word 资源上限（封顶 0xFFFF/0x270F），索引 7 计算兵种相关值（记录 +0x2B）。状态对话框以 SetDlgItemInt(0x400+idx) 消费前 5 项。",
+  "limitations": [
+    "五项能力的业务名称（武力/智力/统率/敏捷/运气）来自字段顺序与显示位置推断，未在文件名/字符串中直接找到命名表。",
+    "+0x1B/+0x1F 定为体力/策略值上限为候选，未追踪实际扣减点。",
+    "0x43C5A4 的 0x42518F(0x81, idx+0x49, 1, 0) 参数语义未完全定名。",
+    "0x47A0A8/0x47A0B6 使用索引 6/7 的具体界面位置未追踪。",
+    "未运行游戏对照。"
+  ]
+}

@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/file-formats/binary-formats.json`、`6.5/data/file-formats/data-manager-exchange-resources.json`、`6.5/data/file-formats/data-manager-formats.json`、`6.5/data/file-formats/local-review-20261028.json`
+结构化事实来源：`6.5/data/file-formats/binary-formats.json`、`6.5/data/file-formats/data-e5-block-directory.json`、`6.5/data/file-formats/data-manager-exchange-resources.json`、`6.5/data/file-formats/data-manager-formats.json`、`6.5/data/file-formats/local-review-20261028.json`、`6.5/data/file-formats/script-command-record.json`
 
 ## E5 索引资源封包
 
@@ -62,6 +62,27 @@ ID: `format.item.split-data-star`；状态: `canonical`；证据: `source-review
 - 6.5 和 6.6 17 字节兼容 Variant 名称区 0x11 字节、图标为 +0x14；6.6 标准/旧山贼候选 Variant 名称区 0x0F 字节、图标为 +0x0F，+0x10/+0x14 是 Preserve 原始字节。各 Variant 的图标字段统一名为图标、类型 UInt8、字段策略 Editable。
 - 图标值 N 从 0 开始，对应 E5/Item.e5 的小图 #2N+1 与大图 #2N+2；不能将逻辑图标号、1 起始 E5 图号和版本内字节偏移混用。
 - 6.6 15 字节记录 +0x11/+0x12 的类型/特效动态语义与原始类别标记有关，必须使用目标 Codec，不能按字段名固定偏移迁移。
+
+## DATA.E5 十分块目录与块 5 双子表
+
+ID: `format.65.data-e5-block-directory.3890`；状态: `candidate`；证据: `static-verified`
+
+字节序: `目录字段 big-endian；负载 little-endian`
+
+目录项字段：
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `stored_length` | `0x0` | 4 | `uint32be` | 封包中实际字节数 |
+| `decoded_length` | `0x4` | 4 | `uint32be` | 解码后字节数 |
+| `payload_offset` | `0x8` | 4 | `uint32be` | 相对文件开头的负载偏移 |
+
+- 容器总长 0xEFC3；块 9 末尾 0xEFA0+0x23 恰等于文件长度。
+- 块 1 由 0x4010B0 解出到 0x4A1140，长度 2600 = 104×0x19。
+- 块 5 前段为策略表（144×0x61，0xB204..0xE894），尾段为必杀表（97×16，0xE894..0xEEA4）。
+- 0xE894 不是独立块起点，而是块 5 内部拆分点；工具按文件绝对偏移写入仍然有效。
+- 块 5 由 0x41B834 载入并循环处理 144 条策略，再把 0x610 字节必杀段复制到 0x4A7510。
+- 0x511800 的 80×16 表是另一张运行时必杀分配表，与本文件的 97×16 必杀记录不是同一实体。
 
 ## 业务页 XLSX：隐藏基线、稳定数据集与三方冲突协议
 
@@ -505,3 +526,58 @@ ID: `format.shared.e5s-save-role`；状态: `candidate`；证据: `source-review
 - 人物R/S图像来自Pmapobj/Unit系列等资源；EXE人物指定、存档首段指定与图片载荷分别建模。
 
 写入策略：不据后缀推断可写结构。EEX短写回锁原容量；重建需维护场景/段落/子块长度和76跳转并复读。E5S完整格式和同步必须通过目标消费者、分段长度、尾部校验和原始SHA验证。
+
+## 剧本指令记录格式（opcode + 13 参数槽）
+
+ID: `format.65.script-command-record.3890`；状态: `candidate`；证据: `static-verified`
+
+字节序: `-`
+
+索引公式: `按指令号顺序排列，遇 0x00 结束当前段落；条件/跳转类指令改变执行位置。`
+
+- 指
+- 令
+- 号
+- 为
+-
+- 0
+- x
+- 7
+- 2
+-
+- 时
+- ，
+- P
+- 1
+-
+- 位
+- 置
+- 再
+- 携
+- 带
+- 子
+- 指
+- 令
+- 号
+- （
+- 0
+- .
+- .
+- 3
+- 3
+- ）
+- ，
+- 用
+- 于
+- 区
+- 分
+- 信
+- 息
+- 传
+- 送
+- 的
+- 具
+- 体
+- 方
+- 式
+- 。

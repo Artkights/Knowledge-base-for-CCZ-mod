@@ -566,7 +566,6 @@ ID: `patch.66.equip-ability-row`；类型: `instruction-replacement`；画像: `
 
 执行流：5 字节整条 call 替换为 5 字节 call，不改指令边界；原目标 0x00461FC8 是 ret 0x10 形态（0x00462048 现读 `C2 10 00 90`），helper 必须保持同一契约。
 
-
 ## 原生 Z 加速函数定位器
 
 ID: `locator.66.xiaoan.native-super`；类型: `semantic-locator`；画像: `profile.ccz66.xiaoan.fixture.25d`；状态: `canonical`；证据: `source-reviewed`
@@ -636,7 +635,6 @@ ID: `patch.66.xiaoan.dialog`；类型: `entry-short-circuit`；画像: `profile.
 
 执行流：RET 0x000C 在入口立即返回；第 4 字节只是不可达填充，不能作为完整指令执行。
 
-
 ## 地图文字函数立即返回
 
 ID: `patch.66.xiaoan.map-text`；类型: `entry-short-circuit`；画像: `profile.ccz66.xiaoan.fixture.25d`；状态: `canonical`；证据: `sample-verified`
@@ -646,7 +644,6 @@ ID: `patch.66.xiaoan.map-text`；类型: `entry-short-circuit`；画像: `profil
 | `0x004332A6` (va) | `55 8B EC 6A` | `C2 10 00 6A` | function-entry-prefix | 4 | False |
 
 执行流：RET 0x0010 在入口立即返回；第 4 字节只是不可达填充。
-
 
 ## 通用延迟函数立即返回
 
@@ -658,7 +655,6 @@ ID: `patch.66.xiaoan.delay`；类型: `entry-short-circuit`；画像: `profile.c
 
 执行流：以 RET 0x0004 替换完整三字节函数序言，立即返回并弹出一个参数。
 
-
 ## R 流程等待 CALL 空操作化
 
 ID: `patch.66.xiaoan.r-wait`；类型: `instruction-replacement`；画像: `profile.ccz66.xiaoan.fixture.25d`；状态: `canonical`；证据: `sample-verified`
@@ -669,7 +665,6 @@ ID: `patch.66.xiaoan.r-wait`；类型: `instruction-replacement`；画像: `prof
 
 执行流：删除到公共等待包装器 0x0042C4E5 的 CALL；原 CALL 下一地址为 0x00429969。
 
-
 ## 公共等待中的 nativeStage CALL 重定向
 
 ID: `patch.66.xiaoan.wait-call`；类型: `call-retarget`；画像: `profile.ccz66.xiaoan.fixture.25d`；状态: `canonical`；证据: `sample-verified`
@@ -679,7 +674,6 @@ ID: `patch.66.xiaoan.wait-call`；类型: `call-retarget`；画像: `profile.ccz
 | `0x0042C4E8` (va) | `E8 F3 8B 04 00` | `E8 ?? ?? ?? ??` | whole-instruction-rel32 | 5 | True |
 
 执行流：超级 S 时 CALL 到 SuperYieldBridge；阶段加速时 CALL 到 LegacyPhaseBridge；两者互斥。
-
 
 ABI: 被调函数为 __cdecl、无显式参数、EAX 返回 int；CALL 后继续执行 0x0042C4ED。
 
@@ -699,7 +693,6 @@ ID: `patch.66.xiaoan.input-modifier`；类型: `operand-patch`；画像: `profil
 
 执行流：修改 CMP EAX, imm8 的立即数；完整上下文从 0x00413322 起为 83 F8 <key> 75 0F。
 
-
 ## 第三类对白函数立即返回
 
 ID: `patch.66.xiaoan.dialog3`；类型: `entry-short-circuit`；画像: `profile.ccz66.xiaoan.fixture.25d`；状态: `canonical`；证据: `sample-verified`
@@ -709,7 +702,6 @@ ID: `patch.66.xiaoan.dialog3`；类型: `entry-short-circuit`；画像: `profile
 | `0x0042DB2C` (va) | `55 8B EC 6A` | `C2 04 00 6A` | function-entry-prefix | 4 | False |
 
 执行流：RET 0x0004 在入口立即返回；第 4 字节只是不可达填充。
-
 
 ## 额外延迟分支跳过
 
@@ -721,7 +713,6 @@ ID: `patch.66.xiaoan.extra-delay`；类型: `instruction-replacement`；画像: 
 
 执行流：把 SHL EAX,1 改为 JMP short +6，跳过后续延迟调用准备。
 
-
 ## 原生超级加速等待分支
 
 ID: `patch.66.xiaoan.wait-branch`；类型: `instruction-replacement`；画像: `profile.ccz66.xiaoan.fixture.25d`；状态: `canonical`；证据: `sample-verified`
@@ -731,7 +722,6 @@ ID: `patch.66.xiaoan.wait-branch`；类型: `instruction-replacement`；画像: 
 | `0x0042C4EF` (va) | `75 07` | `EB 07` | whole-instruction | 2 | True |
 
 执行流：原生 Z 超级加速把 JNZ +7 改为 JMP +7；小暗接管前会识别并还原这一原生状态。
-
 
 ## 对白显示延迟调用跳过
 
@@ -743,7 +733,6 @@ ID: `patch.66.xiaoan.dialog-display`；类型: `control-transfer-prefix`；画�
 
 执行流：用 JMP short +0x1D 覆盖 CALL 的前两字节；跳转使剩余三个 rel32 字节不可达。
 
-
 ## 扩展显示延迟调用跳过
 
 ID: `patch.66.xiaoan.extended-display`；类型: `control-transfer-prefix`；画像: `profile.ccz66.xiaoan.fixture.25d`；状态: `canonical`；证据: `sample-verified`
@@ -754,7 +743,6 @@ ID: `patch.66.xiaoan.extended-display`；类型: `control-transfer-prefix`；画
 
 执行流：用 JMP short -11 覆盖 CALL 的前两字节；跳转使剩余三个 rel32 字节不可达。
 
-
 ## 原生 Z 切换函数入口重定向
 
 ID: `patch.66.xiaoan.native-super`；类型: `entry-jump`；画像: `profile.ccz66.xiaoan.fixture.25d`；状态: `canonical`；证据: `sample-verified`
@@ -764,7 +752,6 @@ ID: `patch.66.xiaoan.native-super`；类型: `entry-jump`；画像: `profile.ccz
 | `0x004250E6` (va) | `55 8B EC B9 DB` | `E9 ?? ?? ?? ??` | function-entry-terminal-transfer | 5 | False |
 
 执行流：JMP rel32 到 NativeToggleBridge；原序言和 MOV ECX,imm32 的首两字节被覆盖，原函数不再顺序执行。
-
 
 ABI: NativeToggleBridge 为 __cdecl、无参数、void；保留原调用者的栈布局。
 

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.ai-dispatch-handler-cross-base.3ef7",
+      "title": "策略 AI 分派表与处理体的三基底一致性",
+      "aliases": ["AI dispatch", "AI handler cross-base", "0x43A140"],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x43A140 的 16 项跳转表三基底完全一致；处理体仅部分一致：6.4/6.5 有 10/12 相同（分支6/11不同），6.6 仅 3/12 相同（分支3/10/13相同）。",
+      "jumpTable": "0x43A140，16 项，三基底相同",
+      "handlerHashes64": {
+        "6.4": ["3CA960", "E27CF4", "E6950A", "3EFEAC", "ACC2D7", "FE31CA", "80F63D", "EE5987", "DA3AC7", "3C97E9", "C12506", "E48896"],
+        "6.5": ["3CA960", "E27CF4", "E6950A", "3EFEAC", "59556D", "FE31CA", "80F63D", "9D5DC8", "DA3AC7", "3C97E9", "C12506", "E48896"],
+        "6.6": ["613A24", "1DECD5", "E6950A", "A778E7", "70CDE0", "0B802A", "80F63D", "E9076F", "8C7A8A", "3C97E9", "2BB9DE", "7D6C64"]
+      },
+      "comparison": {
+        "64_65": "10/12 相同；分支6（0x439A70）与分支11（0x4399AF）不同",
+        "65_66": "仅分支3（0x439A26）、分支10（0x439AA6）、分支13（0x439C8A）相同"
+      },
+      "limitations": [
+        "只比较前 64 字节。",
+        "6.6 处理体常量未逐项对齐。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.strategy-ai-dispatch.3ef7",
+        "mechanism.65.ai-branch-2-13-14-15.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-ai-cross-base-audit-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

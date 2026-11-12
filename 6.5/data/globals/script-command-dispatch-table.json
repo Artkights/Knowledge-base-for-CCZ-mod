@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.script-command-dispatch-table.3890",
+      "title": "剧本指令分派表（126 项函数指针）",
+      "aliases": [
+        "0x00410A38",
+        "script_command_dispatch_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00410A38",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 504,
+      "semantics": "126 个 DWORD 函数指针，索引 = opcode − 2，覆盖 opcode 0x02–0x7F。opcode 0x00/0x01 由分派器内联特殊处理，不查表；opcode ≥0x7A 的表项为 0x004D0000（空实现/哨兵）。6.4/6.5/6.6 表头前 8 项字节一致；6.6 分派器上界改为 0x7B。完整映射见案例 case.65.script-command-implementation 与《剧本指令全解.md》附录 A。",
+      "relations": [
+        "fn.65.script-command-dispatch.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

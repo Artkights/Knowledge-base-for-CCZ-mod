@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.battle-script-action-family.3ef7",
+      "title": "剧本战斗指令族与行动权重置",
+      "aliases": [
+        "0x51 战场恢复行动权",
+        "回合测试",
+        "行动方测试",
+        "天气设定",
+        "回合上限设定"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "剧本战斗指令族 0x3F/0x40/0x51/0x56/0x57/0x5D 的处理器与常量已定位。0x51 循环最多 250 个战场对象，过滤 byte[obj+0xC]==2，清除 obj+0xD 的 6 位与 obj+0x1E 的指定位，并把 obj+0x10 写为 min(取值, 原值)；随后调用 0x453AC3(0x4B4250) 与 0x44A88A(0x4B3D08)。",
+      "handlers": {
+        "0x3F": "0x411664 回合测试",
+        "0x40": "0x4116BC 行动方测试；getter 0x41C330",
+        "0x51": "0x41626A 战场恢复行动权",
+        "0x56": "0x41264B 天气类别设定",
+        "0x57": "0x414AB0 当前天气设定",
+        "0x5D": "0x41709C 回合上限设定"
+      },
+      "actionReset": {
+        "va": "0x41626A",
+        "loopLimit": "0xFA (250)",
+        "filter": "byte[obj+0xC] == 2",
+        "clear": ["byte[obj+0xD] &= ~6", "byte[obj+0x1E] 按 0x1E 掩码清位"],
+        "write": "dword[obj+0x10] = min(0x407263(obj), 原值)",
+        "postCalls": ["0x453AC3(0x4B4250)", "0x44A88A(0x4B3D08)"]
+      },
+      "versionDifferences": {
+        "0x51": "6.4/6.5/6.6 实现不同，但 250 循环与过滤值 2 一致",
+        "0x56/0x57": "三基底字节一致",
+        "0x3F": "6.4 与 6.5/6.6 不同",
+        "0x5D": "6.4/6.5 同码，6.6 不同"
+      },
+      "limitations": [
+        "obj+0xC/+0xD/+0x10/+0x1E 未最终命名。",
+        "0x45F670/0x407263/0x43F6DB 属性语义未展开。",
+        "0x453AC3/0x44A88A 刷新语义未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.turn-action-weather-state.3ef7",
+        "mechanism.65.engine-capacity-and-sentinels.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-battle-script-actions-20261112",
+        "src.research.engine-turn-weather-state-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

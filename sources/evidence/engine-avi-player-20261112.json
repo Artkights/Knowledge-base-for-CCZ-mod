@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "analysis": "avi-player",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 6.5 的 0x41EF96（WH_GETMESSAGE 钩子）、0x41F032（MCI_OPEN）、0x41F11D（MCI_WINDOW/MCI_STATUS）、0x42F76D（MCI_CLOSE）、0x4090EE 邻域；strings_at.py 读取 0x48B6E0..0x48B760 的 AVI 文件名与错误文案；refs_to.py 确认 mciSendCommandA(0x4863CC) 站点；hash_regions.py 对照三基底；pefile 导入表确认 SetWindowsHookExA(0x486288)/MessageBoxA(0x4862C4)。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "strings": {
+    "videos": ["LOGO.AVI（0x48B6E8）", "OPEN.AVI（0x48B6F1）", "END.AVI（0x48B6FA）", "PRESS.AVI（0x48B702）"],
+    "deviceType": "avivideo（0x48B714）",
+    "messages": ["设置成功。（0x48B71D）", "执行错误（0x48B727）", "开启动画文件失败。（0x48B734）", "不能播放动画文件%s。（0x48B746）", "打开文件%s时出错。（0x48B75A）", "%sOpenErr（0x48B76C）"]
+  },
+  "module": {
+    "mci": "mciSendCommandA（0x4863CC）",
+    "globals": [
+      {"addr": "0x497AE0", "type": "word", "role": "MCI 设备 ID"},
+      {"addr": "0x497A9C", "type": "dword", "role": "AVI 播放窗口句柄"},
+      {"addr": "0x497A98", "type": "dword", "role": "WH_GETMESSAGE 钩子句柄"},
+      {"addr": "0x497A90", "type": "对象", "role": "+0 状态、+4 播放中标志、+0xC 目标窗口"},
+      {"addr": "0x497AA0", "type": "对象", "role": "0x41EF6C 初始化（0x41F8E0）"}
+    ],
+    "commands": [
+      {"entry": "0x41F032", "api": "mciSendCommand", "msg": "0x803（MCI_OPEN）", "flags": "0x2000（MCI_OPEN_TYPE）", "element": "avivideo", "returns": "失败取反+1（成功=1）", "hash": "c82a79bbc37e7a62（三基底同）"},
+      {"entry": "0x41F08D", "api": "mciSendCommand", "msg": "0x806（MCI_PLAY）", "flags": "1（MCI_NOTIFY）"},
+      {"entry": "0x41F0A1", "api": "mciSendCommand", "msg": "0x806（MCI_PLAY）", "note": "播放并返回 1"},
+      {"entry": "0x41F11D", "api": "mciSendCommand", "msg": "0x841（MCI_WINDOW）", "flags": "0x40000（MCI_ANIM_WINDOW_STATE）", "state": 5, "note": "设置 AVI 窗口状态；随后 MCI_STATUS 0x814 flags 0x100 item 0x4001，取 [ebp-0x28] 写 0x497A9C"},
+      {"entry": "0x42F76D", "api": "mciSendCommand", "msg": "0x804（MCI_CLOSE）", "hash": "6.5=6.6 c967719066feca72；6.4 2c14a7fa0a9fd425"}
+    ],
+    "hook": {
+      "install": "0x41F1DF SetWindowsHookExA(3=WH_GETMESSAGE, proc=0x41EF96, hInstance=0x4B6A60, dwThreadId=0)",
+      "proc": "0x41EF96：nCode>=0 时取 MSG（[ebp+0x10]），若 MSG.message==0x201（WM_LBUTTONDOWN）且窗口匹配 [0x497A90+0xC]，置 [0x497A90]=1（点击跳过动画）；否则当 [0x497A90+4]==0 时发 MCI_PLAY(0x806, flags 1) 并 CallNextHookEx(0x486290)"
+    },
+    "window": "0x41F11D 之后：InvalidateRect/UpdateWindow、SetActiveWindow(0x4B6A68)、SetWindowsHookExA；0x41F196 调 0x41F703(hwnd, ecx) 绑定窗口",
+    "error": "0x41F1F1 MessageBoxA(hwnd, 0x48B734「开启动画文件失败。」, 0x48C8D8「三国志曹操传」, 0x30=MB_ICONWARNING)"
+  },
+  "callSites": {
+    "mciSendCommandA65": ["0x41EFE7", "0x41F057", "0x41F08D", "0x41F0A1", "0x41F11D", "0x41F16A", "0x41F188", "0x41F5F6", "0x41F737", "0x41F7C5", "0x41F81A", "0x41F8C1", "0x42F76D", "0x42F77F", "0x42F7C3", "0x42F7E1", "0x42F820", "0x42F840", "0x42F862"],
+    "sixSixDelta": "0x41EF96 钩子哈希变为 49609a2bd0a34d5e；MCI_OPEN/0x41F11D 与 6.5 同哈希"
+  },
+  "conclusion": "AVI 动画由 avivideo MCI 设备播放：0x41F032 MCI_OPEN(0x803, MCI_OPEN_TYPE=0x2000, \"avivideo\")，0x41F08D/0x41F0A1 MCI_PLAY(0x806, MCI_NOTIFY=1)，0x41F11D MCI_WINDOW(0x841, MCI_ANIM_WINDOW_STATE=0x40000)+MCI_STATUS(0x814, MCI_STATUS_ITEM=0x100, item 0x4001)，0x42F76D MCI_CLOSE(0x804)。设备 ID 存 0x497AE0，窗口 0x497A9C，钩子 0x497A98；WH_GETMESSAGE(3) 钩子 0x41EF96 在 WM_LBUTTONDOWN(0x201) 时置跳过标志。片名常量 LOGO.AVI/OPEN.AVI/END.AVI/PRESS.AVI，错误文案在 0x48B71D..0x48B76C。",
+  "limitations": [
+    "0x41F5F6/0x41F737/0x41F7C5/0x41F81A/0x41F8C1 与 0x42F7xx 各组的具体 MCI 消息未逐条展开。",
+    "0x41F703 的窗口绑定细节未展开。",
+    "MCI_WINDOW 的 state=5 语义未由文档确认。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.payment-chain.3ef7",
+      "title": "统一支付链与练武菜单价格",
+      "aliases": [
+        "支付",
+        "资金不足",
+        "支付确认",
+        "练武",
+        "0x4237F9",
+        "0x423820",
+        "0x43BFD4",
+        "0x423842"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x4237F9 计算价格：mode 0 取 byte[unit+0x17]*2*10，mode 1 取 byte[unit+0x2C]*10；0x423820 比较 0x4B077C 并在不足时提示 0x500CA7；0x43BFD4 显示 0x500C9C『支付%d金？』，确认后扣款并写 0x4AC63C=3。0x474E0E 的 普通模式/单挑模式/自动提升 菜单由 0x423842 处理。",
+      "global": "0x4B077C",
+      "constants": [
+        "0x500C9C",
+        "0x500CA7",
+        "0x500CB1",
+        "0x500C7E",
+        "0x510CF8",
+        "0x4AC63C",
+        "0x3E8"
+      ],
+      "identity": "0x4237F9 在 6.4/6.5/6.6 同址同哈希 7912EE5F9ECAABF8；0x4065D0 与 0x40D8A9 三基底一致；6.6 支付函数重定位到 0x43BFD2，槽位消耗函数重定位到 0x42128A。",
+      "limitations": [
+        "0x423842 的 edx 经第82轮追踪为 0x42DE7D→0x473613→0x401692→0x47D1F1 链末寄存器残留，不是显式参数（静态无法确定稳定值，需运行期观测 0x47D1F1 的 edx 出口）。",
+        "unit+0x84 槽位语义仅为结构证据。",
+        "0x47467A 等 UI 函数未逐项展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.money-global.3ef7",
+        "mechanism.65.item-price-consumption-boundary.3ef7",
+        "mechanism.65.shop-runtime-and-item-usability.3ef7",
+        "mechanism.65.viewport-size-cache.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-payment-chain-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "payEntry": "0x4237F9",
+        "moneyCheck": "0x423820",
+        "payDialog": "0x43BFD4（6.6: 0x43BFD2）",
+        "trainingMenu": "0x474E0E",
+        "trainingHandler": "0x423842",
+        "consumeSlot": "0x421278（6.6: 0x42128A）",
+        "priceByte": "0x4065D0",
+        "trainingGate": "0x40D8A9",
+        "edxChain": "0x42DE7D→0x473613→0x401692→0x47D1F1"
+      }
+    }
+  ]
+}

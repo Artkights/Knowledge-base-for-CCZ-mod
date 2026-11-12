@@ -1,0 +1,55 @@
+{
+  "id": "src.research.engine-unit-alloc-records-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "0x508000 单位五维分配记录（0x66 槽×10 字节）与 0x505F40 全局点数池回退链",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 + 立即数引用全量枚举（仅 2 处）+ 跨结构比对（0x4FFF68/0x505F40）",
+  "findings": [
+    {
+      "id": "layout",
+      "claim": "0x508000 是单位五维分配记录数组：槽位 0..0x65（102 个），每槽 0x0A 字节 = 5 个 word；槽 i 记录地址 = 0x508000 + i*0x0A。0x42ACD2(slot,mode) 为取记录指针函数：slot>=0x66 返回 0xFF；mode!=1 且 byte[unit+0x2A]==0xFF 时也返回 0xFF；否则返回记录指针。",
+      "evidence": [
+        "0x42ACD5 cmp ax,0x66; 0x42ACD9 jae 0x42ACF8（返回 0xFF）",
+        "0x42ACE2 call 0x4061E4（slot→unit）；0x42ACE7 cmp byte[ecx+0x2A],0xFF; 0x42ACEB je 0x42ACF8",
+        "0x42ACED imul edx,eax,0xA; 0x42ACF0 add edx,0x508000"
+      ]
+    },
+    {
+      "id": "refund",
+      "claim": "0x408FA0 是回退/重置链：当 byte[0x505F3C]!=0 时，对每个单位槽 i<0x66 取单位，读 byte[unit+0x02] 作为 5 位掩码；对 k=0..4，若第 k 位为 0 则把记录 word[+2k] 清零并把旧值累加进 dword[0x505F40]（全局点数池）。",
+      "evidence": [
+        "0x408FA5 cmp byte[0x505F3C],0; 0x408FAB je 退出",
+        "0x408FBA cmp al,0x66; 0x408FBC jae 0x408FFB",
+        "0x408FBF call 0x4061E4; 0x408FC4 movzx edx,byte[ecx+2]; 0x408FC8 imul eax,eax,0xA; 0x408FCB add eax,0x508000",
+        "0x408FDB cmp cl,5; 0x408FE0 test dl,1; 0x408FE5..0x408FEA xor ebx,ebx; xchg word[eax+ecx*2],bx; 0x408FEE add [ebp-0x10],ebx",
+        "0x408FFE add dword[0x505F40],eax"
+      ]
+    },
+    {
+      "id": "relation-332",
+      "claim": "0x508000 与 332 工作区 0x4FFF68 同为五维 word×5：0x508000 是单位持久记录（按槽位 0x0A 步长），0x4FFF68 是 332 对话框临时工作区（+0x00..0x09 经验、+0x0A..0x13 阈值）；0x505F40 是全局点数池，0x408FA0 的掩码清零会把旧值退回该池。",
+      "evidence": [
+        "0x508000 每槽 0x0A=5×word；0x4FFF68 +0x00..+0x09 亦为 5×word（第131轮）",
+        "0x408FFE add [0x505F40],eax（回退进全局池）",
+        "0x4FFF68+0x14 为对话框剩余点数池（第131轮），与 0x505F40 分属两池"
+      ]
+    }
+  ],
+  "corrections": [
+    "0x508000 五项语义确定为『单位五维已分配值（word×5）』，并按 byte[unit+2] 位掩码回退到 0x505F40 全局池。",
+    "0x505F40 与 0x4FFF68+0x14 的静态同步点仍未找到：前者由 0x408FA0 退回，后者由 332 对话框维护。"
+  ],
+  "limitations": [
+    "byte[unit+0x02] 的 5 位掩码业务命名未定（推测为已确认/已分配属性位）。",
+    "byte[unit+0x2A]==0xFF 的判定语义未展开。",
+    "0x508000 记录的写入方（加点确认路径）未定位。",
+    "未运行游戏对照。"
+  ]
+}

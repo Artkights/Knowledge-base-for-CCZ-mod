@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.settings-dialog-kankyou.3ef7",
+      "title": "环境设定对话框 KANKYOU：控件清单与设置块 +0x00/+0x01/+0x02/+0x03 写入",
+      "aliases": [
+        "KANKYOU",
+        "环境设定",
+        "settings dialog",
+        "0x41BAD7",
+        "0x41B90F",
+        "0x411"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "环境设定是命名 RT_DIALOG「KANKYOU」：DIALOGEX 220×195、标题「环境设定」、宋体 9pt、25 控件；由 0x44F8EB 以 DialogBoxParamA(模板名 0x48B600=\"KANKYOU\", 父窗 0x4B6A68, 过程 0x41BAD7) 打开。控件：1 确定、2 取消、0x406 听背景音乐、0x407 听音效、0x408 战斗时窗口自动最大化、0x409 战斗时自动显示战场缩小图、0x40A 会话窗口不自动关闭、0x40B/0x40C/0x40D 讯息显示速度 快/普通/慢、0x40E/0x40F/0x410 武将移动速度 快/普通/慢、0x411 msctls_trackbar32 音量滑条、0x412 与静态「音量」、0x5D0 花色下拉框（候选串格式 0x486444=\"花色%d\"）、0x5D1 加速下拉框（0x48644B=\"加速%d\"）、0x4D3 19 段状态条。OK 处理 0x41B90F 写设置块：+0x00 = 0x406..0x40A 五复选框位掩码（bit0 背景音乐、bit1 音效、bit2 窗口最大化、bit3 战场缩小图、bit4 会话窗口不自动关闭）；+0x01 = 讯息显示速度索引（0/1/2）；+0x02 = 武将移动速度索引（0/1/2）。音量由 WM_HSCROLL(0x114) → 0x42E218 读 0x411 的 TBM_GETPOS 写 +0x03 并经 0x42F7FC 应用。过程 0x41BAD7：id=1 保存并确定、id=2 关闭、id=0x5D0 通知码 9 触发 owner-draw 动画、id=0x4D3 预览、WM_INITDIALOG→0x41BD7F。初始化回填（第139轮）：i=0..4 取 +0x00 第 i 位写控件 0x406+i；两组 s=0..1 取 byte[0x4B0770+1+s]（+0x01/+0x02）作为选中索引写 0x40B+s*3+i；0x4D3 收到 0x13 次消息 0x180；0x5D0/0x5D1 先发 0x14B。与 OK 写入链完全对称，三项界面设置映射闭合。",
+      "constants": [
+        "0x48B600",
+        "0x44F8EB",
+        "0x41BAD7",
+        "0x41B90F",
+        "0x41BD7F",
+        "0x42E218",
+        "0x42F7FC",
+        "0x41B8ED",
+        "0x41B8AF",
+        "0x4B0770",
+        "0x4B6A68",
+        "0x4B6A60",
+        "0x501BFB",
+        "0x406",
+        "0x407",
+        "0x408",
+        "0x409",
+        "0x40A",
+        "0x40B",
+        "0x40C",
+        "0x40D",
+        "0x40E",
+        "0x40F",
+        "0x410",
+        "0x411",
+        "0x412",
+        "0x5D0",
+        "0x5D1",
+        "0x4D3",
+        "0x114",
+        "0x111",
+        "0x110",
+        "0x30F",
+        "0x311",
+        "0x400",
+        "0x147",
+        "0x64",
+        "0x0A",
+        "0x180",
+        "0x14B",
+        "0x13"
+      ],
+      "identity": "KANKYOU 资源标题「环境设定」与 5 个复选框 + 两组三选一单选的语义一致；0x41B90F 的 0x406+i 与 0x40B+s*3+i 索引方式与控件 ID 一一对应；0x41BAF6 的 WM_HSCROLL→0x42E218 与 trackbar 0x411 的 TBM_GETPOS 链闭合。",
+      "siteAddresses": {
+        "dialogResourceName": "KANKYOU",
+        "templateNamePtr": "0x48B600",
+        "dialogOpener": "0x44F8EB",
+        "dialogProc": "0x41BAD7",
+        "okHandler": "0x41B90F",
+        "initHandler": "0x41BD7F",
+        "checkboxReader": "0x41B8ED",
+        "radioReader": "0x41B8AF",
+        "volumeHandler": "0x42E218",
+        "volumeApply": "0x42F7FC",
+        "settingsBase": "0x4B0770",
+        "checkboxes": "0x406..0x40A",
+        "messageSpeedGroup": "0x40B..0x40D",
+        "moveSpeedGroup": "0x40E..0x410",
+        "volumeSlider": "0x411",
+        "volumeLabel": "0x412",
+        "accelerateButton": "0x5D1",
+        "colorButton": "0x5D0",
+        "previewPanel": "0x4D3 (ListBox, class ord 131=0x83)"
+      },
+      "limitations": [
+        "脚本变量 getter 0x40E1D0/0x415E19/0x408808（+0x0C/+0x06/+0x12）与三项界面设置的对应关系未建立。",
+        "0x486452 默认串内容未逐字节解读。",
+        "花色/加速各 5 档的业务含义与 +0x05 等设置字段的对应未建立。",
+        "未运行游戏对照。",
+        "0x4D3 已更正为 ListBox 列表框（class ord131），其 19 条目的具体文本未逐一还原。"
+      ],
+      "relations": [
+        "mechanism.65.settings-block-fields.3ef7",
+        "mechanism.65.avi-player.3ef7",
+        "mechanism.65.dialog-framework.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-settings-dialog-kankyou-20261112",
+        "src.research.engine-kankyou-init-20261112",
+        "src.research.engine-kankyou-combos-20261112",
+        "src.research.engine-kankyou-combo-strings-20261112",
+        "src.research.engine-listbox-class-20261112"
+      ]
+    }
+  ]
+}

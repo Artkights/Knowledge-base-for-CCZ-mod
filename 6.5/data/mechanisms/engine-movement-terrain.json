@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.movement-terrain-and-map-bounds.3ef7",
+      "title": "移动消耗、地形适应与地图边界",
+      "aliases": [
+        "job-series-move-cost",
+        "job-series-terrain",
+        "移动消耗",
+        "地形适应",
+        "地图宽高"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "Data.e5 块 4（0xA8A4，0x960）解码为 40 兵种系×60 字节的运行时表（基址 0x4A3517，步长 0x3C）。每行前 30 字节为地形适应（0x41F62A），后 30 字节为移动消耗（0x4060C4），0xFF 不可通行。0x4065AD 取移动消耗；0x46CC12 在可通行时返回适应值；0x459380 做通行判定。地图边界由 0x4B422C/0x4B422D 的宽高字节控制。",
+      "tableLayout": {
+        "sourceBlock": {"index": 4, "fileOffset": "0xA8A4", "length": "0x960", "rows": 40, "rowSize": 60},
+        "runtime": {"base": "0x4A3517", "rowStride": "0x3C", "rows": 40},
+        "accessor": "0x41B7D4 = family*0x3C + 0x4A3517",
+        "halves": {
+          "adaptation": {"offset": 0, "width": 30, "reader": "0x41F62A"},
+          "movementCost": {"offset": "0x1E", "width": 30, "reader": "0x4060C4"}
+        }
+      },
+      "accessors": {
+        "0x4065AD": "移动消耗 getter：row=0x41B7D4(job); return byte[row+0x1E+terrain]",
+        "0x46CC12": "cost=0x4060C4(row,terrain); cost!=0xFF 时返回 0x41F62A(row,terrain)，否则 0",
+        "0x459380": "通行判定：0x43B4A7→0x435991→0x41B7D4→0x4060C4；0xFF 时再用 0x403A6F",
+        "0x43F809": "AI 地形适应读取：0x41B7D4→0x41F62A"
+      },
+      "mapBounds": {
+        "function": "0x435991",
+        "widthGlobal": "0x4B422C",
+        "heightGlobal": "0x4B422D",
+        "outOfBounds": "0xFF",
+        "terrainLookup": "0x412557"
+      },
+      "constants": [
+        {"value": 30, "role": "地形类型数"},
+        {"value": 40, "role": "兵种系行数"},
+        {"value": "0x3C", "role": "行步长"},
+        {"value": "0x1E", "role": "移动消耗半区偏移"},
+        {"value": 255, "role": "不可通行哨兵"}
+      ],
+      "valueScales": {
+        "6.4": {"adaptation": "5..13", "cost": "1..3（另见 12/254）"},
+        "6.5": {"adaptation": "80..120", "cost": "1..3"},
+        "6.6": {"adaptation": "50..120", "cost": "1..6"}
+      },
+      "data65": {
+        "adaptationDistribution": {"80": 48, "85": 7, "90": 68, "95": 32, "100": 700, "105": 43, "110": 175, "115": 8, "120": 119},
+        "costDistribution": {"1": 469, "2": 222, "3": 32, "255": 477}
+      },
+      "limitations": [
+        "0x4B422C/0x4B422D 的宽高语义由比较路径确认，写入点未追踪。",
+        "6.4 适应值 5..13 的百分比换算未确认。",
+        "0x403A6F/0x43F96F 判定语义未命名。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "struct.65.job-family-terrain-record",
+        "mechanism.65.engine-general-constant-census.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-movement-terrain-20261112",
+        "src.ccz65.3890.ekd5",
+        "src.data-manager.profile65"
+      ]
+    }
+  ]
+}

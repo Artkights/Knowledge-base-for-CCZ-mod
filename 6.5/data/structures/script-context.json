@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "entityType": "data-structure",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "struct.65.script-context.3890",
+      "title": "剧本执行上下文结构（0x492F90）",
+      "aliases": [
+        "0x00492F90",
+        "script_context"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "stride": 56,
+      "indexFormula": "全局单例，主循环以 0x492F90 为 ECX 传入",
+      "fields": [
+        {
+          "offset": "+0x00",
+          "width": 4,
+          "name": "state0",
+          "meaning": "初始化置 -1；重置路径置 1",
+          "type": "uint32"
+        },
+        {
+          "offset": "+0x04",
+          "width": 4,
+          "name": "state1",
+          "meaning": "初始化置 -1；重置路径置 -1",
+          "type": "uint32"
+        },
+        {
+          "offset": "+0x08",
+          "width": 1,
+          "name": "flag8",
+          "meaning": "初始化置 0；重置路径置 0x44",
+          "type": "uint8"
+        },
+        {
+          "offset": "+0x0C",
+          "width": 4,
+          "name": "offset",
+          "meaning": "当前流偏移；0x41085D 用其加 token 算跳转",
+          "type": "uint32"
+        },
+        {
+          "offset": "+0x10",
+          "width": 4,
+          "name": "sentinel",
+          "meaning": "0xFFFF 哨兵，单帧入口检查",
+          "type": "uint32"
+        },
+        {
+          "offset": "+0x14",
+          "width": 4,
+          "name": "jumpPending",
+          "meaning": "<0 时表示需要读取跳转 token",
+          "type": "uint32"
+        },
+        {
+          "offset": "+0x20",
+          "width": 4,
+          "name": "frameBase",
+          "meaning": "帧基准偏移（初值 0xFFFF）",
+          "type": "uint32"
+        },
+        {
+          "offset": "+0x24",
+          "width": 4,
+          "name": "count",
+          "meaning": "本次要执行的项数（0x40FCB2 读入）",
+          "type": "uint32"
+        },
+        {
+          "offset": "+0x28",
+          "width": 4,
+          "name": "status28",
+          "meaning": "0x410950 返回的状态标志",
+          "type": "uint32"
+        },
+        {
+          "offset": "+0x2C",
+          "width": 4,
+          "name": "flag2C",
+          "meaning": "0x410970 返回；0x41085D 在 b==0 时置 1",
+          "type": "uint32"
+        },
+        {
+          "offset": "+0x34",
+          "width": 4,
+          "name": "cond34",
+          "meaning": "0x40FBA5 跳过 token 时的判断条件",
+          "type": "uint32"
+        }
+      ],
+      "semantics": "访问器：0x410950→ctx+0x28，0x410970→ctx+0x2C，0x410999→ctx+0x24。初始化 0x410958 置 -1/0xFFFF；重置 0x410978 置 0、0x44、0xFFFF。",
+      "relations": [
+        "fn.65.script-interpret-frame.3890",
+        "mechanism.65.script-main-loop.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

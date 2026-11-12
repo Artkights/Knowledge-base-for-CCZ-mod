@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "mechanism.65.script-command-dispatch.3890",
+      "title": "剧本指令执行链（取 token → 查表 → 处理函数 → 取参）",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.script-token-reader.3890",
+          "role": "0x40FCB2 读 16 位 token"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.script-command-dispatch.3890",
+          "role": "0x4109E6 取低字节为 opcode"
+        },
+        {
+          "order": 3,
+          "entity": "global.65.script-command-dispatch-table.3890",
+          "role": "0x410A38[opcode-2]"
+        },
+        {
+          "order": 4,
+          "entity": "fn.65.script-param-get.3890",
+          "role": "0x4183F7 按序号取参数"
+        },
+        {
+          "order": 5,
+          "entity": "fn.65.script-ascii-number.3890",
+          "role": "0x426E64 解析数字/-/* 语法"
+        },
+        {
+          "order": 6,
+          "entity": "global.65.script-event-table.3890",
+          "role": "0x49CF68 运行时记录表（写入结果）"
+        }
+      ],
+      "semantics": [
+        "指令流按 16 位字读取，低字节是 opcode，高字节随指令不同（常用于子类型/参数高位）。",
+        "opcode 0x00/0x01 不查表，由分派器内联；0x02–0x79 查 0x410A38；≥0x7A 为空实现。",
+        "处理函数通过 0x4183F7(序号) 取参数，参数可为 ASCII 数字、`-n`（负）、`*n`（间接取变量 0x502000[n]）。",
+        "0x426E64 返回「消耗字节数」用于推进流指针，因此参数是变长文本 token，不是定长槽。",
+        "6.6 分派器上界 0x7B，且 opcode 存储改为低字节写入（不再 movzx）。",
+        "已对 120 个处理函数批量反汇编：54 个显式经 0x4183F7 取参，类型码分布为 2(28 次)、4(33 次)、5(13 次)、3(3 次)、1(1 次)、9(1 次)；其余 23 个不经该取值器。",
+        "处理函数可只返回控制码：0x03 else → `mov eax,6; ret`（0x4834C6），0x0C 结束 Section → `mov eax,8; ret`（0x481156）；跳转由外层解释器完成。分派器 0x4109E6 的地址存于全局函数指针 0x486618，无直接 E8 调用。",
+        "0x72 信息传送的子指令号 = 第一个参数（类型码 4 的数值），第二个参数为文本（类型码 5）；子分派表 0x47D8DF 有效 29 项（子号 0..28），清单中的 29..33 在 6.5 无对应实现。",
+        "处理函数 ABI（实测）：0x4109E6 在 call dword[eax*4+0x410A38] 前执行 push edx（edx=ctx），调用后再 add esp,4；因此处理函数的 ecx 与 [ebp+8] 都是同一个 ctx。0x47/0x46/0x42/0x43/0x44/0x0A 中的 [ebp+8] 都是 ctx，而不是脚本参数。",
+        "控制码 6/8 不是由处理函数完成跳转：0x03 的 0x4834C6 只有 `mov eax,6; ret`，0x0C 的 0x481156 只有 `mov eax,8; ret`；真正的 else/Section 跳转由 0x4100A1 的窗口逻辑与 0x41811F 完成。",
+        "0x0D 恒返回 7：0x41196C 把参数 0 写入 0x4B0780 并恒返回 0；0x4103AC 的 `pop eax` 取回的是压入的 0，再 `add al,7`。",
+        "0x72 信息传送（0x47D89E）：先用 0x4183F7(4) 取子指令号、再用 0x4183F7(5) 取文本指针，然后把文本压栈并按子号 call [0x47D8DF+sub*4]。子分派表有效 29 项（0..28），子号 29..33 在 6.5 越界（表后是 0x90 填充）。",
+        "0x72 的 29 个子处理函数全部以 ecx=ctx、[ebp+8]=文本指针工作，绝大多数用 0x426E64 从文本里顺序解析数字；子 0 直接用整段文本作新名字。",
+        "全局标志 0x4ABF9C：主循环 0x4180F9 在 (flags & 0x6E)!=0 时停止，flags==2 时空转等待；实测写入者：0x413DD1 与 0x428368 置 0x02（暂停/切场景），0x418963 置 0x08（进入战场），0x42C328 置 0x20（战斗胜利），0x42C32E 置 0x40（战斗失败）。0x04 位在 0x6E 掩码内但本样本无写入者；0x42C375 另用 0x6C 判定退出场景。",
+        "三基底主分派表 0x410A38 均为 126 项；6.4/6.5 的 0x7A..0x7F 为 0x004D0000，6.6 的 0x7A=0x4284A2、0x7B=0x47E9F0、0x7C..0x7F 为空。",
+        "三基底处理函数地址大部分相同；本轮确认的差异：6.4 的 0x54=0x45602B、0x5F=0x404DFE、0x10=0x40C6F7；6.6 的 0x5A=0x44BAC2（直接指向战场操作函数）、0x42=0x411BD0、0x43=0x411BA5、0x44=0x4121E2、0x2F=0x413647、0x49=0x417AD7、0x51=0x416276、0x1E=0x41E1A5、0x6A=0x415692。",
+        "三基底主循环停止条件一致：文件偏移 0x174FC 均为 `a1 9c bf 4a 00 83 e0 6e`（mov eax,[0x4ABF9C]; and eax,0x6E），0x40B922 的「模式==3」签名也三基底一致。",
+        "三基底 0x4183F7 取参器序言一致（55 8B EC 6A 00 51 68 00 00 00 80 ...），仅相对 call 位移不同。"
+      ],
+      "relations": [
+        "mechanism.65.script-execution.3890",
+        "global.65.script-handler-map.3890",
+        "global.65.script-control-codes.3890",
+        "fn.65.script-stream-readers.3890",
+        "global.65.script-message-subcommands.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

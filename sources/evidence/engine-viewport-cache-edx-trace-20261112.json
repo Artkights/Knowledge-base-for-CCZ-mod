@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "analysis": "viewport-size-cache-and-edx-trace",
+  "date": "2026-11-12",
+  "method": "dump_funcs.py 反汇编 0x42D260（0x501BF0 更新点）与 0x474E0E/0x423842（edx 使用点）；沿 0x42DE7D→0x473613→0x401692→0x47D1F1 逐层检查 edx 是否被显式设置；结合第 42 轮网格尺寸字与第 59 轮视口上下文。仅静态分析。",
+  "samples": [
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "viewportCache": {
+    "address": "0x501BF0",
+    "semantic": "地图/视口尺寸缓存（打包宽高字节，0 表示沿用当前网格尺寸）",
+    "confidence": "medium",
+    "writer": {
+      "fn": "0x42D260",
+      "site": "0x42D287",
+      "behavior": "arg→0x42C6C5 后取 [ebp-8]；与 dword[0x501BF0] 比较，不等则写入；eax==0 时改用 dword[0x4B422C]（当前网格宽高对），否则 shr eax,0x10；al=宽字节、ah=高字节，各乘 0x30 后写 0x4B4250+0x34/+0x38；非 0 时再调 0x47BBC0(edx,eax,1) 与 0x454B7E。"
+    },
+    "otherUses": [
+      {"site": "0x442013", "code": "push dword[0x501BF0]"},
+      {"site": "0x451AB9", "code": "push dword[0x501BF0]（与 [ecx+0x2c]/[ecx+0x30] 一起传 0x47FD13）"},
+      {"site": "0x454CF3", "code": "push dword[0x501BF0]"},
+      {"site": "0x47BF54", "code": "push dword[0x501BF0]"},
+      {"site": "0x4386CE", "code": "mov edx,0x501BF0（作结构指针）"},
+      {"site": "0x459375", "code": "mov edx,0x501BF0"},
+      {"site": "0x460ECE", "code": "mov ecx,0x501BF0（作 this）"}
+    ],
+    "conclusion": "0x501BF0 保存一份打包宽高（高位字），0 时回退到 0x4B422C；写入时驱动 0x4B4250 视口 +0x34/+0x38 像素尺寸并重绘。候选名称：地图/视口尺寸切换缓存。"
+  },
+  "edxTrace": {
+    "question": "0x423842 的 edx（×0x3E8=1000 计价）来源",
+    "callSite": "0x474E45（函数 0x474E0E，练武菜单）",
+    "chain": [
+      {"step": "0x474E32 call 0x42DE7D", "note": "返回 eax=菜单选择；函数末尾 mov eax,[ebp-0xC] 后直接 ret 0xC，未设置 edx"},
+      {"step": "0x42E180 call 0x473613", "note": "0x473613 末尾仅 call 0x47E09B/0x41E5F6/0x401692，未显式设置 edx"},
+      {"step": "0x401692 call 0x47D1F1(arg,0x1F,0)", "note": "0x401692 本身不设置 edx，直接返回 0x47D1F1 的 edx"},
+      {"step": "0x474E45 call 0x423842", "note": "0x423842 直接 imul eax,edx,0x3E8，把 edx 当计价数量"}
+    ],
+    "finding": "edx 不是 0x474E0E 或 0x423842 的显式参数，而是由 0x42DE7D→0x473613→0x401692→0x47D1F1 链末残留决定；静态无法证明其稳定语义，属隐式寄存器依赖（可能依赖 0x47D1F1 内部实现）。",
+    "impact": "第 37 轮把 edx 当作“菜单项数量/次数”的推断不成立；计价公式 price=edx*1000 的输入在静态层面不可靠，需要运行期观测 0x47D1F1 的 edx 出口。"
+  },
+  "conclusion": "本轮解决两个悬项：(1) 0x501BF0 是地图/视口尺寸缓存（打包宽高，0 回退 0x4B422C，写入时更新 0x4B4250+0x34/+0x38 并重绘）；(2) 0x423842 的 edx 不是显式参数，而是 0x42DE7D→0x473613→0x401692→0x47D1F1 链末寄存器残留，静态无法确定其语义。",
+  "limitations": [
+    "0x501BF0 的打包格式仅由 0x42D260 的 shr 0x10 与 al/ah 使用推断。",
+    "0x47D1F1 的内部实现未展开，edx 出口仍无法静态确定。",
+    "未运行游戏对照。"
+  ]
+}

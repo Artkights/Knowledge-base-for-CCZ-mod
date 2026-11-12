@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "analysis": "viewport-center",
+  "date": "2026-11-12",
+  "method": "field_offsets.py 追踪 ecx=0x4B4250 的字段访问；capstone 反汇编 0x45503F 与 0x4550DC。仅静态分析。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"}
+  ],
+  "centerFunction": {
+    "entry": "0x45503F",
+    "object": "0x4B4250（ecx）",
+    "args": "[ebp+8]=centerX、[ebp+0xC]=centerY",
+    "steps": [
+      "cmp byte[0x505FDC],0；非 0 直接返回",
+      "tilesW = dword[obj+0x14] / 0x30（有符号 idiv）",
+      "tilesH = dword[obj+0x18] / 0x30",
+      "halfW = (tilesW - sign) >> 1；halfH 同",
+      "clampedX = 0x47FAD0(centerX, halfW)（返回 byte）",
+      "clampedY = 0x47FAD0(centerY, halfH)",
+      "若 clampedX + tilesW > byte[0x4B422C]：clampedX = byte[0x4B422C] - tilesW",
+      "若 clampedY + tilesH > byte[0x4B422D]：clampedY = byte[0x4B422D] - tilesH",
+      "call 0x454CEF(clampedX, clampedY)（ecx=obj）"
+    ]
+  },
+  "conclusion": "0x4B4250 +0x14 = 视口宽度（像素），+0x18 = 视口高度（像素）；除以 0x30（48）得到瓦片数。0x45503F 把镜头居中到 (centerX,centerY) 并按地图边界 byte[0x4B422C]/byte[0x4B422D] 夹紧，最后交 0x454CEF 设置滚动位置。0x47FAD0 为「值/半宽」限制器，返回 byte。",
+  "limitations": [
+    "0x454CEF 未逐条展开（假定写 +0x08/+0x0C 滚动偏移）。",
+    "0x47FAD0 的内部算法未展开。",
+    "未运行游戏对照。"
+  ]
+}

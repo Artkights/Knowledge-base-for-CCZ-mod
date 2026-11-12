@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "mechanism.65.pierce-attack-replacement.3890",
+      "title": "穿透攻击-xx：以特效参数替换穿透范围",
+      "aliases": [
+        "穿透攻击",
+        "pierce attack replacement"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.pierce-loader",
+          "role": "0x40782D 穿透加载入口"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.pierce-effect-chain.3890",
+          "role": "0x40CC13 顺序查 0x77..0x7F"
+        },
+        {
+          "order": 3,
+          "entity": "fn.65.param-getter-gated.3890",
+          "role": "0x42518F 逐个取特效参数"
+        },
+        {
+          "order": 4,
+          "entity": "fn.65.pierce-expand-wrapper",
+          "role": "0x4364C7 接收穿透码并展开"
+        },
+        {
+          "order": 5,
+          "entity": "fn.65.strategy-range-dispatch.3890",
+          "role": "0x435CE9 12 分支几何展开"
+        },
+        {
+          "order": 6,
+          "entity": "fn.65.attack-append-target",
+          "role": "0x437AFF 落格"
+        }
+      ],
+      "semantics": [
+        "6.5 穿透码来源优先级：必杀分支(0x500E9A==2 且 0x484E27 命中) > 穿透攻击特效 0x77..0x7F 首个命中 > 单位类型表 0x407881[类型]。",
+        "命中穿透攻击特效时返回该特效的参数值，直接作为新的穿透范围码 → 完全替换拥有者原穿透范围，不做并集。",
+        "特效参数值即范围码：0=无 1=十字 2=九宫 3=没羽箭 4=两格 5=六格 6=大没羽箭 7=三格 8=方格 9=横扫 10=环击 11=溅射，见 0x40CEE9 名称表。",
+        "【已复核 6.6】0x407835：0x426A07 取单位 → 必杀判定 → 0x45D448(unit) 返回穿透码，非 0 即采用；为 0 时 al=byte[0x407881+单位类型]，再 0x41AA4F(unit,1) 落盘。0x45D448 循环 i<3 调 0x45D435，特效号 = i+0x95（149..151）。",
+        "【已复核 6.4】0x40782D → 0x43C794(unit,0x33,0,5)：先 0x4079DA 判存在（遍历 3 个装备槽 + 0x40B4E1 宝物判定），再 0x407AF2 按槽累加（0x407BA6 依类型加算），任一成立即视为拥有穿透攻击。"
+      ],
+      "state": [
+        "global.65.range-code-name-table.3890",
+        "global.65.range-pointer-table"
+      ],
+      "relations": [
+        "mechanism.65.attack-range-tier-expansion.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "mechanism.65.longrange-attack-overlay.3890",
+      "title": "远距攻击-xx：候选范围码并入范围块（叠加/替换）",
+      "aliases": [
+        "远距攻击",
+        "long range attack overlay"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.fatal-field-c-reader.3890",
+          "role": "0x43F8C0 主范围 + 候选槽"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.longrange-effect-helper-9d.3890",
+          "role": "0x9D 八向 → 候选 1"
+        },
+        {
+          "order": 3,
+          "entity": "fn.65.longrange-effect-helper-9e.3890",
+          "role": "0x9E 没羽箭 → 候选 6"
+        },
+        {
+          "order": 4,
+          "entity": "fn.65.longrange-effect-chain.3890",
+          "role": "0x9F..0xA4 首个 → 候选=参数值"
+        },
+        {
+          "order": 5,
+          "entity": "fn.65.attack-selector",
+          "role": "0x45533D 读取 dword[unit+6] 范围块"
+        },
+        {
+          "order": 6,
+          "entity": "fn.65.attack-dispatch",
+          "role": "0x436511 循环 4 槽逐码查 0x4D1400 并集"
+        }
+      ],
+      "semantics": [
+        "0x43F8C0 取主范围 [ebp-8] 后，把远距攻击候选码写入同一栈帧的 [ebp-7]/[ebp-6]/[ebp-5]；主范围再经 0x4E4000(6.5)/0x417A35(6.4)/0x417A38(6.6) 做等级拓展。",
+        "叠加由范围块承载：unit+6 起最多 4 个范围码（dword）。0x45533D 读 dword[unit+6] 后交 0x436511。",
+        "【已复核】0x436511 的模板索引公式：al=byte[范围块+i]，i<4 循环；al==0xFF 跳过；al==0 仅 i==0 有效；al>0x25 跳过；al==0x0A 走专用分支 0x437D10 后结束循环；al==0x0B 直接跳过；其余索引 idx = (al<0x0B ? al : al-2)，取 dword[0x4D1400+idx*4] 的 (dx,dy) 段，0xFFFF 终止，逐点 0x436616。",
+        "0x436511 收尾把 0x4AC748 缓冲按 0x4B2C34 游标计数，并从起点扫描到 0xFF 或 byte==[0x4B2C28]，返回首个命中字节（单位号）；因此它同时承担「并集展开」与「取范围内首个合法目标」。",
+        "单码或 [ebp+0xC]==0xFF 时走单范围分支，表现为替换而非叠加。",
+        "6.4：0x43C794(unit,0x32,0,5) + 0x4079DA(unit,0x32)/(unit,0) 生成候选；6.6：0x45D47F（0x9B..0x9D）生成候选。"
+      ],
+      "state": [
+        "global.65.range-pointer-table",
+        "global.65.range-code-name-table.3890"
+      ],
+      "relations": [
+        "mechanism.65.attack-range-tier-expansion.3890",
+        "mechanism.65.pierce-attack-replacement.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

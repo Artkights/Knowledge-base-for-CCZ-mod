@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.attack-range-tier-table.3890",
+      "title": "攻击范围等级跳转表",
+      "aliases": [
+        "0x0041CEAB",
+        "range_tier_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0041CEAB",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 33,
+      "semantics": "33 项 uint8，表[范围等级]=下一级范围等级；01 06 03 04 12 13 0C 08 12 1F 0A 00 0D 21 0F 16 11 12 25 0C 0C 16 22 01 20 1D 03 1C 1D 23 1F 03 24；0x0A 自环不拓展，0x0B 回卷 0x00。",
+      "relations": [
+        "fn.65.attack-range-tier-map.3890",
+        "fn.65.attack-range-tier-check.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

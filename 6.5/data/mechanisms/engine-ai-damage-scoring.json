@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.ai-damage-ratio-scoring.3ef7",
+      "title": "AI 伤害比例评分（分支 0/1/5）",
+      "aliases": [
+        "AI伤害评分",
+        "damage/HP",
+        "策略AI 0/1/5"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "策略 AI 分支 0/1/5 以伤害/目标 HP 百分比评分：ratio=damage*100/HP，0 取 1；ratio==100 时累加 100，否则覆盖累计分；策略 ID 0x44 追加 0x417A5E 结果；0x14..0x24 另有特判。",
+      "branch": "0x43988C..0x439967",
+      "formula": [
+        "precheck = 0x4390EF(...)；0 则跳过",
+        "damage = 0x43C022(strategy, target, ...)",
+        "ratio = damage * 100 / 0x41B500(target)",
+        "ratio == 0 → 1",
+        "ratio == 100 → score += 100；否则 score = ratio",
+        "strategyId == 0x44 → score += 0x417A5E(target)",
+        "strategyId-0x14 <= 0x10 → 0x14..0x24 特判"
+      ],
+      "constants": {"ratioBase": 100, "ratioFloor": 1, "strategy44": "0x44", "specialBase": "0x14", "specialSpan": "0x10"},
+      "versionHashes": {"6.4": "DED7D05FC9", "6.5": "F9F0FD73FC", "6.6": "422679044E"},
+      "limitations": [
+        "0x417A5E 语义未展开。",
+        "0x14..0x24 特判未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.strategy-ai-dispatch.3ef7",
+        "mechanism.65.strategy-damage-hit-resolution.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-ai-damage-scoring-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "entityType": "test-contract",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "test.65.attack-range-anchor-scan",
+      "title": "函数锚点引用扫描与 Q1–Q10 断言",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "command": "python tools/query_kb.py \"0x00484E27\" --version 6.5 && python -B tools/validate_kb.py",
+      "target": "确认本轮新增实体可检索、来源快照哈希一致、实体关系与画像绑定完整，并复现函数锚点扫描的关键命中。",
+      "mutationScope": "只读：查询索引、运行校验器；不修改 Ekd5.exe、Data.e5 或游戏资源。",
+      "assertions": [
+        "查询 0x00484E27 返回 fn.65.fatal-field-d-reader.3890，且语义为读取记录 +0xD。",
+        "查询 0x004556F6 返回 fn.65.grid-status-write.3890，且语义包含 cell[0]=dl+0xCF。",
+        "查询 0x00510000 返回 global.65.grid-status-map.3890。",
+        "validate_kb.py 输出 validation_ok，来源数较基线增加 4 条。",
+        "来源快照 sources/evidence/round101-attack-range-q1-q10.md 的 SHA-256 与清单登记一致。"
+      ],
+      "requiredArtifacts": [
+        "query_kb.py 查询输出",
+        "validate_kb.py 输出",
+        "sources/evidence/round101-attack-range-q1-q10.md",
+        "sources/evidence/scananchors-round101.py"
+      ],
+      "failureMeaning": "实体未进入索引、来源哈希漂移或画像绑定缺失；此时固定地址不得用于工具实现或写回。",
+      "sourceRefs": [
+        "src.local.round101.report",
+        "src.local.round101.scananchors",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

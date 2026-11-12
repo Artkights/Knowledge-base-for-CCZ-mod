@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "analysis": "anchor-relocation-65-66",
+  "date": "2026-11-12",
+  "method": "以 out/scan-65.json 与 out/scan-66.json 的函数级 dataRefs 为输入：new_anchors.py 找出单侧独占锚点；anchor_pairing.py 按“引用函数签名的 Jaccard 相似度”配对两侧锚点（阈值 0.6）。仅静态分析既有扫描结果。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "pairCount": 27,
+  "highConfidencePairs": [
+    {"65": "0x511E40", "66": "0x4930C8", "shared": 5, "jaccard": 1.0, "known": "暴击值数组（第 39 轮）"},
+    {"65": "0x4CE77C", "66": "0x500AD0", "shared": 10, "jaccard": 0.82, "known": "UI/战斗全局块首"},
+    {"65": "0x4CE7EC", "66": "0x500AC8", "shared": 3, "jaccard": 1.0},
+    {"65": "0x4CE7FE", "66": "0x500ADE", "shared": 3, "jaccard": 1.0},
+    {"65": "0x4CE7FC", "66": "0x500ADC", "shared": 2, "jaccard": 1.0},
+    {"65": "0x4CE76C", "66": "0x500AAC", "shared": 2, "jaccard": 1.0},
+    {"65": "0x407826", "66": "0x41A139", "shared": 2, "jaccard": 1.0, "note": ".text 内嵌数据"},
+    {"65": "0x500B6B", "66": "0x500B5D", "shared": 2, "jaccard": 1.0}
+  ],
+  "otherPairs": [
+    ["0x4CE21F", "0x4CE24B"], ["0x500AA0", "0x500AE0"], ["0x511000", "0x508C00"],
+    ["0x40684D", "0x40684F"], ["0x4CE7FD", "0x500ADD"], ["0x4CE79C", "0x500AD4"],
+    ["0x407D1A", "0x476891"], ["0x5113FF", "0x4CB1BF"], ["0x40782B", "0x41A13E"],
+    ["0x4BE06E", "0x4BE076"], ["0x40689E", "0x4736E9"], ["0x437902", "0x43784A"],
+    ["0x438E70", "0x415E2B"], ["0x465B90", "0x4290A1"], ["0x5000A0", "0x500BF0"]
+  ],
+  "manualKnownPairs": [
+    {"65": "0x4CE7BE", "66": "0x500ADA", "name": "有效物品计数", "source": "第 55 轮"},
+    {"65": "0x4CE78F", "66": "0x500ACF", "name": "存档页码", "source": "第 40 轮"},
+    {"65": "0x4CE79F", "66": "0x500AD3", "name": "UI 模式字节", "source": "配对表 0x4CE79C→0x500AD4 邻位推断"}
+  ],
+  "blockSummary": {
+    "65Block": "0x4CE76C..0x4CE7FE（UI/战斗全局块）",
+    "66Block": "0x500AAC..0x500ADE（新块，字段非等距搬移）",
+    "66NewOnly": ["0x500ABC", "0x500AC0", "0x500AC8", "0x500ACD", "0x500ACE", "0x500ACF", "0x500AD0", "0x500AD1", "0x500AD2", "0x500AD3", "0x500AD6", "0x500AD7", "0x500AD8", "0x500ADA", "0x500ADE"],
+    "otherBigMoves": ["0x511000→0x508C00", "0x511400→0x4CB1C0", "0x511E40→0x4930C8", "0x46902B→0x430000（由 only-in 列表样本函数匹配）"]
+  },
+  "conclusion": "6.5→6.6 存在成块的全局数据锚点搬移：原 0x4CE76C..0x4CE7FE 的 UI/战斗全局块迁到 0x500AAC..0x500ADE（逐字段映射，非固定位移），0x511000→0x508C00、0x511400→0x4CB1C0、0x511E40→0x4930C8；另有 .text 内嵌数据 0x407826→0x41A139、0x407D1A→0x476891 等。本轮共配对 27 组，其中 8 组 Jaccard≥0.82 为高置信。",
+  "limitations": [
+    "配对基于引用函数签名，函数体被改写的锚点可能漏配。",
+    "0x44143D/0x441449/0x441462/0x44146A 同时指向 0x441416，配对歧义未消解。",
+    "0x500ABx..0x500AEx 新块的字段语义仅部分已知。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.detailed-job-penetration.3ef7",
+      "title": "兵种穿透/属性码表 80×1",
+      "aliases": [
+        "detailed-job-penetration",
+        "兵种穿透",
+        "兵种属性码"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x407881 是 80 字节的兵种属性码表，按兵种 ID（unit+0x2B）索引。0x40782D 在模式/状态/哨兵检查通过后返回 table[jobId]；0 为缺省，6.5 还出现 1/4/9/10，6.6 出现 1/4/7/9。",
+      "tableLayout": {"file": "Ekd5.exe", "fileOffset": "0x6C81", "va": "0x407881", "rows": 80, "width": 1},
+      "function": {
+        "va": "0x40782D",
+        "jobGetter": "0x406610 = byte[unit+0x2B]",
+        "guards": [
+          "byte[0x505FDC] != 0 → 0",
+          "byte[0x500E9A] == 2 且特殊检查为真 → 0",
+          "0x40CC13(unit,0x33,0,5) != 0 → 0",
+          "jobId >= 0x50 → 0"
+        ],
+        "return": "byte[0x407881 + jobId]"
+      },
+      "values": {
+        "6.4": {"0": 77, "1": 2, "4": 1},
+        "6.5": {"0": 69, "1": 2, "4": 6, "9": 2, "10": 1},
+        "6.6": {"0": 70, "1": 2, "4": 5, "7": 2, "9": 1}
+      },
+      "callers": ["0x406282", "0x4109A9", "0x438AC8", "0x477E20"],
+      "limitations": [
+        "属性码 0/1/4/7/9/10 的玩法名称未确定。",
+        "守卫条件语义未命名。",
+        "未运行游戏对照。"
+      ],
+      "relations": ["mechanism.65.engine-general-constant-census.3ef7"],
+      "sourceRefs": [
+        "src.research.engine-job-penetration-20261112",
+        "src.ccz65.3890.ekd5",
+        "src.data-manager.profile65"
+      ]
+    }
+  ]
+}

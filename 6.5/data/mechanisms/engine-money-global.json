@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.money-global.3ef7",
+      "title": "金钱全局 0x4B077C 与 999999 上限",
+      "aliases": [
+        "money",
+        "金钱",
+        "0x4B077C",
+        "0xF423F"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x4B077C 为金钱 dword。0x406C00 结算 0x48E8BD 累加金额：job byte+5>=2 时加到金钱并封顶 0xF423F(999999)，否则从金钱扣除（不足归零），随后清零 0x48E8BD 与 0x500C48。0x423820 比较价格；0x414E92 扣 1000；0x43C00F 扣任意金额。0x406C00 三基底字节一致。",
+      "global": "0x4B077C",
+      "constants": [
+        "0x48E8BD",
+        "0xF423F",
+        "0x3E8",
+        "0x500CA7",
+        "0x500C48"
+      ],
+      "identity": "0x406C00 前 50 字节三基底哈希 A1F8EF8043；完整 0xAA 字节哈希 6.4/6.5/6.6 均为 F1CED93DCB101D8E。",
+      "limitations": [
+        "0x405AB6 累加时 [ebp-0x14] 金额来源未完全展开。",
+        "价格×10 与 item+0x13 的关系未闭合。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.item-price-consumption-boundary.3ef7",
+        "mechanism.65.shop-runtime-and-item-usability.3ef7",
+        "mechanism.65.payment-chain.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-money-global-20261112",
+        "src.research.engine-money-delta-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "settle": "0x406C00，job byte+5>=2 加钱并封顶 0xF423F，否则扣钱归零",
+        "pending": "0x48E8BD，0x405AC7 累加；0x406C9C/0x4361A6 清零",
+        "check": "0x423820，cost > money 时提示 0x500CA7",
+        "subtract1000": "0x414E92",
+        "subtractAmount": "0x43C00F"
+      }
+    }
+  ]
+}

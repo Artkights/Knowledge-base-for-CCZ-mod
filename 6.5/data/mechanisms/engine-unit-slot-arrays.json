@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.unit-slot-arrays.3ef7",
+      "title": "单位槽位数组 +0x84/+0x254/+0x430 与金钱/HP 联动",
+      "aliases": [
+        "unit+0x84",
+        "unit+0x254",
+        "unit+0x430",
+        "0x405AB6",
+        "槽位数组"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x405998 从 dword[unit+0x84+index*4] 取 slot0、[unit+0x254+index*4] 取 slot1、[unit+0x430+index*4] 取 slot2。0x405AB6 把 slot0 累加到 0x48E8BD 并从 unit+0x10 扣除，slot1 走 0x472840/0x43F715；0x421278 对同一 +0x84 数组按 (slot0-1)*10 收费并置 1。",
+      "constants": [
+        "0x84",
+        "0x254",
+        "0x430",
+        "0x10",
+        "0x48E8BD",
+        "0x3E8"
+      ],
+      "identity": "0x405AB6 段在 6.4/6.5/6.6 哈希均不同；0x421278 在 6.5=6.6，6.4 不同（见支付链证据）。",
+      "limitations": [
+        "unit+0x84 数组语义（数量/伤害）未确定。",
+        "index 来源未完全展开。",
+        "slot2 消费链未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.money-global.3ef7",
+        "mechanism.65.payment-chain.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-unit-slot-arrays-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "slot0": "unit+0x84+index*4",
+        "slot1": "unit+0x254+index*4",
+        "slot2": "unit+0x430+index*4",
+        "load": "0x405998",
+        "moneyLink": "0x405AB6",
+        "consume": "0x421278"
+      }
+    }
+  ]
+}

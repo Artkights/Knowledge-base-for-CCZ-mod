@@ -1,0 +1,46 @@
+{
+  "id": "src.research.engine-coverage-ledger-v13-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "通用常量覆盖台账 v13（第 1–139 轮）：95 域 / 73 resolved / 20 partial / 2 unresolved",
+  "method": "对 6.5/data/mechanisms/engine-general-coverage.json 的 domains 列表逐项计数并合并第 131–139 轮新增/提升项。",
+  "findings": [
+    {
+      "id": "counts",
+      "claim": "v13 列表实数：resolved 73、partial 20、unresolved 2，共 95 域；v12 为 68/21/2=91。",
+      "evidence": [
+        "resolved 追加 5 项：KANKYOU、MCI 全图、0x508000、0x37800、GDI+ 消费链",
+        "partial 移除 2 项（GDI+ 槽位消费链、0x508000 五项语义），新增 1 项（0x505F40 与 0x4FFF68+0x14 双池同步点）"
+      ]
+    },
+    {
+      "id": "rounds-131-139",
+      "claim": "第 131–139 轮纳入：升级阈值公式 0x42AC8F、0x37800 临时合成区、GDI+ 8/10 消费点、MCI 19 调用点与设置 +0x03 音量、KANKYOU 与设置块 +0x00..+0x03、0x508000 五维分配记录、0x506800 小地图 tile 表。",
+      "evidence": [
+        "sources/evidence/engine-level-threshold-formula-20261112.json",
+        "sources/evidence/engine-temp-compose-buffer-20261112.json",
+        "sources/evidence/engine-gdiplus-consumers-20261112.json",
+        "sources/evidence/engine-mci-command-map-20261112.json",
+        "sources/evidence/engine-settings-dialog-kankyou-20261112.json",
+        "sources/evidence/engine-kankyou-init-20261112.json",
+        "sources/evidence/engine-unit-alloc-records-20261112.json",
+        "sources/evidence/engine-table-506800-capacity-20261112.json"
+      ]
+    },
+    {
+      "id": "remaining",
+      "claim": "剩余 unresolved 2 项（0x423842 edx、0x4A3E77 运行期槽位）仍需运行期观测；partial 主要缺口为 11 层逐层用途、0x4B4250+0x64/+0x68 写入方、0x505F40 双池同步、操作码 0x72 中文名与 0x2E31 文本表。",
+      "evidence": [
+        "v13 domains.unresolved 列表",
+        "v13 domains.partial 列表"
+      ]
+    }
+  ],
+  "corrections": [
+    "v13 起覆盖域总数按 domains 列表实数计（95），与 v12 的 91 域差额来自第 131–139 轮 5 项 resolved 提升与 partial 重分类。"
+  ],
+  "limitations": [
+    "台账只覆盖已登记域，不等于三基底全部常量。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,536 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-09",
+  "baselineCommit": "658c4e0b8d17e0f49c7178e6e4b1ba0b1802d422",
+  "scope": "策略解析链、攻击范围等级拓展、穿透范围链，以及远距攻击/穿透攻击特效绑定与名称存储。",
+  "method": "只引用 source-manifest 已登记基底身份与两轮静态反汇编；固定地址按各基底画像分别登记，未做写回。",
+  "documentCount": 49,
+  "entries": [
+    {
+      "path": "6.5/data/file-formats/data-e5-block-directory.json",
+      "sha256": "5167B6357692F848C3BD55B8CA8FC60559C51597C65EE6F9FAD2BAEF96E9954E",
+      "disposition": "new-entities",
+      "targetIds": [
+        "format.65.data-e5-block-directory.3890"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/structures/data-e5-records.json",
+      "sha256": "F136383A2393BE1D819768ABE45B4A8CB79890C3009AF0CC179B973C267DCCB6",
+      "disposition": "new-entities",
+      "targetIds": [
+        "struct.65.data-e5-block1-record",
+        "struct.65.data-e5-fatal-record",
+        "struct.65.grid-status-cell"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/globals/grid-and-data-e5-buffers.json",
+      "sha256": "ECEE124A25B6EB26EF4B7704809CD623F4D56D26F6E6278C34A80CFE36B156F2",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.grid-status-map.3890",
+        "global.65.data-e5-block1-buffer.3890",
+        "global.65.fatal-record-table.3890"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/functions/data-e5-and-grid-functions.json",
+      "sha256": "A8223AFB5B7CCA4D79AB2BB045A2D2D656ECA0CDD46560846FC0000A91E9D00B",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.65.data-e5-block1-init.3890",
+        "fn.65.data-table-init-root.3890",
+        "fn.65.grid-status-write.3890",
+        "fn.65.battle-grid-clear.3890",
+        "fn.65.fatal-field-d-reader.3890",
+        "fn.65.fatal-field-c-reader.3890",
+        "fn.65.cell-slot-reader.3890"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/mechanisms/attack-range-consumption.json",
+      "sha256": "D744A211B7793C2B4044AB293864160B56B4B9560A40CEC3339606200CACE116",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.attack-range-grid-write.3890",
+        "mechanism.65.fatal-range-consumption.3890"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/tests/attack-range-deep-probe.json",
+      "sha256": "E6DE9D2E6A0FFC614573174B570E0C763C7E9052EDDDA9E270DBF911B968C036",
+      "disposition": "new-entities",
+      "targetIds": [
+        "test.65.attack-range-anchor-scan"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/cases/attack-range-deep-probe.json",
+      "sha256": "610B672031066D11E4EFE9152D2CDBAC0680A1D739675D2E64333C9E0CAD70D2",
+      "disposition": "new-entities",
+      "targetIds": [
+        "case.65.attack-range-q1-q10-closure"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/workflows/anchor-based-reference-tracing.json",
+      "sha256": "A157E7A19BEF8093E243337CA0B5834DE3D91847A751E02C7EAB1D644F975A30",
+      "disposition": "new-entities",
+      "targetIds": [
+        "workflow.65.anchor-based-reference-tracing"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.4/data/functions/strategy-and-range-functions.json",
+      "sha256": "CF441C9733EFCEB715CA3DA676A362CC8E4F1CBA51D61E8D7B6EBEBAFF92B04B",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.64.strategy-cast-entry.9112",
+        "fn.64.strategy-mp-check.9112",
+        "fn.64.strategy-mp-cost.9112",
+        "fn.64.strategy-damage.9112",
+        "fn.64.strategy-status-value.9112",
+        "fn.64.strategy-hit-stub.9112",
+        "fn.64.strategy-hit-curve.9112",
+        "fn.64.strategy-exp.9112",
+        "fn.64.strategy-range-dispatch.9112",
+        "fn.64.attack-range-tier-map.9112",
+        "fn.64.attack-range-tier-check.9112",
+        "fn.64.strategy-animation-tier.9112",
+        "fn.64.fatal-range-selector.9112",
+        "fn.64.attack-range-wrapper.9112"
+      ],
+      "reason": "本轮策略/攻击范围/穿透范围调用链全量复析；地址绑定各基底画像，静态证据，保持 candidate。"
+    },
+    {
+      "path": "6.5/data/functions/strategy-and-range-functions.json",
+      "sha256": "6091B3F9F57CAD467E006E85AE6789D82F2FDFCEAE3A6170F068316326EF6126",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.65.strategy-cast-entry.3890",
+        "fn.65.strategy-mp-check.3890",
+        "fn.65.strategy-mp-cost.3890",
+        "fn.65.strategy-damage.3890",
+        "fn.65.strategy-status-value.3890",
+        "fn.65.strategy-heal.3890",
+        "fn.65.strategy-hit-stub.3890",
+        "fn.65.strategy-hit-curve.3890",
+        "fn.65.strategy-exp.3890",
+        "fn.65.strategy-range-dispatch.3890",
+        "fn.65.attack-range-tier-map.3890",
+        "fn.65.attack-range-tier-check.3890",
+        "fn.65.strategy-animation-tier.3890",
+        "fn.65.fatal-range-selector.3890",
+        "fn.65.attack-range-wrapper.3890"
+      ],
+      "reason": "本轮策略/攻击范围/穿透范围调用链全量复析；地址绑定各基底画像，静态证据，保持 candidate。"
+    },
+    {
+      "path": "6.6/data/functions/strategy-and-range-functions.json",
+      "sha256": "43A049499B437D79163E99577CCD7752CE281764B7F0BF549E29A38EA79A8537",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.66.strategy-cast-entry.aa0f",
+        "fn.66.strategy-mp-check.aa0f",
+        "fn.66.strategy-mp-cost.aa0f",
+        "fn.66.strategy-damage.aa0f",
+        "fn.66.strategy-status-value.aa0f",
+        "fn.66.strategy-heal.aa0f",
+        "fn.66.strategy-hit-stub.aa0f",
+        "fn.66.strategy-hit-curve.aa0f",
+        "fn.66.strategy-exp.aa0f",
+        "fn.66.strategy-range-dispatch.aa0f",
+        "fn.66.attack-range-tier-map.aa0f",
+        "fn.66.attack-range-tier-check.aa0f",
+        "fn.66.strategy-animation-tier.aa0f",
+        "fn.66.fatal-range-selector.aa0f",
+        "fn.66.attack-range-wrapper.aa0f"
+      ],
+      "reason": "本轮策略/攻击范围/穿透范围调用链全量复析；地址绑定各基底画像，静态证据，保持 candidate。"
+    },
+    {
+      "path": "6.5/data/globals/attack-range-tier-table.json",
+      "sha256": "61A26B5ED9A73A4A8E5749842392244A01BAEA9A808015B303B61B07A0716FC1",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.attack-range-tier-table.3890"
+      ],
+      "reason": "本轮策略/攻击范围/穿透范围调用链全量复析；地址绑定各基底画像，静态证据，保持 candidate。"
+    },
+    {
+      "path": "6.5/data/mechanisms/strategy-and-range-chains.json",
+      "sha256": "2A117E9BC0DA412AEC64C2C8A930E0832E1EE788B4EDE9A1CE89EE1FA882F973",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.strategy-resolution-chain.3890",
+        "mechanism.65.attack-range-tier-expansion.3890",
+        "mechanism.65.pierce-range-chain.3890"
+      ],
+      "reason": "本轮策略/攻击范围/穿透范围调用链全量复析；地址绑定各基底画像，静态证据，保持 candidate。"
+    },
+    {
+      "path": "6.4/data/functions/effect-range-binding-functions.json",
+      "sha256": "21D25D5CBE52D682EDC75241340AEE902AD3ECF6144B4A08426217B0596210BD",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.64.effect-group-query.9112",
+        "fn.64.effect-presence.9112",
+        "fn.64.pierce-loader.9112",
+        "fn.64.fatal-range-selector.9112",
+        "fn.64.state-range-remap.9112"
+      ],
+      "reason": "远距攻击/穿透攻击实现、范围码名称表与特效名表结构化；按基底画像分别登记，静态证据，保持 candidate。"
+    },
+    {
+      "path": "6.5/data/functions/effect-range-binding-functions.json",
+      "sha256": "94A3287C713F6F44D09115B29AA7864C2E635B599A538A08E61DB0AD00460036",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.65.pierce-effect-chain.3890",
+        "fn.65.param-getter-gated.3890",
+        "fn.65.longrange-effect-helper-9d.3890",
+        "fn.65.longrange-effect-helper-9e.3890",
+        "fn.65.longrange-effect-chain.3890"
+      ],
+      "reason": "远距攻击/穿透攻击实现、范围码名称表与特效名表结构化；按基底画像分别登记，静态证据，保持 candidate。"
+    },
+    {
+      "path": "6.6/data/functions/effect-range-binding-functions.json",
+      "sha256": "8939C818DE914737F4AC2DE4C17DDA93A4E9443D0E7A11A1FA43EF66F7A7C15D",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.66.pierce-loader.aa0f",
+        "fn.66.pierce-effect-chain.aa0f",
+        "fn.66.longrange-effect-chain.aa0f",
+        "fn.66.fatal-range-selector.aa0f"
+      ],
+      "reason": "远距攻击/穿透攻击实现、范围码名称表与特效名表结构化；按基底画像分别登记，静态证据，保持 candidate。"
+    },
+    {
+      "path": "6.5/data/globals/effect-name-table.json",
+      "sha256": "4FBBE2E319763081D9A8CED7525EF29CA63005EB8003840875C44F867FDB9F24",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.effect-name-table.3890",
+        "global.65.range-code-name-table.3890"
+      ],
+      "reason": "远距攻击/穿透攻击实现、范围码名称表与特效名表结构化；按基底画像分别登记，静态证据，保持 candidate。"
+    },
+    {
+      "path": "6.5/data/mechanisms/effect-range-binding.json",
+      "sha256": "02793EAD2957EDC9DF5DCCFF19399157C9F0DAC6F32D3F8E2F50244FF9B415C4",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.pierce-attack-replacement.3890",
+        "mechanism.65.longrange-attack-overlay.3890"
+      ],
+      "reason": "远距攻击/穿透攻击实现、范围码名称表与特效名表结构化；按基底画像分别登记，静态证据，保持 candidate。"
+    },
+    {
+      "path": "6.4/data/globals/effect-name-table.json",
+      "sha256": "9F927D2B6A512BD7E66A158738661C1D3A5B8FD4BFA7BAC0BDC59F928D74662B",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.64.effect-name-table.9112"
+      ],
+      "reason": "6.4 无 16 字节特效名表；记录独立特效名串与 10 项范围码名称表。"
+    },
+    {
+      "path": "6.6/data/globals/effect-name-table.json",
+      "sha256": "59CF9BB571DB23E45DCB300ED525F1DA3DC76C4D1C0CF9C17041747A8F58CDEB",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.66.effect-name-table.f20c"
+      ],
+      "reason": "6.6 特效名表 0x4CC600 与 12 项范围码名称表；穿透 149..151、远距 155..157。"
+    },
+    {
+      "path": "6.5/data/cases/effect-range-binding-verification.json",
+      "sha256": "1774A23342A0CF3BCD9CA6A80C0295DA96EEE8F273A16477A8D843E12790893B",
+      "disposition": "new-entities",
+      "targetIds": [
+        "case.65.effect-range-binding-cross-base-verification"
+      ],
+      "reason": "三基底交叉复核结论与范围块索引公式修正。"
+    },
+    {
+      "path": "6.4/data/globals/name-tables.json",
+      "sha256": "DA5629FB23B1E25E4E16232CA59A0FCDD2A8688B5ADB76CC1AEA8CBE593C43B1",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.64.range-code-name-table.9112",
+        "global.64.effect-name-tables-split.9112",
+        "global.64.misc-name-tables.9112",
+        "global.64.strategy-name-table.9112"
+      ],
+      "reason": "6.4 名称表全量清点（范围码 10 项、特效名三段、布尔/职业/能力、策略名）。"
+    },
+    {
+      "path": "6.5/data/globals/name-tables.json",
+      "sha256": "C60BD51C5BEE6253DFB2D80F9AE112F2213366A86594E26F3A848AA8D113DE15",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.effect-name-tables.3890",
+        "global.65.strategy-name-table.3890",
+        "global.65.terrain-name-table.3890",
+        "global.65.unitclass-name-table.3890",
+        "global.65.classgroup-name-table.3890",
+        "global.65.ability-name-table.3890",
+        "global.65.ui-label-tables.3890",
+        "global.65.weapon-type-name-table.3890",
+        "global.65.hotweapon-name-table.3890"
+      ],
+      "reason": "6.5 名称表全量清点（特效名 4 张分表、策略、地形、兵种、兵种系、能力、UI、武器、热兵器）。"
+    },
+    {
+      "path": "6.6/data/globals/name-tables.json",
+      "sha256": "98CBD07D375E6BF92FDBC05FDBB46D15471698A504F7D6FA99CAE7C3090E7452",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.66.range-code-name-table.f20c",
+        "global.66.misc-name-tables.f20c"
+      ],
+      "reason": "6.6 名称表清点（范围码 12 槽、地形/兵种/兵种系/武器）。"
+    },
+    {
+      "path": "6.5/data/mechanisms/param-display-name-resolution.json",
+      "sha256": "B72FC4E1372B2F0E0B865F4831128B8826CBBBE0147278AE8DE6EF5E71EC4BB0",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.param-display-name-resolution.3890"
+      ],
+      "reason": "参数显示名解析：类型 0x19 走范围码名称表，含类型名步长 0x14 内联表。"
+    },
+    {
+      "path": "6.5/data/cases/name-table-inventory.json",
+      "sha256": "D9D71038E42645C23A8E242D1EF665A360D687F3674DC2EC41F251C263B54C7B",
+      "disposition": "new-entities",
+      "targetIds": [
+        "case.65.name-table-inventory"
+      ],
+      "reason": "三基底名称表全量清点方法与结论。"
+    },
+    {
+      "path": "6.5/data/cases/name-table-pointer-sourcing.json",
+      "sha256": "E4FBC473C4E7338B5D724DF0C7790DA1E2CCDA63C0858154FB4CB8D417228A84",
+      "disposition": "new-entities",
+      "targetIds": [
+        "case.65.name-table-pointer-sourcing"
+      ],
+      "reason": "地形/兵种/兵种系名表基址修正与指针来源溯源结论。"
+    },
+    {
+      "path": "6.5/data/file-formats/script-command-record.json",
+      "sha256": "7807C129B7A27FCFA6997E862A14E8CECB5682575196A2A90CB71E51B1F9D52A",
+      "disposition": "new-entities",
+      "targetIds": [
+        "format.65.script-command-record.3890"
+      ],
+      "reason": "剧本指令记录格式：opcode + 13 参数槽。"
+    },
+    {
+      "path": "6.5/data/mechanisms/script-execution.json",
+      "sha256": "AABC1DA60A2463869E4670684F7B08BE8D6E429514A79906C2A8D70C41280D2D",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.script-execution.3890"
+      ],
+      "reason": "剧本执行链：事件表、遍历函数、记录字段读取。"
+    },
+    {
+      "path": "6.5/data/globals/script-event-table.json",
+      "sha256": "CFE98EEB5C7A9204DEA8E3364CB0A139A63CBCDEE3231A6FB41405BAF9DFBE68",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.script-event-table.3890"
+      ],
+      "reason": "事件表 0x49CF68（128×0x40）。"
+    },
+    {
+      "path": "6.5/data/cases/script-command-parsing.json",
+      "sha256": "68C540DA9AC2F8D38EAA7EB081A65DE2C52914C347BAF20503E237A974FC00B0",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "case.65.script-command-parsing"
+      ],
+      "reason": "更新案例结论：主分派表已定位为 0x410A38（126 项），0x72 子表为 29 项，删除“未找到 handler 表”的旧结论。"
+    },
+    {
+      "path": "6.5/data/functions/script-execution-functions.json",
+      "sha256": "081A6844CBDF4061E7013FCD1F13525AE5EA545B964AE3EBB52D5F96B35E9A87",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.65.script-event-iterate.3890",
+        "fn.65.script-record-field-reader.3890",
+        "fn.64.script-event-iterate.9112",
+        "fn.65.script-event-slot.3890"
+      ],
+      "reason": "剧本事件表遍历、记录字段读取与取槽函数（0x426AA8 = 槽号*0x40+0x49CF68，三基底同址）。"
+    },
+    {
+      "path": "6.5/data/globals/script-command-dispatch-table.json",
+      "sha256": "6FCB450DB97AD0A92EB45161FB6954DDFC43311788A973871F9A338824068197",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.script-command-dispatch-table.3890"
+      ],
+      "reason": "剧本指令分派表 0x410A38（126 项）。"
+    },
+    {
+      "path": "6.5/data/functions/script-command-dispatch-functions.json",
+      "sha256": "AAEDD0A70929EAFA042E843F4E6327E95DE5C96FEFDCDD20980C05DC4AD80040",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.65.script-command-dispatch.3890",
+        "fn.65.script-token-reader.3890",
+        "fn.65.script-param-get.3890",
+        "fn.65.script-ascii-number.3890"
+      ],
+      "reason": "剧本指令分派器、token 读取、参数取值与 ASCII 数字解析。"
+    },
+    {
+      "path": "6.5/data/mechanisms/script-command-dispatch.json",
+      "sha256": "006EB730A22A387738389B8CE4F079CD9A00443BAB052751DB6446278E45F2B7",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.script-command-dispatch.3890"
+      ],
+      "reason": "补入三基底主表上界、处理函数地址差异与 0x4ABF9C/0x40B922 一致性。"
+    },
+    {
+      "path": "6.5/data/cases/script-command-implementation.json",
+      "sha256": "96C61E6B55AA8FC270F136A0FE2F2269A4E3B8DEB2F913EE99B56C84BB41DC54",
+      "disposition": "new-entities",
+      "targetIds": [
+        "case.65.script-command-implementation"
+      ],
+      "reason": "指令真实实现定位过程与结论。"
+    },
+    {
+      "path": "6.5/data/globals/script-handler-map.json",
+      "sha256": "C523E92684539FF36FABD155D7390EB184461C25C245802E3B1B27872823505A",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.script-handler-map.3890"
+      ],
+      "reason": "120 个处理函数的实测参数类型签名。"
+    },
+    {
+      "path": "6.5/data/cases/script-command-verification.json",
+      "sha256": "8ECB555CC42426EE8544648B9E3FA3951FA3379612D602DAFE97E6B1399329F8",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "case.65.script-command-verification"
+      ],
+      "reason": "更新案例结论：子号直接索引 0x47D8DF，29..33 在 6.5 越界；子指令数按表项数 29 计。"
+    },
+    {
+      "path": "6.5/data/globals/script-handler-profiles.json",
+      "sha256": "3F27C2AE88AB907590128D5816772119FD67FD4924ECFF19AEFB630556EAF5EA",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.script-handler-profiles.3890"
+      ],
+      "reason": "120 个处理函数的全量行为画像（类型码、码表、关键调用）。"
+    },
+    {
+      "path": "6.5/data/globals/script-handler-modes.json",
+      "sha256": "3BEBA9BFF9B1720DB9BFB415811F02DBCDFAEC2BBDF337E18A835ECDCBB85B02",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "global.65.script-handler-modes.3890"
+      ],
+      "reason": "补入第 4 批与收尾批实测：120 项全部有结论，0x26 类型码 [2,4,4,4,4]，0x47/0x46 的 [ebp+8] 是 ctx。"
+    },
+    {
+      "path": "6.5/data/globals/script-control-codes.json",
+      "sha256": "FD1D1954CFECC817DD17CD80F5E88417375F2453657BAFB45D3D32627FED139E",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.script-control-codes.3890"
+      ],
+      "reason": "剧本指令控制码机制：0x03→6、0x0C→8，分派器经 0x486618 间接调用。"
+    },
+    {
+      "path": "6.5/data/globals/script-vtable.json",
+      "sha256": "3874F0836E67567FC55C14568BAC18F08281F6D6CF19F7C014103D42EC613712",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.script-vtable.3890"
+      ],
+      "reason": "剧本解释器虚表 0x486610 与解释循环 0x410140；控制码 3 为退出条件。"
+    },
+    {
+      "path": "6.5/data/functions/script-interpret-frame.json",
+      "sha256": "CC50600744EC631C9844F9C6A1C1F9CDC0EF6BB8627A7E58CBEF100A981AC242",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.65.script-interpret-frame.3890"
+      ],
+      "reason": "单帧解释函数 0x4100A1：计数驱动（ctx+0x24），虚调用分派器。"
+    },
+    {
+      "path": "6.5/data/mechanisms/script-main-loop.json",
+      "sha256": "F8BF06DAE5A832BC298BDDD2977415865C284C4091748D0145F10F9F3933A4D4",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.script-main-loop.3890"
+      ],
+      "reason": "剧本主循环 0x4180F9：以 0x492F90 为上下文循环执行帧，停止条件 [0x4ABF9C]&0x6E。"
+    },
+    {
+      "path": "6.5/data/structures/script-context.json",
+      "sha256": "5D1EA6FCCB1FB3F1220056C3592E590D85FB691C4D04D6E1761DD6B5B10AA3AF",
+      "disposition": "new-entities",
+      "targetIds": [
+        "struct.65.script-context.3890"
+      ],
+      "reason": "剧本上下文结构 0x492F90 字段与 0x41085D 跳转目标算法。"
+    },
+    {
+      "path": "6.5/data/mechanisms/script-jump-window.json",
+      "sha256": "90DCA0F0DA7160A5204218F704FAD70736AEA4BF40803CCE2435FAF4DA98F2CE",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.script-jump-window.3890"
+      ],
+      "reason": "跳转窗口 [0x4CE74C,0x4CE75C)：else/Section 的真实实现与 0x76 跳过标记。"
+    },
+    {
+      "path": "6.5/data/functions/script-stream-readers.json",
+      "sha256": "685E9DB3B7551BC3A080C6023ABCE7230F263659D0A2D254025D5A4023A51C08",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.65.script-stream-readers.3890"
+      ],
+      "reason": "流读取原语 1/16/32 位与 NUL 串；0x72 子指令号=第一参数（类型4），子表 29 项。"
+    },
+    {
+      "path": "6.5/data/mechanisms/script-short-param.json",
+      "sha256": "8ABF93A6783080C91806E6D746D1D9A47B2A7C5571AF0E3621DAD3C84B097160",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.script-short-param.3890"
+      ],
+      "reason": "更正早期假说：0x42/0x43 的 byte[ecx+1] 属战场对象 0x4B3D08，不是 ctx+1；24 个无类型码处理函数全部归为固定动作/框架控制码。"
+    },
+    {
+      "path": "6.5/data/globals/script-message-subcommands.json",
+      "sha256": "124DF3A647B1D932EDA8DFC332CF60EABB2882398F5E535224302AFC729290A6",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.script-message-subcommands.3890"
+      ],
+      "reason": "补入三基底子表计数（6.4=26 / 6.5=29 / 6.6=38）与各版本差异地址。"
+    }
+  ]
+}

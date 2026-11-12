@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "fn.65.data-e5-block1-init.3890",
+      "title": "DATA.E5 块 1 载入与字段整理",
+      "aliases": [
+        "0x004010B0",
+        "block1_init"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004010B0",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "cdecl, 无参数",
+      "inputs": "无；内部调用 0x41B51E(\"DATA.E5\", 1, 0x4A1140)",
+      "returns": "void",
+      "semantics": "把 DATA.E5 块 1 解出到 0x4A1140，按 0x19 步长整理 104 条记录的 +0xE/+0x12/+0x13/+0x14 字段，再把 star.e5（0xED8 字节）载入 0x4A1B68。唯一调用者 0x41B639。",
+      "relations": [
+        "global.65.data-e5-block1-buffer.3890",
+        "struct.65.data-e5-block1-record",
+        "fn.65.data-table-init-root.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.ccz65.3890.datae5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.data-table-init-root.3890",
+      "title": "战斗数据表初始化总入口",
+      "aliases": [
+        "0x0041B639",
+        "data_table_init_root"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0041B639",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "cdecl, 无参数",
+      "inputs": "无",
+      "returns": "void",
+      "semantics": "依次调用 0x41B666（块 0）、0x4010B0（块 1 + star.e5）、0x41B73E（块 3 兵种）、0x41B790（块 4）、0x41B7F0（块 2）、0x40251C(0x492E20)、0x41B834（块 5 策略 + 必杀）。唯一调用者 0x404CA8。",
+      "relations": [
+        "fn.65.data-e5-block1-init.3890",
+        "format.65.data-e5-block-directory.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.grid-status-write.3890",
+      "title": "格状态图写入（覆盖物状态码）",
+      "aliases": [
+        "0x004556F6",
+        "grid_status_write"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004556F6",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "x,y,value 走栈参数；dl 为调用方约定的覆盖物类型",
+      "inputs": "[ebp+8]=x, [ebp+0xC]=y, [ebp+0x10]=value, dl=类型",
+      "returns": "void",
+      "semantics": "调用 0x4362C2(x,y) 得格指针；写 cell[0]=dl+0xCF；value 非零时写 cell[1]=value+1。唯一写 cell[0] 的例行指令。",
+      "relations": [
+        "global.65.grid-status-map.3890",
+        "struct.65.grid-status-cell"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.battle-grid-clear.3890",
+      "title": "格状态图清零",
+      "aliases": [
+        "0x00473DF4",
+        "battle_grid_clear"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00473DF4",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "cdecl, 无参数",
+      "inputs": "无",
+      "returns": "void",
+      "semantics": "调用 0x47FD13(0x510000, 0xC80, 0) 清空格状态图；上层 0x415AEB 同时清 0x501B00 的 0x500 字节，属于战场初始化。",
+      "relations": [
+        "global.65.grid-status-map.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.fatal-field-d-reader.3890",
+      "title": "必杀记录 +0xD 读取器",
+      "aliases": [
+        "0x00484E27",
+        "fatal_field_d_reader"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00484E27",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ecx 传入记录指针；无栈参数",
+      "inputs": "ecx = 必杀记录指针",
+      "returns": "uint8（记录 +0xD）",
+      "semantics": "函数体仅 movzx eax, byte ptr [ecx+0xD]; pop ebp; ret。调用链：0x40782D（[0x500E9A]==2）→ 0x41E918(0x500E9B) → 本函数，非 0 时 0x40782D 返回 1。",
+      "relations": [
+        "struct.65.data-e5-fatal-record",
+        "global.65.fatal-record-table.3890",
+        "fn.65.pierce-loader"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.fatal-field-c-reader.3890",
+      "title": "必杀记录 +0xC 读取与特殊判定",
+      "aliases": [
+        "0x0043F8C0",
+        "fatal_field_c_reader"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043F8C0",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "unknown",
+      "inputs": "必杀记录（经 0x41E918 取得）",
+      "returns": "unknown",
+      "semantics": "在 0x43F8EA 调用 0x41E918，0x43F8EF 读 [ecx+0xC] 存入 [ebp-8]，随后调用 0x40CD39(0x32,0,5) 与 0x40CD24(0x45) 做特殊目标/范围判定。",
+      "relations": [
+        "struct.65.data-e5-fatal-record",
+        "global.65.fatal-record-table.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.cell-slot-reader.3890",
+      "title": "格内单位槽号读取",
+      "aliases": [
+        "0x00435884",
+        "cell_slot_reader"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00435884",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "x,y 走栈参数",
+      "inputs": "[ebp+8]=x, [ebp+0xC]=y",
+      "returns": "AL = P 层字节（0..0xF9 槽号，>=0xFA 归一为 0xFF）",
+      "semantics": "读取 0x40167E(0xC80)（=0x4AEB38+0xC80 的 P 层）+ y*width + x；返回值为单位槽号，不是单位指针。0x42399B 把该值传 0x4061F9(槽) 是正确用法，早期“低位误用”结论作废。",
+      "relations": [
+        "fn.65.attack-append-target",
+        "fn.65.pierce-expand-wrapper"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.job-series-attribute-matrix.3ef7",
+      "title": "兵种属性矩阵 8×40 与第 6 行伤害百分比",
+      "aliases": [
+        "job-series-attributes",
+        "兵种属性矩阵",
+        "兵种系属性",
+        "row6 damage multiplier"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4D20C0 是 8 行×40 兵种系的字节矩阵。第 6 行（0x4D21B0）是 90..130 的百分比修正，策略伤害后段按 damage*row6[series]/100 乘算；第 5 行是 0..2 枚举并被 AI 评分比较 ==2；其余行为布尔/占位标志。三基底矩阵不同。",
+      "tableLayout": {
+        "file": "Ekd5.exe",
+        "fileOffset": "0xA38C0",
+        "va": "0x4D20C0",
+        "rows": 8,
+        "columns": 40,
+        "rowStride": 40
+      },
+      "rows": [
+        {"row": 0, "va": "0x4D20C0", "kind": "enum 0..3", "status": "unnamed"},
+        {"row": 1, "va": "0x4D20E8", "kind": "boolean", "consumers": ["0x43FF7C"]},
+        {"row": 2, "va": "0x4D2110", "kind": "boolean", "consumers": ["0x44011E"]},
+        {"row": 3, "va": "0x4D2138", "kind": "boolean", "consumers": ["0x4281BB", "0x477C57"]},
+        {"row": 4, "va": "0x4D2160", "kind": "boolean", "status": "no direct consumer"},
+        {"row": 5, "va": "0x4D2188", "kind": "enum 0..2", "consumers": ["0x439A78", "0x43FFC5"]},
+        {"row": 6, "va": "0x4D21B0", "kind": "percentage 90..130", "consumers": ["0x43C16D", "0x4284E8"]},
+        {"row": 7, "va": "0x4D21D8", "kind": "all 1", "consumers": ["0x416E9C"]}
+      ],
+      "damageMultiplier": {
+        "va": "0x43C16D",
+        "formula": "damage = damage * byte[0x4D21B0 + series] / 100",
+        "helper": "0x425AD9",
+        "seriesGate": "series <= 0x27 (39)",
+        "values": "90..130，100 中性"
+      },
+      "crossBase": {
+        "hashes": {"6.4": "89A15D7674E1", "6.5": "886F92967443", "6.6": "AC2BC420929A"},
+        "diffBytes": {"6.4_vs_6.5": 97, "6.5_vs_6.6": 94}
+      },
+      "limitations": [
+        "除第 6 行外，各行玩法名称未确定。",
+        "第 6 行在策略伤害链中的攻守方向未命名。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.job-series-counter.3ef7",
+        "mechanism.65.engine-general-constant-census.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-job-attribute-matrix-20261112",
+        "src.ccz65.3890.ekd5",
+        "src.data-manager.profile65"
+      ]
+    }
+  ]
+}

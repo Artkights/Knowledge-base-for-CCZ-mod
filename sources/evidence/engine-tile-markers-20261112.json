@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "id": "src.research.engine-tile-markers-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "0x506800 两视图启用条件与 0x4B09DB 更正为出战部队数量",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密版",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 0x41E898（3 字节标记绘制）、0x415063/0x405101/0x4263B3（12 字节记录视图）、0x415B4F/0x415C0D（0x4B09DB 写入）、0x418597（名册收集）、0x416521（索引边界）；refs_to 0x4B09DB 全量 7 引用。仅静态分析。",
+  "findings": [
+    {
+      "id": "count-fix",
+      "claim": "byte[0x4B09DB] 不是快捷窗口数量，而是出战/参战部队数量（1..20）：写入点 0x415B96（脚本操作码 0x06 的 param2 取 max(param2,1)）、0x415BB1（关闭分支置 1）、0x415BF3（另一分支置 1）；读取点 0x416526（索引 < count 判定）、0x418628/0x4186D9（名册收集后按实际数量回写并 build 数组）、0x41E8AB（小地图标记绘制上界）。",
+      "evidence": [
+        "refs_to 0x4B09DB：0x415B96 写、0x415BB1 写、0x415BF3 写、0x416526 读、0x418628 读、0x4186D9 读、0x41E8AB 读",
+        "00416526 cmp ecx,dword[0x4B09DB]；0041652C jae 0x41652F（越界返回 0）",
+        "00418628 mov eax,0x4B09DB；0041862D mov cl,[eax]；0041863B cmp ecx,edx；0041863F mov [eax],dl（按实际记录数回写）",
+        "004186D9 movzx eax,byte[0x4B09DB]；004186E7 call 0x45E6B3（按数量构建记录数组）",
+        "0041E8AB cmp al,byte[0x4B09DB]；0041E8B3 cmp al,0x14（双重上限）"
+      ]
+    },
+    {
+      "id": "marker-view",
+      "claim": "0x506800 的 3 字节视图是「小地图标记表」：绘制 0x41E898 以 i<byte[0x4B09DB] 且 i<0x14 为界，条目 (byte0=源 y×0xC、byte1=源 x×0xC、byte2=源页×0x21C0)，目标 = 页基 + i×0x1B0，绘 12×12；byte0==0xFF 终止。每个出战单位对应一项标记。",
+      "evidence": [
+        "0041E8B7 imul ecx,eax,3；0041E8BA add ecx,0x506800；0041E8C0 cmp byte[ecx],0xFF",
+        "0041E8C5 movzx edx,byte[ecx+2]；0041E8C9 imul edx,edx,0x21C0；0041E8D2 imul eax,eax,0x1B0",
+        "0041E8DF movzx eax,byte[ecx+1]；0041E88B imul edx,edx,0xC（源 x×0xC）；0041E887 imul ecx,eax,0xC（源 y×0xC）",
+        "0041E88F call 0x47E09B（12×12 blit）"
+      ]
+    },
+    {
+      "id": "record-view",
+      "claim": "0x506800 的 12 字节视图是「地图记录表」：0x405063(idx) 取 [rec] 与 [rec+4] 两 dword 交给 0x4376EA 并按 0x4B422D 高度遍历；0x405101(idx,id,page,?) 取 [rec+8] 作为 word 数组指针，遇 0x2828 或 0xFF 终止并线性查找 id，随后按 0x4BE880+0x1B00*page 的地图页缓冲写入；0x4263B3 以 0xC 步长 memmove（0x4819E0）删除记录并调整后续 [rec+8] 指针。",
+      "evidence": [
+        "0040506D imul eax,eax,0xC；00405070 add eax,0x506800；00405075 push dword[eax]；00405077 push dword[eax+4]；0040508C call 0x4376EA",
+        "0040510B mov eax,0xA8C000；00405110 call 0x40162C；00405123 add eax,0x4BE880",
+        "0040513A imul eax,eax,0xC；00405142 mov edx,[eax+8]；00405145 cmp word[edx],0x2828；0040514C cmp byte[edx],0xFF；00405155 cmp word[edx],ax（线性查找）",
+        "004263B3 push 0x506800；004263BB imul eax,eax,0xC；004263DA call 0x4819E0（memmove）；004263F6 sub dword[eax+8],edx"
+      ]
+    },
+    {
+      "id": "enable-condition",
+      "claim": "两视图的启用条件由页缓冲与步长区分：3 字节标记视图只在 0x41E898 小地图标记绘制中使用，源页步长 0x21C0、目标槽步长 0x1B0，数量取 0x4B09DB；12 字节记录视图用于地图记录的装载/查找/删除（0x405063/0x405101/0x4263B3），页缓冲为 0x4BE880+0x1B00×page，与 0x4B422D 地图高度、0xA8C000 临时分配配合。二者共享 0x506800 基址但格式、页步长和调用时机不同（标记视图在战斗小地图刷新，记录视图在地图数据构建期）。",
+      "evidence": [
+        "标记视图：0x21C0 源页步长 + 0x1B0 目标步长（0x41E8C9/0x41E8D2）",
+        "记录视图：0x4BE880 + 0x1B00×page（0x405123/0x40512E）+ 0xA8C000 分配（0x40510B）",
+        "记录视图按 0x4B422D 高度遍历（0x4050AC cmp al,byte[0x4B422D]）",
+        "标记视图上界 0x4B09DB（出战部队数）与 0x14"
+      ]
+    }
+  ],
+  "corrections": [
+    "byte[0x4B09DB] 由第152轮的『快捷窗口数量』更正为『出战/参战部队数量（1..20）』；0x4B09DC/0x4B0A04 为敌我双方 20 槽单位 ID 列表。",
+    "0x506800 两视图的启用条件已明确：3 字节标记视图用于小地图标记刷新（0x41E898），12 字节记录视图用于地图记录表（0x405063/0x405101/0x4263B3）。"
+  ],
+  "limitations": [
+    "0x405063 的 0x4376EA 参数含义未展开。",
+    "12 字节记录 +0/+4/+8 三字段的业务名未定。",
+    "0x4B09DB 与快捷窗口同处一个脚本操作码 0x06 的处理链中，二者关系（是否同一 UI 的两个层面）未定。",
+    "未运行游戏对照。"
+  ],
+  "conclusion": "0x506800 为共享基址：3 字节视图=小地图出战单位标记表（数量 byte[0x4B09DB]，≤20，页步长 0x21C0/槽步长 0x1B0）；12 字节视图=地图记录表（0x4BE880+0x1B00×page、+0x08 指向 word ID 数组、0x2828/0xFF 终止）。0x4B09DB 是出战部队数量，写入方 0x415B96/0x415BB1/0x415BF3，读取方 0x416526/0x418628/0x4186D9/0x41E8AB。"
+}

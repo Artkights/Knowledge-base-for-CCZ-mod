@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz66.shanzai.work.aa0f",
+  "entries": [
+    {
+      "id": "fn.66.pierce-loader.aa0f",
+      "title": "穿透加载器（含穿透攻击替换）",
+      "aliases": [
+        "0x00407835",
+        "pierce_loader_66"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00407835",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=单位指针，无栈参",
+      "inputs": "ECX=单位指针",
+      "returns": "AL=穿透范围码；无穿透时取单位类型表值，越界返回 0",
+      "semantics": "流程：0x505FDC≠0 返回 0；0x500E9A==2 时经 0x41E918 取必杀记录并 0x484E27 判定；否则 0x45D44A(unit) 查穿透攻击特效链，非 0 直接作为穿透范围码（替换语义）；未命中则 0x406610(unit) 取单位类型，<0x50 时返回 byte[0x407881+类型]。",
+      "relations": [
+        "fn.66.pierce-effect-chain.aa0f",
+        "global.66.effect-name-table.f20c"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.66.pierce-effect-chain.aa0f",
+      "title": "穿透攻击特效链（0x95..0x97）",
+      "aliases": [
+        "0x0045D448",
+        "0x0045D435",
+        "pierce_chain_66"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0045D448",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=单位指针，无栈参",
+      "inputs": "ECX=单位指针",
+      "returns": "EAX=首个命中特效的参数值；全不命中为 0",
+      "semantics": "0x45D448 循环 i<3 调用 0x45D435；0x45D435 执行 0x42518F(unit, i+0x95, 0x33, 2, 0)，即特效 0x95/0x96/0x97（穿透攻击，名称表 149..151）依次查询，命中返回参数值作为穿透范围码。",
+      "relations": [
+        "fn.66.pierce-loader.aa0f",
+        "global.66.effect-name-table.f20c"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.66.longrange-effect-chain.aa0f",
+      "title": "远距攻击特效链（0x9B..0x9D）",
+      "aliases": [
+        "0x0045D47F",
+        "0x0045D46C",
+        "longrange_chain_66"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.shanzai.work.aa0f",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0045D47F",
+        "profile": "profile.ccz66.shanzai.work.aa0f",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=单位指针，无栈参",
+      "inputs": "ECX=单位指针",
+      "returns": "EAX=首个命中特效的参数值；全不命中为 0",
+      "semantics": "0x45D47F 循环 i<3 调用 0x45D46C；0x45D46C 执行 0x4101D9(unit, i+0x9B, 0x32, 1, 0)，即特效 0x9B/0x9C/0x9D（远距攻击，名称表 155..157）依次查询，参数值即候选范围码。0x43F8C0 在 0x43F8FB 调用本链。",
+      "relations": [
+        "global.66.effect-name-table.f20c"
+      ],
+      "sourceRefs": [
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

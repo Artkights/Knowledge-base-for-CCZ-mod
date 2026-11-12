@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "id": "src.research.engine-dialog332-refresh-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "模板 332「功勋」五维行刷新：0x4129E5/0x415F10/0x423EF1 与 IAT 展开",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密版",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 0x415F10、0x4129E5、0x423EF1、0x401289、0x4108DB、0x456DA6、0x41F952、0x40123E；pefile 解析导入表（0x4862DC=GetDlgItem、0x4862E8=EnableWindow、0x486360=SetWindowTextA、0x4862C0=wsprintfA、0x4862F4=SendMessageA、0x4862E4=SetDlgItemInt、0x486318=PostMessageA、0x486048=DeleteObject）；dialog_resource 解析 RT_DIALOG 332；GBK 串 0x48643D、0x486ACB、0x500C5F、0x48E8B7。仅静态分析。",
+  "findings": [
+    {
+      "id": "alloc-chain",
+      "claim": "分配链（补齐既有结论）：0x4108DB(hDlg,rec) 比较 dword[rec] 与对象 +0x14，不同则调 0x456DA6(hDlg,rec,1) 重新初始化；相同则遍历 i=0..4，对未勾选的 GetDlgItem(hDlg,0x406+i) 用 word[rec+i*2] 调 0x41F952 回退。0x456DA6(hDlg,rec,arg3)：0x42ACD2(arg) 无效则返回；i=0..4 用 0x4781C6 清零并 0x426A83(rec,0x14,-1)；写 对象[+0x14]=剩余点数并 SetDlgItemInt(0x7DB)；循环 0x40123E(hDlg,rec,i) 刷新 5 行；arg3==0 时再按 byte[rec+2] 掩码（钳 0x1F）逐位 0x41B8CE 设置 0x406+i 复选框。0x41F952(hDlg,ctrl,delta)：ctrl-0x7E6<5 为加号分支——取 min(word[0x4FFF68+idx*2],delta) 加到该项并扣 [0x4FFF68+0x14]；否则 idx=ctrl-0x7EB 为减号分支——从该项减去（不超过当前值）并回补 [0x4FFF68+0x14]；随后 SetDlgItemInt(0x7DB,剩余点数)、0x4129E5 刷新值、0x415F10 更新加减按钮使能。",
+      "evidence": [
+        "004108EF mov ecx,[ebp-8]；004108F2 cmp dword[ecx+0x14],edx；004108FF call 0x456DA6（不等时）",
+        "00410910 add eax,0x406；00410919 call GetDlgItem；00410920 call 0x41B8AF；00410943 call 0x41F952（未勾选回退）",
+        "00456DB5 mov eax,[ebp+0xC]；00456DBA call 0x42ACD2；00456DBF cmp al,0xFF",
+        "00456DD8 call 0x4781C6（清 5 项）；00456DE9 call 0x426A83(rec,0x14,-1)",
+        "00456DFF mov [eax+0x14],edx；00456E0D call SetDlgItemInt(0x7DB)",
+        "00456E28 call 0x40123E（5 行刷新）",
+        "00456E44..00456E67 byte[rec+2] 掩码→0x41B8CE(0x406+i, bit)",
+        "0041F962 sub eax,0x7E6；0041F967 cmp eax,5；0041F978 movzx edx,word[ecx+eax*2]；0041F97C sub word[ecx+eax*2],dx；0041F980 add [ecx+0x14],edx",
+        "0041F985 减号分支：0041F98D mov edx,[ecx+0x14]；0041F990 add word[ecx+eax*2],dx；0041F994 sub [ecx+0x14],edx",
+        "0041F9A4 call SetDlgItemInt(0x7DB)；0041F9B8 call 0x4129E5；0x415F10 更新使能"
+      ]
+    },
+    {
+      "id": "iat-map",
+      "claim": "本轮涉及的 IAT 槽：0x4862DC=USER32!GetDlgItem、0x4862E8=USER32!EnableWindow、0x486360=USER32!SetWindowTextA、0x4862C0=USER32!wsprintfA、0x4862F4=USER32!SendMessageA、0x4862E4=USER32!SetDlgItemInt、0x486318=USER32!PostMessageA、0x486048=GDI32!DeleteObject。",
+      "evidence": [
+        "pefile DIRECTORY_ENTRY_IMPORT 逐槽解析"
+      ]
+    },
+    {
+      "id": "enable-pair",
+      "claim": "0x415F10(hDlg,id,flagA,flagB) 成对启用/禁用两个控件：EnableWindow(GetDlgItem(hDlg,id), flagB) 与 EnableWindow(GetDlgItem(hDlg,id+5), flagA)。在模板 332 中 id=0x7E6+idx（加号），id+5=0x7EB+idx（减号）。",
+      "evidence": [
+        "00415F13 push [ebp+0xC]；00415F16 push [ebp+8]；00415F19 call [0x4862DC]（GetDlgItem）",
+        "00415F1F push [ebp+0x14]；00415F22 push eax；00415F23 call [0x4862E8]（EnableWindow）",
+        "00415F29 mov eax,[ebp+0xC]；00415F2C add eax,5；00415F33 call GetDlgItem；00415F3D call EnableWindow（参数 [ebp+0x10]）"
+      ]
+    },
+    {
+      "id": "row-refresh",
+      "claim": "0x4129E5(hDlg,id,ptr,idx) 刷新一行：id+=idx、ptr+=idx*2；v1=word[ptr]、v2=word[ptr+0xA]；v2==0xFFFF 时格式串用空串 0x48E8B7，否则用 0x500C5F=\"%d/%d\"；wsprintfA 后 SetWindowTextA(GetDlgItem(hDlg,id), buf)；最后以 (hDlg, idx, ptr, v1) 调 0x423EF1。",
+      "evidence": [
+        "004129EB mov eax,[ebp+0x14]；004129EE add [ebp+0xC],eax；004129F1 shl eax,1；004129F3 add [ebp+0x10],eax",
+        "004129F9 mov ax,word[ecx]；004129FC movzx edx,word[ecx+0xA]；00412A00 cmp dx,0xFFFF",
+        "00412A07 mov ecx,0x500C5F；00412A0F mov ecx,0x48E8B7",
+        "00412A1A call wsprintfA；00412A26 call GetDlgItem；00412A31 call SetWindowTextA",
+        "00412A54 call 0x423EF1",
+        "0x500C58=\"回合数 %d/%d\"，0x500C5F 即其中的 \"%d/%d\"；0x48E8B7 为 \"%d/MAX\" 之后的空串"
+      ]
+    },
+    {
+      "id": "label-refresh",
+      "claim": "0x423EF1(hDlg,idx,ptr,?) 刷新五维名称：0x42AC8F 计算阈值后 cl+=byte[ebp+0x14]；名称取 3 字节步长表 0x486ACB+idx*3（武/统/智/敏/运）；wsprintfA(格式 0x48643D=\"%s(%d)\") 后 SetWindowTextA(GetDlgItem(hDlg,idx+0x406), buf)。",
+      "evidence": [
+        "00423EF7 push 0；00423EF9 push [ebp+0x14]；00423EFC push [ebp+0x10]；00423EFF call 0x42AC8F",
+        "00423F04 add cl,byte[ebp+0x14]",
+        "00423F09 mov eax,[ebp+0xC]；00423F0C imul eax,eax,3；00423F0F add eax,0x486ACB",
+        "00423F16 push 0x48643D（\"%s(%d)\"）；00423F1F call wsprintfA",
+        "00423F28 mov eax,[ebp+0xC]；00423F2B add eax,0x406；00423F34 call GetDlgItem；00423F3F call SetWindowTextA",
+        "0x486ACB 3 字节步长：武/统/智/敏/运"
+      ]
+    },
+    {
+      "id": "caller-loop",
+      "claim": "0x401289 是模板 332 的五维行刷新循环：对 idx 复制 word[新值+idx*2]→word[记录+idx*2]，把 0x42AC8F 的阈值写 word[记录+0xA+idx*2]，然后 0x4129E5(hDlg,0x7D6,记录,idx) 与 0x415F10(hDlg,0x7E6+idx,canDec,记录[0x14])。",
+      "evidence": [
+        "0040124F movzx eax,word[edx]；00401259 mov word[edx],ax（新值→记录）",
+        "00401261 push [ecx+0x21]；00401268 call 0x42AC8F；00401275 add ecx,0xA；00401278 mov word[ecx],ax（阈值）",
+        "0040127B push [ebp+0x14]；00401281 push 0x7D6；00401289 call 0x4129E5",
+        "0040128E..004012A4 push [rec+0x14]、[ebp-8]、0x7E6+idx → call 0x415F10"
+      ]
+    },
+    {
+      "id": "dialog332-layout",
+      "claim": "RT_DIALOG 332 共 26 控件、221×111 DLU、宋体 9 号：确认 0x2、右侧大静态「功勋」65535、0x406..0x40A 为 武/统/智/敏/运 标签、0x7D6..0x7DA 为值（\"%d/%d\"）、0x7E6..0x7EA 为 \"+\"、0x7EB..0x7EF 为 \"-\"、点数 0x7DB、重置 0x7D1、左侧类控件 0x4D3（class ord 131）。",
+      "evidence": [
+        "dialog_resource 332：items=26 rect=(0,0,221,111) font 9 宋体",
+        "[02] 0x406 武；[06] 0x407 统；[10] 0x408 智；[14] 0x409 敏；[18] 0x40A 运",
+        "[03] 0x7D6 值；[04] 0x7E6 \"+\"；[05] 0x7EB \"-\"；依次 5 行",
+        "[22] \"点数：\"；[23] 0x7DB；[24] 0x7D1 \"重置\"；[25] 0x4D3 class ord 131"
+      ]
+    }
+  ],
+  "corrections": [
+    "0x4129E5 与 0x415F10 语义确定：五维行「当前/阈值」文本刷新与 +/- 按钮成对启用；此前仅记为未展开 Win32 调用。",
+    "0x423EF1 的『%s(%d)』与 0x486ACB 五维名称表、0x42AC8F 阈值公式闭环。"
+  ],
+  "limitations": [
+    "0x4129E5 的 v2==0xFFFF 空串分支在 332 中的实际触发条件未运行期验证。",
+    "0x42AC8F 阈值公式已在第 131 轮登记，此处仅复用。",
+    "0x401289 的调用者（哪个消息/定时器触发刷新）未展开。",
+    "未运行游戏对照。"
+  ],
+  "conclusion": "模板 332 界面链：0x4108DB/0x456DA6 负责初始化与差异重建（0x4FFF68 为 5×word 分配缓冲 +0x14 为剩余点数），0x41F952 处理加减号增减与回补，0x4129E5 用 \"%d/%d\"（0x500C5F）或空串刷新 0x7D6+idx 值并调 0x423EF1，0x423EF1 以 0x486ACB（武/统/智/敏/运）与 0x42AC8F 阈值生成 \"%s(%d)\" 写入 0x406+idx；0x415F10 是以 (id,id+5) 为单位的 EnableWindow 包装，在 332 中对应加号 0x7E6+idx 与减号 0x7EB+idx。"
+}

@@ -1,0 +1,92 @@
+{
+  "id": "src.research.engine-map-rect-cache-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "0x501BF0 地图可见矩形缓存：脚本操作码 0x72 子命令 31 写入与 0x4362E6 点-矩形判定",
+  "bases": [
+    {
+      "name": "6.4 洗隋",
+      "path": "基底/洗隋/Ekd5.exe",
+      "sha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"
+    },
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    },
+    {
+      "name": "6.6 复刻版山贼",
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    }
+  ],
+  "method": "capstone 反汇编 + 处理表索引解码 + 全节指针扫描 + 6.4/6.5 字节模式比对",
+  "findings": [
+    {
+      "id": "writer-42d260",
+      "claim": "0x42D260 是 0x501BF0 的唯一写入者：先用 0x42C6C5(stream,4,1,&dst) 逐字节读入 4 字节（b0..b3），再以 0x40B922 判定章节==3，通过后与缓存比较、变化才写入。",
+      "evidence": [
+        "0x42D265 push esp; 0x42D266 push 1; 0x42D268 push 4; 0x42D26A push [ebp+8]; 0x42D26D call 0x42C6C5 → 读 4 个单字节",
+        "0x42D272 call 0x40B922; 0x42D277 test eax,eax; 0x42D279 je 0x42D2CD",
+        "0x42D27E mov ecx,0x501BF0; 0x42D283 cmp [ecx],eax; 0x42D285 je 0x42D2CD; 0x42D287 mov [ecx],eax"
+      ]
+    },
+    {
+      "id": "chapter3-predicate",
+      "claim": "0x40B922 = (0x40B913()==3)，而 0x40B913 = 0x41EDEF(0x4AC63C)，即章节/场景类别==3；与第123轮存档头 +0x04 的 byte[0x4AC63C]==3 条件同源。",
+      "evidence": [
+        "0x40B913 mov ecx,0x4AC63C; call 0x41EDEF; ret",
+        "0x40B922 call 0x40B913; xor ecx,ecx; cmp al,3; sete cl; mov eax,ecx; ret"
+      ]
+    },
+    {
+      "id": "packed-layout",
+      "claim": "缓存 dword 四字节含义为 b0=left、b1=top、b2=width、b3=height；写入后仅用高字解出宽高：width*0x30 → 0x4B4250+0x34，height*0x30 → +0x38；缓存为 0 时回退 word[0x4B422C] 的网格宽高并重绘。",
+      "evidence": [
+        "0x42D28E test eax,eax; 0x42D290 jne 0x42D299; 0x42D292 mov eax,[0x4B422C]",
+        "0x42D299 shr eax,0x10; 0x42D29C movzx edx,al; 0x42D29F imul edx,edx,0x30; 0x42D2A2 mov [ecx+0x34],edx",
+        "0x42D2A5 movzx eax,ah; 0x42D2A8 imul eax,eax,0x30; 0x42D2AB mov [ecx+0x38],eax",
+        "0x42D2B8 call 0x47BBC0；0x42D2C8 call 0x454B7E"
+      ]
+    },
+    {
+      "id": "consumer-rect",
+      "claim": "0x4362E6 是点-矩形判定：edx 指向缓存 dword，取 [edx]；为 0 返回 0（视为不受限），否则以 dl/dh 为左上、cl/ch 为宽高累加得右下，点 (al,ah) 在矩形内返回 0，外部返回 0xFF。调用点 0x4386CE 与 0x459375 均先 mov edx,0x501BF0 再 call 0x4362E6。",
+      "evidence": [
+        "0x4362E9 mov edx,[edx]; 0x4362EB test edx,edx; 0x4362ED je 0x436308",
+        "0x4362EF cmp al,dl; 0x4362F1 jb 0x43630C; 0x4362F3 cmp ah,dh; 0x4362F5 jb 0x43630C",
+        "0x4362F9 shr ecx,0x10; 0x4362FC add dl,cl; 0x4362FE add dh,ch; 0x436300 cmp al,dl; 0x436304 cmp ah,dh → 0x43630C mov al,0xFF",
+        "0x4386CE mov edx,0x501BF0; call 0x4362E6; 0x4386D8 cmp al,0xFF; je 跳过",
+        "0x459375 mov edx,0x501BF0; call 0x4362E6; 0x45937F cmp al,0xFF; je 0x4593BF"
+      ]
+    },
+    {
+      "id": "dispatch-chain",
+      "claim": "0x42D260 由子命令分派器 0x47D89E 通过表 0x47D8DF 第 31 项调用；0x47D89E 又位于主脚本处理表 0x410A38 的操作码 0x72 项，因此 0x501BF0 的业务来源是脚本操作码 0x72 的子命令 31（读 4 字节矩形）。",
+      "evidence": [
+        "0x47D89E 读两枚 token（0x4183F7 尺寸 4/5，0x80000000 哨兵）后 call dword[eax*4+0x47D8DF]",
+        "表 0x47D8DF 第 31 项 = 0x42D260（(0x47D95B-0x47D8DF)/4=31）",
+        "0x410A38 表反查：0x47D89E = 操作码 0x72；0x416C41 = 操作码 0x76",
+        "全节指针扫描：0x47D89E 仅被 0x410BF8 指向（主处理表内的 0x72 项）"
+      ]
+    },
+    {
+      "id": "other-consumers",
+      "claim": "其余消费点把缓存 dword 作为绘制/计算参数：0x442013（push 值后 call 0x42C075，再叠加 0x436310）、0x451AB9（push 后 call 0x47FD13，参数含 0x70）、0x45473A、0x454CF3、0x460ECE、0x47BF54。",
+      "evidence": [
+        "refs_to 0x501BF0（6.6）共 9 处：0x42D27E 写，其余 8 处读",
+        "0x442019 call 0x42C075；0x451ACA call 0x47FD13"
+      ]
+    }
+  ],
+  "corrections": [
+    "0x501BF0 不只是『地图/视口尺寸缓存』：其四字节是矩形左/上/宽/高，除宽高驱动视口尺寸外，还被 0x4362E6 用作点-矩形判定。",
+    "旧述『6.5 无同构写入点』经字节模式（c1 e8 10 0f b6 d0 6b d2 30）比对确认：6.5/6.4 确实不存在该解包-视口更新序列，属 6.6 独占功能。"
+  ],
+  "limitations": [
+    "操作码 0x72 的中文命令名未确认（已确认子命令 31 读 4 字节矩形）。",
+    "0x42C6C5 的 0x426E64 变长字节读取编码未展开。",
+    "0x436310 的返回值语义未展开。",
+    "未运行游戏对照。"
+  ]
+}

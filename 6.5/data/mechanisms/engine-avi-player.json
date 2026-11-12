@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.avi-player.3ef7",
+      "title": "AVI 动画播放模块：avivideo MCI 命令常量与 0x41EF96 点击跳过钩子",
+      "aliases": [
+        "avi player",
+        "AVI 播放",
+        "avivideo",
+        "0x41F032",
+        "0x41EF96",
+        "LOGO.AVI",
+        "mciSendCommandA"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "AVI 动画通过 avivideo MCI 设备播放：0x41F032 MCI_OPEN(0x803, flags 0x2000 MCI_OPEN_TYPE, element \"avivideo\")；0x41F08D/0x41F5F6 MCI_SEEK(0x807, flags 0x100 MCI_SEEK_TO_START)；0x41EFE7/0x41F0A1/0x41F7C5 MCI_PLAY(0x806, flags 1 MCI_NOTIFY)；0x41F16A MCI_WINDOW(0x841, flags 0x40000 MCI_ANIM_WINDOW_STATE, state 5)；0x41F188/0x41F81A MCI_STATUS(0x814, flags 0x100 MCI_STATUS_ITEM)，状态值 0x20E=播放/0x211=暂停；0x41F737 MCI_WHERE(0x843, flags 0x20000)；0x41F8C1 MCI_PAUSE(0x809)；0x41F11D MCI_OPEN(0x803, flags 0x30200=MCI_ANIM_OPEN_PARENT 0x20000|MCI_ANIM_OPEN_WS 0x10000|MCI_OPEN_ELEMENT 0x200，i=0..4 最多重试 5 次)；0x42F76D MCI_STOP(0x808)、0x42F77F MCI_CLOSE(0x804)。设备 ID 存 word[0x497AE0]，播放窗口 0x497A9C，钩子 0x497A98；0x41F1DF 安装 SetWindowsHookExA(3=WH_GETMESSAGE, proc 0x41EF96)。钩子 0x41EF96 在 MSG.message==0x201（WM_LBUTTONDOWN）且窗口匹配 [0x497A90+0xC] 时置 [0x497A90]=1，实现点击跳过动画；否则在 [0x497A90+4]==0 时发 MCI_PLAY 并 CallNextHookEx。片名常量：LOGO.AVI/OPEN.AVI/END.AVI/PRESS.AVI（0x48B6E8..0x48B702）；错误文案「开启动画文件失败。」「不能播放动画文件%s。」「打开文件%s时出错。」「%sOpenErr」。0x41F1F1 以 MessageBoxA(title=0x48C8D8, text=0x48B734, 0x30=MB_ICONWARNING) 报错。MCI 消息全图（第136轮，按调用点回溯 push）：0x41F08D/0x41F5F6 = MCI_SEEK(0x807, flags 0x100=TO_START)；0x41F0A1/0x41EFE7/0x41F7C5 = MCI_PLAY(0x806,1)；0x41F16A = MCI_WINDOW(0x841,0x40000)；0x41F188/0x41F81A = MCI_STATUS(0x814,0x100)，状态值 0x20E=PLAY/0x211=PAUSE；0x41F737 = MCI_WHERE(0x843,0x20000=SOURCE)；0x41F8C1 = MCI_PAUSE(0x809)；0x41F11D = MCI_OPEN(0x803,0x30200)。BGM(sequencer) 链：0x42F7C3 MCI_OPEN(0x803,0x202=MCI_OPEN_ELEMENT|MCI_WAIT)，类型串 0x486934=\"sequencer\"，元素名格式串 0x486910=\".\\SoundTrk\\%02u-AudioTrack %02u.mp3\"；0x42F7E1 MCI_PLAY(0x806,0x10000)；0x42F820 MCI_SETAUDIO(0x873)，flags 0x1800000=MCI_DGV_SETAUDIO_ITEM(0x800000)|MCI_DGV_SETAUDIO_VALUE(0x1000000)，参数 item=0x4002=MCI_DGV_SETAUDIO_VOLUME、value=音量×10；0x42F840 MCI_PAUSE(0x809)；0x42F862 MCI_RESUME(0x855)；0x42F76D MCI_STOP(0x808)；0x42F77F MCI_CLOSE(0x804)。设置 +0x03=音量（0x42E218 取控件 0x411 TBM_GETPOS(0x400)→+0x03→0x42F7FC×0xA→MCI_SETAUDIO）。",
+      "constants": [
+        "0x41EF96", "0x41F032", "0x41F08D", "0x41F0A1", "0x41F11D", "0x41F16A", "0x41F188", "0x41F5F6", "0x41F737", "0x41F7C5", "0x41F81A", "0x41F8C1",
+        "0x42F76D", "0x42F77F", "0x42F7C3", "0x42F7E1", "0x42F820", "0x42F840", "0x42F862",
+        "0x4863CC", "0x486288", "0x4862C4", "0x486290", "0x497A90", "0x497A98", "0x497A9C", "0x497AA0", "0x497AE0", "0x4B6A60", "0x4B6A68",
+        "0x803", "0x806", "0x841", "0x814", "0x804", "0x2000", "0x40000", "0x100", "0x4001", "0x201", "0x03", "0x30",
+        "0x807", "0x809", "0x843", "0x855", "0x873", "0x202", "0x30200", "0x20000", "0x10000", "0x1800000", "0x4002", "0x400", "0x411",
+        "0x486910", "0x486934", "0x42E218", "0x42F7FC", "0x20E", "0x211",
+        "0x48B6E8", "0x48B6F1", "0x48B6FA", "0x48B702", "0x48B714", "0x48B734", "0x48C8D8"
+      ],
+      "identity": "0x803/0x806/0x841/0x814/0x804 与 winmm MCI_OPEN/MCI_PLAY/MCI_WINDOW/MCI_STATUS/MCI_CLOSE 常量一致；flags 0x2000/1/0x40000/0x100 分别对应 MCI_OPEN_TYPE/MCI_NOTIFY/MCI_ANIM_WINDOW_STATE/MCI_STATUS_ITEM；设备类型字符串 \"avivideo\" 与文件名 *.AVI 相互印证。",
+      "siteAddresses": {
+        "open": "0x41F032",
+        "play": "0x41F08D",
+        "playSimple": "0x41F0A1",
+        "windowStatus": "0x41F11D",
+        "close": "0x42F76D",
+        "hookProc": "0x41EF96",
+        "hookInstall": "0x41F1DF",
+        "deviceType": "avivideo",
+        "mciSendCommandA": "0x4863CC",
+        "setWindowsHookExA": "0x486288",
+        "deviceId": "0x497AE0",
+        "videoWindow": "0x497A9C",
+        "hookHandle": "0x497A98",
+        "stateObject": "0x497A90",
+        "errorText": "0x48B734"
+      },
+      "limitations": [
+        "0x4001/0x20E/0x211 等 MCI_STATUS 项的官方常量名未逐一对照 mmsystem.h。",
+        "MCI_WINDOW 的 dwState 具体位组合未展开。",
+        "0x41F703 的窗口绑定细节未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.sound-settings.3ef7",
+        "mechanism.65.dialog-framework.3ef7",
+        "mechanism.65.api-name-table.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-avi-player-20261112",
+        "src.research.engine-mci-command-map-20261112",
+        "src.research.engine-mci-flags-decode-20261112"
+      ]
+    }
+  ]
+}

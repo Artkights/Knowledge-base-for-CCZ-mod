@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "analysis": "battle-unit-occupancy-table",
+  "date": "2026-11-12",
+  "method": "从 0x4560F3 的 imul 5 / 0x4B3D24 哨兵扫描定位表结构，反汇编 0x43B420 坐标比较；三基底引用计数与函数哈希对比。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "table": {
+    "base": "0x4B3D21",
+    "count": "0xFA（250）",
+    "stride": 5,
+    "byteSpan": "250×5=1250 字节，0x4B3D21..0x4B4222",
+    "fields": {
+      "0": "x 坐标",
+      "1": "y 坐标",
+      "3": "状态/哨兵，0xFF 表示空记录",
+      "2/4": "未命名"
+    },
+    "neighbor": "0x4B422C 网格尺寸对紧随其后"
+  },
+  "sites": {
+    "scan": {
+      "va": "0x4560F3",
+      "code": "外层按 ch/cl 遍历坐标；内层 i=0..0xF9：eax=i*5；if byte[eax+0x4B3D24]==0xFF 结束；0x43B420(eax+0x4B3D21, &coord) 比较 x/y；命中则计数"
+    },
+    "compare": {"va": "0x43B420", "code": "byte[a]==byte[b] && byte[a+1]==byte[b+1] → 1，否则 0"},
+    "sentinel": "0x4B3D24 = record+3"
+  },
+  "constants": ["0xFA", 5, "0xFF", "0x4B3D21", "0x4B3D24"],
+  "crossBase": {
+    "refs": {"4B3D21": {"6.4": 7, "6.5": 7, "6.6": 7}, "4B3D24": {"6.4": 6, "6.5": 6, "6.6": 6}},
+    "hashes": {
+      "scan4560F3": {"6.4": "9BB7323594904EB0", "6.5": "DDCD6BE434C683A9", "6.6": "4C6AAA59A123FFE6"},
+      "compare43B420": {"6.4": "D9AF2B121650711D", "6.5": "D9AF2B121650711D", "6.6": "5F59C43C756AD45A"}
+    }
+  },
+  "conclusion": "0x4B3D21 是 250 条 ×5 字节的战场单位占位表：每条 byte0/1 为 x/y，byte3 为状态，0xFF 表示空；0x4560F3 以 i*5 扫描并在 byte3==0xFF 时结束，0x43B420 只比较前两字节坐标。该表 0x4B3D21..0x4B4222，紧接着是 0x4B422C 的网格尺寸对，说明两者同属战场布局全局区。引用计数三基底一致（表基址 7 处、+3 哨兵 6 处）。",
+  "limitations": [
+    "byte2/byte4 语义未确定。",
+    "0xFA 与 250 个单位的对应关系未由命名表证明。",
+    "0x4560F3 的外层坐标范围参数未展开。",
+    "未运行游戏对照。"
+  ]
+}

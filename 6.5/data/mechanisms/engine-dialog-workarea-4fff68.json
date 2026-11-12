@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.dialog-workarea-4fff68.3ef7",
+      "title": "332 对话框工作区 0x4FFF68：五项值/+0x14 点数池/+0x0A 第二数组/+0x21 字段",
+      "aliases": [
+        "dialog work area",
+        "0x4FFF68",
+        "工作区",
+        "0x40123E"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4FFF68 是模板 332 的工作区：+0x00..+0x09 为五项经验值（word×5，由 0x40123E 从参数数组拷入），+0x0A 起为第二组 word×5 = 五项升级阈值（0x40123E 调 0x42AC8F 后写入），+0x14 为剩余点数池（dword，0x41F952 加减），+0x21 为每项记录的等级字节（0x40123E/0x423F75/0x4620C7 作为 level 参数并在升级时 +1）。0x42AC8F(expWordPtr,level,mode) 阈值公式：level>=0x6E 返回 -1；level<0x50(80) 阈值=0x32(50)；level>=0x50 阈值=(level-0x4F)*0x0A+0x37（80 级=65、每级 +10）；mode!=1 时循环扣减经验并递增等级。0x40123E(hwnd,expArray,baseRec,i) 依次：写 workarea[i] 经验、算阈值写 workarea[+0x0A+i*2]、0x4129E5(hwnd,0x7D6,workarea,i) 刷新数值、0x415F10(hwnd,i+0x7E6,[ebp-8],workarea+0x14) 刷新剩余点数。引用点：0x401241、0x41F956、0x4108E0、0x456CC4、0x456DAB；0x42AC8F 调用点：0x401268、0x423EFF、0x423F75、0x4620C7。0x505F40（全局池）与 0x4FFF68+0x14（对话框池）的静态同步点未找到。",
+      "constants": [
+        "0x4FFF68", "0x40123E", "0x41F952", "0x4108DB", "0x456DA6", "0x456CB4", "0x42AC8F",
+        "0x4129E5", "0x415F10", "0x423EFF", "0x423F75", "0x4620C7", "0x7D6", "0x7E6",
+        "0x6E", "0x50", "0x4F", "0x32", "0x37", "0x0A", "0x14", "0x21", "0x05", "0x505F40"
+      ],
+      "identity": "0x41F952 的 +0x14 池与 0x40123E 的 +0x0A/+0x21 访问均以 0x4FFF68 为基址，五个引用点的基址一致；五项 word 与 332 五维控件一一对应；0x42AC8F 的 0x32/0x4F/0x37/0x0A 四个立即数构成唯一阈值公式，并被 0x40123E 的 +0x0A 写入点与 0x423F87 的等级 +1 共同印证。",
+      "siteAddresses": {
+        "workArea": "0x4FFF68",
+        "adjust": "0x41F952",
+        "secondArrayUser": "0x40123E",
+        "thresholdFn": "0x42AC8F",
+        "thresholdCallInDialog": "0x401268",
+        "thresholdCall1": "0x423EFF",
+        "thresholdCall2": "0x423F75",
+        "thresholdCall3": "0x4620C7",
+        "numericItem": "0x7D6",
+        "textItemBase": "0x7E6",
+        "levelByte": "+0x21",
+        "expWords": "+0x00..+0x09",
+        "thresholdWords": "+0x0A..+0x13",
+        "refresh": "0x4108DB",
+        "display": "0x456DA6",
+        "confirm": "0x456CB4",
+        "globalPool": "0x505F40"
+      },
+      "limitations": [
+        "0x40123E 调 0x42AC8F 时第 1 参数用未初始化局部 [ebp-8]，需运行期确认。",
+        "0x415F10 与 0x4129E5 的具体 Win32 调用未展开。",
+        "0x505F40 与 +0x14 的同步点未定位。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.dialog332-refresh.3ef7",
+        "mechanism.65.dialog332-confirm.3ef7",
+        "mechanism.65.merit-table.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-dialog-workarea-4fff68-20261112",
+        "src.research.engine-level-threshold-formula-20261112"
+      ]
+    }
+  ]
+}

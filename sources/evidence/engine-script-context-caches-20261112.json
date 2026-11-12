@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "analysis": "script-context-and-caches",
+  "date": "2026-11-12",
+  "method": "refs_to.py 追踪 0x410857/0x4109E6/0x4105FF 的调用关系；dump_funcs.py/context.py 反汇编解释器主函数与动作处理器；结合第 31 轮 0x410A38 处理表（126 项）与第 68 轮 0x500AB0/AB4 写入点。仅静态分析。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "context": {
+    "register": "ecx",
+    "evidence": "0x4105FF 中 [ecx] 为 vtable，call [edx+0x10]/[edx+8]；0x4109E6 中 [edx+0x2E]/[edx+0xC]；0x410857 中 [ecx+0x14]/[ecx+0x2C]",
+    "fields": [
+      {"offset": "+0x00", "size": 4, "semantic": "vtable 指针（解释器虚函数调用）"},
+      {"offset": "+0x0C", "size": 4, "semantic": "脚本地址/偏移基值（与操作数相加得 0x500AB4）"},
+      {"offset": "+0x10", "size": 2, "semantic": "当前 opcode 快照（0x4105FF 从 vtable[+0x10] 取回写入）"},
+      {"offset": "+0x14", "size": 4, "semantic": "分支/循环状态；-1 为无（0x410622 写入 0xFFFFFFFF）"},
+      {"offset": "+0x2C", "size": 4, "semantic": "执行中标志（0x4108AA/0x4108C6 清零）"},
+      {"offset": "+0x2E", "size": 1, "semantic": "当前动作码（0x4109E6 由 0x40FCB2 写入）"},
+      {"offset": "+0x34", "size": 4, "semantic": "开关（非 0 时 0x4105FF 读取 0x40FCB2）"}
+    ]
+  },
+  "caches": [
+    {
+      "address": "0x500AB0",
+      "formula": "[ctx+0xC] - 2（当 0x40FCB2 返回码==1）",
+      "site": "0x410A0B",
+      "semantic": "动作码 1 分支的脚本地址缓存（候选：'等待/跳转' 返回点）"
+    },
+    {
+      "address": "0x500AB4",
+      "formula": "[ctx+0xC] + 0x40FCB2(ctx)（当 [ctx+0x14]<0）",
+      "site": "0x41088B",
+      "semantic": "脚本地址缓存（当前基值+操作数），供 0x416C62 等读取"
+    }
+  ],
+  "dispatch": {
+    "fn": "0x4109E6",
+    "behavior": "al=0x40FCB2(ctx)；[ctx+0x2E]=al；al>0x7B 返回 5；al==1 分支写 0x500AB0；al>=2 时以 al-2 索引 0x410A38 的 122 项处理表并调用。",
+    "table": "0x410A38（第 31 轮：126 项 dword，index=opcode-2，覆盖 0x02..0x7D）",
+    "note": "6.5 同址仅 cmp 上限为 0x79；6.6 扩到 0x7B（与第 44 轮 6.6 新增 0x7C/0x7D 处理体一致）"
+  },
+  "interpreter": {
+    "fn": "0x4105FF",
+    "calledFrom": "0x4108B2（动作处理器 0x410857 内）",
+    "behavior": "cmp [ctx+0x14],arg；写 -1；[ctx+0x34]!=0 时取 0x40FCB2；vtable[+0x10]、vtable[+8]；返回值 <=9 分派；==2 时写 [ctx+0x10] 与 [ctx+0x14]；cmp ecx,0x76 特判。",
+    "constants": ["0x09 上限", "0x76 特判值", "-1 哨兵"]
+  },
+  "conclusion": "0x500AB0/0x500AB4 是剧本解释器/动作处理器的脚本地址缓存：0x500AB0=[ctx+0xC]-2（动作码 1 分支），0x500AB4=[ctx+0xC]+0x40FCB2(ctx)（[ctx+0x14]<0 分支）。上下文为带 vtable 的对象：+0x0C 偏移基值、+0x10 opcode 快照、+0x14 分支状态（-1）、+0x2C 执行中标志、+0x2E 当前动作码、+0x34 开关。0x4109E6 以动作码-2 索引 0x410A38 处理表（6.6 上限 0x7B，6.5 为 0x79）。",
+  "limitations": [
+    "+0x0C 的精确语义（字节偏移还是指令索引）未定。",
+    "0x500AB0/AB4 的最终消费者用途未完全追踪。",
+    "0x4105FF 的 vtable[+8]/[+0x10] 具体方法名未定。",
+    "未运行游戏对照。"
+  ]
+}

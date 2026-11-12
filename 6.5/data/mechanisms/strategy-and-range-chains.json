@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "mechanism.65.strategy-resolution-chain.3890",
+      "title": "策略解析调用链（施放→命中→伤害/状态/治疗→经验）",
+      "aliases": [
+        "策略全链",
+        "strategy resolution chain"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.strategy-cast-entry.3890",
+          "role": "0x417982 施放入口/门控"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.strategy-mp-check.3890",
+          "role": "0x417AF6 MP 可用性"
+        },
+        {
+          "order": 3,
+          "entity": "fn.65.strategy-mp-cost.3890",
+          "role": "0x417B27 成本"
+        },
+        {
+          "order": 4,
+          "entity": "fn.65.strategy-hit-stub.3890",
+          "role": "0x43B6F3 命中模式"
+        },
+        {
+          "order": 5,
+          "entity": "fn.65.strategy-hit-curve.3890",
+          "role": "0x43B53A 命中曲线"
+        },
+        {
+          "order": 6,
+          "entity": "fn.65.strategy-damage.3890",
+          "role": "0x43C022 伤害"
+        },
+        {
+          "order": 7,
+          "entity": "fn.65.strategy-status-value.3890",
+          "role": "0x43C5DF 状态数值"
+        },
+        {
+          "order": 8,
+          "entity": "fn.65.strategy-heal.3890",
+          "role": "0x43C31D 治疗"
+        },
+        {
+          "order": 9,
+          "entity": "fn.65.strategy-exp.3890",
+          "role": "0x420EFB 经验"
+        },
+        {
+          "order": 10,
+          "entity": "fn.65.strategy-range-dispatch.3890",
+          "role": "0x435CE9 范围展开"
+        },
+        {
+          "order": 11,
+          "entity": "fn.65.strategy-animation-tier.3890",
+          "role": "0x401DFF 演出类型拓展"
+        }
+      ],
+      "semantics": [
+        "施放入口先经 0x40641F 门控，再查 MP；命中判定与伤害/状态/治疗三选一由 0x415EFA 门控与策略属性决定。",
+        "所有分支最终写 action+0x108（HP 或 MP 通道），再由 0x4229B0 结算段落盘。",
+        "策略范围由记录 +0x0D 送 0x435CE9 12 分支展开；演出由 0x425627 按 0x4D1570 表分派。"
+      ],
+      "relations": [
+        "global.65.range-pointer-table"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "mechanism.65.attack-range-tier-expansion.3890",
+      "title": "攻击/必杀范围等级拓展链（四向→九宫→没羽）",
+      "aliases": [
+        "拓展范围",
+        "range tier expansion",
+        "0x41CEAB 范围跳转"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.fatal-range-selector.3890",
+          "role": "0x43F8C0 取必杀范围/特殊判定"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.attack-range-wrapper.3890",
+          "role": "0x417A35 包装并传 default=1"
+        },
+        {
+          "order": 3,
+          "entity": "fn.65.attack-range-tier-check.3890",
+          "role": "0x41CDEE 按 特效号=r+0x5A 判定"
+        },
+        {
+          "order": 4,
+          "entity": "fn.65.attack-range-tier-map.3890",
+          "role": "0x41CE8B 查 0x41CEAB 返回下一级"
+        },
+        {
+          "order": 5,
+          "entity": "fn.65.attack-dispatch",
+          "role": "0x436511 按范围码查 0x4D1400 展开"
+        },
+        {
+          "order": 6,
+          "entity": "fn.65.attack-append-target",
+          "role": "0x437AFF 边界/阵营/去重落格"
+        }
+      ],
+      "state": [
+        "global.65.attack-range-tier-table.3890",
+        "global.65.range-pointer-table"
+      ],
+      "semantics": [
+        "范围等级 r：0=四向、1=九宫、6=没羽、0x0C=大没羽；拥有拓展特效后按 0x41CEAB 链式跳一级（0x00→0x01→0x06→0x0C→0x0D→0x21）。",
+        "0x41CDEE 的特效号是动态 r+0x5A（默认 0x76），所以常量为 0x5A..0x7B 的动态读取，不是固定桩。",
+        "同一张 0x41CEAB 表也被 0x401DFF 用于策略动画模板 t=record+0xC 的升级。"
+      ],
+      "relations": [
+        "mechanism.65.attack-range-grid-write.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "mechanism.65.pierce-range-chain.3890",
+      "title": "穿透范围调用链（加载→包装→12 分支→落格）",
+      "aliases": [
+        "穿透范围",
+        "pierce range chain"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.pierce-loader",
+          "role": "0x40782D 按单位类型查 0x407881 表/必杀分支"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.pierce-expand-wrapper",
+          "role": "0x4364C7 取单位/角色后转 0x435CE9"
+        },
+        {
+          "order": 3,
+          "entity": "fn.65.strategy-range-dispatch.3890",
+          "role": "0x435CE9 12 分支展开"
+        },
+        {
+          "order": 4,
+          "entity": "fn.65.pierce-geometry-dispatch",
+          "role": "0x436616 四向/四角几何展开"
+        },
+        {
+          "order": 5,
+          "entity": "fn.65.pierce-append-target",
+          "role": "0x437AFF 落格与去重"
+        }
+      ],
+      "state": [
+        "global.65.range-target-buffer",
+        "global.65.range-target-write-index"
+      ],
+      "semantics": [
+        "0x407881 为单位类型 0..0x4F 的穿透模式表（0/1/4/9/0x0A）。",
+        "穿透码与策略范围共用 0x435CE9 的 12 项跳转表 0x435EF8。",
+        "落格缓冲 0x4AC748 起、0x4B2C34 为游标、0xFF 终止；0x4B2C28 为比较值。"
+      ],
+      "relations": [
+        "mechanism.65.attack-range-grid-write.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "mechanism.65.strategy-mimic-and-penetration.3890",
+      "title": "策略模仿与强化策略穿透：标志位置、映射表与范围拓展对照",
+      "aliases": [
+        "策略模仿",
+        "强化策略穿透",
+        "策略穿透增加",
+        "0x442871",
+        "0x41CEAB"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.strategy-mimic-effect.3890",
+          "role": "0x4210BE 查询特效 0x2D(45) 策略模仿"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.strategy-mimic-selection.3890",
+          "role": "0x43E02A/0x465A2E 在特效 45 命中后进入 0x41DC78/0x465AC0"
+        },
+        {
+          "order": 3,
+          "entity": "fn.65.strategy-mimic-selection.3890",
+          "role": "选择器用 0x4D17B0 的 8 位类别掩码筛选，无独立模仿位"
+        },
+        {
+          "order": 4,
+          "entity": "fn.65.strategy-penetration-enhancement.3890",
+          "role": "0x44282D 取穿透码并查询特效 0xB6(182)，命中后查 0x442871"
+        },
+        {
+          "order": 5,
+          "entity": "fn.65.attack-range-tier-check.3890",
+          "role": "0x41CDEE 按特效 r+0x5A 判定并查 0x41CEAB，作为对照"
+        }
+      ],
+      "state": [
+        "struct.65.strategy-record.3ef7",
+        "global.65.attack-range-tier-table.3890"
+      ],
+      "semantics": [
+        "6.5 没有独立的逐策略“策略模仿允许位”；特效 45 命中后，模仿路径复用 0x41DC78/0x465AC0，并以 0x4D17B0（strategy-learning）8 位类别掩码筛选可模仿策略。",
+        "6.5 的“强化策略穿透”是特效 0xB6(182)，consumer 0x44282D 直接查询该特效；命中后把策略穿透码（文件 +0x0E / 运行时 +0x0D）按表 0x442871 映射：01 02 03 06 07 04 06 05 08。",
+        "6.5 的强化策略穿透没有逐策略开关；只要单位拥有特效 182，所有带合法穿透码的策略都会走该表。",
+        "攻击范围拓展表 0x41CEAB 为 33 字节，三基底一致；0x41CE8B(r,default) 先 0x41CDEE(r) 判定，命中返回 byte[0x41CEAB+r]。它与策略穿透表结构近似，但前者是范围等级码，后者是穿透码。",
+        "0x41CDEE 的特效号是动态 r+0x5A（默认 0x76），6.5/6.6 的 91/92 分别为提升攻击范围/提升施法范围；6.4 的 91/92 为远距攻击-物理/策略。"
+      ],
+      "relations": [
+        "mechanism.65.attack-range-tier-expansion.3890",
+        "mechanism.65.strategy-attribute-tables.3ef7",
+        "mechanism.65.dm-strategy-attribute-semantics"
+      ],
+      "sourceRefs": [
+        "src.research.strategy-attribute-verification-20261111",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

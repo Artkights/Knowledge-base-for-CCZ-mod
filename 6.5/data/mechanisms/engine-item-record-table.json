@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.item-record-table.3ef7",
+      "title": "物品/装备记录表 0x4A1140（6.6: 0x49F820）",
+      "aliases": [
+        "0x4A1140",
+        "0x49F820",
+        "0x4837C2",
+        "物品记录表",
+        "25字节记录"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "物品/装备记录在 6.4/6.5 基址 0x4A1140、步长 0x19（25 字节）、索引 0..0xFF；6.5 有 55 处基址引用。6.6 不再引用 0x4A1140，改用 0x49F820 并通过访问器 0x4837C2（index*0x19+0x49F820）取记录；记录 +0x11 字段在 0x4303B4 以 byte 读取。",
+      "constants": [
+        "0x19",
+        "0xFF",
+        "0x4A1140",
+        "0x49F820",
+        "0x24",
+        "0x25",
+        "0x11"
+      ],
+      "identity": "0x4A1140 引用：6.4=54、6.5=55、6.6=0；0x49F820 引用：6.6=4；6.6 仅 3 处 imul 0x19，6.5 有 53 处。",
+      "limitations": [
+        "字段语义已由 mechanism.65.item-record-fields.3ef7 展开；+0x10/+0x13 仍未定名。",
+        "访问器内部字段偏移未逐项展开。",
+        "6.6 的 0x4D2765 imul 0x19 与物品表无关。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.item-record-fields.3ef7",
+        "mechanism.65.item-type-classification.3ef7",
+        "mechanism.65.item-price-consumption-boundary.3ef7",
+        "mechanism.65.item-record-normalization.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-item-record-table-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "base65": "0x4A1140",
+        "base66": "0x49F820",
+        "accessor66": "0x4837C2",
+        "scan65": "0x434EAA",
+        "use65": "0x436063",
+        "usability65": "0x436236",
+        "field66": "0x4303B1",
+        "valid": "0x44001E",
+        "field": "0x40B444",
+        "init": "0x41DD72",
+        "owner": "0x41C330"
+      }
+    }
+  ]
+}

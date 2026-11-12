@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz66.xiaoan.fixture.25d",
+  "entries": [
+    {
+      "id": "mechanism.66.strategy-attribute-tables.25d",
+      "title": "策略属性子表：6.6 0xA2CE0 语义漂移与效果类扩容",
+      "aliases": [
+        "strategy-learning",
+        "strategy-extension",
+        "0x4D14E0",
+        "0x4D1570"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "6.6 与 6.5 共用 0xA2CE0..0xA31F0 的 144 字节表偏移，但 0xA2CE0 从填充区变成真实标志表，0xA2D70 效果类上限从 0x24 扩到 0x29，0xA2FB0 仍是 AI 类别位掩码。",
+      "tables": [
+        {
+          "key": "strategy-extension",
+          "fileOffset": "0xA2CE0",
+          "va": "0x4D14E0",
+          "rows": 144,
+          "content": "0x00/0x01/0x03 混合；样本 82×0x03、53×0x00、6×0x02、3×0x01",
+          "consumers": [
+            "0x41A11F",
+            "0x41DCE6",
+            "0x465B66"
+          ],
+          "semantics": "真实位掩码表。0x41DCE6/0x465B66 以 test byte [id+0x4D14E0],1 决定 AI/策略模仿是否可选用（bit0）；0x41A11F 以 test ...,2 在置位时 push 2、call 0x45D316，0x45D36A 再查询特效 0xA8(168) 并查 0x45D343 表（bit1）；bits2-7 未见测试。",
+          "status": "verified-partial"
+        },
+        {
+          "key": "strategy-effect-class",
+          "fileOffset": "0xA2D70",
+          "va": "0x4D1570",
+          "rows": 144,
+          "maximumClass": "0x29",
+          "dispatchVa": "0x42569C",
+          "jumpTableVa": "0x4259C3",
+          "consumers": [
+            "0x4256A6",
+            "0x43C5F1"
+          ],
+          "semantics": "ID→效果类索引；6.6 上限 0x29，0x2A..0x2F 为预留空槽；0x4D1570 同时被状态派发 0x43C5F1 引用。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-battle-ai",
+          "fileOffset": "0xA2E00",
+          "va": "0x4D1600",
+          "rows": 144,
+          "consumers": [
+            "0x439881"
+          ],
+          "semantics": "AI 评分处理器编号；0x505FDC==0 时使用。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-training-ai",
+          "fileOffset": "0xA2E90",
+          "va": "0x4D1690",
+          "rows": 144,
+          "consumers": [
+            "0x439879",
+            "0x46647D"
+          ],
+          "semantics": "练武场 AI 评分处理器编号；0x46647D 以值 0x0D 作特殊分支。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-hit-rate",
+          "fileOffset": "0xA2F20",
+          "va": "0x4D1720",
+          "rows": 144,
+          "consumers": [
+            "0x43B8FF",
+            "0x46FBD9"
+          ],
+          "semantics": "命中模式/基础命中率选择器。显示：0=90、1=100、2=100、3=34、4=50、>=5=该值。战斗：0 基础值×90/100（特殊目标条件可 0），1 绝对 100（同条件可 0），2 能力曲线，3/4 基础值×34/50，>=5 基础值×值/100；最终封顶 100。6.6 的效果读取改用 0x42518F。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-learning",
+          "fileOffset": "0xA2FB0",
+          "va": "0x4D17B0",
+          "rows": 144,
+          "consumers": [
+            "0x42978F",
+            "0x4297F5"
+          ],
+          "semantics": "AI 策略类别位掩码；6.6 以 8 位循环构建每类可用策略列表。不是效果索引。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-damage-ratio",
+          "fileOffset": "0xA3040",
+          "va": "0x4D1840",
+          "rows": 144,
+          "consumers": [
+            "0x42FD17",
+            "0x43C05D",
+            "0x43C5F8"
+          ],
+          "semantics": "伤害百分比系数；6.6 伤害函数在 0x43C05D/0x43C5F8 引用。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-damage-type",
+          "fileOffset": "0xA30D0",
+          "va": "0x4D18D0",
+          "rows": 144,
+          "consumers": [
+            "0x415F00",
+            "0x42FD1C",
+            "0x46FC2D"
+          ],
+          "semantics": "伤害门控：0x415EFA 返回 type<4 ? 1 : 0；0..3 等价，4 不伤血，>=4 同样被门控。6.6 的绕行例外是策略类型==0x1E 或 0x06（0x420A9B→0x43C06D/0x43C074），不是 6.5 的 ID 0x46/0x16。0x42FD1C 为新增描述/信息构造读取，写入局部后未消费；0x46FC2D 显示时 effect-class==0x2B 或 type==4 显示 0，否则显示 damage-ratio（>=0xFA 显示 100）。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-small-animation",
+          "fileOffset": "0xA3160",
+          "va": "0x4D1960",
+          "rows": 144,
+          "consumers": [
+            "0x4215BE"
+          ],
+          "semantics": "小动画图号；0xFF 为空。",
+          "status": "verified"
+        },
+        {
+          "key": "strategy-big-animation",
+          "fileOffset": "0xA31F0",
+          "va": "0x4D19F0",
+          "rows": 144,
+          "consumers": [
+            "0x40EB5D",
+            "0x4214DC",
+            "0x424574",
+            "0x42566F"
+          ],
+          "semantics": "大动画图号；0xFF 为空，>=0x64 为特殊演出码。",
+          "status": "verified"
+        }
+      ],
+      "notes": [
+        "6.6 的 0xA2CE0 不是“策略扩展标记”的模糊描述，而是 bit0/bit1 实际参与 AI 选择与特殊处理的标志表。",
+        "表映射：0xA2CE0 真实标志；0xA2D70 效果类（上限 0x29）；0xA2E00 战场AI；0xA2E90 练武场AI；0xA2F20 命中模式；0xA2FB0 AI类别位掩码；0xA3040 伤害百分比；0xA30D0 伤害门控；0xA3160 小动画；0xA31F0 大动画。",
+        "0x41DCE6/0x465B66 的 bit0 决定 AI 是否接受策略；0x41A11F 的 bit1 置位时 call 0x45D316(2)；bit1=策略穿透增强适用，bits2-7 未使用。",
+        "6.6 Profile 继承 6.5 的 0xA2FB0 偏移是正确的，但名称“效果索引”仍然错误；它仍是 AI 类别位掩码。",
+        "0x4D1570 在 6.6 同时服务效果类分派与状态派发，修改前必须同时核对两条消费者。",
+        "6.6 仍只把 68 条策略记录加载到 0x4A3E77；文件 144 行中后 76 行不在运行时数组内。",
+        "0x45D343 策略穿透增强映射表：01 02 03 08 07 05 06 05 06 02 0A；0x45D36A 以 al+0xA7-1 把输入 2 映射为特效号 0xA8，0x45D316 再按穿透码查表。"
+      ],
+      "relations": [
+        "struct.66.strategy-record.25d",
+        "mechanism.65.strategy-attribute-tables.3ef7",
+        "mechanism.65.dm-strategy-attribute-semantics"
+      ],
+      "sourceRefs": [
+        "src.research.strategy-attribute-verification-20261111",
+        "src.dm.formulas.sample-66-20261102",
+        "src.data-manager.profile66"
+      ]
+    },
+    {
+      "id": "mechanism.66.strategy-extension-flags.25d",
+      "title": "6.6 strategy-extension：模仿/AI 与策略穿透增强的逐策略标志",
+      "aliases": [
+        "0x4D14E0",
+        "策略模仿",
+        "强化穿透-策略",
+        "0x45D343"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xiaoan.fixture.25d",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "semantics": [
+        "bit0（value 1）：0x41DCE6/0x465B66 在 AI/策略模仿选择器中测试；bit0=0 的策略不会被选择。数据样本：多数普通策略 0x03，换位/号令/修筑 0x01，特殊/召唤 0x00。",
+        "bit1（value 2）：0x41A11F 测试；置位时 push 2、call 0x45D316。0x45D36A 以 al+0xA7-1 把 2 映射为特效 0xA8(168) 并查询；0x45D316 再按穿透码查 0x45D343 表。",
+        "0x45D343 表（11 字节）：01 02 03 08 07 05 06 05 06 02 0A；对应策略穿透码 0..10 的增强结果。",
+        "bits2-7：在 6.6 样本中未找到对 0x4D14E0 的 4/8/16/32/64/128 测试，当前视为保留位。",
+        "数据样本中 bit1 只出现于 0x03（普通策略）与 0x02（104-107/109/119 等被动条目）；0x01 的特殊策略和 0x00 的独特策略不启用策略穿透增强。"
+      ],
+      "caveat": "0x45D316 的 mov al,[ecx+0x45D343] 在静态路径上收到的 ECX 疑似为上下文/单位指针，而非 0..10 的穿透码；表位置、特效号与 bit1 门控确定，但表索引寄存器需实机断点确认。",
+      "relations": [
+        "mechanism.66.strategy-attribute-tables.25d",
+        "mechanism.65.strategy-mimic-and-penetration.3890",
+        "struct.66.strategy-record.25d"
+      ],
+      "sourceRefs": [
+        "src.research.strategy-attribute-verification-20261111",
+        "src.dm.formulas.sample-66-20261102",
+        "src.data-manager.profile66"
+      ]
+    }
+  ]
+}

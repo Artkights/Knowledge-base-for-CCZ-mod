@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "analysis": "cell-flag-writer",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 6.6 的 0x42A5D6（标志写入）、0x42A43E（全图遍历 test 0xD）、0x42AAA5（全图 and 0x0C）；结合第77/83轮 0x4934B0 结论。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "writer": {
+    "entry": "0x42A5D6",
+    "signature": "int SetCellFlag(int coordPacked, unsigned char mask, int on)",
+    "steps": [
+      "index = 0x403789(coord)（y*width+x）",
+      "addr = 0x4934B0 + index",
+      "on!=0：若 (byte & 0xD)==0 则 edx=1；byte |= mask；再 test 0xD",
+      "on==0：byte ^= mask；test 0xD",
+      "返回基于置位前后的 0xD 状态变化"
+    ],
+    "note": "mask 由调用方传入（常见 1/4/8/0xC），同一函数同时承担置位（OR）与清位（XOR）"
+  },
+  "mapPasses": [
+    {
+      "entry": "0x42A43E",
+      "behavior": "y< byte[0x4B422D]、x< byte[0x4B422C]；每格 test byte[0x4934B0+idx],0xD，并用 [ecx-2]/[ecx-1] 与 0x1B00 计算层偏移（全图重绘/标记遍历）"
+    },
+    {
+      "entry": "0x42AAA5",
+      "behavior": "在 [ebp-8]!=1 且 [ebp+8]<2 时，对 0..0x63F 全图格执行 byte &= 0x0C（清除 bit0/1，保留 bit2/3）"
+    }
+  ],
+  "conclusion": "0x4934B0 的写入统一经 0x42A5D6：按 y*width+x 定位、mask 置位（OR）或清位（XOR），并以 0xD 掩码判断状态变化。0x42AAA5 在特定模式下全图 byte&=0x0C（保留 bit2/3、清 bit0/1）；0x42A43E 全图遍历 test 0xD 并按 0x1B00 计算层偏移，说明这些位参与图层重绘选择。",
+  "limitations": [
+    "0x42A5D6 的 mask 参数各调用点未逐项统计。",
+    "0x42AAA5 的 [ebp-8]/[ebp+8] 条件来源未定。",
+    "0x42A43E 的 [ecx-2]/[ecx-1] 数组未定名。",
+    "未运行游戏对照。"
+  ]
+}

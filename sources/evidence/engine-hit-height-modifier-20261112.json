@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "analysis": "hit-height-direction-modifier",
+  "date": "2026-11-12",
+  "method": "精确反汇编命中修正核心 0x408DB1、包装 0x408EEE 与下限函数 0x410EDB，并核对三基底字节；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "core": {
+    "va": "0x408DB1",
+    "signature": "0x408DB1(attacker, defender, hit, mode)",
+    "gate": "dword[0x505F88]!=0 才计算高度/坐标修正",
+    "positionSource": "若 byte[attacker+0xE]!=7 且 word[0x48E8C2]!=0xFFFF，用 dword[0x48E8C2]；否则用 dword[attacker+6]（x=+6, y=+7）",
+    "axis": "direction=byte[defender+0xF]；direction&1==0 比较 Y（defender+7 vs attacker+7），否则比较 X（defender+6 vs attacker+6）",
+    "classRules": {
+      "equal": "坐标相等 → class=1",
+      "evenAxis": "defender.y > attacker.y 且 direction==2 → class=2，否则 0；defender.y < attacker.y 且 direction==0 → class=2，否则 0",
+      "oddAxis": "defender.x > attacker.x 且 direction==3 → class=0，否则 2；defender.x < attacker.x 且 direction==1 → class=0，否则 2"
+    },
+    "apply": "hit += hit * class * 5 / 100（0x425AD9）",
+    "extra": "若 0x406710(defender)!=1 且 byte[0x500E9A]==1，再 hit += hit*5/100",
+    "return": "mode==0 返回 [ebp+0x10]，否则返回累计修正 [ebp-4]"
+  },
+  "wrapper": {
+    "va": "0x408EEE",
+    "steps": [
+      "result = 0x408DB1(attacker, defender, hit, 1)",
+      "result = min(result, 100)（0x47FA89）",
+      "floor = 0x410EDB(defender)",
+      "result = max(result, floor)；为 0 时置 1"
+    ]
+  },
+  "constants": [
+    {"value": 5, "role": "每个高度/方向等级的命中百分比，class 0/1/2 → 0/5/10"},
+    {"value": 100, "role": "命中上限"},
+    {"value": "0xFFFF", "role": "0x48E8C2 坐标来源哨兵"},
+    {"value": "0x505F88", "role": "高度/坐标修正总开关"},
+    {"value": "0x500E9A", "role": "额外 +5% 的全局开关"},
+    {"value": "0x48E8C2", "role": "覆盖坐标来源的 dword"}
+  ],
+  "versionDifferences": {
+    "0x408DB1": {"6.4/6.5": "BCBCDF17C1", "6.6": "D81695B8BB"},
+    "0x408EEE": {"6.4": "83C22F1140", "6.5": "4D69179E68", "6.6": "0F24FB5A12"},
+    "0x410EDB": {"6.4/6.5": "B2E120A35A", "6.6": "33E887A816"}
+  },
+  "conclusion": "命中率在基础曲线之后存在高度/方向修正：按防守方朝向选择 X/Y 轴，比较攻守坐标得到 class 0/1/2，分别追加 0/5/10 个百分点比例；满足全局开关时再追加 5%；最后由 0x408EEE 封顶 100、用 0x410EDB 取下限并保底 1。",
+  "limitations": [
+    "0x48E8C2 覆盖坐标的具体来源未追踪。",
+    "0x406710(defender) 的玩法名称未确定。",
+    "0x410EDB 的默认下限依赖 0x4101D9 参数 0x21/0x3F，未做游戏内对照。",
+    "6.6 三个函数均与 6.4/6.5 不同，不能继承站点字节。"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "analysis": "embedded-byte-mapping-tables",
+  "date": "2026-11-12",
+  "method": "按原始字节模式搜索三基底 .text 内嵌表；以 refs_to 统计表引用；以 dump_funcs/context 展开读取函数、调用者与前置条件；以 hash_regions 比对表体与函数体。仅静态读取基底。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "table34": {
+    "address": "0x41CEAB",
+    "size": "0x21（33 字节）",
+    "bytes": "01 06 03 04 12 13 0C 08 12 1F 0A 00 0D 21 0F 16 11 12 25 0C 0C 16 22 01 20 1D 03 1C 1D 23 1F 03 24",
+    "hash": "1b66f63ab303fa0a（0x41CEAB:0x21，6.4/6.5/6.6 完全相同）",
+    "reader": {
+      "6.4": "0x41CE8B",
+      "6.5": "0x41CE8B",
+      "6.6": "0x41CE8C",
+      "code": "push ebp; mov ebp,esp; push [ebp+8]; call 0x41CDEE; mov ecx,[ebp+0xC]; test eax,eax; je 返回 ecx; mov al, byte[ecx+0x41CEAB]; ret 8"
+    },
+    "semantics": "随机替换查表：f(mod, idx) = (0x4101D9 随机值 & mod) != 0 ? table[idx] : idx",
+    "callers": [
+      {"va": "0x401E12（6.6）", "args": "mod=2，idx=byte[obj+0xC]（0x418C90 getter）", "use": "结果直接作为 0x401DFF 包装函数返回值"},
+      {"va": "0x430391（6.6）", "args": "mod=1，idx=0x43038B 入口 eax", "use": "结果压栈后传给 0x430351，未被消费（编译器保留的旁路调用）"}
+    ],
+    "indexField": "对象 +0xC 的字节（0x418C90 = movzx eax, byte[ecx+0xC]; ret）",
+    "notes": "6.4/6.5 未检索到对 0x41CE8B 的直接 call，表与读取函数仍同址存在；6.6 有 2 处 call。"
+  },
+  "table20": {
+    "address": "0x4303C8",
+    "size": "0x14（20 字节）",
+    "bytes": "01 06 05 13 07 08 01 20 15 16 00 01 06 0C 00 01 00 01 0C 0D",
+    "hash": "c54301dd32761700（0x4303C8:0x14）",
+    "padding": "0x4303DC 起为 0x90 填充",
+    "presence": "仅 6.6 存在；6.4/6.5 同址为其他代码，未检索到同字节表",
+    "reader": {
+      "va": "0x43038B",
+      "bodyHash": "98ccb5949ada46e2（0x43038B:0x3A）",
+      "code": "eax=byte[unit+0x2E]（装备槽0物品ID）；若 0xFF 返回；eax*=0x19；ecx=byte[eax+0x49F831]（物品类型 +0x11）；eax=byte[ecx+0x4303C8]",
+      "precondition": "0x430351（→0x42518F(0x6D,0,1,0)）返回非 0 才读表"
+    },
+    "callerChain": "0x43F931 call 0x417A38（body 0x29，hash 99da7750feb5a382）→ push [ebp+8] → 0x43038B",
+    "use": "0x43F931 把返回值写入 [ebp-8]，随后与 0x423FE8(4)/0x42BB57 结果组合成动作描述（eax/edx）",
+    "risk": "表仅 20 项，仅对物品类型 0..0x13 有效；若装备槽0放入类型 >=0x14 的物品会读到 0x4303DC 之后的 0x90 填充（值 144）",
+    "typeConstraint": "第 35 轮候选映射：槽0=类型<0x14 的武器；0x40B444 分类 <0x14→0。该约束未被本轮独立证明"
+  },
+  "conclusion": "两处内嵌字节映射表已定位：0x41CEAB 为 33 项随机替换表，三基底字节完全一致（hash 1b66f63ab303fa0a），读取函数 6.4/6.5 在 0x41CE8B、6.6 在 0x41CE8C，索引来自对象 +0xC；0x4303C8 为 6.6 独有的 20 项物品类型→效果字节表，由 0x43038B 读取装备槽0物品的 +0x11 类型后查表，调用链为 0x43F931→0x417A38→0x43038B。两表语义均未定名，按结构事实登记为 candidate。",
+  "limitations": [
+    "0x41CEAB 的索引字段 +0xC 所属结构未定名（候选：对象分类/兵种/武将码）。",
+    "0x4303C8 的 20 个值语义未定名（候选：武器特效/动作字节）。",
+    "0x43038B 对类型 >=0x14 的越界读取风险未在运行期验证。",
+    "6.4/6.5 的 0x41CE8B 无直接调用点，是否为死代码或经跳转表调用未证明。",
+    "未运行游戏对照。"
+  ]
+}

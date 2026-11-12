@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.temp-attribute-block.3ef7",
+      "title": "单位 +0x18 六槽临时属性块（0/3/6 三档）",
+      "aliases": [
+        "临时属性块",
+        "Buff状态",
+        "unit+0x18",
+        "0x414361",
+        "0x45AA37"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "单位记录 +0x18..+0x1D 为 6 槽临时属性块：稳定档位 0/3/6 = -1/中性/+1，1/2/4/5 为过渡帧。0x414361 增减一档（三基底同哈希），0x45AA37 写入（0..5 直写，>=6 走 0x45AB49 跳转表），0x43C940 推进过渡，0x43D038 用 0x3F 掩码清理，0x436F49 以 3 初始化。0x4237D7 统计非中性槽，0x43EA12 统计负向槽并参与伤害/评分；AI 分支 14/15 以 >3 与 <3 加权。",
+      "global": "unit+0x18",
+      "constants": [
+        "0x18",
+        "0x1D",
+        "6",
+        "3",
+        "0",
+        "0x3F",
+        "0x45AB49"
+      ],
+      "identity": "0x414361 三基底同哈希 AE61B379F59D647A；0x436F49 与 0x43C940 在 6.4/6.5 同哈希；0x4237D7 在 6.5/6.6 同哈希 B6949268B825C597。",
+      "limitations": [
+        "六个槽的属性名未由名称表直接证明。",
+        "0x43E6AA/0x437896/0x45AB49 的特殊状态语义未展开。",
+        "过渡帧时长未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.ai-branch-2-13-14-15.3ef7",
+        "mechanism.65.physical-damage-constant-chain.3ef7",
+        "mechanism.65.strategy-ai-dispatch.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-temp-attribute-block-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "block": "unit+0x18..unit+0x1D",
+        "toggle": "0x414361",
+        "setter": "0x45AA37",
+        "specialJumpTable": "0x45AB49",
+        "tick": "0x43C940",
+        "clear": "0x43D038",
+        "init": "0x436F49",
+        "countNonNeutral": "0x4237D7",
+        "countNegative": "0x43EA12",
+        "aiBranch14": "0x439BB6",
+        "aiBranch15": "0x439C12"
+      }
+    }
+  ]
+}

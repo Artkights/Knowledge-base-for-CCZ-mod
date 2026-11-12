@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "analysis": "money-delta-accumulator",
+  "date": "2026-11-12",
+  "method": "反汇编 0x406C00 结算段、0x405AB6 累加段、0x406C9C/0x4361A6 清零段；三基底完整函数哈希对比。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "globals": {
+    "money": "0x4B077C",
+    "pending": "0x48E8BD（dword，待结算金额，初始 0）",
+    "flag": "0x500C48（byte，结算后清零）"
+  },
+  "sites": {
+    "settle": {
+      "va": "0x406C00",
+      "code": "eax=[0x48E8BD]*1; cl=job[+5]; if cl>=2: money+=eax, clamp 0xF423F; else: if money>eax money-=eax else money=0; 随后 0x406C9C 清零 0x48E8BD、0x406CA1 清零 0x500C48",
+      "note": "0x406C00 既可加钱也可扣钱，取决于 job byte+5 是否 >=2"
+    },
+    "accumulate": {
+      "va": "0x405AB6",
+      "code": "call 0x450986; edx=[ebp-0x14]; if [ebp-8]==0: add [0x48E8BD], edx; 再 sub unit+0x10, edx 并 call 0x43F6DB",
+      "note": "0x405AC7 为累加点；[ebp-0x14] 与同段 HP 扣减同源"
+    },
+    "reset": [
+      {"va": "0x406C9C", "code": "mov dword[0x48E8BD],0"},
+      {"va": "0x4361A6", "code": "mov dword[0x48E8BD],0（战斗段收尾）"}
+    ]
+  },
+  "crossBase": {
+    "hashes": {
+      "settle406C00": {"6.4": "F1CED93DCB101D8E", "6.5": "F1CED93DCB101D8E", "6.6": "F1CED93DCB101D8E"},
+      "accum405AB6": {"6.4": "3A916EF915F48B48", "6.5": "7CB8FD10218926B0", "6.6": "A56BDC569E0DFB73"},
+      "reset4361A6": {"6.4": "EE8CA59CB97B339F", "6.5": "EE8CA59CB97B339F", "6.6": "A8AF0EA7C25B0D2B"}
+    }
+  },
+  "conclusion": "0x48E8BD 不是奖励倍率，而是当前动作的待结算金额累加器：0x405AC7 累加 [ebp-0x14]，0x406C00 按 job byte+5>=2 决定加到 0x4B077C（封顶 0xF423F）或从金钱扣除（不足归零），随后 0x406C9C 清零金额、0x406CA1 清零 0x500C48；0x4361A6 在战斗段收尾再次清零。0x406C00 完整 0xAA 字节在 6.4/6.5/6.6 完全同哈希。",
+  "limitations": [
+    "0x405AB6 的 [ebp-0x14] 金额来源（伤害/价格/脚本）未完全展开。",
+    "job byte+5 的阵营/关系命名未最终确认。",
+    "未运行游戏对照。"
+  ]
+}

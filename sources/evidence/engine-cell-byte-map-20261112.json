@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "analysis": "cell-byte-map",
+  "date": "2026-11-12",
+  "method": "refs_to/field_census 列出 0x4BE880 的 8 处引用；capstone 反汇编 0x405101、0x40D488、0x40DC1D。仅静态分析。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"}
+  ],
+  "array": {
+    "base": "0x4BE880",
+    "sizeBytes": "0x640（1600 = 40×40）",
+    "init": "0x40DC1D：push 0x4BE880 / push 0x640 / push 0xFF / call 0x47FD13（memset 为全 0xFF）；参数 !=1 时另写 word[0x5073B8]=0xFFFF",
+    "index": "0x403789(coord)（y*width+x）",
+    "element": "byte，0xFF 表示空"
+  },
+  "sites": [
+    "0x405123：index + 0x4BE880 → 格字节；同时按 [ebp+0x14]*0x1B00 选层、按 [ebp+0x10]*0xC 访问 0x506800 表（表项 +8 为指针，检查 word[ptr]==0x2828 或 byte[ptr]==0xFF）",
+    "0x40AF38/0x40B0A6/0x40B134/0x415407：同址加基址后读取格字节",
+    "0x40D4B5：index+0x4BE880 取字节；≠0xFF 时 call 0x4525DA(...)，==0xFF 时走 0x41606C 并按 0x30 绘制",
+    "0x40DC2A：memset 初始化",
+    "0x452218：滚动核心内 index += 0x4BE880"
+  ],
+  "conclusion": "0x4BE880 是 40×40 的逐格字节数组（0x640 字节），全 0xFF 表示空；索引与地图格标志一致（0x403789= y*width+x）。格值参与绘制选择：非 0xFF 时走 0x4525DA 分支，0xFF 时走 0x41606C/0x30 绘制路径。0x405123 附近还揭示 0x506800 为 12 字节步长的表（+8 为指针，0x2828 为标记）。",
+  "limitations": [
+    "格字节的取值语义（单位索引/贴图索引）未定。",
+    "0x506800 表的字段与容量未展开。",
+    "0x4525DA 的绘制行为未追踪。",
+    "未运行游戏对照。"
+  ]
+}

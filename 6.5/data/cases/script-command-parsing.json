@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "entityType": "case-study",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "case.65.script-command-parsing",
+      "title": "剧本指令全解整理与引擎锚点核对",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "objective": "把 158 条剧本指令整理成通俗全解，并在三基底定位剧本模块的事件表与记录读取实现。",
+      "inputs": [
+        "既有 6.5/data/scripts/script-commands.json（158 条，legacy-structured）",
+        "三基底 Ekd5.exe"
+      ],
+      "procedure": [
+        "统计既有条目：124 个主指令 + 0x72 的 29 个 6.5 实装子指令（0..28），参数槽最多 6 个。",
+        "扫描 jmp/call 分派表，最终在 0x410A38 定位到 126 项主分派表（index=opcode-2）。",
+        "以断言字符串 TR.E5（0x48BB7B）定位剧本模块代码簇。",
+        "反汇编 0x42A049：确认 128×0x40 事件表、并行 0x24 数组、0x4AB020 模式开关、0x49EFA8 表尾标志。",
+        "反汇编 0x42A100：确认记录字段按字读取（+4..+0xE、+0x2C、+0x2E）。",
+        "三基底比对 0x42A049/0x42A100：6.5 与 6.6 同址同字节；6.4 为 0x42A058（+0xF，多 0x30 栈帧）。",
+        "按分类生成《剧本指令全解.md》，并在文中区分“候选语义”与“已实测锚点”。"
+      ],
+      "outcome": [
+        "产出本地文档《剧本指令全解.md》，覆盖全部 158 条指令与 0x72 子指令。",
+        "引擎侧确认剧本模块（TR.E5）、事件表 0x49CF68、遍历函数 0x42A049、记录字段读取 0x42A100。",
+        "已找到单一大表 0x410A38：126 项，index=opcode-2，0x7A..0x7F 为 0x004D0000 空项；120 个非空 opcode 均有独立处理函数与实测结论。",
+        "0x72 是二级容器：0x47D89E 用 0x4183F7(4) 取子号、0x4183F7(5) 取文本，再索引 0x47D8DF 的 29 项子表。"
+      ],
+      "reusableLessons": [
+        "断言字符串（push 文件名 + 行号 + call 日志函数）可以快速圈定模块代码范围。",
+        "固定步长数组 + 并行数组的循环（0x40 与 0x24）是识别事件表的关键特征。",
+        "同一功能在三基底可能整体换址，必须比对函数序言而不是沿用地址。"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.dm.formulas.sample-64-20261102",
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

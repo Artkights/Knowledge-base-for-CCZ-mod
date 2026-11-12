@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.level-context-struct.3ef7",
+      "title": "关卡/地图全局描述结构 0x500AE0（0x90 字节，6.5 为 0x500AA0）",
+      "aliases": [
+        "level context struct",
+        "关卡全局结构",
+        "0x500AE0",
+        "0x500AA0",
+        "0x90"
+      ],
+      "versions": [
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x500AE0 是 0x90 字节关卡/地图全局描述结构（6.5 对应 0x500AA0，均 20 处引用；初始化 0x415CD5 以 0x47FD13(0,0x90,0x500AE0) 清零）。已定位字段：+0x00 首指针（0x420173 作 this）、+0x08 计数（0x40A56F +5）、+0x0C 关卡/资源状态 ID（0x41D29B→[+0xC80]，0x40ADAB 反向恢复并置 0x3CFFFF）、+0x10 模式（cmp 1/2）、+0x11 开关（0/1）、+0x12 地图宽高字节对（写入 0x4B422C）、+0x14 子窗口句柄（非 0 时替代 0x4B6A68）、+0x1A 辅助 word（→[+0x642]）、+0x1C 表指针。",
+      "constants": [
+        "0x500AE0", "0x500AA0", "0x90", "0x415CD5", "0x47FD13",
+        "0x41D29B", "0x40ADAB", "0x403278", "0x4207B5", "0x4221E0",
+        "0x436F95", "0x438353", "0x44814A", "0x46FD2E", "0x4794F6",
+        "0x408803", "0x40B3B2", "0x420173", "0x4B422C", "0x4B6A68",
+        "0xC80", "0x642", "0x3CFFFF"
+      ],
+      "identity": "初始化大小 0x90；+0x12 word 明确写入 0x4B422C（第 42 轮网格尺寸字）；+0x14 dword 与主窗口 0x4B6A68 二选一作为窗口句柄。",
+      "siteAddresses": {
+        "struct66": "0x500AE0",
+        "struct65": "0x500AA0",
+        "size": "0x90",
+        "initSite": "0x415CD5",
+        "initFn": "0x47FD13",
+        "field00": "+0x00",
+        "field08": "+0x08",
+        "field0C": "+0x0C",
+        "field10": "+0x10",
+        "field11": "+0x11",
+        "field12Grid": "+0x12",
+        "field14Window": "+0x14",
+        "field1A": "+0x1A",
+        "field1C": "+0x1C",
+        "gridGlobal": "0x4B422C",
+        "mainWindow": "0x4B6A68",
+        "stateMirror": "0xC80",
+        "auxWordMirror": "0x642",
+        "stateSentinel": "0x3CFFFF"
+      },
+      "limitations": [
+        "+0x00/+0x04/+0x1A 业务名称未定。",
+        "+0x10 模式 1/2 的含义未与界面/剧本对照。",
+        "6.5 0x500AA0 字段偏移未逐项复核。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.global-ui-state-block.3ef7",
+        "mechanism.65.grid-dimension-pair.3ef7",
+        "mechanism.65.battle-viewport-context.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-level-context-struct-20261112"
+      ]
+    }
+  ]
+}

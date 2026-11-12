@@ -1,0 +1,61 @@
+{
+  "id": "src.research.engine-script-number-parser-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "数字记号解析器 0x426E64（可带 - 负号与 * 变量引用）与全局变量数组 0x502000",
+  "bases": [
+    {
+      "name": "6.6 复刻版山贼",
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    }
+  ],
+  "method": "capstone 反汇编 0x426E64/0x42C6C5 + 0x502000 引用全量枚举",
+  "findings": [
+    {
+      "id": "parser",
+      "claim": "0x426E64(src) 解析十进制整数记号：起始可带 '-'（负号）与 '*'（变量引用）前缀，随后读取连续数字 '0'..'9'；返回 eax=数值，edx=已消费字符数（前缀数+位数）。无数字时返回 0。",
+      "evidence": [
+        "0x426E7C cmp al,0x39 / 0x426E80 cmp al,0x30（数字扫描）",
+        "0x426E89 cmp al,0x2D；0x426E8D cmp [ebp-4],0 → 前缀计数 [ebp-0xC]",
+        "0x426E98 cmp al,0x2A；0x426E9C cmp [ebp-4],0 → 前缀计数 [ebp-0x10]",
+        "0x426ED4 imul eax,eax,0xA（十进制累乘）",
+        "0x426EF4 mov edx,[ebp-0xC]; 0x426EFD add edx,ecx; 0x426EFF add edx,[ebp-4]; 0x426F02 inc edx（消费长度）"
+      ]
+    },
+    {
+      "id": "variable-prefix",
+      "claim": "'*' 前缀表示变量引用：eax = dword[0x502000 + value*4]；'-' 前缀对结果取负。",
+      "evidence": [
+        "0x426EE6 mov ecx,[ebp-0x10]; 0x426EED mov eax,dword[eax*4+0x502000]",
+        "0x426EF7 test edx,edx; 0x426EFB neg eax"
+      ]
+    },
+    {
+      "id": "var-table",
+      "claim": "0x502000 是全局 dword 变量数组：写入点 0x407932、0x42CAF2、0x42CC2D；读取点包括 0x41516B、0x416CFE、0x416D42、0x418493、0x4202E2、0x4246B4、0x425C93、0x426863、0x426EED、0x43B502。",
+      "evidence": [
+        "refs_to 0x502000 共 13 处：0x407932 mov [eax*4+0x502000],ecx；0x42CAF2/0x42CC2D 写",
+        "0x418493/0x425C93/0x426EED mov eax,[eax*4+0x502000]；0x43B502 cmp dword[ecx*4+0x502000],0"
+      ]
+    },
+    {
+      "id": "stream-reader",
+      "claim": "0x42C6C5(stream,N,size,dst) 是定长元素读取器：循环 N 次调用 0x426E64(stream)，把 eax 写入 dst，并把 stream 前进 edx+1（跳过记号后的分隔符）。",
+      "evidence": [
+        "0x42C6D2 push [ebp+8]; 0x42C6D5 call 0x426E64",
+        "0x42C6DA inc edx; 0x42C6DB add [ebp+8],edx",
+        "0x42C6DE mov ecx,[ebp+0x14]; 0x42C6E1 mov [ecx],eax；0x42C6E6 add [ebp+0x14],eax(size)"
+      ]
+    }
+  ],
+  "corrections": [
+    "0x42C6C5『逐字节读取』旧说不准确：它实际按 0x426E64 的数字记号长度推进（edx+1），支持负数与 * 变量引用。"
+  ],
+  "limitations": [
+    "0x502000 变量数组的容量与初始化点未定位。",
+    "写入点 0x407932/0x42CAF2/0x42CC2D 的上层业务未展开。",
+    "记号分隔符的完整集合（逗号/空格等）未逐项确认。",
+    "未运行游戏对照。"
+  ]
+}

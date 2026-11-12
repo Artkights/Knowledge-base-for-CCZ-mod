@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.global-mode-flags-hit-gate.3ef7",
+      "title": "全局模式开关 0x505EC8/0x4B3D18 与 6.6 命中门控",
+      "aliases": [
+        "0x505EC8",
+        "0x4B3D18",
+        "命中门控",
+        "全局模式开关"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "6.6 命中门控的 dword[0x502000+0xFB2*4] 实际等于 0x505EC8。6.6 三条件为 0x505EC8==0、0x4B3D18==0、unit+5==0，全满足时命中置 100。0x505EC8 在 6.5 还用于 AI 评估与命中重试的 byte==1 分支。",
+      "addressResolution": "0x502000 + 0xFB2*4 = 0x505EC8",
+      "global505EC8": {
+        "semantics": "候选全局模式/难度/自动战斗开关；名称未定",
+        "refs65": ["0x4282F1", "0x42882C", "0x42893F", "0x428A4D", "0x43B4DF", "0x43B518"],
+        "refs66": ["0x43B502"]
+      },
+      "global4B3D18": {
+        "address": "0x4B3D08+0x10",
+        "semantics": "候选战场天气/环境状态；名称未定",
+        "refs65": ["0x4024CC", "0x41BC53", "0x420B14", "0x425331", "0x47510C"]
+      },
+      "hitGate66": {
+        "conditions": ["dword[0x505EC8]==0", "byte[0x4B3D18]==0", "byte[unit+5]==0"],
+        "result": "命中=100",
+        "then": "小于 100 时调用 0x4287A8"
+      },
+      "limitations": [
+        "两个全局的玩法名称未确定。",
+        "unit+5 字段名未最终确认。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.hit-retry-cross-base.3ef7",
+        "mechanism.65.turn-action-weather-state.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-global-mode-flags-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

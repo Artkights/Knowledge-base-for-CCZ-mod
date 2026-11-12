@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "fn.65.pierce-effect-chain.3890",
+      "title": "穿透攻击特效链（0x77..0x7F）",
+      "aliases": [
+        "0x0040CC13",
+        "pierce_effect_chain"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040CC13",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "cdecl；ECX=单位指针，栈参 (base=0x33, 0, count=5) 未使用",
+      "inputs": "ECX=单位指针",
+      "returns": "EAX=首个命中的穿透攻击特效参数值；全不命中为 0",
+      "semantics": "依次 0x42518F(unit, id, default, flag, 0) 查询 9 个穿透攻击特效，命中即返回其参数值：0x77 十字(默认0x33,flag2)、0x78 九宫(flag2)、0x79 没羽箭、0x7A 二格、0x7B 三格、0x7C 六格、0x7D 横扫、0x7E 环击、0x7F 溅射（后七项默认0,flag1）。返回值即穿透范围码。",
+      "relations": [
+        "fn.65.pierce-loader",
+        "fn.65.param-getter-gated.3890",
+        "global.65.effect-name-table.3890",
+        "global.65.range-code-name-table.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.param-getter-gated.3890",
+      "title": "带有效性门控的参数读取器",
+      "aliases": [
+        "0x0042518F",
+        "float_param_getter"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0042518F",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=单位指针，栈参 (paramID, default, flag, extra)",
+      "inputs": "ECX=单位指针；[ebp+8]=参数号, [ebp+0xC]=默认值, [ebp+0x10]=取值标志, [ebp+0x14]=追加标志",
+      "returns": "EAX=参数值；门控失败时为回退值",
+      "semantics": "先 0x40B922(unit, paramID, default, flag, extra) 判断该参数是否有效；有效则 0x4101D9 取真实值，否则 0x41301E 取回退值。是 0x4101D9 的带门控包装。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.longrange-effect-helper-9d.3890",
+      "title": "远距攻击-八向 查询桩",
+      "aliases": [
+        "0x0040CD0F",
+        "longrange_9d"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040CD0F",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=单位指针，无栈参",
+      "inputs": "ECX=单位指针",
+      "returns": "EAX=特效 0x9D 参数值（0=未拥有）",
+      "semantics": "0x4101D9(unit, 0x9D, 0x41, 1, 0)。0x43F8C0 在 0x43F91E 调用，非 0 时把候选范围码置 1（八向/九宫）。",
+      "relations": [
+        "global.65.effect-name-table.3890",
+        "fn.65.fatal-field-c-reader.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.longrange-effect-helper-9e.3890",
+      "title": "远距攻击-没羽箭 查询桩",
+      "aliases": [
+        "0x0040CD24",
+        "longrange_9e"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040CD24",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=单位指针，无栈参",
+      "inputs": "ECX=单位指针",
+      "returns": "EAX=特效 0x9E 参数值（0=未拥有）",
+      "semantics": "0x4101D9(unit, 0x9E, 0x4D, 1, 0)。0x43F8C0 在 0x43F90C 调用，非 0 时把候选范围码置 6（没羽箭）。",
+      "relations": [
+        "global.65.effect-name-table.3890",
+        "fn.65.fatal-field-c-reader.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.longrange-effect-chain.3890",
+      "title": "远距攻击-方格..圆环 查询链（0x9F..0xA4）",
+      "aliases": [
+        "0x0040CD39",
+        "longrange_chain"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040CD39",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=单位指针，无栈参",
+      "inputs": "ECX=单位指针",
+      "returns": "EAX=首个命中的特效参数值；全不命中为 0",
+      "semantics": "顺序查询 0x9F 方格、0xA0 大没羽、0xA1 刺客、0xA2 大爆炎、0xA3 炮车、0xA4 圆环，任一项非 0 即返回且不再继续。0x43F8C0 在 0x43F8FB 调用，返回值直接作为候选范围码。",
+      "relations": [
+        "global.65.effect-name-table.3890",
+        "fn.65.fatal-field-c-reader.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

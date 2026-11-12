@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "analysis": "scroll-setter",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 0x454CEF 前 42 条指令。仅静态分析。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"}
+  ],
+  "progress": {
+    "entry": "0x454CEF",
+    "object": "0x4B4250（ecx）",
+    "args": "[ebp+8]=tileX、[ebp+0xC]=tileY",
+    "steps": [
+      "oldX = dword[obj+0x04] / 0x30（有符号 idiv，取 al）",
+      "oldY = dword[obj+0x08] / 0x30",
+      "call 0x45461C（ecx=obj）",
+      "if (oldX & 0xFF) == (tileX & 0xFF) && (oldY & 0xFF) == (tileY & 0xFF) → 跳 0x454F0A（无变化提前返回）",
+      "否则计算 deltaX = oldX - tileX（有符号），deltaY 同，进入滚动/重绘分支"
+    ]
+  },
+  "conclusion": "0x454CEF 是「按瓦片坐标滚动」入口：先把 +0x04/+0x08 的像素原点除以 0x30 得当前瓦片坐标，调用 0x45461C 预处理，若目标与当前瓦片相同则直接返回，否则计算 delta 进入滚动分支。这闭合了 0x45503F 居中后的落点路径。",
+  "limitations": [
+    "0x45461C 的职责未展开。",
+    "delta 分支的绘制/重绘调用未逐条追踪。",
+    "未运行游戏对照。"
+  ]
+}

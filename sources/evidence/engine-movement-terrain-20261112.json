@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "analysis": "movement-cost-terrain-adaptation-and-map-bounds",
+  "date": "2026-11-12",
+  "method": "pefile + capstone 精确反汇编 0x41B7D4/0x41F62A/0x4060C4/0x4065AD/0x46CC12/0x459380/0x435991，并读取三基底 Data.e5 块 4（0xA8A4，0x960 字节，40×60）；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8", "data": "基底/洗隋/Data.e5"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED", "data": "基底/加强版6.5未加密版/Data.e5"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A", "data": "基底/复刻版6.6山贼/Data.e5"}
+  ],
+  "tableLayout": {
+    "sourceBlock": {"index": 4, "fileOffset": "0xA8A4", "length": "0x960", "rows": 40, "rowSize": 60},
+    "runtimeTable": {"base": "0x4A3517", "rowStride": "0x3C", "rows": 40, "accessor": "0x41B7D4 = family*0x3C + 0x4A3517"},
+    "halves": {
+      "terrainAdaptation": {"offset": 0, "width": 30, "reader": "0x41F62A = byte[row + terrain]"},
+      "movementCost": {"offset": "0x1E", "width": 30, "reader": "0x4060C4 = byte[row + 0x1E + terrain]"}
+    },
+    "loader": "0x41B790 循环 40 次，0x40956F 将每行前 30 字节写 row+0，后 30 字节写 row+0x1E"
+  },
+  "accessors": {
+    "moveCostGetter": {
+      "va": "0x4065AD",
+      "code": "jobId=[ebp+8]; terrain=[ebp+0xC]; row=0x41B7D4(jobId); return 0x4060C4(row, terrain)",
+      "meaning": "按兵种 ID 与地形 ID 取移动消耗"
+    },
+    "adaptationIfPassable": {
+      "va": "0x46CC12",
+      "code": "cost=0x4060C4(row,terrain); if cost!=0xFF return 0x41F62A(row,terrain); else return 0",
+      "meaning": "不可通行（0xFF）时返回 0，否则返回地形适应值"
+    },
+    "passabilityCheck": {
+      "va": "0x459380",
+      "code": "series=0x43B4A7(unit); terrain=0x435991(coord); row=0x41B7D4(series); cost=0x4060C4(row,terrain); cost==0xFF 时再用 0x403A6F(unit) 判定，返回 1 或 0xFF",
+      "meaning": "移动/通行判定"
+    },
+    "aiTerrain": {
+      "va": "0x43F809",
+      "code": "row=0x41B7D4(job); adaptation=0x41F62A(row,terrain); 后续 0x412B5F/0x43F96F 分支",
+      "meaning": "AI 读取地形适应"
+    }
+  },
+  "mapBounds": {
+    "function": "0x435991",
+    "code": "if byte[coord+0] >= byte[0x4B422C] → 0xFF; if byte[coord+1] >= byte[0x4B422D] → 0xFF; else 0x412557(coord)",
+    "globals": {"0x4B422C": "地图宽度（字节，待命名确认）", "0x4B422D": "地图高度（字节，待命名确认）"},
+    "outOfBoundsSentinel": "0xFF"
+  },
+  "data65": {
+    "adaptationDistribution": {"80": 48, "85": 7, "90": 68, "95": 32, "100": 700, "105": 43, "110": 175, "115": 8, "120": 119},
+    "costDistribution": {"1": 469, "2": 222, "3": 32, "255": 477},
+    "firstRowAdaptation": [105, 105, 95, 95, 90, 100, 100, 100, 105, 95, 85, 100, 100, 95, 100, 100, 100, 100, 120, 120, 120, 110, 110, 100, 100, 100, 100, 100, 100, 100],
+    "firstRowCost": [1, 1, 2, 2, 3, 255, 255, 2, 1, 2, 3, 255, 255, 2, 255, 255, 1, 255, 1, 1, 2, 2, 2, 3, 2, 255, 255, 255, 255, 255]
+  },
+  "crossBase": {
+    "adaptationDistribution": {
+      "6.4": {"5": 480, "8": 38, "9": 114, "10": 288, "11": 150, "12": 129, "13": 1},
+      "6.5": {"80": 48, "85": 7, "90": 68, "95": 32, "100": 700, "105": 43, "110": 175, "115": 8, "120": 119},
+      "6.6": {"50": 374, "75": 1, "80": 41, "82": 1, "85": 18, "87": 1, "88": 29, "90": 99, "92": 1, "95": 32, "98": 6, "100": 209, "103": 7, "105": 62, "108": 20, "110": 130, "111": 4, "112": 9, "115": 27, "116": 1, "118": 2, "120": 126}
+    },
+    "costDistribution": {
+      "6.4": {"1": 553, "2": 143, "3": 10, "12": 14, "254": 1, "255": 479},
+      "6.5": {"1": 469, "2": 222, "3": 32, "255": 477},
+      "6.6": {"1": 549, "2": 182, "3": 6, "4": 22, "5": 19, "6": 1, "255": 421}
+    },
+    "note": "6.4 的适应值使用 5..13 的小刻度，6.5 使用 80..120，6.6 使用 50..120；移动消耗 6.4/6.5 为 1..3，6.6 扩展到 1..6；0xFF(255) 为不可通行哨兵。"
+  },
+  "constants": [
+    {"value": 30, "role": "地形类型数（每行两半各 30 字节）"},
+    {"value": 40, "role": "兵种系行数"},
+    {"value": "0x3C", "role": "运行时行步长"},
+    {"value": "0x1E", "role": "移动消耗半区偏移"},
+    {"value": 255, "role": "不可通行哨兵"},
+    {"value": "0x4B422C/0x4B422D", "role": "地图宽高字节"}
+  ],
+  "conclusion": "移动消耗与地形适应来自 Data.e5 块 4：40 个兵种系×30 地形，每行前 30 字节为地形适应（0x41F62A），后 30 字节为移动消耗（0x4060C4），0xFF 表示不可通行。0x4065AD 是移动消耗 getter；0x46CC12 在可通行时返回适应值；0x459380 用于通行判定。地图边界由 0x4B422C/0x4B422D 的宽高字节控制，越界返回 0xFF。三基底的表值刻度不同。",
+  "limitations": [
+    "0x4B422C/0x4B422D 只通过比较确认是地图宽高，未追踪写入点。",
+    "6.4 适应值 5..13 的百分比换算未确认（可能是 /10）。",
+    "0x403A6F 与 0x43F96F 的判定语义未命名。",
+    "未运行游戏对照移动范围。"
+  ]
+}

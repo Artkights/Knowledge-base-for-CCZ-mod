@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "analysis": "save-header-writer",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 0x4053E4..0x40543B（存档头写入）与 0x4034D2（0x4B0770+0x10 getter）。仅静态分析。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"}
+  ],
+  "header": {
+    "object": "存档区块B 头（[ebp-4] 为当前写指针）",
+    "writes": [
+      "+0x01 = byte[0x4AC63C]（0x41EDEF getter）",
+      "+0x02 = byte[0x4AC63C]（0x41EDEF getter）",
+      "+0x03 = 0x415E19(0x4B0770)（设置项索引 1：min(word[+6]/2,0x7F)）",
+      "if byte[+2]==3：+0x04 = byte[0x4B0770+0x05]；否则 +0x04 = 0x44F9A0(0x4AC63C)",
+      "+0x05.. = strcpy(0x4A1128)（0x47FC7D）",
+      "随后 push 0x4B0758（第二段字符串 strcpy）"
+    ]
+  },
+  "getter": {
+    "entry": "0x4034D2",
+    "behavior": "mov ecx,0x4B0770; movzx eax, byte[ecx+0x10]; ret"
+  },
+  "conclusion": "0x4B0770 +0x05 是「场景类别 3」时写入存档头的字节（否则用 0x44F9A0(0x4AC63C) 的返回值）；+0x10 是另一独立设置字节，由 0x4034D2 单独 getter 暴露。存档头 +0x03 直接取设置索引 1（0x415E19）。",
+  "limitations": [
+    "0x4AC63C 对象语义未定。",
+    "0x44F9A0 的返回值语义未展开。",
+    "+0x05/+0x10 的业务名称仍缺文案。",
+    "未运行游戏对照。"
+  ]
+}

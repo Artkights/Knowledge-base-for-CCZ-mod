@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.runtime-character-accessors.3ef7",
+      "title": "运行时人物记录 72 字节访问器簇",
+      "aliases": ["runtime-character", "人物记录", "0x4CEA00", "0x4065F0"],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "人物记录 1024×72，基址 [0x4CEA00]；+0x2B 兵种、+0x2C 等级、+0x2D 经验、+0x2E 起 3 个装备槽（每槽 3 字节）。6 个访问器三基底字节一致。",
+      "record": {"base": "DWORD[0x4CEA00]", "stride": 72, "count": 1024},
+      "accessors": {
+        "0x4061E4": "ID→记录",
+        "0x40658F": "对象 [ecx]→记录",
+        "0x4065D0": "等级 +0x2C",
+        "0x4065C7": "经验 +0x2D",
+        "0x406610": "兵种 +0x2B",
+        "0x4065F0": "装备槽 ID = byte[+0x2E + slot*3]"
+      },
+      "equipment": {"baseOffset": "0x2E", "slotStride": 3, "slots": 3, "fields": ["ID", "等级", "经验"]},
+      "hashes": ["1AA81D", "98B042", "C0B191", "114C63", "766829", "FC9213"],
+      "limitations": [
+        "装备槽数量 3 来自 slot*3 与结构条目。",
+        "slot 上限未验证。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "struct.65.runtime-character",
+        "mechanism.65.equipment-growth-thresholds.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-character-accessors-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

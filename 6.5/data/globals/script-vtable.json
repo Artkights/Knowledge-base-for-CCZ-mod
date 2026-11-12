@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.script-vtable.3890",
+      "title": "剧本解释器虚表与解释循环",
+      "aliases": [
+        "0x00486610",
+        "0x00410140",
+        "script_vtable"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00486610",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 20,
+      "semantics": "虚表 0x486610：+0x00=0x40FFD0，+0x04=0x40FE3D，+0x08=0x4109E6（指令分派器），+0x0C=0x480612，+0x10=0x418BBC，+0x14=0。构造器 0x418A97 执行 `mov [ecx],0x486610`；子对象虚表为 0x486628（0x418ADF 赋值），前两项与主表相同。解释循环位于 0x410140–0x41019F：`mov eax,[ecx]; call [eax+8]` 虚调用分派器，返回值 0/1 时更新成功标志 [ebp-0x2c]，返回值 3 时结束循环，其余（含 5/6/8）继续。因此 0x03(6)/0x0C(8) 只是让循环继续，真正的跳转由更外层按控制码处理。 解释函数本身为 0x4100A1（thiscall，ECX=ctx），入口处虚调用 [vtable+0xC]（0x480612）做前置检查，随后按 ctx+0x24 的计数循环执行指令；其唯一 E8 调用者为 0x4180C7。",
+      "relations": [
+        "global.65.script-control-codes.3890",
+        "fn.65.script-command-dispatch.3890",
+        "fn.65.script-interpret-frame.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

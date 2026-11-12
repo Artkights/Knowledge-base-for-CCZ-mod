@@ -1,0 +1,53 @@
+{
+  "id": "src.research.engine-history-intel-341-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "历史情报模板 341 宿主 0x41C3D7 与文本打开链 0x42F699（字符串基 0x48E88C）",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 0x41C3D7/0x42F699 + RT_DIALOG 341 解析",
+  "findings": [
+    {
+      "id": "host",
+      "claim": "0x41C3D7 是历史情报宿主：ecx=0x4FFF80 工作区；当 [workarea+8] 指向的首 dword 为 0 或 byte[0x492E20]>=4 时，以 0x48E88C（>=4 时 +0xB 变体）为文本基址调 0x42F699(0, base) 打开文本；否则置 byte[0x48E8C1]=2 并以 0x155=341 模板 DialogBoxParamA(hInstance,0x155,hwnd,0x46D0F8) 打开「历史情报」对话框，返回后清 0。",
+      "evidence": [
+        "0x41C3DA mov ecx,0x4FFF80; 0x41C3E3 push 0x408121; 0x41C3EA push 0x4080F9（回调）",
+        "0x41C3EF mov eax,0x48E88C; 0x41C3F4 mov edx,[ecx+8]; 0x41C3F7 cmp dword[edx],0; 0x41C3FA je 0x41C408",
+        "0x41C3FC cmp byte[0x492E20],4; 0x41C403 jb 0x41C412; 0x41C405 add eax,0xB",
+        "0x41C40B call 0x42F699（参数 0 与 base）",
+        "0x41C412 mov byte[0x48E8C1],2; 0x41C428 push 0x155; 0x41C433 call DialogBoxParamA; 0x41C43B mov byte[0x48E8C1],al"
+      ]
+    },
+    {
+      "id": "text-open",
+      "claim": "0x42F699 是文本打开/翻页入口：先 0x42F214(&argC, 0x4B1A18, 1) 初始化，再 0x42C602/0x42C557 准备文本，然后按 byte[0x500CB0]==1 或 arg8==0 走不同分支（后续绘制/翻页未完全展开）。",
+      "evidence": [
+        "0x42F69C push 1; 0x42F69E push 0x4B1A18; 0x42F6A3 lea eax,[ebp+0xC]; 0x42F6A7 call 0x42F214",
+        "0x42F6AC call 0x42C602; 0x42F6B1 call 0x42C557",
+        "0x42F6B6 cmp byte[0x500CB0],1; 0x42F6C2 cmp al,0"
+      ]
+    },
+    {
+      "id": "resource",
+      "claim": "RT_DIALOG 341：DLGTEMPLATE 241×265、标题「历史情报」、2 控件——0x407（class ord 133，信息筛选下拉框）与静态文本「信息筛选」。",
+      "evidence": [
+        "dialog_resource(341)：format=DLGTEMPLATE bytes=104 style=0x80C800C0 items=2 rect=(0,0,241,265) title='历史情报'",
+        "[00] id=0x0407 class=<ord 133> rect=(160,254,81,67)；[01] id=0xFFFF text='信息筛选'"
+      ]
+    }
+  ],
+  "corrections": [
+    "『模板 341 宿主 0x41C3D7 的 0x42F699 文本路径』已定位：文本基址 0x48E88C（章节>=4 用 +0xB 变体），经 0x42F699(0,base) 打开；工作区 0x4FFF80。"
+  ],
+  "limitations": [
+    "0x42F214/0x42C602/0x42C557 的文本准备细节未展开。",
+    "0x48E88C 字符串表内容与 +0xB 变体差异未读取。",
+    "0x4FFF80 工作区字段未逐项登记。",
+    "未运行游戏对照。"
+  ]
+}

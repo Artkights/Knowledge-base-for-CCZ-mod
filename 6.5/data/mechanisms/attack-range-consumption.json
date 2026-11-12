@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "mechanism.65.attack-range-grid-write.3890",
+      "title": "范围落格与格状态/槽号分层写入",
+      "aliases": [
+        "落格分层",
+        "grid write layering",
+        "0x437AFF 写入语义"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.attack-append-target",
+          "role": "0x437AFF：边界检查后落格"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.cell-slot-reader.3890",
+          "role": "0x435884：读 P 层返回格内单位槽号"
+        }
+      ],
+      "state": [
+        "global.65.grid-status-map.3890",
+        "global.65.range-target-buffer",
+        "global.65.range-target-write-index"
+      ],
+      "contextOffsets": [
+        {
+          "base": "0x004AAFF4",
+          "offset": "0x0",
+          "meaning": "B 层：落格结果/占位"
+        },
+        {
+          "base": "0x004AAFF4",
+          "offset": "0xC80",
+          "meaning": "M 层：mFlag 时写 1"
+        },
+        {
+          "base": "0x004AEB38",
+          "offset": "0xC80",
+          "meaning": "P 层：0x435884 读取的槽号来源"
+        },
+        {
+          "base": "0x004AEB38",
+          "offset": "0x12C0",
+          "meaning": "A 层：落格结果同值写入"
+        }
+      ],
+      "semantics": [
+        "0x437AFF 只做坐标换算与 A/B/M 层写入，不读取任何地形表。",
+        "0x418CD0 把 (x,y) 打包为 word；0x403789 计算 y*width+x（width 取 0x4B422C）。",
+        "flags&0x80 为 0 时 A/B 写同值；mFlag 非 0 时 M=1。",
+        "0x435884 返回 0..0xF9 的槽号，>=0xFA 归一为 0xFF；不要解释为单位指针低字节。"
+      ],
+      "relations": [
+        "fn.65.attack-append-target",
+        "global.65.range-pointer-table"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "mechanism.65.fatal-range-consumption.3890",
+      "title": "必杀范围 +0xC/+0xD 的真实消费链",
+      "aliases": [
+        "必杀范围消费",
+        "fatal range consumption"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.65.data-table-init-root.3890",
+          "role": "0x41B639 初始化总入口"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.data-e5-block1-init.3890",
+          "role": "同属初始化序列；块 5 由 0x41B834 处理"
+        },
+        {
+          "order": 3,
+          "entity": "global.65.fatal-record-table.3890",
+          "role": "0x4A7510 保存 97×16 必杀记录"
+        },
+        {
+          "order": 4,
+          "entity": "fn.65.fatal-field-d-reader.3890",
+          "role": "0x484E27 读取 +0xD 作为可用性判定"
+        },
+        {
+          "order": 5,
+          "entity": "fn.65.fatal-field-c-reader.3890",
+          "role": "0x43F8C0 读取 +0xC 进入特殊目标判定"
+        },
+        {
+          "order": 6,
+          "entity": "fn.65.pierce-loader",
+          "role": "0x40782D 在 [0x500E9A]==2 时经 0x41E918 取必杀记录"
+        }
+      ],
+      "state": [
+        "global.65.fatal-record-table.3890",
+        "struct.65.data-e5-fatal-record"
+      ],
+      "contextOffsets": [
+        {
+          "base": "0x004A7510",
+          "offset": "0xC",
+          "meaning": "必杀范围/类型（0x43F8EA 读取）"
+        },
+        {
+          "base": "0x004A7510",
+          "offset": "0xD",
+          "meaning": "可用性/资格标记（0x484E27 读取）"
+        },
+        {
+          "base": "0x00500E9A",
+          "offset": "0x0",
+          "meaning": "当前必杀选择类型；等于 2 时进入必杀分支"
+        },
+        {
+          "base": "0x00500E9B",
+          "offset": "0x0",
+          "meaning": "当前必杀 id，供 0x41E918 使用"
+        }
+      ],
+      "semantics": [
+        "DATA.E5 块 5 尾段 0xE894..0xEEA4 为 97×16 必杀表，由 0x41B834 复制到 0x4A7510。",
+        "0x41E918 是唯一访问器：id*16 + 0x4A7510。",
+        "+0xC 的消费者是 0x43F8EA（0x43F8C0 函数内），不是无人读取的资料字段。",
+        "+0xD 的消费者是 0x484E27，经 0x40782D → 0x41E918 到达。",
+        "0x511800 的 80×16 表是另一张运行时分配表，不能替代本表。"
+      ],
+      "relations": [
+        "struct.65.data-e5-fatal-record",
+        "format.65.data-e5-block-directory.3890",
+        "global.65.fatal-table"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.ccz65.3890.datae5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

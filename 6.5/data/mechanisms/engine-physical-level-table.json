@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.physical-level-table.3ef7",
+      "title": "物理伤害等级差百分比表 0x4D1A80 与随机浮动",
+      "aliases": [
+        "0x426737",
+        "0x4D1A80",
+        "等级差伤害",
+        "物理百分比"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x426737 以攻方/守方等级映射值 a、d 计算 idx=a+d*40，查 41×41 表 0x4D1A80，再叠加守方随机值、减去攻方随机值，负值归零；返回 100 不缩放，否则 damage=damage*pct/100 且至少 1。函数三基底同哈希，6.6 仅重平衡表首值（100→80/95）。",
+      "constants": [
+        "0x28",
+        "0x4E",
+        "0x76",
+        "0x64",
+        "0x4D1A80"
+      ],
+      "identity": "0x426737/0x413272/0x43B4A7/0x40BF0C 在 6.4/6.5/6.6 同哈希；表 0x4D1A80 首字节 6.4/6.5 为 64，6.6 为 50 5F。",
+      "limitations": [
+        "0x4101D9 随机语义未完全确认。",
+        "41×41 表未逐项导出。",
+        "等级映射值未命名。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.physical-damage-constant-chain.3ef7",
+        "mechanism.65.physical-range-correction.3ef7",
+        "mechanism.65.job-series-counter.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-physical-level-table-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "percent": "0x426737",
+        "callSite": "0x43BD9B",
+        "roll": "0x413272",
+        "grade": "0x43B4A7",
+        "gradeMap": "0x40BF0C",
+        "table": "0x4D1A80"
+      }
+    }
+  ]
+}

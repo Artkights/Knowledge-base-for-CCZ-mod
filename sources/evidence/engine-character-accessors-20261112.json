@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "analysis": "runtime-character-accessor-cluster",
+  "date": "2026-11-12",
+  "method": "精确反汇编人物记录访问器 0x4061E4/0x40658F/0x4065D0/0x4065C7/0x406610/0x4065F0，并核对三基底字节；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "record": {
+    "base": "DWORD[0x4CEA00]",
+    "stride": "0x48 (72)",
+    "count": 1024,
+    "index": "word[id] * 0x48 + [0x4CEA00]（0x4061E4）"
+  },
+  "accessors": {
+    "0x4061E4": "word[id]*0x48 + [0x4CEA00] → 人物记录指针",
+    "0x40658F": "push [ecx]; call 0x4061E4 → 对象首字段 ID 转记录",
+    "0x4065D0": "byte[record+0x2C] → 等级",
+    "0x4065C7": "byte[record+0x2D] → 经验",
+    "0x406610": "byte[record+0x2B] → 详细兵种 ID",
+    "0x4065F0": "byte[record+0x2E + slot*3] → 装备槽 ID（每槽 3 字节：ID/等级/经验）"
+  },
+  "equipmentSlots": {
+    "baseOffset": "0x2E",
+    "slotStride": 3,
+    "slotCount": 3,
+    "fields": ["ID", "等级", "经验"]
+  },
+  "identity": "6 个访问器前 24 字节哈希三基底完全一致：1AA81D/98B042/C0B191/114C63/766829/FC9213。",
+  "conclusion": "运行时人物记录为 1024×72，基址 [0x4CEA00]；+0x2B 兵种、+0x2C 等级、+0x2D 经验、+0x2E 起 3 个装备槽（每槽 3 字节）。6 个访问器三基底字节一致，可跨基底复用。",
+  "limitations": [
+    "装备槽数量 3 来自 0x4065F0 的 slot*3 与结构条目，未展开其它槽。",
+    "0x4065F0 的 slot 上限未在本条验证。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "src.research.engine-script-branch-range-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "脚本上下文 +0x08/+0x0C/+0x14 语义与分支区间缓存 0x4CE74C/0x4CE75C（6.6 0x500AB0/0x500AB4）消费链",
+  "bases": [
+    {
+      "name": "6.4 洗隋",
+      "path": "基底/洗隋/Ekd5.exe",
+      "sha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"
+    },
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    },
+    {
+      "name": "6.6 复刻版山贼",
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    }
+  ],
+  "method": "capstone 线性反汇编 + 操作数立即数检索 + 处理表条目解码（6.5/6.6 表 0x410A38 各 120 项）",
+  "findings": [
+    {
+      "id": "ctx-fields",
+      "claim": "脚本解释器上下文 ctx：+0x08 为脚本流累计字节计数，+0x0C 为脚本流读取地址（绝对地址，作为 0x4183F7 的读取起点并参与缓存公式），+0x14 为等待中的分支目标地址（-1 表示无等待）。",
+      "evidence": [
+        "0x416C41 push [ecx+0xC]; push 4; call 0x4183F7 → 读回长度 eax；0x416C54 add [ecx+0xC], eax；0x416C57 add eax,5；0x416C5A add [ecx+8], eax",
+        "0x4105FF: eax=[ctx+0x14]; cmp eax,[ebp+8]; jle 继续，否则返回 1；0x410622 [ctx+0x14]=-1；opcode 2 分支 0x41067A [ctx+0x14]=[ebp+8]，并 0x410673 把 word[ebp-0x1C] 存入 [ctx+0x10]",
+        "0x41085D: cmp dword[ctx+0x14],0 → jge 0x4108B5；即 +0x14<0 时才走分支缓存写入路径"
+      ]
+    },
+    {
+      "id": "cache1-formula",
+      "claim": "动作码 1 分支写 cache1 = [ctx+0x0C]-2：6.4/6.5 写 0x4CE74C，6.6 同址指令 0x410A0B 写 0x500AB0。",
+      "evidence": [
+        "6.4/6.5/6.6 0x410A06 mov edx,[edx+0xC]; 0x410A09 dec edx; 0x410A0A dec edx; 0x410A0B mov [cache1],edx",
+        "refs_to 6.5 0x4CE74C → 仅 0x410A0B；refs_to 6.6 0x500AB0 → 仅 0x410A0B"
+      ]
+    },
+    {
+      "id": "cache2-formula",
+      "claim": "分支路径写 cache2 = [ctx+0x0C] + token(0x40FCB2)：6.4/6.5 写 0x4CE75C（0x410891），6.6 写 0x500AB4（0x41088B，因指令合并比 6.5 早一条）。",
+      "evidence": [
+        "6.5 0x410887 call 0x40FCB2; 0x41088C mov edx,eax; 0x41088E add edx,[ecx+0xC]; 0x410891 mov [0x4CE75C],edx",
+        "6.6 0x410881 call 0x40FCB2; 0x410886 mov edx,eax; 0x410888 add edx,[ecx+0xC]; 0x41088B mov [0x500AB4],edx",
+        "refs_to 6.6 0x500AB4 → 0x41088B（写）与 0x416C62（读）"
+      ]
+    },
+    {
+      "id": "consumer-416c41",
+      "claim": "消费者为操作码 0x76 处理器 0x416C41（6.5/6.6 处理表 0x410A38 第 118 项均指向 0x416C41）：读 4 字节操作数推进 ctx，然后把新的 [ctx+0x0C] 与 [cache1, cache2] 区间比较；落在区间内（pos<=cache1，或 pos>=cache2 且次级值<cache2）时把 cl 置 0x76 哨兵返回。",
+      "evidence": [
+        "0x416C41 反汇编（6.5 与 6.4 完全一致；6.6 仅位移改为 [edx-4]）",
+        "6.5 0x416C62 mov edx,0x4CE75C; 0x416C67 cmp eax,[edx-0x10]（=0x4CE74C）",
+        "6.6 0x416C62 mov edx,0x500AB4; 0x416C67 cmp eax,[edx-4]（=0x500AB0）",
+        "0x4109E6 0x410A21 cmp dword[ebp-8],0x76 → 0x410A27 mov [ebp-8],ecx；0x4105FF 0x410652 cmp ecx,0x76 特殊分支",
+        "6.5/6.6 表 0x410A38 解码：第 118 项=0x416C41、119=0x416C87、120=0x416DCD"
+      ]
+    },
+    {
+      "id": "opcode76-chain",
+      "claim": "0x76 是脚本命令码，其处理器 0x416C41 与解释器 0x4105FF/分派器 0x4109E6 的 0x76 特殊判定构成同一条分支区间守卫链：0x77/0x78 处理器紧随其后（0x416C87/0x416DCD）。",
+      "evidence": [
+        "0x4105FF 0x41064A call [edx+8] 后 0x410652 cmp ecx,0x76",
+        "0x4109E6 0x410A21 0x76 哨兵回填",
+        "处理表相邻项 0x416C87、0x416DCD"
+      ]
+    }
+  ],
+  "corrections": [
+    "旧记录称『0x4CE74C 无读取者』不成立：6.5 通过 0x416C67 的 [edx-0x10] 间接读取；6.6 改为 [edx-4] 并显式检索到 0x500AB0 的跨基址位移差 0x10→0x4。",
+    "0x500AB0/0x500AB4 并非独立全局，而是分支区间下界/上界缓存对；其写点与 6.5 的 0x4CE74C/0x4CE75C 一一对应。"
+  ],
+  "limitations": [
+    "操作码 0x76 的中文命令名未确认（仅知为分支区间守卫）。",
+    "0x4183F7 的 4 字节操作数编码（是否含变量长度）未展开。",
+    "未运行游戏对照。"
+  ]
+}

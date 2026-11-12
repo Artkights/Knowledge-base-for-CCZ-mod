@@ -1,0 +1,66 @@
+{
+  "id": "src.research.engine-table-506800-capacity-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "0x506800 容量 0x14（20 项×3 字节）与小地图 tile 描述符语义；更正 dword0 打包",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 + 立即数引用全量枚举 + 3 字节步长绘制循环核对",
+  "findings": [
+    {
+      "id": "capacity",
+      "claim": "0x506800 是 3 字节/项的定长数组，容量 0x14（20 项，共 0x3C 字节）：绘制循环 0x41E898 以 i<byte[0x4B09DB] 且 i<0x14 为界，读取 [0x506800+i*3] 三字节。",
+      "evidence": [
+        "0x41E8AB cmp al, byte[0x4B09DB]; 0x41E8B1 jae 结束",
+        "0x41E8B3 cmp al,0x14; 0x41E8B5 jae 结束",
+        "0x41E8B7 imul ecx,eax,3; 0x41E8BA add ecx,0x506800"
+      ]
+    },
+    {
+      "id": "entry-semantics",
+      "claim": "每项 3 字节 = (tileY, tileX, page)：byte[+1] 与 byte[+0] 各乘 0xC（12 像素）作为源坐标，byte[+2] 乘 0x21C0 选页并叠加 [ebp-0x14] 页基，再加 i*0x1B0 得目标地址，最终 0x47E09B 绘制 12×12 块；byte[+0]==0xFF 为终止项。",
+      "evidence": [
+        "0x41E8C0 cmp byte[ecx],0xFF; 0x41E8C3 je 结束",
+        "0x41E8C5 movzx edx,byte[ecx+2]; 0x41E8C9 imul edx,edx,0x21C0; 0x41E8CF add edx,[ebp-0x14]",
+        "0x41E8D2 imul eax,eax,0x1B0; 0x41E8D8 add eax,edx（目标 = 页基 + i*0x1B0）",
+        "0x41E8DF movzx eax,byte[ecx+1]; 0x41E8E3 imul edx,eax,0xC; 0x41E8E7 mov al,byte[ecx]; 0x41E8E9 imul edx,eax,0xC",
+        "0x41E8DB push 0xC; 0x41E8DD push 0xC; 0x41E8ED call 0x47E09B"
+      ]
+    },
+    {
+      "id": "writer-packing",
+      "claim": "写入 0x415EA1 以 index*3+0x506800 写一个 dword：b0=v1、b1=v2、b2=v4、b3=0xFF（高字节固定 0xFF）。其中 0xFF 正好落到下一项的首字节，起到“下一项终止”的哨兵作用，与 3 字节步长不矛盾。",
+      "evidence": [
+        "0x415E9E mov eax,[ebp-0x18]; 0x415EA1 imul eax,eax,3; 0x415EA4 add eax,0x506800",
+        "0x415EA9 mov dl,byte[ebp-8]; 0x415EAC mov dh,0xFF; 0x415EAE shl edx,0x10",
+        "0x415EB1 mov dl,byte[ebp-0x14]; 0x415EB4 mov dh,byte[ebp-0x10]; 0x415EB7 mov [eax],edx",
+        "0x41E8C0 读取 byte[ecx]==0xFF 作为终止判定，与 b3=0xFF 写入点吻合"
+      ]
+    },
+    {
+      "id": "second-view",
+      "claim": "另有 4 处按 index*0xC 访问同一基址（0x40506D、0x40513A、0x4263BB、0x4263CA）：把它们视为 12 字节记录（+0 dword、+4 dword、+8 指针，0x40513A 会解引用 +8 指向的 word 数组并以 0x2828/0xFF 判定），与 3 字节 tile 数组构成同一基址的两种视图（联合/复用），具体启用条件未定。",
+      "evidence": [
+        "0x40506D imul eax,eax,0xC; 0x405070 add eax,0x506800; 0x405075 push [eax]; 0x405077 push [eax+4]",
+        "0x40513A imul eax,eax,0xC; 0x40513D add eax,0x506800; 0x405142 mov edx,[eax+8]; 0x405145 cmp word[edx],0x2828",
+        "0x4263BB/0x4263CA imul eax,eax,0xC 后调 0x4819E0 搬移，步长 0xC"
+      ]
+    }
+  ],
+  "corrections": [
+    "round-122 记录『dword0 打包 (b0, 0xFF, b2, b3)』有误：实际为 b0=v1、b1=v2、b2=v4、b3=0xFF（0x415EA9–0x415EB7 的 dl/dh/shl 顺序）。",
+    "『12 字节定长表』应为：3 字节/项、容量 20 项的小地图 tile 数组；12 字节只是同一基址的另一种访问视图。",
+    "round-122 的『0xFFFF 空项』来自 0x415EBB 对 0x418DD0(v0) 返回对象的比较，并非表项字段。"
+  ],
+  "limitations": [
+    "两种视图的启用条件与是否真正复用同一内存未完全确定。",
+    "byte[0x4B09DB]（项数）的写入方未追踪。",
+    "0x21C0 页步长的页数据来源未展开。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,543 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "fn.65.strategy-cast-entry.3890",
+      "title": "策略施放入口",
+      "aliases": [
+        "0x417982",
+        "strategy-cast-entry"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x417982",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "施放入口：ECX=上下文，0x40641F(上下文+0xC) 门控；通过后调用 0x4179B2(施放者ID, 参数, 策略ID)，返回 0 时转 0x4527FE。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-mp-check.3890",
+      "title": "策略 MP 可用性检查",
+      "aliases": [
+        "0x417af6",
+        "strategy-mp-check"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x417af6",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "MP 可用性：先 0x423FE8(unit,4) 判状态位（置位即不可用），再 MP=0x472840(unit) 与 0x417B27(unit, 策略ID) 的成本比较，成本≤MP 返回 1。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-mp-cost.3890",
+      "title": "策略 MP 成本计算",
+      "aliases": [
+        "0x417b27",
+        "strategy-mp-cost"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x417b27",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "策略 MP 成本：record=0x484002(ID)；base=byte[record+0x0E]（0x425AD0；运行时 +0x0E = 文件 +0x0F 策略消耗）；v=0x44DF49(unit)=0x4101D9(unit,0x2E,0x39,1,0)；v≠0 时 base=base×(100−v)/100。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-damage.3890",
+      "title": "策略伤害主函数",
+      "aliases": [
+        "0x43c022",
+        "strategy-damage"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x43c022",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "策略伤害：门控 0x415EFA（ID 0x46 例外）→命中 0x43B4B6(…,2)→特殊 ID 0x46 返 HP 差、0x09/0x15 返目标 HP；否则 等级+25 → 智力差/3（保底 0x47FA9E）→×0x4D1840[ID]/100→×0x4D21B0[group]/100→属性加成（type0: group 0x1E +0x28、0x435991∈{2,0x17} +0x19；type1/3/0x26: 0x41553B(0x4B3D08)≥2 +0x19；type2: 0x43B4A7==7 +0x19；ID 0x14 且 0x43B4A7==0xC 伤害×2）→攻方 0x4101D9(0x28,0x38) 增幅、守方 0x4101D9(0x29,0x43) 减伤→0x44904E 防御→0x412CAA 浮动→0x43D3AE 阈值→[+0x14]==0 时 0x40CA68 暴击→上限（ID 0x16 用 MP，否则 HP）。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-status-value.3890",
+      "title": "状态/能力类策略数值",
+      "aliases": [
+        "0x43c5df",
+        "strategy-status-value"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x43c5df",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "状态/能力类策略：ID−0x26 查 0x43C70E 30 项分类；cat0=目标当前 HP/MP−攻方[+0x10]；cat3=记录+0x0E；cat1/2=0x43F7B8(类型 0x1E) 的百分比×能力/100 +（[−0x10]==1 ? 智力/10+0x28 : 智力/2+0x46）+ 士气>rand(200) 时 rand(0..10)；统一 0x423FA1 减半、0x4131D0 双向增幅、按 +0x10/+0x14 截断。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-heal.3890",
+      "title": "策略治疗数值",
+      "aliases": [
+        "0x43c31d",
+        "strategy-heal"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x43c31d",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "治疗：加成 v=0x4101D9(攻方,0xBD,0,1,0)；v≠0 时 距离=|dx|+|dy|−1，治疗=基础值+基础值×v×(距离−1)/100；v=0 直接返回基础值。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-hit-stub.3890",
+      "title": "策略命中桩",
+      "aliases": [
+        "0x43b6f3",
+        "strategy-hit-stub"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x43b6f3",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "策略命中桩：mode=byte[0x4D1720+ID]；0=默认90%（特殊分支可为0%）、1=100%、2=无调整分支（显示映射按100%）、3=34%、4=50%、>=5=直接百分比（0x64=100%）；前置 ID 0x49 且 word[unit]<0xD2 直接 0。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-hit-curve.3890",
+      "title": "策略命中曲线",
+      "aliases": [
+        "0x43b53a",
+        "strategy-hit-curve"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x43b53a",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "命中曲线：A≥2D→100；A≥D→90+(A−D)×10/D；A≥D/2→60+(A−D/2)×30/(D/2)；否则 30+max(A−D/3,0)×30/(D/3)。结果<85 且首次未中时扣 10 重判一次（全局 0x505EC8==1 关闭）。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-exp.3890",
+      "title": "策略经验结算",
+      "aliases": [
+        "0x420efb",
+        "strategy-exp"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x420efb",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "策略经验：action+0x54C==0 返回；目标侧（运行时 +0x0B = 文件 +0x0C）为 2（全屏/天气）固定 +20，为 1（我方）走普通档；否则攻守等级差：攻<守→(差×8+0x20) 上限 200；攻≥守→max(差×4−0x20,10)；命中标记 0x406604(0x492F90) 相等时经验×2。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-range-dispatch.3890",
+      "title": "策略/穿透范围 12 分支分派",
+      "aliases": [
+        "0x435ce9",
+        "strategy-range-dispatch"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x435ce9",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "策略/穿透范围分派：按范围码走 12 项跳转表 0x435EF8：0→尾、1/2→0x435D10(4 向)、3→0x435D27(8 向)、4/5/7→0x435E01(线段)、6/8→0x435D27、9→0x435E80(斜线)、0x0A→0x40CE50、0x0B→0x40D000；每项落格到 0x4AC748 缓冲，0xFF 终止。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.attack-range-tier-map.3890",
+      "title": "攻击范围等级映射",
+      "aliases": [
+        "0x41ce8b",
+        "attack-range-tier-map"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x41ce8b",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "攻击范围等级映射：0x41CE8B(r, default) 先 0x41CDEE(r) 判定，命中返回 byte[0x41CEAB+r]，否则返回 default（调用方传 1）。33 项表：01 06 03 04 12 13 0C 08 12 1F 0A 00 0D 21 0F 16 11 12 25 0C 0C 16 22 01 20 1D 03 1C 1D 23 1F 03 24；链 0x00→0x01→0x06→0x0C→0x0D→0x21（四向→九宫→没羽→大没羽）。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.attack-range-tier-check.3890",
+      "title": "范围等级拓展特效判定",
+      "aliases": [
+        "0x41cdee",
+        "attack-range-tier-check"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x41cdee",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "范围等级特效判定：特效值=0x4101D9(unit, r+0x5A, 0x76, 3, 0)（即特效号=r+0x5A）；返回 特效值 & r，非 0 表示拥有该级拓展。三基底同址同字节。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-animation-tier.3890",
+      "title": "策略演出类型拓展",
+      "aliases": [
+        "0x401dff",
+        "strategy-animation-tier"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x401dff",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "策略演出/范围等级拓展：record=0x484002(策略ID)；t=0x418C93(record)=byte[record+0x0C]（运行时 +0x0C = 文件 +0x0D 施法范围）；返回 0x41CE8B(t,2)，同一张 0x41CEAB 表用于范围/动画模板升级。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.fatal-range-selector.3890",
+      "title": "必杀范围选择器",
+      "aliases": [
+        "0x43f8c0",
+        "fatal-range-selector"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x43f8c0",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "必杀范围选择：默认取 byte[record+0xC]（0x4A7510+id×0x10 的必杀记录）；全局 0x4CE7CC==unit 且 0x500E9A==2 时改取 0x41E918(0x500E9B)+0xC；再经 0x4E4000/0x417A35 做范围拓展与在范围内敌人检测；0x423FE8(unit,0x20) 置位返回 −1/0x0B。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.attack-range-wrapper.3890",
+      "title": "攻击/必杀范围包装",
+      "aliases": [
+        "0x417a35",
+        "attack-range-wrapper"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x417a35",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
+      "inputs": "见 semantics",
+      "returns": "见 semantics",
+      "semantics": "攻击/必杀范围包装：al=范围值；若 al==0xFF 先经 0x40658F→0x406610→0x41B782→0x44F9A0 取默认；随后 0x41CE8B(范围值, 1) 返回拓展后的范围等级。",
+      "relations": [],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-mimic-effect.3890",
+      "title": "策略模仿特效查询桩",
+      "aliases": [
+        "0x4210be",
+        "strategy-mimic-effect",
+        "策略模仿"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x4210be",
+        "profile": "profile.ccz65.unencrypted.3ef7",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX 传入单位；函数体直接 push 参数后 call 0x4101D9",
+      "inputs": "ECX=单位指针",
+      "returns": "EAX=特效 0x2D(45) 查询结果；非 0 表示拥有策略模仿",
+      "semantics": "0x4210BE 只是特效 45 的查询桩：push 1; push 1; push 0x3B; push 0x2D; call 0x4101D9; ret。真正模仿逻辑在 0x43E02A/0x465A2E：命中后进入 AI 选择器 0x41DC78/0x465AC0，并以 0x4D17B0 的 8 位类别掩码筛选。",
+      "relations": [
+        "fn.65.strategy-mimic-selection.3890",
+        "mechanism.65.strategy-mimic-and-penetration.3890"
+      ],
+      "sourceRefs": [
+        "src.research.strategy-attribute-verification-20261111",
+        "src.ccz65.3890.ekd5"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-mimic-selection.3890",
+      "title": "策略模仿/AI 策略选择器",
+      "aliases": [
+        "0x41dc78",
+        "strategy-mimic-selection"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x41dc78",
+        "profile": "profile.ccz65.unencrypted.3ef7",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall/ECX + 栈参数；详见 semantics",
+      "inputs": "ECX=单位/上下文；栈参数含策略槽/索引",
+      "returns": "EAX=选中策略或 0",
+      "semantics": "0x41DC78 循环策略 ID 0..0x8F，读取 0x4D17B0[strategyId] 作为 8 位类别掩码，与 0x43E1A8 返回的类别值按位与；匹配后继续检查其它条件。6.5 没有独立的逐策略模仿位，模仿路径复用该选择器。",
+      "relations": [
+        "fn.65.strategy-mimic-effect.3890",
+        "mechanism.65.strategy-mimic-and-penetration.3890",
+        "struct.65.strategy-record.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.strategy-attribute-verification-20261111",
+        "src.ccz65.3890.ekd5"
+      ]
+    },
+    {
+      "id": "fn.65.strategy-penetration-enhancement.3890",
+      "title": "强化策略穿透：特效 0xB6 与 0x442871 映射表",
+      "aliases": [
+        "0x44282d",
+        "0x442871",
+        "强化策略穿透",
+        "策略穿透增加"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x44282d",
+        "profile": "profile.ccz65.unencrypted.3ef7",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "栈参数 strategyId + ECX 单位/上下文；详见 semantics",
+      "inputs": "strategyId；单位上下文",
+      "returns": "AL=增强后的策略穿透码",
+      "semantics": "0x44282D：0x484002(strategyId) 取记录 → 0x484E27 取运行时 +0x0D（文件 +0x0E）策略穿透码 → 查询特效 0xB6(182) 强化策略穿透 → 命中时查表 0x442871[穿透码]；表 9 字节 01 02 03 06 07 04 06 05 08，未命中直接返回原穿透码。6.5 没有逐策略开关。",
+      "relations": [
+        "fn.65.attack-range-tier-map.3890",
+        "mechanism.65.strategy-mimic-and-penetration.3890",
+        "struct.65.strategy-record.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.strategy-attribute-verification-20261111",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

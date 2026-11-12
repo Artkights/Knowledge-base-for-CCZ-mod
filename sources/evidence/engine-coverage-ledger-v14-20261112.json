@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "src.research.engine-coverage-ledger-v14-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "通用常量覆盖台账 v14（第 1–149 轮）：98 域 / 77 resolved / 19 partial / 2 unresolved",
+  "method": "对 6.5/data/mechanisms/engine-general-coverage.json 的 domains 列表逐项计数并合并第 140–149 轮新增/提升项。",
+  "findings": [
+    {
+      "id": "counts",
+      "claim": "v14 列表实数：resolved 77、partial 19、unresolved 2，共 98 域；v13 为 73/20/2=95。",
+      "evidence": [
+        "resolved 追加 4 项：文本对象写入方 0x42AF6F/0x506000、练武场上下文字段与 0x3FE 哨兵、0x4183F7 类型码与主表全 126 项、设置块 +0x05 场景类别缓存",
+        "partial 移除 1 项（练武场 +0x04/+0x08 参数名与 +0x09 重叠语义），并把『操作码 0x72 中文名与子命令表全表』改写为『子命令表各子命令业务语义（中文名不在 EXE 内）』",
+        "unresolved 第 1 项改写为『0x423842 的 edx 残留寄存器值（需运行期定值）』"
+      ]
+    },
+    {
+      "id": "rounds-140-149",
+      "claim": "第 140–149 轮纳入：台账 v13 刷新、历史情报 341 文本路径、0x502000 按单位槽写入、0x42AF6F 文本对象写入与 0x506000 字符串表、练武场上下文字段/费用公式/三模式选择框/0x3FE 哨兵、0x4183F7 类型码与主分派表全表（0x68/0x72/0x76/0x77）、设置块 +0x05 场景类别缓存与 edx 残留定性。",
+      "evidence": [
+        "sources/evidence/engine-text-object-writer-20261112.json",
+        "sources/evidence/engine-training-ctx-fields-20261112.json",
+        "sources/evidence/engine-script-operand-codes-20261112.json",
+        "sources/evidence/engine-settings-plus05-and-edx-20261112.json"
+      ]
+    }
+  ],
+  "corrections": [
+    "台账总数由 95 域（73/20/2）更新为 98 域（77/19/2）。",
+    "『0x423842 edx 来源』定性为残留寄存器值，不再是纯未知来源。"
+  ],
+  "limitations": [
+    "partial 仍含 11 层逐层用途、0x4B4250+0x64/+0x68 写入方、0x47D8DF 子命令业务语义、0x42C9FC 0x2E31 文本表等。",
+    "unresolved 2 项均需运行期观测。",
+    "未运行游戏对照。"
+  ]
+}

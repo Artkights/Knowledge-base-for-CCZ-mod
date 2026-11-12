@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "analysis": "coverage-ledger-v3",
+  "date": "2026-11-12",
+  "method": "汇总第 33–42 轮已集成机制，重算通用域 resolved/partial/unresolved 状态；不新增反汇编，仅核对知识库现有实体与证据路径。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe"}
+  ],
+  "roundsAdded": [
+    {"round": 33, "topic": "人物记录访问器", "mechanism": "mechanism.65.character-accessors.3ef7"},
+    {"round": 34, "topic": "装备槽边界", "mechanism": "mechanism.65.equipment-slot-bound.3ef7"},
+    {"round": 35, "topic": "剧本处理表容量", "mechanism": "mechanism.65.script-handler-capacity.3ef7"},
+    {"round": 36, "topic": "金钱全局 0x4B077C 与 999999 上限", "mechanism": "mechanism.65.money-global.3ef7"},
+    {"round": 37, "topic": "统一支付链与练武菜单价格", "mechanism": "mechanism.65.payment-chain.3ef7"},
+    {"round": 38, "topic": "战场模式字节 0x4B3D18 与移动力覆盖", "mechanism": "mechanism.65.battle-mode-byte.3ef7"},
+    {"round": 39, "topic": "暴击/连击模式与暴击值数组", "mechanism": "mechanism.65.crit-combo-mode.3ef7"},
+    {"round": 40, "topic": "存档/读档槽位与文件命名", "mechanism": "mechanism.65.save-load-constants.3ef7"},
+    {"round": 41, "topic": "单位 +0x18 六槽临时属性块", "mechanism": "mechanism.65.temp-attribute-block.3ef7"},
+    {"round": 42, "topic": "全局二维网格尺寸字", "mechanism": "mechanism.65.grid-dimension-pair.3ef7"}
+  ],
+  "domains": {
+    "resolved": [
+      "函数级常量普查",
+      "兵种相克",
+      "策略 AI 分派",
+      "策略地形位掩码",
+      "兵种成长/装备适性",
+      "物理伤害主链",
+      "移动消耗/地形适应",
+      "回合/行动/天气",
+      "全局容量/哨兵",
+      "策略伤害方向修正",
+      "命中高度修正",
+      "公式站点审计",
+      "装备阈值/上限",
+      "命中重试",
+      "角色经验",
+      "个人经验",
+      "武器/防具经验",
+      "人物记录访问器",
+      "装备槽边界",
+      "物品类型分类",
+      "金钱全局与 999999 上限",
+      "统一支付链与练武菜单价格",
+      "暴击/连击模式与暴击值数组",
+      "存档/读档槽位与文件命名",
+      "单位临时属性块三档语义",
+      "全局二维网格尺寸字"
+    ],
+    "partial": [
+      "战场模式字节 0x4B3D18 命名（候选：普通/单挑）",
+      "兵种属性矩阵字段名",
+      "兵种穿透码",
+      "六槽临时属性的具体属性名",
+      "物理侧状态/天气完整修正"
+    ],
+    "unresolved": [
+      "6.6 处理体常量逐项重定位",
+      "0x48E8BD 奖励倍率来源",
+      "0x423842 的 edx 来源"
+    ]
+  },
+  "remainingGaps": [
+    "6.6 处理体常量与函数入口逐项重定位",
+    "物理侧状态/天气对伤害的完整修正链",
+    "0x4B3D18 的写入点与最终命名",
+    "六槽临时属性的属性名映射",
+    "0x48E8BD 奖励倍率来源",
+    "0x423842 的 edx 来源",
+    "0x418C34/0x418F5C/0x41888D 等存档 I/O 内部实现"
+  ],
+  "conclusion": "第 1–42 轮共覆盖 34 个通用域：26 resolved、5 partial、3 unresolved。第 33–42 轮新增了人物访问器、装备槽边界、剧本容量、金钱/支付链、战场模式字节、暴击/连击、存档/读档、临时属性块与网格尺寸字；剩余缺口集中在 6.6 处理体、物理侧状态/天气修正和少量字段命名。",
+  "limitations": [
+    "覆盖状态是条目级汇总，不等价于逐函数全量证明。",
+    "未运行游戏对照。"
+  ]
+}

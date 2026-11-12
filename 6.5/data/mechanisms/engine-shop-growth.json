@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.shop-runtime-and-item-usability.3ef7",
+      "title": "商店运行时表与物品可用性判定",
+      "aliases": [
+        "shops",
+        "商店数据",
+        "商店列表",
+        "物品可用性"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "Data.e5 块 2（0x8BB4，0x1200 字节，128×36）由 0x41B7F0 解码为 127 行×40 字节的运行时表，基址指针在 [0x4CEA04]，访问器 0x41B7E2。每行含 2 个仓库/买卖人物 ID、16 个装备槽和 16 个物品槽。0x466AE3 构造 16 槽列表，并对每个物品调用 0x407961 得到可用性/装备适性布尔值。",
+      "sourceBlock": {"index": 2, "fileOffset": "0x8BB4", "length": "0x1200", "fileRows": 128, "fileRowSize": 36},
+      "loader": {"va": "0x41B7F0", "rowLimit": "0x7F (127)"},
+      "runtimeTable": {
+        "baseGlobal": "0x4CEA04",
+        "rowStride": "0x28",
+        "rows": 127,
+        "accessor": "0x41B7E2",
+        "accessor66": "0x41B7E0（同指令，前移 2 字节）"
+      },
+      "recordLayout": [
+        {"name": "开关仓库人物", "offset": 0, "width": 2},
+        {"name": "买卖物品人物", "offset": 2, "width": 2},
+        {"name": "装备槽 0..15", "offset": 4, "width": 16},
+        {"name": "物品槽 0..15", "offset": 20, "width": 16},
+        {"name": "填充", "offset": 36, "width": 4}
+      ],
+      "listBuilder": {
+        "va": "0x466AE3",
+        "entrySize": 8,
+        "entryFields": ["物品ID", "槽位", "word=1", "可用性布尔值"],
+        "itemIdReader": "0x472BFD(row, slot)"
+      },
+      "usability": {
+        "va": "0x407961",
+        "returns": "0/1",
+        "rules": [
+          "ID 0xFF → 1",
+          "物品类型 3 → 0",
+          "物品类型 2 → 0x41B4F7/0x420E83 查 0x44C341 配对表",
+          "其它类型 → 0x41C60F 读兵种成长表 byte[9+类型]"
+        ]
+      },
+      "priceBoundary": "0x407961 不计算价格；物品价格字段为物品记录 offset 19，单位 /100（data 管理器 profile）。",
+      "limitations": [
+        "0x44C341 配对表语义未展开。",
+        "6.6 的 0x407961 后续分支差异未逐指令对齐。",
+        "未运行游戏对照商店界面。"
+      ],
+      "relations": [
+        "mechanism.65.job-growth-equipment-compatibility.3ef7",
+        "mechanism.65.engine-general-constant-census.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-shop-growth-20261112",
+        "src.ccz65.3890.ekd5",
+        "src.data-manager.profile65"
+      ]
+    },
+    {
+      "id": "mechanism.65.job-growth-equipment-compatibility.3ef7",
+      "title": "兵种成长表与装备适性字节",
+      "aliases": [
+        "detailed-job-growth",
+        "兵种成长与装备",
+        "装备适性",
+        "growth byte 9"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "兵种成长表来自 Data.e5 块 3（0x9DB4，0xAF0 字节，80×35），运行时基址 0x4A2A27，行步长 0x23，访问器 0x41B782。前 9 字节是九项成长值，后 26 字节是装备类型适性；0x41C60F 读取 byte[9+物品类型] 作为可用性/装备适性判定。",
+      "sourceBlock": {"index": 3, "fileOffset": "0x9DB4", "length": "0xAF0", "rows": 80, "rowSize": 35},
+      "runtimeTable": {"base": "0x4A2A27", "rowStride": "0x23", "rows": 80, "accessor": "0x41B782"},
+      "layout": {
+        "growthBytes": {"offset": 0, "width": 9, "fields": ["移动力成长", "攻击范围", "攻击成长", "防御成长", "精神成长", "爆发成长", "士气成长", "HP成长", "MP成长"]},
+        "equipmentCompatibility": {"offset": 9, "width": 26, "reader": "0x41C60F = byte[growth + 9 + itemType]"}
+      },
+      "identity": "0x41B782 与 0x41C60F 在三基底字节一致。",
+      "limitations": [
+        "装备适性字节的取值语义（0/1/其它）只确认用于 0x407961 的布尔返回，未展开所有取值。",
+        "未运行游戏对照装备限制。"
+      ],
+      "relations": [
+        "mechanism.65.shop-runtime-and-item-usability.3ef7",
+        "mechanism.65.engine-general-constant-census.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-shop-growth-20261112",
+        "src.ccz65.3890.ekd5",
+        "src.data-manager.profile65"
+      ]
+    }
+  ]
+}

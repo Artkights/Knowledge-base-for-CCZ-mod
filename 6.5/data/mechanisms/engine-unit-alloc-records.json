@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.unit-alloc-records.3ef7",
+      "title": "单位五维分配记录 0x508000（0x66 槽×10 字节）与 0x505F40 全局池回退",
+      "aliases": [
+        "unit alloc records",
+        "五维分配记录",
+        "0x508000",
+        "0x42ACD2",
+        "0x408FA0"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x508000 是单位五维分配记录数组：槽 0..0x65（102 个），每槽 0x0A 字节 = 5 个 word（记录地址 0x508000+i*0x0A）。取指针函数 0x42ACD2(slot,mode)：slot>=0x66 返回 0xFF；mode!=1 且 byte[unit+0x2A]==0xFF 也返回 0xFF；否则返回记录指针。回退链 0x408FA0：当 byte[0x505F3C]!=0 时遍历 i<0x66，取单位后以 byte[unit+0x02] 的 5 位掩码判定，第 k 位为 0 则把记录 word[+2k] 清零，并把旧值累加进 dword[0x505F40]（全局点数池）。该记录与 332 工作区 0x4FFF68 的五维 word×5 同构：0x508000 为持久记录，0x4FFF68+0x00..0x09 为对话框临时经验、+0x0A..0x13 为升级阈值；0x4FFF68+0x14 为对话框剩余点数池，与 0x505F40 分属两池。",
+      "constants": [
+        "0x508000", "0x42ACD2", "0x408FA0", "0x4061E4", "0x505F3C", "0x505F40", "0x4FFF68",
+        "0x0A", "0x66", "0x05", "0x02", "0x2A", "0xFF", "0x14"
+      ],
+      "identity": "0x42ACD2 的 slot*0x0A+0x508000 与 0x408FA0 的 i*0x0A+0x508000 两处步长一致；5 次 word 清零循环（cmp cl,5）与 332 工作区五项 word 数量一致；回退累加目标 0x505F40 为已知全局点数池。",
+      "siteAddresses": {
+        "recordsBase": "0x508000",
+        "slotCount": "0x66",
+        "recordSize": "0x0A",
+        "fields": "5×word",
+        "getRecord": "0x42ACD2",
+        "unitGetter": "0x4061E4",
+        "refundFn": "0x408FA0",
+        "gateByte": "0x505F3C",
+        "maskByte": "unit+0x02",
+        "deadByte": "unit+0x2A",
+        "globalPool": "0x505F40",
+        "dialogWorkarea": "0x4FFF68",
+        "dialogPool": "0x4FFF68+0x14"
+      },
+      "limitations": [
+        "byte[unit+0x02] 五位掩码的业务命名未定（推测为已分配属性位）。",
+        "byte[unit+0x2A]==0xFF 判定语义未展开。",
+        "0x508000 记录的写入方（加点确认路径）未定位。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.dialog-workarea-4fff68.3ef7",
+        "mechanism.65.merit-table.3ef7",
+        "mechanism.65.dialog332-confirm.3ef7",
+        "mechanism.65.runtime-character-accessors.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-unit-alloc-records-20261112"
+      ]
+    }
+  ]
+}

@@ -25,7 +25,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.fields-65-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.doc-swift-20261102",
         "src.dm.formulas.doc-formula-validation-20261102",
         "src.dm.formulas.doc-active-table-20261102",
@@ -4799,7 +4799,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "击杀目标后最多再引导几次；总攻击次数 = 这个值 + 1。6.4 默认 4（共五次），6.5/6.6 默认 2（共三次）。部分改版基底写 255 表示基本不限次数。",
@@ -4892,7 +4892,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "奋战会依次打几个相邻目标，引导共用这份列表。8 = 周围八格全算，4 = 只算十字四格。",
@@ -4986,7 +4986,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "拥有主动连击时，追加一击的发动概率：100 = 每次都追加，50 = 一半机会。",
@@ -5113,7 +5113,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "没有强化反击时，反击伤害按攻击伤害的几份结算：3 = 75%，4 = 全额，2 = 50%。",
@@ -5206,7 +5206,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "突破攻击触发时显示的固定台词，最多 8 个汉字；超出会被截断。",
@@ -5289,7 +5289,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "突破攻击触发时伤害额外增加的百分比：40 = 伤害×1.4，0 = 不加成。伤害增幅走自己的装备值。",
@@ -5383,7 +5383,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "吸血攻击最多按造成伤害的百分之几回血：100 = 全额回血，50 = 最多回一半。6.6 同名特技为“以战养战”。",
@@ -5510,7 +5510,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "铁索横江会检查几个方向的相邻友军：4 = 十字四格，8 = 八方格。改大后斜向相邻的友军也会纳入连锁。6.6 同名特技为“一步剑围”。",
@@ -5604,7 +5604,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "猛击额外造成目标当前 HP 的百分之几伤害；这里限制这个百分比最大能到多少。100 = 最多打掉目标当前 HP 的量。6.6 同名特技为“势不可挡”。",
@@ -5732,7 +5732,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "盾反额外反弹攻击者当前 HP 的百分之几伤害；这里限制这个百分比最大能到多少。100 = 最多反弹攻击者当前 HP 的量。6.4 名称“花枪驭敌”，6.6 名称“厄难毒体”。",
@@ -5860,7 +5860,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "神魔附体提升单项属性时最多算到多少；9999 是原版上限。6.6 同名特技为“洗髓易筋”。",
@@ -5987,7 +5987,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "本项为代码固定每点增伤5%；目标能力A低于特效值N才触发，追加伤害=原伤害×(N−A)×5/100。N是触发门槛，5是本项立即数。",
@@ -6080,7 +6080,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "物理攻击在能力差之外先加的固定伤害；默认25。改大后所有物理攻击都会更疼。",
@@ -6173,7 +6173,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "策略/精神力攻击在能力差之外先加的固定伤害；默认25。改大后所有策略攻击都会更疼。",
@@ -6267,7 +6267,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "策略伤害里双方能力差除以几；默认3。改大后能力差影响变小，改1影响最大。两处必须同时改。",
@@ -6394,7 +6394,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "化力为疗用 MP 抵扣伤害时，每 1 点伤害消耗的 MP；默认 2。改大后同样伤害更耗 MP，改小更省。",
@@ -6498,7 +6498,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "夺锐攻击把目标六项能力的数值上限压到本值；默认 3。六项能力同值，写入时 12 处同步。仅 6.5 有该处理函数。",
@@ -6965,7 +6965,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "风驰电掣的加成按百分比算出后还要再除以本值；6.5 默认 11，6.6 默认 10。改大后同特效值增伤变少。",
@@ -7059,7 +7059,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "策略命中或格挡的最终概率最多到这个数；默认100%。改小后策略更容易被挡住。",
@@ -7186,7 +7186,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "拥有逆乱阴阳时，策略命中概率直接加这个百分点，最多到 100%；默认 10。",
@@ -7279,7 +7279,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "屏蔽/邻格类特技枚举几个方向：4 = 十字四格，8 = 八方格。6.4/6.5 默认 4，6.6 默认 8。",
@@ -7372,7 +7372,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "特效屏蔽内层判定的方向数：4 = 十字。通常要和外层方向数一起放宽，只改这个看不到效果。",
@@ -7465,7 +7465,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "穿越移动检查几个方向的可通行格：4 = 十字四格，8 = 八方格。三基底默认 4。6.6 同名特技为“无人之境”。",
@@ -7558,7 +7558,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "周围能力枚举几格：9 = 自身 + 八方，4 = 自身 + 三方向。6.4/6.5 默认 9，6.6 默认 4。6.6 同名特技为“兼济天下”。",
@@ -7651,7 +7651,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "强化连击/连击上限类特效触发后，连击伤害不再逐次衰减，并在原伤害上额外加这个固定百分比；0 = 只不衰减，10 = 每次连击多 10%。",
@@ -7744,7 +7744,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "生命越低减伤越高；这里限制最多按已损失生命的多少比例减伤。80 = 最多减 80%。",
@@ -7837,7 +7837,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "侧击按 1 档、背击按 2 档，每档增加这个百分比；25 = 侧击 +25%、背击 +50%。",
@@ -7931,7 +7931,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "特效值为 1 时走固定值模式：加成 = 单位等级÷2 + 本值；增伤和减伤共用。6.5 默认 10，6.6 默认 15。",
@@ -8059,7 +8059,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "策略伤害已经高于保底（或低于限伤）时，额外增加/扣减的百分比；默认 20%。",
@@ -8186,7 +8186,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "统计 6 项能力中数值低于本阈值的项数，每低一项按特效值追加伤害；默认 3。6.5 同名特技为“落井下石”。",
@@ -8279,7 +8279,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "吸收金钱结算时，按本次累计伤害 × 本值 计算金钱；6.4 默认 2 倍，6.5/6.6 默认 1 倍。改 0 就不结算金钱。",
@@ -8372,7 +8372,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "拥有神锋沥辉（6.5 同名特技为“削铁如泥”）时，按比例追加伤害的保底百分点；6.5 默认 10，6.6 默认 6。改 0 就只按计算值加成。",
@@ -8465,7 +8465,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "卖出价 = 买入价 × 本值 / 4；默认 3，即卖出价为买入价的 75%。分母固定 4，改本值可整体调整卖出比例。",
@@ -8558,7 +8558,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "命中率曲线最高只能到本值；三基底默认 100。",
@@ -8635,7 +8635,7 @@
     },
     {
       "id": "mechanism.65.dm-constant-hit-curve-high-base",
-      "title": "6.5 高段基础值：代码固定值",
+      "title": "6.5 命中率曲线·高段基础值",
       "aliases": [
         "hit-curve-high-base",
         "高段基础值",
@@ -8651,7 +8651,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "攻方能力是守方 1～2 倍时，高段从本值起算；默认 90。",
@@ -8728,7 +8728,7 @@
     },
     {
       "id": "mechanism.65.dm-constant-hit-curve-high-coef",
-      "title": "6.5 高段每点系数：代码固定值",
+      "title": "6.5 命中率曲线·高段每点系数",
       "aliases": [
         "hit-curve-high-coef",
         "高段每点系数",
@@ -8744,7 +8744,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "高段能力每高 1 点加本值/D；默认 10。",
@@ -8837,7 +8837,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "攻方能力是守方一半到一倍时，中段从本值起算；默认 60。",
@@ -8930,7 +8930,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "中段每高 1 点加本值/(D/2)；默认 30。",
@@ -9023,7 +9023,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "攻方低于守方一半时，先按守方能力除以本值作为低段基准；默认 3。",
@@ -9100,7 +9100,7 @@
     },
     {
       "id": "mechanism.65.dm-constant-hit-curve-low-base",
-      "title": "6.5 低段基础值：代码固定值",
+      "title": "6.5 命中率曲线·低段基础值",
       "aliases": [
         "hit-curve-low-base",
         "低段基础值",
@@ -9116,7 +9116,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "低段起点；默认 30。",
@@ -9193,7 +9193,7 @@
     },
     {
       "id": "mechanism.65.dm-constant-hit-curve-low-coef",
-      "title": "6.5 低段每点系数：代码固定值",
+      "title": "6.5 命中率曲线·低段每点系数",
       "aliases": [
         "hit-curve-low-coef",
         "低段每点系数",
@@ -9209,7 +9209,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "低段每高 1 点加本值/(D/除数)；默认 30。",
@@ -9302,7 +9302,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "6.4/6.5 高命中未打中时最多再判几次；默认 2。",
@@ -9395,7 +9395,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "首次命中率达到本值才会补判；默认 85。",
@@ -9488,7 +9488,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "补判时命中率扣本值；默认 10。",
@@ -9581,7 +9581,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "攻方能力达到守方本值倍时直接满发动；默认 3。",
@@ -9674,7 +9674,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "暴击/连击率最高到本值；默认 100。",
@@ -9751,7 +9751,7 @@
     },
     {
       "id": "mechanism.65.dm-constant-rate-curve-high-coef",
-      "title": "6.5 高段每点系数：代码固定值",
+      "title": "6.5 发动率曲线·高段每点系数",
       "aliases": [
         "rate-curve-high-coef",
         "高段每点系数",
@@ -9767,7 +9767,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "2～3 倍区间每高 1 点加本值/D；默认 80。",
@@ -9844,7 +9844,7 @@
     },
     {
       "id": "mechanism.65.dm-constant-rate-curve-high-base",
-      "title": "6.5 高段基础值：代码固定值",
+      "title": "6.5 发动率曲线·高段基础值",
       "aliases": [
         "rate-curve-high-base",
         "高段基础值",
@@ -9860,7 +9860,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "2～3 倍区间起点；默认 20。",
@@ -9937,7 +9937,7 @@
     },
     {
       "id": "mechanism.65.dm-constant-rate-curve-low-coef",
-      "title": "6.5 低段每点系数：代码固定值",
+      "title": "6.5 发动率曲线·低段每点系数",
       "aliases": [
         "rate-curve-low-coef",
         "低段每点系数",
@@ -9953,7 +9953,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "1～2 倍区间每高 1 点加本值/D；默认 18。",
@@ -10030,7 +10030,7 @@
     },
     {
       "id": "mechanism.65.dm-constant-rate-curve-low-base",
-      "title": "6.5 低段基础值：代码固定值",
+      "title": "6.5 发动率曲线·低段基础值",
       "aliases": [
         "rate-curve-low-base",
         "低段基础值",
@@ -10046,7 +10046,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "1～2 倍区间起点；默认 2。",
@@ -10139,7 +10139,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "物理暴击率最高到本值；默认 100。",
@@ -10232,7 +10232,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "物理暴击判定进入的集气池编号；6.4 为 0，6.5/6.6 为 2。",
@@ -10325,7 +10325,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "策略暴击率最高到本值；默认 100。",
@@ -10418,7 +10418,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "策略暴击判定进入的集气池编号；6.4 为 0，6.5/6.6 为 18。",
@@ -10511,7 +10511,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "连击判定进入的集气池编号；三基底默认 0。",
@@ -10604,7 +10604,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "击杀指定目标时，击杀经验改为固定加成本值；默认 48。",
@@ -10697,7 +10697,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "击杀非指定目标时，额外经验 = 本值 ÷（攻方等级−守方等级 + 除数偏移）；等级差为负按 0 算。默认 64。",
@@ -10790,7 +10790,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "击杀经验的除数 = max(攻方等级−守方等级,0) + 本值；默认 2。",
@@ -10883,7 +10883,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "个人经验基础值：基础经验 = 2×等级差 + 本值；默认 6。",
@@ -10976,7 +10976,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "经验倍率 = (角色第 8 项基础能力 + 本值) / 100；默认 100。",
@@ -11069,7 +11069,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "武器经验基础值：造成伤害时每次加多少；6.5 默认 2，6.4/6.6 默认 3。",
@@ -11162,7 +11162,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "没有造成 HP/MP 伤害时，武器经验直接取本值；6.4/6.5 默认 2，6.6 默认 1。",
@@ -11255,7 +11255,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "每件防具的经验基础值；6.4/6.5 默认 3，6.6 默认 4。",
@@ -11348,7 +11348,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "没有造成 HP/MP 伤害时从基础上扣多少；6.4 默认 1，6.5 默认 2，6.6 默认 3。",
@@ -11441,7 +11441,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "角色经验结算的最高等级；6.4 默认 80，6.5 默认 60，6.6 默认 99。部分改版基底设为 100。",
@@ -11534,7 +11534,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "6.5 角色升级经验的等级分段：每多少级提高一档；默认 20。",
@@ -11627,7 +11627,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "6.5 角色升级经验每档增量：阈值 = (min(等级/分段,3)+3)×本值；默认 50。",
@@ -11720,7 +11720,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "带宝物标记的武器/防具每升一级所需经验；三基底默认 200。",
@@ -11813,7 +11813,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "普通武器/防具每升一级所需经验；6.4/6.6 默认 100，6.5 默认 150。",
@@ -11906,7 +11906,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "带宝物标记的装备最高等级；6.4/6.5 默认 9，6.6 默认 15。",
@@ -11999,7 +11999,7 @@
         "src.dm.formulas.constants-20261102",
         "src.dm.formulas.constant-definitions-20261102",
         "src.dm.formulas.doc-constant-contract-20261102",
-        "src.dm.formulas.sample-65-20261102",
+        "src.ccz65.3890.ekd5",
         "src.dm.formulas.fields-65-20261102"
       ],
       "summary": "普通装备最高等级；6.4/6.5 默认 5，6.6 默认 9。",

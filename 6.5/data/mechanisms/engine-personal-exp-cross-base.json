@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.personal-exp-cross-base.3ef7",
+      "title": "个人经验公式常量的三基底一致性",
+      "aliases": [
+        "personal-exp",
+        "个人经验",
+        "击杀经验",
+        "2×等级差+6"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "个人经验函数 0x4037A3 的常量在 6.4/6.5/6.6 一致：基础 2×等级差+6、等级差钳位 -1..47、特殊击杀 +48、普通击杀 64/(max(攻方等级-守方等级,0)+2)。审计中的同址差异是函数体移位；6.6 额外有 [ebp-0xC]==0 守卫。",
+      "function": "0x4037A3",
+      "constants": {
+        "baseExp": 6,
+        "levelDiffMin": -1,
+        "levelDiffMax": 47,
+        "killSpecialFlat": 48,
+        "killNormalNumerator": 64,
+        "killDivisorOffset": 2
+      },
+      "siteAddresses": {
+        "6.4": ["0x403821", "0x403839", "0x403846", "0x40384C", "0x403852"],
+        "6.5": ["0x403824", "0x40383A", "0x403847", "0x40384D", "0x403855"],
+        "6.6": ["0x40381B", "0x403832", "0x40383B (guard)", "0x403846", "0x40384C", "0x403852"]
+      },
+      "limitations": [
+        "0x42104F/0x421053 倍率未展开。",
+        "特殊目标 ID 来源未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.dm-formula-personal-exp",
+        "mechanism.65.formula-site-cross-base-audit.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-personal-exp-cross-base-20261112",
+        "src.dm.formulas.doc-battle-formulas-20261102"
+      ]
+    }
+  ]
+}

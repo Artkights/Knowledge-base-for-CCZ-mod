@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.physical-range-correction.3ef7",
+      "title": "物理伤害距离/范围修正 0x4E6000",
+      "aliases": [
+        "0x4E6000",
+        "距离修正",
+        "范围修正",
+        "物理伤害收尾"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "物理伤害链末尾 0x4E6000 依次调用 0x4E0000（范围查询，参数 0/0xFF/0xFF/0xC4/0xFF/1/0）与 0x4E008F（mode 1 与 mode 0 距离判定）；仅当 mode1 命中且 mode0 未命中时按 0x425AD9 对伤害做百分比缩放，返回 base+修正。坐标取自 job 记录 +6 字的高低字节。该函数不读取天气或临时属性块。",
+      "constants": [
+        "0x4E6000",
+        "0x4E0000",
+        "0x4E008F",
+        "0xC4",
+        "0xFF",
+        "0x64"
+      ],
+      "identity": "0x4E0000/0x4E004A/0x4E0060/0x4E008F 在 6.5 与 6.6 同哈希，6.4 不同；0x4E6000 三基底均不同。",
+      "limitations": [
+        "0x4E604C 的 [ebp-4] 未见初始化。",
+        "0x4101D9 范围参数未展开。",
+        "0xC4/0xFF 图案未命名。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.physical-damage-constant-chain.3ef7",
+        "mechanism.65.movement-terrain-and-map-bounds.3ef7",
+        "mechanism.65.hit-height-direction-modifier.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-physical-range-correction-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "entry": "0x4E6000",
+        "callSite": "0x43BDBF",
+        "rangeQuery": "0x4E0000",
+        "coordinate": "0x4E004A",
+        "distance": "0x4E0060",
+        "compare": "0x4E008F"
+      }
+    }
+  ]
+}

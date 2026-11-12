@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "analysis": "scroll-core",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 0x45218F 前 60 条指令。仅静态分析。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"}
+  ],
+  "core": {
+    "entry": "0x45218F",
+    "object": "0x4B4250（ecx）",
+    "args": "[ebp+8]=dx、[ebp+0xC]=dy、[ebp+0x10]=shiftX、[ebp+0x14]=shiftY",
+    "steps": [
+      "tileX = byte[0x40D344(dword[obj+0x04])] + dx（0x40D344 为像素→瓦片）",
+      "tileY = byte[0x40D344(dword[obj+0x08])] + dy",
+      "byte[0x505FDC]!=0 → eax=0x1E000、call 0x40155F；否则 call 0x401617（两套缓冲/表面选择）",
+      "index = 0x403789(tileX,tileY)；dest = base + index*0x1B00（单层步长 0x1B00）",
+      "call 0x401573 + index、call 0x401669 + index，并 lea +0xC80/+0x12C0/+0x1F40 三个子区",
+      "index += 0x4BE880（全局格数组基址）",
+      "flag = byte[0x4B3D08+5] & 1",
+      "像素坐标：x*0x30、y*0x30、(x+shiftX)*0x30、(y+shiftY)*0x30",
+      "call 0x41E5DB（后续绘制/搬运）"
+    ]
+  },
+  "conclusion": "0x45218F 是滚动核心：把视口像素原点转为瓦片，加偏移后以 0x403789 计算格索引、按 0x1B00 单层步长定位目标层缓冲；同时访问全局格数组 0x4BE880 与标志 byte[0x4B3D08+5]&1，并把四个像素坐标乘 0x30 后交 0x41E5DB。0x1E000 是 0x505FDC!=0 分支的缓冲大小常量。",
+  "limitations": [
+    "0x40D344 的除算实现未展开。",
+    "0x40155F/0x401617/0x401573/0x401669 四个池/缓冲助手语义未定。",
+    "0x4BE880 数组元素宽度与用途未定。",
+    "0x41E5DB 的绘制行为未追踪。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "src.research.engine-text-object-writer-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "40 条文本对象写入方 0x42AF6F 与字符串指针表 0x506000",
+  "bases": [
+    {
+      "name": "6.6 复刻版山贼",
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    }
+  ],
+  "method": "capstone 反汇编 0x42AF6F/0x42D209 + 0x506000 引用全量枚举 + 0x41EB3E 调用点分析",
+  "findings": [
+    {
+      "id": "writer",
+      "claim": "0x42AF6F 是文本对象命令的写入/更新解析器：先用 0x426E64 读索引，索引>=0x28(40) 直接跳过；否则 0x41EB3E(index) 取记录。若命令后紧跟 '0'(0x30) 则把 [rec+0x00] 置 0（停用）并对 rec+0x20 调 0x47F9C3；否则若 [rec+0x20]!=0（临时忙）则返回；再按 '*' 开头的字符串引用拷贝文本。",
+      "evidence": [
+        "0x42AF7C call 0x426E64; 0x42AF85 cmp al,0x28; 0x42AF87 jae 0x42AFA4",
+        "0x42AF89 call 0x41EB3E; 0x42AF8E mov [ebp-0xC],ecx",
+        "0x42AF95 cmp byte[eax],0x30; 0x42AF9A mov dword[ecx],edx(0); 0x42AF9C add ecx,0x20; 0x42AF9F call 0x47F9C3",
+        "0x42AFA9 cmp dword[ecx+0x20],edx; 0x42AFAC jne 0x42AFA4（忙则跳过）"
+      ]
+    },
+    {
+      "id": "string-ref",
+      "claim": "'*' 记号后解析编号 n，eax = dword[0x506000 + n*4]（字符串指针表）；为 0 则放弃，否则把字符串按 UTF-16 字逐字拷入记录文本区（遇 NUL/0x0A 停止）。文本绘制端使用 0x4CB1C0 调色板与透明色 0xF700FF。",
+      "evidence": [
+        "0x42AFAE cmp byte[eax],0x2A; 0x42AFB3 inc [ebp-8]; 0x42AFB9 push [ebp+8]; 0x42AFBC call 0x426E64",
+        "0x42AFC5 mov eax,dword[eax*4+0x506000]; 0x42AFCC test eax,eax; 0x42AFCE je 0x42B04E",
+        "0x42AFD3 movzx ecx,byte[eax]; 0x42AFDA cmp cl,0x0A; 0x42AFDF mov word[edx],cx; 0x42AFE3 inc eax",
+        "0x42AF2A push 0xF700FF；0x42AF3A push dword[eax*4+0x4CB1C0]"
+      ]
+    },
+    {
+      "id": "string-table",
+      "claim": "0x506000 是 dword 指针数组（字符串表），引用点 7 处：0x413618、0x41514B、0x416CE0、0x416D1F、0x417055、0x429114、0x42AFC5。",
+      "evidence": [
+        "0x42AFC5 mov eax,[eax*4+0x506000]（文本对象读取）",
+        "0x413618/0x41514B/0x417055 lea [reg*4+0x506000]；0x416CE0/0x416D1F add reg,0x506000"
+      ]
+    },
+    {
+      "id": "other-readers",
+      "claim": "0x41EB3E 其余调用点：0x429FFB/0x42A02E（绘制调度，清 +0x00/+0x20 后重绘）、0x42B2A7（读 +0x26/+0x24/+0x1E 布局）、0x42D234（按字符码 0x80..0xA7 取对象并读 +0x1B bit0 计宽）、0x42DD19（读 +0x1C/+0x24 判定命中区域）。",
+      "evidence": [
+        "refs_to 0x41EB3E：0x429FFB、0x42A02E、0x42AF89、0x42B2A7、0x42D234、0x42DD19",
+        "0x42D234 call 0x41EB3E; 0x42D239 mov al,[ecx+0x1B]; 0x42D23C test al,1",
+        "0x42DD23 movzx edx,word[ecx+0x1C]; 0x42DD2C add dx,word[ecx+0x24]"
+      ]
+    }
+  ],
+  "corrections": [
+    "『40 条文本对象的写入方』已定位：0x42AF6F（命令解析/停用/字符串引用），并新增字符串指针表 0x506000。"
+  ],
+  "limitations": [
+    "0x506000 字符串表的初始化点与容量未定位。",
+    "0x47F9C3 对 rec+0x20 的作用未展开。",
+    "6.5 是否存在对应文本对象表/写入方未核对。",
+    "未运行游戏对照。"
+  ]
+}

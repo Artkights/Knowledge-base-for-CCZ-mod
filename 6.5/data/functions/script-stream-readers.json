@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "fn.65.script-stream-readers.3890",
+      "title": "剧本流读取原语（1/16/32 字节与 NUL 串）",
+      "aliases": [
+        "0x0040FC7F",
+        "0x0040FCB2",
+        "0x0040FC90",
+        "0x0040FC62",
+        "script_stream_readers"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040FC7F",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX = 流对象（ctx）",
+      "inputs": "ECX = ctx；ctx+0xC 为当前读指针，ctx+8 为读计数",
+      "returns": "EAX = 读到的值/指针",
+      "semantics": "0x40FC7F：读 1 字节，ctx+8++，ctx+0xC++；0x40FCB2：两次 0x40FC7F，低字节 | (高字节<<8) = 16 位 token；0x40FC90：两次 0x40FCB2，低 16 | (高 16<<16) = 32 位值；0x40FC62：记录起点后逐字节前进直到 NUL，返回起始指针（类型码 5 的文本取值）。",
+      "relations": [
+        "fn.65.script-param-get.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

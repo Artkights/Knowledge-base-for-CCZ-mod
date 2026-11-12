@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "analysis": "item-record-field-map-loader-and-star-e5",
+  "date": "2026-11-12",
+  "method": "脚本 item_fields.py / stride_context.py / item_accessors.py / callsite_context.py / dump_funcs.py / find_bytes.py / strings_at.py / hash_regions.py：三基底线性反汇编 .text，按 imul 0x19 站点展开字段访问、按 0x4837C2 调用点统计访问器、按原始字节哈希比对函数体。仅静态读取基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "loader": {
+    "65": {
+      "va": "0x4010B0",
+      "loaderHash": "423f657e70fdebb3（0x4010B0:0x56）",
+      "steps": [
+        "0x4010B3 push 0x4A1140 / push 1 / push 0x48BB60（\"DATA.E5\"）→ 0x41B51E：DATA.E5 块1 装入 0x4A1140",
+        "0x4010C4 ecx=0x4A1B68、edx=0x48C530（\"star.e5\"）→ 0x451313：open star.e5 后经 0x419102 读 0xED8 字节到 0x4A1B68",
+        "0x4010D3..0x4010FB 索引 0..0xFE：0x4837C2(index) 取记录；byte[record+0x0E]=0；执行 +0x12..+0x14 旋转",
+        "0x4010FD → 0x423DFF：统计 byte[record+0x18]!=0 的记录数 → byte[0x4CE7BE]"
+      ],
+      "records": {
+        "dataBlock": "0x4A1140，104 条 × 25 = 0xA28 字节（与 6.4 显式 0x68×0x19 注册一致）",
+        "starBlock": "0x4A1B68，0xED8 字节 = 152 条 × 25",
+        "total": "104 + 152 = 256 槽；归一化循环覆盖 0..0xFE（255 条）"
+      },
+      "rotation": "dl=byte[+0x12]; eax=dword[+0x13]; word[+0x12]=ax; byte[+0x14]=dl ⇒ 新+0x12=旧+0x13、新+0x13=旧+0x14、新+0x14=旧+0x12",
+      "rotationHash": "4aabbdb8c85a23bf（0x4010E7:0x14，6.5 与 6.6 相同）"
+    },
+    "66": {
+      "va": "0x4010B0",
+      "loaderHash": "b0c31f40bb929d35（0x4010B0:0x56）",
+      "deltas": [
+        "0x4010B3 push 0x49F820（物品表基址）",
+        "0x4010C4 ecx=0x4A0248（=0x49F820+0xA28，star.e5 目标）",
+        "0x451313 内读长度为 0x27D8（10200）= 408 条 × 25",
+        "0x4010D3..0x4010FB 索引 0..0x1FF（512 条），旋转块与 6.5 同哈希",
+        "0x4010FD → 0x427A98：统计 (byte[record+0x18]&1)!=0 的记录数 → byte[0x500ADA]"
+      ],
+      "records": "104（DATA.E5 块1）+ 408（star.e5）= 512 槽，与 0..0x1FF 循环一致",
+      "counterGate": "6.5 统计 +0x18!=0；6.6 统计 +0x18&1（bit0 为有效位）"
+    },
+    "64": {
+      "structuralLoader": "0x42B11E：push 0x42B510、0x42B4F0、0x68（104）、0x19（25）、0x4A1140 → 0x481440 注册 104 条 × 25 字节",
+      "reload": "0x42B149：push 0x42B510、0x68、0x19、0x4A1140 → 0x4814E0",
+      "rotation": "0x14 字节旋转块字节模式在 6.4 无命中，判定 6.4 装载时不做 0x12..0x14 旋转",
+      "star": "6.4 在 0x47D9B4 以 edx=0x48C530 调用 0x451313（另一装载例程），与物品表装载分离"
+    }
+  },
+  "fields": [
+    {"offset": "+0x0E", "type": "byte", "semantics": "装载时清零的标志/缓存", "evidence": "0x4010E7 mov byte[ecx+0x0E],0（6.5/6.6 同一旋转块内）"},
+    {"offset": "+0x10", "type": "byte", "semantics": "候选：使用/装备准入类别（未定名）", "evidence": "getter 0x41C330（6.4/6.5）/0x41C325（6.6），9 字节函数体同哈希 c374a5d630193ccb；0x436236 在动作码 0x25 时要求 ==2；0x4749FD 地面物品拾取时非 0 跳过；0x4126B1 推入 0x45533D 展示调用"},
+    {"offset": "+0x11", "type": "byte", "semantics": "物品类型码", "evidence": "直接 getter 0x43AD20（6.4/6.5/6.6 同哈希 564b4133d5037afc）；0x40B444 分类：<0x14→0、0x14..0x19→1、>=0x1A→byte[+0x14]；0x40B460 子类型：<0x1A→type/2、>=0x1A→byte[+0x14]+0x0B；0x4412BE 以 (type-0x1A) 索引 0x4CE170 取装备类名指针"},
+    {"offset": "+0x12", "type": "byte", "semantics": "买价 ÷ 100", "evidence": "0x40E070 = byte[+0x12] × 0x64（6.4/6.5/6.6 同哈希 2c821129e73a8d14）；6.4 直接读文件 +0x12，6.5/6.6 读装载旋转后的 +0x12（= 文件 +0x13）"},
+    {"offset": "+0x13", "type": "byte", "semantics": "未定名", "evidence": "装载后 = 文件 +0x14；仅 0x4010EB 旋转块写入，未发现独立消费点"},
+    {"offset": "+0x14", "type": "byte", "semantics": "装备子类型（type>=0x1A 时）", "evidence": "0x40B444/0x40B460/0x40B4BD 读取；装载后 = 文件 +0x12"},
+    {"offset": "+0x15", "type": "byte（word 读法并存）", "semantics": "装备基础值", "evidence": "0x41DD72 返回 eax=byte[+0x15]、edx=byte[+0x17]、ecx=word[+0x15]（三基底同哈希 fecb5594dffc6aa1）；6.6 0x4538EB 以 word[+0x15] 消费"},
+    {"offset": "+0x16", "type": "byte", "semantics": "未单独分解（word[+0x15] 高字节）", "evidence": "仅随 word[+0x15] 读取"},
+    {"offset": "+0x17", "type": "byte", "semantics": "每级成长值", "evidence": "0x41B4F7 = byte[+0x17]；0x40B3D7 以 0x41B4F7 循环累加"},
+    {"offset": "+0x18", "type": "byte", "semantics": "物品存在/启用标志（6.6 以 bit0 为有效位）", "evidence": "getter 0x44001E（6.4/6.5，同哈希 bf141a17d6f19d2d）；6.6 重定位到 0x4083F0（同哈希）；0x434ECA/0x470782/0x41E38F 以非 0 判定有效；0x423DFF/0x427A98 装载后计数"}
+  ],
+  "derivedFormula": {
+    "va": "0x40B3D7",
+    "formula": "value(record,count) = byte[record+0x15] + (count-1) × byte[record+0x17]",
+    "evidence": "入口 push ecx/push 0 建立 [ebp-8]=0 计数与 [ebp-0x10]=byte[+0x15]；0x40C45A 判定分类 <=1 后循环 count-1 次累加 0x41B4F7=byte[+0x17]；调用点 0x405C92、0x408781、0x4087C6、0x461E3A、0x461FEF、0x467352、0x4673AA",
+    "display": "格式串 0x48E688/0x48E68C 为 \"+%u\"/\"+%d\"；0x48B1A4/0x48B1AC 为 \"+%u ->\"/\"+%u\"，配 0x48B190 \"Lv %u … 装备中\" 文案"
+  },
+  "priceChain": {
+    "buy": "0x40E070(record) = byte[record+0x12] * 0x64",
+    "sell": "0x40B477(record,?)：byte[+0x12]==0xFF → 返回 0xFFFF；否则 price*0x64*0x3/4（即 75%）",
+    "sellHash": "6.4=6.5 71bb63fe737cd56d；6.6 f2a2f31a6693ebf2（仅内部调用 0x40D38C→0x453A98 重定位）",
+    "comparators": "0x4672E6/0x467303 按类型；0x4673E6/0x4673FF 按买价；0x467427/0x467445 按卖价；0x46B44B/0x46B76B 与 0xFFFF 比较判定不可卖",
+    "closure": "第 27 轮未闭合的“item+0x13 价格”由装载旋转解释：6.5/6.6 运行时 +0x12 即文件 +0x13，价格消费链闭合"
+  },
+  "typeTable66": {
+    "table": "0x4303C8",
+    "bytes": "01 06 05 13 07 08 01 20 15 16 00 01 06 0C 00 01 00 01 0C 0D",
+    "entries": 20,
+    "padding": "0x4303DC 起为 0x90 填充",
+    "reader": "0x43038B：eax=byte[unit+0x2E]（装备槽0物品ID）；0xFF 返回；eax*=0x19；ecx=byte[eax+0x49F831]（物品类型）；eax=byte[ecx+0x4303C8]",
+    "caller": "0x417A5A（策略 0x44 评估链内）",
+    "status": "结构已证实，语义未定名（候选：类型→效果/分类字节）"
+  },
+  "accessorMatrix": {
+    "note": "函数体原始字节哈希（SHA1 前16位）；仅 0x40B477 在 6.6 因内部调用重定位而不同",
+    "rows": [
+      {"name": "+0x11 类型", "va64": "0x43AD20", "va65": "0x43AD20", "va66": "0x43AD20", "hash": "564b4133d5037afc"},
+      {"name": "+0x11 分类", "va64": "0x40B444", "va65": "0x40B444", "va66": "0x40B444", "hash": "98ce99f15b67d062"},
+      {"name": "+0x11 子类型", "va64": "0x40B460", "va65": "0x40B460", "va66": "0x40B460", "hash": "52158c217d2462b1"},
+      {"name": "+0x14 扩展子类型", "va64": "0x40B4BD", "va65": "0x40B4BD", "va66": "0x40B4BD", "hash": "67608b33ff7bd05e"},
+      {"name": "特殊/普通判定", "va64": "0x40B4E1", "va65": "0x40B4E1", "va66": "0x40B4E1", "hash": "29c7da3c9c20c2a4"},
+      {"name": "分类<=1", "va64": "0x40C45A", "va65": "0x40C45A", "va66": "0x40C45A", "hash": "bf54deb6d296f16e"},
+      {"name": "分类!=3", "va64": "0x40C46E", "va65": "0x40C46E", "va66": "0x40C46E", "hash": "fa2d88ee46c7c0dc"},
+      {"name": "买价", "va64": "0x40E070", "va65": "0x40E070", "va66": "0x40E070", "hash": "2c821129e73a8d14"},
+      {"name": "卖价", "va64": "0x40B477", "va65": "0x40B477", "va66": "0x40B477", "hash": "71bb63fe737cd56d / 6.6 f2a2f31a6693ebf2"},
+      {"name": "+0x15/+0x17", "va64": "0x41DD72", "va65": "0x41DD72", "va66": "0x41DD72", "hash": "fecb5594dffc6aa1"},
+      {"name": "+0x10", "va64": "0x41C330", "va65": "0x41C330", "va66": "0x41C325", "hash": "c374a5d630193ccb"},
+      {"name": "+0x18", "va64": "0x44001E", "va65": "0x44001E", "va66": "0x4083F0", "hash": "bf141a17d6f19d2d"}
+    ]
+  },
+  "strideSites": {
+    "imul19": {"6.4": 52, "6.5": 53, "6.6": 3},
+    "note": "6.4 共 53 处 imul 站点，其中 1 处为 imul eax,eax,0x190（0x4262E1）与物品表无关，实为 52；6.5 共 54 处含 1 处 0x190（0x4262E3），实为 53；6.6 共 4 处含 1 处 0x190，实为 3（0x4303B1、0x4837C5、0x4D2765）"
+  },
+  "conclusion": "物品 25 字节记录的字段语义已逐项展开：+0x11 类型码、+0x12 买价/100、+0x14 装备子类型、+0x15 基础值、+0x17 每级成长、+0x18 存在/启用标志；+0x10 与 +0x13 仍未定名。装载链查明为 DATA.E5 块1（104 条）＋ star.e5（6.5 为 0xED8=152 条，6.6 为 0x27D8=408 条）拼接，6.5 归一化 255 槽、6.6 归一化 512 槽；6.5/6.6 装载时执行 +0x12..+0x14 旋转（同哈希 4aabbdb8c85a23bf），6.4 无旋转。买价 0x40E070、卖价 0x40B477（0xFF→0xFFFF，75%）与排序比较器共同闭合了第 27 轮遗留的价格消费链。6.6 新增 20 项类型表 0x4303C8（0x43038B 读取，0x417A5A 调用）。",
+  "limitations": [
+    "+0x10 语义未定名，仅知动作码 0x25 要求 ==2、地面拾取非 0 跳过。",
+    "+0x13 未发现独立消费点（装载后等于文件 +0x14）。",
+    "+0x16 仅作为 word[+0x15] 高字节被读取，未单独观测。",
+    "6.6 类型表 0x4303C8 仅 20 项，装备类型 >=0x1A 读取会落入 0x4303DC 之后的 0x90 填充，语义需下轮核验。",
+    "6.4 是否使用 104 条以外的槽位未证明；6.4 的 star.e5 装载在 0x47D9B4，与本轮物品表装载链分离。",
+    "未运行游戏对照。"
+  ]
+}

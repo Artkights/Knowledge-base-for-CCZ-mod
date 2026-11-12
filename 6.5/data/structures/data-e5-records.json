@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "entityType": "data-structure",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "struct.65.data-e5-block1-record",
+      "title": "DATA.E5 块 1 二十五字节记录",
+      "baseRef": "global.65.data-e5-block1-buffer.3890",
+      "recordCount": 104,
+      "stride": 25,
+      "indexFormula": "0x4A1140 + index * 0x19 + field_offset",
+      "endianness": "little",
+      "encoding": null,
+      "emptyValue": "未知",
+      "fields": [
+        {
+          "name": "type_flags",
+          "offset": "0xE",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "初始化时被清 0；后续由其他流程写入",
+          "overlay": "type-word"
+        },
+        {
+          "name": "type_code",
+          "offset": "0x10",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "记录类型码；0x41C330 特殊目标判定要求该字节等于 2",
+          "overlay": "type-word"
+        },
+        {
+          "name": "packed_word",
+          "offset": "0x12",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "由原 +0x13 四字节值取低 16 位写入",
+          "overlay": "packed-source"
+        },
+        {
+          "name": "packed_source_dword",
+          "offset": "0x13",
+          "width": 4,
+          "type": "uint32",
+          "meaning": "初始化时读取的原始四字节值",
+          "overlay": "packed-source"
+        },
+        {
+          "name": "moved_byte",
+          "offset": "0x14",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "原 +0x12 字节移到此处保存",
+          "overlay": "packed-source"
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "relations": [
+        "fn.65.data-e5-block1-init.3890",
+        "global.65.item-table"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "struct.65.data-e5-fatal-record",
+      "title": "DATA.E5 必杀十六字节记录",
+      "baseRef": "global.65.fatal-record-table.3890",
+      "recordCount": 97,
+      "stride": 16,
+      "indexFormula": "0x4A7510 + battle_skill_id * 0x10 + field_offset",
+      "endianness": "little",
+      "encoding": null,
+      "emptyValue": "未知",
+      "fields": [
+        {
+          "name": "range_or_type",
+          "offset": "0xC",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "必杀范围/类型值；由 0x43F8C0 在 0x43F8EF 读取后进入特殊目标判定 0x40CD39(0x32,0,5) 与 0x40CD24(0x45)",
+          "overlay": null
+        },
+        {
+          "name": "availability",
+          "offset": "0xD",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "可用性/资格标记；由 0x484E27 读取，非 0 时 0x40782D 返回 1",
+          "overlay": null
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "relations": [
+        "fn.65.fatal-field-d-reader.3890",
+        "fn.65.fatal-field-c-reader.3890",
+        "global.65.fatal-table",
+        "format.65.data-e5-block-directory.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.ccz65.3890.datae5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "struct.65.grid-status-cell",
+      "title": "0x510000 战场格状态单元",
+      "baseRef": "global.65.grid-status-map.3890",
+      "recordCount": 1600,
+      "stride": 2,
+      "indexFormula": "0x510000 + 2 * ((width - 1) * y + x)",
+      "endianness": "little",
+      "encoding": null,
+      "emptyValue": "0x00 0x00（初始化清零）",
+      "fields": [
+        {
+          "name": "overlay_or_terrain_state",
+          "offset": "0x0",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "覆盖物/地形状态码；0x4556F6 写 0xCF + 类型，0x473DF4 清零",
+          "overlay": null
+        },
+        {
+          "name": "state_aux",
+          "offset": "0x1",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "附加值；0x4556F6 写 value+1，0x4556F6 的调用方在 value 非零时写入",
+          "overlay": null
+        }
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "relations": [
+        "global.65.grid-status-map.3890",
+        "fn.65.grid-status-write.3890",
+        "fn.65.battle-grid-clear.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

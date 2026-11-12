@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.char-level-exp-cross-base.3ef7",
+      "title": "角色经验结算常量三基底对照",
+      "aliases": [
+        "char-level-exp",
+        "角色升级经验",
+        "最大等级",
+        "经验阈值"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x4088CD 的三基底常量：6.4 最大等级 80、固定阈值 150；6.5 最大等级 60、阈值按 20 级分段 150/200/250/300；6.6 最大等级 99、固定阈值 250。升级循环与成长 0x408D52 相同。",
+      "function": "0x4088CD",
+      "versionsDetail": {
+        "6.4": {"maxLevel": 80, "threshold": 150, "bytes": "B0 50 / B0 96"},
+        "6.5": {"maxLevel": 60, "thresholds": [150, 200, 250, 300], "band": 20, "step": 50, "bandCap": 3},
+        "6.6": {"maxLevel": 99, "threshold": 250, "bytes": "B0 63 / B0 FA"}
+      },
+      "growth": "0x408D52",
+      "sentinel": "cmp eax,-1",
+      "limitations": [
+        "0x482715 内部实现未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.dm-formula-char-level-exp",
+        "mechanism.65.dm-constant-char-exp-max-level",
+        "mechanism.65.equipment-growth-thresholds.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-char-exp-cross-base-20261112",
+        "src.dm.formulas.constants-20261102"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "src.research.engine-settings-plus05-and-edx-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "设置块 +0x05 场景类别缓存与 0x423842 edx 的残留来源",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密版",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 0x4B0770 字段扫描（ctx_offsets/copies_offsets）、0x4053CC 存档头构造、0x44D2CA 复位、0x42C0A2 清理、0x44F9A0、0x474C97 WndProc、0x474E0E 菜单分支、0x42DE63 选择框、0x473623 列表释放。仅静态分析。",
+  "findings": [
+    {
+      "id": "plus05",
+      "claim": "0x4B0770+0x05 是场景类别缓存：唯一读取点 0x405412 在存档头构造 0x4053CC 中，当章节 byte[0x4AC63C]==3 时把 byte[+0x05] 写入存档头 +0x04，否则改用 0x44F9A0 返回的 byte[0x4AC63D]。写入点两处：0x44D2FF 在复位函数 0x44D2CA 中把初始化器 byte[struct+0] 复制到 +0x05 后清零该结构，0x42C0BA 在清理函数 0x42C0A2 中把 +0x05 置 0。",
+      "evidence": [
+        "00405407 cmp byte[ecx+2],3；0040540B jne 0x405417；00405412 mov al,byte[edx+5]（edx=0x4B0770）；00405417 否则 call 0x44F9A0(ecx=0x4AC63C)",
+        "0044F9A0 movzx eax,byte[ecx+1]；ret（即 byte[0x4AC63D]）",
+        "0044D2F5 mov ecx,[ebp-4]；0044D2F8 mov al,byte[ecx]；0044D2FF mov byte[0x4B0770+5],al；0044D313 mov byte[ecx+5],0",
+        "0042C0B5 mov ecx,0x4B0770；0042C0BA mov byte[ecx+5],0（清理函数 0x42C0A2，调用者 0x42C077 在条件成立时继续 0x41196C(1)/0x4759BC(0)/0x42BD60）"
+      ]
+    },
+    {
+      "id": "edx-residual",
+      "claim": "0x423842 的 edx 不是显式参数：唯一调用链是 WndProc 0x474C97（消息 0x65..0x70 经跳转表 0x474DDE，其中 0x474DA4 分支 push 0x4AC63C、0x505FDC 后 call 0x474E0E）→ 0x474E0E 内 call 0x42DE63 → 0x474E49 call 0x423842。0x474E0E 与 0x474C97 均未向 edx 赋值；0x42DE63 返回路径只执行 mov eax,[ebp-0xC]，未动 edx，其前序最后一次调用链为 0x473623→0x401692→0x47D1F1。因此 edx 为残留寄存器值，静态无法定值。",
+      "evidence": [
+        "00474C97 WndProc 头：mov eax,[ebp+0x10]；cmp eax,0x9C89/0x9CD5/0x9CD6/0x9CD7；00474D1D sub eax,0x65；00474D23 ja；00474D25 jmp dword[eax*4+0x474DDE]",
+        "00474DA4 push 0x505FDC；00474DA9 push 0x4AC63C；00474DAE call 0x474E0E",
+        "00474E11 push 0；00474E13 call 0x426B52；00474E18 push 0；00474E1A push [0x4B7508]；00474E20 call [0x4862E0]；00474E26..00474E32 push 3/0x3FE/0x500C7E；call 0x42DE63",
+        "00474E3A inc eax；00474E3B cmp al,3；00474E3D je 0x474E41；00474E3F mov byte[ecx],al（ecx=[ebp+0xC]）",
+        "00474E49 call 0x423842（此前无 edx 赋值）",
+        "0x42DE63 返回段：0042E185 mov byte[0x500EF9],0；0042E18C mov eax,[ebp-0xC]；0042E192 ret 0xC（未写 edx）",
+        "0x473623 末尾：00473673 movzx edx,byte[ecx+0x78]；…；00473690 push 4；00473692 call 0x401692 → 0x47D1F1(0,0x1F,4)"
+      ]
+    },
+    {
+      "id": "menu-branch",
+      "claim": "0x474E0E 是主窗口 WndProc 的「练武场」菜单命令分支：选择框返回 choice 后 inc eax，choice!=2 时把 choice+1 写入 [ebp+0xC]；调用 0x423842(choice+1)；随后固定 byte[[ebp+8]]=2、byte[[ebp+0xC]]=0 并调用 0x426BA0（应用设置）。跳转表 0x474DDE 覆盖消息 0x65..0x70 共 12 项。",
+      "evidence": [
+        "00474D20 cmp eax,0xB；00474D23 ja 0x474D65；00474D25 jmp dword[eax*4+0x474DDE]",
+        "00474E4E mov ecx,[ebp+8]；00474E51 mov byte[ecx],2；00474E54 mov ecx,[ebp+0xC]；00474E57 mov byte[ecx],0；00474E5A call 0x426BA0"
+      ]
+    }
+  ],
+  "corrections": [
+    "设置块 +0x05 由『业务含义未命名』定名为场景类别缓存（章节 3 存档头 +0x04 的来源；复位时从初始化器复制、清理时置 0）。",
+    "0x423842 的 edx 由『来源未定』定性为残留寄存器值（非显式参数，调用链上无赋值），仍需运行期观测具体值。"
+  ],
+  "limitations": [
+    "0x47D1F1 的返回值与 edx 副作用未展开，edx 的确定值需运行期。",
+    "0x44D2CA 初始化器的来源对象未命名。",
+    "未运行游戏对照。"
+  ],
+  "conclusion": "0x4B0770+0x05 是场景类别缓存（章节 3 时写入存档头 +0x04，否则用 byte[0x4AC63D]）；0x423842 的 edx 不是显式参数，而是 0x42DE63 返回路径残留（最后经 0x473623→0x401692→0x47D1F1），静态无法定值。"
+}

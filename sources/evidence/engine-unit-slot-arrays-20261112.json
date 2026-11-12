@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "analysis": "unit-slot-arrays-and-money-hp-link",
+  "date": "2026-11-12",
+  "method": "反汇编 0x405980..0x405B00 战斗结算段，定位 [ebp-0x14]/[ebp-0x18]/[ebp-0x1C] 的数组来源与 0x48E8BD 累加、unit+0x10 扣减；对照 0x421278 的同数组消费。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "arrays": {
+    "slot0": "dword[unit + 0x84 + index*4] → [ebp-0x14]",
+    "slot1": "dword[unit + 0x254 + index*4] → [ebp-0x18]",
+    "slot2": "dword[unit + 0x430 + index*4] → [ebp-0x1C]"
+  },
+  "sites": {
+    "load": {
+      "va": "0x405998..0x4059B3",
+      "code": "ecx=[edx+eax*4+0x84] → [ebp-0x14]; ecx=[edx+eax*4+0x254] → [ebp-0x18]; ecx=[edx+eax*4+0x430] → [ebp-0x1C]"
+    },
+    "moneyLink": {
+      "va": "0x405AB6",
+      "code": "ecx=[ebp-0x30]; call 0x450986; edx=[ebp-0x14]; if [ebp-8]==0: add [0x48E8BD], edx; eax=0x41B500(unit); eax-=edx; call 0x43F6DB(unit, eax); 再 0x472840/0x43F715 处理 slot1"
+    },
+    "consume": {
+      "va": "0x421278",
+      "code": "slot=&dword[unit+0x84+index*4]; if *slot<=1 返回0; cost=(*slot-1)*10; money不足返回0; money-=cost; *slot=1; 返回1",
+      "note": "同一 +0x84 数组的另一种消费路径"
+    },
+    "gate": "byte[0x500C44]>=1 时跳过 0x405A00..0x405A7D 分支；0x500E9B 控制 0x40399B/0x472D48 分支"
+  },
+  "crossBase": {
+    "hashes": {
+      "load405998": {"6.4": "6.4 同段字节对比见证据文件", "6.5": "6.5 本段", "6.6": "6.6 本段"},
+      "money405AB6": {"6.4": "3A916EF915F48B48", "6.5": "7CB8FD10218926B0", "6.6": "A56BDC569E0DFB73"}
+    }
+  },
+  "conclusion": "[ebp-0x14] 来自 dword[unit+0x84+index*4]，与 0x421278 消费的是同一数组；0x405AB6 把它同时累加到待结算金额 0x48E8BD 并从 unit+0x10 扣除，slot1（+0x254）与 slot2（+0x430）分别走 0x472840/0x43F715 与后续分支。因此 0x48E8BD 的金额来源是单位槽位数组值，而非独立奖励倍率。槽位语义存在两种候选：道具/装备数量，或伤害/损失量；静态证据尚不足以二选一。",
+  "limitations": [
+    "unit+0x84 数组的语义（数量/伤害）未确定。",
+    "index 的来源与取值范围未完全展开。",
+    "slot2（+0x430）的消费链未展开。",
+    "未运行游戏对照。"
+  ]
+}

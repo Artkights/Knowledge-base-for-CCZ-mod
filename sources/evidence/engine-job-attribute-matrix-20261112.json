@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "analysis": "job-series-attribute-matrix",
+  "date": "2026-11-12",
+  "method": "pefile + capstone 读取 0x4D20C0 的 8×40 矩阵，逐行统计并按 0x4D20E8/0x4D2110/0x4D2138/0x4D2188/0x4D21B0/0x4D21D8 的精确引用反汇编消费点；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {
+      "version": "6.4",
+      "label": "洗隋",
+      "engine": "基底/洗隋/Ekd5.exe",
+      "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"
+    },
+    {
+      "version": "6.5",
+      "label": "加强版6.5未加密版",
+      "engine": "基底/加强版6.5未加密版/Ekd5.exe",
+      "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    },
+    {
+      "version": "6.6",
+      "label": "复刻版6.6山贼",
+      "engine": "基底/复刻版6.6山贼/Ekd5.exe",
+      "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    }
+  ],
+  "tableLayout": {
+    "key": "job-series-attributes",
+    "file": "Ekd5.exe",
+    "fileOffset": "0xA38C0",
+    "va": "0x4D20C0",
+    "rows": 8,
+    "columns": 40,
+    "rowStride": 40,
+    "valueWidth": 1,
+    "indexFormula": "byte[row * 40 + series]，series 由 0x40BF0C 从兵种 ID 映射"
+  },
+  "rowSemantics65": [
+    {"row": 0, "offset": "0x4D20C0", "distribution": {"0": 15, "1": 4, "2": 20, "3": 1}, "meaning": "枚举 0..3；名称未解析", "consumers": []},
+    {"row": 1, "offset": "0x4D20E8", "distribution": {"0": 17, "1": 23}, "meaning": "布尔标志；0x43FF7C 在 series<=39 时检查 ==0 并自增局部计数", "consumers": ["0x43FF7C"]},
+    {"row": 2, "offset": "0x4D2110", "distribution": {"0": 8, "1": 32}, "meaning": "布尔标志；0x44011E 写入全局 0x500E7C，值 >=2 时置 0x500C45=1", "consumers": ["0x44011E"]},
+    {"row": 3, "offset": "0x4D2138", "distribution": {"0": 35, "1": 5}, "meaning": "布尔标志；0x4281BB 读取", "consumers": ["0x4281BB", "0x477C57"]},
+    {"row": 4, "offset": "0x4D2160", "distribution": {"0": 37, "1": 3}, "meaning": "布尔标志；未发现直接引用", "consumers": []},
+    {"row": 5, "offset": "0x4D2188", "distribution": {"0": 8, "1": 4, "2": 28}, "meaning": "枚举 0..2；AI 分支 6 在 0x439A78 比较 ==2 时给策略 +25 权重", "consumers": ["0x439A78", "0x43FFC5", "0x477C74"]},
+    {"row": 6, "offset": "0x4D21B0", "distribution": {"90": 9, "100": 19, "110": 6, "120": 4, "125": 1, "130": 1}, "meaning": "百分比修正；策略伤害链按 row6[series]/100 乘算", "consumers": ["0x43C16D", "0x4284E8", "0x477C1B"]},
+    {"row": 7, "offset": "0x4D21D8", "distribution": {"1": 40}, "meaning": "全部为 1；0x416E9C / 0x477C3C 只做非零判断，未发现差异化用途", "consumers": ["0x416E9C", "0x477C3C"]}
+  ],
+  "damageMultiplier": {
+    "va": "0x43C16D",
+    "context": "策略伤害函数 0x43C022 的后段；0x43C15E 取 series，0x43C169 检查 <=0x27。",
+    "code": "al = byte[series + 0x4D21B0]; damage = damage * al / 100（0x425AD9）",
+    "values": "90..130，100 为中性",
+    "note": "该乘算位于策略伤害基础值/能力差之后；同一行也被 AI 评估函数 0x4284E8 读取。"
+  },
+  "otherConsumers": {
+    "0x4281BB": "读取 row3 布尔值",
+    "0x43FF7C": "读取 row1 是否 ==0",
+    "0x43FFC5": "读取 row5 枚举",
+    "0x44011E": "读取 row2 布尔值并写全局",
+    "0x477C1B": "同一函数内依次读取 row6/row7/row3/row5，疑似属性汇总/复制",
+    "0x416E9C": "读取 row7 是否非零"
+  },
+  "crossBase": {
+    "hashes": {"6.4": "89A15D7674E1", "6.5": "886F92967443", "6.6": "AC2BC420929A"},
+    "diffBytes": {"6.4_vs_6.5": 97, "6.5_vs_6.6": 94},
+    "note": "矩阵按基底分别配置，不能跨基底继承具体行值。"
+  },
+  "conclusion": "兵种属性矩阵是 8 行×40 兵种系的字节表。第 6 行是 90..130 的百分比修正，在策略伤害后段按 damage*row6[series]/100 乘算；第 5 行是 0..2 枚举并被 AI 评分比较 ==2；第 1/2/3/4/7 行是布尔/占位标志。矩阵三基底不同，必须逐基底读取。",
+  "limitations": [
+    "第 0/1/2/3/4/5/7 行的玩法名称未确定；只记录消费点和判定方式。",
+    "第 6 行在策略伤害链中的攻守方向未通过调用参数命名确认。",
+    "未运行游戏对照。"
+  ]
+}

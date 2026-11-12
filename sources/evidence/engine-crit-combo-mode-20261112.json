@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "analysis": "crit-combo-mode-and-gauge-array",
+  "date": "2026-11-12",
+  "method": "字节级搜索 0x505EC8/0x511E40/0x4930C8/0x505EC4 全部引用；精确反汇编 0x4284C5、0x4287A8、0x428925、0x428A25、0x43B4B6、0x41229E、0x4277A9；读取 0x48E0C4/0x48E0C9 字符串；三基底引用集与字节哈希对比。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "globals": {
+    "mode": "0x505EC8（byte，6.4 完全不引用）",
+    "initialValue": "0x505EC4（dword，初始 0x00000000）",
+    "gauge65": "0x511E40（0x3E8=1000 字节，250 个 4 字节条目；每项低/高字节为一对 0..100 槽）",
+    "gauge66": "0x4930C8（6.6 中替代 0x511E40 的同形数组）",
+    "levelTable": "0x4D21B0（byte 表）",
+    "critBypass": "0x500E9A（==2 时 0x43B600 直接返回 0x64）"
+  },
+  "strings": {
+    "0x48E0C4": "连击",
+    "0x48E0C9": "暴击",
+    "0x48E088": "损伤",
+    "0x48E093": "命中",
+    "0x48E01C": "正处于禁咒状态。"
+  },
+  "sites": {
+    "arrayInit65": {"va": "0x41229E", "code": "push dword[0x505EC4]; push 0x3E8; push 0x511E40; call 0x47FD13（按字节填充 1000 字节）"},
+    "arrayInit66": {"va": "0x41225A", "code": "push dword[0x505EC4]; push 0x3E8; push 0x4930C8; call 0x47FD13"},
+    "unitInit": {"va": "0x4277A9", "code": "side=0 时把 byte[0x505EC4] 复制到高低两字节后写入 dword[0x511E40+unitId*4]；6.6 写 0x4930C8"},
+    "critCalc65": {"va": "0x4284C5", "code": "job=0x4061F9(unit); dmg=0x40CADA(...); lv=0x4D21B0[0x43B4A7(...)]; if mode==1: v=dword[0x511E40+job[4]*4]>>16; if v+dmg>=100 negate dmg; then 0x42889C(...,2,0x48E0C9,&dmg) 输出『暴击』"},
+    "critCalc66": {"va": "0x445D40", "code": "同形逻辑，数组改为 0x4930C8，能力计算改为 0x401DAC"},
+    "damageApply": {"va": "0x4287A8", "code": "if mode!=1: call 0x437896(0, arg)；if mode==1 用 0x511E40 低字节与 100 比较并取反"},
+    "dispatch": {"va": "0x428925", "code": "call [0x428961 + (arg>>1)*4]（0x43B600/0x43B6F3）；if mode==1: if byte[0x511E40+idx*4] >= al negate eax"},
+    "gaugeAdjust65": {"va": "0x428A25", "code": "0x4E40E0/0x40C7D8 取得两值；if mode==1: 分别加到 0x511E40 项的低/高字节，>=100 取反；随后 0x426737"},
+    "gaugeAdjust66": {"va": "0x4131D0", "code": "同形逻辑，数组改为 0x4930C8"},
+    "damageCombo": {"va": "0x43B4B6", "code": "mode<=1 走普通伤害；mode>1 时作为上限：eax>=mode 直接返回；eax<0x505EC4 置 0；否则循环 [ebp-0xC]-=0xA、计数+1（最多 2 次），每次 call 0x4287A8"},
+    "versionBranch66": {"va": "0x43B50C", "code": "6.6 把 0x43B4DF 的 mode 判断改为 dword[0x502000+0xFB2*4]；mode==0 且 unit+5==0 时 eax=100"}
+  },
+  "crossBase": {
+    "refs505EC8": {
+      "6.4": [],
+      "6.5": ["0x4284F3", "0x42882E", "0x428941", "0x428A4F", "0x43B4E1", "0x43B51A"],
+      "6.6": ["0x4131F9", "0x42882E", "0x428941", "0x445D68"]
+    },
+    "refsGauge": {
+      "6.5": {"address": "0x511E40", "sites": ["0x4122AA", "0x4277D1", "0x428504", "0x4287E9", "0x428828", "0x428955", "0x428A60"]},
+      "6.6": {"address": "0x4930C8", "sites": ["0x412265", "0x413207", "0x4277CE", "0x4287E7", "0x428826", "0x428952", "0x445D76"]},
+      "6.4": {"address": "none", "sites": []}
+    },
+    "hashes": {
+      "crit4284C5": {"6.4": "8D4EA7B130199E19", "6.5": "D5CE93740B2099FF", "6.6": "E76545505575EEA5（同址为另一函数，暴击计算移至 0x445D40）"},
+      "apply4287A8": {"6.4": "1DD48CB54D20B448", "6.5": "1E8EA7C40C03E87B", "6.6": "29F0106C687CFE98"},
+      "dispatch428925": {"6.4": "ACC99B151598748E", "6.5": "D969D1130725137C", "6.6": "C0E85E95CA909F82"},
+      "gauge428A25": {"6.4": "7525ACEF640BD927", "6.5": "755E64DDAD23653E", "6.6": "90549C29A4EBEE92（同址为另一函数，入口移至 0x4131D0）"},
+      "dmg43B4B6": {"6.4": "BD6C9FBC8E9A3BFF", "6.5": "5A5336115F01815B", "6.6": "3D38E9D4FC50A30F"},
+      "init41229E": {"6.4": "0DACDED9DF2D760C", "6.5": "08E4C29C2A52824E", "6.6": "51AF27EF93F85BB3（同址为另一函数，6.6 入口 0x41225A）"},
+      "unitInit4277A9": {"6.4": "05F04AC98DAE25EB", "6.5": "DF527EC5E07050FA", "6.6": "0DD3567089314F9B"},
+      "initial505EC4": {"6.4": "00 00 00 00", "6.5": "00 00 00 00", "6.6": "00 00 00 00"}
+    }
+  },
+  "conclusion": "0x505EC8 是 6.5/6.6 才引入的战斗模式字节（6.4 无任何引用）。mode==1 时暴击计算 0x4284C5（6.6: 0x445D40）读取每单位 4 字节暴击值数组的高字节并与伤害相加，>=100 取反，并以 0x48E0C9『暴击』输出；0x4287A8/0x428925/0x428A25（6.6: 0x4131D0）同样按 mode==1 读写该数组低/高字节。mode>1 时 0x43B4B6 以 mode 为上限、0x505EC4 为下限，按每 10 点循环追加最多 2 段伤害，对应『连击』语义。数组在 6.5 位于 0x511E40（1000 字节），6.6 重定位到 0x4930C8；两版初始值均为 dword[0x505EC4]=0，并按单位把初值复制到高低两字节。",
+  "limitations": [
+    "mode 0/1/>1 的最终命名（关闭/暴击/连击）由字符串与分支推断，未由配置界面直接证明。",
+    "0x4D21B0 等级表、0x500E9A==2 旁路、0x42889C 输出格式未展开。",
+    "0x502000+0xFB2*4 与 0x505EC8 的关系仅在 6.6 0x43B50C 观察到替换，未完全展开。",
+    "未运行游戏对照。"
+  ]
+}

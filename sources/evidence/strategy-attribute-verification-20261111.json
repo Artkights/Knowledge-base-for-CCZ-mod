@@ -1,0 +1,406 @@
+{
+  "schemaVersion": 1,
+  "analysis": "strategy-attribute-static-verification",
+  "date": "2026-11-11",
+  "method": "pefile + capstone 线性反汇编；仅读取本地 Ekd5.exe / Data.e5，不运行游戏、不修改任何游戏文件。",
+  "samples": [
+    {
+      "version": "6.4",
+      "label": "洗隋",
+      "engine": "基底/洗隋/Ekd5.exe",
+      "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+      "engineSize": 1162240,
+      "data": "基底/洗隋/Data.e5",
+      "dataSha256": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF",
+      "dataSize": 61379
+    },
+    {
+      "version": "6.5",
+      "label": "加强版6.5未加密版",
+      "engine": "基底/加强版6.5未加密版/Ekd5.exe",
+      "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED",
+      "engineSize": 1196032,
+      "data": "基底/加强版6.5未加密版/Data.e5",
+      "dataSha256": "638744E07B39A12DB2D807892D1FBC7EA69F7E43CAD2771DAA9003574B92B846",
+      "dataSize": 61379
+    },
+    {
+      "version": "6.6",
+      "label": "复刻版6.6山贼",
+      "engine": "基底/复刻版6.6山贼/Ekd5.exe",
+      "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A",
+      "engineSize": 1148928,
+      "data": "基底/复刻版6.6山贼/Data.e5",
+      "dataSha256": "C4B57DD0A9DC3EF2A7FE4D6A36EEAF0F7EDEA06BF2F6407B1A8AE3252E5807CE",
+      "dataSize": 61379
+    }
+  ],
+  "runtimeRecord": {
+    "base": "0x004A3E77",
+    "stride": "0x61",
+    "lookup": "0x00484002",
+    "lookupCode": "imul ecx,ecx,0x61; add ecx,0x4A3E77; ret",
+    "loader": {
+      "6.4": "0x0042B182: push 0x42B510; push 0x42B4F0; push 0x44; push 0x61; push 0x4A3E77; call 0x481440",
+      "6.5": "0x0042B182: push 0x42B510; push 0x42B4F0; push 0x44; push 0x61; push 0x4A3E77; call 0x481440",
+      "6.6": "0x0042B160: push 0x42B510; push 0x415D2A; push 0x44; push 0x61; push 0x4A3E77; call 0x481440"
+    },
+    "runtimeCount": 68,
+    "fileRows": 144,
+    "finding": "三基底均只把前 68 条策略记录初始化到运行时数组；运行时字段顺序与文件不同：文件 +0x0B..+0x0F 在运行时按 target/range/penetration/MP/type 重排为 +0x0B..+0x0F。0x484002 无上界检查，ID>=68 会读出数组之外的字节。",
+    "layoutCopyEvidence": "0x40D73C: push 0x0A; memcpy(dest,src,10); dest+=0x0A; [dest]=0; src+=0x0B; then mov dl,[src+0x0B]→[rec+0x0F]; mov edx,[src+0x0C]→[rec+0x0B..+0x0E]; mov dl,[src+0x10]→[rec+0x10]; memcpy(rec+0x11,src+0x11,0x50); src+=0x56 (total 0x61)。"
+  },
+  "recordFields": [
+    {
+      "name": "名称",
+      "offset": "0x00",
+      "width": 11,
+      "type": "fixed-string",
+      "encoding": "GBK",
+      "meaning": "文件 0x00..0x0A（11 字节）；运行时 0x00..0x09（10 字节）+0x0A NUL。0x40D73C 循环每次 memcpy 10 字节、dest+=0x0A、src+=0x0B、写 NUL。",
+      "evidence": "Data.e5 行首 GBK；TextFieldConstraints strategies=10；runtime name 读取代码只取前 10 字节。",
+      "runtimeOffset": "0x00"
+    },
+    {
+      "name": "策略类型",
+      "offset": "0x0B",
+      "width": 1,
+      "type": "uint8",
+      "meaning": "文件 +0x0B 在运行时搬到 +0x0F；0x44270C 读取运行时 +0x0F；0x425AC7 读取的是运行时 +0x0B（施展对象），不是类型。",
+      "evidence": "0x425AC7 = movzx eax,byte [ecx+0x0B]; 0x420F14-0x420F5B; EmbeddedEngineLayoutProbe 地形掩码证据。",
+      "runtimeOffset": "0x0F"
+    },
+    {
+      "name": "施展对象",
+      "offset": "0x0C",
+      "width": 1,
+      "type": "uint8",
+      "meaning": "文件 +0x0C 在运行时搬到 +0x0B；0x425AC7 读取；0x420F19 经验函数按 2/1 分支；5/6 无代码或数据证据。",
+      "evidence": "Data.e5 144 行统计；cmp byte [record+0x0C],0/1/2；未发现 5/6 比较。",
+      "runtimeOffset": "0x0B"
+    },
+    {
+      "name": "施法范围",
+      "offset": "0x0D",
+      "width": 1,
+      "type": "uint8",
+      "meaning": "文件 +0x0D 在运行时搬到 +0x0C；0x418C93/0x401DFF 读取，作为范围/动画模板等级；不是位掩码。",
+      "evidence": "0x425AF0: movzx ecx,[ecx+0x0D]; and ecx,edx; cmp ecx,eax; sete dl；54 个调用点传入 0x20/0x80/动态掩码。",
+      "runtimeOffset": "0x0C"
+    },
+    {
+      "name": "穿透范围",
+      "offset": "0x0E",
+      "width": 1,
+      "type": "uint8",
+      "meaning": "文件 +0x0E 在运行时搬到 +0x0D；0x425AD0 读取的是运行时 +0x0E（MP），不是穿透。运行时 +0x0D 的专属消费者尚未唯一隔离；0x425AF0 是通用 +0x0D 位测试函数，不能单独证明策略穿透是位掩码。",
+      "evidence": "0x425AD0 = movzx eax,byte [ecx+0x0E]; 0x439B24; 0x439418; 0x425227; 0x42563F。",
+      "runtimeOffset": "0x0D"
+    },
+    {
+      "name": "策略消耗",
+      "offset": "0x0F",
+      "width": 1,
+      "type": "uint8",
+      "meaning": "文件 +0x0F 在运行时搬到 +0x0E；0x425AD0 读取；KB fn.65.strategy-mp-cost 的 base=+0x0E 结论正确。",
+      "evidence": "0x44270C = movzx eax,byte [ecx+0x0F]; 0x420A9B = 0x484002→0x44270C；Data.e5 行值。",
+      "runtimeOffset": "0x0E"
+    },
+    {
+      "name": "策略图标",
+      "offset": "0x10",
+      "width": 1,
+      "type": "uint8",
+      "meaning": "文件与运行时同为 +0x10；编辑器按 Mtem.e5 / Mgcicon.dll 预览；引擎专属消费者未确认。",
+      "evidence": "Data.e5 行值；data管理器 BusinessEditorPanel.Previews.cs 使用 strategies/策略图标；0x41C330 是通用 +0x10 getter，不能单独证明策略语义。",
+      "runtimeOffset": "0x10"
+    },
+    {
+      "name": "兵种学习等级",
+      "offset": "0x11",
+      "width": 80,
+      "type": "uint8[80]",
+      "meaning": "文件与运行时同为 +0x11..+0x60，80 项；0x40D77A 把源 +0x11 的 0x50 字节复制到运行时 +0x11。",
+      "evidence": "Data.e5 行宽 0x61；data管理器 profile namePattern 兵种{0:D2}学习等级；AddJobLearningTab 读取。",
+      "runtimeOffset": "0x11"
+    }
+  ],
+  "attributeTables": [
+    {
+      "key": "strategy-extension",
+      "offset": "0xA2CE0",
+      "va": "0x4D14E0",
+      "rows": 144,
+      "consumer": [],
+      "6.4": "144 字节全 0x90，无代码引用。",
+      "6.5": "144 字节中 143 个 0x90、首字节 0x91，无代码引用。",
+      "6.6": "真实位掩码表；bit0 由 0x41DCE6/0x465B66 测试，决定 AI/策略模仿是否可选用；bit1 由 0x41A11F 测试，置位时 push 2、call 0x45D316，进而查询特效 0xA8 并查 0x45D343 表；bits2-7 未见测试。",
+      "verdict": "6.4/6.5 是填充区；6.6 是“模仿/AI 可用(bit0) + 策略穿透增强适用(bit1)”标志表。"
+    },
+    {
+      "key": "strategy-effect-class",
+      "offset": "0xA2D70",
+      "va": "0x4D1570",
+      "rows": 144,
+      "consumer": "0x4256BC 分派：cmp al,limit; jae cleanup; mov al,[eax+0x4D1570]; jmp [eax*4+0x4259C3]",
+      "6.4": "limit=0x96，最大类 0x24；48 项跳表 0x4259C3。",
+      "6.5": "limit=0x96，最大类 0x24；48 项跳表 0x4259C3。",
+      "6.6": "limit=0x90，最大类 0x29；0x4D1570 另被 0x43C5F1 等状态派发引用。",
+      "verdict": "ID→效果类索引表；0x2A..0x2F 在 6.6 为预留空槽。"
+    },
+    {
+      "key": "strategy-battle-ai",
+      "offset": "0xA2E00",
+      "va": "0x4D1600",
+      "rows": 144,
+      "consumer": "0x439881：cmp byte [0x505FDC],0; je 时 mov al,[eax+0x4D1600]; jmp [eax*4+0x43A140]",
+      "6.4": "同 6.5。",
+      "6.5": "同 6.5。",
+      "6.6": "同 6.5。",
+      "verdict": "值 0x00..0x0F 是 16 项 AI 评分处理器编号，不是“AI限制”位标志。"
+    },
+    {
+      "key": "strategy-training-ai",
+      "offset": "0xA2E90",
+      "va": "0x4D1690",
+      "rows": 144,
+      "consumer": "0x439879：0x505FDC!=0 时 mov al,[eax+0x4D1690]; jmp [eax*4+0x43A140]；0x466477 另以 cmp byte [edx+0x4D1690],0x0D 作特殊分支。",
+      "6.4": "同 6.5。",
+      "6.5": "同 6.5。",
+      "6.6": "同 6.5。",
+      "verdict": "练武场 AI 评分处理器编号；0x0D 被 0x466477 用作特殊分支值。"
+    },
+    {
+      "key": "strategy-hit-rate",
+      "offset": "0xA2F20",
+      "va": "0x4D1720",
+      "rows": 144,
+      "consumer": "0x43B901（命中桩）：mode=byte[0x4D1720+ID]；0x46FBC9（显示）同样读取。",
+      "mapping": {
+        "0": "默认 90%（0x5A）",
+        "1": "100%（0x64）",
+        "2": "能力曲线分支：通过时 100%，否则 50%",
+        "3": "34%（0x22）",
+        "4": "50%（0x32）",
+        ">=5": "直接作为百分比；0x64=100%"
+      },
+      "verdict": "是命中模式/基础命中率，不是“命中上限”；0..4 为特殊码。",
+      "displayVsCombat": "显示函数 0x46FBC7 映射 0→90、1→100、2→100、3→34、4→50、>=5 直接百分比；战斗命中桩 0x43B6F3 对 0/1 走默认或100，2 走无调整分支，3/4 走条件分支，>=5 直接百分比。"
+    },
+    {
+      "key": "strategy-learning",
+      "offset": "0xA2FB0",
+      "va": "0x4D17B0",
+      "rows": 144,
+      "consumer": "0x41DCBF/0x465B0F：逐策略 test 8 个位；0x41DC78/0x465AC0 循环 8 类，按位筛选 AI 可用策略。",
+      "bitMeaning": {
+        "0x01": "四系伤害（火水地风/雷）",
+        "0x02": "降能力",
+        "0x04": "妨碍/控制",
+        "0x08": "补给/恢复",
+        "0x10": "升能力",
+        "0x20": "气候/雷",
+        "0x40": "特殊/回归（样本中仅回归=0x40）",
+        "0x80": "连击/特殊（样本中仅节能连击=0x80；四神策略实际为 0x00）"
+      },
+      "verdict": "是 AI 策略类别位掩码，不是“效果索引/类型索引”；UI 的 bit6“绝”、bit7“四神”与样本不符。"
+    },
+    {
+      "key": "strategy-damage-ratio",
+      "offset": "0xA3040",
+      "va": "0x4D1840",
+      "rows": 144,
+      "consumer": "0x43C112：movzx ecx,byte [eax+0x4D1840]; 之后 push 系数与伤害 call 0x425AD9（×/100）。",
+      "verdict": "伤害百分比系数；0x1C=28%，0x46=70%，0x5A=90%，0x64=100%。"
+    },
+    {
+      "key": "strategy-damage-type",
+      "offset": "0xA30D0",
+      "va": "0x4D18D0",
+      "rows": 144,
+      "consumer": "0x415EFA：mov cl,[edx+0x4D18D0]; cmp cl,4; jae → 返回 0，否则返回 1；0x43C059 用作伤害门控；0x46FC0F 显示时 4 视为 0。",
+      "verdict": "引擎只区分 <4（伤血）与 >=4（不伤血）；0..3 的子语义在 6.5 未被该门控区分。"
+    },
+    {
+      "key": "strategy-small-animation",
+      "offset": "0xA3160",
+      "va": "0x4D1960",
+      "rows": 144,
+      "consumer": "0x4215CB：0xFF=无小动画；否则作为动画 ID 传给 0x40BCF6/0x40196F。",
+      "verdict": "小动画图号；0xFF 为空值。"
+    },
+    {
+      "key": "strategy-big-animation",
+      "offset": "0xA31F0",
+      "va": "0x4D19F0",
+      "rows": 144,
+      "consumer": "0x40EB58/0x4214D3/0x424575/0x42566A：0xFF=无大动画；>=0x64 为特殊码（0x42566A 将其置 ctx+0x554=1，0x424575 跳过普通动画路径）。",
+      "verdict": "大动画图号；0xFF 为空，0x64+ 为特殊演出码。"
+    }
+  ],
+  "aiEvaluationHandlers": [
+    {
+      "index": "0x00/0x01/0x05",
+      "target": "0x43988C",
+      "role": "伤害类评分（调用 0x43C022）"
+    },
+    {
+      "index": "0x02",
+      "target": "0x439B80",
+      "role": "治疗/HP 评分"
+    },
+    {
+      "index": "0x03",
+      "target": "0x439A26",
+      "role": "MP/5 评分"
+    },
+    {
+      "index": "0x04",
+      "target": "0x43996C",
+      "role": "命中/状态评分（0x43B6F3）"
+    },
+    {
+      "index": "0x06",
+      "target": "0x439A70",
+      "role": "命中 + 0x4D2188 状态表评分"
+    },
+    {
+      "index": "0x07/0x08/0x09",
+      "target": "0x4399F1",
+      "role": "状态价值评分（0x439CFE）"
+    },
+    {
+      "index": "0x0A",
+      "target": "0x439AA6",
+      "role": "MP 比较评分"
+    },
+    {
+      "index": "0x0B",
+      "target": "0x4399AF",
+      "role": "属性/抗性评分"
+    },
+    {
+      "index": "0x0C",
+      "target": "0x439B21",
+      "role": "范围/穿透检查"
+    },
+    {
+      "index": "0x0D",
+      "target": "0x439C8A",
+      "role": "不行动/零分"
+    },
+    {
+      "index": "0x0E",
+      "target": "0x439BB6",
+      "role": "增益/减益评分（动作 0x1B+）"
+    },
+    {
+      "index": "0x0F",
+      "target": "0x439C12",
+      "role": "增益/减益评分（动作 0x35+）"
+    }
+  ],
+  "uiAndKbFindings": [
+    {
+      "topic": "strategy-learning 标签",
+      "ui": "FieldLabel=类型索引；GetFlags 位名=四系/降能力/妨碍/补给/升能力/气候/绝/四神",
+      "engine": "8 位 AI 类别掩码；bit6 样本仅回归，bit7 样本仅节能连击，四神策略为 0x00",
+      "verdict": "字段标签错误；bit6/bit7 位名错误"
+    },
+    {
+      "topic": "strategy-extension 标签",
+      "ui": "策略扩展标记；位名=策略模仿/辅助穿透/保留1..6",
+      "engine": "6.4/6.5 为 0x90 填充；6.6 bit0=策略模仿/AI 可用，bit1=策略穿透增强适用，bits2-7 未使用",
+      "verdict": "6.4/6.5 属性不存在；6.6 位名应改为“模仿/AI、策略穿透、保留2..7”"
+    },
+    {
+      "topic": "战场AI策略限制/练武场AI策略限制",
+      "ui": "AI策略限制",
+      "engine": "值 0x00..0x0F 为 AI 评分处理器编号",
+      "verdict": "语义错误：不是限制位"
+    },
+    {
+      "topic": "策略命中率",
+      "ui": "命中上限",
+      "engine": "0..4 特殊码；>=5 直接百分比",
+      "verdict": "语义错误/不完整"
+    },
+    {
+      "topic": "策略伤害类型",
+      "ui": "策略伤害类型（是否伤血）",
+      "engine": "<4 伤血，>=4 不伤血；0..3 未区分",
+      "verdict": "“是否伤血”正确；把 0..3 当独立类型会过度解释"
+    },
+    {
+      "topic": "施法范围",
+      "ui": "Hitarea 形状单选列表",
+      "engine": "文件 +0x0D → 运行时 +0x0C；0x418C93/0x401DFF 作为范围/动画模板等级读取",
+      "verdict": "字段名与文件偏移正确；不要与运行时 +0x0D 的穿透字段混淆"
+    },
+    {
+      "topic": "施展对象",
+      "ui": "0敌方/1我方/2全屏天气/5全屏己方气合/6全屏对方反气合",
+      "engine": "只比较 0/1/2；数据无 5/6",
+      "verdict": "5/6 缺少证据"
+    },
+    {
+      "topic": "穿透范围",
+      "ui": "0..6 形状列表",
+      "engine": "文件 +0x0E → 运行时 +0x0D；专属消费者尚未唯一隔离；0x425AF0 是通用 +0x0D 位测试函数，调用点包含非策略记录",
+      "verdict": "0..6 形状列表基本可用；6.6 数据出现 7，7 的语义仍需运行时确认"
+    },
+    {
+      "topic": "策略类型下拉",
+      "ui": "KnownStrategyTypes 固定 0..42",
+      "engine": "6.6 的 0x1E/0x20/0x21/0x24/0x26/0x27/0x29/0x2A 与 6.5 名称不同",
+      "verdict": "版本相关的错误标签风险"
+    },
+    {
+      "topic": "效果索引重名",
+      "ui": "strategy-learning 与 strategy-effect-class 都叫“效果索引”",
+      "engine": "前者是 AI 类别位掩码，后者是 ID→效果类索引",
+      "verdict": "重名误导；后者应叫“效果类”"
+    },
+    {
+      "topic": "KB fn.65.strategy-hit-stub",
+      "kb": "0=必败、1=必胜、2=能力曲线、3/4=特殊分支、>=5 固定命中率",
+      "engine": "0=90%、1=100%、2=曲线、3=34%、4=50%、>=5 直接百分比",
+      "verdict": "KB 候选的 0/3/4 语义错误"
+    },
+    {
+      "topic": "KB global.65.strategy-name-table",
+      "kb": "0x4FFFF0 策略名表，27 项",
+      "engine": "表项为 攻击(火)/吸收HP/能力下降/全部下降/连续移动 等效果类型名；0x406640 是效果类型名选择器",
+      "verdict": "“策略名表”命名不准确，应为效果类型名表"
+    }
+  ],
+  "limitations": [
+    "未运行游戏，未做运行时断点；68 行边界与 ID>=68 的实际行为仍需实机确认。",
+    "策略图标 +0x10 的引擎专属消费者未确认；现有证据只能证明编辑器按 Mtem 图号预览。",
+    "0x40D73C 的 10 字节名称复制与字段重排已在 6.5 3EF7 上逐指令核对；6.4/6.6 采用同构偏移，但未逐指令重放该循环。",
+    "策略穿透 +0x0D 的专属运行时消费者未唯一隔离；0x425AF0 的 0x20/0x80 掩码调用点不能直接当作策略穿透证据。",
+    "效果类 0..41 的名称来自 data 管理器硬编码与 6.6 覆盖，未逐处理器验证全部名称；本次只验证了分派表结构、48 项处理器地址与最大类范围。",
+    "6.6 的 0x45D316 查表路径在静态寄存器传递上疑似把上下文指针送入 [ecx+0x45D343]；需要实机断点确认该表实际索引值，不能仅凭静态路径断言运行时一定生效。"
+  ],
+  "strategyMimicPenetration": {
+    "mimic": {
+      "effect65": "0x2D(45) 策略模仿；getter 0x4210BE；mimic 路径 0x43E02A/0x465A2E",
+      "gate65": "6.4/6.5 没有独立的逐策略模仿位；0x41DC78/0x465AC0 以 0x4D17B0（strategy-learning）8 位类别掩码筛选，调用点为 0x41DCAF/0x465B0F",
+      "gate66": "6.6 额外在 0x41DCE6/0x465B66 测试 byte[strategyId+0x4D14E0] & 1；bit0=0 的策略不会被模仿/AI 选择",
+      "effect66": "6.6 仍为 0x2D(45) 策略模仿；getter 0x4210BE；路径 0x43E02E/0x465A2A"
+    },
+    "penetration": {
+      "field": "策略穿透码：文件 Data.e5+0x0E；运行时记录 +0x0D（0x484E27 读取）",
+      "6.4": "特效名表 180 项中没有“强化策略穿透”/“强化穿透-策略”，未实现该机制；strategy-extension 为 0x90 填充",
+      "6.5": "特效 0xB6(182) 强化策略穿透；consumer 0x44282D；查表 0x442871；无逐策略开关，拥有特效即按穿透码映射；表 01 02 03 06 07 04 06 05 08",
+      "6.6": "特效 0xA8(168) 强化穿透-策略；bit1 在 0x41A11F 测试；0x41A10C push 2→0x45D316；0x45D36A 用 al+0xA7−1 得到 0xA8 并查询特效；表 0x45D343 = 01 02 03 08 07 05 06 05 06 02 0A",
+      "6.6Caveat": "0x45D316 的 mov al,[ecx+0x45D343] 在静态路径上收到的 ECX 疑似为上下文/单位指针，而非 0..10 的穿透码；表位置和特效号确定，索引寄存器需实机确认"
+    },
+    "rangeComparison": {
+      "table": "0x41CEAB，33 字节，三基底完全一致：01 06 03 04 12 13 0C 08 12 1F 0A 00 0D 21 0F 16 11 12 25 0C 0C 16 22 01 20 1D 03 1C 1D 23 1F 03 24",
+      "consumer": "0x41CE8B(r, default) 先 0x41CDEE(r) 判定，命中返回 byte[0x41CEAB+r]；0x41CDEE 的特效号是动态 r+0x5A（默认 0x76）",
+      "effects": "6.5/6.6：91 提升攻击范围/攻击距离+1，92 提升施法范围/施法距离+1；6.4：91 远距攻击-物理，92 远距攻击-策略",
+      "similarity": "结构近似：都是“特效存在性判定 + 一字节映射表”；但范围表是 33 项范围等级码，策略穿透表是 9/11 项穿透码，且 6.6 额外要求 bit1 逐策略门控"
+    }
+  }
+}

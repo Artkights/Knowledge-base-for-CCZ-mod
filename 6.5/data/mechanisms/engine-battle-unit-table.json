@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.battle-unit-table.3ef7",
+      "title": "战场单位占位表 0x4B3D21（250×5）",
+      "aliases": [
+        "0x4B3D21",
+        "0x4B3D24",
+        "战场占位表",
+        "250单位表"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x4B3D21 为 250 条 ×5 字节的战场对象/单位占位表：byte0/1=x/y，byte2=类型（0x11 特殊，0x1A/0x1B 变体），byte3=对象 id（0xFF 空，0xFFFFFFFF 清除），byte4=图层（4..0xC8 走 +0x1F40 层，否则 +0x640 层；0xFF 空）。0x4560F3 以 i*5 扫描并在 byte3==0xFF 时结束，0x43B420 比较前两字节坐标。表范围 0x4B3D21..0x4B4222，后接 0x4B422C 网格尺寸对；0x1B00 为单个地图层字节数。",
+      "constants": [
+        "0xFA",
+        "5",
+        "0xFF",
+        "0x11",
+        "0x1A",
+        "0x1B",
+        "0x640",
+        "0x1F40",
+        "0x1B00",
+        "0x4B3D21",
+        "0x4B3D24"
+      ],
+      "identity": "各字段引用数三基底一致：0x4B3D21=7、+1=2、+2=4、+3=6、+4=3；0x43B420 在 6.4/6.5 同哈希 D9AF2B121650711D，6.6 不同。",
+      "limitations": [
+        "byte2 类型码 0x11/0x1A/0x1B 的名称未确定。",
+        "byte4 图层 4..0xC8 的具体层级名未确定。",
+        "250 与单位上限的对应未由命名表证明。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.grid-dimension-pair.3ef7",
+        "mechanism.65.movement-terrain-and-map-bounds.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-battle-unit-table-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "table": "0x4B3D21",
+        "x": "record+0",
+        "y": "record+1",
+        "type": "record+2（0x4B3D23）",
+        "objectId": "record+3（0x4B3D24）",
+        "layer": "record+4（0x4B3D25）",
+        "scan": "0x4560F3",
+        "compare": "0x43B420",
+        "layerSize": "0x1B00",
+        "layerOffsets": ["0x640", "0x1F40"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "analysis": "character-adaptation-table-and-weapon-table-boundary",
+  "date": "2026-11-12",
+  "method": "展开 6.6 0x43F8C0（22 个调用者）与 0x4303C8 的全部消费链；展开 6.5/6.6 0x401DFF→0x484002→0x418C90→0x41CE8B 链；反汇编 0x481440 注册器、0x4845B2、0x44270C；refs_to 统计 0x4A3E77 三基底引用。仅静态读取基底。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "weaponTable0x4303C8": {
+    "address": "0x4303C8",
+    "bytes": "01 06 05 13 07 08 01 20 15 16 00 01 06 0C 00 01 00 01 0C 0D",
+    "reader": "0x4303BB movzx eax, byte[ecx+0x4303C8]（唯一读取点）",
+    "callerChain": "0x43038B → 0x417A38（唯一调用者 0x417A5A）→ 0x43F931（唯一调用者）",
+    "consumer": "0x43F8C0 把表值存入 [ebp-8]，与 0x0B 比较后返回 (eax,edx)；0x43F8C0 的 22 个调用者只使用返回值，不再传播表值",
+    "conclusion": "20 个值未发现第二消费点；唯一语义线索是“值==0x0B 时判定无效”。值域 0..0x20 与效果码表 0x4D1400（36项）范围吻合，但无代码证据把两者相连，维持 candidate"
+  },
+  "byteTable0x41CEAB": {
+    "address": "0x41CEAB",
+    "size": "0x21（33 字节）",
+    "reader": "0x401DFF(objIndex)：ecx=objIndex → 0x484002 → 0x418C90 取 byte[record+0xC] → push eax；push 2；call 0x41CE8B → f(2, idx)=(0x4101D9 随机值 & 2)!=0 ? table[idx] : idx",
+    "indexResolution": "索引来自 97 字节记录表的 +0xC 字节，而非任意对象字段",
+    "callers": "0x401DFF 在 6.6 有 5 处调用（0x41CE2D/0x425246/0x4391D4/0x43961F/0x4415B2），6.5 有 5 处（0x441578 替代 0x4415B2）",
+    "related": "0x41CE0B 在条件满足时调用 0x401DFF，否则调用 0x43F8C0，二者构成互斥的行动判定分支"
+  },
+  "table0x4A3E77": {
+    "address": "0x4A3E77",
+    "stride": "0x61（97 字节）",
+    "registeredCount": "0x44（68 条）",
+    "registration": "0x42B17D/0x42B1AB：0x481440(dest=0x4A3E77, stride=0x61, count=0x44, callback=0x42B4F0, cleanup=0x42B510)",
+    "layout": [
+      "+0x00..+0x0B：未展开",
+      "+0x0C：byte，0x418C90 getter，经 0x41CE8B 随机替换",
+      "+0x0F：byte，0x44270C getter（与单位 +0xF 方向/攻击码同构）",
+      "+0x11..+0x60：80 个兵种字节，0x4845B2(record, job) = byte[record + 0x11 + job]，job 最大 0x4F 恰好落在 +0x60"
+    ],
+    "evidence": "0x40755D 循环 cl<0x90：0x484002 取记录后以 0x4845B2(unit+0x2B 兵种) 取字节并与 [unit+0x2C] 比较；0x41DCCC 同样以 0x90 为界；0x4845B2 偏移计算 +0x11+job 与 97 字节记录长度吻合",
+    "runtimeFilled": "0x4A3E77 位于不可执行/未初始化区，三基底文件映像均无内容（hash_regions 报 not mapped），运行期由 DATA.E5 相关块填充",
+    "refs": "三基底各 3 处引用（0x42B1xx 两次注册 + 0x484008 访问器）；6.6 注册点整体前移 0x11"
+  },
+  "conclusion": "0x4303C8 的 20 个值在本轮穷尽消费链后仍未发现第二消费点，只能确认“==0x0B 判无效”，语义维持 candidate。0x41CEAB 的索引已定位：它是 97 字节人物模板表 0x4A3E77 的 +0xC 字节，经 0x401DFF→0x484002→0x418C90→0x41CE8B(2) 随机替换；0x4A3E77 以 0x481440 注册 68 条 × 0x61 字节，+0x11..+0x60 为 80 个兵种字节（0x4845B2 按兵种取值），与全局 80 兵种容量吻合。",
+  "limitations": [
+    "0x4303C8 的 20 个值语义未定名（候选：武器类型→动作/特效编号）。",
+    "0x4A3E77 的 +0x00..+0x0B 字段未展开。",
+    "0x4A3E77 注册 68 条但存在 0x90（144）界循环，越界部分来源未证明（可能由存档扩展或为 mod 潜在缺陷）。",
+    "0x4A3E77 的“人物模板/兵种适性”命名由 97=0x11+80 结构推断，未取得文案字段名。",
+    "未运行游戏对照。"
+  ]
+}

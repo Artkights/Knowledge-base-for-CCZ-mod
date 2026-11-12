@@ -13,7 +13,7 @@
 | `script.65.opcode-02` | `0x02` | 内部信息 | `structure-flow` | P1:信息编号[文本编号候选]; P2:显示方式[布尔/开关标志]; P3:关联人物/头像[人物/部队编号]; P4:流程/标志[数值/枚举] | `candidate` / `legacy-structured` |
 | `script.65.opcode-03` | `0x03` | else | `structure-flow` | P1:跳转/块编号[分支/跳转目标]; P2:分支层级/标志[数值/枚举] | `candidate` / `legacy-structured` |
 | `script.65.opcode-04` | `0x04` | 询问测试 | `structure-flow` | - | `candidate` / `legacy-structured` |
-| `script.65.opcode-05` | `0x05` | 变量测试 | `structure-flow` | P1:变量编号[变量编号]; P2:比较方式[比较符]; P3:比较值[数值/枚举]; P4:成立后跳转[分支/跳转目标] | `candidate` / `legacy-structured` |
+| `script.65.opcode-05` | `0x05` | 剧本操作码 0x05：变量测试 | `structure-flow` | P1:变量编号[变量编号]; P2:比较方式[比较符]; P3:比较值[数值/枚举]; P4:成立后跳转[分支/跳转目标] | `candidate` / `legacy-structured` |
 | `script.65.opcode-06` | `0x06` | 我军出场限制 | `structure-flow` | P1:我军人物/出场位[人物/部队编号]; P2:允许/禁止标志[布尔/开关标志]; P3:数量/位置[数量/时间] | `candidate` / `legacy-structured` |
 | `script.65.opcode-07` | `0x07` | 出战测试 | `structure-flow` | P1:人物/出战位[人物/部队编号]; P2:比较方式[比较符]; P3:成立后跳转[分支/跳转目标] | `candidate` / `legacy-structured` |
 | `script.65.opcode-08` | `0x08` | 菜单处理 | `structure-flow` | - | `candidate` / `legacy-structured` |
@@ -93,7 +93,7 @@
 | `script.65.opcode-52` | `0x52` | 兵种改变 | `battle-operations` | P1:武将/人物编号[人物/部队编号]; P2:兵种/职业编号[数值/枚举] | `candidate` / `legacy-structured` |
 | `script.65.opcode-53` | `0x53` | 战场撤退 | `battle-operations` | P1:武将/部队编号[人物/部队编号]; P2:撤退方式[数值/枚举]; P3:提示标志[布尔/开关标志] | `candidate` / `legacy-structured` |
 | `script.65.opcode-54` | `0x54` | 战场撤退确认 | `battle-operations` | P1:武将/部队编号[人物/部队编号]; P2:比较方式[比较符]; P3:成立后跳转[分支/跳转目标] | `candidate` / `legacy-structured` |
-| `script.65.opcode-55` | `0x55` | 战场复活 | `battle-operations` | P1:武将/部队编号[人物/部队编号]; P2:X坐标[X 坐标/目标]; P3:Y坐标[Y 坐标/目标]; P4:HP/状态[数值/枚举] | `candidate` / `legacy-structured` |
+| `script.65.opcode-55` | `0x55` | 剧本操作码 0x55：战场复活 | `battle-operations` | P1:武将/部队编号[人物/部队编号]; P2:X坐标[X 坐标/目标]; P3:Y坐标[Y 坐标/目标]; P4:HP/状态[数值/枚举] | `candidate` / `legacy-structured` |
 | `script.65.opcode-56` | `0x56` | 天气类别设定 | `battle-operations` | P1:天气类别[Weather]; P2:变化/锁定标志[布尔/开关标志] | `candidate` / `legacy-structured` |
 | `script.65.opcode-57` | `0x57` | 当前天气设定 | `battle-operations` | P1:当前天气[Weather]; P2:显示/刷新标志[布尔/开关标志] | `candidate` / `legacy-structured` |
 | `script.65.opcode-58` | `0x58` | 战场障碍设定 | `battle-operations` | P1:障碍/对象编号[数值/枚举]; P2:X坐标[X 坐标/目标]; P3:Y坐标[Y 坐标/目标]; P4:状态[布尔/开关标志] | `candidate` / `legacy-structured` |
@@ -129,7 +129,7 @@
 | `script.65.opcode-76` | `0x76` | 无条件跳转 | `advanced-system` | P1:跳转目标[分支/跳转目标] | `candidate` / `legacy-structured` |
 | `script.65.opcode-77` | `0x77` | 变量运算 | `advanced-system` | P1:变量编号[变量编号]; P2:运算方式[运算/赋值方式]; P3:运算值[数值/枚举] | `candidate` / `legacy-structured` |
 | `script.65.opcode-78` | `0x78` | 整型变量赋值 | `advanced-system` | P1:变量编号[变量编号]; P2:变量类型[数值/枚举]; P3:赋值方式[运算/赋值方式]; P4:赋值内容[数值/枚举] | `candidate` / `legacy-structured` |
-| `script.65.opcode-79` | `0x79` | 变量测试 | `advanced-system` | P1:变量编号[变量编号]; P2:变量类型[数值/枚举]; P3:比较方式[比较符]; P4:比较值[数值/枚举]; P5:成立后跳转[分支/跳转目标] | `candidate` / `legacy-structured` |
+| `script.65.opcode-79` | `0x79` | 剧本操作码 0x79：变量测试 | `advanced-system` | P1:变量编号[变量编号]; P2:变量类型[数值/枚举]; P3:比较方式[比较符]; P4:比较值[数值/枚举]; P5:成立后跳转[分支/跳转目标] | `candidate` / `legacy-structured` |
 | `script.65.opcode-7a` | `0x7A` | 对话3 | `advanced-system` | P1:说话人/头像[人物/部队编号]; P2:文本编号[文本编号候选]; P3:窗口/表情[数值/枚举]; P4:显示标志[布尔/开关标志] | `candidate` / `legacy-structured` |
 | `script.65.opcode-7b` | `0x7B` | 信息传送测试 | `advanced-system` | P1:源编号/变量[变量编号]; P2:目标编号/变量[变量编号]; P3:比较方式[比较符]; P4:成立后跳转[分支/跳转目标] | `candidate` / `legacy-structured` |
 | `script.65.opcode-72-sub-00` | `0x72 / 0` | 信息传送 0: 武将改名 | `information-transfer` | - | `candidate` / `legacy-structured` |

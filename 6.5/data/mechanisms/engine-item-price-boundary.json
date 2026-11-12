@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.item-price-consumption-boundary.3ef7",
+      "title": "商店价格字段 item+0x13 的消费边界（负结果）",
+      "aliases": [
+        "item price",
+        "价格字段",
+        "商店价格",
+        "item+0x13"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "扫描三基底全部可执行节的 mem.disp==0x13 后，未发现 item+0x13 的直接价格读取或 ×100 计算；唯一同偏移读取 0x4010EE 是记录 dword 重排。商店列表 0x466AE3 只读取物品 ID 与可用性布尔值。价格消费链尚未闭合，不登记为公式。",
+      "field": "物品记录 +0x13（价格 /100，来自 data 管理器）",
+      "siteAddresses": {
+        "onlyRead": "0x4010EE mov eax,dword[ecx+0x13]；随后 0x4010F1/0x4010F5 记录字节重排",
+        "shopList": "0x466AE3 读取物品 ID 与 0x407961 可用性"
+      },
+      "negativeResult": "未发现价格×100 指令或 byte[item+0x13] 直接读取",
+      "limitations": [
+        "未覆盖指针偏移/UI 文本拼接路径。",
+        "商店买卖 UI 未定位。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.shop-runtime-and-item-usability.3ef7",
+        "struct.65.item-record"
+      ],
+      "sourceRefs": [
+        "src.research.engine-item-price-boundary-20261112",
+        "src.data-manager.profile65"
+      ]
+    }
+  ]
+}

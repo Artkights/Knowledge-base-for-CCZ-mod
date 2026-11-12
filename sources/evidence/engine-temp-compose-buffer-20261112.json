@@ -1,0 +1,62 @@
+{
+  "id": "src.research.engine-temp-compose-buffer-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "0x37800 临时合成缓冲：0x448B96 的 0x30×0x30→0x60×0x60 贴图合成链",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 + 调用点追踪 + 0x4015B1/0x40159C 分配器核对",
+  "findings": [
+    {
+      "id": "alloc",
+      "claim": "0x448B96 每次调用经 0x4015B1 从 0x4AE4C8 池分配 0x37800 字节临时缓冲 [ebp-0x10]，并另取 0x40159C 的目标缓冲 [ebp-8]；两缓冲均非 11 层图层块。",
+      "evidence": [
+        "0x448BE1 mov eax,0x37800; 0x448BE6 call 0x4015B1; 0x448BEB mov [ebp-0x10],eax",
+        "0x448BEE call 0x40159C; 0x448BF3 mov [ebp-8],eax"
+      ]
+    },
+    {
+      "id": "compose",
+      "claim": "合成第一步：0x4303C4 把 0x30×0x30 图层块（源 = byte[ptr+0xD]*0x12900+0xD800，第 8 层起）拷入临时缓冲；随后循环 9 次（初值 0xA 递减）：0x47FCFD 拷 0x6C00 字节（=0x60×0x60×3，即 60×60 三字节像素帧）到目标缓冲，0x40690C 以白色 0xFFFFFF 在 y=idx*0xA 处绘制/描边，0x443C1D 以 0x60×0x60 尺寸把帧贴到目标表面，0x423971(1) 做节拍。",
+      "evidence": [
+        "0x448BCE imul eax,eax,0x12900; 0x448BD4 add eax,0xD800; 0x448BD9 call 0x401655",
+        "0x448BF6 push 0x30; push 0x30; push [ebp-0x10]; push [ebp-0xC]; call 0x4303C4",
+        "0x448C1F push 0x6C00; push [ebp-8]; push [ebp-0x10]; call 0x47FCFD",
+        "0x448C36 push 0xFFFFFF; 0x448C3B imul edx,[ebp-4],0xA; 0x448C4A call 0x40690C",
+        "0x448C55 push 0x60; 0x448C57 push 0x60; 0x448C6B call 0x443C1D; 0x448C72 call 0x423971(1)"
+      ]
+    },
+    {
+      "id": "size-arithmetic",
+      "claim": "0x37800 的实际单帧用量为 0x6C00（0x60×0x60×3），0x37800 = 0x6C00×8 + 0x1800，属过度分配的临时区；0x4015B1 池按请求大小返回，不做帧切分。",
+      "evidence": [
+        "0x6C00 = 0x60*0x60*3",
+        "0x37800 - 8*0x6C00 = 0x1800",
+        "0x47FCFD 的拷贝长度固定 0x6C00，与 0x60×0x60×3 一致"
+      ]
+    },
+    {
+      "id": "callers",
+      "claim": "0x448B96 的直接调用点为 0x4174AF 与 0x425F93；两处均处于绘制/界面刷新路径，且 0x448C9D 之后还有 0x448497(this,arg8,arg10&0xFF) 分支，说明 0x448B96 带 UI 动画帧循环。",
+      "evidence": [
+        "callsite_context 0x448B96 → caller 0x4174AF、0x425F93",
+        "0x448C80 mov ecx,[ebp+0x10]; 0x448C83 and ecx,0xFF; 0x448C8B je; 0x448C98 call 0x448497",
+        "0x448C79 push 5; 0x448C7B call 0x423971"
+      ]
+    }
+  ],
+  "corrections": [
+    "0x37800 不是『独立图层缓冲』：它是 0x448B96 的单次调用临时合成区，实际帧尺寸为 0x6C00（60×60×3），0x37800 仅为分配上限。"
+  ],
+  "limitations": [
+    "0x40690C 的绘制模式（文字/描边/图标）未展开。",
+    "0x443C1D 的贴图参数（[obj+0x80]、[rect+0x20]）语义未定。",
+    "循环次数 9 的业务含义（动画帧数/层数）未定。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.settings-block-fields.3ef7",
+      "title": "设置块 0x4B0770 字段与设置项索引 0/1/2（0x40E1D0/0x415E19/0x408808）",
+      "aliases": [
+        "settings block",
+        "设置块",
+        "0x4B0770",
+        "0x40E1D0",
+        "0x415E19",
+        "0x408808",
+        "0x4118DB"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4B0770 是 0x2BC 字节的设置块（存档区块B +0x32 整体复制）。字段：+0x00 选项位掩码（bit0=背景音乐、bit1=音效、bit2=战斗时窗口自动最大化、bit3=战斗时自动显示战场缩小图、bit4=会话窗口不自动关闭；0x41B90F 从 0x406..0x40A 读取）、+0x01 讯息显示速度索引（0/1/2=快/普通/慢，0x40B..0x40D）、+0x02 武将移动速度索引（0/1/2，0x40E..0x410）、+0x03 音量字节（0..100：0x42E218 取控件 0x411 的 TBM_GETPOS(0x400) 写入 +0x03，经 0x42F7FC ×0xA 作 MCI 0x873 参数）、+0x05 场景类别缓存（唯一读取点 0x405412：存档头构造 0x4053CC 在章节 byte[0x4AC63C]==3 时写入头 +0x04，否则用 0x44F9A0 返回 byte[0x4AC63D]；写入点 0x44D2FF 从初始化器 byte[+0] 复制、0x42C0BA 清理置 0）、+0x06 word 为设置项索引1（0x415E19 返回 min(word/2,0x7F)）、+0x0C dword 为设置项索引0（0x40E1D0 直接返回）、+0x10 标志（0x41196C 写入，0x426BA0→0x426B52 应用，1=显示/0=隐藏 4 个快捷窗口）、+0x12 byte 为设置项索引2（0x408808 返回）。0x4118DB..0x41196B 按索引 0/1/2 分派到三个 getter，并与旧值比较返回 -1/0/1（0x4183F7 读到 0x80000000/0x8000 时返回 5 表示无效）。0x41196C 写 +0x10 后，若 0x41EDEF(0x4AC63C)==2（章节 2）则调 0x426BA0；0x411991 在 0x40B922()==0 且 +0x10!=0 时按 0x501FFF 调 0x419949(0x496F38,flag)。存档头写入链（0x4053E4..0x40543B）：区块B +0x01/+0x02 取 0x41EDEF(0x4AC63C)；+0x03 取 0x415E19(0x4B0770)；+0x04 当 byte[0x4AC63C]==3 时取 byte[0x4B0770+0x05]，否则取 0x44F9A0(0x4AC63C)；+0x05 起 strcpy(0x4A1128)，随后 push 0x4B0758 写第二段字符串；+0x32 起由 0x40C482 复制整个设置块。+0x10 另有独立字节 getter 0x4034D2（mov ecx,0x4B0770; movzx eax,byte[ecx+0x10]; ret）。",
+      "constants": [
+        "0x4B0770", "0x40E1D0", "0x415E19", "0x408808", "0x4118DB", "0x41196C", "0x411991",
+        "0x4183F7", "0x41EDEF", "0x426BA0", "0x419949", "0x496F38", "0x501FFF", "0x4AC63C", "0x40B922",
+        "0x42E218", "0x42F7FC", "0x4862DC", "0x4862F4", "0x400", "0x411", "0x873", "0x1800000", "0x4002", "0x03",
+        "0x41B90F", "0x41BAD7", "0x41BD7F", "0x41B8ED", "0x41B8AF", "0x48B600", "0x406", "0x407", "0x408", "0x409", "0x40A", "0x40B", "0x40D", "0x40E", "0x410", "0x01", "0x02",
+        "0x0C", "0x06", "0x10", "0x12", "0x7F", "0x02", "0x2BC", "0x80000000", "0x8000", "0x05",
+        "0x4053E4", "0x40543B", "0x4034D2", "0x44F9A0", "0x47FC7D", "0x4A1128", "0x4B0758", "0x03", "0x04"
+      ],
+      "identity": "三个 getter 的读写偏移与 0x4118DB 的索引分派逐项对应；0x415E19 的 word/2 钳 0x7F 与第87轮存档头 +0x03 的写入值一致；+0x00 的 bit1 与第91轮音效门控一致。",
+      "siteAddresses": {
+        "settingsBase": "0x4B0770",
+        "volumeByte": "+0x03",
+        "volumeSlider": "0x42E218",
+        "volumeApply": "0x42F7FC",
+        "volumeSliderItem": "0x411",
+        "tbmGetPos": "0x400",
+        "getterIndex0": "0x40E1D0",
+        "getterIndex1": "0x415E19",
+        "getterIndex2": "0x408808",
+        "compareDispatch": "0x4118DB",
+        "flagSetter": "0x41196C",
+        "flagCheck": "0x411991",
+        "invalidSentinel": "0x4183F7",
+        "chapterGet": "0x41EDEF",
+        "flag2Hook": "0x426BA0",
+        "flagCheckCall": "0x419949",
+        "flagCompareByte": "0x501FFF",
+        "saveHeaderWriter": "0x4053E4",
+        "saveHeaderWriterEnd": "0x40543B",
+        "flagByteGetter": "0x4034D2",
+        "sceneAltStringProvider": "0x44F9A0",
+        "saveStringCopy": "0x47FC7D",
+        "saveStringSource": "0x4A1128",
+        "saveSecondStringPush": "0x4B0758"
+      },
+      "limitations": [
+        "dword[+0x0C] 的取值范围与单位未定。",
+        "+0x05 场景类别缓存的具体取值域（0x44D2CA 初始化器来源对象）未命名。",
+        "存档头 +0x05 字符串源 0x4A1128 的内容未静态还原。",
+        "4 个快捷窗口的业务名称未确认（模板 297 无标题）。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.sound-settings.3ef7",
+        "mechanism.65.save-file-format.3ef7",
+        "mechanism.65.global-ui-state-block.3ef7",
+        "mechanism.65.quick-window-host.3ef7",
+        "mechanism.65.settings-dialog-kankyou.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-settings-block-fields-20261112",
+        "src.research.engine-save-header-writer-20261112",
+        "src.research.engine-quick-window-host-20261112",
+        "src.research.engine-mci-command-map-20261112",
+        "src.research.engine-settings-dialog-kankyou-20261112",
+        "src.research.engine-settings-plus05-and-edx-20261112"
+      ]
+    }
+  ]
+}

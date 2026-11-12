@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "analysis": "memory-arenas",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 0x401655/0x4015B1/0x40162C（三个包装）与分配器 0x47FA40；结合第95轮 0x41ED07 的层缓冲分配链。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "wrappers": [
+    {"entry": "0x401655", "arena": "0x4AB00C", "behavior": "eax=size → 0x47FA40(0x4AB00C, size, 0, 4)"},
+    {"entry": "0x4015B1", "arena": "0x4AE4C8", "behavior": "eax=size → 0x47FA40(0x4AE4C8, size, 0, 4)"},
+    {"entry": "0x40162C", "arena": "0x4AE4A8", "behavior": "eax=size → 0x47FA40(0x4AE4A8, size, 0, 4)"}
+  ],
+  "allocator": {
+    "entry": "0x47FA40",
+    "args": "ecx=arena、[ebp+8]=size、[ebp+0xC]=flag、[ebp+0x10]=extra（包装传 0/4）",
+    "steps": [
+      "edx = min(size, dword[arena+4])（容量钳位）",
+      "switch byte[arena+0x10]：1 或 4 → 返回 dword[arena+0xC] + size（线性/栈式推进）",
+      "2 → call 0x47F9E2(size, flag, extra)",
+      "其他 → 0"
+    ],
+    "modes": {"1": "线性", "2": "0x47F9E2 分支", "4": "线性（同 1）"}
+  },
+  "conclusion": "引擎使用三个全局内存池：0x4AE4A8、0x4AE4C8、0x4AB00C；包装 0x40162C/0x4015B1/0x401655 以对齐 4 调用分配器 0x47FA40。分配器按 byte[arena+0x10] 的模式 1/2/4 分派：模式 1/4 返回 [arena+0xC]+size 的线性指针，模式 2 走 0x47F9E2；size 先按 [arena+4] 容量钳位。第95轮 0x41ED07 的图层缓冲即由 0x401655 从 0x4AB00C 池分配。",
+  "limitations": [
+    "0x47F9E2 的具体分配/推进方式未展开。",
+    "三个池各自服务的模块未逐项统计。",
+    "未运行游戏对照。"
+  ]
+}

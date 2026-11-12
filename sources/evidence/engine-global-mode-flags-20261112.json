@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "analysis": "global-mode-flags-and-hit-gate",
+  "date": "2026-11-12",
+  "method": "解析 6.6 命中门控地址 0x502000+0xFB2*4 的算术结果，并列出 0x505EC8/0x4B3D18 在 6.5 的精确引用；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "addressResolution": {
+    "expression": "0x502000 + 0xFB2*4",
+    "result": "0x505EC8",
+    "meaning": "6.6 命中门控的第一项 dword[0x502000+0xFB2*4] 就是 6.5 已知的全局 0x505EC8，不是独立表。"
+  },
+  "global505EC8": {
+    "type": "byte/dword 共享全局",
+    "refs65": [
+      "0x4282F1 cmp byte[0x505EC8],1",
+      "0x42882C cmp byte[0x505EC8],1",
+      "0x42893F cmp byte[0x505EC8],1",
+      "0x428A4D cmp byte[0x505EC8],1",
+      "0x43B4DF mov edx,dword[0x505EC8]",
+      "0x43B518 cmp byte[0x505EC8],1（命中重试跳过）"
+    ],
+    "refs66": ["0x43B502 cmp dword[0x505EC8],0（命中门控）"],
+    "semantics": "候选：全局模式/难度/自动战斗开关；6.5 AI 评估与命中重试按 byte==1 分支，6.6 命中门控按 dword==0 分支。名称未最终确定。"
+  },
+  "global4B3D18": {
+    "address": "0x4B3D08 + 0x10",
+    "refs65": [
+      "0x4024CC cmp byte[0x4B3D18],0",
+      "0x41BC53 cmp byte[0x4B3D18],0",
+      "0x420B14 cmp byte[0x4B3D18],0",
+      "0x425331 cmp byte[0x4B3D18],2",
+      "0x47510C mov al,byte[0x4B3D18]"
+    ],
+    "semantics": "候选：战场天气/环境状态字节；与 0x4B3D19 天气类别相邻。名称未最终确定。"
+  },
+  "hitGate66": {
+    "va": "0x43B4FD..0x43B51E",
+    "conditions": [
+      "dword[0x505EC8] == 0",
+      "byte[0x4B3D18] == 0",
+      "byte[unit+5] == 0"
+    ],
+    "result": "三条件全满足时 eax=0x64（命中 100）",
+    "then": "0x43B523 cmp eax,0x64；<100 时调用 0x4287A8"
+  },
+  "conclusion": "第 16 轮记录的 6.6 门控表项 dword[0x502000+0xFB2*4] 实际就是 0x505EC8。6.6 的命中门控是“全局 0x505EC8==0、战场状态 +0x10==0、单位 +5==0”三条件，全满足时命中置 100。0x505EC8 与 0x4B3D18 是跨 AI/命中/重试共享的全局开关，但玩法名称仍未确定。",
+  "limitations": [
+    "0x505EC8/0x4B3D18 的玩法名称未确定。",
+    "unit+5 的字段名未最终确认。",
+    "未运行游戏对照。"
+  ]
+}

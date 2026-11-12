@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "mechanism.65.script-execution.3890",
+      "title": "剧本（TR.E5）执行与事件表",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "global.65.script-event-table.3890",
+          "role": "0x49CF68 事件表 128×0x40"
+        },
+        {
+          "order": 2,
+          "entity": "fn.65.script-event-slot.3890",
+          "role": "0x426AA8 槽号→地址（+n*0x40）"
+        },
+        {
+          "order": 3,
+          "entity": "fn.65.script-event-iterate.3890",
+          "role": "0x42A049 遍历与分派"
+        },
+        {
+          "order": 4,
+          "entity": "format.65.script-command-record.3890",
+          "role": "指令记录读取"
+        },
+        {
+          "order": 5,
+          "entity": "fn.65.script-record-field-reader.3890",
+          "role": "0x42A100 字段读取样例"
+        }
+      ],
+      "semantics": [
+        "源码模块名 TR.E5（断言串 0x48BB7B），相关函数集中在 0x425xxx / 0x42Axxx。",
+        "槽地址统一由 0x426AA8 计算：EAX = 0x49CF68 + 槽号*0x40（槽号 0..0x7F），三基底同址同字节。",
+        "事件表 0x49CF68：128 槽 × 0x40 字节；并行数组步长 0x24；表尾标志 0x49EFA8。",
+        "模式开关 0x4AB020 必须等于 1，否则整段事件处理跳过。",
+        "0x42A100 从记录 +4/+6/+8/+0xA/+0xC/+0xE/+0x2C/+0x2E 读取八个字，连同 1 个参数共 9 个参调用 0x428EB0。",
+        "6.4 对应遍历函数在 0x42A058（+0xF），多 sub esp,0x30 栈帧；6.5/6.6 在 0x42A049。"
+      ],
+      "relations": [
+        "format.65.script-command-record.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.battle-viewport-context.3ef7",
+      "title": "战场视口/滚动上下文 0x4B4250",
+      "aliases": [
+        "0x4B4250",
+        "战场视口",
+        "滚动上下文",
+        "0x455E44",
+        "0x455E6B",
+        "0x47B43C"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "0x4B4250 是战场视口/滚动上下文，三基底字段集合一致（各 19 项）：+0x04/+0x08 为像素原点（由地图记录 [0x4CEA08]+0x1B/+0x1F 载入），+0x14/+0x18 为视口宽高（像素，0x45503F 以 /0x30 得瓦片数），+0x24/+0x28/+0x34/+0x38 为视口矩形，+0x2C/+0x30 为目标/中心，+0x3C/+0x40 为额外偏移，+0x20/+0x22 为屏幕/面板宽高，+0x54/+0x55 为待处理滚动目标字节对（0xFF 哨兵），+0x61 为滚动模式（0=默认 shift1；1/2=限位1 shift3；3=限位2 shift5），+0x64/+0x68 为只读模式标志（候选自动战斗/快速结算，未发现直接写点），+0x1B85 为使用效果码槽 0。像素↔瓦片换算统一用 0x30（48px），助手 0x40BAD4 为有符号除法。居中函数 0x45503F(centerX,centerY)：byte[0x505FDC]==0 才执行；tilesW=dword[+0x14]/0x30、tilesH=dword[+0x18]/0x30；half=(tiles-sign)>>1；0x47FAD0(center,half) 返回 byte；再按 byte[0x4B422C]/byte[0x4B422D] 夹紧；最后 call 0x454CEF(x,y) 设滚动位置。0x454CEF 把 +0x04/+0x08 除以 0x30 得当前瓦片，调 0x45461C 预处理；目标瓦片与当前相同则直接返回，否则算 old-new 的 deltaX/deltaY 进入滚动分支。0x45461C 读取 +0x54/+0x55 并清为 0xFF，按 +0x61 选择限位/位移，两值均有效时调 0x45218F 并 0x476882 刷新。0x45218F(dx,dy,shiftX,shiftY)：tileX=byte[0x40D344(dword[+0x04])]+dx、tileY 同；byte[0x505FDC]!=0 走 0x1E000 + 0x40155F，否则 0x401617；index=0x403789(x,y)、dest=base+index*0x1B00；附加 +0xC80/+0x12C0/+0x1F40 子区与全局格数组 0x4BE880；flag=byte[0x4B3D08+5]&1；四个像素坐标 ×0x30 后交 0x41E5DB。",
+      "constants": [
+        "0x4B4250",
+        "0x30",
+        "0x04",
+        "0x08",
+        "0x14",
+        "0x18",
+        "0x54",
+        "0x55",
+        "0x61",
+        "0x28",
+        "0x64",
+        "0x68",
+        "0x1B85",
+        "0x4CEA08",
+        "0x4B422C",
+        "0x4B422D",
+        "0x505FDC",
+        "0x45503F",
+        "0x454CEF",
+        "0x45461C",
+        "0x45218F",
+        "0x47FAD0",
+        "0x476882",
+        "0x40D344",
+        "0x403789",
+        "0x4BE880",
+        "0x4B3D08",
+        "0x1E000",
+        "0xC80",
+        "0x12C0",
+        "0x1F40"
+      ],
+      "identity": "字段访问集合：6.4/6.5/6.6 各 19 项且偏移一致；载入点 292/254/180；6.6 独占 +0x6D（0xFF 初值）；+0x64/+0x68 仅见读取（0x412F84/0x412F9B/0x43E823）。",
+      "limitations": [
+        "+0x20/+0x22 的具体数值（640/480）为行为推断，文件映像无静态初值。",
+        "+0x2C/+0x30 的“目标/中心”命名未取得文案证据。",
+        "+0x64/+0x68 的写入路径（配置/存档）未定位。",
+        "6.6 的 +0x3C 是否仍存在未证明。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.grid-dimension-pair.3ef7",
+        "mechanism.65.item-effect-code-and-range-table.3ef7",
+        "mechanism.65.battle-unit-table.3ef7",
+        "mechanism.65.battle-mode-byte.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-battle-viewport-context-20261112",
+        "src.research.engine-viewport-center-20261112",
+        "src.research.engine-scroll-setter-20261112",
+        "src.research.engine-scroll-preprocess-20261112",
+        "src.research.engine-scroll-core-20261112"
+      ],
+      "siteAddresses": {
+        "base": "0x4B4250",
+        "divideHelper": "0x40BAD4",
+        "screenToTile65": "0x40DB90",
+        "tileToScreen65": "0x40EB26",
+        "viewportCenter": "0x45503F",
+        "widthGetter": "0x455E44",
+        "heightGetter": "0x455E6B",
+        "rectInit": "0x47B43C",
+        "targetSetter": "0x47B739",
+        "mapLoad": "0x4D1174",
+        "panelDraw": "0x40BAAA"
+      }
+    }
+  ]
+}

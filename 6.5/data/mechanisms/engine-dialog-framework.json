@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.dialog-framework.3ef7",
+      "title": "通用模态对话框框架：模板 332/340/341、DlgProc 0x46D0F8、分派器 0x46D221 与状态字节 0x48E8C1",
+      "aliases": [
+        "dialog framework",
+        "通用对话框框架",
+        "0x418C34",
+        "0x46D0F8",
+        "0x46D221",
+        "0x487410",
+        "0x48E8C1",
+        "DialogBoxParamA",
+        "RT_DIALOG"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x418C34 是通用「是/否」确认框包装：ConfirmDialog(parent, text, caption, mode) 先以 0x475600 在栈上构造 vtable=0x487410 的对象，0x46F982 写入 +0x0C=mode、+0x10=text、+0x14=caption，再由 0x46D098 调用 DialogBoxParamA(hInstance=dword[0x4B6A60], 模板 0x154, parent, DlgProc=0x46D0F8, dwInitParam=&obj)；返回码 6（IDYES/「是」）时返回 1。模板 340 布局：是=ID 6、否=ID 7、图标静态控件 ID 0xFFFF（ord 137）、正文静态控件 ID 0x534；标题 6.5=三国志曹操传、6.4=三国志刘备传、6.6 同 6.4。0x46D0F8 在 WM_INITDIALOG 建 0x4B68E8 辅助对象并写 [obj+4]=hwnd，随后把消息交给 0x46D221；0x46D221 的消息表：0x2→vt+0x14、0x110→vt+0x08 与 vt+0x0C、0x111→取消/0x42F 特殊路径与 vt+0x10、0x30F→0x47252B+vt[0]、0x135/0x136/0x138→vt+0x20/+0x18/+0x1C、0x311→0x403B14、默认→vt[0]。vt[0]=0x46F2E7 在 WM_COMMAND 时 EndDialog(hwnd, wParam&0xFFFF)，所以按钮 ID 直接成为返回码。模板 332 为功勋点数分配框（26 控件：1030..1034 五维标签、2006..2010 数值、2022..2026 加、2027..2031 减、2011 点数、2001 重置、2 确认、1235 人物列表），由 0x418BC8 打开并把 0x48E8C1 置 1；模板 341 为历史情报框（6.5 列表+「信息筛选」，6.6 改为 SysTabControl32），由 0x41C3D7 打开并把 0x48E8C1 置 2。0x48E8C1 即模态对话框状态字节（0=空闲/1=332/2=341）。6.6 的 DlgProc 增加客户区拖动（WM_LBUTTONDOWN 0x201→SendMessageA 0xA1/2）与自定义消息 0x591，并把 WM_COMMAND 拆到 0x46D345（含 0xAD9、0x14、0x42F 常量与 0x42CA5E 类判定）。6.5/6.4 的对话框 9pt 宋体由 0x42124E（固定字面 0x48B6CC、charset 0x86、outPrecision 4）创建，6.6 改为 0x42A269→0x41EBA3(face=0x500030)。",
+      "constants": [
+        "0x418C34", "0x46F982", "0x46D098", "0x46D0F8", "0x46D221", "0x475600", "0x487410",
+        "0x418BC8", "0x41C3D7", "0x41C412", "0x41C43B", "0x48E8C1",
+        "0x4B68E8", "0x4B6A60", "0x4B6A68", "0x4BE006",
+        "0x46F2E7", "0x46F335", "0x46D207", "0x42B510", "0x4758A0", "0x4758B0",
+        "0x48C8D8", "0x48B6CC", "0x42124E", "0x42A269", "0x41EBA3", "0x500030",
+        "0x14C", "0x154", "0x155", "0x534", "0x137", "0x06", "0x07", "0xFFFF",
+        "0x02", "0x110", "0x111", "0x135", "0x136", "0x138", "0x201", "0x30F", "0x311", "0x42F", "0x591", "0xA1", "0xAD9", "0x14",
+        "0x42CA5E", "0x005A", "0x0048", "0x0190", "0x0086", "0x0004", "0x410EED", "0x40DF20", "0x46254D", "0x462650", "0x462696", "0x4746AD", "0x412A5F", "0x47252B", "0x403B14", "0x42BA77", "0x42CB42", "0x46D345", "0x415FA4", "0x46FFE9"
+      ],
+      "identity": "0x46D098 的 5 个压栈槽位与 DialogBoxParamA 的 5 个参数逐项对应，第 5 参数取 0x46D098 入口保存的 ecx（即 0x418C34 的栈对象）；0x46F2E7 调 EndDialog 的 nResult=wParam&0xFFFF，与模板 340 的按钮 ID 6/7 及 0x418C34 的 cmp eax,6 形成闭环；RT_DIALOG 340 标题分别与三基底 0x48C8D8 缺省标题一致。",
+      "siteAddresses": {
+        "confirmWrapper": "0x418C34",
+        "objectCtor": "0x475600",
+        "objectVtable": "0x487410",
+        "objectInit": "0x46F982",
+        "dialogBoxCall": "0x46D098",
+        "dialogProc": "0x46D0F8",
+        "messageDispatcher": "0x46D221",
+        "defaultHandler": "0x46F2E7",
+        "initLayout": "0x46F335",
+        "destroyHandler": "0x46D207",
+        "editDialogWrapper": "0x418BC8",
+        "historyDialogLauncher": "0x41C3D7",
+        "dialogStateByte": "0x48E8C1",
+        "helperObjectGlobal": "0x4B68E8",
+        "hInstanceGlobal": "0x4B6A60",
+        "mainWindowGlobal": "0x4B6A68",
+        "templateConfirm": "0x154",
+        "templateEdit": "0x14C",
+        "templateHistory": "0x155",
+        "messageTextControl": "0x534",
+        "confirmButton": "0x06",
+        "cancelButton": "0x07",
+        "defaultCaption": "0x48C8D8",
+        "dialogFontWrapper65": "0x42124E",
+        "dialogFontFace65": "0x48B6CC",
+        "dialogFontHelper66": "0x42A269",
+        "commandHelper66": "0x46D345",
+        "classProbe66": "0x42CA5E"
+      },
+      "limitations": [
+        "0x4BE006 指向的结构未展开（6.6 DlgProc 新增分支门控）。",
+        "0x42CA5E（6.6 WM_COMMAND 中比较的虚函数指针）对应哪个派生对话框类未定。",
+        "模板 341 宿主函数 0x41C3D7 的 0x42F699 文本路径未解析。",
+        "模板 332 各控件与 0x418BC8 回调的具体读写未逐条追踪。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.file-io-wrappers.3ef7",
+        "mechanism.65.font-name-table.3ef7",
+        "mechanism.65.save-load-constants.3ef7",
+        "mechanism.65.global-ui-state-block.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-dialog-framework-20261112"
+      ]
+    }
+  ]
+}

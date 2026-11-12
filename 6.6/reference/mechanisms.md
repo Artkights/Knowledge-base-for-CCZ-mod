@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.6/data/mechanisms/data-manager-formulas.json`、`6.6/data/mechanisms/engine-effect-assignment-and-composition.json`、`6.6/data/mechanisms/f36-shanzai-ollydbg-research.json`、`6.6/data/mechanisms/local-review-20261028.json`、`6.6/data/mechanisms/shanzai-20261027-mechanisms.json`、`6.6/data/mechanisms/xiaoan-speed-chain.json`
+结构化事实来源：`6.6/data/mechanisms/data-manager-formulas.json`、`6.6/data/mechanisms/engine-effect-assignment-and-composition.json`、`6.6/data/mechanisms/f36-shanzai-ollydbg-research.json`、`6.6/data/mechanisms/local-review-20261028.json`、`6.6/data/mechanisms/reclassified-66.json`、`6.6/data/mechanisms/shanzai-20261027-mechanisms.json`、`6.6/data/mechanisms/strategy-attribute-tables.json`、`6.6/data/mechanisms/xiaoan-speed-chain.json`
 
 ## 6.6 公式与常量读取、签名重定位及同值字段契约
 
@@ -7804,6 +7804,48 @@ ID: `mechanism.shared.effect-nine-concept-evidence-layers`；状态: `candidate`
 
 后缀仅写项目目录；原生槽位无消费者证据保持只读。代码改绑仍执行现有字段写入契约。
 
+## 6.6 地图格标志数组 0x4934B0 与物品计数数组 0x493AF0
+
+ID: `mechanism.65.cell-flag-item-count.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4934B0 是 6.6 独有地图格标志字节数组（1 字节/格，索引 = 0x403789 的 y*width+x；数组长度至少 0x640=1600（40×40），bit0=地形/状态判定位（0x41D716 决定是否按 50% 缩放），bit2/bit3=移动范围/路径标记（0x42AAA5 清除 0xC、0x42A47F 以 0xD 统计），位1/4..7 未使用），被 0x42A2AF 全图扫描（0x501BD2>=2 门控）、0x41D716 判定与 0x42AAA5 清除使用。0x493AF0 是 6.6 独有物品计数数组（索引 = 物品 ID-0xA0，0x408E96 循环 0..0x15F 覆盖物品 ID 0xA0..0x1FF；0xFF 为上限，0 表示未拥有），被 0x408E96 的拥有物品枚举（+0xA0 后经 0x4837C2 取物品记录）与 0x420299 的钳位增减使用。
+
+
+## 文件 I/O 包装：CreateFileA 包装 0x418F5C 与路径拼接 0x418ED4
+
+ID: `mechanism.65.file-io-wrappers.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x418F5C 是 CreateFileA 包装：0x418ED4 先用 GetCurrentDirectoryA(0x104) 拼绝对路径，再以 0x419019 的 7 项 access 表（0x80000000/0x40000000/0xC0000000 循环）映射 mode→dwDesiredAccess，share=1、OPEN_EXISTING=3、flags=0x80、hTemplate=0，失败重试最多 5 次。AutoDll.ini 读取（0x4069B0）使用 mode=1。注：第84轮曾把 0x418C34 记为文件对象包装，第86轮已更正——0x418C34 是 DialogBoxParamA(模板 0x154) 的确认框包装，vtable 0x487410 属于对话框对象，详见 mechanism.65.dialog-framework.3ef7。
+
+
+## 6.6 Z 键热补丁开关 0x500ADB 与 7 处代码改写
+
+ID: `mechanism.65.hotpatch-toggle-66.3ef7`；状态: `candidate`；证据: `static-verified`
+
+6.6 独占函数 0x4250E6 由键盘处理函数 0x413296 在按键码 eax==0x5A（'Z'）时调用：先检查后台线程忙标志 byte[0x500E0C]，为 0 则置 1，随后 xor byte[0x500ADB],1；为 1 时把 7 处代码改写为“跳过”版本，为 0 时恢复原始字节。改写包括 3 个函数入口改为 ret n（0x42DB2C→ret 4、0x42D5B0→ret 0xC、0x4332A6→ret 0x10）和 4 处调用/循环跳过（0x415B40、0x42C4EF、0x42C812、0x455CE5）。6.5/6.4 中不存在该开关。
+
+
+## 6.6 独占文本提示对话框类：0x42CA5E 回调、构造 0x42C992、模板 342
+
+ID: `mechanism.65.msg-dialog-class-66.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x42CA5E 是 6.6 独占对话框类对象的 +0xC 创建期回调（6.5 同址为 NOP）。构造器 0x42C992 位于脚本子命令表 0x47D8DF 第 34 项（主操作码 0x72 的子命令）：以 0x42C6C5(stream,2,4,&buf) 读 2 个 dword，把第 2 个经 0x42C9FC(9,param2,buf) 生成 0x398 文本区（0x417DF6 解析 '*' 与 '\n&'），再由 0x40E03D 取对象，写 +4=0x4758A0、+0xC=0x42CA5E 后用 0x46D098(this,0x156=342,hwnd) 打开对话框。0x46D098 = DialogBoxParamA(hInstance=[0x4B6A60], template, parent, proc=0x46D0F8, initParam=this)；0x46D0F8 处理 WM_INITDIALOG(0x110)、WM_LBUTTONDOWN(0x201) 与自定义 0x591（关闭，转 0x4C0600），其后按对象 +4/+0xC 回调分派。对话框 342 为 DLGTEMPLATE 158×60、9pt 宋体、2 控件：id=0xFFFF 图标/图片（class ord 130、text ord 137、10,10,21,21）与 id=10「确定」（3,43,37,14）。返回后构造器把回调改为 +4=0x46E81F、+0xC=0x42B510。类型判定 0x46D34C 以 [obj+0xC]==0x42CA5E 识别该类。
+
+
+## 6.6 文本对象表 0x512640（40×0x30）与掩码文字绘制链
+
+ID: `mechanism.65.text-object-table.3ef7`；状态: `candidate`；证据: `static-verified`
+
+6.6 新增 40 条 × 0x30 字节的文本对象表 0x512640，仅由 0x41EB3E(index)=index*0x30+0x512640 索引（6.4/6.5 无该地址引用）。字段：+0x00 有效标志（0 跳过）、+0x17 调色板颜色索引、+0x18 附加样式、+0x19 字体索引（0x500030 五项）、+0x1A 字号、+0x1B 样式位（bit3 使字重 0x190→0x2BC）、+0x20 绘制前清 0 的临时标志、+0x24 打包坐标（y<<16|x）。绘制链 0x429ECC：GetDC/CreateCompatibleDC → 0x41EB48 以 byte[+0x19]/[0x1A]/[0x1B] 建字体 → 0x42B054 量文本（上限 0x28=40）→ 0x41EA66 建 1bpp 掩码 DIB（宽按 32 对齐）→ 0x41EAD3 设 SetBkColor(0xFFFFFF)/SetTextColor(0) → 0x42AEC7 以 0x4CB1C0 调色板把每 bit 扩展为 RGB（空位写透明色 0x00F700FF）→ BitBlt。调度器 0x429F77 遍历 0..0x27 共 40 条；0x42B049 在文本缓冲处理后同样调用。写入方为 0x42AF6F 命令解析器：0x426E64 读索引，>=0x28 跳过；0x41EB3E(index) 取记录后，若命令后紧跟 '0' 则把 [rec+0x00] 置 0 停用并对 rec+0x20 调 0x47F9C3，否则 [rec+0x20]!=0（临时忙）直接返回；再以 '*' 开头解析编号 n 并从字符串指针表 0x506000 取 dword[n] 指针，按 UTF-16 逐字拷入记录文本区（遇 NUL/0x0A 停止）。
+
+
+## 地图可见矩形缓存 0x501BF0（脚本操作码 0x72 子命令 31）与 0x423842 的 edx 隐式来源
+
+ID: `mechanism.65.viewport-size-cache.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x501BF0 是 6.6 的地图可见矩形缓存（dword 四字节 b0=left、b1=top、b2=width、b3=height，0 表示不受限）。唯一写入者 0x42D260：经 0x42C6C5(stream,4,1,&dst) 逐字节读 4 字节，0x40B922 判定 0x41EDEF(0x4AC63C)==3（章节 3）后才比较并写入；写入后仅用高字解宽高，width*0x30 → 0x4B4250+0x34、height*0x30 → +0x38，为 0 时回退 word[0x4B422C] 网格尺寸，随后 0x47BBC0/0x454B7E 重绘。写入链上游：子命令分派器 0x47D89E 经表 0x47D8DF 第 31 项调用 0x42D260，而 0x47D89E 位于主脚本处理表 0x410A38 的操作码 0x72 项。消费：0x4362E6 为点-矩形判定（dl/dh 左上、cl/ch 宽高，0 视为内；调用点 0x4386CE/0x459375），其余 6 处（0x442013、0x451AB9、0x45473A、0x454CF3、0x460ECE、0x47BF54）作为绘制/计算参数传入 0x42C075/0x47FD13 等。另 0x423842 的 edx（×1000 计价）不是显式参数，而是 0x42DE7D→0x473613→0x401692→0x47D1F1 链末寄存器残留，静态无法确定其稳定语义。
+
+
 ## 6.6 集气模式（4018）判定链：双门、两套公式与必中
 
 ID: `mechanism.66.qi.judgement`；状态: `canonical`；证据: `sample-verified`
@@ -7824,6 +7866,28 @@ ID: `mechanism.66.qi.judgement`；状态: `canonical`；证据: `sample-verified
 补充说明：
 
 字节证据于 2026-10-27 在本画像样本现读（双门、B2 0C、连击免写回、跳转表、25 下限、73 0C 跳过、必中点全部命中）。公式语义与模式取值来自本地页 `03-机制详解/集气模式-闪避暴击连击.md`，该页另记 2026-10-14 探针实机命中 822 次；本次未重跑实机。
+
+## 策略属性子表：6.6 0xA2CE0 语义漂移与效果类扩容
+
+ID: `mechanism.66.strategy-attribute-tables.25d`；状态: `canonical`；证据: `static-verified`
+
+6.6 与 6.5 共用 0xA2CE0..0xA31F0 的 144 字节表偏移，但 0xA2CE0 从填充区变成真实标志表，0xA2D70 效果类上限从 0x24 扩到 0x29，0xA2FB0 仍是 AI 类别位掩码。
+
+
+补充说明：
+
+- 6.6 的 0xA2CE0 不是“策略扩展标记”的模糊描述，而是 bit0/bit1 实际参与 AI 选择与特殊处理的标志表。
+- 表映射：0xA2CE0 真实标志；0xA2D70 效果类（上限 0x29）；0xA2E00 战场AI；0xA2E90 练武场AI；0xA2F20 命中模式；0xA2FB0 AI类别位掩码；0xA3040 伤害百分比；0xA30D0 伤害门控；0xA3160 小动画；0xA31F0 大动画。
+- 0x41DCE6/0x465B66 的 bit0 决定 AI 是否接受策略；0x41A11F 的 bit1 置位时 call 0x45D316(2)；bit1=策略穿透增强适用，bits2-7 未使用。
+- 6.6 Profile 继承 6.5 的 0xA2FB0 偏移是正确的，但名称“效果索引”仍然错误；它仍是 AI 类别位掩码。
+- 0x4D1570 在 6.6 同时服务效果类分派与状态派发，修改前必须同时核对两条消费者。
+- 6.6 仍只把 68 条策略记录加载到 0x4A3E77；文件 144 行中后 76 行不在运行时数组内。
+- 0x45D343 策略穿透增强映射表：01 02 03 08 07 05 06 05 06 02 0A；0x45D36A 以 al+0xA7-1 把输入 2 映射为特效号 0xA8，0x45D316 再按穿透码查表。
+
+## 6.6 strategy-extension：模仿/AI 与策略穿透增强的逐策略标志
+
+ID: `mechanism.66.strategy-extension-flags.25d`；状态: `candidate`；证据: `static-verified`
+
 
 ## 小暗 S 超级加速等待链
 

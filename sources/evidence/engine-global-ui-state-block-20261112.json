@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "analysis": "global-ui-state-block-500aac",
+  "date": "2026-11-12",
+  "method": "以 refs_to.py / range_refs.py 统计 6.6 0x500AAC..0x500AE0 与 6.5 0x4CE74C..0x4CE7FE 的全部立即数/位移引用，用 context.py 反汇编消费函数；导入表（pefile）解析 0x486124/0x4862DC/0x4862F4 等 IAT 名称；对 6.6 独有的热补丁函数 0x4250E6 逐条比对补丁前/后字节。仅静态分析，不运行游戏。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8", "usage": "仅用于 0x5005A0 动作码全局对照"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "imports": {
+    "0x486124": "KERNEL32.dll!LoadLibraryA",
+    "0x4862DC": "USER32.dll!GetDlgItem",
+    "0x4862E0": "USER32.dll!ShowWindow",
+    "0x4862F4": "USER32.dll!SendMessageA",
+    "0x48613C": "KERNEL32.dll!CreateThread",
+    "0x486108": "KERNEL32.dll!CloseHandle",
+    "0x486260": "USER32.dll!GetActiveWindow",
+    "0x486374": "USER32.dll!CreateWindowExA",
+    "0x48637C": "USER32.dll!SetParent"
+  },
+  "fields": [
+    {
+      "address66": "0x500AAC", "size": 4, "address65": "0x4CE76C", "address64": null,
+      "semantic": "列表框当前项索引",
+      "confidence": "high",
+      "evidence": "0x41A155 函数：SendMessageA(GetDlgItem(hDlg,0x403), 0x199=LB_GETITEMDATA, dword[0x500AAC], 0)；0x44D578 push 0x500AAC 取地址；0x44D6E6 cmp dword[0x500AAC],ecx。",
+      "refs66": ["0x41A175", "0x44D57D", "0x44D796"],
+      "refs65": ["0x41A175", "0x44D57D", "0x44D796"]
+    },
+    {
+      "address66": "0x500AB0", "size": 4, "address65": "0x4CE74C", "address64": null,
+      "semantic": "动作/物品处理参数缓存 = [ctx+0xC]-2（动作码==1 分支）",
+      "confidence": "medium",
+      "evidence": "0x4109E6 函数在 cmp eax,0x7B 分派前把 [edx+0xC]-2 写入 0x500AB0；6.5 同址写 0x4CE74C（cmp 上限为 0x79）。",
+      "refs66": ["0x410A0B"],
+      "refs65": ["0x410A0B"]
+    },
+    {
+      "address66": "0x500AB4", "size": 4, "address65": "0x4CE75C", "address64": null,
+      "semantic": "目标/坐标缓存 = [ctx+0xC]+0x40FCB2(ctx)（[ctx+0x14]<0 时）",
+      "confidence": "medium",
+      "evidence": "0x410857 函数：call 0x40FCB2 后 edx=eax+[ecx+0xC]，写入 0x500AB4；6.5/6.4 同址写 0x4CE75C（字节模式 8b d0 03 51 0c 89 15 完全一致）。",
+      "refs66": ["0x41088B", "0x416C62"],
+      "refs65": ["0x41088C"]
+    },
+    {
+      "address66": "0x500AB8", "size": 2, "address65": "0x4CE78C", "address64": null,
+      "semantic": "提示/对象 word 缓存（显示前比较，变化时刷新）",
+      "confidence": "medium",
+      "evidence": "0x4301FA：eax=0x500AB8；cmp dx,word[eax]；不等则 mov word[eax],dx 并调 0x41E5DB(0x492F38)。0x427739 亦以 cmp ax,word[0x500AB8] 判定。6.5 同址 mov eax,0x4CE78C。",
+      "refs66": ["0x42777B", "0x4301FE", "0x430205", "0x43020E"],
+      "refs65": ["0x430216"]
+    },
+    {
+      "address66": "0x500ABC", "size": 4, "address65": "0x4CE7AC", "address64": null,
+      "semantic": "CmdIcon.dll 模块句柄（LoadLibraryA 返回值）",
+      "confidence": "high",
+      "evidence": "0x475264 窗口创建函数：call [0x486124]=LoadLibraryA，参数 0x48E748 字符串为 \"CmdIcon.dll\"；返回值写入 0x500ABC。0x42B1D1/0x452D88 push 该句柄；0x47531B 为写入点，6.5 同址写 0x4CE7AC。",
+      "refs66": ["0x42B1D1", "0x452D88", "0x47531B"],
+      "refs65": ["0x452D88", "0x47531B", "0x43B472"]
+    },
+    {
+      "address66": "0x500AC0", "size": 4, "address65": "0x4CE7CC", "address64": null,
+      "semantic": "当前战场单位指针",
+      "confidence": "high",
+      "evidence": "setter 0x406240：and byte[ecx+0x24],0x7F；mov eax,[ecx]；mov [0x4B5DF0],eax；mov [0x500AC0],ecx。消费 0x421CD6：ecx=[0x500AC0]；cmp byte[ecx+0xE],7。6.5 消费点 0x421D08 读 0x4CE7CC；6.5 setter 0x43C934 另写 0x4CE7DC。6.6 将 0x4CE7CC/0x4CE7DC 合并为 0x500AC0。",
+      "refs66": ["0x40624B", "0x4128B3", "0x412F4A", "0x419D79", "0x41BC19", "0x421CF7", "0x43F8CF", "0x451F6D", "0x459982", "0x45BB2F"],
+      "refs65": ["0x41289E", "0x412F37", "0x419D6D", "0x41BC16", "0x421D08", "0x4237D0", "0x43F8C0", "0x459950", "0x45BAB7"]
+    },
+    {
+      "address66": "0x500AC8", "size": 4, "address65": "0x4CE7EC", "address64": null,
+      "semantic": "当前行动单位指针缓存（5 个行动处理函数写入）",
+      "confidence": "medium",
+      "evidence": "0x43F5FF/0x43F62B/0x43F657/0x43F683/0x43F6AF 五个函数入口均 mov [0x500AC8],ecx；读取 0x426A31 mov ecx,[0x500AC8]，随后 0x426A07 读 word[ecx] 并 cmp ax,0x1000。6.5 同址写 0x4CE7EC。",
+      "refs66": ["0x426A31", "0x43F602", "0x43F62E", "0x43F65A", "0x43F686", "0x43F6B2"],
+      "refs65": ["0x426A31", "0x43F602", "0x43F62E", "0x43F65A", "0x43F686", "0x43F6B2"]
+    },
+    {
+      "address66": "0x500ACD", "size": 1, "address65": null, "address64": "0x5005A0",
+      "semantic": "当前动作码（跳转表 0x409693 分派前写入，返回后清零）",
+      "confidence": "high",
+      "evidence": "0x403936：al=0x4183F7(obj,4) 结果；不等 0x80000000 时 mov [0x500ACD],al；call [eax*4+0x409693]；随后 mov byte[0x500ACD],0。6.4 同位置宏为 0x5005A0（0x40394E/0x40395C）；6.5 改用栈上结构（[esi+1]=al、[esi]=1）。消费：0x40C2AD 依此加载 GetDlgItem 资源 0x7E4..0x7E5 并 ShowWindow；0x41FDE0 加载资源 0x7E2.. 并以 0x5083FF 格式化。",
+      "refs66": ["0x40394A", "0x403956", "0x40C2B2", "0x41FE24"],
+      "refs65": ["0x40C2B2", "0x41FE25"],
+      "note65": "6.5 不使用全局：0x40395A 处把 al 存到 [esi+1]、1 存到 [esi]（栈上结构），无静态地址可引用。",
+      "refs64": ["0x40394E", "0x40395C", "0x40C2B2", "0x4132CC", "0x41FE25"]
+    },
+    {
+      "address66": "0x500ACE", "size": 1, "address65": "0x4CE78E", "address64": null,
+      "semantic": "嵌套动作/重入计数（0 时返回 0xFF 哨兵）",
+      "confidence": "high",
+      "evidence": "0x421CD6：条件满足时 inc byte[0x500ACE]，调用 0x438484 后 dec；0x405DA7：cmp byte[0x500ACE],0；为 0 时返回 0xFF。6.5 同一函数 0x421CE7 使用 0x4CE78E。",
+      "refs66": ["0x405DB0", "0x421D0B", "0x421D2F", "0x421D6F", "0x4384C8", "0x43A55E"],
+      "refs65": ["0x42167E", "0x421D1C", "0x421D40", "0x421D71", "0x4384B1", "0x43A55E"],
+      "note65": "6.5 无 0x405DA7 的 0xFF 哨兵读取，唯一区别是 6.6 新增该消费点。"
+    },
+    {
+      "address66": "0x500ACF", "size": 1, "address65": "0x4CE78F", "address64": null,
+      "semantic": "存档页码",
+      "confidence": "high",
+      "evidence": "第 40 轮已确认；本轮复核 6.6 0x4052A4/0x4056C9 与 6.5 0x4052A4/0x4056C6 同址读取，用于 SV%03u.E5S 文件名。",
+      "refs66": ["0x4052A4", "0x4056C9", "0x412AC3", "0x41615A", "0x4181AE", "0x41C46B", "0x4288FE", "0x47B6E9", "0x47B71F"],
+      "refs65": ["0x4052A4", "0x4056C6", "0x40CB11", "0x40CB8F", "0x40CBC2", "0x412AC1", "0x41615F", "0x41C46B", "0x4288FE"]
+    },
+    {
+      "address66": "0x500AD0", "size": 1, "address65": "0x4CE77C", "address64": null,
+      "semantic": "对话框/模态打开标志（重入保护）",
+      "confidence": "medium",
+      "evidence": "0x474C97 模态处理入口先 mov byte[0x500AD0],1、退出前 dec；0x4665D4/0x466EE8/0x468297 等 cmp byte[0x500AD0],0；0x4671B1/0x467F3D/0x4680DE push 该字节作为参数。6.5 同址使用 0x4CE77C（12 处，Jaccard 0.82 主锚点）。",
+      "refs66": ["0x4665D4", "0x466EE8", "0x4671B1", "0x46773E", "0x467B0E", "0x467BC4", "0x467F3D", "0x4680DE", "0x468297", "0x474DB5", "0x474DC7"],
+      "refs65": ["0x4665D4", "0x466EE8", "0x4671B1", "0x46773E", "0x467B0E", "0x467BC8", "0x467F3D", "0x46801D", "0x4680DE", "0x468297", "0x474DB5", "0x474DC7"]
+    },
+    {
+      "address66": "0x500AD1", "size": 1, "address65": "0x4CE77D", "address64": null,
+      "semantic": "对话框选择结果字节",
+      "confidence": "medium",
+      "evidence": "0x478664 对话框函数 push dword[0x500AD1]；0x478F7B mov byte[0x500AD1],al；0x479164 movzx eax,byte[0x500AD1] 后按 0/1/2 分支 ShowWindow/SetParent。6.5 同址 0x4CE77D。",
+      "refs66": ["0x478805", "0x47905A", "0x4792DB"],
+      "refs65": ["0x478805", "0x479087", "0x4792DB"]
+    },
+    {
+      "address66": "0x500AD2", "size": 1, "address65": "0x4CE77E", "address64": null,
+      "semantic": "当前 UI 命令/对话框 ID（WndProc 使用）",
+      "confidence": "high",
+      "evidence": "0x401216：mov byte[0x500AD2],al（al=0x419141(obj+4)）；0x44D4D2 为窗口过程，movzx eax,byte[0x500AD2] 作为参数，且 cmp ax,0x111（WM_COMMAND）分支。6.5 同址 0x401224 写 0x4CE77E。",
+      "refs66": ["0x401224", "0x44D4D9", "0x47C0AC"],
+      "refs65": ["0x401224", "0x44D4D9", "0x47C0AC"]
+    },
+    {
+      "address66": "0x500AD3", "size": 1, "address65": "0x4CE77F", "address64": null,
+      "semantic": "伤害应用/战斗动作标志",
+      "confidence": "high",
+      "evidence": "0x411072 伤害落点函数内 mov byte[0x500AD3],1 与恢复；0x40EB7E 同样置 1/0；0x403A6F 读取：为 0 时调用 0x4101D9(0x36,0,1,1)。6.5 同址使用 0x4CE77F（0x411159/0x411173、0x40EB92/0x40EBA9）。",
+      "refs66": ["0x403A72", "0x40EB90", "0x40EBA9", "0x411157", "0x411170"],
+      "refs65": ["0x403A72", "0x40EB92", "0x40EBA9", "0x411159", "0x411173"]
+    },
+    {
+      "address66": "0x500AD4", "size": 2, "address65": "0x4CE79C", "address64": null,
+      "semantic": "双阵营字节状态对（+0x00/+0x01 两字节）",
+      "confidence": "medium",
+      "evidence": "0x4121E2 初始化 mov word[0x500AD4],0 并 call 0x4061E4(0x3FF)；0x41240B mov eax,0x500AD4，arg!=0 时 inc eax，随后 movzx ecx,byte[eax] 按阵营取字节。6.5 同址 0x4CE79C。",
+      "refs66": ["0x4121EA", "0x41241D"],
+      "refs65": ["0x41222E", "0x41241D"]
+    },
+    {
+      "address66": "0x500AD6", "size": 1, "address65": "0x4CE79E", "address64": null,
+      "semantic": "界面/战斗计数（成对 inc/dec，==1 分支）",
+      "confidence": "low",
+      "evidence": "0x403659 inc/dec；0x426146 cmp==1；0x42C59F cmp==1。6.5 与 6.6 同址同逻辑（0x4CE79E）。",
+      "refs66": ["0x403673", "0x40367C", "0x40368E", "0x426146", "0x42C59F"],
+      "refs65": ["0x403673", "0x40367C", "0x40368E", "0x426146", "0x42C58E"]
+    },
+    {
+      "address66": "0x500AD7", "size": 1, "address65": "0x4CE79F", "address64": null,
+      "semantic": "UI 模式字节（0/1/2/3）",
+      "confidence": "high",
+      "evidence": "0x41268E 设 2/1/0；0x414E29 设 2/0；0x4151FE 设 3/0；0x4404B2/0x440EB6/0x454269/0x45533D 比较 1/2/3。6.5 同址（0x425E50/0x4404B2/0x440EB6 等）使用 0x4CE79F。更正第 67 轮 manualKnownPairs 将此字段误记为 0x500AD3。",
+      "refs66": ["0x4126A7", "0x4126B4", "0x412788", "0x414E36", "0x414EFA", "0x41523A", "0x4153BE", "0x425E5A", "0x425E68", "0x436251", "0x4362A3", "0x43C02D", "0x4406B6", "0x44072B", "0x440FC5", "0x4412AC", "0x4543BB", "0x45539F", "0x455434", "0x455457", "0x455484", "0x4555EC", "0x45761C"],
+      "refs65": ["0x41269F", "0x4126BB", "0x41279A", "0x414E31", "0x414F01", "0x415241", "0x4153E7", "0x425E5E", "0x425E6C", "0x43624F", "0x4362A1", "0x43C033", "0x4406B6", "0x44072B", "0x440FC5", "0x4412B5", "0x4543C2", "0x45539F", "0x45543E", "0x455461", "0x455494", "0x4555EC", "0x457520"]
+    },
+    {
+      "address66": "0x500AD8", "size": 2, "address65": "0x4CE7BC", "address64": null,
+      "semantic": "输入/光标状态字（键盘处理写入；与 0x0301 比较）",
+      "confidence": "medium",
+      "evidence": "0x413296 键盘处理：call [0x486260]=GetActiveWindow，cmp [0x4B6A68]（主窗口），输入字符 0x20 过滤；随后 mov byte[0x500AD8],al、mov word[0x500AD8],ax；0x4134DA cmp byte[0x500AD8],al；0x42DB12 cmp word[0x500AD8],0x301。6.5 同址 0x4CE7BC。",
+      "refs66": ["0x41334D", "0x41335A", "0x4134DF", "0x41B9C3", "0x41B9D1", "0x41BEAD", "0x422696", "0x422B43", "0x42DB1F", "0x4750E3"],
+      "refs65": ["0x41334D", "0x41335A", "0x4134DF", "0x41B9C3", "0x41B9D1", "0x41BEAD", "0x422699", "0x422B37", "0x42D7E2", "0x4750E4"]
+    },
+    {
+      "address66": "0x500ADA", "size": 1, "address65": "0x4CE7BE", "address64": null,
+      "semantic": "有效物品计数",
+      "confidence": "high",
+      "evidence": "第 55/60 轮已确认；本轮复核 6.6 写入 0x427AC0（6.5 0x423E27），读取 0x470B69/0x470CCB 与 6.5 同址。",
+      "refs66": ["0x427AC0", "0x470B69", "0x470CCB"],
+      "refs65": ["0x423E27", "0x470B69", "0x470CCB"]
+    },
+    {
+      "address66": "0x500ADB", "size": 1, "address65": null, "address64": null,
+      "semantic": "热补丁开关（Z 键切换，改写 7 处代码字节）",
+      "confidence": "high",
+      "evidence": "唯一引用 0x4250E9（函数 0x4250E6）：xor byte[0x500ADB],1；==1 时写入补丁字节，否则恢复原始字节。调用点 0x4132E3 仅在 eax==0x5A（VK 'Z'）时进入。",
+      "refs66": ["0x4250E9", "0x4250FF", "0x425102"],
+      "refs65": [],
+      "refs64": []
+    },
+    {
+      "address66": "0x500ADC/0x500ADD", "size": 2, "address65": "0x4CE7FC/0x4CE7FD", "address64": null,
+      "semantic": "两位十进制数（十位/个位）；getter = b0*10+b1",
+      "confidence": "high",
+      "evidence": "0x40A32C：movzx edx,byte[0x500ADC]；imul eax,edx,0xA；add eax,byte[0x500ADD]；ret。0x42626D mov word[0x500ADC],ax 一次写两位。6.5 同址 0x4CE7FC/0x4CE7FD。",
+      "refs66": ["0x40A32C", "0x40A336", "0x426322", "0x426285"],
+      "refs65": ["0x40A32C", "0x40A336", "0x426322", "0x426285"]
+    },
+    {
+      "address66": "0x500ADE", "size": 1, "address65": "0x4CE7FE", "address64": null,
+      "semantic": "AutoDll.ini 启用标志（自动 DLL 插件配置读取结果）",
+      "confidence": "high",
+      "evidence": "0x4069B0：push \"AutoDll.ini\"（0x48B7EF）、push 1、call 0x418F5C、call 0x418ED4，结果 al 于 0x406A04 写入 0x500ADE。消费：0x42626D cmp byte[0x500ADE],0；0x4200D8 cmp byte[0x500ADE],al；0x47CAE3 取其地址。6.5 同址 0x4CE7FE。",
+      "refs66": ["0x406A04", "0x4200DD", "0x426285", "0x47CAF5"],
+      "refs65": ["0x406A04", "0x426285", "0x428197", "0x47CAF5"]
+    },
+    {
+      "address66": "0x500ADF", "size": 1, "address65": "0x4CE7FF", "address64": null,
+      "semantic": "计数器（只增）",
+      "confidence": "low",
+      "evidence": "0x42B95C inc byte[0x500ADF]；6.5 0x42B9A6 inc 0x4CE7FF。无其它读写点。",
+      "refs66": ["0x42B9A9"],
+      "refs65": ["0x42B9A6"]
+    },
+    {
+      "address66": "0x500AE0", "size": "0x90", "address65": "0x500AA0", "address64": null,
+      "semantic": "UI/绘制全局状态结构（144 字节）",
+      "confidence": "medium",
+      "evidence": "0x415CD5：push 0x500AE0 / push 0x90 / push 0 / call 0x47FD13（清零初始化）。字段：+0x08 byte（0x40A56F movzx 后 +5）、+0x11 byte（0x40327D cmp ==1）。6.5 与 6.6 各 20 处引用且地址多数同址（0x403278/0x40A56A/0x415CD5/0x41D29B/0x41D2D3/0x41E6D1/0x41ECD1/0x4207B5/0x420986/0x4221E0/0x438353/0x46FD2E/0x4794F6）。",
+      "refs66": ["0x403278", "0x408803", "0x40A56A", "0x40ADAB", "0x40B3B2", "0x415CD5", "0x41D29B", "0x41D2D3", "0x41E6D1", "0x41ECD1", "0x420173", "0x4207B5", "0x420986", "0x4221E0", "0x42806F", "0x436F95", "0x438353", "0x44814A", "0x46FD2E", "0x4794F6"],
+      "refs65": ["0x403278", "0x405BA2", "0x40A56A", "0x40B3B2", "0x415CD5", "0x41D29B", "0x41D2D3", "0x41E6D1", "0x41ECD1", "0x4207B5", "0x420986", "0x4221E0", "0x436F92", "0x438353", "0x44814E", "0x44CDC0", "0x45168B", "0x469331", "0x46FD2E", "0x4794F6"]
+    }
+  ],
+  "hotpatchToggle": {
+    "function": "0x4250E6",
+    "caller": {
+      "site": "0x4132E3",
+      "condition": "eax == 0x5A（虚拟键 'Z'）",
+      "context": "0x413296 键盘/窗口消息处理函数"
+    },
+    "stateByte": "0x500ADB",
+    "busyGuard": {
+      "address": "0x500E0C",
+      "semantics": "后台线程忙标志；0x4250F3 非零时跳过补丁；0x42FD94 置1 / 0x42FDC2 置0（其间 CreateThread(0x406A4B)）"
+    },
+    "patchSites": [
+      {"address": "0x42DB2C", "on": "C2 04 00 6A", "off": "55 8B EC 6A", "effectOn": "函数入口改写为 ret 4，整体跳过", "functionHint": "解析 '&'(0x26) 的文本/标记扫描循环，栈帧 0x41C"},
+      {"address": "0x415B40", "on": "EB 06", "off": "D1 E0", "effectOn": "跳过 shl eax,1 / push eax / call 0x422DBA", "functionHint": "0x415B16 分支：读 0x4183F7(obj,4) 后调用 0x422DBA"},
+      {"address": "0x42C4EF", "on": "EB 07", "off": "75 07", "effectOn": "jne→jmp，无条件退出 0x4750E0/0x47EAC4 等待循环", "functionHint": "0x42C4E5 空循环"},
+      {"address": "0x42C812", "on": "EB 1D", "off": "E8 29", "effectOn": "跳过 call 0x422B40", "functionHint": "0x42C7xx 界面循环"},
+      {"address": "0x42D5B0", "on": "C2 0C 00 E8", "off": "55 8B EC E8", "effectOn": "函数入口改写为 ret 0xC，整体跳过", "functionHint": "调用 0x40B922 / 0x41B882 的分支函数"},
+      {"address": "0x4332A6", "on": "C2 10 00 6A", "off": "55 8B EC 6A", "effectOn": "函数入口改写为 ret 0x10，整体跳过", "functionHint": "以 0xB34C0 调用 0x40162C 的资源/缓冲函数"},
+      {"address": "0x455CE5", "on": "EB F5", "off": "E8 56", "effectOn": "跳过 call 0x422B40 并回跳", "functionHint": "0x455Cxx 循环"}
+    ],
+    "patchedFunctionCount": 3,
+    "patchedCallSkipCount": 4
+  },
+  "corrections": [
+    {
+      "target": "第 67 轮 manualKnownPairs",
+      "wrong": "0x4CE79F→0x500AD3（UI 模式字节）",
+      "correct": "0x4CE79F→0x500AD7（UI 模式 0..3）；0x500AD3 对应 0x4CE77F（伤害应用标志）",
+      "evidence": "6.5 0x41269F/0x4126BB/0x41279A 与 6.6 0x4126A7/0x4126B4/0x412788 同函数内设 2/1/0；6.5 0x411159/0x411173 与 6.6 0x411157/0x411170 同函数写伤害标志。"
+    },
+    {
+      "target": "第 67 轮 blockSummary.66NewOnly",
+      "wrong": "把 0x500ABC/0x500AC0/0x500AC8/0x500ACD/0x500ACE/0x500ACF/0x500AD0/0x500AD1/0x500AD2/0x500AD3/0x500AD6/0x500AD7/0x500AD8/0x500ADA/0x500ADE 列为 6.6 独占",
+      "correct": "这些地址在 6.5 均有对应字段（见 fields 表），真正 6.6 独占的是 0x500ADB（热补丁开关）；0x500ACD 在 6.4 为 0x5005A0、6.5 为栈上结构。",
+      "evidence": "refs_to.py 在 6.5 上逐字段命中同址引用（0x4CE74C/0x4CE75C/0x4CE78C/0x4CE7AC/0x4CE7CC/0x4CE7EC/0x4CE78E/0x4CE78F/0x4CE77C/0x4CE77D/0x4CE77E/0x4CE77F/0x4CE79C/0x4CE79E/0x4CE79F/0x4CE7BC/0x4CE7BE/0x4CE7FC/0x4CE7FD/0x4CE7FE）。"
+    }
+  ],
+  "newMappings": [
+    {"65": "0x4CE74C", "66": "0x500AB0", "note": "0x410A0B 同址写"},
+    {"65": "0x4CE75C", "66": "0x500AB4", "note": "0x41088C/0x41088B 同址写"},
+    {"65": "0x4CE78C", "66": "0x500AB8", "note": "0x430216/0x4301FE 同址 mov eax 立即数"},
+    {"65": "0x4CE7AC", "66": "0x500ABC", "note": "0x47531B 同址写 LoadLibraryA 结果"},
+    {"65": "0x4CE7CC", "66": "0x500AC0", "note": "0x4CE7DC 亦合并入 0x500AC0"},
+    {"65": "0x4CE77E", "66": "0x500AD2", "note": "0x401224 同址写"},
+    {"65": "0x4CE77F", "66": "0x500AD3", "note": "0x40EB92/0x411159 同址写"},
+    {"65": "0x4CE78E", "66": "0x500ACE", "note": "0x421D0B inc 同址"},
+    {"65": "0x4CE79F", "66": "0x500AD7", "note": "更正第 67 轮"}
+  ],
+  "blockSummary": {
+    "structure": "6.6 0x500AAC..0x500ADF 为 0x34 字节的紧凑全局区，其后 0x500AE0 为 0x90 字节结构；6.5 对应字段分散在 0x4CE74C..0x4CE7FF，不是等距搬移。",
+    "semanticGroups": [
+      "控件/列表/对话框：0x500AAC（列表项索引）、0x500AD0（模态打开）、0x500AD1（选择结果）、0x500AD2（UI 命令 ID）、0x500AB8（提示 word）",
+      "单位/行动：0x500AC0（当前单位指针）、0x500AC8（行动单位指针）、0x500ACD（当前动作码）、0x500ACE（重入计数）、0x500AD3（伤害应用标志）",
+      "界面状态：0x500AD4（双阵营字节对）、0x500AD6（计数）、0x500AD7（UI 模式）、0x500AD8（输入状态字）、0x500ADC/0x500ADD（两位十进制数）、0x500ADF（计数）",
+      "插件/开关：0x500ABC（CmdIcon.dll 句柄）、0x500ADE（AutoDll.ini 标志）、0x500ADB（Z 键热补丁开关）",
+      "计数：0x500ADA（有效物品数）、0x500ACF（存档页码）"
+    ]
+  },
+  "conclusion": "6.6 的 0x500AAC..0x500ADF 不是无意义填充，而是 UI/战斗/插件共享的全局状态区：列表索引、UI 命令 ID、当前单位指针、行动单位指针、动作码、重入计数、UI 模式、输入状态、AutoDll 配置、CmdIcon.dll 句柄均可定位到具体消费点。0x500ADB 是 6.6 独有的 Z 键热补丁开关，可一次性改写 7 处代码（3 个函数改成 ret n、4 处跳过调用）。",
+  "limitations": [
+    "0x500AD6/0x500ADF 仅见计数用法，业务名称未定。",
+    "0x500AB0/0x500AB4 的上下文结构 +0xC/+0x14 语义未完全定名。",
+    "0x500AD8 的 0x0301 哨兵只证明是双字节状态，具体两位含义未定。",
+    "热补丁开关的用户可见名称（菜单/提示）未在文件中找到，暂按按键码 0x5A 与补丁效果命名。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.character-adaptation-table.3ef7",
+      "title": "人物模板表 0x4A3E77（68×97，+0x11 起 80 兵种字节）与 0x41CEAB 索引",
+      "aliases": [
+        "0x4A3E77",
+        "0x484002",
+        "0x4845B2",
+        "0x418C90",
+        "0x401DFF",
+        "人物模板",
+        "兵种适性表"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4A3E77 为运行期填充的 97 字节记录表，容量 144 条（0x90），文件初始化 68 条（0x44）：头部 +0x00..+0x0B 为内联名称字符串（0x423A7D 以 \"%s\" 输出），+0x0C 为 0x418C90 读取并经受 0x41CE8B(2) 随机替换的字节，+0x0D 被复制到单位 +0xC/+0xD，+0x0F 与方向/攻击码同构（0x44270C），+0x11..+0x60 为 80 个兵种字节（0x4845B2 以 record+0x11+job 取值）。区段结束 0x4A7507，下一表基址 0x4A7510，再后为 0x4A7D8E 的 80×35 兵种表。0x4303C8 的 20 个值穷尽消费链后仍只用于与 0x0B 的合法性比较。 第85轮补充：+0x0C 为动作/图像编号（0x401DFF→0x41CE8B(2) 随机替换链索引）；+0x0D 为组别/候选索引（0x4244E5 以 byte[template+0xD] 索引栈上候选列表，选中值同时写入单位 +0xD 与 +0xC；0x4233F8(2) 取类别值并经 0x417B77 校验）。",
+      "constants": [
+        "0x61",
+        "0x44",
+        "0x90",
+        "0x11",
+        "0x60",
+        "0x0C",
+        "0x0D",
+        "0x0F",
+        "0x4F",
+        "0x41CEAB",
+        "0x4A3E77",
+        "0x4A7510",
+        "0x4A7D8E"
+      ],
+      "identity": "0x4A3E77 三基底各 3 处引用（0x42B1xx 注册 + 0x484008 访问器）；6.6 注册点整体前移 0x11；表体运行期填充，文件映像无内容；容量 144 由下一基址 0x4A7510 − 0x4A3E77 = 0x3699（144×0x61=0x3690，余 9 字节对齐）反推。",
+      "limitations": [
+        "候选列表的数据来源（文件/表）未追踪。",
+        "0x417B77 的校验规则未展开。",
+        "+0x0C 的业务名称（动作编号/图像编号）未由命名表证明。",
+        "0x4A3E77 68 之后槽位的运行期写入来源未定。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.embedded-byte-tables.3ef7",
+        "mechanism.65.runtime-character-accessors.3ef7",
+        "mechanism.65.engine-capacity-and-sentinels.3ef7",
+        "mechanism.65.item-effect-code-and-range-table.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-character-adaptation-table-20261112"
+      ],
+      "siteAddresses": {
+        "table": "0x4A3E77",
+        "accessor": "0x484002",
+        "jobByteGetter": "0x4845B2",
+        "field0CGetter": "0x418C90",
+        "field0FGetter": "0x44270C",
+        "randomWrapper": "0x401DFF",
+        "randomTable": "0x41CEAB",
+        "randomReader": "0x41CE8B",
+        "registration": "0x42B17D",
+        "registerHelper": "0x481440",
+        "nameFormatCall": "0x423A7D",
+        "field0DReader": "0x4245C6",
+        "nextBase": "0x4A7510",
+        "nextTable": "0x4A7D8E",
+        "weaponTable": "0x4303C8",
+        "weaponConsumer": "0x43F8C0",
+        "field0C": "+0x0C",
+        "field0D": "+0x0D",
+        "templateGet0C": "0x418C90",
+        "templateUse0D": "0x4244E5",
+        "categoryGetter": "0x4233F8",
+        "validationFn": "0x417B77"
+      }
+    }
+  ]
+}

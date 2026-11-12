@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "analysis": "audio-sound-settings",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 6.5 的 0x474777（音效播放）、0x474652（停止）、0x474596（设置位门控）、0x4090EE（语音播放）、0x409009（路径解析）、0x41EDEF/0x415E19（设置 getter）、0x42C522（重试间隔）；strings_at.py 读取 0x48E810..0x48E850 的 SE_* 路径模板；refs_to.py 统计 sndPlaySoundA(0x4863C8)/mciSendCommandA(0x4863CC) 站点；对照 6.4/6.6 站点。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "settingsBlock": {
+    "base": "0x4B0770",
+    "getters": [
+      {"entry": "0x41EDEF", "returns": "byte[ecx]（8 位选项位）", "use": "0x474596(mask) = byte[0x4B0770] & mask；mask=2 为音效总开关"}
+      {"entry": "0x415E19", "returns": "min(word[ecx+6]/2, 0x7F)", "use": "存档区块B +0x003 写入该值（0..127）"}
+    ],
+    "note": "0x4B0770 的 0x2BC 字节在存档区块B +0x32 被整体复制；同块 +0x02 写入 byte[0x4B0770]（选项位）"
+  },
+  "soundPlayer": {
+    "entry": "0x474777",
+    "signature": "int PlaySound(SoundVoice* this, int soundId, int mode, int force)",
+    "gate": "0x474596(2)（设置位 & 2）且 [this+4]==0",
+    "idSegments": [
+      {"range": "0x00..0x63", "prefix": "0x48E825 = \"SE00.WAV\"", "localId": "soundId"},
+      {"range": "0x64..0xC7", "prefix": "0x48E830 = \"SE_M_00.WAV\"", "localId": "soundId-0x64"},
+      {"range": "0xC8..0xD0", "prefix": "0x48E83C = \"SE_E_00.WAV\"", "localId": "soundId-0xC8"},
+      {"range": ">=0xD1", "prefix": "无（返回 0）", "localId": "-"}
+    ],
+    "path": "wsprintfA(buf, \"WAV\\\\%s\"(0x48E81E), prefix)；两位十进制数字写入 buf+9/+10；0x418ED4(buf) 转绝对路径",
+    "digitFormula": "tens = localId/10 + 0x30；ones = localId%10 + 0x30；idiv 10",
+    "flags": {
+      "base": "3（SND_ASYNC=1 | SND_NODEFAULT=2）",
+      "loop": "|8（SND_LOOP）",
+      "noStop": "|0x10（SND_NOSTOP）"
+    },
+    "modeSemantics": [
+      {"mode": 1, "behavior": "[this]==soundId 或 arg4!=0 时以 base|0x10 直接播放；否则 0x474652 停止后以 base 播放"},
+      {"mode": "0xFFFF", "behavior": "停止 → [this]=soundId → base 播放（一次性）"},
+      {"mode": 0, "behavior": "停止 → [this]=soundId → base|8 循环播放"},
+      {"mode": "其他 N", "behavior": "停止 → [this]=soundId → base|0x10 重试最多 N 次，每次间隔 0x42C522(6)；结束后 [this]=-1"}
+    ],
+    "stop": "0x474652：sndPlaySoundA(0,0)，[this]=-1，[this+4]=0"
+  },
+  "voicePlayer": {
+    "entry": "0x4090EE",
+    "pathTemplate": "0x48E810 = \"SE_V_%03u.WAV\"（id 三位十进制）",
+    "flow": "wsprintfA(buf,0x48E810,id) → 0x409009(buf) 校验/取绝对路径 → 0x474652 停止 → [voice]=id → sndPlaySoundA(path, 3)",
+    "resolver": "0x409009：0x418F5C(path, mode=2) 试探打开，成功则 0x4192C5 关闭后 0x418ED4 取绝对路径"
+  },
+  "apiSites": {
+    "sndPlaySoundA": {"import": "0x4863C8", "sixFive": ["0x4090EE", "0x47465D", "0x474732", "0x474854", "0x47487E", "0x4748A6", "0x4748BF"]},
+    "mciSendCommandA": {"import": "0x4863CC", "sixFiveGroups": ["0x41EFE7..0x41F8C1（CD 音频控制块）", "0x42F76D..0x42F862（另一组 MCI 命令）"], "note": "本轮仅登记站点，命令常量未展开"},
+    "sixSixDelta": "6.6 的 sndPlaySoundA 站点多出 0x416F07，0x47465D→0x474663 等地址平移；mci 组与 6.5 同址"
+  },
+  "conclusion": "音效由 0x474777 统一播放：soundId 分三段映射到 WAV\\SE00.WAV / WAV\\SE_M_xx.WAV / WAV\\SE_E_xx.WAV（阈值 0x64/0xC8/0xD1），flags 3=SND_ASYNC|SND_NODEFAULT，循环 +8、不打断 +0x10；mode=1 同曲不重启、0xFFFF 强制一次性、0 循环、N 重试 N 次。总开关为设置块 0x4B0770 的 byte[0] & 2（0x474596）。语音走 0x4090EE 的 SE_V_%03u.WAV。0x415E19 把 word[0x4B0770+6]/2 钳到 0x7F 作为另一项设置写入存档头。",
+  "limitations": [
+    "mciSendCommandA 的全部命令常量（CD 音频）未在本轮展开。",
+    "0x4B0770 设置块其余位（bit0/bit2..7）含义未定。",
+    "0x415E19 对应的具体设置项（音量/速度/难度）未由界面文案确认。",
+    "未运行游戏对照。"
+  ]
+}

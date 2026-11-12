@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.crit-combo-mode.3ef7",
+      "title": "暴击/连击模式 0x505EC8 与暴击值数组 0x511E40/0x4930C8",
+      "aliases": [
+        "0x505EC8",
+        "0x505EC4",
+        "0x511E40",
+        "0x4930C8",
+        "暴击",
+        "连击"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x505EC8 为 6.5/6.6 新增战斗模式字节（6.4 无引用）。mode==1 时暴击计算 0x4284C5（6.6: 0x445D40）读取每单位 4 字节暴击值数组高字节，>=100 取反，并以 0x48E0C9『暴击』输出；mode>1 时 0x43B4B6 以 mode 为上限、0x505EC4 为下限，每 10 点追加最多 2 段伤害，对应『连击』。数组 6.5 为 0x511E40，6.6 重定位为 0x4930C8。",
+      "global": "0x505EC8",
+      "constants": [
+        "0x505EC4",
+        "0x511E40",
+        "0x4930C8",
+        "0x3E8",
+        "0x64",
+        "0x48E0C4",
+        "0x48E0C9",
+        "0x4D21B0"
+      ],
+      "identity": "0x505EC8 初始 0；0x505EC4 三基底均 00 00 00 00；6.4 对 0x505EC8 与 0x511E40 的引用集为空；6.6 数组改为 0x4930C8 且暴击计算入口移至 0x445D40。",
+      "limitations": [
+        "mode 0/1/>1 的最终命名未由配置界面直接证明。",
+        "0x4D21B0、0x500E9A==2 旁路未展开。",
+        "0x502000+0xFB2*4 与 0x505EC8 的替换关系未完全展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.physical-damage-constant-chain.3ef7",
+        "mechanism.65.hit-retry-cross-base.3ef7",
+        "mechanism.65.turn-action-weather-state.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-crit-combo-mode-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "mode": "0x505EC8",
+        "initialValue": "0x505EC4",
+        "gauge65": "0x511E40",
+        "gauge66": "0x4930C8",
+        "arrayInit65": "0x41229E",
+        "arrayInit66": "0x41225A",
+        "unitInit": "0x4277A9",
+        "critCalc65": "0x4284C5",
+        "critCalc66": "0x445D40",
+        "damageApply": "0x4287A8",
+        "dispatch": "0x428925",
+        "gaugeAdjust65": "0x428A25",
+        "gaugeAdjust66": "0x4131D0",
+        "damageCombo": "0x43B4B6",
+        "versionBranch66": "0x43B50C"
+      }
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.strategy-damage-hit-resolution.3ef7",
+      "title": "策略是否伤血与命中模式：三基底全量解析",
+      "aliases": [
+        "strategy-damage-type",
+        "strategy-hit-rate",
+        "是否伤血",
+        "命中模式",
+        "命中上限"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "strategy-damage-type 是伤害门控，不是四种独立伤害类型：0..3 行为完全等价，4 表示不伤血，>=4 同样被门控，但显示函数只把精确的 4 显示为 0；ID 0x46/0x16 绕过门控。strategy-hit-rate 是命中模式/基础命中率选择器：0..4 为特殊模式，>=5 为百分比乘数；模式 2 使用能力曲线，模式 3/4 固定 34/50 后仍乘基础值并受状态/效果修正，最终上限 100。",
+      "tableLayout": {
+        "strategy-damage-type": {
+          "fileOffset": "0xA30D0",
+          "va": "0x4D18D0",
+          "rows": 144,
+          "width": 1
+        },
+        "strategy-hit-rate": {
+          "fileOffset": "0xA2F20",
+          "va": "0x4D1720",
+          "rows": 144,
+          "width": 1
+        }
+      },
+      "damageType": {
+        "gate": {
+          "va": "0x415EFA",
+          "behavior": "type<4 ? 1 : 0",
+          "versions": "6.4/6.5/6.6 字节完全一致"
+        },
+        "consumers": {
+          "6.4": ["0x415F00", "0x46FC0F"],
+          "6.5": ["0x415F00", "0x46FC0F"],
+          "6.6": ["0x415F00", "0x42FD1C", "0x46FC2D"]
+        },
+        "gateCallers65": ["0x420F66", "0x43C059", "0x4406D4", "0x440FEF"],
+        "damageMain": "0x43C022 调用门控；返回 0 时按版本检查例外：6.4/6.5 检查策略 ID==0x46 或 0x16，6.6 检查策略类型==0x1E 或 0x06；不满足例外则直接返回，不进入伤害公式。",
+        "display": {
+          "6.4/6.5": "0x46FC0F：type==4 显示 0，否则显示 strategy-damage-ratio。",
+          "6.6": "0x46FC2D：effect-class==0x2B 显示 0；type==4 显示 0；否则显示 damage-ratio，>=0xFA 显示 100。"
+        },
+        "valueSemantics": {
+          "0..3": "门控为真；全部直接消费者中行为完全等价，没有按 0/1/2/3 分支。",
+          "4": "门控为假；显示为 0；除 ID 0x46/0x16 外不进入伤害公式。",
+          ">=5": "门控为假；显示函数只特判 4，因此 >=5 仍显示 damage-ratio；样本未使用。"
+        },
+        "dataDistribution": {
+          "6.4": {"0": 33, "1": 4, "2": 2, "3": 2, "4": 103},
+          "6.5": {"0": 34, "1": 4, "2": 2, "3": 2, "4": 102},
+          "6.6": {"0": 40, "1": 9, "2": 7, "3": 13, "4": 75}
+        },
+        "verdict": "真实含义是伤害门控；0..3 的历史分类没有被引擎区分，4 表示不伤血，>=4 同样不伤血但显示只特判 4。门控例外按版本不同：6.4/6.5 为 ID 0x46/0x16，6.6 为策略类型 0x1E/0x06。"
+      },
+      "hitRate": {
+        "reads": ["0x43B8FF（战斗命中桩 0x43B6F3）", "0x46FBC7（6.4/6.5 显示）/0x46FBD9（6.6 显示）"],
+        "displayMap": {
+          "0": "90",
+          "1": "100",
+          "2": "100（仅显示值）",
+          "3": "34",
+          "4": "50",
+          ">=5": "直接显示该值；0x64=100"
+        },
+        "baseCurve": {
+          "6.4": "0x43B50C",
+          "6.5": "0x43B53A",
+          "6.6": "0x43B53A",
+          "formula": "a>=2b -> 100；b<=a<2b -> 90+10*(a-b)/b；b/2<=a<b -> 60+30*(a-b/2)/(b/2)；a<b/2 -> 30+30*(a-b/3)/(b/3)；整数除法，随后经状态/效果修正并封顶 100。"
+        },
+        "modeSwitch": {
+          "0": "arg8!=0 且目标 byte[+0x1E]==0 时可置 0；否则基础值×90/100。",
+          "1": "同样的目标特殊条件可置 0；否则绝对 100（不乘基础值）。",
+          "2": "使用能力曲线基础值；显示为 100，但战斗不强制 100。",
+          "3": "目标特殊身份/状态检查失败置 0；否则基础值×34/100。",
+          "4": "同样检查；失败置 0；否则基础值×50/100。",
+          ">=5": "0x64 置 100；其他值基础值×mode/100（0x425AD9）。"
+        },
+        "postModifiers": [
+          "ID 0x14 且 0x43B4A7==0xC：命中×3/2。",
+          "效果值加成后 min(命中+值,100)；6.4/6.5 用 0x4101D9，6.6 用 0x42518F。",
+          "0x405DBD 非零时 min(命中+10,100)。",
+          "最终 >100 取 100。"
+        ],
+        "versionDifferences": {
+          "6.4": "基础曲线 0x43B50C；额外 0x406610 返回 0xFF 时命中置 0；效果参数 0x3E/0x1D。",
+          "6.5": "基础曲线 0x43B53A；无 0xFF 额外检查；效果参数 0x3E/0x1D。",
+          "6.6": "基础曲线 0x43B53A；无 0xFF 额外检查；效果读取改用 0x42518F（参数 0x66/0x1D）；模式映射一致。"
+        },
+        "verdict": "该字节是命中模式/基础命中率选择器，不是命中上限。0..4 是特殊模式，>=5 是百分比乘数；模式 2 使用能力曲线，3/4 固定 34/50 后仍乘基础值并受修正。"
+      },
+      "limitations": [
+        "未运行游戏；特殊目标条件 byte[+0x1E]、0x41C2B0/0x45F670/0x406604、0x406610 的玩法名称未逐一命名。",
+        "命中基础曲线的两个参数来自 0x40D2B2 的复合能力差，未把每个能力字段命名到界面术语。",
+        "6.6 0x42FD1C 的额外 damage-type 读取写入局部 [ebp-2] 后未被消费，判断为描述/信息构造的冗余读取。"
+      ],
+      "relations": [
+        "mechanism.65.strategy-attribute-tables.3ef7",
+        "mechanism.66.strategy-attribute-tables.25d",
+        "mechanism.64.strategy-attribute-tables.9112",
+        "struct.65.strategy-record.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.strategy-damage-hit-resolution-20261112",
+        "src.research.strategy-attribute-verification-20261111",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

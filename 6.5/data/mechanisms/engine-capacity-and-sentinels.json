@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.engine-capacity-and-sentinels.3ef7",
+      "title": "引擎全局容量、循环上限与哨兵契约",
+      "aliases": [
+        "global caps",
+        "全局上限",
+        "空值哨兵",
+        "容量契约"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "三基底共享的主要容量：人物 1024×72、战场单位 250、物品 255×25、兵种 80×35、兵种系 40×60、策略 144×97、效果 255×8、必杀 80×16、仓库 200×3、范围段 256、地形 30、天气 5×6、商店 127×40。0xFF/0x8000/0x80000000/0xFFFF/0x50/0xFA/0x3FF 是空值、越界或无操作哨兵。",
+      "capacities": [
+        {"name": "人物", "count": 1024, "stride": 72},
+        {"name": "战场单位", "count": 250},
+        {"name": "物品", "count": 255, "stride": 25},
+        {"name": "兵种", "count": 80, "stride": 35},
+        {"name": "兵种系", "count": 40, "stride": 60},
+        {"name": "策略", "count": 144, "stride": 97},
+        {"name": "效果", "count": 255, "stride": 8},
+        {"name": "必杀", "count": 80, "stride": 16},
+        {"name": "仓库", "count": 200, "stride": 3},
+        {"name": "范围段", "count": 256},
+        {"name": "地形", "count": 30},
+        {"name": "天气", "count": 5, "slots": 6},
+        {"name": "商店", "count": 127, "stride": 40}
+      ],
+      "sentinels": ["0xFF", "0x8000", "0x80000000", "0xFFFF", "0x50", "0xFA", "0x3FF"],
+      "crossBaseLoopChecks": {
+        "battleUnit250": "6.4/6.5 cmp cl,0xFA @0x416281；6.6 @0x416288",
+        "block2Shop": "0x7F",
+        "block3Growth": "0x50",
+        "block4Terrain": "0x28",
+        "block5Strategy": "0x90"
+      },
+      "limitations": [
+        "容量汇总自前九轮与既有结构实体，不重新证明每个结构的全部字段。",
+        "部分容量来自 data 管理器 profile。",
+        "未运行游戏。"
+      ],
+      "relations": [
+        "struct.65.runtime-character",
+        "struct.65.tactical-unit",
+        "struct.65.item-record",
+        "struct.65.detailed-job-record",
+        "struct.65.job-family-terrain-record",
+        "struct.65.strategy-record",
+        "mechanism.65.turn-action-weather-state.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-global-caps-20261112",
+        "src.research.engine-turn-weather-state-20261112",
+        "src.research.engine-constant-census-20261112"
+      ]
+    }
+  ]
+}

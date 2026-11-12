@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "analysis": "auto-battle-flags",
+  "date": "2026-11-12",
+  "method": "复核第64轮 0x4B4250+0x64/+0x68 的三处读取；capstone 反汇编 0x412F4A..0x412FB7（AI 目标选择分支）、0x43E807..0x43E850（自动结算触发）。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "flags": [
+    {"field": "0x4B4250+0x64", "type": "dword", "semantics": "自动战斗/自动选目标开关（==1 时走 AI 选择分支；!=0 时触发自动结算）"},
+    {"field": "0x4B4250+0x68", "type": "dword", "semantics": "自动战斗第二条件（==1 且某状态==1 时同样走 AI 选择分支）"}
+  ],
+  "sites": [
+    {
+      "site": "0x412F84",
+      "behavior": "cmp dword[0x4B4250+0x64],1：相等则交换目标指针并 call 0x4389BD(候选,0)（第38轮：AI 最优单位评分选择）"
+    },
+    {
+      "site": "0x412F9B",
+      "behavior": "cmp dword[0x4B4250+0x68],1：相等且 [ebp-0xC]==1 时进入同一 AI 分支"
+    },
+    {
+      "site": "0x43E823",
+      "behavior": "byte[0x501A6E]!=0 且 0x41C330(0x4B3D08)==0 且 dword[0x4B4250+0x64]!=0 时，依次 call 0x44DA7A(0)、0x44DA7A(1)（自动结算/自动结束）"
+    }
+  ],
+  "conclusion": "0x4B4250+0x64/+0x68 是自动战斗（AI 托管）标志：+0x64==1 直接走 AI 最优目标选择 0x4389BD；+0x68==1 作为第二条件；+0x64!=0 还在 0x43E823 触发 0x44DA7A(0/1) 的自动结算。静态扫描未发现这两个 dword 的直接写入点，结合 AutoDll.ini/CmdIcon.dll 机制，推测由外部插件或热键写入。",
+  "limitations": [
+    "未找到 +0x64/+0x68 的静态写入点（推测由 AutoDll 插件写入）。",
+    "0x44DA7A 的具体行为未展开。",
+    "0x501A6E 的语义未定。",
+    "未运行游戏对照。"
+  ]
+}

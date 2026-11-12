@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "analysis": "turn-action-and-weather-global-state",
+  "date": "2026-11-12",
+  "method": "以剧本处理函数映射为锚点，精确反汇编 0x411664（回合测试）、0x41709C（回合上限设定）、0x4116BC（行动方测试）、0x41264B/0x414AB0（天气指令）、0x41D9D1（天气写入），并读取 0x48E100 天气转换表；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "battleState": {
+    "base": "0x4B3D08",
+    "fields": {
+      "0x4B3D0A": "当前回合字节（0 基；测试时 +1）",
+      "0x4B3D0B": "回合上限字节",
+      "0x4B3D0C": "当前天气字节（ctx+4）",
+      "0x4B3D19": "天气类别/变化范围字节（ctx+0x11）"
+    }
+  },
+  "turnRules": {
+    "testHandler": {
+      "va": "0x411664",
+      "opcode": "0x3F",
+      "params": "0x4183F7(4)=目标回合，0x4183F7(0x24)=比较模式",
+      "logic": "current = byte[0x4B3D0A] + 1；mode 0: current >= target；mode 1: current < target；其它: current == target",
+      "sentinels": "0x80000000 或 0x8000 → 返回 5",
+      "return": "真=1，假=0"
+    },
+    "limitHandler": {
+      "va": "0x41709C",
+      "opcode": "0x5D",
+      "params": "0x4183F7(0x34)=上限值，0x4183F7(4)=模式",
+      "logic": [
+        "上限值 0x8000 或模式 0x80000000 → 返回 5",
+        "0x40B922 校验 byte[0x4B3D0A] 对应模式",
+        "模式 1：limit += 当前值并封顶 0xFF",
+        "模式 0：limit = max(当前值+1, 原 limit)",
+        "其它：limit = 当前值+1 或减去旧值",
+        "写 byte[0x4B3D0B]=limit，调用 0x449ECA(ctx)"
+      ],
+      "storage": "byte[0x4B3D0B]"
+    },
+    "actionSide": {
+      "testHandler": "0x4116BC",
+      "opcode": "0x40",
+      "getter": "0x41C330(0x4B3D08) 返回当前行动方",
+      "logic": "0x4183F7(0x48) 取目标行动方；0x40B922 校验后比较 getter 结果"
+    }
+  },
+  "weatherRules": {
+    "categoryHandler": {
+      "va": "0x41264B",
+      "opcode": "0x56",
+      "param": "0x4183F7(0x47)",
+      "logic": "参数 0x8000 → 返回 5；否则 byte[0x4B3D19] = al，返回 1",
+      "storage": "byte[0x4B3D19]"
+    },
+    "currentHandler": {
+      "va": "0x414AB0",
+      "opcode": "0x57",
+      "param": "0x4183F7(0x22)",
+      "logic": "参数 0x8000 → 返回 5；否则 0x41D9D1(0x4B3D08, 天气值)，返回 1"
+    },
+    "setter": {
+      "va": "0x41D9D1",
+      "logic": [
+        "category = byte[ctx+0x11]",
+        "base = category * 6",
+        "newWeather = byte[base + arg + 0x48E100]",
+        "oldWeather = byte[base + byte[ctx+4] + 0x48E100]",
+        "oldWeather != newWeather 时：0x403985(0x86)、0x423971(0x1E)、0x449F91(arg)"
+      ]
+    },
+    "transitionTable": {
+      "va": "0x48E100",
+      "rows": 5,
+      "columns": 6,
+      "bytes": [
+        [0, 0, 0, 1, 2, 3],
+        [0, 0, 0, 0, 1, 2],
+        [0, 1, 2, 2, 3, 3],
+        [0, 0, 1, 1, 4, 4],
+        [0, 1, 4, 4, 4, 4]
+      ],
+      "meaning": "天气类别×6 个天气槽 → 天气 ID（0..4）；具体天气含义未命名"
+    }
+  },
+  "versionDifferences": {
+    "turnTest": {"6.4": "c4b44be1", "6.5/6.6": "7eef4e74", "note": "6.4 与 6.5/6.6 的回合测试实现不同"},
+    "turnLimit": {"6.4/6.5": "f2abcda2", "6.6": "5c6f162e", "note": "6.6 回合上限实现不同"},
+    "weatherHandlers": {"all": "ef96fbc4 / 93b8fcfa", "note": "0x56/0x57 两处理器三基底字节一致"},
+    "weatherSetter": {"6.4/6.5": "1841ac6f", "6.6": "733b87e2"}
+  },
+  "conclusion": "0x4B3D08 是战场状态基址：+0x2 为 0 基当前回合、+0x3 为回合上限、+0x4 为当前天气、+0x11 为天气类别。回合测试用 current=byte[0x4B3D0A]+1 与目标值比较（>=/</== 三种模式）；回合上限写入 byte[0x4B3D0B] 并封顶 0xFF。天气指令写入类别与当前天气，天气转换表 0x48E100 为 5×6，值为天气 ID 0..4。",
+  "limitations": [
+    "天气 ID 0..4 的玩法名称（晴/雨/雪等）未命名。",
+    "0x40B922、0x449ECA、0x403985、0x423971、0x449F91 的语义未展开。",
+    "0x4B3D08 其余字段未解析。",
+    "未运行游戏对照回合显示与天气效果。"
+  ]
+}

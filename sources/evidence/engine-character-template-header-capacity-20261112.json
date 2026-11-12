@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "analysis": "character-template-header-and-capacity",
+  "date": "2026-11-12",
+  "method": "以 0x484002 的 37 个调用点为窗口统计返回指针的字段访问；反汇编 0x423A7D、0x4245BE、0x4845B2；读取 0x48B58C 格式串；用 immediates_in_range.py 枚举 [0x4A3E77,0x4A7D8E) 内的表基址，确定 0x4A3E77 区段上界。仅静态读取基底。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "headerFields": [
+    {"offset": "+0x00..+0x0B", "type": "char[12]", "meaning": "内联名称字符串（NUL 结尾）", "evidence": "0x423A7D：0x484002 取记录后把记录指针作为 \"%s\" 参数传给 0x42F699；格式串 0x48B58C 字节确认为 \"%s\""},
+    {"offset": "+0x0C", "type": "byte", "meaning": "候选：类型/组别（经随机替换）", "evidence": "0x418C90 getter；0x401DFF 经 0x41CE8B(2) 随机替换"},
+    {"offset": "+0x0D", "type": "byte", "meaning": "候选：模板编号（被复制到单位 +0xC/+0xD）", "evidence": "0x4245C6 读取；0x4245EC/0x4245EF 把同一 cl 写入另一记录的 +0xD/+0xC"},
+    {"offset": "+0x0F", "type": "byte", "meaning": "方向/攻击码同构字段", "evidence": "0x44270C = movzx eax, byte[ecx+0xF]"},
+    {"offset": "+0x11..+0x60", "type": "byte[80]", "meaning": "80 个兵种字节（按兵种索引）", "evidence": "0x4845B2(record,job) = byte[record+0x11+job]；job 最大 0x4F 落在 +0x60"}
+  ],
+  "capacity": {
+    "stride": "0x61（97）",
+    "initialized": "0x44（68 条，0x481440/0x4814E0 注册与重载）",
+    "capacity": "144 条（0x90）：0x4A3E77 + 144×0x61 = 0x4A7507",
+    "nextBase": "0x4A7510（[0x4A3E77,0x4A7D8E) 内枚举到的下一表基址；与 0x4A7507 仅差 9 字节对齐）",
+    "nextTable": "0x4A7D8E：stride 0x23（35）、count 0x50（80），即 80×35 兵种表",
+    "loopBound": "0x40755D / 0x41DCCC 均以 0x90 为界，与 144 槽容量一致；68 之后为未初始化槽（全 0）"
+  },
+  "conclusion": "0x4A3E77 记录头部为 12 字节内联名称（%s 证据）、+0x0C/+0x0D/+0x0F 三个字节与 +0x11..+0x60 的 80 兵种字节。该区段容量为 144 条 × 97 字节（结束 0x4A7507，下一表基址 0x4A7510），文件初始化 68 条，其余为零；0x90 循环界并非越界，而是覆盖完整 144 槽。",
+  "limitations": [
+    "+0x0C/+0x0D 的语义命名未取得文案证据。",
+    "68 之后未初始化槽在运行期是否被写入未证明。",
+    "名称字段在 6.4/6.6 的同构性未逐字节比对（表体运行期填充，文件映像无内容）。",
+    "未运行游戏对照。"
+  ]
+}

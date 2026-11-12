@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "analysis": "ai-handler-constants-66-diff",
+  "date": "2026-11-12",
+  "method": "读取 0x43A140 的 16 项跳转表；handler_constants.py 提取每个处理体的立即常量与调用目标；handler_diff.py 对 6.5/6.6 同址处理体做指令级差分，定位每处常量/调用目标替换。仅静态读取基底。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "dispatchTable": {
+    "va": "0x43A140",
+    "entries": 16,
+    "handlerEntries": ["0x43988C", "0x43988C", "0x439B80", "0x439A26", "0x43996C", "0x43988C", "0x439A70", "0x4399F1", "0x4399F1", "0x4399F1", "0x439AA6", "0x4399AF", "0x439B21", "0x439C8A", "0x439BB6", "0x439C12"],
+    "note": "6.5 与 6.6 的 16 个处理体入口完全相同（0/1/5 共用 0x43988C，7/8/9 共用 0x4399F1）"
+  },
+  "constantDeltas": [
+    {"from": "0x1B", "to": "0x23", "pattern": "sub edx,imm / add [ebp-4],imm", "handlers": [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 14]},
+    {"from": "0x35", "to": "0x41", "pattern": "sub edx,imm", "handlers": [2, 3, 6, 7, 8, 9, 10, 11, 12, 15]},
+    {"from": "0x39", "to": "0x59", "pattern": "cmp al,imm", "handlers": [3, 4, 6, 7, 8, 9, 10, 11, 12]},
+    {"from": "0x27", "to": "0x37", "pattern": "cmp al,imm", "handlers": [4, 7, 8, 9, 11]},
+    {"from": "0x28", "to": "0x38", "pattern": "cmp al,imm", "handlers": [4, 7, 8, 9, 11]},
+    {"from": "0x2B", "to": "0x3B", "pattern": "cmp al,imm", "handlers": [4, 7, 8, 9, 11]},
+    {"from": "0x44", "to": "0x2B", "pattern": "cmp al,imm", "handlers": [0, 1, 5]},
+    {"from": "0x14", "to": "0x1E", "pattern": "sub eax,imm", "handlers": [0, 1, 5]},
+    {"from": "0x10", "to": "0x13", "pattern": "cmp eax,imm", "handlers": [0, 1, 5]},
+    {"from": "0x0F", "to": "0x12", "pattern": "cmp al,imm", "handlers": [0, 1, 5]}
+  ],
+  "callRelocations": [
+    {"from": "0x43FFB9", "to": "0x4190E8", "handlers": [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 14, 15]},
+    {"from": "0x438917", "to": "0x438914", "handlers": [2, 3, 4, 6, 7, 8, 9, 10, 11, 12]},
+    {"from": "0x43B6F3", "to": "0x43B730", "handlers": [3, 4, 6, 7, 8, 9, 11]},
+    {"from": "0x406764", "to": "0x41832B", "handlers": [3, 4, 6, 7, 8, 9, 10, 11, 12]},
+    {"from": "0x43C022", "to": "0x43C01D", "handlers": [0, 1, 5]},
+    {"from": "0x417A5E", "to": "0x417A61", "handlers": [0, 1, 5]}
+  ],
+  "inlineTableMove": {
+    "from": "0x4395D8",
+    "to": "0x412793",
+    "pattern": "mov cl, byte[eax+imm]",
+    "handlers": [4, 11],
+    "note": "处理体末尾的内嵌字节表在 6.6 移入 .text 0x412793"
+  },
+  "structuralChanges": {
+    "handlers0_1_5": "6.5 连续两次 call 0x45F670；6.6 改为 push 1 / push [eax] / push [ecx] 后单一 call 0x45AFCA，并以 8 个 NOP 填充",
+    "handler13": "0x439C8A 仅 4 条指令、常量 0x14，两版完全一致"
+  },
+  "conclusion": "6.6 的 16 个 AI 处理体入口与 6.5 完全一致，但同一位置的常量与调用目标被系统性替换：0x1B→0x23、0x35→0x41、0x39→0x59、0x27/0x28/0x2B→0x37/0x38/0x3B、0x44→0x2B、0x14→0x1E、0x10→0x13、0x0F→0x12；调用目标 0x43FFB9→0x4190E8、0x438917→0x438914、0x43B6F3→0x43B730、0x406764→0x41832B、0x43C022→0x43C01D、0x417A5E→0x417A61；内嵌字节表 0x4395D8 移至 0x412793。处理体 0/1/5 另有结构重排（两次 0x45F670 调用合并为一次 0x45AFCA）。",
+  "limitations": [
+    "常量替换的语义（策略 ID 重编号/状态阈值）未与策略表逐项对照。",
+    "0x4395D8→0x412793 内嵌表的内容未比对。",
+    "处理体 0/1/5 的结构重排未逐指令等价性证明。",
+    "未运行游戏对照。"
+  ]
+}

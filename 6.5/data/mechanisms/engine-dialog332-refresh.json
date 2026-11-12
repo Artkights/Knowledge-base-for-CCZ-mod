@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.dialog332-refresh.3ef7",
+      "title": "模板 332 刷新链 0x4108DB/0x456DA6/0x41F952（五维复选框与控件 ID）",
+      "aliases": [
+        "dialog 332 refresh",
+        "332 刷新",
+        "0x4108DB",
+        "0x456DA6",
+        "0x41F952"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4108DB 是模板 332 的刷新入口：先压入 0/0x4FFF68/0x505F40；若 [对象+0x14] != [记录+0]（记录变化）则 0x456DA6(1,hwnd,index) 重建显示；否则循环 i=0..4，用 GetDlgItem(hwnd,0x406+i)+0x41B8AF 读 5 个复选框状态，对未勾选项以 0x41F952(id=0x7EB+i, value) 返还点数。0x41F952 是加减处理：ID 0x7E6..0x7EA（2022..2026，加号）把 value 加到 word[0x4FFF68+i*2] 并从 dword[0x4FFF68+0x14] 扣池；ID 0x7EB..0x7EF（2027..2031，减号）反向并从池返还。0x456DA6 内以 0x42ACD2(索引) 取 0x508000 表项并循环 5 项调 0x4781C6(index,value,0,0)。控件 ID：复选框 0x406..0x40A、数值 0x7D6..0x7DA、加号 0x7E6..0x7EA、减号 0x7EB..0x7EF、点数 0x7DB、重置 0x7D1、确认 0x2。",
+      "constants": [
+        "0x4108DB", "0x456DA6", "0x41F952", "0x41B8AF", "0x42ACD2", "0x4781C6", "0x508000", "0x505F40", "0x4FFF68",
+        "0x406", "0x40A", "0x7D6", "0x7DA", "0x7E6", "0x7EA", "0x7EB", "0x7EF", "0x7DB", "0x7D1", "0x02", "0x05", "0x14"
+      ],
+      "identity": "0x4108DB 的控件 ID 区间与模板 332 的 dialog_resource 输出逐项一致（1030..1034 / 2006..2010 / 2022..2026 / 2027..2031 / 2011 / 2001 / 2）；0x41F952 的 0x7E6/0x7EB 分界与加/减按钮区间严格对应；0x456DA6 的 0x42ACD2 与第96轮确认处理同源。",
+      "siteAddresses": {
+        "refresh": "0x4108DB",
+        "display": "0x456DA6",
+        "pointsAdjust": "0x41F952",
+        "checkboxReader": "0x41B8AF",
+        "tableAccessor": "0x42ACD2",
+        "valueUpdater": "0x4781C6",
+        "table": "0x508000",
+        "pointsPool": "0x505F40",
+        "dialogPool": "0x4FFF68+0x14"
+      },
+      "limitations": [
+        "0x4FFF68 与 0x505F40 的同步点未定位。",
+        "对象 +0x14 与 [记录+0] 含义未定。",
+        "值数组来源未追踪。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.dialog332-confirm.3ef7",
+        "mechanism.65.merit-table.3ef7",
+        "mechanism.65.dialog-framework.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-dialog332-refresh-20261112",
+        "src.research.engine-points-adjust-20261112"
+      ]
+    }
+  ]
+}

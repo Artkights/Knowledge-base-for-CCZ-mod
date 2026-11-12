@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "analysis": "character-template-init-and-field0D",
+  "date": "2026-11-12",
+  "method": "反汇编注册回调 0x42B4F0/0x42B510；反汇编 0x4245BE..0x424612 的排序/筛选循环；结合 0x423A7D 的 %s 输出确认名称字段。仅静态读取基底。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"}
+  ],
+  "initCallback": {
+    "va": "0x42B4F0",
+    "body": "mov byte ptr [ecx],0; mov eax,ecx; ret",
+    "meaning": "0x481440 对每条记录调用一次，只清空记录首字节（名称首字符），证明 +0x00 是内联 C 字符串起点",
+    "cleanup": "0x42B510 为空实现"
+  },
+  "field0D": {
+    "va": "0x4245BE..0x424612",
+    "behavior": [
+      "0x484002 取模板记录后读取 byte[record+0xD]",
+      "把 +0xD 值放入栈上字节数组，循环做选择排序/去重（写入 [esp+...] 并在尾部置 0xFF）",
+      "把选中的字节写入单位记录的 +0xD 与 +0xC（0x4245EC/0x4245EF）"
+    ],
+    "candidate": "分类/组别 ID（用于人物列表分组排序后写入单位）",
+    "note": "0x4245C6 的 +0xD 与单位 +0xC/+0xD 同名偏移，说明二者是同一语义字段在模板与单位间的复制"
+  },
+  "newLimitations": [
+    "+0xD 的具体分类名（势力/性别/职业）未由文案证实。",
+    "+0xC 的随机替换用途仍未定名。",
+    "未运行游戏对照。"
+  ],
+  "conclusion": "0x4A3E77 记录首字节为名称字符串起点（注册回调只清零 name[0]，且 0x423A7D 以 %s 输出记录）。+0x0D 是分类/组别 ID：模板值被收集到栈上数组，排序/去重后写入单位记录的 +0xD 与 +0xC。+0xC 仍为随机替换字段。",
+  "limitations": [
+    "+0xD 的具体分类名（势力/性别/职业）未由文案证实。",
+    "+0xC 的随机替换用途仍未定名。",
+    "未运行游戏对照。"
+  ]
+}

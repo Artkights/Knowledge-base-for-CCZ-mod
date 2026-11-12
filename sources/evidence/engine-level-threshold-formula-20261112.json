@@ -1,0 +1,62 @@
+{
+  "id": "src.research.engine-level-threshold-formula-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "升级阈值公式 0x42AC8F 与 332 工作区 +0x0A 第二数组、+0x21 等级字节",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 + 调用点上下文 + 原始字节核对",
+  "findings": [
+    {
+      "id": "threshold-formula",
+      "claim": "0x42AC8F(expWordPtr, levelByte, mode) 计算升级所需经验阈值：level>=0x6E(110) 返回 -1（无效）；level<0x50(80) 阈值=0x32(50)；level>=0x50 阈值=(level-0x4F)*0x0A+0x37（即 80 级=65、81 级=75，每级 +10）。mode!=1 时循环扣减 exp 并递增 level/计数。",
+      "evidence": [
+        "0x42AC94 movzx eax,byte[ebp+0xC]; 0x42AC98 cmp al,0x6E; 0x42AC9C or eax,0xFFFFFFFF",
+        "0x42ACA4 cmp al,0x50; 0x42ACA8 mov al,0x32",
+        "0x42ACAC sub al,0x4F; 0x42ACAE imul eax,eax,0xA; 0x42ACB1 add eax,0x37",
+        "0x42ACB4 cmp word[edx],ax; 0x42ACC2 sub word[edx],ax; 0x42ACBF inc dword[ebp+0xC]（循环）"
+      ]
+    },
+    {
+      "id": "second-array",
+      "claim": "332 工作区 0x4FFF68 的 +0x0A 起是第二组 word×5：0x40123E 对每项调用 0x42AC8F 后把返回值写入 workarea[+0x0A+i*2]；+0x00..+0x09 的五项 word 则来自 0x40123E 的第 2 参数数组（经验值）。",
+      "evidence": [
+        "0x401241 push 0x4FFF68（作为 [ebp-4] 局部指针）",
+        "0x40124C edx=i*2+[ebp+0xC]; 0x40124F movzx eax,word[edx]; 0x401259 mov word[i*2+0x4FFF68],ax",
+        "0x401268 call 0x42AC8F; 0x401270 shl ecx,1; 0x401272 add ecx,0xA; 0x401278 mov word[ecx+workarea],ax"
+      ]
+    },
+    {
+      "id": "level-byte",
+      "claim": "每项记录的 +0x21 是等级字节：0x40123E 以 [base + i + 0x21] 作为 0x42AC8F 的 level 参数；0x423F75 与 0x4620C7 在扣减经验后 inc byte[base + i + 0x21]（升级 +1）。",
+      "evidence": [
+        "0x40125C add ecx,[ebp+0x10]; 0x401261 push dword[ecx+0x21]",
+        "0x423F81 mov eax,[ebp+0x10]; 0x423F84 mov ecx,[ebp+0xC]; 0x423F87 inc byte[eax+ecx+0x21]",
+        "0x4620D6 mov eax,[ebp-4]; 0x4620D9 inc byte[eax+ecx+0x21]"
+      ]
+    },
+    {
+      "id": "five-attribute-refresh",
+      "claim": "0x40123E(hwnd, expArray, baseRecord, i) 是 332 五维行的刷新：写 workarea 第 i 项经验 → 算阈值写 +0x0A → 0x4129E5(hwnd,0x7D6,workarea,i) 刷新数值控件 → 0x415F10(hwnd,i+0x7E6,[ebp-8],workarea+0x14) 刷新剩余点数显示。",
+      "evidence": [
+        "0x40127B push i; push workarea; push 0x7D6; push hwnd; call 0x4129E5",
+        "0x401294 push dword[workarea+0x14]; push [ebp-8]; lea ecx,[i+0x7E6]; push ecx; push hwnd; call 0x415F10"
+      ]
+    }
+  ],
+  "corrections": [
+    "+0x0A 第二数组不是普通计数，而是五项升级阈值（下一级所需经验）；+0x21 为每项等级字节。",
+    "0x42AC8F 的阈值公式补全：<80 级固定 50；>=80 级为 (level-79)*10+55。"
+  ],
+  "limitations": [
+    "0x40123E 在调用 0x42AC8F 时第 1 参数使用未初始化局部 [ebp-8]（可能为编译期复用/反汇编缺失），需运行期确认。",
+    "0x415F10 与 0x4129E5 的具体 Win32 调用未展开。",
+    "mode 参数的 1 与其他取值差异未完全追踪。",
+    "未运行游戏对照。"
+  ]
+}

@@ -2,7 +2,52 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/workflows/data-manager-exchange-resources.json`、`6.5/data/workflows/data-manager-formulas.json`、`6.5/data/workflows/data-manager-workflows.json`、`6.5/data/workflows/local-review-20261028.json`、`6.5/data/workflows/production-workflows.json`、`6.5/data/workflows/reverse-engineering-methods.json`
+结构化事实来源：`6.5/data/workflows/anchor-based-reference-tracing.json`、`6.5/data/workflows/data-manager-exchange-resources.json`、`6.5/data/workflows/data-manager-formulas.json`、`6.5/data/workflows/data-manager-workflows.json`、`6.5/data/workflows/local-review-20261028.json`、`6.5/data/workflows/production-workflows.json`、`6.5/data/workflows/reverse-engineering-methods.json`
+
+## 函数锚点引用追踪与消费者闭合工作流
+
+ID: `workflow.65.anchor-based-reference-tracing`；状态: `candidate`；证据: `static-verified`
+
+目标：在 x86 PE32 游戏中把“某地址是否被写入/读取”从模糊印象变为可复现的指令级证据，并区分立即数、指针计算和访问器三种引用形式。
+
+输入：
+
+- 目标 Ekd5.exe 与 SHA-256
+- 节表与 VA→文件偏移映射（.text: off = 0x400 + VA - 0x401000）
+- 待查地址或结构字段偏移
+- capstone 32 位反汇编环境
+
+步骤：
+
+1. 固定目标文件 SHA-256 与代码段差异；若基底被工具改动，先比对原始备份确认代码段未变。
+2. 按 55 8B EC / 55 89 E5 扫描函数起点，建立锚点集合。
+3. 在 [起点, 下一起点) 内线性解码，匹配立即数与任意基址 disp，输出命中及所属函数。
+4. 对无立即数命中的地址，改为扫描 call rel32 找访问器/计算函数（如 0x4362C2）。
+5. 对每个调用点反汇编前后各 0x20 字节，提取 push 参数、寄存器赋值和读写宽度。
+6. 对指针访问（如 0x41E918 返回记录指针）继续追踪字段偏移 +0xC/+0xD 的消费者。
+7. 把确认的读写点、ABI 和返回值写成候选实体，绑定精确画像并登记来源快照。
+8. 运行 build_reference/build_index/validate_kb，确保生成物零差异且查询可检索。
+
+门禁：
+
+- 代码段与原始 SHA 不一致时停止结论升级。
+- 线性扫描命中必须由函数锚点或调用点复核，不能直接当事实。
+- 没有字段偏移消费者时不得声称“无人读取”。
+- 静态结论保持 candidate；实机运行前不得授权自动写回。
+
+产物：
+
+- 函数锚点扫描输出
+- 调用点/访问器清单
+- 结构化实体 JSON
+- 来源快照与 SHA-256 清单
+- validation_ok 校验输出
+
+回滚：
+
+- 删除新增实体文件与来源快照，重新生成 index/reference
+- 保留失败查询输出与未决字段，登记到 research 队列
+- 不得以删除证据的方式消除校验失败
 
 ## 业务 XLSX 整本预检、三方冲突与原子草稿导入
 

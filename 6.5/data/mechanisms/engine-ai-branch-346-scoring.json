@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.ai-branch-3-4-6-scoring.3ef7",
+      "title": "AI 评分分支 3/4/6 的权重与阈值",
+      "aliases": [
+        "AI branch 3",
+        "AI branch 4",
+        "AI branch 6",
+        "AI评分权重"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "AI 分支 3/4/6：分支 3 以 HP/5 与 30 阈值给 +20；分支 4 以命中 35 给 +26（80 再 +26）；分支 6 以兵种属性行5==2 或命中 60 给 +25，80 再 +7。",
+      "branches": {
+        "3": {"va": "0x439A26", "weight": 20, "thresholds": [5, 30]},
+        "4": {"va": "0x43996C", "weight": 26, "thresholds": [35, 80]},
+        "6": {"va": "0x439A70", "weight": 25, "extra": 7, "thresholds": [60, 80], "attribute": "0x4D2188"}
+      },
+      "constants": [5, "0x1E", "0x14", "0x23", "0x1A", "0x50", "0x3C", "0x19", 7],
+      "limitations": [
+        "属性名未命名。",
+        "6.6 常量未逐项重定位。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.strategy-ai-dispatch.3ef7",
+        "mechanism.65.ai-damage-ratio-scoring.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-ai-branch-346-scoring-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

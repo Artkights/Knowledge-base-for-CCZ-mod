@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "analysis": "table-506800",
+  "date": "2026-11-12",
+  "method": "refs_to 列出 0x506800 的 6 处引用；capstone 反汇编 0x405063、0x415E7C..0x415EE0、0x4263B0。仅静态分析。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"}
+  ],
+  "table": {
+    "base": "0x506800",
+    "entrySize": "0x0C（12）",
+    "indexing": "index*0xC + 0x506800（0x40506D、0x40513A、0x415EA1、0x4263BB、0x4263CA）",
+    "fields": [
+      "+0x00 dword：打包 (b0, 0xFF, b2, b3)（0x415EA9–0x415EB7：dl=b0、dh=0xFF、shl 16、dl=b2、dh=b3）",
+      "+0x00==0xFFFF 表示空项（0x415EBB）",
+      "+0x04 dword：0x405075 push [eax+4] 作为参数",
+      "+0x08 dword：位标志，&3 判定（0x415EC3–0x415ECB）"
+    ],
+    "initSentinel": "word[0x505F64]==0xFFFF 为全局哨兵（0x415E93）"
+  },
+  "sites": [
+    "0x405063：index*0xC 取表项，push [eax]、[eax+4]，并以 0x48BBFA 调 0x4376EA（文本/格式化相关）",
+    "0x40513A：与 0x4BE880 格字节联动（+8 为指针，检查 word[ptr]==0x2828）",
+    "0x40DAA3：push 0x506800 作参数",
+    "0x415EA1：写入项（哨兵或 +8&3==0 时写 dword0）",
+    "0x41E8BA：加基址读取",
+    "0x4263B3：以 index*0xC 与 +0xC 偏移做 0x4819E0 搬移（表项移位/排序）"
+  ],
+  "conclusion": "0x506800 是 12 字节步长的定长表：dword0 打包三个字节字段（第二字节固定 0xFF，0xFFFF 为空项），+0x04 为参数 dword，+0x08 为位标志（&3）。写入受 word[0x505F64]==0xFFFF 哨兵控制；0x4263B3 负责表项搬移。",
+  "limitations": [
+    "表容量（项数）未确定。",
+    "dword0 三字节字段的业务含义未定。",
+    "+0x04 的用途未追踪。",
+    "0x4376EA/0x48BBFA 的语义未展开。",
+    "未运行游戏对照。"
+  ]
+}

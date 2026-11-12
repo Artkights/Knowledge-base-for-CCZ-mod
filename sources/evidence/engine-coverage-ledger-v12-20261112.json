@@ -1,0 +1,48 @@
+{
+  "id": "src.research.engine-coverage-ledger-v12-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "通用常量覆盖台账 v12（第 1–129 轮）：列表实数 91 域 / 68 resolved / 21 partial / 2 unresolved",
+  "method": "对 6.5/data/mechanisms/engine-general-coverage.json 的 domains 列表逐项计数，并把第 120–129 轮新增/提升项合并；v11 摘要与列表不一致处按列表实数更正。",
+  "findings": [
+    {
+      "id": "count-reconciliation",
+      "claim": "v11 摘要记 94 域（72/20/2），但 domains 列表实为 resolved 64、partial 19、unresolved 2（共 85）；v12 合并第 120–129 轮后为 resolved 68、partial 21、unresolved 2（共 91）。",
+      "evidence": [
+        "v11 文件：domains.resolved 长度 64、partial 长度 19、unresolved 长度 2",
+        "v12 合并：resolved 追加 4 项（脚本上下文缓存、地图可见矩形 0x501BF0、地图图形页 0x1E900/0x24C00、0x42CA5E 对话框类）",
+        "v12 partial：移除『0x42CA5E 派生对话框类判定』，改名 2 项，新增 3 项（四快捷窗口、操作码 0x72 子命令表、0x2E31 文本表）"
+      ]
+    },
+    {
+      "id": "rounds-120-129",
+      "claim": "第 120–129 轮纳入知识库的新增/提升域：0x4BE880 格字节数组、0x506800 十二字节表、存档头写入链（+0x05/+0x10）、脚本上下文 +0x08/+0x0C/+0x14 与分支区间 0x500AB0/0x500AB4（消费链 0x416C41）、0x501BF0 地图可见矩形（操作码 0x72 子命令 31）、0x496F38 四快捷窗口宿主（模板 297）、练武场状态保存/恢复、0x42CA5E 文本提示对话框类（模板 342）、地图图形页 0x1E900=0x12900+0xC000。",
+      "evidence": [
+        "sources/evidence/engine-cell-byte-map-20261112.json",
+        "sources/evidence/engine-table-506800-20261112.json",
+        "sources/evidence/engine-save-header-writer-20261112.json",
+        "sources/evidence/engine-script-branch-range-20261112.json",
+        "sources/evidence/engine-map-rect-cache-20261112.json",
+        "sources/evidence/engine-quick-window-host-20261112.json",
+        "sources/evidence/engine-training-state-save-20261112.json",
+        "sources/evidence/engine-msg-dialog-class-20261112.json",
+        "sources/evidence/engine-map-graphics-page-20261112.json"
+      ]
+    },
+    {
+      "id": "remaining-gaps",
+      "claim": "剩余 unresolved 2 项（0x423842 edx 来源、0x4A3E77 68 之后槽位运行期来源）均需运行期观测；partial 主要缺口为 11 层逐层用途、0x4B4250+0x64/+0x68 写入方、GDI+/MCI 剩余项、操作码中文名与 0x42C9FC 文本表编号。",
+      "evidence": [
+        "v12 domains.unresolved 列表",
+        "v12 domains.partial 列表"
+      ]
+    }
+  ],
+  "corrections": [
+    "v11 摘要的 94/72/20 与 domains 列表不符，v12 起以列表实数（91/68/21/2）为准并保留本更正记录。"
+  ],
+  "limitations": [
+    "台账计数只覆盖已登记域，不等于三基底全部常量；未登记域仍可能存在于未扫描函数。",
+    "未运行游戏对照。"
+  ]
+}

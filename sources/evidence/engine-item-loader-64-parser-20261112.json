@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "analysis": "item-loader-64-and-parse-rotation",
+  "date": "2026-11-12",
+  "method": "反汇编 6.4 0x41B639 初始化序列、0x41B666、0x47D988、0x47D9E1、0x41FECC、0x451313、0x43E67C、0x41BABB；字节模式搜索 '8a51128b4113' 判断内联旋转位置；refs_to 统计 0x41B51E/0x41FECC/0x496F60 引用。仅静态读取基底。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "chain64": {
+    "init": "0x41B639：call 0x41B666 → call 0x47D988 → call 0x41B73E → call 0x41B790 → call 0x41B7F0 → 0x40251C(0x492E20) → call 0x41B834",
+    "charBlock": "0x41B666：0x41B51E(\"DATA.E5\", 0, [0x496F60]) 载入块0；随后 0..0x3FF 调用 0x4061E4/0x408C0C 初始化人物记录",
+    "itemBlock": "0x47D988：0x41B51E(\"DATA.E5\", 1, [0x496F60]) 载入块1（物品），[0x496F60] 为复用工作缓冲指针",
+    "parseLoop": "0x47D9E1(start,limit,src)：idx=start；record=0x4837C2(idx)；若 idx低字节>=limit 退出；否则 0x41FECC(record,src)，src+=0x19，idx++",
+    "calls": [
+      "0x47D9E1(0, 0x68, [ebp-4])：解析 104 条",
+      "0x451313(ecx=[ebp-4 未明], edx=\"star.e5\")：read capacity 0x1022 字节到 ecx 指向缓冲",
+      "0x43E67C(count=0x3B6, dst=[ebp-4], src=[ebp-8])：rep movsd 复制 0x3B6 dword = 0xED8 字节 = 152 条 × 25",
+      "0x47D9E1(0x68, 0xFF, [ebp-4])：解析 151 条（槽 104..254）",
+      "0x41BABB：0..0xFE 统计 0x44001E 非零数量 → byte[0x4CE7BE]"
+    ]
+  },
+  "parser64": {
+    "va": "0x41FECC",
+    "body": [
+      "0x47FCFD(record, src, 0x10)：复制 16 字节 +0x00..+0x0F",
+      "record+0x0E = 0",
+      "record+0x11 = src+0x11",
+      "record+0x14 = src+0x12",
+      "word[record+0x12] = word[src+0x13]（即 +0x12=src+0x13、+0x13=src+0x14）",
+      "dword[record+0x15] = dword[src+0x15]（+0x15..+0x18）"
+    ],
+    "rotation": "运行时 +0x12←源 +0x13、+0x13←源 +0x14、+0x14←源 +0x12，与 6.5/6.6 内联旋转完全一致",
+    "refs": "三基底同址存在；6.5/6.6 另有调用点 0x477223"
+  },
+  "crossBase": {
+    "starReadCapacity": {"6.4": "0x1022（4130）", "6.5": "0xED8（3800）", "6.6": "0x27D8（10200）"},
+    "rotationSite": {"6.4": "0x41FECC 逐条解析", "6.5": "0x4010EB 内联", "6.6": "0x4010EB 内联"},
+    "inlinePattern8a51128b4113": {"6.4": 0, "6.5": 1, "6.6": 1},
+    "slotLimit": {"6.4": 255, "6.5": 255, "6.6": 512},
+    "dataBlockCount": {"6.4": 104, "6.5": 104, "6.6": 104},
+    "starRecords": {"6.4": "152（0x3B6 dword 复制）", "6.5": "152（0xED8 读入）", "6.6": "408（0x27D8 读入）"}
+  },
+  "correction": "第 55 轮记录“6.4 无旋转”需更正：6.4 通过 0x41FECC 解析函数完成同一 +0x12..+0x14 重排，只是不在装载器内联；字节模式 '8a51128b4113' 在 6.4 无命中，6.5/6.6 各 1 处（0x4010EB）。",
+  "conclusion": "6.4 物品装载链为：0x41B639 初始化序列 → 0x41B666 载入 DATA.E5 块0（人物）→ 0x47D988 载入块1（物品）到复用缓冲 [0x496F60] → 0x47D9E1/0x41FECC 解析前 104 条并旋转 → 读 star.e5（容量 0x1022）→ 0x43E67C 复制 0xED8 字节（152 条）→ 解析槽 104..254 → 0x41BABB 统计有效物品数写入 0x4CE7BE。6.4 槽位上限同为 255。star.e5 读取容量三基底分别为 0x1022/0xED8/0x27D8。",
+  "limitations": [
+    "0x47D988 使用未在自身帧分配的 [ebp-4]/[ebp-8] 两个栈槽，缓冲区指向无法由静态代码单独确定，需运行期或调用栈核验。",
+    "0x1022 为 ReadFile 容量上限，实际读取长度由文件大小决定。",
+    "0x43E67C 的源/目标缓冲身份未闭合（[ebp-8]→[ebp-4]）。",
+    "0x41B73E/0x41B790/0x41B7F0/0x41B834 四个后续初始化函数未展开。",
+    "未运行游戏对照。"
+  ]
+}

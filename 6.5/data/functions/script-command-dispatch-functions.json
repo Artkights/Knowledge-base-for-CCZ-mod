@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "fn.65.script-command-dispatch.3890",
+      "title": "剧本指令分派器",
+      "aliases": [
+        "0x004109E6",
+        "script_command_dispatch"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004109E6",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX = 脚本上下文",
+      "inputs": "ECX = 上下文（+0x2E 存当前 opcode）",
+      "returns": "EAX = 1（成功）/ 5（opcode 越界）",
+      "semantics": "call 0x40FCB2 读取 16 位 token → 存入 [ecx+0x2E] → cmp eax,0x79（6.6 为 0x7B）→ opcode ≤1 走内联特殊分支（含 0x4CE74C 赋值，6.6 改为 0x500AB0）→ 否则 call dword[eax*4 + 0x410A38]（eax 先减 2）。",
+      "relations": [
+        "global.65.script-command-dispatch-table.3890",
+        "fn.65.script-token-reader.3890",
+        "fn.65.script-param-get.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.script-token-reader.3890",
+      "title": "剧本 token 读取（16 位）",
+      "aliases": [
+        "0x0040FCB2",
+        "script_token_reader"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040FCB2",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX = 流对象",
+      "inputs": "ECX = 流对象（0x40FC7F 负责推进）",
+      "returns": "EAX = 低字节 | (第二次读 << 8)",
+      "semantics": "两次 call 0x40FC7F：第一次作低字节存 [ebp-4]，第二次左移 8 位后或入，得到 16 位 token。说明指令流按 16 位字读取，低字节即 opcode。",
+      "relations": [
+        "fn.65.script-command-dispatch.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.script-param-get.3890",
+      "title": "剧本参数取值（按序号）",
+      "aliases": [
+        "0x004183F7",
+        "script_param_get"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004183F7",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX = 上下文，栈参 = 参数序号",
+      "inputs": "ECX = 上下文；[ebp+8] = 参数序号（1..5）",
+      "returns": "EAX = 参数值；读失败返回 0x80000000",
+      "semantics": "push 0x80000000; push [ecx+0x2E]; call 0x40FCB2 读下一个 token，再按序号分支；序号 4/5 有负数与间接处理（0x40FC90），用于 `-n` 与 `*n` 语法。0x47D89E 分派器先用序号 4、5 各取一次，再 call 0x47D8DF[类型] 执行。",
+      "relations": [
+        "fn.65.script-token-reader.3890",
+        "global.65.script-command-dispatch-table.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "fn.65.script-ascii-number.3890",
+      "title": "剧本 ASCII 数字参数解析",
+      "aliases": [
+        "0x00426E64",
+        "script_ascii_number"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00426E64",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "cdecl；1 个栈参",
+      "inputs": "[ebp+8] = 字符流指针",
+      "returns": "EAX = 数值；EDX = 消耗字节数（'-' + '*' + 数字个数 + 1）",
+      "semantics": "逐字符扫描：'0'..'9' 计数字位，'-' 记负号，'*'（且尚无数字）记间接标志；随后按十进制逐位累乘 10；若间接标志则 eax = dword[0x502000 + eax*4]（变量表取值）；若有负号则取负；返回消耗字节数用于推进流指针。即：剧本参数是 ASCII 文本，`*n` = 取第 n 个变量，`-n` = 负数。",
+      "relations": [
+        "fn.65.script-param-get.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

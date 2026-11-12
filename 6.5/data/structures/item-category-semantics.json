@@ -103,7 +103,7 @@
         "src.items.semantic-tests",
         "src.items.user-confirmation",
         "src.items.byte-evidence",
-        "src.integration.record-codecs-current"
+        "src.data-manager64.codecs"
       ]
     }
   ]

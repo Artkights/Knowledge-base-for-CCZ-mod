@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "analysis": "arithmetic-immediates-census",
+  "date": "2026-11-12",
+  "method": "新增 arith_immediates.py：用 capstone 扫描三基底全部可执行节，统计 imul 立即数与 shl/shr/sar 立即数频次（每值最多记录 8 个站点）；对 6.6 独有小立即数站点点做上下文反汇编；对 0x15/0x14/0x32 步长文本表做三基底比对。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "census": {
+    "imulKinds": {"6.4": 107, "6.5": 106, "6.6": 122},
+    "shiftKinds": {"6.4": 29, "6.5": 29, "6.6": 26},
+    "topImulImmediates": [
+      {"value": "0x03", "counts": [138, 142, 149]},
+      {"value": "0x30", "counts": [101, 97, 107], "note": "48：瓦片像素尺寸（第 59/74 轮）"},
+      {"value": "0x1B00", "counts": [57, 54, 50], "note": "6912：战场单层字节数（第 53 轮）"},
+      {"value": "0x10", "counts": [36, 30, 44]},
+      {"value": "0x06", "counts": [35, 35, 37]},
+      {"value": "0x04", "counts": [38, 40, 35]},
+      {"value": "0x05", "counts": [25, 34, 33]},
+      {"value": "0x02", "counts": [22, 21, 33]},
+      {"value": "0x0A", "counts": [28, 25, 25]},
+      {"value": "0x64", "counts": [19, 18, 24], "note": "100：百分比（多轮已登记）"},
+      {"value": "0x6C00", "counts": [24, 24, 24], "note": "27648，语义未定"},
+      {"value": "0x14", "counts": [23, 24, 23], "note": "20：策略/人物记录步长"},
+      {"value": "0x0C", "counts": [32, 32, 23]},
+      {"value": "0x12900", "counts": [21, 21, 21], "note": "76032"},
+      {"value": "0x08", "counts": [12, 12, 18]},
+      {"value": "0xC000", "counts": [18, 18, 18]},
+      {"value": "0x2C", "counts": [12, 12, 12], "note": "44"},
+      {"value": "0x3000", "counts": [12, 12, 11]}
+    ],
+    "sixSixOnlySmall": [
+      {"value": "0x15", "count": 4, "sites": ["0x402068", "0x409A21", "0x4161DD", "0x42BADB"], "semantic": "21 字节文本记录步长（新增表 @ +0x662）"},
+      {"value": "0x12C", "count": 1, "sites": ["0x41EB5A"], "semantic": "300：状态图标横向间距"}
+    ],
+    "noiseNote": "0x69696969/0x74616572 等大立即数来自数据区被误反汇编，已排除；0x6B/0x41 的 6.6 独家站点位于 .data（0x5015EC/0x4CEA72），非代码。",
+    "shiftNote": "shl/shr/sar 立即数主要集中 1/2/3/4/8/16；大于 31 的计数来自数据误判，已排除语义分析。"
+  },
+  "textTable": {
+    "semantic": "6.6 新增 21 字节步长的文本记录表（相对对象 +0x662）",
+    "stride66": "0x15",
+    "base66": "+0x662",
+    "oldStride": "0x14",
+    "oldBase": "+0x4BE",
+    "stride32Base": "0x32 / +0xA4",
+    "sites66": ["0x402068", "0x409A21", "0x4161DD", "0x42BADB"],
+    "site65": "0x4161D2：默认分支 imul edx,0x14; lea [eax+ecx+0x4BE]",
+    "selection": "0x4161C7..0x4161E7：按 al 分支选表——al==2→0x14/+0x4BE；默认→0x15/+0x662；另有 0x32/+0xA4 分支。",
+    "consumer": "0x402068：eax=[ecx+0x24]*0x15+[ecx+0x28]+0x662，然后 GetDlgItem([ecx+4],0xAD8) 并设置文本；0x42BADB 同样计算后压栈。",
+    "formatString": "0x48B58C（\"%s\"）"
+  },
+  "drawFormula66": {
+    "function": "0x41EB48",
+    "constants": ["0x190（400，y 坐标）", "0x12C（300，图标间距）", "0x10（16 字节步长）", "0x500030"],
+    "behavior": "al=byte[ecx+0x1B]；bit8、bit4、bit2 各使 edx+1；edx*=0x12C 后累加到 x 坐标；再取 byte[ecx+0x19]*0x10+0x500030 作为文本/数据指针；随后 push 4 与多个 edx 调用绘制。",
+    "array": "0x500030：6.6 独占，6 处引用（0x41BF8B/0x41E9B2/0x41EB78/0x42A280/0x46C9B9/0x47CC20），按 0x10 步长索引",
+    "note": "6.5 的同址函数（0x41EB4B）为 GDI 绘制另一实现，无 0x12C/0x500030 逻辑。"
+  },
+  "conclusion": "三基底算术立即数普查得到 imul 种类 107/106/122、移位种类 29/29/26；共享高频公式常量集中在 3/0x30/0x1B00/0x10/6/4/0x64/0x14 等。6.6 独有小立即数揭示两处新结构：21 字节文本记录步长 0x15（表基 +0x662，替代 6.5 默认 0x14/+0x4BE；旧表仍保留给类型 2）与 0x12C=300 的状态图标间距（0x41EB48，配合 0x500030 的 16 字节表）。",
+  "limitations": [
+    "普查中的大立即数含数据区误判，已人工排除，但无法保证零噪声。",
+    "21 字节文本表的对象来源（+0x662 所属缓冲区）未定名。",
+    "0x500030 的 16 字节条目字段未解析。",
+    "未运行游戏对照。"
+  ]
+}

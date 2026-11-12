@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "analysis": "battle-unit-table-fields",
+  "date": "2026-11-12",
+  "method": "逐字段枚举 0x4B3D22/+3/+4 引用并反汇编 0x4561D0、0x456700、0x4568C0、0x456A10、0x456E90 上下文；核对三基底字段引用数。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "fields": {
+    "record+0": "x 坐标（0x4B3D21）",
+    "record+1": "y 坐标（0x4B3D22）",
+    "record+2": "类型（0x4B3D23）：0x11 特殊；写入 0x1A/0x1B 变体",
+    "record+3": "对象 id（0x4B3D24）：0xFF 空；整条清除时 dword 0x4B3D21 置 0xFFFFFFFF",
+    "record+4": "图层（0x4B3D25）：4..0xC8 → +0x1F40 层，否则 +0x640 层；0xFF 空"
+  },
+  "sites": {
+    "writeTypeLayer": {
+      "va": "0x4561F8",
+      "code": "ecx=slot*5; byte[ecx+0x4B3D23]=type（0x1A 或 0x1B）；byte[ecx+0x4B3D25]=arg"
+    },
+    "findByXY": {
+      "va": "0x456711",
+      "code": "i<0xFA; eax=i*5; if byte[eax+0x4B3D21]==x && byte[eax+0x4B3D22]==y → 命中"
+    },
+    "specialType": {
+      "va": "0x4568EE",
+      "code": "if byte[edx*5+0x4B3D23]==0x11 → 进入特殊分支；0x456A34 再次检查 0x11"
+    },
+    "placeIntoTile": {
+      "va": "0x456AA3",
+      "code": "cl=byte[edx*5+0x4B3D24]; byte[mapBase + x + width*y] = cl; dword[edx*5+0x4B3D21]=0xFFFFFFFF; byte[edx*5+0x4B3D25]=0xFF"
+    },
+    "layerSelect": {
+      "va": "0x456ED7",
+      "code": "v=byte[ecx*5+0x4B3D25]; if 4<=v<0xC9 → 0x1F40 层，否则 0x640 层；0xFF 跳过"
+    },
+    "layerSize": {"va": "0x4568D3", "code": "memcpy 后 add [ebp-0x128], 0x1B00"}
+  },
+  "crossBase": {
+    "refCounts": {
+      "0x4B3D21": {"6.4": 7, "6.5": 7, "6.6": 7},
+      "0x4B3D22": {"6.4": 2, "6.5": 2, "6.6": 2},
+      "0x4B3D23": {"6.4": 4, "6.5": 4, "6.6": 4},
+      "0x4B3D24": {"6.4": 6, "6.5": 6, "6.6": 6},
+      "0x4B3D25": {"6.4": 3, "6.5": 3, "6.6": 3}
+    }
+  },
+  "conclusion": "占位表 5 字节字段全部定位：x、y、类型、对象 id、图层。类型 0x11 走特殊分支；对象 id 为 0xFF 表示空，放置时写入地图层并把整条 dword 清为 0xFFFFFFFF；图层值 4..0xC8 使用 +0x1F40 层，其余使用 +0x640 层，0xFF 为空。0x1B00 为单层字节数，在 memcpy 循环中按层推进。",
+  "limitations": [
+    "类型码 0x11/0x1A/0x1B 的名称未确定。",
+    "0x640 与 0x1F40 两层对应关系未命名。",
+    "0x1B00=6912 与网格尺寸的乘积关系未闭合。",
+    "未运行游戏对照。"
+  ]
+}

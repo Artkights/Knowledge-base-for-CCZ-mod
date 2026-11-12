@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "analysis": "equipment-slot-item-type-interval-candidate",
+  "date": "2026-11-12",
+  "method": "汇总装备槽数量 3、物品类型分类阈值 20/26 与 0x4065F0 调用点的 slot 0/1/2 使用，提出槽位-类型区间对应候选；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "facts": {
+    "slotCount": 3,
+    "slotAccessor": "0x4065F0 = byte[record+0x2E+slot*3]",
+    "typeClassifier": "0x40B444: type<20→0；20..25→1；>=26→item+0x14",
+    "slotUseSites": ["0x4500D8 slot0", "0x4500EF slot1", "0x450184 slot0", "0x4501EB slot1", "0x465EC6 slot2", "0x46A8A4 slot<3"]
+  },
+  "candidateMapping": [
+    {"slot": 0, "typeRange": "type < 20", "candidate": "武器/普通装备"},
+    {"slot": 1, "typeRange": "20 <= type < 26", "candidate": "防具/特殊装备"},
+    {"slot": 2, "typeRange": "type >= 26", "candidate": "辅助装备"}
+  ],
+  "conclusion": "装备槽 3 个，物品类型分类阈值 20/26 正好把类型分为三段，且代码中存在 slot0/slot1/slot2 的独立使用点。因而提出候选对应：slot0=type<20、slot1=20..25、slot2=>=26。该对应尚未由命名表或界面文案直接证明。",
+  "limitations": [
+    "槽位名称与类型区间是候选映射，不是已命名的界面术语。",
+    "0x4500xx 的槽位使用函数未完整展开。",
+    "未运行游戏对照装备限制。"
+  ]
+}

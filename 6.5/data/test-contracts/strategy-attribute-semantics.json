@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "entityType": "test-contract",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "test.data-manager.strategy-attribute-semantics",
+      "title": "策略属性语义、取值上限与 CSV 旧名兼容回归",
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "test-verified",
+      "command": "dotnet run --project src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --strategy-extension \"<基底>/复刻版6.6山贼\"；dotnet run --project src/DataManager.Tests/DataManager.Tests.csproj -c Release -- --strategy-effect-classes \"<基底>/加强版6.5未加密版\"",
+      "target": "data 管理器策略页原有显示名、位名、施展对象上限、AI/伤害类型上限、6.4/6.5 填充型扩展表隐藏、6.6 扩展位 bit0/bit1 读写、保留位与实体切换、是否伤血/命中模式全量语义、CSV 旧名导入。",
+      "mutationScope": "只写测试复制目录；基底 Ekd5.exe/Data.e5 原件不写回；测试结束校验原件 SHA。",
+      "assertions": [
+        "strategy-learning 界面显示为 类型索引（Profile 显示效果索引），旧 CSV 名 策略类型索引/策略效果索引/效果索引 仍解析到 strategy-learning。",
+        "策略页标签包含 类型索引、命中上限、伤害系数、战场AI策略、练武场AI策略、效果索引。",
+        "strategies 的 施展对象 Maximum=2，策略页下拉不再提供 5/6。",
+        "strategy-battle-ai 与 strategy-training-ai 单字段 Maximum=0x0F，strategy-damage-type 单字段 Maximum=4。",
+        "6.6 策略页只显示两个可写复选框：策略模仿(bit0) 与 辅助穿透(bit1)；bits2-7 不显示但写回保留。",
+        "6.4/6.5 策略页完全隐藏 strategy-extension，不显示说明或灰显控件。",
+        "6.6 在未保存草稿状态下切换策略 ID 不产生瞬时草稿；取消 bit0/bit1 只写 strategy-extension 单字节，磁盘只改变 Ekd5.exe+0xA2CE0+策略ID。",
+        "是否伤血 0..3 行为等价，4 不伤血，>=4 同样被门控；6.4/6.5 由 ID 0x46/0x16 绕过，6.6 由策略类型 0x1E/0x06 绕过；显示只把精确的 4 显示为 0。",
+        "命中模式 0=基础×90/100、1=绝对100、2=能力曲线、3=基础×34/100、4=基础×50/100；>=5 为基础×值/100；最终封顶 100。",
+        "策略页 CSV 导出使用原有显示名，旧名导入别名仍可回导同一物理表。",
+        "测试前后基底文件 SHA 不变"
+      ],
+      "requiredArtifacts": [
+        "STRATEGY_EXTENSION_TESTS_OK",
+        "STRATEGY_EFFECT_CLASS_TESTS_OK",
+        "策略专项测试退出码 0",
+        "测试输出目录下的布局截图或控制台结果"
+      ],
+      "failureMeaning": "策略标签、位名、Profile 上限、6.4/6.5 扩展表隐藏、6.6 扩展位 bit0/bit1 读写、保留位、实体切换或 CSV 旧名兼容出现回归。",
+      "sourceRefs": [
+        "src.data-manager.profile65",
+        "src.data-manager.registry",
+        "src.data-manager.test-profile-write",
+        "src.dm.core-current-20261102.test-runner"
+      ]
+    }
+  ]
+}

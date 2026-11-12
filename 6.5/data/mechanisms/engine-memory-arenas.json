@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.memory-arenas.3ef7",
+      "title": "三个全局内存池 0x4AE4A8/0x4AE4C8/0x4AB00C 与分配器 0x47FA40",
+      "aliases": [
+        "memory arenas",
+        "内存池",
+        "0x47FA40",
+        "0x4AE4A8",
+        "0x4AE4C8",
+        "0x4AB00C"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "三个全局内存池：0x4AE4A8（包装 0x40162C）、0x4AE4C8（0x4015B1）、0x4AB00C（0x401655）。包装以 eax=size、对齐 4 调 0x47FA40(arena,size,0,4)。0x47FA40：edx=min(size,dword[arena+4]) 容量钳位；按 byte[arena+0x10] 分派——模式 1/4 返回 dword[arena+0xC]+size 的线性指针，模式 2 调 0x47F9E2(size,flag,extra)，其他返回 0。模式 2 的 0x47F9E2 以 0x4000（16KB）为块粒度：esi=size>>14、size&=0x3FFF，循环最多 4 次调用 0x47F96C（本构建为空桩 ret 8）。第95轮 0x41ED07 的图层缓冲即经 0x401655 从 0x4AB00C 池分配。",
+      "constants": [
+        "0x47FA40", "0x47F9E2", "0x47F96C", "0x40162C", "0x4015B1", "0x401655",
+        "0x4AE4A8", "0x4AE4C8", "0x4AB00C", "0x4000", "0x3FFF", "0x0E", "0x04", "0x0C", "0x10", "0x01", "0x02"
+      ],
+      "identity": "三个包装的函数体除 arena 常量外完全同构（push 4、push 0、push eax、mov ecx,arena、call 0x47FA40）；0x47FA40 的模式分派与 byte[arena+0x10] 的 1/2/4 值一一对应。",
+      "siteAddresses": {
+        "allocator": "0x47FA40",
+        "mode2Branch": "0x47F9E2",
+        "arenaA": "0x4AE4A8",
+        "arenaB": "0x4AE4C8",
+        "arenaC": "0x4AB00C",
+        "wrapA": "0x40162C",
+        "wrapB": "0x4015B1",
+        "wrapC": "0x401655"
+      },
+      "limitations": [
+        "0x47F96C 为空桩，模式 2 真实分配行为无法确认。",
+        "三个池各自服务的模块未逐项统计。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.layer-buffer-11.3ef7",
+        "mechanism.65.layer-block-constants.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-memory-arenas-20261112",
+        "src.research.engine-allocator-mode2-20261112"
+      ]
+    }
+  ]
+}

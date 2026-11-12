@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "analysis": "new-anchors-batch-66",
+  "date": "2026-11-12",
+  "method": "以 new_anchors.py 的 only-in-B 列表为入口，refs_to.py 统计 6.6 独占锚点引用，context.py 反汇编消费点；对可配对项在 6.5 上做同址引用核对（0x48693E↔0x4CE73C、0x500BA0↔0x4FFDF6）；用字节模式确认 6.5/6.4 不存在对应实现。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "anchors": [
+    {
+      "address66": "0x487634",
+      "address65": null,
+      "address64": null,
+      "semantic": "视口/窗口像素尺寸打包 dword：low16=宽像素，high16=高像素",
+      "confidence": "high",
+      "evidence": "0x451B3F：eax=(byte[0x4B422D]*0x30)<<16 | (byte[0x4B422C]*0x30)，写入 0x487634；0x47B59D 写入 0x1900280（宽 0x280=640、高 0x190=400）。读取 0x428500，0x429AC7 push。与第 42 轮网格尺寸字 0x4B422C/0x4B422D 联动。",
+      "refs": ["0x428500", "0x429AC7", "0x451B3F", "0x47B59D"]
+    },
+    {
+      "address66": "0x48693E",
+      "address65": "0x4CE73C",
+      "address64": "0x4CE73C",
+      "semantic": "位图位深标志：0x20=32bpp，否则按 24bpp",
+      "confidence": "high",
+      "evidence": "0x40E87E：cmp byte[0x48693E],0x20；相等时 imul ecx,ecx,4，否则 ×3（宽×高×字节数）。0x40E773 清零后以 0xBB800(=640×400×3) 分配并用 word==0x4D42('BM') 校验；0x41625B 从加载图像头 byte[eax] 写入。6.5 同址 0x40261C/0x40E773/0x40E880/0x41624D 使用 0x4CE73C。",
+      "refs": ["0x40261C", "0x40BD50", "0x40DB78", "0x40E773", "0x40E87E", "0x41625B"],
+      "refs65": ["0x40261C", "0x40BD91", "0x40E773", "0x40E880", "0x41624D"]
+    },
+    {
+      "address66": "0x500BA0",
+      "address65": "0x4FFDF6",
+      "address64": "0x4FFDF6",
+      "semantic": "word 数组（0xFFFF 空哨兵），按整数索引读写并作为基址传入",
+      "confidence": "medium",
+      "evidence": "0x401A52/0x40B6D4：cmp word[eax*2+0x500BA0],0xFFFF；0x411041：mov word[eax*2+0x500BA0],dx；0x426A5B 读；0x426C42 push 0x500BA0。6.5 同址使用 0x4FFDF6。",
+      "refs": ["0x401A52", "0x40B6D4", "0x411041", "0x426A5B", "0x426C42"],
+      "refs65": ["0x401A57", "0x40B6D9", "0x411041", "0x426A5B", "0x426C42"]
+    },
+    {
+      "address66": "0x493AF0",
+      "address65": null,
+      "address64": null,
+      "semantic": "字节计数数组，索引 = 参数-0xA0；带钳位增减",
+      "confidence": "medium",
+      "evidence": "0x420299：eax-=0xA0；eax+=0x493AF0；若 cl!=0：byte[eax]<cl 则跳过，否则 dec；若 cl==0：byte[eax]==0xFF 则跳过，否则 inc。另有 0x408EA5 cmp byte[ecx+0x493AF0],0；0x412A78 mov eax,0x493AF0；0x42189F/0x42BB36 写入。6.5/6.4 无 `2d a0 00 00 00 05` 字节模式。",
+      "refs": ["0x408EA5", "0x412A78", "0x4202A1", "0x4202CF", "0x42189F", "0x42BB36", "0x470128"]
+    },
+    {
+      "address66": "0x4934B0",
+      "address65": null,
+      "address64": null,
+      "semantic": "字节标志数组（位掩码 0xC/0xD），按索引 test/and",
+      "confidence": "medium",
+      "evidence": "0x41D752：test byte[eax+0x4934B0],cl；0x42A47F/0x42A90C：test ...,0xD；0x42AAA5：and byte[ecx+0x4934B0],0xC；0x42A5E1 add eax,0x4934B0（基址推进）；0x42A6A2 movzx eax,byte[eax+0x4934B0]。",
+      "refs": ["0x41D752", "0x42A47F", "0x42A5E1", "0x42A6A2", "0x42A90C", "0x42AAA5"]
+    },
+    {
+      "address66": "0x501BD2",
+      "address65": null,
+      "address64": null,
+      "semantic": "6.6 模式字节：>=2 时启用新逻辑分支",
+      "confidence": "medium",
+      "evidence": "0x41D722：cmp byte[0x501BD2],2; jb 跳过；0x42A29A/0x42A687 同。0x41D716 同时检查 0x505FDC 与 0x4088B4(0xD)。6.5/6.4 无 `80 3d d2 1b 50 00 02` 模式。",
+      "refs": ["0x41D722", "0x42A29A", "0x42A687"]
+    },
+    {
+      "address66": "0x501BF0",
+      "address65": null,
+      "address64": null,
+      "semantic": "dword 全局缓存（句柄/视口值），按值 push、按地址作 this",
+      "confidence": "low",
+      "evidence": "0x42D27E：ecx=0x501BF0；cmp [ecx],eax；不等则 [ecx]=eax，随后用 0x4B4250 与 0x4B422C 计算；0x451AB9/0x442013/0x45473A/0x454CF3/0x47BF54 push dword[0x501BF0]；0x4386CE mov edx,0x501BF0；0x460ECE mov ecx,0x501BF0。",
+      "refs": ["0x42D27E", "0x4386CE", "0x442013", "0x451AB9", "0x45473A", "0x454CF3", "0x459375", "0x460ECE", "0x47BF54"]
+    }
+  ],
+  "conclusion": "本轮把 7 个 6.6 独占/新搬移锚点落到具体语义：0x487634 为视口像素尺寸打包（640×400 初值），0x48693E 为 BMP 位深标志（0x20=32bpp，6.5/6.4 为 0x4CE73C），0x500BA0 为 0xFFFF 哨兵 word 数组（6.5/6.4 为 0x4FFDF6），0x493AF0 为按 ID-0xA0 索引的字节计数数组，0x4934B0 为 0xC/0xD 掩码字节标志数组，0x501BD2 为 >=2 启用的模式字节，0x501BF0 为 dword 全局缓存（候选句柄/视口值）。",
+  "limitations": [
+    "0x500BA0 数组的长度与索引来源未定。",
+    "0x493AF0/0x4934B0 的索引域（0xA0 基址、位掩码 0xC/0xD 含义）未定名。",
+    "0x501BD2 的取值来源（剧本/配置）与 >=2 分支业务含义未定。",
+    "0x501BF0 仅知比较-更新与 push 用法，业务名称未定。",
+    "未运行游戏对照。"
+  ]
+}

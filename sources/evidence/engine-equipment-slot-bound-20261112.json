@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "analysis": "equipment-slot-count-and-bounds",
+  "date": "2026-11-12",
+  "method": "扫描 0x4065F0 装备槽访问器的全部直接调用点并读取紧邻循环上界比较；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"}
+  ],
+  "accessor": {
+    "va": "0x4065F0",
+    "code": "byte[record + 0x2E + slot*3]",
+    "slotStride": 3,
+    "fields": ["ID", "等级", "经验"]
+  },
+  "bounds": [
+    {"va": "0x4079E9", "code": "cmp al,3; jae 0x407A2F"},
+    {"va": "0x4114E1", "code": "cmp al,3; jae 0x4114FF"},
+    {"va": "0x419DC9", "code": "cmp al,3; jae 0x419EB0"},
+    {"va": "0x45B8C2", "code": "cmp al,3; jae 0x45B8DB"},
+    {"va": "0x468EDD", "code": "cmp al,3; jae 0x468EFD"},
+    {"va": "0x476EBE", "code": "cmp al,3; jae 0x477060"},
+    {"va": "0x46A8A4", "code": "cmp byte[ebp+8],3; jae 0x46A8E3"}
+  ],
+  "conclusion": "装备槽数量为 3，槽下标 0..2；每槽 3 字节（ID/等级/经验）。多个调用点用 slot<3 的边界比较，和 0x4065F0 的 slot*3 布局一致。",
+  "limitations": [
+    "未展开装备交换/替换规则。",
+    "未运行游戏对照。"
+  ]
+}

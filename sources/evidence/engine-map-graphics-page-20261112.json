@@ -1,0 +1,66 @@
+{
+  "id": "src.research.engine-map-graphics-page-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "0x1E900/0x24C00 语义：地图图形页 = 0x12900 层块 + 0xC000 尾块（含 0x37500/0x2B800 派生偏移）",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 + 立即数引用检索 + 0x40155F/0x47FA40 竞技场指针链核对",
+  "findings": [
+    {
+      "id": "arena-pointer",
+      "claim": "0x40155F(offset) = 0x47FA40(0x4AAFF4, 0, 0, 4) 的封装，返回 0x4AAFF4 竞技场基址 + offset；因此 0x24C00/0x37500/0x2B800 都是同一大缓冲内的偏移。",
+      "evidence": [
+        "0x40155F: push 4; push 0; push eax(offset); mov ecx,0x4AAFF4; call 0x47FA40",
+        "0x47FA40: eax=[ecx+0xC]; eax+=arg8（模式 1/4 分支）"
+      ]
+    },
+    {
+      "id": "page-size",
+      "claim": "0x1E900 是单个地图图形页的总字节数，且 0x1E900 = 0x12900（11 层图层块）+ 0xC000（页尾图块缓冲）；页索引 0/1 以该步长排列。",
+      "evidence": [
+        "0x408ED5 imul eax,eax,0x1E900; 0x408EDB add eax,0x24C00（cl==0x20 页 0，否则页 1）",
+        "0x41CB2B imul eax,eax,0x1E900; cl==1 时 0x41CB3D add eax,0x2B800（=0x24C00+0x6C00，页内第 4 层）",
+        "0x41CBEA cl==0 时 add eax,0x24C00（页基）",
+        "0x41CC46 其他 cl 时 add eax,0x37500（=0x24C00+0x12900，页尾缓冲）",
+        "0x1E900-0x12900 = 0xC000，与 0x41CC67 push 0xC000 的拷贝长度一致"
+      ]
+    },
+    {
+      "id": "page-layout",
+      "claim": "页 0 基址 0x24C00：页内 [0x0000,0x12900) 为 11 层图层块（第 4 层在 +0x6C00、第 8 层在 +0xD800、第 9 层在 +0xF300），[0x12900,0x1E900) 为 0xC000 图块缓冲（基址 0x37500）；页 1 基址 0x43500，其尾块基址 0x55E00。",
+      "evidence": [
+        "0x37500 = 0x24C00 + 0x12900",
+        "0x43500 = 0x24C00 + 0x1E900",
+        "0x411224/0x411230 第二次族：imul 0x1E900 + 0x37500",
+        "0x41CCA9 第三次族：imul 0x1E900 + 0x24C00"
+      ]
+    },
+    {
+      "id": "upload-paths",
+      "claim": "三条上传/绘制路径分别对应页内不同区：cl==0 从源 +0x1B00 拷 0x6C00 字节到页基；cl==1 从源 +0x6C00 拷 0xBD00 字节到页基（+0x2B800 只是页基定位）；其他 cl 从源 +0x18000 拷 0xC000 字节到页尾 0x37500。绘制侧 0x47E09B 以 0x30/0x38 步长、0x40×0x40 或 0x30×0x30 取块。",
+      "evidence": [
+        "0x41CC0A..0x41CC18: push 0x6C00; push 页基; add eax,0x1B00; push eax; call 0x47FCFD",
+        "0x41CB57..0x41CB65: push 0xBD00; push 页基; add eax,0x6C00(源偏移); call 0x47FCFD",
+        "0x41CC67..0x41CC75: push 0xC000; push 0x37500 基; add eax,0x18000; call 0x47FCFD",
+        "0x411251..0x411258: push 0x40,0x40,0x30,byte[+0x21]; call 0x47E09B",
+        "0x41CCBD..0x41CCCB: push 0x30,0x30,0x38,byte[+0x21]; call 0x47E09B"
+      ]
+    }
+  ],
+  "corrections": [
+    "0x1E900 不是独立缓冲尺寸，而是地图图形页步长（0x12900 层块 + 0xC000 尾块）；0x24C00 为页 0 在 0x4AAFF4 竞技场内的基址偏移。",
+    "0x37500/0x2B800 为派生偏移：0x37500=页0+0x12900（尾块），0x2B800=页0+0x6C00（第4层）。"
+  ],
+  "limitations": [
+    "11 层各自业务用途仍未逐层确认。",
+    "0xC000 尾块内部结构（0x30 步长图块）与 0x18000 源记录布局未展开。",
+    "0x4AAFF4 竞技场容量与分配上限未定。",
+    "未运行游戏对照。"
+  ]
+}

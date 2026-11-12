@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "entityType": "file-format",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "format.65.script-command-record.3890",
+      "title": "剧本指令记录格式（opcode + 13 参数槽）",
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "header": "每张指令卡片 = 1 字节指令号 + 13 个 2 字节参数槽（未用槽填 0xFFFF）。",
+      "recordSize": 27,
+      "indexFormula": "按指令号顺序排列，遇 0x00 结束当前段落；条件/跳转类指令改变执行位置。",
+      "fields": [
+        {
+          "offset": "+0x00",
+          "width": 1,
+          "type": "uint8",
+          "name": "opcode",
+          "meaning": "指令号 0x00–0x72"
+        },
+        {
+          "offset": "+0x01",
+          "width": 2,
+          "type": "uint16",
+          "name": "P1",
+          "meaning": "参数槽 1，-1 表示未用"
+        },
+        {
+          "offset": "+0x03",
+          "width": 2,
+          "type": "uint16",
+          "name": "P2",
+          "meaning": "参数槽 2"
+        },
+        {
+          "offset": "+0x05",
+          "width": 2,
+          "type": "uint16",
+          "name": "P3",
+          "meaning": "参数槽 3"
+        },
+        {
+          "offset": "+0x07",
+          "width": 2,
+          "type": "uint16",
+          "name": "P4",
+          "meaning": "参数槽 4"
+        },
+        {
+          "offset": "+0x09",
+          "width": 2,
+          "type": "uint16",
+          "name": "P5",
+          "meaning": "参数槽 5"
+        },
+        {
+          "offset": "+0x0B",
+          "width": 2,
+          "type": "uint16",
+          "name": "P6",
+          "meaning": "参数槽 6"
+        },
+        {
+          "offset": "+0x0D",
+          "width": 2,
+          "type": "uint16",
+          "name": "P7..P13",
+          "meaning": "其余槽，多数指令不使用"
+        }
+      ],
+      "semantics": "指令号为 0x72 时，P1 位置再携带子指令号（0..33），用于区分信息传送的具体方式。",
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

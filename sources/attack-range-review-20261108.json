@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-08",
+  "baselineCommit": "658c4e0b8d17e0f49c7178e6e4b1ba0b1802d422",
+  "scope": "把第 101 轮 Q1–Q10 深挖结论整理为可检索实体。",
+  "method": "只引用 source-manifest 中已登记的本轮报告、探针与基底身份；固定地址绑定 3890 样本，未做写回。",
+  "documentCount": 8,
+  "entries": [
+    {
+      "path": "6.5/data/file-formats/data-e5-block-directory.json",
+      "sha256": "5167B6357692F848C3BD55B8CA8FC60559C51597C65EE6F9FAD2BAEF96E9954E",
+      "disposition": "new-entities",
+      "targetIds": [
+        "format.65.data-e5-block-directory.3890"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/structures/data-e5-records.json",
+      "sha256": "F136383A2393BE1D819768ABE45B4A8CB79890C3009AF0CC179B973C267DCCB6",
+      "disposition": "new-entities",
+      "targetIds": [
+        "struct.65.data-e5-block1-record",
+        "struct.65.data-e5-fatal-record",
+        "struct.65.grid-status-cell"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/globals/grid-and-data-e5-buffers.json",
+      "sha256": "ECEE124A25B6EB26EF4B7704809CD623F4D56D26F6E6278C34A80CFE36B156F2",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.65.grid-status-map.3890",
+        "global.65.data-e5-block1-buffer.3890",
+        "global.65.fatal-record-table.3890"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/functions/data-e5-and-grid-functions.json",
+      "sha256": "A8223AFB5B7CCA4D79AB2BB045A2D2D656ECA0CDD46560846FC0000A91E9D00B",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.65.data-e5-block1-init.3890",
+        "fn.65.data-table-init-root.3890",
+        "fn.65.grid-status-write.3890",
+        "fn.65.battle-grid-clear.3890",
+        "fn.65.fatal-field-d-reader.3890",
+        "fn.65.fatal-field-c-reader.3890",
+        "fn.65.cell-slot-reader.3890"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/mechanisms/attack-range-consumption.json",
+      "sha256": "D744A211B7793C2B4044AB293864160B56B4B9560A40CEC3339606200CACE116",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.attack-range-grid-write.3890",
+        "mechanism.65.fatal-range-consumption.3890"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/tests/attack-range-deep-probe.json",
+      "sha256": "E6DE9D2E6A0FFC614573174B570E0C763C7E9052EDDDA9E270DBF911B968C036",
+      "disposition": "new-entities",
+      "targetIds": [
+        "test.65.attack-range-anchor-scan"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/cases/attack-range-deep-probe.json",
+      "sha256": "610B672031066D11E4EFE9152D2CDBAC0680A1D739675D2E64333C9E0CAD70D2",
+      "disposition": "new-entities",
+      "targetIds": [
+        "case.65.attack-range-q1-q10-closure"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    },
+    {
+      "path": "6.5/data/workflows/anchor-based-reference-tracing.json",
+      "sha256": "A157E7A19BEF8093E243337CA0B5834DE3D91847A751E02C7EAB1D644F975A30",
+      "disposition": "new-entities",
+      "targetIds": [
+        "workflow.65.anchor-based-reference-tracing"
+      ],
+      "reason": "本轮 Q1–Q10 闭合与 DATA.E5 分块布局结构化；绑定 3890 画像，全部保持 candidate。"
+    }
+  ]
+}

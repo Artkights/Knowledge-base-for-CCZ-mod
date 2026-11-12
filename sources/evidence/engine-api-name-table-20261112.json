@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "analysis": "api-name-table",
+  "date": "2026-11-12",
+  "method": "pefile 列出 6.5 全部节区并读取 .api(0x4BE000, VirtualSize 0x10000, 可执行)；按 4 字节 dword 解析 0x4BE030 起的槽位，用 [dword+0x400000+2] 反查 ASCII 名称；refs_to.py 列出每个槽位的 call dword ptr 站点；对 6.4/6.6 重复同一过程。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "section": {
+    "name": ".api",
+    "va": "0x4BE000",
+    "virtualSize": "0x10000",
+    "rawSize": "0xF600",
+    "characteristics": "0xE0000060（可执行/可读/可写）",
+    "note": "位于 .text2(结束 0x4BE000) 与 .text3(0x4CE000) 之间的 64KB 可执行段"
+  },
+  "layout": {
+    "dllNames": "从 0x4BE000 起连续存放 ASCII DLL 名（NUL 分隔）",
+    "descriptorTable": "DLL 名之后为若干槽位组；每组若干 dword，组间以 0x00000000 结束；组顺序与 DLL 名顺序一一对应",
+    "entryEncoding": "槽位静态值 = 名称字符串VA - 0x400000(ImageBase) - 2；即 nameVA = dword + 0x400000 + 2",
+    "runtime": "槽位在运行期被替换为对应 API 的实际函数地址（call dword ptr [slot] 直接调用），静态值只是名称引用"
+  },
+  "sixFive": {
+    "dlls": [
+      {"va": "0x4BE000", "name": "USER32.dll"},
+      {"va": "0x4BE00B", "name": "KERNEL32.dll"},
+      {"va": "0x4BE018", "name": "Msimg32.dll"},
+      {"va": "0x4BE024", "name": "GDI32.dll"},
+      {"va": "0x4BE02E", "name": "Jpg.dll"}
+    ],
+    "tableStart": "0x4BE036",
+    "slots": [
+      {"slot": "0x4BE036", "raw": "0x000BE0AE", "nameVa": "0x4BE0B0", "api": "LoadImageA", "dll": "USER32.dll", "consumers": ["0x44D2C0"]},
+      {"slot": "0x4BE03A", "raw": "0x000BE0BB", "nameVa": "0x4BE0BD", "api": "SetLayeredWindowAttributes", "dll": "USER32.dll", "consumers": ["0x4102EE"]},
+      {"slot": "0x4BE03E", "raw": "0x00000000", "api": "<组结束>", "dll": "USER32.dll", "consumers": []},
+      {"slot": "0x4BE042", "raw": "0x000BE0D8", "nameVa": "0x4BE0DA", "api": "GetPrivateProfileIntA", "dll": "KERNEL32.dll", "consumers": ["0x4069E4", "0x4069FE", "0x406A18"]},
+      {"slot": "0x4BE046", "raw": "0x000BE0F0", "nameVa": "0x4BE0F2", "api": "GetLocalTime", "dll": "KERNEL32.dll", "consumers": ["0x40535C"]},
+      {"slot": "0x4BE04A", "raw": "0x00000000", "api": "<组结束>", "dll": "KERNEL32.dll", "consumers": []},
+      {"slot": "0x4BE04E", "raw": "0x000BE0FF", "nameVa": "0x4BE101", "api": "TransparentBlt", "dll": "Msimg32.dll", "consumers": []},
+      {"slot": "0x4BE052", "raw": "0x000BE110", "nameVa": "0x4BE112", "api": "AlphaBlend", "dll": "Msimg32.dll", "consumers": []},
+      {"slot": "0x4BE056", "raw": "0x00000000", "api": "<组结束>", "dll": "Msimg32.dll", "consumers": []},
+      {"slot": "0x4BE05A", "raw": "0x000BE11D", "nameVa": "0x4BE11F", "api": "GetBitmapBits", "dll": "GDI32.dll", "consumers": ["0x408A15"]},
+      {"slot": "0x4BE05E", "raw": "0x000BE12D", "nameVa": "0x4BE12F", "api": "SetBitmapBits", "dll": "GDI32.dll", "consumers": ["0x4089DC"]},
+      {"slot": "0x4BE062", "raw": "0x00000000", "api": "<组结束>", "dll": "GDI32.dll", "consumers": []},
+      {"slot": "0x4BE066", "raw": "0x000BE13D", "nameVa": "0x4BE13F", "api": "JpgInit", "dll": "Jpg.dll", "consumers": ["0x420DBF"]},
+      {"slot": "0x4BE06A", "raw": "0x000BE147", "nameVa": "0x4BE149", "api": "JpgRead", "dll": "Jpg.dll", "consumers": ["0x420DDD", "0x420E1D"]},
+      {"slot": "0x4BE06E", "raw": "0x000BE151", "nameVa": "0x4BE153", "api": "JpgFree", "dll": "Jpg.dll", "consumers": ["0x420E2A"]},
+      {"slot": "0x4BE072", "raw": "0x000BE15B", "nameVa": "0x4BE15D", "api": "PngRead", "dll": "Jpg.dll", "consumers": ["0x416236"]},
+      {"slot": "0x4BE076", "raw": "0x00000000", "api": "<组结束>", "dll": "Jpg.dll", "consumers": []}
+    ],
+    "unusedSlots": ["0x4BE04E TransparentBlt", "0x4BE052 AlphaBlend"]
+  },
+  "sixSix": {
+    "dlls": [
+      {"va": "0x4BE000", "name": "USER32.dll"},
+      {"va": "0x4BE00B", "name": "KERNEL32.dll"},
+      {"va": "0x4BE018", "name": "Msimg32.dll"},
+      {"va": "0x4BE024", "name": "GDI32.dll"},
+      {"va": "0x4BE02E", "name": "Jpg.dll"},
+      {"va": "0x4BE036", "name": "GDIPLUS.dll"}
+    ],
+    "tableStart": "0x4BE042",
+    "slots": [
+      {"slot": "0x4BE042", "api": "LoadImageA", "consumers": ["0x44D2C0"]},
+      {"slot": "0x4BE046", "api": "SetLayeredWindowAttributes", "consumers": ["0x4102EE", "0x479BD7"]},
+      {"slot": "0x4BE04E", "api": "GetPrivateProfileIntA", "consumers": ["0x4069E4", "0x4069FE", "0x406A18"]},
+      {"slot": "0x4BE052", "api": "GetLocalTime", "consumers": ["0x40535C"]},
+      {"slot": "0x4BE05A", "api": "TransparentBlt", "consumers": []},
+      {"slot": "0x4BE05E", "api": "AlphaBlend", "consumers": []},
+      {"slot": "0x4BE066", "api": "GetBitmapBits", "consumers": ["0x408A1B"]},
+      {"slot": "0x4BE06A", "api": "SetBitmapBits", "consumers": ["0x4089E2"]},
+      {"slot": "0x4BE072", "api": "JpgInit", "consumers": ["0x420DBF"]},
+      {"slot": "0x4BE076", "api": "JpgRead", "consumers": ["0x420DDD", "0x420E1D"]},
+      {"slot": "0x4BE07A", "api": "JpgFree", "consumers": ["0x420E2A"]},
+      {"slot": "0x4BE07E", "api": "PngRead", "consumers": ["0x416244"]},
+      {"slot": "0x4BE086", "api": "GdiplusStartup", "consumers": ["0x4829EB"]},
+      {"slot": "0x4BE08A", "api": "GdiplusShutdown", "consumers": []},
+      {"slot": "0x4BE08E", "api": "GdipDeleteGraphics", "consumers": []},
+      {"slot": "0x4BE092", "api": "GdipCreateBitmapFromScan0", "consumers": []},
+      {"slot": "0x4BE096", "api": "GdipBitmapLockBits", "consumers": []},
+      {"slot": "0x4BE09A", "api": "GdipBitmapUnlockBits", "consumers": []},
+      {"slot": "0x4BE09E", "api": "GdipDrawImageRectRectI", "consumers": []},
+      {"slot": "0x4BE0A2", "api": "GdipCreateFromHDC", "consumers": []},
+      {"slot": "0x4BE0A6", "api": "GdipCreateImageAttributes", "consumers": []},
+      {"slot": "0x4BE0AA", "api": "GdipSetImageAttributesColorMatrix", "consumers": []},
+      {"slot": "0x4BE0AE", "api": "<组结束>", "consumers": []}
+    ],
+    "slotNote": "6.6 的 GDI+ 名称字符串自 0x4BE1B5 起（GdiplusStartup→GdipSetImageAttributesColorMatrix 共 10 项），槽位地址按表内顺序列出；未静态出现的消费点为保留槽",
+    "dllStringNote": "6.6 的 API 名称字符串整体后移到 0x4BE100 起"
+  },
+  "sixFiveTexFileConsumers": {
+    "GetPrivateProfileIntA": "0x4069E4/0x4069FE/0x406A18 —— AutoDll.ini 读取（第84轮 0x4069B0 链）",
+    "GetLocalTime": "0x40535C —— 保存入口 0x40531A 把当前时间写入 0x501AD0（SYSTEMTIME 30 字节）",
+    "SetLayeredWindowAttributes": "0x4102EE —— 窗口层叠透明设置",
+    "GetBitmapBits/SetBitmapBits": "0x4089DC/0x408A15 —— 位图位数据读写",
+    "LoadImageA": "0x44D2C0 —— 图标/位图加载",
+    "JpgInit/JpgRead/JpgFree/PngRead": "0x420DBF/0x420DDD/0x420E1D/0x420E2A/0x416236 —— Jpg.dll 图片解码链"
+  },
+  "conclusion": ".api 段是引擎的自定义 API 名称表：先列 DLL 名，再按 DLL 顺序列出若干槽位，每个槽位静态存 (名称VA-0x400000-2)，运行期被替换为真实函数地址，调用方统一使用 call dword ptr [slot]。6.4/6.5 有 5 个 DLL、12 个槽位（TransparentBlt/AlphaBlend 未被静态消费）；6.6 增加 GDIPLUS.dll 与 10 个 GDI+ 槽位，并把 API 名称串后移到 0x4BE100。第87轮保存入口的 [0x4BE046]（6.5）/ [0x4BE052]（6.6）即 GetLocalTime(&SYSTEMTIME@0x501AD0)，用于写入存档时间戳。",
+  "corrections": [
+    "第87轮把 0x4BE046 记为「语义未定的保存前间接钩子」；本轮解析为 GetLocalTime（6.6 槽位重定位到 0x4BE052）"
+  ],
+  "limitations": [
+    "未找到静态的槽位填充代码（推测由启动期/外部 DLL 完成），填槽函数未定位。",
+    "6.6 GDI+ 10 个槽位中仅 GdiplusStartup 有静态消费点，其余用途未追踪。",
+    "TransparentBlt/AlphaBlend 槽位在 6.4/6.5/6.6 均无静态消费点。",
+    "未运行游戏对照。"
+  ]
+}

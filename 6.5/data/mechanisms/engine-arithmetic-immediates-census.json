@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.arithmetic-immediates-census.3ef7",
+      "title": "三基底算术立即数普查与 6.6 新结构（21 字节文本表、0x500030 图标表）",
+      "aliases": [
+        "arithmetic immediates census",
+        "算术立即数普查",
+        "0x15 步长",
+        "0x662",
+        "0x500030",
+        "0x12C"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "用 arith_immediates.py 对三基底可执行节统计 imul 立即数（107/106/122 种）与 shl/shr/sar 立即数（29/29/26 种）。共享高频公式常量集中在 3、0x30(48)、0x1B00(6912)、0x10、6、4、0x64(100)、0x14(20) 等。6.6 独有小立即数揭示：21 字节文本记录步长 0x15（表基 +0x662，替代 6.5 默认 0x14/+0x4BE，旧表保留给类型 2；0x32/+0xA4 表不变），以及 0x12C=300 的状态图标横向间距（0x41EB48，配合 0x500030 的 16 字节步长表）。",
+      "constants": [
+        "0x03", "0x30", "0x1B00", "0x10", "0x06", "0x04", "0x05", "0x02",
+        "0x0A", "0x64", "0x6C00", "0x14", "0x0C", "0x12900", "0x08", "0xC000",
+        "0x2C", "0x3000", "0x15", "0x662", "0x4BE", "0xA4", "0x32", "0x12C",
+        "0x190", "0x500030", "0x48B58C", "0x48B581"
+      ],
+      "identity": "0x15 步长在 6.5/6.4 中不存在（imul 立即数频次为 0）；0x14 步长表在 6.6 仍存在于 al==2 分支。0x500030 在 6.5/6.4 无引用。",
+      "siteAddresses": {
+        "censusScript": "arith_immediates.py",
+        "textTableStride66": "0x15",
+        "textTableBase66": "0x662",
+        "textTableStrideOld": "0x14",
+        "textTableBaseOld": "0x4BE",
+        "textTableStride32": "0x32",
+        "textTableBase32": "0xA4",
+        "textTableSite1": "0x402068",
+        "textTableSite2": "0x409A21",
+        "textTableSite3": "0x4161DD",
+        "textTableSite4": "0x42BADB",
+        "textTableSite65": "0x4161D2",
+        "drawFn66": "0x41EB48",
+        "iconSpacing": "0x12C",
+        "iconArray": "0x500030",
+        "iconArrayStride": "0x10"
+      },
+      "limitations": [
+        "大立即数含数据区误判，已人工排除，但无法保证零噪声。",
+        "21 字节文本表所属对象（+0x662 缓冲区）未定名。",
+        "0x500030 的 16 字节条目字段未解析。",
+        "0x6C00/0x12900 等高频常量语义未定。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.character-adaptation-table.3ef7",
+        "mechanism.65.battle-viewport-context.3ef7",
+        "mechanism.65.engine-capacity-and-sentinels.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-arithmetic-immediates-census-20261112"
+      ]
+    }
+  ]
+}

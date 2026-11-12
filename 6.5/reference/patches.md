@@ -92,7 +92,7 @@ ID: `patch.65.legacy-e899f90fd0b2`；类型: `legacy-injection`；画像: `profi
 | `0x0041A645` (va) | `-` | `00` | legacy-od-block | 1 | - |
 | `0x0041A647` (va) | `-` | `C0` | legacy-od-block | 1 | - |
 
-## 【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。
+## 【回mp攻击】物理攻击后获得当前伤害乘特效值的 MP（配方 d602c429）
 
 ID: `patch.65.legacy-d602c42968b0`；类型: `legacy-injection`；画像: `profile.ccz65.unencrypted.f9a`；状态: `candidate`；证据: `legacy-patch-bytes`
 
@@ -105,7 +105,7 @@ ID: `patch.65.legacy-d602c42968b0`；类型: `legacy-injection`；画像: `profi
 | `0x00452904` (va) | `-` | `00` | legacy-od-block | 1 | - |
 | `0x00452906` (va) | `-` | `AD` | legacy-od-block | 1 | - |
 
-## 【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。
+## 【回mp攻击】物理攻击后获得当前伤害乘特效值的 MP（配方 54b2fc7f）
 
 ID: `patch.65.legacy-54b2fc7fb712`；类型: `legacy-injection`；画像: `profile.ccz65.unencrypted.f9a`；状态: `candidate`；证据: `legacy-patch-bytes`
 

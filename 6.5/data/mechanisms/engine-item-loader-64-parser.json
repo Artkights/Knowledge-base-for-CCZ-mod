@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.item-loader-64-parser.3ef7",
+      "title": "6.4 物品装载链与 0x41FECC 解析式旋转",
+      "aliases": [
+        "0x47D988",
+        "0x41FECC",
+        "0x47D9E1",
+        "6.4 物品装载",
+        "解析式旋转",
+        "star.e5 0x1022"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "6.4 物品装载链：0x41B639 初始化序列 → 0x41B666 载入 DATA.E5 块0（人物）→ 0x47D988 载入块1（物品）到复用缓冲 [0x496F60] → 0x47D9E1 有界解析循环调用 0x41FECC 逐条重排 +0x12..+0x14 → 读 star.e5（ReadFile 容量 0x1022）→ 0x43E67C 复制 0x3B6 dword（0xED8=152条）→ 解析槽 104..254 → 0x41BABB 统计有效物品数到 0x4CE7BE。6.4 槽位上限同为 255。更正第 55 轮“6.4 无旋转”：旋转由 0x41FECC 完成而非内联。",
+      "constants": [
+        "0x68",
+        "0xFF",
+        "0x1022",
+        "0x3B6",
+        "0xED8",
+        "0x19",
+        "0x4CE7BE",
+        "0x496F60",
+        "0x4A1140",
+        "0x4A1B68"
+      ],
+      "identity": "内联旋转字节模式 8a51128b4113：6.4=0、6.5=1、6.6=1（均在 0x4010EB）；star 读取容量 6.4=0x1022、6.5=0xED8、6.6=0x27D8；0x41FECC 三基底同址。",
+      "limitations": [
+        "0x47D988 使用未自分配的 [ebp-4]/[ebp-8] 栈槽，缓冲指向需运行期核验。",
+        "0x1022 为 ReadFile 容量上限，实际长度由文件大小决定。",
+        "0x43E67C 的源/目标缓冲身份未闭合。",
+        "0x41B73E/0x41B790/0x41B7F0/0x41B834 未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.item-record-table.3ef7",
+        "mechanism.65.item-record-fields.3ef7",
+        "mechanism.65.item-record-normalization.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-item-loader-64-parser-20261112"
+      ],
+      "siteAddresses": {
+        "initSeq": "0x41B639",
+        "charBlockLoad": "0x41B666",
+        "itemLoad": "0x47D988",
+        "parseLoop": "0x47D9E1",
+        "parser": "0x41FECC",
+        "starLoad": "0x451313",
+        "blockCopy": "0x43E67C",
+        "validCount": "0x41BABB",
+        "sharedBuffer": "0x496F60",
+        "tableBase": "0x4A1140"
+      }
+    }
+  ]
+}

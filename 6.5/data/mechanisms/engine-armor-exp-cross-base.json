@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.armor-exp-cross-base.3ef7",
+      "title": "防具经验基础值与无伤害扣减（三基底）",
+      "aliases": [
+        "armor-exp-base",
+        "armor-exp-no-damage",
+        "防具经验"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "防具经验函数 0x403A8A..0x403B11：基础值 6.4=3、6.5=3、6.6=4；无伤害路径分别扣 1/2/3；当前 HP 低于攻击前值时再扣 1。",
+      "function": "0x403A8A..0x403B11",
+      "values": {
+        "base": {"6.4": 3, "6.5": 3, "6.6": 4},
+        "noDamageSubtract": {"6.4": 1, "6.5": 2, "6.6": 3}
+      },
+      "siteAddresses": {
+        "base": "0x403A8D push imm",
+        "noDamage": "0x403AF8 sub dword[ebp-4],imm",
+        "damageCompare": "0x403AF3 dec dword[ebp-4]",
+        "apply": "6.5 0x421053；6.4/6.6 0x42104F"
+      },
+      "limitations": [
+        "0x42104F/0x421053 未展开。",
+        "ctx+0x84/ctx+0x254 语义未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.dm-formula-armor-exp",
+        "mechanism.65.weapon-exp-cross-base.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-armor-exp-cross-base-20261112",
+        "src.dm.formulas.constants-20261102"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.hit-height-direction-modifier.3ef7",
+      "title": "命中率的高度/方向坐标修正",
+      "aliases": [
+        "0x408DB1",
+        "0x408EEE",
+        "命中高度修正",
+        "命中方向修正",
+        "命中+5 +10"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "命中率在基础曲线后按攻守坐标与朝向修正：class 0/1/2 分别追加 0/5/10 个百分点比例；满足 0x406710(defender)!=1 与 byte[0x500E9A]==1 时再追加 5%；0x408EEE 封顶 100、用 0x410EDB 取下限并保底 1。",
+      "core": {
+        "va": "0x408DB1",
+        "gate": "dword[0x505F88]!=0",
+        "position": "byte[attacker+0xE]!=7 且 word[0x48E8C2]!=0xFFFF 时用 dword[0x48E8C2]，否则 dword[attacker+6]（x=+6,y=+7）",
+        "axis": "byte[defender+0xF]&1：0=Y 轴，1=X 轴",
+        "class": "相等=1；按方向与坐标大小得到 0 或 2",
+        "apply": "hit += hit * class * 5 / 100",
+        "extra": "0x406710(defender)!=1 且 byte[0x500E9A]==1 → 再 +5%"
+      },
+      "wrapper": {
+        "va": "0x408EEE",
+        "cap": 100,
+        "lower": "0x410EDB(defender)",
+        "floor": 1
+      },
+      "constants": [5, 100, "0xFFFF", "0x505F88", "0x500E9A", "0x48E8C2"],
+      "versionDifferences": {
+        "0x408DB1": "6.4/6.5 同码，6.6 不同",
+        "0x408EEE": "三基底均不同",
+        "0x410EDB": "6.4/6.5 同码，6.6 不同"
+      },
+      "limitations": [
+        "0x48E8C2 坐标覆盖来源未追踪。",
+        "0x406710(defender) 名称未确定。",
+        "0x410EDB 下限值未做游戏内对照。",
+        "未运行游戏。"
+      ],
+      "relations": [
+        "mechanism.65.strategy-damage-hit-resolution.3ef7",
+        "mechanism.65.strategy-damage-direction-weather.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-hit-height-modifier-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

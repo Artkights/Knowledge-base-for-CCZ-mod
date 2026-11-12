@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "analysis": "allocator-mode2",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 0x47F9E2（模式 2）与 0x47F96C。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "mode2": {
+    "entry": "0x47F9E2",
+    "steps": [
+      "block = 0x4000（16KB）；esi = size >> 14（整块数）；size &= 0x3FFF（余量）",
+      "edi = [ebp+0x10]（extra/循环上限）；ebx = [ebp+0xC]",
+      "while edi-- != 0 且 ebx < 4：call 0x47F96C(arena, esi, ebx); esi++; ebx++",
+      "返回 eax=余量、ecx=[ebp+0xC]"
+    ],
+    "blockSize": "0x4000 = 16384",
+    "subBlockCall": "0x47F96C：空实现（xor eax,eax; ret 8）"
+  },
+  "conclusion": "分配器 0x47FA40 的模式 2 走 0x47F9E2：以 0x4000（16KB）为块粒度计算整块数（size>>14）与余量（size&0x3FFF），并对最多 4 个额外子块调用 0x47F96C——该函数在本构建中为空桩（ret 8），说明此版把子块登记/回收逻辑裁掉或移至未启用分支。",
+  "limitations": [
+    "0x47F96C 为空桩，模式 2 的真实分配行为无法由此确认。",
+    "0x4000 块粒度与其他池的容量关系未统计。",
+    "未运行游戏对照。"
+  ]
+}

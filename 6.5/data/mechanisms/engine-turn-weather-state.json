@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.turn-action-weather-state.3ef7",
+      "title": "回合数、回合上限、行动方与天气全局状态",
+      "aliases": [
+        "回合测试",
+        "回合上限设定",
+        "行动方测试",
+        "天气类别设定",
+        "当前天气设定",
+        "battle-state"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "战场状态基址 0x4B3D08：+0x2 为 0 基当前回合，+0x3 为回合上限，+0x4 为当前天气，+0x11 为天气类别。回合测试 current=byte[0x4B3D0A]+1 与目标比较（>=/</==）；回合上限写入 byte[0x4B3D0B] 并封顶 0xFF；行动方由 0x41C330(0x4B3D08) 返回；天气指令写入类别/当前天气，转换表 0x48E100 为 5×6，值为天气 ID 0..4。",
+      "battleState": {
+        "base": "0x4B3D08",
+        "currentTurn": "byte[0x4B3D0A]（0 基，测试时 +1）",
+        "turnLimit": "byte[0x4B3D0B]",
+        "currentWeather": "byte[ctx+4]",
+        "weatherCategory": "byte[ctx+0x11] = 0x4B3D19"
+      },
+      "handlers": {
+        "turnTest": {"va": "0x411664", "opcode": "0x3F", "modes": {"0": "current >= target", "1": "current < target", "other": "current == target"}},
+        "turnLimit": {"va": "0x41709C", "opcode": "0x5D", "storage": "byte[0x4B3D0B]", "clamp": "0xFF", "sentinels": ["0x8000", "0x80000000"]},
+        "actionSide": {"va": "0x4116BC", "opcode": "0x40", "getter": "0x41C330(0x4B3D08)"},
+        "weatherCategory": {"va": "0x41264B", "opcode": "0x56", "storage": "byte[0x4B3D19]"},
+        "currentWeather": {"va": "0x414AB0", "opcode": "0x57", "setter": "0x41D9D1"}
+      },
+      "weatherTransition": {
+        "va": "0x48E100",
+        "shape": "5×6",
+        "rows": [
+          [0, 0, 0, 1, 2, 3],
+          [0, 0, 0, 0, 1, 2],
+          [0, 1, 2, 2, 3, 3],
+          [0, 0, 1, 1, 4, 4],
+          [0, 1, 4, 4, 4, 4]
+        ],
+        "formula": "weather = table[category*6 + slot]",
+        "ids": "0..4"
+      },
+      "versionDifferences": {
+        "turnTest": "6.4 与 6.5/6.6 实现不同",
+        "turnLimit": "6.4/6.5 同码，6.6 不同",
+        "weatherHandlers": "0x56/0x57 三基底字节一致",
+        "weatherSetter": "6.4/6.5 同码，6.6 不同"
+      },
+      "limitations": [
+        "天气 ID 0..4 的玩法名称未命名。",
+        "0x40B922/0x449ECA/0x403985/0x423971/0x449F91 未展开。",
+        "0x4B3D08 其余字段未解析。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "global.65.battle-state",
+        "mechanism.65.engine-general-constant-census.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-turn-weather-state-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

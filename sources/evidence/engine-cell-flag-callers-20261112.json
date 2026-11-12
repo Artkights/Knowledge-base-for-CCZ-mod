@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "analysis": "cell-flag-callers",
+  "date": "2026-11-12",
+  "method": "refs_to.py 列出 0x42A5D6 仅两个调用点；capstone 反汇编 0x42A5D6 的两个调用上下文（0x42A64F..0x42A66E、0x42A717..0x42A73F）与矩形辅助 0x42A74A。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "callers": [
+    {
+      "site": "0x42A666",
+      "behavior": "双层矩形循环（y=[ebp-0x18]，x=[ebp-8]）内 push on、push 8、push coord → SetCellFlag(coord, 8, on)；mask 固定 8（bit3）",
+      "implication": "bit3 = 矩形区域标记（与第83轮「移动范围/路径标记」一致，具体业务偏向攻击/技能范围）"
+    },
+    {
+      "site": "0x42A73F",
+      "behavior": "包装 0x42A717(coord, y, mask, on)：先比较 y<[0x4B422D]；若 on==0 先调 0x42A74A 做矩形判定；再 SetCellFlag(coord, mask, on)；mask 由上层传入"
+    }
+  ],
+  "rectHelper": {
+    "entry": "0x42A74A",
+    "behavior": "以 byte[0x4B422C]*byte[0x4B422D] 计算格数，参数含 4 与嵌入的矩形边界比较"
+  },
+  "conclusion": "0x42A5D6 只有两个调用点：0x42A666 用固定 mask=8 按矩形区域逐格标记（bit3），0x42A717/0x42A73F 为通用包装（mask 由上层传入，on==0 时先经 0x42A74A 矩形判定）。这进一步支持 bit3 为范围标记位。",
+  "limitations": [
+    "0x42A717 的上层调用者未统计。",
+    "0x42A74A 的矩形边界参数未完全展开。",
+    "未运行游戏对照。"
+  ]
+}

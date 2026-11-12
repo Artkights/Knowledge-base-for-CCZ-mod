@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "analysis": "armor-exp-cross-base-constants",
+  "date": "2026-11-12",
+  "method": "精确反汇编三基底防具经验函数 0x403A8A..0x403B11；仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "function": {
+    "range": "0x403A8A..0x403B11",
+    "base": "push imm @0x403A8D",
+    "noDamage": "sub dword[ebp-4],imm @0x403AF8（6.4/6.5/6.6 同址）",
+    "damageCompare": "cmp [ebp-0x14],[ebp-0x18]；低于攻击前值时 dec dword[ebp-4]（0x403AF3）",
+    "apply": "0x421053（6.5）/0x42104F（6.4/6.6）"
+  },
+  "values": {
+    "base": {"6.4": 3, "6.5": 3, "6.6": 4},
+    "noDamageSubtract": {"6.4": 1, "6.5": 2, "6.6": 3}
+  },
+  "bytes": {
+    "6.4": {"base": "6A 03 @0x403A8D", "noDamage": "83 6D FC 01 @0x403AF8"},
+    "6.5": {"base": "6A 03 @0x403A8D", "noDamage": "83 6D FC 02 @0x403AF8"},
+    "6.6": {"base": "6A 04 @0x403A8D", "noDamage": "83 6D FC 03 @0x403AF8"}
+  },
+  "conclusion": "防具经验基础值 6.4=3、6.5=3、6.6=4；无伤害路径分别扣 1/2/3。当前 HP 低于攻击前值时再扣 1。6.5 用 0x421053 应用，6.4/6.6 用 0x42104F。",
+  "limitations": [
+    "0x42104F/0x421053 的倍率实现未展开。",
+    "攻击前 HP 数组 ctx+0x84/ctx+0x254 的语义未展开。",
+    "未运行游戏对照防具经验。"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "analysis": "points-adjust",
+  "date": "2026-11-12",
+  "method": "复核第104轮 0x41F952 调用点；capstone 反汇编 0x41F952（加减分支与池指针）。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "function": {
+    "entry": "0x41F952",
+    "fixedBase": "0x4FFF68（ecx）",
+    "args": "hDlg=[ebp+8]（未用）、控件 ID=[ebp+0xC]、值=[ebp+0x10]",
+    "logic": [
+      "eax = id - 0x7E6；若 eax < 5（加号 0x7E6..0x7EA）：word[0x4FFF68 + eax*2] += min(value, dword[0x4FFF68+0x14])；dword[+0x14] -= 实际加值",
+      "否则 (eax-5)（减号 0x7EB..0x7EF）：word[0x4FFF68 + (eax-5)*2] -= min(value, 当前值)；dword[+0x14] += 实际减值",
+      "尾部 0x41F997 push 0 → 刷新控件（后续调用）"
+    ],
+    "poolField": "0x4FFF68+0x14（dword，对话框内剩余点数）"
+  },
+  "correction": {
+    "target": "第104轮把 0x41F952 记为「控件写入包装（SetDlgItemInt/EnableWindow 未确认）」",
+    "new": "0x41F952 实为加减点数处理：0x7E6..0x7EA 为加号（扣池加值）、0x7EB..0x7EF 为减号（返还池减值），池在 0x4FFF68+0x14"
+  },
+  "conclusion": "0x41F952 是 332 对话框的 +/- 按钮处理函数：ID 0x7E6..0x7EA（2022..2026，加号）把值加到 5 项数组并扣减 0x4FFF68+0x14 的点数池；ID 0x7EB..0x7EF（2027..2031，减号）反向操作并把值返还池。0x4FFF68 是 5 word + 1 dword 池的对话框工作区，0x505F40 另有全局池显示。",
+  "limitations": [
+    "0x4FFF68 与 0x505F40 的同步点未定位。",
+    "尾部 0x41F997 之后的刷新调用未展开。",
+    "未运行游戏对照。"
+  ]
+}

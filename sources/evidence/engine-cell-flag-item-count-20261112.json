@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "analysis": "cell-flag-and-item-count-arrays",
+  "date": "2026-11-12",
+  "method": "refs_to.py 定位 0x4934B0/0x493AF0 全部引用；context.py 反汇编 0x41D716、0x42A2AF 循环、0x420299、0x408E96；结合第 42 轮 0x403789（y*width+x）与第 54 轮 0x4837C2（物品记录基址）确认索引域。仅静态分析。",
+  "samples": [
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "cellFlags": {
+    "address": "0x4934B0",
+    "semantic": "地图格标志字节数组（1 字节/格）",
+    "index": "0x403789 计算的 y*width+x（第 42 轮）",
+    "usedBits": "0x0D（bits 0/2/3）与 0x0C（bits 2/3）",
+    "evidence": [
+      {"site": "0x41D752", "code": "test byte[eax+0x4934B0], cl", "note": "eax=0x403789([ecx+6]) 的格索引；cl=循环计数"},
+      {"site": "0x42A47F", "code": "test byte[eax+0x4934B0], 0xD", "note": "双循环 x<byte[0x4B422C]、y<byte[0x4B422D]，按格测试并累加计数"},
+      {"site": "0x42A6A2", "code": "movzx eax, byte[eax+0x4934B0]", "note": "读取整字节标志"},
+      {"site": "0x42A90C", "code": "test byte[eax+0x4934B0], 0xD"},
+      {"site": "0x42AAA5", "code": "and byte[ecx+0x4934B0], 0xC", "note": "清除 bits 2/3"},
+      {"site": "0x42A5E1", "code": "add eax, 0x4934B0", "note": "以数组指针遍历"}
+    ],
+    "sixOnly": true
+  },
+  "itemCounts": {
+    "address": "0x493AF0",
+    "semantic": "物品拥有/计数数组（索引 = 物品 ID - 0xA0）",
+    "indexFormula": "0x420299：eax = arg - 0xA0；eax += 0x493AF0",
+    "sizeHint": "0x408E96 循环 ecx < 0x160，即 352 字节（覆盖物品 ID 0xA0..0x1FF）",
+    "updateRule": "0x420299：cl!=0 且 byte>=cl 时减 1；cl==0 且 byte!=0xFF 时加 1；0xFF 视为上限",
+    "evidence": [
+      {"site": "0x408EA5", "code": "cmp byte[ecx+0x493AF0], 0", "note": "循环 0..0x15F；非 0 时 ecx+=0xA0 后调用 0x4837C2（物品记录基址）与 0x46708C"},
+      {"site": "0x4202A1", "code": "add eax, 0x493AF0", "note": "减 0xA0 后作为数组索引"},
+      {"site": "0x42BB36", "code": "mov byte[eax+0x493AF0], dl", "note": "直接写入计数值"},
+      {"site": "0x42189F", "code": "mov byte[eax+0x493AF0], cl"},
+      {"site": "0x412A78", "code": "mov eax, 0x493AF0", "note": "取数组基址"}
+    ],
+    "sixOnly": true
+  },
+  "consumer": {
+    "gate": "0x42A29A：cmp byte[0x501BD2],2; jb 跳过 0x42A2AF",
+    "function": "0x42A2AF 扫描全地图格：0x4B422C/0x4B422D 为宽高，0x403789 求格索引，0x4934B0 掩码 0xD 判定，累计 [ebp-0xC]",
+    "meaning": "6.6 新增的地图格标志扫描/统计逻辑（>=2 模式启用）"
+  },
+  "conclusion": "0x4934B0 是 6.6 独有地图格标志数组（1 字节/格，按 y*width+x 索引，掩码 0xD/0x0C）；0x493AF0 是 6.6 独有物品计数数组（索引=物品 ID-0xA0，范围 0xA0..0x1FF，0xFF 上限，0 表示未拥有）。前者被 0x42A2AF 全图扫描与 0x41D716 判定使用，后者被 0x408E96 的拥有物品枚举与 0x420299 的增减逻辑使用。",
+  "limitations": [
+    "0x4934B0 的 bits 0/2/3 分别代表什么（可通行/可达/占用等）未定。",
+    "0x493AF0 计数的业务含义（拥有数量/剩余次数）未与界面文案对照。",
+    "0x408E96 中 0x46708C 的用途未展开。",
+    "未运行游戏对照。"
+  ]
+}

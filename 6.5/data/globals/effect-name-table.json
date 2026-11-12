@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "global.65.effect-name-table.3890",
+      "title": "特效名称表（16 字节记录）",
+      "aliases": [
+        "0x004CC600",
+        "effect_name_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004CC600",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 16,
+      "semantics": "16 字节/条，索引=特效号：+0x00..+0x0E 为 GBK 名称（≤15 字节，NUL 结尾），+0x0F 为分类码。穿透攻击 119..127 位于 0x4CCD70..0x4CCDE0（十字/九宫/没羽箭/二格/三格/六格/横扫/环击/溅射）；远距攻击 157..164 位于 0x4CCFD0..0x4CD040（八向/没羽箭/方格/大没羽/刺客/大爆炎/炮车/圆环）。名称中的后缀即对应范围码的名称。6.4 同址全 0（无此表）。",
+      "relations": [
+        "global.65.range-code-name-table.3890",
+        "fn.65.pierce-effect-chain.3890",
+        "fn.65.longrange-effect-chain.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    },
+    {
+      "id": "global.65.range-code-name-table.3890",
+      "title": "范围码名称表（12 项字符指针）",
+      "aliases": [
+        "0x0040CEE9",
+        "range_code_name_table"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040CEE9",
+        "profile": "profile.ccz65.unencrypted.3890.scan",
+        "evidence": "static-verified"
+      },
+      "width": 48,
+      "semantics": "12 个 DWORD 字符指针，索引=范围码 0..11：0 无(0x486CFC)、1 十字(0x500CCB)、2 九宫(0x500CD0)、3 没羽箭(0x48E7D4)、4 两格(0x500CD5)、5 六格(0x500CDA)、6 大没羽箭(0x48E7DB)、7 三格(0x500CDF)、8 方格(0x48E7E4)、9 横扫(0x48E7E9)、10 环击(0x48E7EE)、11 溅射(0x48E7F3)。6.4 同表在 0x40620A 仅 10 项（0..9）；6.6 在 0x40620A 有 12 项。",
+      "relations": [
+        "global.65.effect-name-table.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

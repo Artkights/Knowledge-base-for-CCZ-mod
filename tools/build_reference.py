@@ -419,7 +419,7 @@ def render_group(version_dir: Path, entity_type: str, entries: list[tuple[Path, 
     sources = sorted({path.relative_to(ROOT).as_posix() for path, _ in entries})
     lines = [f"# {version_dir.name} {TITLES[entity_type]}", "", "<!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->", "", "结构化事实来源：" + "、".join(f"`{path}`" for path in sources), ""]
     lines.extend(RENDERERS[entity_type](entries))
-    return "\n".join(lines).rstrip() + "\n"
+    return "\n".join(line.rstrip() for line in lines).rstrip() + "\n"
 
 
 def generated_documents() -> tuple[dict[Path, str], set[Path]]:

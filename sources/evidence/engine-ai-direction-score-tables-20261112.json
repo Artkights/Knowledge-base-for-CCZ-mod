@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "analysis": "ai-direction-score-tables-and-mode-flags",
+  "date": "2026-11-12",
+  "method": "比对 6.5 0x4395D8 与 6.6 0x412793 的原始字节；反汇编处理体 4（0x43996C）与 11（0x4399AF）的方向评分循环；用 va_bytes.py 读取 +0x20/+0x22/+0x64 的文件映像；以 struct_ecx_scan 扩展寄存器跟踪查找写点。仅静态读取基底。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "scoreFloorTable": {
+    "65": "0x4395D8",
+    "66": "0x412793",
+    "bytes": "19 1E 23 19",
+    "values": [25, 30, 35, 25],
+    "size": 4,
+    "hash": "c27f1c9536c2a731（两版完全相同）",
+    "usage": "处理体 4/11：eax=方向索引（0..3）；test byte[eax+0x4240D2],dl 命中后，cl=table[eax]；若当前评分 [ebp-4] < cl 则取 cl（评分下限）；循环后 [ebp-4] += 命中方向计数"
+  },
+  "maskTable": {
+    "address": "0x4240D2",
+    "bytes": "03 0C 30 C0",
+    "meaning": "4 个方向的 2 位掩码（0x03/0x0C/0x30/0xC0），按方向索引取字节后与方向位 dl 做 test",
+    "hash": "97bde594c7931b8d（6.5/6.6 相同）"
+  },
+  "viewportFlags": {
+    "flag64": {
+      "offset": "0x4B4250+0x64",
+      "reads": ["0x412F84：==1 时直接把 unit+4 字节作为选择结果（跳过正常评分循环）", "0x43E823：战斗模式下 !=0 时连续两次调用 0x44DA7A"],
+      "writes": "未发现直接写入（struct_scan 全偏移 + 扩展寄存器跟踪均无写点）",
+      "candidate": "自动战斗/快速结算标志"
+    },
+    "flag68": {
+      "offset": "0x4B4250+0x68",
+      "reads": ["0x412F9B：==1 且 [ebp-0xC]==1 时走与 +0x64 相同的快速路径"],
+      "writes": "未发现直接写入",
+      "candidate": "自动战斗的次级开关"
+    },
+    "screenSize": {
+      "offsets": "+0x20/+0x22",
+      "fileValue": "所在区段为未初始化区（.text2/.data 的 raw 之外），文件映像为空，无静态初值",
+      "usage": "0x40BABC/0x40BAC4 作为 0x402EE2 面板宽高",
+      "status": "640/480 仍为行为推断"
+    }
+  },
+  "conclusion": "6.6 仅把 4 字节评分下限表从 0x4395D8 搬到 0x412793，内容完全不变：25/30/35/25；配套的方向掩码表 0x4240D2 为 03/0C/30/C0（4 个 2 位掩码）。处理体 4/11 的评分逻辑是“方向命中后取评分下限，最后加命中方向计数”。0x4B4250+0x64/+0x68 为只读模式标志，未发现直接写点，候选为自动战斗/快速结算开关；+0x20/+0x22 无文件静态初值。",
+  "limitations": [
+    "+0x64/+0x68 的写入路径（配置/存档/内存拷贝）未定位。",
+    "+0x20/+0x22 的实际数值未由静态初值证实。",
+    "评分下限表的 25/30/35/25 对应哪个兵种/方向的语义未定名。",
+    "未运行游戏对照。"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "analysis": "layer-offsets",
+  "date": "2026-11-12",
+  "method": "refs_to.py 列出 6.5 全部 22 处 0x12900 引用；capstone 反汇编 0x43FE2C..0x43FEB2（分配+清零 11 层块）、0x41C7E0..0x41C822（0xA200 层偏移与 0x6C00 分支）。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "sites": [
+    "0x40449D", "0x41C7F0", "0x41ED07", "0x43E5FD", "0x43FD55", "0x43FE72", "0x43FEA4", "0x441A77", "0x441B1E", "0x442211", "0x443D0E", "0x44426B", "0x444961", "0x444AA4", "0x444D45", "0x444DD5", "0x445411", "0x445982", "0x446A75", "0x446E2F", "0x44829D", "0x448BCE"
+  ],
+  "allocation": {
+    "site": "0x43FE6B..0x43FEB2",
+    "behavior": "byte[obj+4] * 0x12900 → 0x401655（从 0x4AB00C 池分配）；0x43FC48 取另一参数；0x4789D6/0x47FCFD 以 0x12900 清零整块；随后 0x425AF0(8)",
+    "note": "确认 11 层块按需分配并整体清零"
+  },
+  "layerOffsets": [
+    {"offset": "0x6C00", "layers": 4, "use": "0x41C7E7 分支 push 0x6C00 + 0x4B7A20 调 0x408ECA；0x41ED07 目标步长"},
+    {"offset": "0xA200", "layers": 6, "use": "0x41C7E9 非战斗模式：byte[rec+2]*0x12900 + 0xA200 → 0x401655"},
+    {"offset": "0xF300", "layers": 9, "use": "0x41ED07 源层（第 9/10 层）"}
+  ],
+  "conclusion": "6.5 中共 22 处 0x12900 引用；层偏移按 0x1B00 对齐：0x6C00=第 4 层、0xA200=第 6 层、0xF300=第 9 层。0x43FE2C 的构造函数按 byte[obj+4] 分配并整块清零 0x12900 字节，说明 11 层块是运行时按对象分配的工作缓冲。",
+  "limitations": [
+    "其余 19 处引用的层偏移未逐项列出。",
+    "11 层各自业务（地形/单位/特效等）仍未定名。",
+    "0x4B7A20 对象与 0x408ECA 的关系未展开。",
+    "未运行游戏对照。"
+  ]
+}

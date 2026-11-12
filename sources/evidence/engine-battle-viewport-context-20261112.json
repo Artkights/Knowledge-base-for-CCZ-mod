@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "analysis": "battle-viewport-context-0x4B4250",
+  "date": "2026-11-12",
+  "method": "struct_scan.py 统计 [0x4B4250,0x4B6250) 直接位移访问；struct_ecx_scan.py 跟踪 mov ecx,0x4B4250 之后的 [ecx+off] 访问（寄存器被改写即停止）；dump/context 展开初始化、矩形写入、面板绘制与坐标换算函数。仅静态读取基底。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "base": "0x4B4250",
+  "loadCounts": {"6.4": 292, "6.5": 254, "6.6": 180},
+  "fieldMap": [
+    {"offset": "+0x00", "type": "dword", "meaning": "初始化清零字段", "evidence": "0x47B455 mov dword[ecx],0"},
+    {"offset": "+0x04", "type": "dword", "meaning": "视口原点 X（像素）", "evidence": "0x4D1181 由 [0x4CEA08]+0x1B 载入；0x40DBDA/0x40EB35 以 0x30（48px）做瓦片换算"},
+    {"offset": "+0x08", "type": "dword", "meaning": "视口原点 Y（像素）", "evidence": "0x4D1187 由 [0x4CEA08]+0x1F 载入；0x40DBC9/0x40EB3F 同上"},
+    {"offset": "+0x0C", "type": "dword", "meaning": "初始化清零字段", "evidence": "0x47B457 mov dword[ecx+0xC],0"},
+    {"offset": "+0x10", "type": "dword", "meaning": "初始化清零字段", "evidence": "0x47B45A mov dword[ecx+0x10],0"},
+    {"offset": "+0x14", "type": "dword（word 读法并存）", "meaning": "视口宽度（像素）", "evidence": "0x455E44 movzx eax,word[ecx+0x14]; 0x41163B/0x41163E 与 +0x18、+0x40 一起传入 0x4736AF"},
+    {"offset": "+0x18", "type": "dword（word 读法并存）", "meaning": "视口高度（像素）", "evidence": "0x455E6B movzx eax,word[ecx+0x18]；同上传参"},
+    {"offset": "+0x20", "type": "word", "meaning": "屏幕/面板宽度（候选 640）", "evidence": "0x40BABC 作为 0x402EE2 面板宽；同函数以 +0x22-0x28 作面板高"},
+    {"offset": "+0x22", "type": "word", "meaning": "屏幕/面板高度（候选 480）", "evidence": "同上，0x40BAC0 sub eax,0x28"},
+    {"offset": "+0x24", "type": "dword", "meaning": "视口矩形左（x×0x30）", "evidence": "0x47B444 写入"},
+    {"offset": "+0x28", "type": "dword", "meaning": "视口矩形上（y×0x30+0x28）", "evidence": "0x47B44D 写入"},
+    {"offset": "+0x2C", "type": "dword", "meaning": "视口目标/中心 X", "evidence": "0x47B741 mov [ecx+0x2C],edx"},
+    {"offset": "+0x30", "type": "dword", "meaning": "视口目标/中心 Y", "evidence": "0x47B744 mov [ecx+0x30],eax"},
+    {"offset": "+0x34", "type": "dword", "meaning": "视口矩形右（与左同值）", "evidence": "0x47B447 写入同一 eax"},
+    {"offset": "+0x38", "type": "dword", "meaning": "视口矩形下（与上同值）", "evidence": "0x47B450 写入同一 eax"},
+    {"offset": "+0x3C", "type": "dword", "meaning": "额外 X 偏移", "evidence": "0x40D49D add edx,[ecx+0x3C]；6.6 的 40 条窗口内未出现"},
+    {"offset": "+0x40", "type": "dword", "meaning": "额外 Y 偏移", "evidence": "0x40D493/0x40EB42 add edx,[ecx+0x40]；0x411641 push 传参"},
+    {"offset": "+0x64", "type": "dword", "meaning": "模式比较字段（0/1）", "evidence": "0x412F84 cmp [ecx+0x64],1；0x43E823 cmp [ecx+0x64],0"},
+    {"offset": "+0x6D", "type": "byte", "meaning": "6.6 专属标志（0xFF 初值）", "evidence": "6.6 0x451DB3 mov byte[ecx+0x6D],0xFF；6.4/6.5 未检出"},
+    {"offset": "+0x1B85", "type": "byte", "meaning": "使用效果码槽 0（4 槽缓冲首字节）", "evidence": "0x421CFF/6.6 0x421CEE cmp byte[ecx+0x1B85],0xFF；见 mechanism.65.item-effect-code-and-range-table.3ef7"}
+  ],
+  "keyFunctions": {
+    "0x40BAD4": "有符号除法助手：idiv dword[esp+4]，用于像素/瓦片换算（除以 0x30）",
+    "0x40DB90": "屏幕坐标→瓦片内偏移：先除 0x30 得瓦片坐标，再用原坐标减回",
+    "0x40EB26": "瓦片→屏幕像素：eax=tileX*0x30-[+0x04]+0x18，edx=tileY*0x30-[+0x08]+[+0x40]+0x18",
+    "0x45503F": "以 [+0x14]/[+0x18] 除 0x30 得视口瓦片尺寸并求半宽/半高（居中）",
+    "0x47B43C": "视口矩形初始化：+0x24/+0x34=x*0x30，+0x28/+0x38=y*0x30+0x28，清 +0x00/+0x0C/+0x10",
+    "0x47B739": "视口目标设置：+0x2C=edx、+0x30=eax",
+    "0x4D1174": "地图记录 [0x4CEA08]+0x1B/+0x1F → 视口原点；[map+0x12] → word[0x4B422C]",
+    "0x455E44/0x455E6B": "视口宽/高 word getter"
+  },
+  "crossBase": {
+    "offsetCount": {"6.4": 19, "6.5": 19, "6.6": 19},
+    "sharedOffsets": "+0x00,+0x04,+0x08,+0x0C,+0x10,+0x14,+0x18,+0x20,+0x22,+0x24,+0x28,+0x2C,+0x30,+0x34,+0x38,+0x40,+0x64,+0x1B85",
+    "diffs": [
+      "6.4/6.5 的 40 条窗口含 +0x3C；6.6 未出现（可能改用 +0x40 或访问点更远）",
+      "6.6 独占 +0x6D（0xFF 初值）",
+      "载入点数量：6.4=292、6.5=254、6.6=180"
+    ]
+  },
+  "conclusion": "0x4B4250 是战场视口/滚动上下文：+0x04/+0x08 为像素原点（地图记录 +0x1B/+0x1F 载入），+0x14/+0x18 为视口宽高（像素，可 word 读），+0x24/+0x28/+0x34/+0x38 为视口矩形，+0x2C/+0x30 为目标/中心，+0x3C/+0x40 为额外偏移，+0x20/+0x22 为屏幕/面板宽高（0x402EE2 面板绘制使用），+0x64 为模式比较字段，+0x1B85 为使用效果码槽 0。字段集合三基底一致（各 19 项），差异仅 6.6 的 +0x6D 与 +0x3C 访问窗口。",
+  "limitations": [
+    "+0x20/+0x22 具体数值（640/480）为行为推断，未直接读取初值。",
+    "+0x2C/+0x30 的“目标/中心”命名未取得文案证据。",
+    "+0x64 的模式含义未定名。",
+    "6.6 的 +0x3C 是否仍存在未证明。",
+    "未运行游戏对照。"
+  ]
+}

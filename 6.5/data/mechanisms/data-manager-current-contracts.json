@@ -135,10 +135,10 @@
       "status": "canonical",
       "evidence": "source-reviewed-current-implementation",
       "sourceRefs": [
-        "src.dm.core-current-20261102.extend-service",
+        "src.data-manager.incremental-20261102.extend-service",
         "src.dm.core-current-20261102.extend-reference",
-        "src.dm.core-current-20261102.table-reader",
-        "src.dm.core-current-20261102.augmentation"
+        "src.data-manager64.attribute-reader",
+        "src.data-manager64.augmentation"
       ],
       "aliases": [
         "文件存在不等于插件已启用",

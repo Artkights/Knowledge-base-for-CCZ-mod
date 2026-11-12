@@ -2,7 +2,25 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/mechanisms/consumable-effects.json`、`6.5/data/mechanisms/data-manager-current-contracts.json`、`6.5/data/mechanisms/data-manager-formulas.json`、`6.5/data/mechanisms/engine-assignment-field-policy.json`、`6.5/data/mechanisms/engine-mechanisms.json`、`6.5/data/mechanisms/engine-physical-binding-groups.json`、`6.5/data/mechanisms/engine-scan-lifecycle.json`、`6.5/data/mechanisms/engine-scan-operand-provenance.json`、`6.5/data/mechanisms/engine-scan-performance-equivalence.json`、`6.5/data/mechanisms/public-reverse-analysis-methods.json`、`6.5/data/mechanisms/reviewed-stub-scanner-reference.json`
+结构化事实来源：`6.5/data/mechanisms/attack-range-consumption.json`、`6.5/data/mechanisms/consumable-effects.json`、`6.5/data/mechanisms/data-manager-current-contracts.json`、`6.5/data/mechanisms/data-manager-formulas.json`、`6.5/data/mechanisms/data-manager-strategy-semantics.json`、`6.5/data/mechanisms/effect-range-binding.json`、`6.5/data/mechanisms/engine-ability-display-table.json`、`6.5/data/mechanisms/engine-ai-and-terrain.json`、`6.5/data/mechanisms/engine-ai-branch-2-13-15.json`、`6.5/data/mechanisms/engine-ai-branch-346-scoring.json`、`6.5/data/mechanisms/engine-ai-branch-712-scoring.json`、`6.5/data/mechanisms/engine-ai-cross-base-audit.json`、`6.5/data/mechanisms/engine-ai-damage-scoring.json`、`6.5/data/mechanisms/engine-ai-handler-constants-66.json`、`6.5/data/mechanisms/engine-anchor-relocation-66.json`、`6.5/data/mechanisms/engine-api-name-table.json`、`6.5/data/mechanisms/engine-arithmetic-immediates-census.json`、`6.5/data/mechanisms/engine-armor-exp-cross-base.json`、`6.5/data/mechanisms/engine-assignment-field-policy.json`、`6.5/data/mechanisms/engine-auto-battle-flags.json`、`6.5/data/mechanisms/engine-avi-player.json`、`6.5/data/mechanisms/engine-battle-mode-byte.json`、`6.5/data/mechanisms/engine-battle-script-actions.json`、`6.5/data/mechanisms/engine-battle-unit-table.json`、`6.5/data/mechanisms/engine-battle-viewport-context.json`、`6.5/data/mechanisms/engine-capacity-and-sentinels.json`、`6.5/data/mechanisms/engine-cell-byte-map.json`、`6.5/data/mechanisms/engine-cell-flag-writer.json`、`6.5/data/mechanisms/engine-char-exp-cross-base.json`、`6.5/data/mechanisms/engine-character-accessors.json`、`6.5/data/mechanisms/engine-character-adaptation-table.json`、`6.5/data/mechanisms/engine-color-palette.json`、`6.5/data/mechanisms/engine-crit-combo-mode.json`、`6.5/data/mechanisms/engine-cross-base-audit-late.json`、`6.5/data/mechanisms/engine-current-record-pointer.json`、`6.5/data/mechanisms/engine-damage-apply-mode.json`、`6.5/data/mechanisms/engine-dialog-framework.json`、`6.5/data/mechanisms/engine-dialog-workarea-4fff68.json`、`6.5/data/mechanisms/engine-dialog332-confirm.json`、`6.5/data/mechanisms/engine-dialog332-refresh.json`、`6.5/data/mechanisms/engine-embedded-byte-tables.json`、`6.5/data/mechanisms/engine-equipment-growth.json`、`6.5/data/mechanisms/engine-equipment-slot-bound.json`、`6.5/data/mechanisms/engine-font-name-table.json`、`6.5/data/mechanisms/engine-formula-site-audit.json`、`6.5/data/mechanisms/engine-general-constants.json`、`6.5/data/mechanisms/engine-general-coverage.json`、`6.5/data/mechanisms/engine-global-mode-flags.json`、`6.5/data/mechanisms/engine-global-ui-state-block.json`、`6.5/data/mechanisms/engine-grid-bound-correction.json`、`6.5/data/mechanisms/engine-grid-dimension-pair.json`、`6.5/data/mechanisms/engine-history-intel-341.json`、`6.5/data/mechanisms/engine-hit-height-modifier.json`、`6.5/data/mechanisms/engine-hit-retry-cross-base.json`、`6.5/data/mechanisms/engine-item-effect-code-and-range-table.json`、`6.5/data/mechanisms/engine-item-loader-64-parser.json`、`6.5/data/mechanisms/engine-item-price-boundary.json`、`6.5/data/mechanisms/engine-item-record-fields.json`、`6.5/data/mechanisms/engine-item-record-normalization.json`、`6.5/data/mechanisms/engine-item-record-table.json`、`6.5/data/mechanisms/engine-item-type-action-mapping-66.json`、`6.5/data/mechanisms/engine-item-type-classification.json`、`6.5/data/mechanisms/engine-job-attribute-matrix.json`、`6.5/data/mechanisms/engine-job-penetration.json`、`6.5/data/mechanisms/engine-layer-block-constants.json`、`6.5/data/mechanisms/engine-layer-buffer-11.json`、`6.5/data/mechanisms/engine-level-context-struct.json`、`6.5/data/mechanisms/engine-mechanisms.json`、`6.5/data/mechanisms/engine-memory-arenas.json`、`6.5/data/mechanisms/engine-merit-table.json`、`6.5/data/mechanisms/engine-money-global.json`、`6.5/data/mechanisms/engine-movement-terrain.json`、`6.5/data/mechanisms/engine-new-anchors-batch-66.json`、`6.5/data/mechanisms/engine-payment-chain.json`、`6.5/data/mechanisms/engine-personal-exp-cross-base.json`、`6.5/data/mechanisms/engine-physical-binding-groups.json`、`6.5/data/mechanisms/engine-physical-damage-chain.json`、`6.5/data/mechanisms/engine-physical-level-table.json`、`6.5/data/mechanisms/engine-physical-range-correction.json`、`6.5/data/mechanisms/engine-quick-window-host.json`、`6.5/data/mechanisms/engine-random-variant-table.json`、`6.5/data/mechanisms/engine-save-file-format.json`、`6.5/data/mechanisms/engine-save-load-constants.json`、`6.5/data/mechanisms/engine-scan-lifecycle.json`、`6.5/data/mechanisms/engine-scan-operand-provenance.json`、`6.5/data/mechanisms/engine-scan-performance-equivalence.json`、`6.5/data/mechanisms/engine-script-context-caches.json`、`6.5/data/mechanisms/engine-script-handler-capacity.json`、`6.5/data/mechanisms/engine-script-number-parser.json`、`6.5/data/mechanisms/engine-script-opcodes-7c-7d.json`、`6.5/data/mechanisms/engine-settings-block-fields.json`、`6.5/data/mechanisms/engine-settings-dialog-kankyou.json`、`6.5/data/mechanisms/engine-shop-growth.json`、`6.5/data/mechanisms/engine-slot-type-candidate.json`、`6.5/data/mechanisms/engine-sound-settings.json`、`6.5/data/mechanisms/engine-strategy-direction-weather.json`、`6.5/data/mechanisms/engine-table-506800.json`、`6.5/data/mechanisms/engine-target-direction-score.json`、`6.5/data/mechanisms/engine-temp-attribute-block.json`、`6.5/data/mechanisms/engine-text-buffers-save-header.json`、`6.5/data/mechanisms/engine-training-ground-context.json`、`6.5/data/mechanisms/engine-turn-weather-state.json`、`6.5/data/mechanisms/engine-unit-alloc-records.json`、`6.5/data/mechanisms/engine-unit-slot-arrays.json`、`6.5/data/mechanisms/engine-unit-status-bitfield.json`、`6.5/data/mechanisms/engine-weapon-exp-cross-base.json`、`6.5/data/mechanisms/param-display-name-resolution.json`、`6.5/data/mechanisms/public-reverse-analysis-methods.json`、`6.5/data/mechanisms/reviewed-stub-scanner-reference.json`、`6.5/data/mechanisms/script-command-dispatch.json`、`6.5/data/mechanisms/script-execution.json`、`6.5/data/mechanisms/script-jump-window.json`、`6.5/data/mechanisms/script-main-loop.json`、`6.5/data/mechanisms/script-short-param.json`、`6.5/data/mechanisms/strategy-and-range-chains.json`、`6.5/data/mechanisms/strategy-attribute-tables.json`、`6.5/data/mechanisms/strategy-damage-hit-resolution.json`
+
+## 范围落格与格状态/槽号分层写入
+
+ID: `mechanism.65.attack-range-grid-write.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.attack-append-target`：0x437AFF：边界检查后落格
+2. `fn.65.cell-slot-reader.3890`：0x435884：读 P 层返回格内单位槽号
+
+## 必杀范围 +0xC/+0xD 的真实消费链
+
+ID: `mechanism.65.fatal-range-consumption.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.data-table-init-root.3890`：0x41B639 初始化总入口
+2. `fn.65.data-e5-block1-init.3890`：同属初始化序列；块 5 由 0x41B834 处理
+3. `global.65.fatal-record-table.3890`：0x4A7510 保存 97×16 必杀记录
+4. `fn.65.fatal-field-d-reader.3890`：0x484E27 读取 +0xD 作为可用性判定
+5. `fn.65.fatal-field-c-reader.3890`：0x43F8C0 读取 +0xC 进入特殊目标判定
+6. `fn.65.pierce-loader`：0x40782D 在 [0x500E9A]==2 时经 0x41E918 取必杀记录
 
 ## 消耗品独立特效目录 0x1A–0x3D 与证据分层
 
@@ -4396,7 +4414,7 @@ ID: `mechanism.65.dm-constant-hit-curve-cap`；状态: `candidate`；证据: `so
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.5 高段基础值：代码固定值
+## 6.5 命中率曲线·高段基础值
 
 ID: `mechanism.65.dm-constant-hit-curve-high-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -4468,7 +4486,7 @@ ID: `mechanism.65.dm-constant-hit-curve-high-base`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.5 高段每点系数：代码固定值
+## 6.5 命中率曲线·高段每点系数
 
 ID: `mechanism.65.dm-constant-hit-curve-high-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -4756,7 +4774,7 @@ ID: `mechanism.65.dm-constant-hit-curve-low-divisor`；状态: `candidate`；证
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.5 低段基础值：代码固定值
+## 6.5 命中率曲线·低段基础值
 
 ID: `mechanism.65.dm-constant-hit-curve-low-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -4828,7 +4846,7 @@ ID: `mechanism.65.dm-constant-hit-curve-low-base`；状态: `candidate`；证据
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.5 低段每点系数：代码固定值
+## 6.5 命中率曲线·低段每点系数
 
 ID: `mechanism.65.dm-constant-hit-curve-low-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -5260,7 +5278,7 @@ ID: `mechanism.65.dm-constant-rate-curve-cap`；状态: `candidate`；证据: `s
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.5 高段每点系数：代码固定值
+## 6.5 发动率曲线·高段每点系数
 
 ID: `mechanism.65.dm-constant-rate-curve-high-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -5332,7 +5350,7 @@ ID: `mechanism.65.dm-constant-rate-curve-high-coef`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.5 高段基础值：代码固定值
+## 6.5 发动率曲线·高段基础值
 
 ID: `mechanism.65.dm-constant-rate-curve-high-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -5404,7 +5422,7 @@ ID: `mechanism.65.dm-constant-rate-curve-high-base`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.5 低段每点系数：代码固定值
+## 6.5 发动率曲线·低段每点系数
 
 ID: `mechanism.65.dm-constant-rate-curve-low-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -5476,7 +5494,7 @@ ID: `mechanism.65.dm-constant-rate-curve-low-coef`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.5 低段基础值：代码固定值
+## 6.5 发动率曲线·低段基础值
 
 ID: `mechanism.65.dm-constant-rate-curve-low-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -7060,6 +7078,144 @@ ID: `mechanism.65.dm-constant-equip-level-cap-normal`；状态: `candidate`；�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
+## data 管理器策略页：界面描述与引擎语义对照
+
+ID: `mechanism.65.dm-strategy-attribute-semantics`；状态: `canonical`；证据: `static-verified`
+
+策略页把三组不同东西放在同一页面：Data.e5 的 0x61 字节记录、Ekd5.exe 的 10 张 144 字节子表、以及一个 30 字节全局地形表。字段名称大多正确，但 多个字段的语义/标签与引擎不符，另有若干 UI 选项缺少证据。
+
+
+补充说明：
+
+- data 管理器显示名已恢复为原有名称：界面为类型索引/命中上限/伤害系数/战场AI策略/练武场AI策略/效果索引/策略扩展标记；Profile 与 CSV 仍用策略类型索引/策略命中率/策略伤害系数/战场AI策略限制/练武场AI策略限制/策略扩展标记。功能修正保留：施展对象上限 2；战场/练武场 AI 上限 15；伤害类型上限 4；6.4/6.5 扩展位从策略页完全隐藏，6.6 只显示 bit0/bit1 两个可写复选框。
+- 6.6 策略页的扩展位复选框名称为“策略模仿”（bit0）和“辅助穿透”（bit1）；bits2-7 不显示，但写回使用 (原值 & 0xFC) | (编辑位 & 0x03) 保留原值。
+- 文件布局与运行时布局不同：0x40D73C 把文件 +0x0B..+0x0F 重排为运行时的对象/范围/穿透/MP/类型；data 管理器按文件偏移编辑是正确的。
+- 语义错误：strategy-learning“效果索引”是 AI 类别位掩码；命中率是模式码；战场/练武场 AI 是评分处理器编号。
+- 空属性：6.4/6.5 的策略扩展标记是 0x90 填充，不是可编辑策略属性。
+- 旧界面名：strategy-learning 为“类型索引”，strategy-effect-class 为“效果索引”；后者的物理字段名仍是“效果类”，两者不是同一张表。
+- 缺失：运行时 68 行边界、AI 16 项处理器映射、动画 0xFF/0x64+ 约定；命中码 0..4 已全量解析。
+- 策略页区块标题已恢复为“效果与拓展”；strategy-learning 仍是 AI 类别掩码，界面旧名为“类型索引”。
+- 是否伤血：0x415EFA 只返回 type<4；0..3 在全部直接消费者中完全等价，4 不伤血，>=4 同样被门控；6.4/6.5 由 ID 0x46/0x16 绕过门控，6.6 由策略类型 0x1E/0x06 绕过；显示函数只把精确的 4 显示为 0。
+- 命中模式：0=基础×90/100、1=绝对100、2=能力曲线、3=基础×34/100、4=基础×50/100；>=5 是基础×值/100，不是无条件绝对百分比；最终封顶 100。6.4 额外在 0x406610 返回 0xFF 时置 0；6.6 效果读取改用 0x42518F。
+- 位编辑器在实体重绑时抑制 CheckedChanged 提交，切换策略不会把中间复选框状态写成瞬态草稿；测试用未保存草稿在策略 0/104 间往返验证。
+- 本实体只描述 data 管理器策略页与其引擎语义的对应关系，不授权任何自动写回。
+- 界面标签取自 BusinessEditorPanel.FieldLabel/GetFlags 与 Profile 字段名；引擎语义取自 6.5 3EF7 静态反汇编。
+- 6.4/6.5/6.6 的字段偏移一致；差异集中在 0xA2CE0 的含义和 6.6 效果类范围。
+- 待确认：穿透范围 7 与运行时 +0x0D 的专属消费者；0x425AF0 的掩码不能直接当作策略证据。
+
+## 穿透攻击-xx：以特效参数替换穿透范围
+
+ID: `mechanism.65.pierce-attack-replacement.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.pierce-loader`：0x40782D 穿透加载入口
+2. `fn.65.pierce-effect-chain.3890`：0x40CC13 顺序查 0x77..0x7F
+3. `fn.65.param-getter-gated.3890`：0x42518F 逐个取特效参数
+4. `fn.65.pierce-expand-wrapper`：0x4364C7 接收穿透码并展开
+5. `fn.65.strategy-range-dispatch.3890`：0x435CE9 12 分支几何展开
+6. `fn.65.attack-append-target`：0x437AFF 落格
+
+## 远距攻击-xx：候选范围码并入范围块（叠加/替换）
+
+ID: `mechanism.65.longrange-attack-overlay.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.fatal-field-c-reader.3890`：0x43F8C0 主范围 + 候选槽
+2. `fn.65.longrange-effect-helper-9d.3890`：0x9D 八向 → 候选 1
+3. `fn.65.longrange-effect-helper-9e.3890`：0x9E 没羽箭 → 候选 6
+4. `fn.65.longrange-effect-chain.3890`：0x9F..0xA4 首个 → 候选=参数值
+5. `fn.65.attack-selector`：0x45533D 读取 dword[unit+6] 范围块
+6. `fn.65.attack-dispatch`：0x436511 循环 4 槽逐码查 0x4D1400 并集
+
+## 人物能力显示值跳转表 0x430000（6.5/6.4 为 0x46902B）
+
+ID: `mechanism.65.ability-display-table.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x430000（6.5/6.4 为 0x46902B）是 8 项人物能力显示值计算跳转表，目标 0x40715A/718F/71C4/71F9/722E/7263/728F/72BB 三基底完全一致。索引 0..4 读取人物记录 +0x11/+0x13/+0x15/+0x17/+0x19 的五个 word，加上装备加成（0x407C29/0x407C35）与额外加成（0x436E02/0x436DE1）后封顶 0x270F（9999）；索引 5/6 计算 +0x1B/+0x1F 两个 word 资源上限（封顶 0xFFFF/0x270F）；索引 7 以 +0x2B 兵种 ID 计算兵种相关值。状态对话框在 0x45C97E 循环 0..4，以 SetDlgItemInt(0x400+idx, value) 显示五项能力。
+
+
+## 策略 AI 字节的 16 分支评分分派
+
+ID: `mechanism.65.strategy-ai-dispatch.3ef7`；状态: `candidate`；证据: `static-verified`
+
+strategy-battle-ai 与 strategy-training-ai 的每策略字节不是位掩码，而是 0..15 的处理分支索引。0x4395DC 按 strategy_id 取字节，经固定 16 项跳转表 0x43A140 进入对应评分分支，把权重累加到 [ebp-4]。byte[0x505FDC] 选择战斗表或训练表。
+
+
+## 策略地形可用性位掩码
+
+ID: `mechanism.65.strategy-terrain-bitmask.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x420ACC 是 30 字节地形位掩码表（每种地形一个字节）。0x419587(terrain, mask) 返回 table[terrain] & mask。策略使用检查在 mask 为 0 时返回“不能在这里使用。”；同一链路还使用“不能对我方部队使用。”。表在 6.4/6.5/6.6 完全相同。
+
+
+## AI 评分剩余分支 2/13/14/15
+
+ID: `mechanism.65.ai-branch-2-13-14-15.3ef7`；状态: `canonical`；证据: `static-verified`
+
+分支 2：0x4078D1>40 且 0x43FFB9==0 时 +100，并按 [ebp+0x18] 追加 0x438917；分支 13 无追加；分支 14/15 按状态偏移 0x18/0x1A/0x35 与阈值 3 追加 10。至此 0..15 全部分支已记录。
+
+
+## AI 评分分支 3/4/6 的权重与阈值
+
+ID: `mechanism.65.ai-branch-3-4-6-scoring.3ef7`；状态: `canonical`；证据: `static-verified`
+
+AI 分支 3/4/6：分支 3 以 HP/5 与 30 阈值给 +20；分支 4 以命中 35 给 +26（80 再 +26）；分支 6 以兵种属性行5==2 或命中 60 给 +25，80 再 +7。
+
+
+## AI 评分分支 7/8/9/10/11/12 的权重与阈值
+
+ID: `mechanism.65.ai-branch-7-12-scoring.3ef7`；状态: `canonical`；证据: `static-verified`
+
+分支 7/8/9：0x439CFE 为真 +50，策略 0x28/0x2B 追加 5/10；分支 10：属性比较 +6；分支 11：4 项位表/权重表最大 +5；分支 12：状态/策略 0x39/兵种 9/0/0x13 分支 +15。
+
+
+## 策略 AI 分派表与处理体的三基底一致性
+
+ID: `mechanism.65.ai-dispatch-handler-cross-base.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x43A140 的 16 项跳转表三基底完全一致；处理体仅部分一致：6.4/6.5 有 10/12 相同（分支6/11不同），6.6 仅 3/12 相同（分支3/10/13相同）。
+
+
+## AI 伤害比例评分（分支 0/1/5）
+
+ID: `mechanism.65.ai-damage-ratio-scoring.3ef7`；状态: `canonical`；证据: `static-verified`
+
+策略 AI 分支 0/1/5 以伤害/目标 HP 百分比评分：ratio=damage*100/HP，0 取 1；ratio==100 时累加 100，否则覆盖累计分；策略 ID 0x44 追加 0x417A5E 结果；0x14..0x24 另有特判。
+
+
+## 6.6 AI 处理体常量与调用目标逐项重定位
+
+ID: `mechanism.65.ai-handler-constants-66.3ef7`；状态: `canonical`；证据: `static-verified`
+
+6.6 的 16 个 AI 处理体入口与 6.5 完全一致，但同位置常量被系统性替换：0x1B→0x23、0x35→0x41、0x39→0x59、0x27/0x28/0x2B→0x37/0x38/0x3B、0x44→0x2B、0x14→0x1E、0x10→0x13、0x0F→0x12；调用目标 0x43FFB9→0x4190E8、0x438917→0x438914、0x43B6F3→0x43B730、0x406764→0x41832B、0x43C022→0x43C01D、0x417A5E→0x417A61；内嵌评分下限表 0x4395D8 搬到 0x412793（4 字节 19/1E/23/19=25/30/35/25，内容不变），配套方向掩码表 0x4240D2 为 03/0C/30/C0。处理体 0/1/5 另有结构重排。
+
+
+## 6.5→6.6 全局数据锚点重定位映射（27 组配对）
+
+ID: `mechanism.65.anchor-relocation-66.3ef7`；状态: `candidate`；证据: `static-verified`
+
+以 dataRefs 的引用函数签名做 Jaccard 配对，得到 27 组 6.5→6.6 全局锚点映射：原 0x4CE76C..0x4CE7FE UI/战斗全局块迁到 0x500AAC..0x500ADE（逐字段、非固定位移），0x511000→0x508C00、0x511400→0x4CB1C0、0x511E40→0x4930C8；.text 内嵌数据 0x407826→0x41A139、0x407D1A→0x476891。高置信 8 组（Jaccard≥0.82）。第 68 轮以同址操作数复核，新增 9 组字段级映射并更正 UI 模式字段：0x4CE79F→0x500AD7（原误记为 0x500AD3）。
+
+
+## .api 段动态 API 名称表：DLL 名 + 槽位组（名称VA-0x400000-2）
+
+ID: `mechanism.65.api-name-table.3ef7`；状态: `candidate`；证据: `static-verified`
+
+.api 段位于 0x4BE000（VirtualSize 0x10000、可执行），先连续存放 DLL 名，再按 DLL 顺序存放槽位组（每组若干 dword、以 0 结束）。槽位静态值 = 名称字符串VA - 0x400000 - 2，运行期替换为真实函数指针，调用方统一 call dword ptr [slot]。6.4/6.5：5 个 DLL（USER32/KERNEL32/Msimg32/GDI32/Jpg）、表起 0x4BE036、12 槽（LoadImageA@0x4BE036、SetLayeredWindowAttributes@0x4BE03A、GetPrivateProfileIntA@0x4BE042、GetLocalTime@0x4BE046、TransparentBlt@0x4BE04E、AlphaBlend@0x4BE052、GetBitmapBits@0x4BE05A、SetBitmapBits@0x4BE05E、JpgInit@0x4BE066、JpgRead@0x4BE06A、JpgFree@0x4BE06E、PngRead@0x4BE072），其中 TransparentBlt/AlphaBlend 无静态消费点。6.6：增加 GDIPLUS.dll，表起 0x4BE042，新增 10 个 GDI+ 槽（GdiplusStartup@0x4BE086、GdiplusShutdown@0x4BE08A、GdipDeleteGraphics@0x4BE08E、GdipCreateBitmapFromScan0@0x4BE092、GdipBitmapLockBits@0x4BE096、GdipBitmapUnlockBits@0x4BE09A、GdipDrawImageRectRectI@0x4BE09E、GdipCreateFromHDC@0x4BE0A2、GdipCreateImageAttributes@0x4BE0A6、GdipSetImageAttributesColorMatrix@0x4BE0AA），API 名称串整体后移到 0x4BE100。GDI+ 消费链（第135轮）：启动 0x4829DB 依次 GdiplusStartup(&0x4CEA70, input v1, NULL) → GdipCreateImageAttributes(&0x4CEA74) → SetUnhandledExceptionFilter(0x482990)（旧过滤器存 0x4BCCB4）；位图链 0x42FE04 用 GdipCreateFromHDC([0x4B9948]/[0x4B9970] → 0x4CEA78/0x4CEA7C)、GdipCreateBitmapFromScan0(0x4B7750+arg, 格式 0x21808)、GdipBitmapLockBits/UnlockBits(0x4CEA80)；绘制 0x41A4D6/0x41A5D1/0x41A693 调 GdipDrawImageRectRectI(0x4CEA78, [0x4B7798], unit=2)；颜色矩阵 0x42FE84 以 0x47FD13 清 0xC8 字节、写 4 个 1.0f 对角线并用 arg/divisor 作缩放，0x42FECF 调 GdipSetImageAttributesColorMatrix(0x4CEA74)。GdiplusShutdown 与 GdipDeleteGraphics 无真实调用点。其余 API 消费点：GetPrivateProfileIntA 用于 AutoDll.ini（0x4069E4/0x4069FE/0x406A18）、GetLocalTime 用于存档时间戳（0x40535C 写 SYSTEMTIME 到 0x501AD0）、SetLayeredWindowAttributes 用于窗口透明（0x4102EE，6.6 另加 0x479BD7）、Get/SetBitmapBits（0x408A15/0x4089DC，6.6 0x408A1B/0x4089E2）、LoadImageA（0x44D2C0）、Jpg/Png 解码链（0x420DBF/0x420DDD/0x420E1D/0x420E2A/0x416236，6.6 PngRead 0x416244）。6.6 段首复用（第143轮）：0x4BE004/0x4BE006/0x4BE008 被当作对话框暂存字，0x46D0F8 以 [0x4BE006] 作自动关闭标志（-1 时下一个 WM_INITDIALOG 立即 SendMessageA(hwnd,0x591) 关闭），0x4793BB 打开模板 343「说明介绍」前写 -1、返回后清 0x4BE004/0x4BE008。
+
+
+## 三基底算术立即数普查与 6.6 新结构（21 字节文本表、0x500030 图标表）
+
+ID: `mechanism.65.arithmetic-immediates-census.3ef7`；状态: `candidate`；证据: `static-verified`
+
+用 arith_immediates.py 对三基底可执行节统计 imul 立即数（107/106/122 种）与 shl/shr/sar 立即数（29/29/26 种）。共享高频公式常量集中在 3、0x30(48)、0x1B00(6912)、0x10、6、4、0x64(100)、0x14(20) 等。6.6 独有小立即数揭示：21 字节文本记录步长 0x15（表基 +0x662，替代 6.5 默认 0x14/+0x4BE，旧表保留给类型 2；0x32/+0xA4 表不变），以及 0x12C=300 的状态图标横向间距（0x41EB48，配合 0x500030 的 16 字节步长表）。
+
+
+## 防具经验基础值与无伤害扣减（三基底）
+
+ID: `mechanism.65.armor-exp-cross-base.3ef7`；状态: `canonical`；证据: `static-verified`
+
+防具经验函数 0x403A8A..0x403B11：基础值 6.4=3、6.5=3、6.6=4；无伤害路径分别扣 1/2/3；当前 HP 低于攻击前值时再扣 1。
+
+
 ## 特效字段可写性、共享N与255命名空间
 
 ID: `mechanism.shared.effect-assignment-field-and-selector-contract`；状态: `canonical`；证据: `static-verified`
@@ -7083,6 +7239,356 @@ ID: `mechanism.shared.effect-assignment-field-and-selector-contract`；状态: `
 
 先读取物理布局和当前原字节，再建立草稿及影响清单；共享N写入需展示整行全部受影响对象；已经定位的N等UInt8数值字段0..255不能因工具目前仅开放部分命名效果而被错误拒绝；selector和行ID仍遵守各自合法范围。
 
+## 自动战斗标志 0x4B4250+0x64/+0x68（AI 托管选目标与自动结算）
+
+ID: `mechanism.65.auto-battle-flags.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4B4250+0x64（dword）与 +0x68（dword）是自动战斗/AI 托管标志。0x412F84：+0x64==1 时交换目标指针并 call 0x4389BD(候选,0)（AI 最优单位评分选择）；0x412F9B：+0x68==1 且 [ebp-0xC]==1 时进入同一 AI 分支；0x43E823：byte[0x501A6E]!=0 且 0x41C330(0x4B3D08)==0 且 +0x64!=0 时依次 call 0x44DA7A(0)/0x44DA7A(1)（自动结算/结束）。0x44DA7A(side) 是一方单位的行动顺序生成器：arg!=0 遍历槽 0x00..0x3A、arg==0 遍历 0x3C..0xF9，先把全体单位 byte[unit+0x0B] 置 0xFF（0x44F980），再按 9 项分派表 0x44DC37 逐 pass 处理，用全局计数器从 0 递增写回 +0x0B。9 项依次为 0x44DB12/0x44DB3F/0x44DB5D/0x44DB6B/0x44DBAA/0x44DBEF/0x44DBFA/0x44DC10/0x44DC05：分支0 若 0x4225FB(unit)!=0 且兵种系 byte[0x4D2200+系]==9（仅系 0x12）则置 0x75 延后；分支1 word[unit+6] 经 0x417B5A 判定；分支2 0x439CFE；分支3 若 byte[0x505F7C]==2 调 0x44DC5B 按桶表 0x44DCCC 做 6 级排序并跳到分支8，否则用 0x43FFB9（0x4D2188 表，1 特判、否则 al^2）且兵种系!=9 才分配；分支4 若 0x505F7C==0 直接跳分支8，否则取 0x40658F(unit) 记录 byte[+0x2B] 兵种 ID→0x41B782(0x4A2A27+ID*0x23) 的 0x23 字节记录，0x436CA3 读 +0x02/+0x03，任一>=4 即分配；分支5 0x4281AF（0x4D2138 表）；分支6 0x43FF6E（0x4D20E8 表项==0）；分支7 剩余 +0x0B==0xFF 者分配；分支8 +0x0B==0x75 者分配。0x418C90 读 byte[unit+0x0C]，仅==2 的单位参与。0x505F7C 在 6.5 EXE 内无静态写入点（原版恒 0，有效 pass 为 0/1/2/3/8）。写入方穷举：6.5 Ekd5.exe 中 266 处 mov reg,0x4B4250 的 45 条窗口内只有两处读取，绝对地址 0x4B42B4/0x4B42B8 无引用，add reg,0x64/0x68 间接写入也不存在；Cmdicon/Mgcicon/GearNtKe/Itemicon/Mapatr/Jpg/zlib 七个 DLL 也无 0x4B42B4/0x4B42B8 立即数。同目录 AutoDLL.ini 提供 EnableAutoSave/Resize/EnableFastKey 开关，与读取分支语义相容但无静态一一对应证据。
+
+
+## AVI 动画播放模块：avivideo MCI 命令常量与 0x41EF96 点击跳过钩子
+
+ID: `mechanism.65.avi-player.3ef7`；状态: `candidate`；证据: `static-verified`
+
+AVI 动画通过 avivideo MCI 设备播放：0x41F032 MCI_OPEN(0x803, flags 0x2000 MCI_OPEN_TYPE, element "avivideo")；0x41F08D/0x41F5F6 MCI_SEEK(0x807, flags 0x100 MCI_SEEK_TO_START)；0x41EFE7/0x41F0A1/0x41F7C5 MCI_PLAY(0x806, flags 1 MCI_NOTIFY)；0x41F16A MCI_WINDOW(0x841, flags 0x40000 MCI_ANIM_WINDOW_STATE, state 5)；0x41F188/0x41F81A MCI_STATUS(0x814, flags 0x100 MCI_STATUS_ITEM)，状态值 0x20E=播放/0x211=暂停；0x41F737 MCI_WHERE(0x843, flags 0x20000)；0x41F8C1 MCI_PAUSE(0x809)；0x41F11D MCI_OPEN(0x803, flags 0x30200=MCI_ANIM_OPEN_PARENT 0x20000|MCI_ANIM_OPEN_WS 0x10000|MCI_OPEN_ELEMENT 0x200，i=0..4 最多重试 5 次)；0x42F76D MCI_STOP(0x808)、0x42F77F MCI_CLOSE(0x804)。设备 ID 存 word[0x497AE0]，播放窗口 0x497A9C，钩子 0x497A98；0x41F1DF 安装 SetWindowsHookExA(3=WH_GETMESSAGE, proc 0x41EF96)。钩子 0x41EF96 在 MSG.message==0x201（WM_LBUTTONDOWN）且窗口匹配 [0x497A90+0xC] 时置 [0x497A90]=1，实现点击跳过动画；否则在 [0x497A90+4]==0 时发 MCI_PLAY 并 CallNextHookEx。片名常量：LOGO.AVI/OPEN.AVI/END.AVI/PRESS.AVI（0x48B6E8..0x48B702）；错误文案「开启动画文件失败。」「不能播放动画文件%s。」「打开文件%s时出错。」「%sOpenErr」。0x41F1F1 以 MessageBoxA(title=0x48C8D8, text=0x48B734, 0x30=MB_ICONWARNING) 报错。MCI 消息全图（第136轮，按调用点回溯 push）：0x41F08D/0x41F5F6 = MCI_SEEK(0x807, flags 0x100=TO_START)；0x41F0A1/0x41EFE7/0x41F7C5 = MCI_PLAY(0x806,1)；0x41F16A = MCI_WINDOW(0x841,0x40000)；0x41F188/0x41F81A = MCI_STATUS(0x814,0x100)，状态值 0x20E=PLAY/0x211=PAUSE；0x41F737 = MCI_WHERE(0x843,0x20000=SOURCE)；0x41F8C1 = MCI_PAUSE(0x809)；0x41F11D = MCI_OPEN(0x803,0x30200)。BGM(sequencer) 链：0x42F7C3 MCI_OPEN(0x803,0x202=MCI_OPEN_ELEMENT|MCI_WAIT)，类型串 0x486934="sequencer"，元素名格式串 0x486910=".\SoundTrk\%02u-AudioTrack %02u.mp3"；0x42F7E1 MCI_PLAY(0x806,0x10000)；0x42F820 MCI_SETAUDIO(0x873)，flags 0x1800000=MCI_DGV_SETAUDIO_ITEM(0x800000)|MCI_DGV_SETAUDIO_VALUE(0x1000000)，参数 item=0x4002=MCI_DGV_SETAUDIO_VOLUME、value=音量×10；0x42F840 MCI_PAUSE(0x809)；0x42F862 MCI_RESUME(0x855)；0x42F76D MCI_STOP(0x808)；0x42F77F MCI_CLOSE(0x804)。设置 +0x03=音量（0x42E218 取控件 0x411 TBM_GETPOS(0x400)→+0x03→0x42F7FC×0xA→MCI_SETAUDIO）。
+
+
+## 战场模式字节 0x4B3D18 与移动力覆盖 0x48E8C2
+
+ID: `mechanism.65.battle-mode-byte.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4B3D18 是战场状态基址 0x4B3D08 的 +0x10 字节开关，值 0/1/>=2 控制是否使用 0x48E8C2 的临时移动力覆盖；0x48E8C2 以 0xFFFF 为哨兵，0x438986 写入、0x438997 复位，0x43896D 循环经 0x4389BD 物理伤害评分并写 0x4B2C30。0x425325 在模式>=2 时仅允许当前单位 0x4B5DF0 使用覆盖。
+
+
+## 剧本战斗指令族与行动权重置
+
+ID: `mechanism.65.battle-script-action-family.3ef7`；状态: `canonical`；证据: `static-verified`
+
+剧本战斗指令族 0x3F/0x40/0x51/0x56/0x57/0x5D 的处理器与常量已定位。0x51 循环最多 250 个战场对象，过滤 byte[obj+0xC]==2，清除 obj+0xD 的 6 位与 obj+0x1E 的指定位，并把 obj+0x10 写为 min(取值, 原值)；随后调用 0x453AC3(0x4B4250) 与 0x44A88A(0x4B3D08)。
+
+
+## 战场单位占位表 0x4B3D21（250×5）
+
+ID: `mechanism.65.battle-unit-table.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x4B3D21 为 250 条 ×5 字节的战场对象/单位占位表：byte0/1=x/y，byte2=类型（0x11 特殊，0x1A/0x1B 变体），byte3=对象 id（0xFF 空，0xFFFFFFFF 清除），byte4=图层（4..0xC8 走 +0x1F40 层，否则 +0x640 层；0xFF 空）。0x4560F3 以 i*5 扫描并在 byte3==0xFF 时结束，0x43B420 比较前两字节坐标。表范围 0x4B3D21..0x4B4222，后接 0x4B422C 网格尺寸对；0x1B00 为单个地图层字节数。
+
+
+## 战场视口/滚动上下文 0x4B4250
+
+ID: `mechanism.65.battle-viewport-context.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x4B4250 是战场视口/滚动上下文，三基底字段集合一致（各 19 项）：+0x04/+0x08 为像素原点（由地图记录 [0x4CEA08]+0x1B/+0x1F 载入），+0x14/+0x18 为视口宽高（像素，0x45503F 以 /0x30 得瓦片数），+0x24/+0x28/+0x34/+0x38 为视口矩形，+0x2C/+0x30 为目标/中心，+0x3C/+0x40 为额外偏移，+0x20/+0x22 为屏幕/面板宽高，+0x54/+0x55 为待处理滚动目标字节对（0xFF 哨兵），+0x61 为滚动模式（0=默认 shift1；1/2=限位1 shift3；3=限位2 shift5），+0x64/+0x68 为只读模式标志（候选自动战斗/快速结算，未发现直接写点），+0x1B85 为使用效果码槽 0。像素↔瓦片换算统一用 0x30（48px），助手 0x40BAD4 为有符号除法。居中函数 0x45503F(centerX,centerY)：byte[0x505FDC]==0 才执行；tilesW=dword[+0x14]/0x30、tilesH=dword[+0x18]/0x30；half=(tiles-sign)>>1；0x47FAD0(center,half) 返回 byte；再按 byte[0x4B422C]/byte[0x4B422D] 夹紧；最后 call 0x454CEF(x,y) 设滚动位置。0x454CEF 把 +0x04/+0x08 除以 0x30 得当前瓦片，调 0x45461C 预处理；目标瓦片与当前相同则直接返回，否则算 old-new 的 deltaX/deltaY 进入滚动分支。0x45461C 读取 +0x54/+0x55 并清为 0xFF，按 +0x61 选择限位/位移，两值均有效时调 0x45218F 并 0x476882 刷新。0x45218F(dx,dy,shiftX,shiftY)：tileX=byte[0x40D344(dword[+0x04])]+dx、tileY 同；byte[0x505FDC]!=0 走 0x1E000 + 0x40155F，否则 0x401617；index=0x403789(x,y)、dest=base+index*0x1B00；附加 +0xC80/+0x12C0/+0x1F40 子区与全局格数组 0x4BE880；flag=byte[0x4B3D08+5]&1；四个像素坐标 ×0x30 后交 0x41E5DB。
+
+
+## 引擎全局容量、循环上限与哨兵契约
+
+ID: `mechanism.65.engine-capacity-and-sentinels.3ef7`；状态: `canonical`；证据: `static-verified`
+
+三基底共享的主要容量：人物 1024×72、战场单位 250、物品 255×25、兵种 80×35、兵种系 40×60、策略 144×97、效果 255×8、必杀 80×16、仓库 200×3、范围段 256、地形 30、天气 5×6、商店 127×40。0xFF/0x8000/0x80000000/0xFFFF/0x50/0xFA/0x3FF 是空值、越界或无操作哨兵。
+
+
+## 40×40 逐格字节数组 0x4BE880
+
+ID: `mechanism.65.cell-byte-map.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4BE880 为 40×40（0x640=1600 字节）逐格字节数组，0xFF 表示空；0x40DC1D 用 0x47FD13 以 0xFF 初始化整个 0x640 字节（参数 !=1 时另写 word[0x5073B8]=0xFFFF）。索引与格标志一致：0x403789(coord)=y*width+x。8 处引用：0x405123（取格字节，并按层号*0x1B00 选层、按 0xC 步长读 0x506800 表，表项 +8 为指针、0x2828 为标记）、0x40AF38、0x40B0A6、0x40B134、0x415407（同址加基址后读取）、0x40D4B5（≠0xFF 走 0x4525DA，==0xFF 走 0x41606C 绘制）、0x40DC2A（memset 初始化）、0x452218（滚动核心内 index += 0x4BE880）。
+
+
+## 地图格标志 0x4934B0 写入函数 0x42A5D6 与全图 and 0x0C/test 0xD 遍历
+
+ID: `mechanism.65.cell-flag-writer.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x42A5D6(coord, mask, on)：index=0x403789(coord)=y*width+x，addr=0x4934B0+index；on!=0 时 byte |= mask（置位前若 (byte&0xD)==0 记 edx=1），on==0 时 byte ^= mask；随后 test 0xD 并返回状态变化。mask 由调用方传入（常见 1/4/8/0xC）。唯一直接调用点 0x42A666 以固定 mask=8 在矩形区域内逐格标记（bit3=范围标记）；另一条链为 0x4D1400 效果范围表 → 0x41E254 枚举 → 回调 0x42A708（x<[0x4B422C]、y<[0x4B422D] 检查，on==0 时先经 0x42A74A 矩形判定）→ 0x42A5D6。0x42AAA5 在 [ebp-8]!=1 且 [ebp+8]<2 时对 0..0x63F 全图执行 byte &= 0x0C（清 bit0/1、保留 bit2/3）。0x42A43E 以 x<[0x4B422C]、y<[0x4B422D] 遍历全图，每格 test 0xD 并用 0x1B00 计算层偏移。
+
+
+## 角色经验结算常量三基底对照
+
+ID: `mechanism.65.char-level-exp-cross-base.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x4088CD 的三基底常量：6.4 最大等级 80、固定阈值 150；6.5 最大等级 60、阈值按 20 级分段 150/200/250/300；6.6 最大等级 99、固定阈值 250。升级循环与成长 0x408D52 相同。
+
+
+## 运行时人物记录 72 字节访问器簇
+
+ID: `mechanism.65.runtime-character-accessors.3ef7`；状态: `canonical`；证据: `static-verified`
+
+人物记录 1024×72，基址 [0x4CEA00]；+0x2B 兵种、+0x2C 等级、+0x2D 经验、+0x2E 起 3 个装备槽（每槽 3 字节）。6 个访问器三基底字节一致。
+
+
+## 人物模板表 0x4A3E77（68×97，+0x11 起 80 兵种字节）与 0x41CEAB 索引
+
+ID: `mechanism.65.character-adaptation-table.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4A3E77 为运行期填充的 97 字节记录表，容量 144 条（0x90），文件初始化 68 条（0x44）：头部 +0x00..+0x0B 为内联名称字符串（0x423A7D 以 "%s" 输出），+0x0C 为 0x418C90 读取并经受 0x41CE8B(2) 随机替换的字节，+0x0D 被复制到单位 +0xC/+0xD，+0x0F 与方向/攻击码同构（0x44270C），+0x11..+0x60 为 80 个兵种字节（0x4845B2 以 record+0x11+job 取值）。区段结束 0x4A7507，下一表基址 0x4A7510，再后为 0x4A7D8E 的 80×35 兵种表。0x4303C8 的 20 个值穷尽消费链后仍只用于与 0x0B 的合法性比较。 第85轮补充：+0x0C 为动作/图像编号（0x401DFF→0x41CE8B(2) 随机替换链索引）；+0x0D 为组别/候选索引（0x4244E5 以 byte[template+0xD] 索引栈上候选列表，选中值同时写入单位 +0xD 与 +0xC；0x4233F8(2) 取类别值并经 0x417B77 校验）。
+
+
+## 256 项 RGB 调色板 0x4CB1C0（6.5/6.4 为 0x511400）
+
+ID: `mechanism.65.color-palette.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4CB1C0（6.6）/0x511400（6.5、6.4）是 256 项 dword 调色板（0x400 字节，格式 0x00RRGGBB，三基底逐字节相同，sha256 6BC92B09…）。0x00F700FF 为透明色键。颜色用于像素合成（0x4034F6）、GDI 画刷（0x4647E8 CreateSolidBrush）、阵营/伤害数字颜色（0x42E195 取索引 0x1F/0x3A/0x12 或 0x12/0x28/0x12）。0x45B6E3 把调色板转换为 0x497770 的 256×3 4-bit RGB 表：6.5/6.4 由调用方传入源/目的，6.6 硬编码源 0x4CB1C0、目的 0x497770，调用点 0x42B9FB 位于战斗初始化链。
+
+
+## 暴击/连击模式 0x505EC8 与暴击值数组 0x511E40/0x4930C8
+
+ID: `mechanism.65.crit-combo-mode.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x505EC8 为 6.5/6.6 新增战斗模式字节（6.4 无引用）。mode==1 时暴击计算 0x4284C5（6.6: 0x445D40）读取每单位 4 字节暴击值数组高字节，>=100 取反，并以 0x48E0C9『暴击』输出；mode>1 时 0x43B4B6 以 mode 为上限、0x505EC4 为下限，每 10 点追加最多 2 段伤害，对应『连击』。数组 6.5 为 0x511E40，6.6 重定位为 0x4930C8。
+
+
+## 第 96–111 轮新函数的三基底同址哈希审计
+
+ID: `mechanism.65.cross-base-audit-late.3ef7`；状态: `candidate`；证据: `static-verified`
+
+对第 96–111 轮新函数做同址 SHA1 对照：0x40BE7D（指针→索引）三基底完全一致；0x42A5D6（格标志写入）与 0x42A708（范围回调）为 6.4=6.5、6.6 不同；0x47FA40/0x47F9E2（内存池分配）同样 6.4=6.5、6.6 不同；0x41F952（点数加减）、0x456CB4（332 确认）、0x42A43E（全图遍历）三基底各异。
+
+
+## 全局当前人物记录指针 0x500E28 与指针→索引 0x40BE7D
+
+ID: `mechanism.65.current-record-pointer.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x500E28 存当前选中人物的记录指针。写入点：0x469FD1（列表选择变化，新指针 != [obj+0x20] 时写 0x500E28、同步 [obj+0x20] 并调 0x4698AF）与 0x4787F9（角色面板打开，把 [ebp-0x7C] 写入并用 0x4CE77D 调 0x401126）。读取点：0x401129/0x40F0FE/0x412A3F/0x44D4EA/0x456CCE。0x40BE7D(ptr) 用 (ptr-dword[0x4CEA00])/0x48 把记录指针换算为人物下标（0x48=72 为记录大小）；332 确认处理 0x456CB4 用它把 0x500E28 转成下标后经 0x42ACD2 访问 0x508000 功勋表。
+
+
+## 伤害落点 0x411072 与战斗模式字节 0x500E9A/0x500E9B
+
+ID: `mechanism.65.damage-apply-mode.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x411072 以 ecx 接收伤害、栈参 mode/目标/来源；若 byte[0x500E9A]==1 或 0x426B33(目标)!=0，追加 40% 伤害；mode!=0 时置 0x505EFC=1 并调用 0x4594EA 结算。0x500E9A 为战斗模式/伤害加成开关（0/1/2，初始 0），0x500E9B 为战斗表现开关（11 处引用）。
+
+
+## 通用模态对话框框架：模板 332/340/341、DlgProc 0x46D0F8、分派器 0x46D221 与状态字节 0x48E8C1
+
+ID: `mechanism.65.dialog-framework.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x418C34 是通用「是/否」确认框包装：ConfirmDialog(parent, text, caption, mode) 先以 0x475600 在栈上构造 vtable=0x487410 的对象，0x46F982 写入 +0x0C=mode、+0x10=text、+0x14=caption，再由 0x46D098 调用 DialogBoxParamA(hInstance=dword[0x4B6A60], 模板 0x154, parent, DlgProc=0x46D0F8, dwInitParam=&obj)；返回码 6（IDYES/「是」）时返回 1。模板 340 布局：是=ID 6、否=ID 7、图标静态控件 ID 0xFFFF（ord 137）、正文静态控件 ID 0x534；标题 6.5=三国志曹操传、6.4=三国志刘备传、6.6 同 6.4。0x46D0F8 在 WM_INITDIALOG 建 0x4B68E8 辅助对象并写 [obj+4]=hwnd，随后把消息交给 0x46D221；0x46D221 的消息表：0x2→vt+0x14、0x110→vt+0x08 与 vt+0x0C、0x111→取消/0x42F 特殊路径与 vt+0x10、0x30F→0x47252B+vt[0]、0x135/0x136/0x138→vt+0x20/+0x18/+0x1C、0x311→0x403B14、默认→vt[0]。vt[0]=0x46F2E7 在 WM_COMMAND 时 EndDialog(hwnd, wParam&0xFFFF)，所以按钮 ID 直接成为返回码。模板 332 为功勋点数分配框（26 控件：1030..1034 五维标签、2006..2010 数值、2022..2026 加、2027..2031 减、2011 点数、2001 重置、2 确认、1235 人物列表），由 0x418BC8 打开并把 0x48E8C1 置 1；模板 341 为历史情报框（6.5 列表+「信息筛选」，6.6 改为 SysTabControl32），由 0x41C3D7 打开并把 0x48E8C1 置 2。0x48E8C1 即模态对话框状态字节（0=空闲/1=332/2=341）。6.6 的 DlgProc 增加客户区拖动（WM_LBUTTONDOWN 0x201→SendMessageA 0xA1/2）与自定义消息 0x591，并把 WM_COMMAND 拆到 0x46D345（含 0xAD9、0x14、0x42F 常量与 0x42CA5E 类判定）。6.5/6.4 的对话框 9pt 宋体由 0x42124E（固定字面 0x48B6CC、charset 0x86、outPrecision 4）创建，6.6 改为 0x42A269→0x41EBA3(face=0x500030)。
+
+
+## 332 对话框工作区 0x4FFF68：五项值/+0x14 点数池/+0x0A 第二数组/+0x21 字段
+
+ID: `mechanism.65.dialog-workarea-4fff68.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4FFF68 是模板 332 的工作区：+0x00..+0x09 为五项经验值（word×5，由 0x40123E 从参数数组拷入），+0x0A 起为第二组 word×5 = 五项升级阈值（0x40123E 调 0x42AC8F 后写入），+0x14 为剩余点数池（dword，0x41F952 加减），+0x21 为每项记录的等级字节（0x40123E/0x423F75/0x4620C7 作为 level 参数并在升级时 +1）。0x42AC8F(expWordPtr,level,mode) 阈值公式：level>=0x6E 返回 -1；level<0x50(80) 阈值=0x32(50)；level>=0x50 阈值=(level-0x4F)*0x0A+0x37（80 级=65、每级 +10）；mode!=1 时循环扣减经验并递增等级。0x40123E(hwnd,expArray,baseRec,i) 依次：写 workarea[i] 经验、算阈值写 workarea[+0x0A+i*2]、0x4129E5(hwnd,0x7D6,workarea,i) 刷新数值、0x415F10(hwnd,i+0x7E6,[ebp-8],workarea+0x14) 刷新剩余点数。引用点：0x401241、0x41F956、0x4108E0、0x456CC4、0x456DAB；0x42AC8F 调用点：0x401268、0x423EFF、0x423F75、0x4620C7。0x505F40（全局池）与 0x4FFF68+0x14（对话框池）的静态同步点未找到。
+
+
+## 模板 332 对话框类 vtable 0x44A6B5 与 WM_COMMAND 处理 0x456CB4（五维复选框掩码）
+
+ID: `mechanism.65.dialog332-confirm.3ef7`；状态: `candidate`；证据: `static-verified`
+
+模板 332（功勋/五维分配框）的对话框类由 0x410EED 构造：call 0x40E03D 基类 → 0x463322 构造 +0x2C 子对象 → 写 vtable 0x44A6B5（10 槽：0x44D4D2/0x46E81F/0x46F9BA/0x401216/0x456CB4/0x46E9DB/0x40E310/0x42C5EC/0x40E370/0x40E3D0）。WM_COMMAND 槽为 0x456CB4：若 byte[0x505FA8]==0 或 0x42ACD2(0) 返回 0xFF 则直接 EndDialog(hwnd,0xFF)；否则复制 5 个 word，循环 i=0..4 对 GetDlgItem(hwnd,0x406+i) 调 0x41B8AF（SendMessageA 0xF0=BM_GETCHECK==1）组成 5 位掩码写对象 +2；当 [edx+0x14]!=0、byte[ecx-4]!=1 且掩码非空时，把 dx 加到最低置位项对应的 word；最后 EndDialog(hwnd,0xFF)。0x42ACD2(index)：index<0x66 且 ([ebp+8]==1 或 byte[record+0x2A]!=0xFF) 时返回 index*0x0A+0x508000，否则 al=0xFF；0x508000 为 102 条 ×0x0A 记录表。界面刷新（第153轮）：0x4129E5(hDlg,id,ptr,idx) 用 "%d/%d"（0x500C5F，v2==0xFFFF 时用空串 0x48E8B7）刷新 0x7D6+idx 的当前/阈值文本并调 0x423EF1；0x423EF1 用 3 字节步长名称表 0x486ACB（武/统/智/敏/运）与 0x42AC8F 阈值生成 "%s(%d)"（0x48643D）写入 0x406+idx；0x415F10(hDlg,id,flagA,flagB)=EnableWindow(GetDlgItem(id),flagB)+EnableWindow(GetDlgItem(id+5),flagA)，在 332 中 id=0x7E6+idx（加号）、id+5=0x7EB+idx（减号），加号由记录[+0x14]（剩余点数）控制、减号由可否回退标志控制。模板 332 资源共 26 控件、221×111 DLU、宋体 9：确认 0x2、右大静态「功勋」、0x406..0x40A 五维标签、0x7D6..0x7DA 值、0x7E6..0x7EA "+"、0x7EB..0x7EF "-"、点数 0x7DB、重置 0x7D1、左侧 0x4D3（class ord 131）。
+
+
+## 模板 332 刷新链 0x4108DB/0x456DA6/0x41F952（五维复选框与控件 ID）
+
+ID: `mechanism.65.dialog332-refresh.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4108DB 是模板 332 的刷新入口：先压入 0/0x4FFF68/0x505F40；若 [对象+0x14] != [记录+0]（记录变化）则 0x456DA6(1,hwnd,index) 重建显示；否则循环 i=0..4，用 GetDlgItem(hwnd,0x406+i)+0x41B8AF 读 5 个复选框状态，对未勾选项以 0x41F952(id=0x7EB+i, value) 返还点数。0x41F952 是加减处理：ID 0x7E6..0x7EA（2022..2026，加号）把 value 加到 word[0x4FFF68+i*2] 并从 dword[0x4FFF68+0x14] 扣池；ID 0x7EB..0x7EF（2027..2031，减号）反向并从池返还。0x456DA6 内以 0x42ACD2(索引) 取 0x508000 表项并循环 5 项调 0x4781C6(index,value,0,0)。控件 ID：复选框 0x406..0x40A、数值 0x7D6..0x7DA、加号 0x7E6..0x7EA、减号 0x7EB..0x7EF、点数 0x7DB、重置 0x7D1、确认 0x2。
+
+
+## 内嵌字节映射表 0x41CEAB（33项）与 0x4303C8（20项，6.6）
+
+ID: `mechanism.65.embedded-byte-tables.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x41CEAB 是 33 字节随机替换表，三基底字节完全一致（hash 1b66f63ab303fa0a）：读取函数 f(mod,idx)=(0x4101D9 随机值 & mod)!=0 ? table[idx] : idx，6.4/6.5 入口 0x41CE8B、6.6 入口 0x41CE8C，索引来自对象 +0xC（getter 0x418C90）。0x4303C8 是 6.6 独有的 20 字节物品类型表（hash c54301dd32761700），0x43038B 读取装备槽0物品的 +0x11 类型后查表，调用链 0x43F931→0x417A38→0x43038B；表仅覆盖类型 0..0x13，之后为 0x90 填充。
+
+
+## 装备升级经验阈值与等级上限（三基底）
+
+ID: `mechanism.65.equipment-growth-thresholds.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x408304..0x40832C 按 0x40B4E1 的普通/特殊分支写入装备升级阈值与等级上限。6.4 普通 100/5、特殊 200/9；6.5 普通 150/5、特殊 200/9；6.6 普通 100/9、特殊 200/15。
+
+
+## 装备槽数量与访问边界
+
+ID: `mechanism.65.equipment-slot-bound.3ef7`；状态: `canonical`；证据: `static-verified`
+
+装备槽数量为 3（下标 0..2），每槽 3 字节；0x4065F0 = byte[record+0x2E+slot*3]，多个调用点用 slot<3 上界比较。
+
+
+## 6.6 字体名称表 0x500030 与 CreateFontA 包装 0x41EBA3
+
+ID: `mechanism.65.font-name-table.3ef7`；状态: `candidate`；证据: `static-verified`
+
+6.6 在 0x500030 新增 5 项字体名称表（16 字节/项，GBK 内联字符串）：0 宋体、1 楷体、2 黑体、3 仿宋、4 微软雅黑；6.5 同址为指针表、6.4 为小值数据。0x41EBA3 包装 CreateFontA：nHeight=[ebp+8]、nWidth=[ebp+0xC]、nWeight=[ebp+0x10]、lpszFace=[ebp+0x14]，字符集固定 0x86（GB2312_CHARSET）、质量 4（PROOF_QUALITY）、其余 0。字重常量 0x190=400、0x258=600、0x2BC=700；字高统一 MulDiv(pt, GetDeviceCaps(LOGPIXELSY=0x5A), 72)。0x41EB48 以 byte[unit+0x19]*0x10+0x500030 选择字体。
+
+
+## 公式常量站点三基底一致性审计
+
+ID: `mechanism.65.formula-site-cross-base-audit.3ef7`；状态: `canonical`；证据: `static-verified`
+
+对 160 个带地址提示的公式常量和 91 个 dm-constant 精确站点做三基底同址比较：6.5 的 91 个期望字节全部匹配；同一 VA 在 6.4 仅 38/91、6.6 仅 45/91 匹配；464 个站点观测中 235 个三基底完全一致、229 个存在差异。
+
+
+## 引擎通用常量与全局表锚点普查（三基底）
+
+ID: `mechanism.65.engine-general-constant-census.3ef7`；状态: `candidate`；证据: `static-verified`
+
+对三基底全部可执行节做线性反汇编并建立函数级常量/数据引用索引：6.4 为 481963 条指令/3287 个函数，6.5 为 488079/3372，6.6 为 503694/3552。以 EXE 内嵌表地址为锚点定位通用系统：兵种相克 0x4D1A80、兵种属性矩阵 0x4D20C0、策略战斗 AI 0x4D1600、策略训练 AI 0x4D1690、策略地形可用性 0x420ACC；特效专属表被排除在通用常量清单之外。
+
+
+边界：
+
+- 函数计数依赖启发式边界，嵌入数据和尾部共享会造成合并/拆分，不能当作语义等价证明。
+- 签名聚类只比较前 32 条指令，不证明函数整体相同。
+- 常量频次只用于排序工作清单，不用于推断语义。
+- 普查不包含特效参数、特效 ID 和单个特效专属数值。
+
+## 兵种相克百分比表与物理伤害乘算
+
+ID: `mechanism.65.job-series-counter.3ef7`；状态: `canonical`；证据: `static-verified`
+
+兵种相克是 EXE 内嵌的 40×40 字节表，索引为攻击方兵种系×40+防守方兵种系，值为百分比（100 中性）。物理伤害在基础值、能力差与随机修正之后按该百分比乘算，非 100 时结果至少为 1。三基底共用字节完全一致的查表与乘算代码，但表值分别不同。
+
+
+## 引擎通用常量覆盖台账 v14（第 1–149 轮）
+
+ID: `mechanism.65.engine-general-coverage.3ef7`；状态: `candidate`；证据: `static-verified`
+
+第 1–149 轮覆盖 98 个通用域（列表实数）：77 resolved、19 partial、2 unresolved。第 140–149 轮新增/提升：40 条文本对象写入方 0x42AF6F（索引>=0x28 跳过、'0' 停用、'*' 引用 0x506000 字符串指针表）、练武场上下文 +0x04/+0x08/+0x09/+0x0A 与 0x3FE 单位表上界哨兵（0..0x3FD 有效）、0x4237F9 费用公式（等级×10 或 2×0x40D8A9）与 0x423820 资金校验/0x43BFD4 扣款、0x42DE63 三模式选择框与 0x423842 分派、剧本取参器 0x4183F7 类型码（1/4/5/2/0x38/0x39，变量间接 ~ax-1→0x502000）与主分派表 0x410A38 全 126 项（0x68 练武场、0x72 信息传送、0x76 区间守卫、0x77 变量算术）、设置块 +0x05 场景类别缓存（章节 3 存档头 +0x04 来源）。剩余缺口集中在 0x423842 edx 运行期值、0x4A3E77 运行期槽位、11 层逐层用途、0x4B4250+0x64/+0x68 写入方、0x42C9FC 0x2E31 文本表、0x47D8DF 子命令业务语义。
+
+
+## 全局模式开关 0x505EC8/0x4B3D18 与 6.6 命中门控
+
+ID: `mechanism.65.global-mode-flags-hit-gate.3ef7`；状态: `canonical`；证据: `static-verified`
+
+6.6 命中门控的 dword[0x502000+0xFB2*4] 实际等于 0x505EC8。6.6 三条件为 0x505EC8==0、0x4B3D18==0、unit+5==0，全满足时命中置 100。0x505EC8 在 6.5 还用于 AI 评估与命中重试的 byte==1 分支。
+
+
+## UI/战斗/插件全局状态区 0x500AAC..0x500ADF 与 6.5 字段映射
+
+ID: `mechanism.65.global-ui-state-block.3ef7`；状态: `candidate`；证据: `static-verified`
+
+6.6 0x500AAC..0x500ADF 是 UI/战斗/插件共享的紧凑全局区：0x500AAC 列表框项索引（SendMessageA LB_GETITEMDATA 0x199）、0x500ABC CmdIcon.dll 模块句柄（LoadLibraryA 结果）、0x500AC0 当前战场单位指针、0x500AC8 行动单位指针、0x500ACD 当前动作码、0x500ACE 重入计数、0x500AD2 UI 命令 ID（WndProc WM_COMMAND）、0x500AD3 伤害应用标志、0x500AD7 UI 模式、0x500AD8 输入状态字、0x500ADC/0x500ADD 两位十进制数、0x500ADA 有效物品计数、0x500ADE AutoDll.ini 启用标志、0x500ADB Z 键热补丁开关；0x500AE0 为 0x90 字节 UI/绘制状态结构。字段在 6.5 分散于 0x4CE74C..0x4CE7FF，逐字段对应而非等距搬移。
+
+
+## 0x4B422C 网格边界字语义更正
+
+ID: `mechanism.65.grid-bound-word-correction.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4B422C（word）不是地图宽高，而是可保存/恢复的 2 字节网格/光标边界字。6.4/6.5 在 0x4516BF 写 0x0104、在 0x4D11C7 写 0x0105；6.6 同址为 NOP。该条更正第 8 轮“地图宽高”的初判。
+
+
+## 全局二维网格尺寸字 0x4B422C/0x4B422D
+
+ID: `mechanism.65.grid-dimension-pair.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x4B422C 为网格宽度/行跨度，0x4B422D 为高度。0x403789 以 y*width+x 计算索引，0x404E30 以 x<width、y<height 做边界检查，0x44C1C2 读取资源头两字节后分配 0x640 字节并按 width*height 拷贝。0x4516BF/0x4D11C7 分别设置 4×1 与 5×1，列表 UI 复用同一全局；0x41D2B8 从 0x500AA0+0x12 快照恢复。
+
+
+## 历史情报模板 341：宿主 0x41C3D7 与文本打开链 0x42F699
+
+ID: `mechanism.65.history-intel-341.3ef7`；状态: `candidate`；证据: `static-verified`
+
+历史情报入口 0x41C3D7：工作区 0x4FFF80。当 [workarea+8] 指向的首 dword 为 0 或 byte[0x492E20]>=4 时，以 0x48E88C 为文本基址（章节>=4 用 0x48E88C+0xB 变体）调 0x42F699(0, base) 打开文本；否则置 byte[0x48E8C1]=2，以 DialogBoxParamA(hInstance,0x155=341,hwnd,0x46D0F8) 打开「历史情报」对话框，返回后清 0。0x42F699 先 0x42F214(&arg,0x4B1A18,1) 初始化，再 0x42C602/0x42C557 准备文本，按 byte[0x500CB0]==1 与 arg 分支绘制/翻页。模板 341 为 DLGTEMPLATE 241×265、标题「历史情报」、2 控件：0x407（class ord 133 信息筛选下拉框）与静态「信息筛选」。
+
+
+## 命中率的高度/方向坐标修正
+
+ID: `mechanism.65.hit-height-direction-modifier.3ef7`；状态: `canonical`；证据: `static-verified`
+
+命中率在基础曲线后按攻守坐标与朝向修正：class 0/1/2 分别追加 0/5/10 个百分点比例；满足 0x406710(defender)!=1 与 byte[0x500E9A]==1 时再追加 5%；0x408EEE 封顶 100、用 0x410EDB 取下限并保底 1。
+
+
+## 命中重试机制的三基底差异
+
+ID: `mechanism.65.hit-retry-cross-base.3ef7`；状态: `canonical`；证据: `static-verified`
+
+6.4/6.5 使用“最多 2 次、命中>=85、每次扣 10”的重试循环；6.5 额外在 byte[0x505EC8]==1 时跳过。6.6 删除循环，改为 dword[0x502000+0xFB2*4]、byte[0x4B3D18]、byte[unit+5] 三条件门控，条件全满足时命中置 100。
+
+
+## 物品使用效果码 +0x10 与效果范围表 0x4D1400（36项）
+
+ID: `mechanism.65.item-effect-code-and-range-table.3ef7`；状态: `canonical`；证据: `static-verified`
+
+物品 +0x10 为使用效果码（0xFF=无，有效 0x01..0x25）；使用时写入 0x4B4250+0x1B85 的 4 槽效果缓冲，0x41E307 逐槽调用 0x45288B。效果码经 0x4D1400 的 36 项 dword 指针表映射到 0xFFFF 结尾的 word 列表；每个 word 的低/高字节为两个半径，0x436616 生成四角并调用 0x437AFF 写地图格，6.6 的 0x42A840 以同样四角做命中判定。该表三基底 hash 不同，差异集中在 [03]/[06]/[09]/[10]/[18]，6.6 新增 0x42A6B8/0x42A7FD 两个消费者。
+
+
+## 6.4 物品装载链与 0x41FECC 解析式旋转
+
+ID: `mechanism.65.item-loader-64-parser.3ef7`；状态: `canonical`；证据: `static-verified`
+
+6.4 物品装载链：0x41B639 初始化序列 → 0x41B666 载入 DATA.E5 块0（人物）→ 0x47D988 载入块1（物品）到复用缓冲 [0x496F60] → 0x47D9E1 有界解析循环调用 0x41FECC 逐条重排 +0x12..+0x14 → 读 star.e5（ReadFile 容量 0x1022）→ 0x43E67C 复制 0x3B6 dword（0xED8=152条）→ 解析槽 104..254 → 0x41BABB 统计有效物品数到 0x4CE7BE。6.4 槽位上限同为 255。更正第 55 轮“6.4 无旋转”：旋转由 0x41FECC 完成而非内联。
+
+
+## 商店价格字段 item+0x13 的消费边界（负结果）
+
+ID: `mechanism.65.item-price-consumption-boundary.3ef7`；状态: `candidate`；证据: `static-verified`
+
+扫描三基底全部可执行节的 mem.disp==0x13 后，未发现 item+0x13 的直接价格读取或 ×100 计算；唯一同偏移读取 0x4010EE 是记录 dword 重排。商店列表 0x466AE3 只读取物品 ID 与可用性布尔值。价格消费链尚未闭合，不登记为公式。
+
+
+## 物品记录 25 字节字段语义与 DATA.E5+star.e5 装载链
+
+ID: `mechanism.65.item-record-fields.3ef7`；状态: `canonical`；证据: `static-verified`
+
+25 字节物品记录字段逐项展开：+0x10 使用效果码、+0x11 类型码、+0x12 买价/100、+0x14 装备子类型、+0x15 基础值、+0x17 每级成长、+0x18 存在/启用标志；+0x13 仍未定名。装载链为 DATA.E5 块1（104 条）＋ star.e5（6.5 0xED8=152 条、6.6 0x27D8=408 条）拼接：6.5 归一化 255 槽、6.6 归一化 512 槽；6.5/6.6 装载时内联旋转 +0x12..+0x14（同哈希 4aabbdb8c85a23bf），6.4 经 0x41FECC 解析式完成同一重排。买价 0x40E070=byte[+0x12]×0x64，卖价 0x40B477=买价的 75%（0xFF→0xFFFF），配合 0x4673xx 排序比较器闭合价格消费链。0x40B3D7 给出 value=byte[+0x15]+(count-1)×byte[+0x17]。6.6 新增 20 项类型表 0x4303C8。
+
+
+## 物品记录装载后的 0x12..0x14 旋转
+
+ID: `mechanism.65.item-record-normalization.3ef7`；状态: `canonical`；证据: `static-verified`
+
+物品表装载后对每条记录清空 +0x0E，并旋转 +0x12..0x14：新[0x12]=旧[0x13]，新[0x13]=旧[0x14]，新[0x14]=旧[0x12]。6.5 装载到 0x4A1140，循环 0xFF；6.6 装载到 0x49F820，循环 0x200；6.4 已重定位。
+
+
+## 物品/装备记录表 0x4A1140（6.6: 0x49F820）
+
+ID: `mechanism.65.item-record-table.3ef7`；状态: `canonical`；证据: `static-verified`
+
+物品/装备记录在 6.4/6.5 基址 0x4A1140、步长 0x19（25 字节）、索引 0..0xFF；6.5 有 55 处基址引用。6.6 不再引用 0x4A1140，改用 0x49F820 并通过访问器 0x4837C2（index*0x19+0x49F820）取记录；记录 +0x11 字段在 0x4303B4 以 byte 读取。
+
+
+## 6.6 物品类型→动作/特效编号映射表 0x4303C8 与消费链
+
+ID: `mechanism.65.item-type-action-mapping-66.3ef7`；状态: `candidate`；证据: `static-verified`
+
+6.6 独有 0x4303C8 为 20 字节映射表（01 06 05 13 07 08 01 20 15 16 00 01 06 0C 00 01 00 01 0C 0D），索引为物品记录 +0x11 类型码 0..0x13，输出动作/特效编号 0..32。唯一消费链为 0x43F8C0→0x417A38→0x43038B：先 0x41CE8C(1) 随机替换，再 0x430351（0x42518F(0x6D,0,1,0)）评分门控；评分==0 返回随机替换值，否则读装备槽 0 物品（rec+0x2E）类型并查表。调用方随后与哨兵 0x0B 比较，0x423FE8(4) 非零时强制 0x0B。6.5 同位置走 0x4E4000 搜索包装 + 0x417A35 随机替换，不做类型映射。
+
+
+## 物品类型分类与子类型映射
+
+ID: `mechanism.65.item-type-classification.3ef7`；状态: `canonical`；证据: `static-verified`
+
+物品类型分类：item+0x11 <20→0；20..25→1；>=26→item+0x14 子类型。子类型映射：<26→type/2；>=26→item+0x14+11。三基底字节一致。
+
+
+## 兵种属性矩阵 8×40 与第 6 行伤害百分比
+
+ID: `mechanism.65.job-series-attribute-matrix.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4D20C0 是 8 行×40 兵种系的字节矩阵。第 6 行（0x4D21B0）是 90..130 的百分比修正，策略伤害后段按 damage*row6[series]/100 乘算；第 5 行是 0..2 枚举并被 AI 评分比较 ==2；其余行为布尔/占位标志。三基底矩阵不同。
+
+
+## 兵种穿透/属性码表 80×1
+
+ID: `mechanism.65.detailed-job-penetration.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x407881 是 80 字节的兵种属性码表，按兵种 ID（unit+0x2B）索引。0x40782D 在模式/状态/哨兵检查通过后返回 table[jobId]；0 为缺省，6.5 还出现 1/4/9/10，6.6 出现 1/4/7/9。
+
+
+## 图层/图块缓冲常量：0x1B00、0x6C00、0x12900、0x3000、0xC000 与 0x430020 拷贝函数
+
+ID: `mechanism.65.layer-block-constants.3ef7`；状态: `candidate`；证据: `static-verified`
+
+高频 imul 常量构成本图块/图层缓冲布局：0x1B00=6912 为战场单层字节数（第 53 轮），0x6C00=27648=4×0x1B00（4 层），0x12900=76032=11×0x1B00（11 层）；0x3000=12288=64×64×3（24bpp 图块），0xC000=49152=4×0x3000（128×128）。0x430020（紧随 0x430000 跳转表之后）接受宽高参数，观察到 0x30(48)/0x40(64) 两种块拷贝。0x40446E 以 byte[0x4927F0]×0x12900 选择记录块；0x41ED07 以 byte[rec+0xD]×0x12900+0xF300 定位图像数据。
+
+
+## 11 层图层块 0x12900：0xF300/0x6C00 偏移、0x4303C4 块拷贝与 0x43E549 方向映射
+
+ID: `mechanism.65.layer-buffer-11.3ef7`；状态: `candidate`；证据: `static-verified`
+
+图层块大小 0x12900 = 11 × 0x1B00（单层 0x1B00=6912，4 层 0x6C00，6 层 0xA200，8 层 0xD800，9 层 0xF300）。6.5 中共 22 处 0x12900 引用；层偏移按 0x1B00 对齐：0x6C00=第 4 层、0xA200=第 6 层、0xD800=第 8 层、0xF300=第 9 层，其余层经基址+n*0x1B00 或寄存器偏移访问。0x43FE2C 按 byte[obj+4]*0x12900 从 0x4AB00C 池分配并整块清零；0x41C7E9 在非战斗模式（0x505FDC==0）以 byte[rec+2]*0x12900+0xA200 取块，否则 push 0x6C00 + 0x4B7A20 调 0x408ECA。0x40446E 以 byte[0x4927F0]*0x12900 选块，并用 0x43E549 把方向 0/1/2/3 映射为 1/2/0/2；0x41ED07 以 byte[record+0xD]*0x12900+0xF300 取源（第 9/10 层），按 0x6C00 目标步长循环 2 次调 0x4303C4 复制 0x30×0x30 块。0x4303C4(src,dst,w,h)：3 字节/像素，经 0x41C444 保留目标 alpha 写入源 RGB。0x448BCE 另经 0x4015B1（0x4AE4C8 池）分配 0x37800 临时合成区（0x448B96）：源为 byte[+0xD]*0x12900+0xD800 的 0x30×0x30 块，经 0x4303C4 拷入后循环 9 次，每次 0x47FCFD 拷 0x6C00（=0x60×0x60×3 帧）、0x40690C 白色 0xFFFFFF 绘制、0x443C1D 按 0x60×0x60 贴图；0x37800=0x6C00×8+0x1800，实际单帧仅用 0x6C00。地图图形页（第129轮）：0x1E900 = 0x12900 层块 + 0xC000 尾块，是 0x4AAFF4 竞技场内的页步长；页 0 基址 0x24C00、页 1 基址 0x43500；页尾缓冲基址 0x37500=页0+0x12900（每页步长同为 0x1E900），页内第 4 层 0x2B800=页0+0x6C00；0x40155F(offset)=0x47FA40(0x4AAFF4,0,0,4)。
+
+
+## 关卡/地图全局描述结构 0x500AE0（0x90 字节，6.5 为 0x500AA0）
+
+ID: `mechanism.65.level-context-struct.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x500AE0 是 0x90 字节关卡/地图全局描述结构（6.5 对应 0x500AA0，均 20 处引用；初始化 0x415CD5 以 0x47FD13(0,0x90,0x500AE0) 清零）。已定位字段：+0x00 首指针（0x420173 作 this）、+0x08 计数（0x40A56F +5）、+0x0C 关卡/资源状态 ID（0x41D29B→[+0xC80]，0x40ADAB 反向恢复并置 0x3CFFFF）、+0x10 模式（cmp 1/2）、+0x11 开关（0/1）、+0x12 地图宽高字节对（写入 0x4B422C）、+0x14 子窗口句柄（非 0 时替代 0x4B6A68）、+0x1A 辅助 word（→[+0x642]）、+0x1C 表指针。
+
+
 ## 物理攻击范围到目标消费调用链
 
 ID: `mechanism.65.physical-attack-targeting`；状态: `canonical`；证据: `static-verified`
@@ -7103,6 +7609,55 @@ ID: `mechanism.65.id-pointer-conversion`；状态: `canonical`；证据: `static
 
 1. `fn.65.battlefield-id-to-tactical-unit`：战场 ID 到 0x30 记录
 2. `fn.65.tactical-unit-to-runtime-character`：战术记录到 0x48 人物记录
+
+## 三个全局内存池 0x4AE4A8/0x4AE4C8/0x4AB00C 与分配器 0x47FA40
+
+ID: `mechanism.65.memory-arenas.3ef7`；状态: `candidate`；证据: `static-verified`
+
+三个全局内存池：0x4AE4A8（包装 0x40162C）、0x4AE4C8（0x4015B1）、0x4AB00C（0x401655）。包装以 eax=size、对齐 4 调 0x47FA40(arena,size,0,4)。0x47FA40：edx=min(size,dword[arena+4]) 容量钳位；按 byte[arena+0x10] 分派——模式 1/4 返回 dword[arena+0xC]+size 的线性指针，模式 2 调 0x47F9E2(size,flag,extra)，其他返回 0。模式 2 的 0x47F9E2 以 0x4000（16KB）为块粒度：esi=size>>14、size&=0x3FFF，循环最多 4 次调用 0x47F96C（本构建为空桩 ret 8）。第95轮 0x41ED07 的图层缓冲即经 0x401655 从 0x4AB00C 池分配。
+
+
+## 功勋分配表 0x508000（102×5 word）与点数池 0x505F40/0x505F3C
+
+ID: `mechanism.65.merit-table.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x508000 是 102 人（0x66）× 5 个 word（0x0A 字节）的功勋分配结果表，由 0x42ACD2(index)=index*0x0A+0x508000 访问（index<0x66 且 [arg]==1 或 byte[record+0x2A]!=0xFF 时有效，否则 0xFF）。332 确认处理 0x456CB4 把 0x406..0x40A 五个复选框（武/统/智/敏/运）的掩码写入单位记录 +2，并把 0x505F40 传给 0x40BE7D 显示。0x408FA0：byte[0x505F3C]==0 时返回，否则遍历 i=0..0x65，按 byte[record+2] 掩码把未勾选维度的 word 清零，并通过 xchg 把原值累计后加回 dword[0x505F40]（返还公式=被清除项之和）。0x423EAD：0x42ACD2(0) 有效时清零五项，arg!=0 且 byte[0x505F3C]!=0 时同样把原值之和加回 0x505F40。0x505F40 的 5 处静态引用只有两处累加与三处传参，未发现减法点。
+
+
+## 金钱全局 0x4B077C 与 999999 上限
+
+ID: `mechanism.65.money-global.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x4B077C 为金钱 dword。0x406C00 结算 0x48E8BD 累加金额：job byte+5>=2 时加到金钱并封顶 0xF423F(999999)，否则从金钱扣除（不足归零），随后清零 0x48E8BD 与 0x500C48。0x423820 比较价格；0x414E92 扣 1000；0x43C00F 扣任意金额。0x406C00 三基底字节一致。
+
+
+## 移动消耗、地形适应与地图边界
+
+ID: `mechanism.65.movement-terrain-and-map-bounds.3ef7`；状态: `canonical`；证据: `static-verified`
+
+Data.e5 块 4（0xA8A4，0x960）解码为 40 兵种系×60 字节的运行时表（基址 0x4A3517，步长 0x3C）。每行前 30 字节为地形适应（0x41F62A），后 30 字节为移动消耗（0x4060C4），0xFF 不可通行。0x4065AD 取移动消耗；0x46CC12 在可通行时返回适应值；0x459380 做通行判定。地图边界由 0x4B422C/0x4B422D 的宽高字节控制。
+
+
+## 6.6 独占/搬移锚点批语义：0x487634、0x48693E、0x500BA0、0x493AF0、0x4934B0、0x501BD2、0x501BF0
+
+ID: `mechanism.65.new-anchors-batch-66.3ef7`；状态: `candidate`；证据: `static-verified`
+
+7 个 6.6 独占/搬移锚点：0x487634 为视口像素尺寸打包 dword（low16=宽×48，high16=高×48；0x451B3F 由网格字 0x4B422C/0x4B422D 计算，0x47B59D 置 640×400=0x1900280）；0x48693E 为 BMP 位深标志（0x20=32bpp，否则 24bpp；0x41625B 从图像头写入，0x40E87E 决定 ×4/×3），6.5/6.4 对应 0x4CE73C；0x500BA0 为 0xFFFF 空哨兵的 word 数组（6.5/6.4 为 0x4FFDF6）；0x493AF0 为按 ID-0xA0 索引的字节计数数组（带 0xFF/cl 钳位增减）；0x4934B0 为 0xC/0xD 掩码字节标志数组；0x501BD2 为 >=2 时启用新分支的模式字节；0x501BF0 为地图可见矩形缓存 dword（b0=left、b1=top、b2=width、b3=height；0=不受限；0x4362E6 点-矩形判定，宽高×0x30 驱动视口）。
+
+
+## 统一支付链与练武菜单价格
+
+ID: `mechanism.65.payment-chain.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x4237F9 计算价格：mode 0 取 byte[unit+0x17]*2*10，mode 1 取 byte[unit+0x2C]*10；0x423820 比较 0x4B077C 并在不足时提示 0x500CA7；0x43BFD4 显示 0x500C9C『支付%d金？』，确认后扣款并写 0x4AC63C=3。0x474E0E 的 普通模式/单挑模式/自动提升 菜单由 0x423842 处理。
+
+
+## 个人经验公式常量的三基底一致性
+
+ID: `mechanism.65.personal-exp-cross-base.3ef7`；状态: `canonical`；证据: `static-verified`
+
+个人经验函数 0x4037A3 的常量在 6.4/6.5/6.6 一致：基础 2×等级差+6、等级差钳位 -1..47、特殊击杀 +48、普通击杀 64/(max(攻方等级-守方等级,0)+2)。审计中的同址差异是函数体移位；6.6 额外有 [ebp-0xC]==0 守卫。
+
 
 ## 物理定义字段绑定组与跨效果别名联动
 
@@ -7131,6 +7686,55 @@ ID: `mechanism.shared.physical-field-binding-groups`；状态: `canonical`；证
 写入策略：
 
 只对实际已定位组声明转移范围；同步别名、检测字节重叠及不同目标，统一备份事务后重新扫描并复读全部组成员。
+
+## 物理伤害主链通用常量与 6.6 分支差异
+
+ID: `mechanism.65.physical-damage-constant-chain.3ef7`；状态: `canonical`；证据: `static-verified`
+
+物理伤害主函数 0x43BC62 的非特效路径：攻方等级+25，双方能力差/2（低方保底 1），特殊差值分支 6.4/6.5 为 abs(diff)*5%，6.6 为 (12-diff)*N%，随后兵种相克百分比，最后 0x4E6000 处理。关键常量 25/2/1/5/12/100 均给出站点字节。
+
+
+## 物理伤害等级差百分比表 0x4D1A80 与随机浮动
+
+ID: `mechanism.65.physical-level-table.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x426737 以攻方/守方等级映射值 a、d 计算 idx=a+d*40，查 41×41 表 0x4D1A80，再叠加守方随机值、减去攻方随机值，负值归零；返回 100 不缩放，否则 damage=damage*pct/100 且至少 1。函数三基底同哈希，6.6 仅重平衡表首值（100→80/95）。
+
+
+## 物理伤害距离/范围修正 0x4E6000
+
+ID: `mechanism.65.physical-range-correction.3ef7`；状态: `canonical`；证据: `static-verified`
+
+物理伤害链末尾 0x4E6000 依次调用 0x4E0000（范围查询，参数 0/0xFF/0xFF/0xC4/0xFF/1/0）与 0x4E008F（mode 1 与 mode 0 距离判定）；仅当 mode1 命中且 mode0 未命中时按 0x425AD9 对伤害做百分比缩放，返回 base+修正。坐标取自 job 记录 +6 字的高低字节。该函数不读取天气或临时属性块。
+
+
+## 四快捷窗口宿主 0x496F38（模板 297）与设置 +0x10 显示开关
+
+ID: `mechanism.65.quick-window-host.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x496F38 是四快捷窗口宿主：+0x00..+0x0C 为 4 个窗口句柄，+0x10 为 4 位隐藏掩码（bit=1 隐藏，结束时常清 0），+0x14/+0x18/+0x1C 在初始化时置 1（+0x14+i*4 另存各窗图像句柄）。0x419949(this,flag) 负责创建与布局：对每个空句柄调用 CreateDialogParamA(hInstance=[0x4B6A60]、模板 0x129（RT_DIALOG 297：53×56、宋体 9 号、单静态控件 ord 128）、父窗 [0x4B6A68]、过程 0x4195AA、init=i)；随后对 dword[0x505F00] 位未置的槽位 MoveWindow(handle,x0-0x5A,y0-0x32*(i+1),0x32,0x32,1)；flag==0 时 ShowWindow(handle,5)+RedrawWindow(handle,0,0,0x101)；结束 call 0x4768C0 并把 +0x10 清 0（全部可见）。业务语义（第152轮）：对话框过程 0x4195AA 在 WM_INITDIALOG 按 lParam=i 用 0x423C4B(0x155+i) 加载图像 341..344 并 SendMessage(静态 0x56B=1387, STM_SETIMAGE 0xF7) 显示；点击 0x56B 时 0x4196F8 以 0x409B11 反查索引，先隐藏全部（0x423CCE），再按索引执行 0=「%s，卖掉物资！」、1=「%s，买进物资！」（后接 0x461CF6(1)）、2=「%s！打开仓库！」（后接 0x461C88），格式串位于 0x48B49B+index*0xF，%s=0x40C755(byte[0x407D1A+index]) 取当前武将名（0x407D1A={01,01,00}）；索引 3 为场景切换：0x418597(0x492F90,1) 检查双方 20 槽名单非空后 ShowWindow([0x4B7508],0)、0x41196C(0)、置 dword[0x4AE4C0]=1（0x40B900 消费该标志）。设置 +0x10 是该组窗口的显示开关：0x41196C(arg) 写入 +0x10，章节==2（0x41EDEF(0x4AC63C)==2）时立即调 0x426BA0；0x426BA0=0x426B52(0x4034D2())，0x426B52(value) 以 0x406431=GetMenuState(GetMenu([0x4B6A68]),1,0x400)&1 读取菜单第 1 项勾选位，与 value 不同才应用：0x4759BC(value) 经 0x41F445 向 [0x4B6A8C] 与表 0x48EA90（步长 0x14，最多 13 项）广播 WM_USER+1(0x401)/wParam=0x65，并以 EnableMenuItem 启用菜单 0..2；随后 value==0 调 0x423CCE 置 bit0..3（隐藏），value!=0 调 0x44852B 清 bit0..3（显示）。0x411991 在章节!=3（0x40B922()==0）且 +0x10!=0 时，以 byte[0x501FFF]==0 ? flag=1 : flag=0 调 0x419949(0x496F38,flag)。0x501FFF 是快捷窗口展开状态：0x415B9C 置 1（脚本操作码 0x06 打开分支 0x415B4F）、0x40700A 置 0（关闭分支），0x4137AB 在关闭前调 0x429CAB，0x42A183 回城时按原状态重建。0x4B09DB 是出战/参战部队数量（1..20，第155轮更正）：0x415B96 写入 max(param2,1)、0x415BB1/0x415BF3 关闭分支写 1；读取点 0x416526（索引边界）、0x418628/0x4186D9（名册收集与 0x45E6B3 数组构建）、0x41E8AB（小地图标记绘制上界）。操作码 0x06 还经 0x415C0D 把最多 5 个类型 0x38 的敌 ID 写入 word[0x4B09DC+idx*2]（0x4B0A2C 循环）、5 个类型 0x39 的我方 ID 写入 word[0x4B0A04+idx*2]（0x4B0A30 循环），各 20 槽。
+
+
+## 33 项随机变体编号表 0x41CEAB 与 0x41CE8C 替换函数
+
+ID: `mechanism.65.random-variant-table.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x41CEAB 是 33 项（索引 0..32）随机变体编号表，三基底逐字节相同（01 06 03 04 12 13 0C 08 12 1F 0A 00 0D 21 0F 16 11 12 25 0C 0C 16 22 01 20 1D 03 1C 1D 23 1F 03 24）。0x41CE8C(mod, code) 先用 0x41CDEE 计算 (0x4101D9(0x5A+mod,0x76,3,0) & mod)，非零时返回 table[code]，否则原样返回。人物模板链 0x401DFF 以模板 +0xC 为索引、mod=2 使用该表，结果被 5 个调用点作为动作/图像编号使用；6.6 物品类型动作链（0x43038B）以 mod=1 使用同一表。0x21（33）是编号越界哨兵，遇到时改走 0x43F8C0 默认计算。
+
+
+## 存档文件四区块布局：A 0x30000 / B 0xD4F0 / C 0x313D / D 战场状态
+
+ID: `mechanism.65.save-file-format.3ef7`；状态: `candidate`；证据: `static-verified`
+
+保存入口 0x40531A：0x4288F4 生成 SV\SV%03u.E5S → 0x418F5C(mode=2) 打开 → 经 .api 段 [0x4BE046] 间接钩子（参数 0x501AD0）→ 依次写 4 个区块：A 0x30000 字节（源 0x501000）；B 0xD4F0 字节（源 0x496F60，由 0x4053CC 序列化：魔数 5、+1..+4 四个头字节、+5/+0x1B 两段字符串、+0x32 的 0x2BC 字节章对象、+0x2EE 的 word、+0x2F0 的 0x80×0x24 记录、+0x14F0 的 0x400×0x30 单位记录）；C 0x313D 字节（0x405524 按 0xFA0/0x181/2/8/0x800×4/8/0x0A 顺序打包 0x492F90）；D 战场状态（0x407A37，源 0x4B3D08：魔数 5、+1/+2 字节、+0x1E 头、0xFA 个单位、0x640 尾）。读取入口 0x41888D：0x418F5C(mode=0) → 0x419184 读 0x30000 并校验首字节==5 → byte[0x500FFF]=1 → 正式读 0x30000 到 0x501000 → 0x419102 读 0xD4F0 → 读 0x313D → 0x4189DA 读战场区块 → 关闭并返回 1。文件对象 0x418F5C/0x419102/0x419184/0x41923C/0x4192C5 三基底同哈希；0x408F2E 单位记录序列化 0x30 字节三基底同哈希；区块 C/D 在 6.4=6.5、6.6 不同，但 6.6 读取端仍用 0x30000/0xD4F0/0x313D/魔数5。
+
+
+## 存档/读档槽位编号与文件命名常量
+
+ID: `mechanism.65.save-load-constants.3ef7`；状态: `canonical`；证据: `static-verified`
+
+存档编号 n=(slot==0x14)?0:page*20+slot+1；页字节 6.4/6.5=0x4CE78F、6.6=0x500ACF。6.5/6.6 用 'SV\SV%03u.E5S'，6.4 用 'SV\SV%s.E5S' 加三位补零串；外层路径 'E5\%s'。保存 UI 0x40526B、读取 UI 0x405696（6.6: 0x40569C）、保存执行 0x40531A、文件名构建 0x4288F4（6.4: 0x4288F3）、路径包装 0x4138BE（6.6: 0x42BA60）。槽位 0x14 为自动存档。
+
 
 ## 引擎扫描代次隔离与分层内容指纹缓存
 
@@ -7200,6 +7804,161 @@ ID: `mechanism.shared.engine-scan-context-cache-equivalence`；状态: `canonica
 - 耗时受环境和进程状态影响；摘要不是跨机器保证。baseline/optimized的源快照和样本身份必须保留。
 - 加强版2.2.0仅1轮对照，不纳入三基底n3结论。
 - 共用服务、字段组写回和界面生命周期分别引用独立完成日志；性能输出等价不能代替这些事务与交互结论。
+
+## 剧本解释器上下文与脚本地址缓存 0x500AB0/0x500AB4
+
+ID: `mechanism.65.script-context-caches.3ef7`；状态: `candidate`；证据: `static-verified`
+
+剧本解释器上下文是带 vtable 的对象（[ctx]=vtable）：+0x00 vtable、+0x08 脚本流累计字节计数（0x416C54 后 add [ctx+8], eax+5）、+0x0C 脚本流读取地址（绝对地址，0x4183F7 的读取起点，并参与缓存公式）、+0x10 opcode 快照、+0x14 等待中的分支目标地址（-1 哨兵）、+0x2C 执行中标志、+0x2E 当前动作码、+0x34 开关。0x500AB0=[ctx+0xC]-2（动作码 1 分支，0x410A0B）；0x500AB4=[ctx+0xC]+0x40FCB2(ctx)（[ctx+0x14]<0 分支，0x41088B）。6.4/6.5 对应槽位为 0x4CE74C（0x410A0B）与 0x4CE75C（0x410891）。消费链：操作码 0x76 处理器 0x416C41（两基底处理表 0x410A38 第 118 项）先用 0x4183F7 读 4 字节操作数推进 ctx，再以 [0x500AB0,0x500AB4] 区间判定当前位置（6.5 用 [edx-0x10] 读 0x4CE74C，6.6 用 [edx-4] 读 0x500AB0），命中时 cl=0x76 哨兵，与 0x4109E6/0x4105FF 的 0x76 特判衔接。0x4109E6 以 0x40FCB2 取得的动作码写入 +0x2E，并以其-2 索引 0x410A38 处理表（6.6 上限 0x7B，6.5 为 0x79）；0x4105FF 为解释器主分派，0x410857 为动作处理器。取参器 0x4183F7（第149轮）：先以 0x40FCB2 从 ctx+0x2E 读 token 再按 type 分派——type=1 原样返回 token，type=4 走 0x40FC90（数值/负号，负值时 byte[ebp-0x10]<0x6E 才取 -eax），type=5 走 0x40FC62 返回文本指针，type=2/0x38/0x39 读 word 且 0xEFFF<=ax<0xFFFF 时按 ~ax-1 索引 dword[0x502000+idx*4]，其余（3/9/0x4F）为纯 word。主分派表 0x410A38 在 6.5 为 126 项（索引=opcode-2，0x7A..0x7F 空实现 0x4D0000）：0x68=0x4103F0 练武场命令（操作数类型表 0x40E388={0x02,0x02,0x4F}）、0x72=0x47D89E 信息传送（类型 4,5）、0x76=0x416C41 区间守卫（类型 4）、0x77=0x416C87 变量算术（类型表 0x416C82={0x51,0x04,0x53,0x52,0x04}，按目标类型 0/1/2 解析 0x506000 字符串表或 0x502000 变量地址，运算码 p2>=3 时偶数 div、奇数 imul，经 0x425AD9 与 0x410471 写回）。0x77 的 0x506000 字符串表项上限 0x12F（303），0x502000 变量上限 0x1000。三基底 EXE 内无剧本命令中文名表（GBK「信息传送」「练武场」命中 0，仅运行时文本存在）。
+
+
+## 剧本处理表容量、索引偏移与空实现区间
+
+ID: `mechanism.65.script-handler-capacity.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x410A38 为 126 项 dword，索引=opcode-2，覆盖 0x02..0x7F。0x7A/0x7B 自 6.4 已实现（0x416DCD/0x415093）；6.4/6.5 的 0x7C..0x7F 全为 0x4D0000；6.6 新增 0x7C/0x7D（0x4284A2/0x47E9F0），仅 0x7E..0x7F 为空。第149轮补：0x68=0x4103F0（练武场命令，操作数类型 0x40E388={0x02,0x02,0x4F}）、0x72=0x47D89E（信息传送，类型 4/5）、0x76=0x416C41（区间守卫，类型 4）、0x77=0x416C87（变量算术，类型 0x416C82={0x51,0x04,0x53,0x52,0x04}）；6.5 去重后 121 个不同处理器，6.4 同，6.6 为 123（新增 0x7C/0x7D）；6.6 的 0x68 处理器地址偏移为 0x4103EE。
+
+
+## 数字记号解析器 0x426E64（- 负号 / * 变量引用）与全局变量数组 0x502000
+
+ID: `mechanism.65.script-number-parser.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x426E64(src) 解析十进制整数记号：起始可带 '-'（负号）与 '*'（变量引用）前缀，随后读取连续 '0'..'9'；返回 eax=数值、edx=已消费字符数（前缀数+位数），无数字返回 0。'*' 前缀表示 eax=dword[0x502000+value*4]，'-' 前缀对结果取负。0x502000 是全局 dword 变量数组：写入 0x407932/0x42CAF2/0x42CC2D；读取 0x41516B/0x416CFE/0x416D42/0x418493/0x4202E2/0x4246B4/0x425C93/0x426863/0x426EED/0x43B502。0x42C6C5(stream,N,size,dst) 循环 N 次调用 0x426E64，把 eax 写入 dst，并把 stream 前进 edx+1（跳过记号后的分隔符）。0x502000 另有按单位槽写入路径（第146轮）：0x407932 以槽 idx 写 dword[0x502000+idx*4] = (byte[unit+0xD]&2)>=2 ? 1 : 0（unit 由 0x4061F9 取得），说明该数组也被单位行动/状态分支使用。
+
+
+## 脚本处理体 0x7A/0x7B/0x7C/0x7D 与 6.6 新增项
+
+ID: `mechanism.65.script-opcodes-7c-7d.3ef7`；状态: `canonical`；证据: `static-verified`
+
+0x7A 自 6.4 已实现：0x416DCD 取参后 call 0x4202D8，变量表 0x502000，溢出提示 0x500CC0『变量值溢出』。0x7B 自 6.4 已实现：0x415093 按 0..5 六种操作符比较。6.6 新增 0x7C/0x7D：0x7C 用 0x42DB2C 解析最多 5 个操作数并 call 0x40CB00；0x7D 用子表 0x47EA2F 分派 5 类条件（装备/状态、数值阈值、单位存在、地形、天气）。
+
+
+## 设置块 0x4B0770 字段与设置项索引 0/1/2（0x40E1D0/0x415E19/0x408808）
+
+ID: `mechanism.65.settings-block-fields.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4B0770 是 0x2BC 字节的设置块（存档区块B +0x32 整体复制）。字段：+0x00 选项位掩码（bit0=背景音乐、bit1=音效、bit2=战斗时窗口自动最大化、bit3=战斗时自动显示战场缩小图、bit4=会话窗口不自动关闭；0x41B90F 从 0x406..0x40A 读取）、+0x01 讯息显示速度索引（0/1/2=快/普通/慢，0x40B..0x40D）、+0x02 武将移动速度索引（0/1/2，0x40E..0x410）、+0x03 音量字节（0..100：0x42E218 取控件 0x411 的 TBM_GETPOS(0x400) 写入 +0x03，经 0x42F7FC ×0xA 作 MCI 0x873 参数）、+0x05 场景类别缓存（唯一读取点 0x405412：存档头构造 0x4053CC 在章节 byte[0x4AC63C]==3 时写入头 +0x04，否则用 0x44F9A0 返回 byte[0x4AC63D]；写入点 0x44D2FF 从初始化器 byte[+0] 复制、0x42C0BA 清理置 0）、+0x06 word 为设置项索引1（0x415E19 返回 min(word/2,0x7F)）、+0x0C dword 为设置项索引0（0x40E1D0 直接返回）、+0x10 标志（0x41196C 写入，0x426BA0→0x426B52 应用，1=显示/0=隐藏 4 个快捷窗口）、+0x12 byte 为设置项索引2（0x408808 返回）。0x4118DB..0x41196B 按索引 0/1/2 分派到三个 getter，并与旧值比较返回 -1/0/1（0x4183F7 读到 0x80000000/0x8000 时返回 5 表示无效）。0x41196C 写 +0x10 后，若 0x41EDEF(0x4AC63C)==2（章节 2）则调 0x426BA0；0x411991 在 0x40B922()==0 且 +0x10!=0 时按 0x501FFF 调 0x419949(0x496F38,flag)。存档头写入链（0x4053E4..0x40543B）：区块B +0x01/+0x02 取 0x41EDEF(0x4AC63C)；+0x03 取 0x415E19(0x4B0770)；+0x04 当 byte[0x4AC63C]==3 时取 byte[0x4B0770+0x05]，否则取 0x44F9A0(0x4AC63C)；+0x05 起 strcpy(0x4A1128)，随后 push 0x4B0758 写第二段字符串；+0x32 起由 0x40C482 复制整个设置块。+0x10 另有独立字节 getter 0x4034D2（mov ecx,0x4B0770; movzx eax,byte[ecx+0x10]; ret）。
+
+
+## 环境设定对话框 KANKYOU：控件清单与设置块 +0x00/+0x01/+0x02/+0x03 写入
+
+ID: `mechanism.65.settings-dialog-kankyou.3ef7`；状态: `candidate`；证据: `static-verified`
+
+环境设定是命名 RT_DIALOG「KANKYOU」：DIALOGEX 220×195、标题「环境设定」、宋体 9pt、25 控件；由 0x44F8EB 以 DialogBoxParamA(模板名 0x48B600="KANKYOU", 父窗 0x4B6A68, 过程 0x41BAD7) 打开。控件：1 确定、2 取消、0x406 听背景音乐、0x407 听音效、0x408 战斗时窗口自动最大化、0x409 战斗时自动显示战场缩小图、0x40A 会话窗口不自动关闭、0x40B/0x40C/0x40D 讯息显示速度 快/普通/慢、0x40E/0x40F/0x410 武将移动速度 快/普通/慢、0x411 msctls_trackbar32 音量滑条、0x412 与静态「音量」、0x5D0 花色下拉框（候选串格式 0x486444="花色%d"）、0x5D1 加速下拉框（0x48644B="加速%d"）、0x4D3 19 段状态条。OK 处理 0x41B90F 写设置块：+0x00 = 0x406..0x40A 五复选框位掩码（bit0 背景音乐、bit1 音效、bit2 窗口最大化、bit3 战场缩小图、bit4 会话窗口不自动关闭）；+0x01 = 讯息显示速度索引（0/1/2）；+0x02 = 武将移动速度索引（0/1/2）。音量由 WM_HSCROLL(0x114) → 0x42E218 读 0x411 的 TBM_GETPOS 写 +0x03 并经 0x42F7FC 应用。过程 0x41BAD7：id=1 保存并确定、id=2 关闭、id=0x5D0 通知码 9 触发 owner-draw 动画、id=0x4D3 预览、WM_INITDIALOG→0x41BD7F。初始化回填（第139轮）：i=0..4 取 +0x00 第 i 位写控件 0x406+i；两组 s=0..1 取 byte[0x4B0770+1+s]（+0x01/+0x02）作为选中索引写 0x40B+s*3+i；0x4D3 收到 0x13 次消息 0x180；0x5D0/0x5D1 先发 0x14B。与 OK 写入链完全对称，三项界面设置映射闭合。
+
+
+## 商店运行时表与物品可用性判定
+
+ID: `mechanism.65.shop-runtime-and-item-usability.3ef7`；状态: `canonical`；证据: `static-verified`
+
+Data.e5 块 2（0x8BB4，0x1200 字节，128×36）由 0x41B7F0 解码为 127 行×40 字节的运行时表，基址指针在 [0x4CEA04]，访问器 0x41B7E2。每行含 2 个仓库/买卖人物 ID、16 个装备槽和 16 个物品槽。0x466AE3 构造 16 槽列表，并对每个物品调用 0x407961 得到可用性/装备适性布尔值。
+
+
+## 兵种成长表与装备适性字节
+
+ID: `mechanism.65.job-growth-equipment-compatibility.3ef7`；状态: `canonical`；证据: `static-verified`
+
+兵种成长表来自 Data.e5 块 3（0x9DB4，0xAF0 字节，80×35），运行时基址 0x4A2A27，行步长 0x23，访问器 0x41B782。前 9 字节是九项成长值，后 26 字节是装备类型适性；0x41C60F 读取 byte[9+物品类型] 作为可用性/装备适性判定。
+
+
+## 装备槽与物品类型区间对应候选
+
+ID: `mechanism.65.equipment-slot-type-candidate.3ef7`；状态: `candidate`；证据: `static-verified`
+
+装备槽 3 个，物品类型阈值 20/26 分成三段；提出候选对应 slot0=type<20、slot1=20..25、slot2=>=26。尚未由命名表或界面文案直接证明。
+
+
+## 音效播放与设置位 0x4B0770：SE_* 分段、sndPlaySoundA 标志、0x474777 模式
+
+ID: `mechanism.65.sound-settings.3ef7`；状态: `candidate`；证据: `static-verified`
+
+音效统一由 0x474777(voice, soundId, mode, force) 播放：先以 0x474596(2)=byte[0x4B0770]&2 判断音效总开关，soundId 分三段——<0x64 用 WAV\SE00.WAV（0x48E825），0x64..0xC7 用 WAV\SE_M_xx.WAV（0x48E830，id-=0x64），0xC8..0xD0 用 WAV\SE_E_xx.WAV（0x48E83C，id-=0xC8），>=0xD1 返回 0；两位十进制数按 idiv 10 写入路径 +9/+10，0x418ED4 转绝对路径。sndPlaySoundA 标志基值 3（SND_ASYNC|SND_NODEFAULT），循环 |8（SND_LOOP），不打断 |0x10（SND_NOSTOP）。mode=1 时同曲或 force 不重启；0xFFFF 强制一次性；0 循环；其他 N 为最多 N 次重试（间隔 0x42C522(6)）。停止函数 0x474652 调 sndPlaySoundA(0,0) 并清 voice。语音由 0x4090EE 走 SE_V_%03u.WAV（0x48E810）。设置块 0x4B0770：0x41EDEF 返回 byte[0]（bit1=音效开关），0x415E19 返回 min(word[+6]/2,0x7F)，两者分别写入存档区块B 的 +0x02/+0x03。
+
+
+## 策略伤害的方向/天气/地形百分比修正
+
+ID: `mechanism.65.strategy-damage-direction-weather.3ef7`；状态: `canonical`；证据: `static-verified`
+
+策略伤害在兵种系第 6 行百分比之后追加方向/天气/地形百分比：方向码 0 时兵种系 0x1E +40、地形码 2/0x17 +25；方向码 1/3/0x26 时天气 ID>=2 +25；方向码 2 时另一侧兵种系==7 +25；最终 damage=damage*累计百分比/100。
+
+
+## 小地图 tile 描述符表 0x506800（20 项×3 字节，含 12 字节视图）
+
+ID: `mechanism.65.table-506800.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x506800 是共享基址的两种记录视图。3 字节标记视图（每项 3 字节、容量 0x14=20）：绘制循环 0x41E898 以 i<byte[0x4B09DB]（出战部队数）且 i<0x14 为界，条目 byte0=源 y×0xC、byte1=源 x×0xC、byte2=源页×0x21C0，目标=页基+i×0x1B0，调 0x47E09B 绘 12×12；byte0==0xFF 终止；即每个出战单位一项小地图标记。12 字节记录视图（0x405063/0x405101/0x4263B3）：0x405063 取 [rec]/[rec+4] 两 dword 交 0x4376EA 并按 byte[0x4B422D] 地图高度遍历；0x405101 以 [rec+8] 为 word 数组指针（0x2828 或 0xFF 终止）线性查找单位 ID，按 0x4BE880+0x1B00×page 地图页缓冲写入；0x4263B3 以 0xC 步长 memmove 删除记录并调整后续 [rec+8]。两视图启用条件由页缓冲/步长区分：标记视图 0x21C0 源页 + 0x1B0 槽步长（战斗小地图刷新），记录视图 0x4BE880+0x1B00×page + 0xA8C000 临时分配（地图记录构建期）。写入 0x415EA1 以 index*3+0x506800 写 dword：b0=v1、b1=v2、b2=v4、b3=0xFF（高字节落在下一项首字节作终止哨兵）。
+
+
+## 四方向目标/位置评分 0x4101D9 与物理百分比修正
+
+ID: `mechanism.65.target-direction-score.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4101D9 解析单位后计算基准评分，再按最多 4 个方向枚举候选位置，用 0x41301E 评分、0x413009 合并较优值，返回 eax 分数与 edx 附带值。0x413272 以 (0,1,0x4E,0x76) 调用；0x426737 把守方评分加到、攻方评分减到等级差百分比上。
+
+
+## 单位 +0x18 六槽临时属性块（0/3/6 三档）
+
+ID: `mechanism.65.temp-attribute-block.3ef7`；状态: `candidate`；证据: `static-verified`
+
+单位记录 +0x18..+0x1D 为 6 槽临时属性块：稳定档位 0/3/6 = -1/中性/+1，1/2/4/5 为过渡帧。0x414361 增减一档（三基底同哈希），0x45AA37 写入（0..5 直写，>=6 走 0x45AB49 跳转表），0x43C940 推进过渡，0x43D038 用 0x3F 掩码清理，0x436F49 以 3 初始化。0x4237D7 统计非中性槽，0x43EA12 统计负向槽并参与伤害/评分；AI 分支 14/15 以 >3 与 <3 加权。
+
+
+## 存档头文本缓冲 0x4A1128（0x16）/0x4B0758 与脚本解析 0x417DF6
+
+ID: `mechanism.65.text-buffers-save-header.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x4A1128 是 0x16（22 字节）脚本文本缓冲：启动序列 0x404C80 中 0x47FD13(0x4A1128,0,0x16) 清零；0x417DF6 解析文本（'*' 控制码、'\n&' 结束、逐字符写入）。0x4B0758 是另一段 UI 文本缓冲（0x4125BB→0x47622D 绘制链）。保存区块B 的 +0x005 与 +0x01B 分别用 0x47FC7D(strcpy) 复制这两个缓冲，因此存档保留当时的消息文本。
+
+
+## 练武场上下文 0x500AA0/0x500AE0：初始化 0x418F05 与模板 330 控件
+
+ID: `mechanism.65.training-ground-context.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x500AA0（6.6 为 0x500AE0）是练武场上下文（0x90 字节）。0x418F05（三基底同哈希 47ca7661c8fbfedd，6.6 同址同字节）写入 +0x00=eax（人物记录指针，已由 0x405BA2→0x41D0AE→0x4065D0=byte[record+0x2C] 等级→SetDlgItemInt(0x559) 确认）、+0x04=[ebp+8]、+0x08=[ebp+0xC]（0x40A56F 以 byte[+8]+5 作装载数量参数）、+0x09=edx（dword 覆盖 +0x09..+0x0C，+0x0A 强制 1）、+0x1C=dword[0x4CEA08]（地图记录指针）、+0x10=byte[0x505FDC]（模式）、+0x11=byte[0x500D8F]（场景计数，0x41E6A7 自增），随后 DialogBoxParamA(模板 0x14A=330, hwnd=0x4B6A68, DlgProc=0x4207B2)。字段语义（第148轮）：+0x04 为第二单位记录指针（0x41E6A4 传 0x4061E4(对方槽)，0x41ECAE 传常量 1），EXE 内无读取点；+0x08 为数量（战场路径 count=5，脚本处理器 0x4103F0 取第三操作数，类型表 0x40E388={0x02,0x02,0x4F}），唯一读取点 0x40A56F 以 byte[+8]+5 作 0x4789D6 装载数量（邻近 U_SELECT.E5/UNIT_ATK.E5/UNIT_SPC.E5/UNIT_MOV.E5 于 0x48BBA0）；+0x09..+0x0C 为瞬态参数（0x41E6A4 写 0，0x41ECAE 写费用参数），无读取点且随后被战场备份覆盖；+0x0A 为回合计数（0x43837E cmp 0x0A 上限并 inc，格式串 0x500C58「回合数 %d/%d」）。0x41E6A4 有两个调用者：0x4103F0 脚本操作码处理器（操作数校验 <0x400 且互不相等）与 0x425F19 战场初始化（count=5）。0x41ECAE 为训练入口：0x4237F9 费用校验（flag 低字节==0 → 2×0x40D8A9()；否则 等级 byte[rec+0x2C]×10；0x40D8A9 返回 1 或场景记录 byte[+0x17]，若 byte[+0x19]>=5 提示 0x500CB1「目前无需练武了」），0x423820 与资金 dword[0x4B077C] 比较（超出显示 0x500CA7「资金不足」），0x43BFD4 以 0x500C9C「支付%d金？」经 0x42F699 确认后扣款并置 byte[0x4AC63C]=3。0x42DE63(text=0x500C7E「普通模式/单挑模式/自动提升」, id=0x3FE, 3) 是通用选择框（布局表 0x42DDBB），0x423842(choice+1) 分派：2=单挑→0x43DBBE 取对手→0x41ECAE(rec,0)；1=普通→0x45E6B3→0x41ECAE(rec,edx)；3=自动提升→edx×1000→0x423820→0x43BFD4→显示 0x500E30「全队等级提升」。0x3FE 为单位表上界哨兵：0x43EE4C/0x43EF0E/0x46C329 三处遍历均以 <0x3FE 为上界（有效槽 0..0x3FD），0x41ECAE 以 0x4061E4(0x3FE) 取空记录；同一常量复用为选择框 ID。战斗退出 0x415C86 先把 ctx+0x5C..+0x6C（0x500AFC..）复制回 0x4B3C80 的两条单位记录，再 memset(ctx,0xD0,0)（0x47FD13），置 byte[0x500B57]=0xFF。进入练武场时 0x45165F（6.6 为 0x40ADA3）备份战场状态：+0x0C=dword[engine+0xC80] 后写 0x003CFFFF；+0x1A=word[engine+0x642] 后写 0xFFFF；+0x12=word[0x4B422C] 后写 0x0104；+0x1C 记录的 +0x1B/+0x1F 存 0x4B4250+4/+8 后清零。对话框过程 0x4207B2 在消息 2（WM_DESTROY）时调用 0x41D27A 恢复上述字段，并以 0x40762F(0x4A7B20,0x4A8660,0x500B84,0x500AFC) 恢复字符串配置。+0x14 为练武场窗口句柄缓存（0x40B3A6 读取，0 时回退 GetActiveWindow）。0x418F05 仅两个调用者：0x41E6D6（0x4061E4 两次取记录）与 0x41ECD6（0x4237F9 计价非 0 → 0x4061E4(0x3FE)）。模板 330 标题「练武场」，DLGTEMPLATE、48 控件、250x151 DLU、9pt 宋体：左右两个人物面板（姓名 1371/1368、Lv 1372/1369、HP 1373/1384、SP 1374/1385、Exp 1375/1386、攻击 1376/1387、防御 1377/1388、精神 1378/1389、爆发 1379/1390、士气 1380/1391），操作按钮 开始 1287/突击 1290/防御 1288/回避 1289/逃跑 1291，回合数标签 1437 与回合值 1075，左侧大面板 1219。0x4207B2 入口读取 [+0x10] 与 [+0x11]；0x41D0AE 是 SetDlgItemInt 包装（0x4065D0 取值），0x405BA2 以 nID=0x559 刷新右方 Lv。资源 330 三基底均 1480 字节、48 项但哈希各不相同。
+
+
+## 回合数、回合上限、行动方与天气全局状态
+
+ID: `mechanism.65.turn-action-weather-state.3ef7`；状态: `canonical`；证据: `static-verified`
+
+战场状态基址 0x4B3D08：+0x2 为 0 基当前回合，+0x3 为回合上限，+0x4 为当前天气，+0x11 为天气类别。回合测试 current=byte[0x4B3D0A]+1 与目标比较（>=/</==）；回合上限写入 byte[0x4B3D0B] 并封顶 0xFF；行动方由 0x41C330(0x4B3D08) 返回；天气指令写入类别/当前天气，转换表 0x48E100 为 5×6，值为天气 ID 0..4。
+
+
+## 单位五维分配记录 0x508000（0x66 槽×10 字节）与 0x505F40 全局池回退
+
+ID: `mechanism.65.unit-alloc-records.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x508000 是单位五维分配记录数组：槽 0..0x65（102 个），每槽 0x0A 字节 = 5 个 word（记录地址 0x508000+i*0x0A）。取指针函数 0x42ACD2(slot,mode)：slot>=0x66 返回 0xFF；mode!=1 且 byte[unit+0x2A]==0xFF 也返回 0xFF；否则返回记录指针。回退链 0x408FA0：当 byte[0x505F3C]!=0 时遍历 i<0x66，取单位后以 byte[unit+0x02] 的 5 位掩码判定，第 k 位为 0 则把记录 word[+2k] 清零，并把旧值累加进 dword[0x505F40]（全局点数池）。该记录与 332 工作区 0x4FFF68 的五维 word×5 同构：0x508000 为持久记录，0x4FFF68+0x00..0x09 为对话框临时经验、+0x0A..0x13 为升级阈值；0x4FFF68+0x14 为对话框剩余点数池，与 0x505F40 分属两池。
+
+
+## 单位槽位数组 +0x84/+0x254/+0x430 与金钱/HP 联动
+
+ID: `mechanism.65.unit-slot-arrays.3ef7`；状态: `candidate`；证据: `static-verified`
+
+0x405998 从 dword[unit+0x84+index*4] 取 slot0、[unit+0x254+index*4] 取 slot1、[unit+0x430+index*4] 取 slot2。0x405AB6 把 slot0 累加到 0x48E8BD 并从 unit+0x10 扣除，slot1 走 0x472840/0x43F715；0x421278 对同一 +0x84 数组按 (slot0-1)*10 收费并置 1。
+
+
+## 单位 +0x1E 四位状态组与 +0x10 部署字段
+
+ID: `mechanism.65.unit-status-bitfield.3ef7`；状态: `candidate`；证据: `static-verified`
+
+unit+0x10 由 0x41B500 直接返回，为 0 时 0x426B33 返回 2（未部署/已撤退候选）；否则 0x426B33 返回 byte[unit+0x1E] 第 3 组 2-bit 状态值（mask 8）。0x411072 在 0x426B33 非 0 时追加 40% 伤害。unit+0x1E 为 4 组 × 2 bit 状态字节。
+
+
+## 武器经验基础值与无伤害路径（三基底）
+
+ID: `mechanism.65.weapon-exp-cross-base.3ef7`；状态: `canonical`；证据: `static-verified`
+
+武器经验段 0x4038DF..0x403930：基础值 6.4=3、6.5=2、6.6=3；无伤害路径 6.4=2、6.5=2、6.6=1。伤害高于攻击前值时减 1，ctx+0x604 非零时加 1。
+
+
+## 特效参数显示名解析（范围码→名称）
+
+ID: `mechanism.65.param-display-name-resolution.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `global.65.range-code-name-table.3890`：范围码 0..11 名称指针数组
+2. `global.65.effect-name-tables.3890`：特效名分表（按类别/ID 段）
+3. `global.65.ability-name-table.3890`：五/六能力名
 
 ## 6.5pl 核心特效引擎反汇编分析契约
 
@@ -7331,3 +8090,118 @@ ID: `mechanism.65pl.reference-scanner-coverage-and-counterexamples`；状态: `c
 - 原文只记录一个6.5pl分析样本，不提供当前国庆F20C的装备分类表、地址或ABI。
 - 调用者与返回消费者共同决定语义；413009虽被核心调用，但不是四参数入口。
 - 参考仓库采用非商业许可；本知识条目只归纳算法事实和限制，不引入参考代码。
+
+## 剧本指令执行链（取 token → 查表 → 处理函数 → 取参）
+
+ID: `mechanism.65.script-command-dispatch.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.script-token-reader.3890`：0x40FCB2 读 16 位 token
+2. `fn.65.script-command-dispatch.3890`：0x4109E6 取低字节为 opcode
+3. `global.65.script-command-dispatch-table.3890`：0x410A38[opcode-2]
+4. `fn.65.script-param-get.3890`：0x4183F7 按序号取参数
+5. `fn.65.script-ascii-number.3890`：0x426E64 解析数字/-/* 语法
+6. `global.65.script-event-table.3890`：0x49CF68 运行时记录表（写入结果）
+
+## 剧本（TR.E5）执行与事件表
+
+ID: `mechanism.65.script-execution.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `global.65.script-event-table.3890`：0x49CF68 事件表 128×0x40
+2. `fn.65.script-event-slot.3890`：0x426AA8 槽号→地址（+n*0x40）
+3. `fn.65.script-event-iterate.3890`：0x42A049 遍历与分派
+4. `format.65.script-command-record.3890`：指令记录读取
+5. `fn.65.script-record-field-reader.3890`：0x42A100 字段读取样例
+
+## 剧本跳转窗口（else / Section 的实现）
+
+ID: `mechanism.65.script-jump-window.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.script-command-dispatch.3890`：0x4109E6 写 0x4CE74C（窗口起点）
+2. `struct.65.script-context.3890`：ctx+0x0C 当前偏移
+3. `global.65.script-control-codes.3890`：控制码 6/8 只作信号
+
+## 剧本主循环（0x4180F9）与帧执行
+
+ID: `mechanism.65.script-main-loop.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.script-interpret-frame.3890`：0x4100A1 单帧执行（计数驱动）
+2. `global.65.script-vtable.3890`：虚表 +8 = 0x4109E6 分派器
+3. `global.65.script-control-codes.3890`：控制码 3 退出单帧循环
+
+## 剧本“短参数”假说的否定（0x42/0x43 的 byte[ecx+1] 归属更正）
+
+ID: `mechanism.65.script-short-param.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.script-stream-readers.3890`：0x40FCB2 读 16 位 token
+2. `fn.65.script-command-dispatch.3890`：取低字节为 opcode
+3. `struct.65.script-context.3890`：ctx 本身没有 +1 短参数字段
+
+## 策略解析调用链（施放→命中→伤害/状态/治疗→经验）
+
+ID: `mechanism.65.strategy-resolution-chain.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.strategy-cast-entry.3890`：0x417982 施放入口/门控
+2. `fn.65.strategy-mp-check.3890`：0x417AF6 MP 可用性
+3. `fn.65.strategy-mp-cost.3890`：0x417B27 成本
+4. `fn.65.strategy-hit-stub.3890`：0x43B6F3 命中模式
+5. `fn.65.strategy-hit-curve.3890`：0x43B53A 命中曲线
+6. `fn.65.strategy-damage.3890`：0x43C022 伤害
+7. `fn.65.strategy-status-value.3890`：0x43C5DF 状态数值
+8. `fn.65.strategy-heal.3890`：0x43C31D 治疗
+9. `fn.65.strategy-exp.3890`：0x420EFB 经验
+10. `fn.65.strategy-range-dispatch.3890`：0x435CE9 范围展开
+11. `fn.65.strategy-animation-tier.3890`：0x401DFF 演出类型拓展
+
+## 攻击/必杀范围等级拓展链（四向→九宫→没羽）
+
+ID: `mechanism.65.attack-range-tier-expansion.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.fatal-range-selector.3890`：0x43F8C0 取必杀范围/特殊判定
+2. `fn.65.attack-range-wrapper.3890`：0x417A35 包装并传 default=1
+3. `fn.65.attack-range-tier-check.3890`：0x41CDEE 按 特效号=r+0x5A 判定
+4. `fn.65.attack-range-tier-map.3890`：0x41CE8B 查 0x41CEAB 返回下一级
+5. `fn.65.attack-dispatch`：0x436511 按范围码查 0x4D1400 展开
+6. `fn.65.attack-append-target`：0x437AFF 边界/阵营/去重落格
+
+## 穿透范围调用链（加载→包装→12 分支→落格）
+
+ID: `mechanism.65.pierce-range-chain.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.pierce-loader`：0x40782D 按单位类型查 0x407881 表/必杀分支
+2. `fn.65.pierce-expand-wrapper`：0x4364C7 取单位/角色后转 0x435CE9
+3. `fn.65.strategy-range-dispatch.3890`：0x435CE9 12 分支展开
+4. `fn.65.pierce-geometry-dispatch`：0x436616 四向/四角几何展开
+5. `fn.65.pierce-append-target`：0x437AFF 落格与去重
+
+## 策略模仿与强化策略穿透：标志位置、映射表与范围拓展对照
+
+ID: `mechanism.65.strategy-mimic-and-penetration.3890`；状态: `candidate`；证据: `static-verified`
+
+1. `fn.65.strategy-mimic-effect.3890`：0x4210BE 查询特效 0x2D(45) 策略模仿
+2. `fn.65.strategy-mimic-selection.3890`：0x43E02A/0x465A2E 在特效 45 命中后进入 0x41DC78/0x465AC0
+3. `fn.65.strategy-mimic-selection.3890`：选择器用 0x4D17B0 的 8 位类别掩码筛选，无独立模仿位
+4. `fn.65.strategy-penetration-enhancement.3890`：0x44282D 取穿透码并查询特效 0xB6(182)，命中后查 0x442871
+5. `fn.65.attack-range-tier-check.3890`：0x41CDEE 按特效 r+0x5A 判定并查 0x41CEAB，作为对照
+
+## 策略属性子表：144 字节表映射与真实语义（6.5 3EF7）
+
+ID: `mechanism.65.strategy-attribute-tables.3ef7`；状态: `canonical`；证据: `static-verified`
+
+6.5 的 0xA2CE0..0xA31F0 是 10 张连续 144 字节表；每张按策略 ID 直接索引。其中 0xA2CE0 是填充区，0xA2D70 是效果类分派表，其余 8 张才是实例属性。
+
+
+补充说明：
+
+- 10 张表连续排列，步长 0x90；0xA2CE0 是唯一无消费者的填充表。
+- 表映射：0xA2CE0 填充；0xA2D70 效果类；0xA2E00 战场AI；0xA2E90 练武场AI；0xA2F20 命中模式；0xA2FB0 AI类别位掩码；0xA3040 伤害百分比；0xA30D0 伤害门控；0xA3160 小动画；0xA31F0 大动画。
+- 命中模式码：显示映射 0→90、1→100、2→100、3→34、4→50；战斗命中桩对 2 走无调整分支，3/4 走条件分支，>=5 直接百分比。
+- AI 战场/练武场表的值 0x00..0x0F 是 16 项评分处理器编号，不是限制位。
+- 0x4D17B0 的 bit6 在样本中仅回归、bit7 仅节能连击；四神策略实际为 0x00，UI 的“绝/四神”位名不成立。
+- 0xA2D70 效果类表不在 Profile 中，由 StrategyEffectClassProbe 的签名探测确定；6.4/6.5 最大类 0x24，6.6 最大类 0x29。
+- 运行时只有 68 条策略记录；本页所有 144 行值中，ID>=68 的行不会被三基底启动加载器读入。
+
+## 策略是否伤血与命中模式：三基底全量解析
+
+ID: `mechanism.65.strategy-damage-hit-resolution.3ef7`；状态: `canonical`；证据: `static-verified`
+
+strategy-damage-type 是伤害门控，不是四种独立伤害类型：0..3 行为完全等价，4 表示不伤血，>=4 同样被门控，但显示函数只把精确的 4 显示为 0；ID 0x46/0x16 绕过门控。strategy-hit-rate 是命中模式/基础命中率选择器：0..4 为特殊模式，>=5 为百分比乘数；模式 2 使用能力曲线，模式 3/4 固定 34/50 后仍乘基础值并受状态/效果修正，最终上限 100。

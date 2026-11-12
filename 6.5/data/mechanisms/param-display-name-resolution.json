@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "mechanism.65.param-display-name-resolution.3890",
+      "title": "特效参数显示名解析（范围码→名称）",
+      "aliases": [
+        "参数显示名",
+        "0x462265",
+        "param display name"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "global.65.range-code-name-table.3890",
+          "role": "范围码 0..11 名称指针数组"
+        },
+        {
+          "order": 2,
+          "entity": "global.65.effect-name-tables.3890",
+          "role": "特效名分表（按类别/ID 段）"
+        },
+        {
+          "order": 3,
+          "entity": "global.65.ability-name-table.3890",
+          "role": "五/六能力名"
+        }
+      ],
+      "semantics": [
+        "0x462265：取参数值（[ebp-4]）与参数类型码（[ebp-0xC]）。",
+        "类型码 +0x1A == 0x33（即类型 0x19「范围」）时：push dword[参数值*4 + 0x40CEE9]，即直接查范围码名称表。",
+        "类型码 +0x1A == 0x99 时使用固定串 0x486EC4；其余走 0x460509 生成，再与格式串 0x48E6C4 拼接。",
+        "0x46229A：另一分支用 imul eax,类型,0x14 + 0x48E645，即类型名内联表（步长 0x14）。",
+        "6.4 同名逻辑使用 0x40620A（10 项）；6.6 使用 0x40620A（12 槽），并在参数类型 0x0B/0x0C 两处分别查表。"
+      ],
+      "relations": [
+        "mechanism.65.longrange-attack-overlay.3890",
+        "mechanism.65.pierce-attack-replacement.3890"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.ekd5",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

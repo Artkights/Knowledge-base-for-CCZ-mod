@@ -1,0 +1,69 @@
+{
+  "id": "src.research.engine-quick-window-host-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "0x496F38 四快捷窗口宿主（模板 297）与设置 +0x10 显示开关：0x426BA0/0x426B52/0x419949 职责",
+  "bases": [
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    }
+  ],
+  "method": "capstone 反汇编 + RT_DIALOG 资源解析 + USER32 IAT 名称解析（GetMenu/GetMenuState/CreateDialogParamA/MoveWindow/ShowWindow/SendMessageA/EnableMenuItem）",
+  "findings": [
+    {
+      "id": "settings-flag",
+      "claim": "设置块 0x4B0770+0x10 是 4 个快捷窗口的显示开关：0x41196C(arg) 写入该字节，且仅当 0x41EDEF(0x4AC63C)==2（章节 2）时立即调用 0x426BA0 应用；0x411991 在 0x40B922()==0（章节!=3）且 +0x10!=0 时以 byte[0x501FFF] 换算出 flag 再调用 0x419949(0x496F38,flag)。",
+      "evidence": [
+        "0x41196F mov eax,[ebp+8]; 0x411972 mov ecx,0x4B0770; 0x411977 mov [ecx+0x10],al",
+        "0x41197A mov ecx,0x4AC63C; 0x41197F call 0x41EDEF; 0x411984 cmp al,2; 0x411986 jne; 0x411988 call 0x426BA0",
+        "0x411994 call 0x40B922; 0x41199B jne 0x4119BB; 0x4119A2 cmp [ecx+0x10],al; 0x4119A5 je 0x4119BB",
+        "0x4119A7 cmp byte[0x501FFF],al; 0x4119AD jne 0x4119B0; 0x4119AF inc eax; 0x4119B6 call 0x419949"
+      ]
+    },
+    {
+      "id": "apply-chain",
+      "claim": "0x426BA0 = 0x426B52(0x4034D2())，即读取设置 +0x10 字节并应用。0x426B52(value) 先以 0x406431 读取菜单第 1 项（MF_BYPOSITION）的勾选位；与 value 一致则直接返回，不一致才执行：0x4759BC(value) 广播显示状态并启用菜单项 0..2，随后按 value==0 调 0x423CCE（置 0x496F38+0x10 的 bit0..3，隐藏）或 value!=0 调 0x44852B（清 bit0..3，显示）。",
+      "evidence": [
+        "0x426BA3 call 0x4034D2; 0x426BA8 push eax; 0x426BA9 call 0x426B52",
+        "0x406431 = GetMenuState(GetMenu([0x4B6A68]), 1, 0x400) & 1（IAT 0x486258=GetMenu、0x48625C=GetMenuState）",
+        "0x426B85 mov ecx,0x496F38; 0x426B8A cmp [ebp+8],0; 0x426B97 call 0x423CCE / 0x426B90 call 0x44852B",
+        "0x423CCE 循环 i<4 call 0x43A923(i)：0x43A932 or dl,al → [ecx+0x10] 置位",
+        "0x44852B 循环 i<4 call 0x4066F1(i)：0x406702 and dl,al → [ecx+0x10] 清位",
+        "0x4759BC：GetMenu → 0x41F445(menu,value,0) → SendMessageA([0x4B6A8C],0x401,0x65,...) 与表 0x48EA90（步长 0x14，最多 13 项）广播 0x401；随后 EnableMenuItem(menu,i,0x04xx) 启用 0..2"
+      ]
+    },
+    {
+      "id": "host-struct",
+      "claim": "0x496F38 是四快捷窗口宿主：+0x00..+0x0C 为 4 个窗口句柄，+0x10 为 4 位隐藏掩码（bit=1 隐藏），+0x14/+0x18/+0x1C 在 0x419949 中置 1。0x419949 负责创建与布局。",
+      "evidence": [
+        "0x419963 mov eax,[ebp-4]（=this 0x496F38）; 0x419968/0x41996B/0x41996E mov [eax+0x14/+0x18/+0x1C],1",
+        "0x4199C3 mov ecx,[ebp-4]; 0x4199C9 mov [ecx+edx*4],eax（句柄表）",
+        "0x419A4E mov eax,[ebp-4]; 0x419A51 mov byte[eax+0x10],0（结束时清掩码）"
+      ]
+    },
+    {
+      "id": "create-layout",
+      "claim": "0x419949 创建 4 个模板 0x129（RT_DIALOG 297，53×56、单静态控件 ord 128、宋体 9 号）无模式窗口：CreateDialogParamA(hInstance,[0x4B6A68],0x129,0x4195AA,i)；对 dword[0x505F00] 中位未置的槽位 MoveWindow(handle,x0-0x5A,y0-0x32*(i+1),0x32,0x32,1)；flag==0 时 ShowWindow(handle,5) 并 RedrawWindow(handle,0,0,0x101)，最后 call 0x4768C0 并清掩码。",
+      "evidence": [
+        "0x4199A6..0x4199BD push i,0x4195AA,[0x4B6A68],0x129,[0x4B6A60]; call [0x4862B0]=CreateDialogParamA",
+        "0x4199E4 mov eax,[0x505F00]; shr eax,cl; test al,1; jne skip（置位跳过创建/布局）",
+        "0x4199EF..0x419A05 push 1,0x32,0x32,x0-0x5A,y0; call [0x4862BC]=MoveWindow",
+        "0x419A11 push 5; call [0x4862E0]=ShowWindow；0x419A22 push 0x101; call [0x4862B4]=RedrawWindow",
+        "dialog_resource 297：DLGTEMPLATE 53×56，style=0x40800240，1 个 id=0x56B、class=<ord 128> 的控件"
+      ]
+    }
+  ],
+  "corrections": [
+    "0x426BA0 不是通用钩子：它是设置 +0x10 的即时应用入口（章节 2 时由 0x41196C 调用）。",
+    "0x419949 不是『通用包装』：它创建/布局 4 个模板 297 的无模式窗口，并以 dword[0x505F00] 位屏蔽槽位。"
+  ],
+  "limitations": [
+    "4 个快捷窗口的业务名称（模板 297 无标题、单静态控件）未确认。",
+    "byte[0x501FFF] 的业务语义未定。",
+    "0x4768C0 与 0x41DF2D 的职责未展开。",
+    "6.6 对应地址未逐一映射。",
+    "未运行游戏对照。"
+  ]
+}

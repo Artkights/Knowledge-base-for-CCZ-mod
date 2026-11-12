@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.battle-mode-byte.3ef7",
+      "title": "战场模式字节 0x4B3D18 与移动力覆盖 0x48E8C2",
+      "aliases": [
+        "0x4B3D18",
+        "0x48E8C2",
+        "战场模式",
+        "移动力覆盖",
+        "0x4B5DF0",
+        "0x4B2C30"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4B3D18 是战场状态基址 0x4B3D08 的 +0x10 字节开关，值 0/1/>=2 控制是否使用 0x48E8C2 的临时移动力覆盖；0x48E8C2 以 0xFFFF 为哨兵，0x438986 写入、0x438997 复位，0x43896D 循环经 0x4389BD 物理伤害评分并写 0x4B2C30。0x425325 在模式>=2 时仅允许当前单位 0x4B5DF0 使用覆盖。",
+      "global": "0x4B3D18",
+      "constants": [
+        "0x4B3D08",
+        "0x4B3D18",
+        "0x48E8C2",
+        "0xFFFF",
+        "0x4B5DF0",
+        "0x4B2C30",
+        "0x505FDC",
+        "0x505F84"
+      ],
+      "identity": "0x4024AA 三基底同哈希 18215ACB2C560055；0x4389BD 三基底同哈希 1CE542C12FB3C57B；0x48E8C2 初始字三基底均为 FF FF；6.6 的移动覆盖读取函数重定位到 0x407BF6。",
+      "limitations": [
+        "0x4B3D18 无直接代码写入点，写者未定位。",
+        "『普通/单挑』命名仍为候选。",
+        "0x4B2C30、0x505E88/0x505E8C、0x502000+0xFB2*4 未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.turn-action-weather-state.3ef7",
+        "mechanism.65.physical-damage-constant-chain.3ef7",
+        "mechanism.65.movement-terrain-and-map-bounds.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-battle-mode-byte-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "modeReadsCommon": ["0x4024CC", "0x41BC53", "0x420B14", "0x425331"],
+        "modeReads64": ["0x43226B", "0x43228E"],
+        "modeReads66": ["0x43B50C"],
+        "overrideWrite": "0x438986",
+        "overrideReset": "0x438997",
+        "overrideReader": "0x407C00（6.6: 0x407BF6）",
+        "overrideReaderAlt": ["0x408DC8", "0x4D270F"],
+        "aiScore": "0x4389BD",
+        "aiLoop": "0x43896D",
+        "bestUnitStore": "0x4B2C30"
+      }
+    }
+  ]
+}

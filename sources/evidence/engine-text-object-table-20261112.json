@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "analysis": "text-object-table-66",
+  "date": "2026-11-12",
+  "method": "capstone 反汇编 6.6 的 0x41EB3E（表索引）、0x41EB48（字体创建）、0x41EA66（1bpp 掩码 DIB）、0x41EAD3（掩码绘制）、0x42AEC7（位扩展到调色板）、0x429ECC（单条绘制）、0x429F77..0x42A048（40 条遍历）、0x42B049（调用点）；refs_to.py 确认 0x512640 仅 0x41EB3E 一处引用，且 6.4/6.5 无该地址引用。仅静态分析。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "table": {
+    "base": "0x512640",
+    "entrySize": "0x30",
+    "count": 40,
+    "indexHelper": "0x41EB3E：imul ecx,eax,0x30; add ecx,0x512640; ret（eax=0..0x27）",
+    "sixSixOnly": true,
+    "sixFiveSixFourRefs": "0x512640 在 6.4/6.5 无任何引用"
+  },
+  "fields": [
+    {"offset": "+0x00", "type": "byte", "role": "有效标志：0 时跳过绘制（0x42A034 cmp byte[ecx],dl）"},
+    {"offset": "+0x17", "type": "byte", "role": "文字颜色索引（0x429F5E 取 dl 后压栈，最终作为 0x4CB1C0 调色板下标）"},
+    {"offset": "+0x18", "type": "byte", "role": "附加样式字节（0x429F59 push 到 0x42AEC7 参数区）"},
+    {"offset": "+0x19", "type": "byte", "role": "字体索引：0x500030 + byte*0x10（0..4 → 宋体/楷体/黑体/仿宋/微软雅黑）"},
+    {"offset": "+0x1A", "type": "byte", "role": "字号（CreateFontA nHeight）"},
+    {"offset": "+0x1B", "type": "byte", "role": "样式位：bit3 存在时字重 0x190→0x190+0x12C(700)；bit2/bit4 被压栈但不参与 CreateFontA"},
+    {"offset": "+0x20", "type": "byte", "role": "绘制前清 0 的临时标志（0x42A038 mov byte[ecx+0x20],0）"},
+    {"offset": "+0x24", "type": "dword", "role": "打包坐标：0x429F48 shl edx,0x10 / mov dx,word[ebp-0x44]，写 [ecx+0x24]"}
+  ],
+  "drawChain": {
+    "entry": "0x429ECC（ecx=文本对象）",
+    "steps": [
+      "GetDC(0x4B6A68) → CreateCompatibleDC",
+      "0x41EB48(ecx=obj)：以 byte[+0x1A] 为高、byte[+0x19] 选字体、byte[+0x1B] bit3 加粗，CreateFontA",
+      "SelectObject 字体；0x42B054 计算文本包围盒（0x28=40 上限）",
+      "0x41EA66：宽对齐 32（(w+31)>>5<<5）、高取负，CreateDIBSection(0x486080) 建 1bpp 掩码位图",
+      "0x41EAD3：SelectObject 掩码、0x47FD13 清 0、SetBkColor(0xFFFFFF)、SetTextColor(0)",
+      "绘制字形到掩码后，0x42AEC7 把每个 bit 扩展为 0x4CB1C0[colorIndex] 或透明色 0xF700FF",
+      "BitBlt 到目标 DC，DeleteObject 释放"
+    ],
+    "bitExpand": {
+      "entry": "0x42AEC7",
+      "palette": "0x4CB1C0（256 项 RGB，第70轮）",
+      "transparent": "0x00F700FF",
+      "loop": "每字节 8 bit，bit7 起（test dl,0x80; shl dl,1）"
+    },
+    "dispatcher": "0x429F77 循环 index 0..0x27（40）：0x41EB3E 取对象；byte[obj]!=0 时清 +0x20 并调 0x429ECC；0x42B049 在文本缓冲处理完后同样调用"
+  },
+  "conclusion": "6.6 新增 40 条 × 0x30 的文本对象表 0x512640（仅经 0x41EB3E 索引）：+0x00 有效标志、+0x17 调色板颜色索引、+0x18 附加样式、+0x19 字体索引（0x500030 五项）、+0x1A 字号、+0x1B 样式位（bit3 加粗 +0x12C）、+0x20 临时标志、+0x24 打包坐标。绘制链为 0x429ECC→0x41EB48 建字体→0x42B054 量文本→0x41EA66 建 1bpp 掩码 DIB→0x41EAD3 设黑白→0x42AEC7 用 0x4CB1C0 调色板把掩码位扩展成 RGB（透明 0xF700FF）→BitBlt。6.4/6.5 无 0x512640 引用。",
+  "limitations": [
+    "+0x17/+0x18 的具体语义（前景色/阴影色/描边）未由界面文案确认。",
+    "0x42AEC7 的 7 个参数中 +0x18/+0x1C 的业务含义未定。",
+    "40 条文本对象的写入方（谁设置文字与坐标）未追踪。",
+    "未运行游戏对照。"
+  ]
+}

@@ -801,14 +801,17 @@
       "indexFormula": "0x004A3E77 + strategy_id * 0x61 + field_offset",
       "endianness": "little",
       "fields": [],
-      "notes": "本轮只确认基址和步长；字段语义进入研究队列。",
+      "notes": "f9a 画像只确认基址 0x4A3E77 与步长 0x61；字段偏移、文件/运行时重排、68 行边界见 struct.65.strategy-record.3ef7。",
       "versions": [
         "6.5"
       ],
       "profile": "profile.ccz65.unencrypted.f9a",
       "status": "canonical",
       "evidence": "static-verified",
-      "relations": [],
+      "relations": [
+        "struct.65.strategy-record.3ef7",
+        "mechanism.65.strategy-attribute-tables.3ef7"
+      ],
       "sourceRefs": [
         "src.ccz.runtime-registry",
         "src.wrench.profile",

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.save-load-constants.3ef7",
+      "title": "存档/读档槽位编号与文件命名常量",
+      "aliases": [
+        "存档",
+        "读档",
+        "SV%03u.E5S",
+        "0x4CE78F",
+        "0x500ACF",
+        "自动存档"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "存档编号 n=(slot==0x14)?0:page*20+slot+1；页字节 6.4/6.5=0x4CE78F、6.6=0x500ACF。6.5/6.6 用 'SV\\SV%03u.E5S'，6.4 用 'SV\\SV%s.E5S' 加三位补零串；外层路径 'E5\\%s'。保存 UI 0x40526B、读取 UI 0x405696（6.6: 0x40569C）、保存执行 0x40531A、文件名构建 0x4288F4（6.4: 0x4288F3）、路径包装 0x4138BE（6.6: 0x42BA60）。槽位 0x14 为自动存档。",
+      "global": "0x4CE78F",
+      "constants": [
+        "0x14",
+        "0x32",
+        "0xA4",
+        "0x4CE78F",
+        "0x500ACF",
+        "0x49773C",
+        "0x497740",
+        "0x48B56B",
+        "0x48B5F4"
+      ],
+      "identity": "0x40526B 保存 UI 在 6.4/6.5 同哈希 EFB0EE1E4234B2AF；0x405696 读取 UI 在 6.4/6.5 同哈希 415E90710F184748；0x4138BE 路径包装 6.4/6.5/6.6 函数体同哈希 0C3CA3AA1EC13ADA；存档字符串 0x48B590/0x48B5CC/0x48B5F4 三基底同址。",
+      "limitations": [
+        "0x418C34/0x418F5C/0x41888D/0x41800D 内部未展开。",
+        "存档文件内部格式未解析。",
+        "0x49773C/0x497740 下游消费者未展开。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.money-global.3ef7",
+        "mechanism.65.engine-general-constant-census.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-save-load-constants-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "saveUi": "0x40526B",
+        "loadUi": "0x405696（6.6: 0x40569C）",
+        "saveWorker": "0x40531A",
+        "nameBuilder": "0x4288F4（6.4: 0x4288F3）",
+        "pathWrap": "0x4138BE（6.6: 0x42BA60）",
+        "battleNameS": "0x48B531 / 0x409A95",
+        "battleNameR": "0x48B54B / 0x409AB8",
+        "savePage": "0x4CE78F（6.6: 0x500ACF）",
+        "saveSlot": "0x49773C",
+        "autoSlot": "0x14"
+      }
+    }
+  ]
+}

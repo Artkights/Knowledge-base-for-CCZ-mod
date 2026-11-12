@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "analysis": "save-load-slot-and-file-naming",
+  "date": "2026-11-12",
+  "method": "定位并解码 0x48B531/0x48B54B/0x48B565/0x48B56B/0x48B590/0x48B5CC/0x48B5F4 字符串；反汇编 0x40526B 保存 UI、0x405696 读取 UI、0x40531A 保存执行、0x4288F3/0x4288F4 文件名构建、0x4138BE 路径包装、0x409A95/0x409AB8 战斗记录名；三基底字符串位置与函数哈希对比。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "strings": {
+    "0x48B531": "S_%s - %s - %s - 回合%2d",
+    "0x48B54B": "R_%s - %s - %s - 战斗结束",
+    "0x48B565": "E5\\%s",
+    "0x48B56B": "SV\\SV%03u.E5S（6.4 为 SV\\SV%s.E5S）",
+    "0x48B590": "进度No.%03u: %s，\\n可以读取吗？",
+    "0x48B5B0": "读取",
+    "0x48B5B8": "不能使用这个进度。",
+    "0x48B5CC": "进度No.%03u: %s，\\n可以保存吗？",
+    "0x48B5EC": "保存",
+    "0x48B5F4": "保存完毕。",
+    "0x48B522": "未使用保存进度"
+  },
+  "globals": {
+    "savePage65": "0x4CE78F（byte，6.4/6.5；初始 0）",
+    "savePage66": "0x500ACF（byte，6.6）",
+    "saveSlot": "0x49773C（dword，保存时写入槽位）",
+    "saveFlag": "0x497740（dword，保存时清零）",
+    "slotDescTable": "slot*0x32 + 0xA4，每槽 50 字节描述"
+  },
+  "sites": {
+    "saveUi": {"va": "0x40526B", "code": "slot=[ebp+8]; [0x497740]=0; [0x49773C]=slot; desc=&[base+slot*0x32+0xA4]; number=byte[0x4CE78F]*0x14+slot+1; sprintf(buf,0x48B5CC,number,desc); 0x418C34(...,0x48B5EC); if yes → 0x40531A(slot), 0x42B81B(0), 展示 0x48B5F4"},
+    "loadUi": {"va": "0x405696", "code": "number=byte[0x4CE78F]*0x14+slot+1; sprintf(buf,0x48B590,number,desc); if slot==0x14 把 buf+4 改写为『  Auto』；0x418C34(...,0x48B5B0); if yes → 0x41888D(slot); 为 0 时展示 0x48B5B8"},
+    "saveWorker": {"va": "0x40531A", "code": "0x4288F4(slot,&name) 生成 SV 文件名；0x418F5C(...,2,...) 写盘"},
+    "nameBuilder": {"va": "0x4288F4（6.4: 0x4288F3）", "code": "n = (slot==0x14) ? 0 : page*20+slot+1；6.5/6.6 sprintf(dst,0x48B56B,n)；6.4 先 0x41800D(n,0x30,3,&tmp) 生成三位补零串，再 sprintf(dst,'SV\\SV%s.E5S',tmp)"},
+    "pathWrap": {"va": "0x4138BE（6.6: 0x42BA60）", "code": "sprintf(dst,'E5\\%s',name)"},
+    "battleName": {"va": "0x409A95/0x409AB8", "code": "状态 3 → 0x48B531『S_%s - %s - %s - 回合%2d』；否则用 0x48B54B『R_%s - %s - %s - 战斗结束』并把 byte[ecx+0xE] 改写为 0 或空格"},
+    "autoSlot": {"value": "0x14（20）", "code": "槽位 0x14 映射文件名编号 0；读取对话框把描述替换为『  Auto』"}
+  },
+  "crossBase": {
+    "hashes": {
+      "saveUi40526B": {"6.4": "EFB0EE1E4234B2AF", "6.5": "EFB0EE1E4234B2AF", "6.6": "1B8B7A22AFEB45C7（同址，内部页全局改为 0x500ACF）"},
+      "loadUi": {"6.4": "0x405696 415E90710F184748", "6.5": "0x405696 415E90710F184748", "6.6": "0x40569C 8E995A357C375F10"},
+      "pathWrap": {"6.4": "0x4138BE 0C3CA3AA1EC13ADA", "6.5": "0x4138BE 0C3CA3AA1EC13ADA", "6.6": "0x42BA60 0C3CA3AA1EC13ADA"},
+      "nameBuilder": {"6.4": "0x4288F3 1C6D84664D5CB73F", "6.5": "0x4288F4 DC2E35FB538DC1FE", "6.6": "0x4288F4 71FE6E0C5D9363BF"},
+      "saveWorker": {"6.4": "0x40531A FFD4027A67B3A852", "6.5": "0x40531A 1CE0510C538F711F", "6.6": "0x40531A B80E146A8F7F94E5"}
+    },
+    "strings": "0x48B590/0x48B5CC/0x48B5F4 三基底同址；0x48B56B 6.4 为 'SV\\SV%s.E5S'，6.5/6.6 为 'SV\\SV%03u.E5S'。",
+    "pageGlobal": "6.4/6.5 使用 0x4CE78F，6.6 使用 0x500ACF。"
+  },
+  "conclusion": "存档编号公式为 n=(slot==0x14)?0:page*20+slot+1，页字节在 6.4/6.5 为 0x4CE78F、6.6 为 0x500ACF。6.5/6.6 用 'SV\\SV%03u.E5S' 直接格式化；6.4 先用 0x41800D 生成三位补零字符串，再用 'SV\\SV%s.E5S'。保存/读取 UI 先 sprintf '进度No.%03u: %s，\\n可以保存/读取吗？'，再经 0x418C34 对话确认；保存执行 0x40531A → 0x4288F4 生成名 → 0x418F5C 写盘；读取执行 0x41888D，失败提示 0x48B5B8。槽位 0x14 为自动存档，文件名编号为 0。战斗记录命名使用 0x48B531/0x48B54B 的 S_/R_ 模板。",
+  "limitations": [
+    "0x418C34/0x418F5C/0x41888D/0x41800D 的内部实现未展开。",
+    "存档文件内部格式（头部、校验、压缩）未解析。",
+    "0x49773C/0x497740 的下游消费者未展开。",
+    "6.6 的保存 UI 内部差异未逐指令对齐。",
+    "未运行游戏对照。"
+  ]
+}

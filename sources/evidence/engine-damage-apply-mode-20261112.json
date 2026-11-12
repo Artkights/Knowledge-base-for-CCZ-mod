@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "analysis": "damage-apply-and-battle-mode-bytes",
+  "date": "2026-11-12",
+  "method": "反汇编 0x411072 伤害落点、0x42112A/0x421118 目标检查、0x426B33 状态检查；枚举 0x500E9A/0x500E9B/0x505EFC 引用；三基底引用计数与函数哈希对比。仅读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {"version": "6.4", "label": "洗隋", "engine": "基底/洗隋/Ekd5.exe", "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"},
+    {"version": "6.5", "label": "加强版6.5未加密版", "engine": "基底/加强版6.5未加密版/Ekd5.exe", "engineSha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"},
+    {"version": "6.6", "label": "复刻版6.6山贼", "engine": "基底/复刻版6.6山贼/Ekd5.exe", "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"}
+  ],
+  "globals": {
+    "mode9A": "0x500E9A（byte，初始 0，值域 0/1/2）",
+    "mode9B": "0x500E9B（byte，初始 0）",
+    "damageFlag": "0x505EFC（byte，伤害结算期间置 1）",
+    "init0": "0x44EA34 mov word[0x500E9A],0；0x41D69B mov byte[0x500E9A],1；0x4516FC inc byte[0x500E9A]"
+  },
+  "sites": {
+    "apply": {
+      "va": "0x411072",
+      "callSite": "0x43BE1B（ecx=伤害，栈参 mode/target/source）",
+      "code": "push 0x4B5DF0; 0x436392(0x16, byte[0x500E9B], source)；若返回 0 再查 0x42112A/0x421118；若 byte[0x500E9A]==1 或 0x426B33(target)!=0 → al=0x28；mode!=1 时 damage += damage*0x28/100；否则走 0x42230E/0x410E75/0x435884/0x459380 的位置/方向/特效路径；mode!=0 时置 0x505EFC=1，0x4594EA 结算，再 0x4223A9 收尾并恢复 0x505EFC=0",
+      "note": "0x425AD9 为乘除 100；0x28=40 为额外伤害百分比"
+    },
+    "targetCheckA": {"va": "0x42112A", "code": "目标检查，返回 al==1 时跳过 0x421118"},
+    "targetCheckB": {"va": "0x421118", "code": "目标检查，返回 0 时走正常路径"},
+    "stateCheck": {"va": "0x426B33", "code": "目标状态检查；非 0 时触发 +40% 分支"},
+    "mode9AReads": ["0x403D6C", "0x405EB8", "0x4064FB", "0x406570", "0x406B12", "0x408E3C", "0x4110AB", "0x42ABB6", "0x438B13", "0x43B60E", "0x4516FC", "0x465FE0"],
+    "mode9BReads": ["0x405A00", "0x406B76", "0x411084", "0x417AA8", "0x4214E3", "0x4363FD", "0x465FD0"],
+    "flag505EFC": ["0x4103D1", "0x411135", "0x41117A", "0x416036", "0x41B88D", "0x4223AC", "0x4223D0", "0x422805", "0x422824", "0x424B0D", "0x424B27", "0x425EAB", "0x425ECA", "0x4527CB", "0x4527E1"]
+  },
+  "crossBase": {
+    "refs": {"9A": {"6.4": 26, "6.5": 24, "6.6": 23}, "9B": {"6.4": 11, "6.5": 11, "6.6": 11}},
+    "hashes": {
+      "apply411072": {"6.4": "55439F2FDEFBE385", "6.5": "DBB520B80026958A", "6.6": "E16BC838C17AC997"},
+      "chk42112A": {"6.4": "881F12D732EBCDD2", "6.5": "881F12D732EBCDD2", "6.6": "1F281DD9D6370DA3"},
+      "chk421118": {"6.4": "20C7F99480AA3CA2", "6.5": "20C7F99480AA3CA2", "6.6": "4FEA7C1A8F6B62F7"},
+      "state426B33": {"6.4": "C533752D5A270DEF", "6.5": "7EBB3D8EE8B7E968", "6.6": "7EBB3D8EE8B7E968"}
+    }
+  },
+  "conclusion": "0x411072 是物理/策略伤害的落点函数：ecx 传入伤害，栈参 mode、目标、来源。若 byte[0x500E9A]==1 或目标状态检查 0x426B33 非 0，则追加 40% 伤害；mode!=0 时置 0x505EFC=1，调用 0x4594EA 结算并恢复标志。0x500E9A 为战斗模式/伤害加成开关（0/1/2，初始 0，6.5 共 24 处引用），0x500E9B 为相邻的战斗表现开关（11 处引用）。0x43B600 在 byte[0x500E9A]==2 时直接返回 100，说明该字节同时控制暴击旁路。",
+  "limitations": [
+    "0x500E9A 的 0/1/2 最终命名未由界面文案证明。",
+    "0x42112A/0x421118/0x426B33 的目标检查语义未展开。",
+    "0x436392 的 0x16 参数与 0x500E9B 关系未命名。",
+    "未运行游戏对照。"
+  ]
+}

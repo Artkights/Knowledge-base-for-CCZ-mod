@@ -1,0 +1,77 @@
+{
+  "id": "src.research.engine-training-state-save-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "练武场上下文 0x500AA0 保存/恢复字段：+0x0C/+0x12/+0x14/+0x1A/+0x1C（6.6 0x500AE0）",
+  "bases": [
+    {
+      "name": "6.4 洗隋",
+      "path": "基底/洗隋/Ekd5.exe",
+      "sha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8"
+    },
+    {
+      "name": "6.5 加强版未加密",
+      "path": "基底/加强版6.5未加密版/Ekd5.exe",
+      "sha256": "3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED"
+    },
+    {
+      "name": "6.6 复刻版山贼",
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    }
+  ],
+  "method": "capstone 反汇编 + 字节模式跨基底定位（c7 80 80 0c 00 00 ff ff 3c 00）+ 调用点追踪",
+  "findings": [
+    {
+      "id": "save-fn",
+      "claim": "进入练武场时由 0x45165F（6.4/6.5）或 0x40ADA3（6.6 重定位）保存战场状态到练武场上下文：+0x0C=dword[engine+0xC80] 后写 0x003CFFFF；+0x1A=word[engine+0x642] 后写 0xFFFF；+0x12=word[0x4B422C] 后写 0x0104（4×1）；+0x1C=地图记录指针（初始化时取 [0x4CEA08]），并把 0x4B4250+4/+8 存入记录 +0x1B/+0x1F 后清零。",
+      "evidence": [
+        "6.5 0x451686 call 0x401669; 0x45168B mov ecx,0x500AA0; 0x451690 mov edx,[eax+0xC80]; 0x451696 mov [ecx+0xC],edx; 0x451699 mov dword[eax+0xC80],0x003CFFFF",
+        "0x4516A3 add eax,0x642; 0x4516A8 mov dx,[eax]; 0x4516AB mov [ecx+0x1A],dx; 0x4516AF mov word[eax],0xFFFF",
+        "0x4516B4 mov dx,word[0x4B422C]; 0x4516BB mov [ecx+0x12],dx; 0x4516BF mov word[0x4B422C],0x0104",
+        "0x4516D4 mov edx,[ecx+0x1C]; 0x4516D7 mov ecx,[0x4B4250+4]; 0x4516DA mov [edx+0x1B],ecx; 0x4516E0 mov [edx+0x1F],ecx；随后 0x4516E5/0x4516E8 清零 0x4B4250+4/+8",
+        "6.6 同构：0x40ADA3..0x40ADFA，上下文基址改为 0x500AE0；6.4 与 6.5 同址同体（0x45165F 起）"
+      ]
+    },
+    {
+      "id": "restore-fn",
+      "claim": "退出练武场时由对话框过程 0x4207B2 在消息 2（WM_DESTROY）分支调用 0x41D27A 恢复：+0x0C → [engine+0xC80]，+0x1A → word[engine+0x642]，+0x12 → word[0x4B422C]，记录 +0x1B/+0x1F → 0x4B4250+4/+8；并调 0x40762F(0x4A7B20,0x4A8660,缓冲A,缓冲B) 恢复字符串配置（6.5 缓冲 A/B=0x500B84/0x500AFC；6.6=0x500B40/0x500B10）。",
+      "evidence": [
+        "0x4207C4 mov eax,[ebp+0xC]; 0x4207C7 cmp eax,2; 0x4207CA jne ...; 0x4207DB call 0x41D27A",
+        "0x41D27D..0x41D291 push 0x4A7B20,0x4A8660,0x500B84,0x500AFC; call 0x40762F",
+        "0x41D296 call 0x401669; 0x41D29B mov ecx,0x500AA0; 0x41D2A0 mov edx,[ecx+0xC]; 0x41D2A3 mov [eax+0xC80],edx",
+        "0x41D2A9 mov dx,[ecx+0x1A]; 0x41D2AD mov [eax+0x642],dx; 0x41D2B4 mov dx,[ecx+0x12]; 0x41D2B8 mov [0x4B422C],dx",
+        "0x41D2BF mov edx,[ecx+0x1C]; 0x41D2C7 mov ecx,[edx+0x1B]; 0x41D2CA mov [0x4B4250+4],ecx; 0x41D2CD mov ecx,[edx+0x1F]; 0x41D2D0 mov [0x4B4250+8],ecx",
+        "6.6 0x41D27A 同址，仅上下文基址 0x500AE0 与缓冲 0x500B40/0x500B10 不同"
+      ]
+    },
+    {
+      "id": "window-handle",
+      "claim": "+0x14 是练武场窗口句柄缓存：0x40B3A6 在 byte[0x505FDC]!=0 且 dword[0x500AA0+0x14]!=0 时以它为窗口句柄，否则回退 GetActiveWindow（IAT 0x486260）。",
+      "evidence": [
+        "0x40B3A9 cmp byte[0x505FDC],0; 0x40B3B2 mov ecx,0x500AA0; 0x40B3B7 mov eax,[ecx+0x14]; 0x40B3BA test eax,eax; 0x40B3BC jne 0x40B3C4; 0x40B3BE call [0x486260]",
+        "IAT 0x486260 = USER32.GetActiveWindow"
+      ]
+    },
+    {
+      "id": "init-args",
+      "claim": "0x418F05 初始化：+0x00=eax（人物记录指针）、+0x04=arg8、+0x08=arg12（0x40A56F 以 byte[+8]+5 作长度参数）、+0x09..+0x0C 写 edx 四字节且 +0x0A 强制 1、+0x1C=[0x4CEA08]、+0x10=byte[0x505FDC]、+0x11=byte[0x500D8F]，随后 DialogBoxParamA(模板 0x14A=330)。+0x04/+0x08 的业务名仍未定。",
+      "evidence": [
+        "0x418F08 mov [ecx],eax; 0x418F0D mov [ecx+4],eax(arg8); 0x418F13 mov [ecx+8],eax(arg12)",
+        "0x418F16 mov [ecx+9],edx（4 字节，覆盖 +0x09..+0x0C）; 0x418F1C mov byte[ecx+0xA],1",
+        "0x40A56F movzx eax,byte[ecx+8]; 0x40A573 add eax,5; 0x40A576 mov [ebp-0x14],eax",
+        "0x418F50 call [0x4862A0]=DialogBoxParamA"
+      ]
+    }
+  ],
+  "corrections": [
+    "0x500AA0+0x0C/+0x12/+0x1A 不是普通计数，而是进入练武场前的战场状态备份（尺寸 dword、网格 word、engine+0x642 word），由 0x41D27A 在 WM_DESTROY 恢复。",
+    "6.6 的保存函数不在 0x45165F（该区为 NOP），而是重定位到 0x40ADA3 并改用 0x500AE0。"
+  ],
+  "limitations": [
+    "+0x04/+0x08 的业务名称未定。",
+    "+0x09 的 dword 写入与 +0x0C 备份区重叠（+0x0C 共用一字节），语义需运行期确认。",
+    "0x40762F 的字符串恢复细节未展开。",
+    "未运行游戏对照。"
+  ]
+}

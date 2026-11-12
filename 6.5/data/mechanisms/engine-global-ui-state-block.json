@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.global-ui-state-block.3ef7",
+      "title": "UI/战斗/插件全局状态区 0x500AAC..0x500ADF 与 6.5 字段映射",
+      "aliases": [
+        "global ui state block",
+        "UI 全局状态区",
+        "0x500AAC",
+        "0x500ADB",
+        "0x500AC0",
+        "0x500ABC",
+        "0x500ADE"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "6.6 0x500AAC..0x500ADF 是 UI/战斗/插件共享的紧凑全局区：0x500AAC 列表框项索引（SendMessageA LB_GETITEMDATA 0x199）、0x500ABC CmdIcon.dll 模块句柄（LoadLibraryA 结果）、0x500AC0 当前战场单位指针、0x500AC8 行动单位指针、0x500ACD 当前动作码、0x500ACE 重入计数、0x500AD2 UI 命令 ID（WndProc WM_COMMAND）、0x500AD3 伤害应用标志、0x500AD7 UI 模式、0x500AD8 输入状态字、0x500ADC/0x500ADD 两位十进制数、0x500ADA 有效物品计数、0x500ADE AutoDll.ini 启用标志、0x500ADB Z 键热补丁开关；0x500AE0 为 0x90 字节 UI/绘制状态结构。字段在 6.5 分散于 0x4CE74C..0x4CE7FF，逐字段对应而非等距搬移。",
+      "constants": [
+        "0x500AAC", "0x500AB0", "0x500AB4", "0x500AB8", "0x500ABC",
+        "0x500AC0", "0x500AC8", "0x500ACD", "0x500ACE", "0x500ACF",
+        "0x500AD0", "0x500AD1", "0x500AD2", "0x500AD3", "0x500AD4",
+        "0x500AD6", "0x500AD7", "0x500AD8", "0x500ADA", "0x500ADB",
+        "0x500ADC", "0x500ADD", "0x500ADE", "0x500ADF", "0x500AE0",
+        "0x4CE74C", "0x4CE75C", "0x4CE76C", "0x4CE77C", "0x4CE77D",
+        "0x4CE77E", "0x4CE77F", "0x4CE78C", "0x4CE78E", "0x4CE78F",
+        "0x4CE79C", "0x4CE79E", "0x4CE79F", "0x4CE7AC", "0x4CE7BC",
+        "0x4CE7BE", "0x4CE7CC", "0x4CE7DC", "0x4CE7EC", "0x4CE7FC",
+        "0x4CE7FD", "0x4CE7FE", "0x4CE7FF", "0x5005A0", "0x500AA0",
+        "0x4B5DF0", "0x500E0C"
+      ],
+      "identity": "以同一指令地址的全局操作数为对应依据（如 0x401224 写 0x500AD2 / 0x4CE77E；0x410A0B 写 0x500AB0 / 0x4CE74C；0x47531B 写 0x500ABC / 0x4CE7AC），而非地址平移。6.6 0x500AC0 合并了 6.5 的 0x4CE7CC（读取）与 0x4CE7DC（setter 写入）两个缓存。0x500ACD 在 6.4 为 0x5005A0，6.5 改为栈上结构。",
+      "siteAddresses": {
+        "block66": "0x500AAC",
+        "block65Low": "0x4CE74C",
+        "block65High": "0x4CE7FF",
+        "listIndex": "0x500AAC",
+        "actionParam": "0x500AB0",
+        "targetCache": "0x500AB4",
+        "hintWord": "0x500AB8",
+        "cmdIconHandle": "0x500ABC",
+        "currentUnitPtr": "0x500AC0",
+        "actingUnitPtr": "0x500AC8",
+        "currentActionCode": "0x500ACD",
+        "actionCode64": "0x5005A0",
+        "reentryCounter": "0x500ACE",
+        "savePage": "0x500ACF",
+        "modalFlag": "0x500AD0",
+        "dialogResult": "0x500AD1",
+        "uiCommandId": "0x500AD2",
+        "damageApplyFlag": "0x500AD3",
+        "sideBytePair": "0x500AD4",
+        "uiMode": "0x500AD7",
+        "inputStateWord": "0x500AD8",
+        "validItemCount": "0x500ADA",
+        "hotpatchToggle": "0x500ADB",
+        "decimalTens": "0x500ADC",
+        "decimalUnits": "0x500ADD",
+        "autoDllFlag": "0x500ADE",
+        "uiStateStruct": "0x500AE0",
+        "uiStateStruct65": "0x500AA0",
+        "currentUnitStruct": "0x4B5DF0",
+        "busyGuard": "0x500E0C"
+      },
+      "limitations": [
+        "0x500AD6/0x500ADF 仅见计数用法，业务名称未定。",
+        "0x500AD8 的 0x0301 哨兵只证明是双字节状态，两位含义未定。",
+        "0x500AE0 结构仅确认 +0x08/+0x11 两个字段。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.anchor-relocation-66.3ef7",
+        "mechanism.65.item-record-fields.3ef7",
+        "mechanism.65.save-load-constants.3ef7",
+        "mechanism.65.damage-apply-mode.3ef7",
+        "mechanism.65.battle-unit-table.3ef7",
+        "mechanism.65.runtime-character-accessors.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-global-ui-state-block-20261112"
+      ]
+    }
+  ]
+}

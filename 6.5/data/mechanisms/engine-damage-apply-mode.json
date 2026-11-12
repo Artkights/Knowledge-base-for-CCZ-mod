@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.damage-apply-mode.3ef7",
+      "title": "伤害落点 0x411072 与战斗模式字节 0x500E9A/0x500E9B",
+      "aliases": [
+        "0x411072",
+        "0x500E9A",
+        "0x500E9B",
+        "0x505EFC",
+        "伤害落点",
+        "40%伤害"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x411072 以 ecx 接收伤害、栈参 mode/目标/来源；若 byte[0x500E9A]==1 或 0x426B33(目标)!=0，追加 40% 伤害；mode!=0 时置 0x505EFC=1 并调用 0x4594EA 结算。0x500E9A 为战斗模式/伤害加成开关（0/1/2，初始 0），0x500E9B 为战斗表现开关（11 处引用）。",
+      "constants": [
+        "0x500E9A",
+        "0x500E9B",
+        "0x505EFC",
+        "0x28",
+        "0x64",
+        "0x4B5DF0"
+      ],
+      "identity": "0x42112A/0x421118 在 6.4/6.5 同哈希；0x426B33 在 6.5/6.6 同哈希；0x411072 三基底均不同。",
+      "limitations": [
+        "0x500E9A 的 0/1/2 命名未由文案证明。",
+        "0x42112A/0x421118/0x426B33 语义未展开。",
+        "0x436392 的 0x16 参数未命名。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.physical-level-table.3ef7",
+        "mechanism.65.physical-range-correction.3ef7",
+        "mechanism.65.crit-combo-mode.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-damage-apply-mode-20261112",
+        "src.ccz65.3890.ekd5"
+      ],
+      "siteAddresses": {
+        "apply": "0x411072",
+        "callSite": "0x43BE1B",
+        "mode9A": "0x500E9A",
+        "mode9B": "0x500E9B",
+        "damageFlag": "0x505EFC",
+        "targetCheckA": "0x42112A",
+        "targetCheckB": "0x421118",
+        "stateCheck": "0x426B33",
+        "settle": "0x4594EA"
+      }
+    }
+  ]
+}

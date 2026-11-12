@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.text-buffers-save-header.3ef7",
+      "title": "存档头文本缓冲 0x4A1128（0x16）/0x4B0758 与脚本解析 0x417DF6",
+      "aliases": [
+        "text buffers",
+        "存档头字符串",
+        "0x4A1128",
+        "0x4B0758",
+        "0x417DF6"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x4A1128 是 0x16（22 字节）脚本文本缓冲：启动序列 0x404C80 中 0x47FD13(0x4A1128,0,0x16) 清零；0x417DF6 解析文本（'*' 控制码、'\\n&' 结束、逐字符写入）。0x4B0758 是另一段 UI 文本缓冲（0x4125BB→0x47622D 绘制链）。保存区块B 的 +0x005 与 +0x01B 分别用 0x47FC7D(strcpy) 复制这两个缓冲，因此存档保留当时的消息文本。",
+      "constants": [
+        "0x4A1128", "0x4B0758", "0x417DF6", "0x4125BB", "0x47622D", "0x404C80", "0x47FD13", "0x47FC7D", "0x16", "0x2A", "0x0A", "0x26"
+      ],
+      "identity": "0x47FD13 的 memset 长度 0x16 与区块B +0x005..+0x01A 的 0x16 字节区间吻合；0x417DF6 的 '\\n&'（0x0A 0x26）结束判定与 0x16 上限共同界定该字符串。",
+      "siteAddresses": {
+        "bufferA": "0x4A1128",
+        "bufferB": "0x4B0758",
+        "parser": "0x417DF6",
+        "memsetInit": "0x404C80",
+        "draw": "0x47622D",
+        "saveCopyA": "0x405427",
+        "saveCopyB": "0x40543B"
+      },
+      "limitations": [
+        "0x4B0758 容量与内容未定。",
+        "0x417DF6 控制码集合未穷举。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.save-file-format.3ef7",
+        "mechanism.65.dialog-framework.3ef7",
+        "mechanism.65.script-context-caches.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-text-buffers-save-header-20261112"
+      ]
+    }
+  ]
+}

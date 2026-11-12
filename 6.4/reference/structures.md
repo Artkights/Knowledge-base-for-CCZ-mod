@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.4/data/structures/data-manager-physical-tables.json`、`6.4/data/structures/engine-effect-assignment.json`
+结构化事实来源：`6.4/data/structures/data-manager-physical-tables.json`、`6.4/data/structures/engine-effect-assignment.json`、`6.4/data/structures/strategy-records.json`
 
 ## 64-xisui-v1 兵种说明（detailed-job-description 物理表）
 
@@ -3106,3 +3106,30 @@ ID: `struct.64.xisui.active-effect-assignment`；状态: `canonical`；证据: `
 | `character_3` | `0x04` | 2 | `UInt16` | 人物槽3 |
 | `job_1` | `0x06` | 1 | `UInt8` | 唯一兵种槽；0..79详细兵种，255为空；80..254异常占用保留 |
 | `shared_value` | `0x07` | 1 | `UInt8` | 整行共享N，人物命中和兵种命中读取同一字节 |
+
+## 策略记录（0x61 字节，6.4 洗隋复核）
+
+ID: `struct.64.strategy-record.9112`；状态: `canonical`；证据: `static-verified`
+
+步长: `0x61` (97)
+
+索引公式: `文件：Data.e5 + 0xB204 + strategy_id * 0x61 + field_offset（0 <= id < 144）`
+
+画像：`profile.ccz64.xisui.9112`；记录数：`68`。
+
+- 0x40D73C 加载循环重排字段：文件 +0x0B 类型→运行时 +0x0F；文件 +0x0C 对象→运行时 +0x0B；文件 +0x0D 范围→运行时 +0x0C；文件 +0x0E 穿透→运行时 +0x0D；文件 +0x0F MP→运行时 +0x0E；图标/学习等级不变。
+- data 管理器按文件偏移编辑是正确的；任何直接读 0x4A3E77 的工具必须使用 runtimeOffset，不能套用文件偏移。
+- 6.4 启动加载器 0x42B182 同样只初始化 0x44=68 行到 0x4A3E77。
+- 6.4 的 0xA2CE0 全 0x90，无代码引用；Profile 已把 strategy-extension/terrain 标为 Unavailable。
+- 字段偏移与 6.5 3EF7 一致。
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `名称` | `0x00` | 11 | `fixed-string` | 文件 0x00..0x0A 共 11 字节；运行时 0x00..0x09 共 10 字节 +0x0A NUL。0x40D73C 循环每次 memcpy 10 字节、dest+=0x0A、src+=0x0B、写 NUL。 |
+| `策略类型` | `0x0B` | 1 | `uint8` | 文件 +0x0B 在运行时搬到 +0x0F；0x44270C 读取运行时 +0x0F。0x425AC7 读取的是运行时 +0x0B（施展对象），不是类型。 |
+| `施展对象` | `0x0C` | 1 | `uint8` | 文件 +0x0C 在运行时搬到 +0x0B；0x425AC7 读取；0x420F19 经验函数按 2/1 分支；代码/数据只支持 0/1/2。 |
+| `施法范围` | `0x0D` | 1 | `uint8` | 文件 +0x0D 在运行时搬到 +0x0C；0x418C93/0x401DFF 作为范围/动画模板等级读取；不是位掩码。 |
+| `穿透范围` | `0x0E` | 1 | `uint8` | 文件 +0x0E 在运行时搬到 +0x0D；0x425AD0 读取的是运行时 +0x0E（MP），不是穿透。运行时 +0x0D 的专属消费者尚未唯一隔离；0x425AF0 是通用 +0x0D 位测试函数。 |
+| `策略消耗` | `0x0F` | 1 | `uint8` | 文件 +0x0F 在运行时搬到 +0x0E；0x425AD0 读取；KB fn.65.strategy-mp-cost 的 base=+0x0E 结论正确。 |
+| `策略图标` | `0x10` | 1 | `uint8` | 文件与运行时同为 +0x10；编辑器按 Mtem.e5 / Mgcicon.dll 预览；引擎专属消费者未确认。 |
+| `兵种学习等级` | `0x11` | 80 | `uint8[80]` | 文件与运行时同为 +0x11..+0x60，80 项；0x40D77A 把源 +0x11 的 0x50 字节复制到运行时 +0x11。 |

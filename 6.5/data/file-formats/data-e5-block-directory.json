@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "entityType": "file-format",
+  "profile": "profile.ccz65.unencrypted.3890.scan",
+  "entries": [
+    {
+      "id": "format.65.data-e5-block-directory.3890",
+      "title": "DATA.E5 十分块目录与块 5 双子表",
+      "aliases": [
+        "DATA.E5 块表",
+        "Data.e5 block directory",
+        "0x110 目录"
+      ],
+      "versions": [
+        "6.5"
+      ],
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "magic": null,
+      "endianness": "目录字段 big-endian；负载 little-endian",
+      "header": {
+        "directoryOffset": "0x110",
+        "entryCount": 10,
+        "directoryEnd": "0x188",
+        "dataOffset": "0x18C",
+        "trailer": "0x188..0x18B = 00 00 00 00"
+      },
+      "directory": {
+        "entrySize": 12,
+        "entryNumberBase": 1,
+        "trailerLengths": [
+          4
+        ],
+        "fourByteTrailerValue": "00000000"
+      },
+      "entryFields": [
+        {
+          "name": "stored_length",
+          "offset": "0x0",
+          "width": 4,
+          "type": "uint32be",
+          "meaning": "封包中实际字节数"
+        },
+        {
+          "name": "decoded_length",
+          "offset": "0x4",
+          "width": 4,
+          "type": "uint32be",
+          "meaning": "解码后字节数"
+        },
+        {
+          "name": "payload_offset",
+          "offset": "0x8",
+          "width": 4,
+          "type": "uint32be",
+          "meaning": "相对文件开头的负载偏移"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 0,
+          "offset": "0x0018C",
+          "length": "0x8000",
+          "content": "未命名大表",
+          "loaderTarget": "[0x496F60]"
+        },
+        {
+          "index": 1,
+          "offset": "0x0818C",
+          "length": "0x0A28",
+          "content": "104×0x19 记录",
+          "loaderTarget": "0x4A1140"
+        },
+        {
+          "index": 2,
+          "offset": "0x08BB4",
+          "length": "0x1200",
+          "content": "未命名",
+          "loaderTarget": "[0x496F60]"
+        },
+        {
+          "index": 3,
+          "offset": "0x09DB4",
+          "length": "0x0AF0",
+          "content": "兵种 80×0x23",
+          "loaderTarget": "0x4A2A27"
+        },
+        {
+          "index": 4,
+          "offset": "0x0A8A4",
+          "length": "0x0960",
+          "content": "未命名",
+          "loaderTarget": "[0x496F60]"
+        },
+        {
+          "index": 5,
+          "offset": "0x0B204",
+          "length": "0x3CA0",
+          "content": "策略 144×0x61 + 必杀 97×16",
+          "loaderTarget": "[0x496F60]"
+        },
+        {
+          "index": 6,
+          "offset": "0x0EEA4",
+          "length": "0x00BC",
+          "content": "小表",
+          "loaderTarget": null
+        },
+        {
+          "index": 7,
+          "offset": "0x0EF60",
+          "length": "0x0020",
+          "content": "小表",
+          "loaderTarget": null
+        },
+        {
+          "index": 8,
+          "offset": "0x0EF80",
+          "length": "0x0020",
+          "content": "小表",
+          "loaderTarget": null
+        },
+        {
+          "index": 9,
+          "offset": "0x0EFA0",
+          "length": "0x0023",
+          "content": "小表",
+          "loaderTarget": null
+        }
+      ],
+      "semantics": [
+        "容器总长 0xEFC3；块 9 末尾 0xEFA0+0x23 恰等于文件长度。",
+        "块 1 由 0x4010B0 解出到 0x4A1140，长度 2600 = 104×0x19。",
+        "块 5 前段为策略表（144×0x61，0xB204..0xE894），尾段为必杀表（97×16，0xE894..0xEEA4）。",
+        "0xE894 不是独立块起点，而是块 5 内部拆分点；工具按文件绝对偏移写入仍然有效。",
+        "块 5 由 0x41B834 载入并循环处理 144 条策略，再把 0x610 字节必杀段复制到 0x4A7510。",
+        "0x511800 的 80×16 表是另一张运行时必杀分配表，与本文件的 97×16 必杀记录不是同一实体。"
+      ],
+      "relations": [
+        "format.e5.indexed-archive",
+        "global.65.data-e5-block1-buffer.3890",
+        "struct.65.data-e5-fatal-record",
+        "global.65.item-table",
+        "global.65.fatal-table"
+      ],
+      "sourceRefs": [
+        "src.ccz65.3890.datae5",
+        "src.ccz.e5-parser",
+        "src.local.round101.report"
+      ]
+    }
+  ]
+}

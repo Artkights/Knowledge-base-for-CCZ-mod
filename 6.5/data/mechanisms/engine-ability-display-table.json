@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.ability-display-table.3ef7",
+      "title": "人物能力显示值跳转表 0x430000（6.5/6.4 为 0x46902B）",
+      "aliases": [
+        "ability display table",
+        "能力显示表",
+        "0x430000",
+        "0x46902B",
+        "0x40715A",
+        "0x4072BB"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x430000（6.5/6.4 为 0x46902B）是 8 项人物能力显示值计算跳转表，目标 0x40715A/718F/71C4/71F9/722E/7263/728F/72BB 三基底完全一致。索引 0..4 读取人物记录 +0x11/+0x13/+0x15/+0x17/+0x19 的五个 word，加上装备加成（0x407C29/0x407C35）与额外加成（0x436E02/0x436DE1）后封顶 0x270F（9999）；索引 5/6 计算 +0x1B/+0x1F 两个 word 资源上限（封顶 0xFFFF/0x270F）；索引 7 以 +0x2B 兵种 ID 计算兵种相关值。状态对话框在 0x45C97E 循环 0..4，以 SetDlgItemInt(0x400+idx, value) 显示五项能力。",
+      "constants": [
+        "0x430000", "0x46902B",
+        "0x40715A", "0x40718F", "0x4071C4", "0x4071F9",
+        "0x40722E", "0x407263", "0x40728F", "0x4072BB",
+        "0x47FA89", "0x405B86", "0x414D81", "0x43C5A4",
+        "0x43C4C0", "0x43C4D3", "0x436E02", "0x436DE1",
+        "0x407C29", "0x407C35", "0x42518F",
+        "0x270F", "0xFFFF", "0x7F", "0x32", "0x19", "0x400", "0x505FA4", "0x505F38"
+      ],
+      "identity": "表项 dword 逐项相同（8/8）；处理器结构相同但内部常量与辅助函数地址不同。记录字段偏移 +0x11+idx*2 在 0x43C4C0/0x43C4D3 两个版本中完全一致。",
+      "siteAddresses": {
+        "table66": "0x430000",
+        "table65": "0x46902B",
+        "table64": "0x46902B",
+        "handler0": "0x40715A",
+        "handler1": "0x40718F",
+        "handler2": "0x4071C4",
+        "handler3": "0x4071F9",
+        "handler4": "0x40722E",
+        "handler5": "0x407263",
+        "handler6": "0x40728F",
+        "handler7": "0x4072BB",
+        "clampMin": "0x47FA89",
+        "bonus66": "0x405B86",
+        "bonus65": "0x414D81",
+        "abilityRead66": "0x43C4C0",
+        "abilityRead65": "0x43C4D3",
+        "bonus66Extra": "0x43C5A4",
+        "extra66": "0x436E02",
+        "extra65": "0x436DE1",
+        "equip66": "0x407C29",
+        "equip65": "0x407C35",
+        "scoreWrapper": "0x42518F",
+        "uiSite": "0x45C97E",
+        "uiControlBase": "0x400",
+        "growthFlag": "0x505FA4",
+        "percentFlag": "0x505F38"
+      },
+      "limitations": [
+        "五项能力的业务名称（武力/智力/统率/敏捷/运气）按字段顺序与显示位置推断，未找到命名表。",
+        "+0x1B/+0x1F 定为体力/策略值上限为候选。",
+        "0x43C5A4 的 0x42518F(0x81, idx+0x49, 1, 0) 参数语义未完全定名。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.runtime-character-accessors.3ef7",
+        "mechanism.65.equipment-slot-bound.3ef7",
+        "mechanism.65.item-record-fields.3ef7",
+        "mechanism.65.character-adaptation-table.3ef7",
+        "mechanism.65.target-direction-score.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-ability-display-table-20261112"
+      ]
+    }
+  ]
+}

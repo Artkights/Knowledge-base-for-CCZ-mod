@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.strategy-damage-direction-weather.3ef7",
+      "title": "策略伤害的方向/天气/地形百分比修正",
+      "aliases": [
+        "方向修正",
+        "天气修正",
+        "地形修正",
+        "策略伤害 25%",
+        "策略伤害 40%"
+      ],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "策略伤害在兵种系第 6 行百分比之后追加方向/天气/地形百分比：方向码 0 时兵种系 0x1E +40、地形码 2/0x17 +25；方向码 1/3/0x26 时天气 ID>=2 +25；方向码 2 时另一侧兵种系==7 +25；最终 damage=damage*累计百分比/100。",
+      "getters": {
+        "direction": "0x44270C = byte[unit+0xF]（三基底字节一致）",
+        "weather": "0x41553B = table[category*6+weather+0x48E100]（三基底字节一致）",
+        "terrain": "0x435991([ebp+8]+6)"
+      },
+      "modifier": {
+        "va": "0x43C19F..0x43C1E8",
+        "add40": "series == 0x1E",
+        "add25": ["terrain == 2", "terrain == 0x17", "weather >= 2", "series(other) == 7"],
+        "apply": "damage = damage * [ebp-0xC] / 100 (0x425AD9)"
+      },
+      "constants": [
+        {"value": "0x28", "role": "兵种系 0x1E 的 +40 百分比"},
+        {"value": "0x19", "role": "方向/天气/地形条件的 +25 百分比"},
+        {"value": "2 / 0x17", "role": "触发 +25 的地形码"},
+        {"value": "2", "role": "天气 ID 阈值"},
+        {"value": "0x1E / 7", "role": "触发加值的兵种系 ID"}
+      ],
+      "versionDifferences": {
+        "getters": "0x44270C/0x41553B 三基底一致",
+        "modifierBlock": "6.4 与 6.5/6.6 不同"
+      },
+      "limitations": [
+        "unit+0xF 字段名未最终确定。",
+        "地形码/天气 ID/兵种系名称未映射。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.job-series-attribute-matrix.3ef7",
+        "mechanism.65.turn-action-weather-state.3ef7",
+        "mechanism.65.movement-terrain-and-map-bounds.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-strategy-direction-weather-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}

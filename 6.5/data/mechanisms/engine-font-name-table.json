@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.font-name-table.3ef7",
+      "title": "6.6 字体名称表 0x500030 与 CreateFontA 包装 0x41EBA3",
+      "aliases": [
+        "font name table",
+        "字体名称表",
+        "0x500030",
+        "0x41EBA3",
+        "宋体",
+        "微软雅黑",
+        "GB2312_CHARSET"
+      ],
+      "versions": [
+        "6.4",
+        "6.5",
+        "6.6"
+      ],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "6.6 在 0x500030 新增 5 项字体名称表（16 字节/项，GBK 内联字符串）：0 宋体、1 楷体、2 黑体、3 仿宋、4 微软雅黑；6.5 同址为指针表、6.4 为小值数据。0x41EBA3 包装 CreateFontA：nHeight=[ebp+8]、nWidth=[ebp+0xC]、nWeight=[ebp+0x10]、lpszFace=[ebp+0x14]，字符集固定 0x86（GB2312_CHARSET）、质量 4（PROOF_QUALITY）、其余 0。字重常量 0x190=400、0x258=600、0x2BC=700；字高统一 MulDiv(pt, GetDeviceCaps(LOGPIXELSY=0x5A), 72)。0x41EB48 以 byte[unit+0x19]*0x10+0x500030 选择字体。",
+      "constants": [
+        "0x500030", "0x41EBA3", "0x41EB48", "0x486088",
+        "0x41BF8B", "0x41E9B2", "0x42A280", "0x46C9B9", "0x47CC20",
+        "0x86", "0x04", "0x190", "0x258", "0x2BC",
+        "0x5A", "0x48", "0x3C", "0x10", "0x4B9E04"
+      ],
+      "identity": "字体名按 GBK 解码得到“宋体/楷体/黑体/仿宋/微软雅黑”，条目以 0x10 对齐；0x41EBA3 的 14 个 CreateFontA 参数可由压栈顺序与导入名逐项对应。",
+      "siteAddresses": {
+        "fontTable": "0x500030",
+        "entrySize": "0x10",
+        "font0": "宋体",
+        "font1": "楷体",
+        "font2": "黑体",
+        "font3": "仿宋",
+        "font4": "微软雅黑",
+        "createFontWrapper": "0x41EBA3",
+        "createFontImport": "0x486088",
+        "weightNormal": "0x190",
+        "weightSemiBold": "0x258",
+        "weightBold": "0x2BC",
+        "charset": "0x86",
+        "quality": "0x04",
+        "logPixelsY": "0x5A",
+        "fontSelectByUnit": "0x41EB48"
+      },
+      "limitations": [
+        "0x41EB48 中 byte[unit+0x19] 的业务字段名未定（0..4 字体索引）。",
+        "0x47CC20 的 CreateFont 结果 0x4B9E04 后续用途未追踪。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.arithmetic-immediates-census.3ef7",
+        "mechanism.65.battle-viewport-context.3ef7",
+        "mechanism.65.new-anchors-batch-66.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-font-name-table-20261112"
+      ]
+    }
+  ]
+}

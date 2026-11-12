@@ -1,0 +1,59 @@
+{
+  "id": "src.research.engine-4be006-dialog-flag-20261112",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "kind": "static-analysis-evidence",
+  "title": "6.6 0x4BE004/0x4BE006/0x4BE008 对话框暂存字：0x4BE006 为自动关闭标志，0x4793BB 打开模板 343「说明介绍」",
+  "bases": [
+    {
+      "name": "6.6 复刻版山贼",
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "sha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A"
+    }
+  ],
+  "method": "capstone 反汇编 0x46D0F8/0x4793BB + .api 段字节核对 + RT_DIALOG 343 解析",
+  "findings": [
+    {
+      "id": "flag-semantics",
+      "claim": "0x46D0F8 通用对话框过程以 [0x4BE006] 作为“自动关闭”计数：ecx=[0x4BE006]; inc ecx; 若结果非 0 走正常分派；若结果为 0 且消息==WM_INITDIALOG(0x110)，立即 SendMessageA(hwnd,0x591) 关闭对话框。",
+      "evidence": [
+        "0x46D116 mov edx,0x4BE000; 0x46D11B mov ecx,[edx+6]; 0x46D11E inc ecx; 0x46D11F jne 0x46D13A",
+        "0x46D121 cmp eax,0x110; 0x46D128..0x46D134 SendMessageA(hwnd,0x591,0,0)"
+      ]
+    },
+    {
+      "id": "setter",
+      "claim": "0x4793BB 在打开模板 0x157（RT_DIALOG 343「说明介绍」）前把 -1 写入 [0x4BE006]，对话框返回后再把 [0x4BE004] 与 [0x4BE008] 清 0。打开调用为 0x46D098(this,0x157,hwnd)。",
+      "evidence": [
+        "0x4793C1 mov ecx,0x4BE000; 0x4793C9 xor eax,eax; 0x4793CB dec eax; 0x4793CC mov [ecx+6],eax（-1）",
+        "0x4793D7 push hwnd; 0x4793DA push 0x157; 0x4793E2 call 0x46D098",
+        "0x4793E7 mov ecx,[ebp-0x20]; 0x4793EA xor eax,eax; 0x4793EC mov [ecx+4],eax; 0x4793EF mov [ecx+8],eax"
+      ]
+    },
+    {
+      "id": "trigger-and-resource",
+      "claim": "0x4793BB 由 0x4793AB 在对话框消息 0x5AA 时调用；RT_DIALOG 343 为 DIALOGEX 201×146「说明介绍」，3 控件：0x803「JiNegn Name」、0x804「Description」、2「确认」。",
+      "evidence": [
+        "0x4793A4 cmp eax,0x5AA; 0x4793AB push hwnd; 0x4793AE call 0x4793BB",
+        "dialog_resource(343)：title='说明介绍' items=3 rect=(0,0,201,146)",
+        "[00] id=0x0803 text='JiNegn Name'；[01] id=0x0804 text='Description'；[02] id=2 text='确认'"
+      ]
+    },
+    {
+      "id": "api-section-reuse",
+      "claim": ".api 段起始 0x4BE000 以 \"USER32.dll\" 开头，[+4]/[+6]/[+8] 三个 dword 在 6.6 被复用为对话框暂存字（0 与 -1），说明 DLL 名解析完成后该段字符串区可被当作暂存区写入。",
+      "evidence": [
+        "0x4BE000 字节：55 53 45 52 33 32 2e 64 6c 6c 00（\"USER32.dll\"）",
+        "0x4793CC 写 [+6]=-1；0x4793EC/EF 写 [+4]=0、[+8]=0"
+      ]
+    }
+  ],
+  "corrections": [
+    "『0x4BE006 结构（6.6 DlgProc 门控）』已定名：它是 0x46D0F8 的自动关闭标志位（-1 → 下一个 WM_INITDIALOG 立即发送 0x591 关闭）。"
+  ],
+  "limitations": [
+    "0x5AA 消息的来源与业务含义未定。",
+    "0x4BE004/0x4BE008 的业务用途未展开。",
+    "此复用是否与 .api 槽位解析时序冲突未运行期验证。",
+    "未运行游戏对照。"
+  ]
+}

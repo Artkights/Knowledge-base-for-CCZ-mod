@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz65.unencrypted.3ef7",
+  "entries": [
+    {
+      "id": "mechanism.65.ai-branch-7-12-scoring.3ef7",
+      "title": "AI 评分分支 7/8/9/10/11/12 的权重与阈值",
+      "aliases": ["AI branch 7", "AI branch 10", "AI branch 11", "AI branch 12"],
+      "versions": ["6.4", "6.5", "6.6"],
+      "profile": "profile.ccz65.unencrypted.3ef7",
+      "status": "canonical",
+      "evidence": "static-verified",
+      "summary": "分支 7/8/9：0x439CFE 为真 +50，策略 0x28/0x2B 追加 5/10；分支 10：属性比较 +6；分支 11：4 项位表/权重表最大 +5；分支 12：状态/策略 0x39/兵种 9/0/0x13 分支 +15。",
+      "branches": {
+        "7_8_9": {"va": "0x4399F1", "weight": 50, "extra": {"0x28": 5, "0x2B": 10}},
+        "10": {"va": "0x439AA6", "weight": 6, "job": 9},
+        "11": {"va": "0x4399AF", "weight": 5, "loop": 4},
+        "12": {"va": "0x439B21", "weight": 15, "strategy": "0x39", "jobs": [9, 0, 19]}
+      },
+      "constants": ["0x32", 5, "0x0A", "0x28", "0x2B", "0x27", 6, 9, 4, "0x39", "0x13", "0x0F"],
+      "limitations": [
+        "0x439CFE/0x4240D2/0x4395D8 语义未命名。",
+        "6.4/6.6 未逐项对照。",
+        "未运行游戏对照。"
+      ],
+      "relations": [
+        "mechanism.65.strategy-ai-dispatch.3ef7",
+        "mechanism.65.ai-branch-3-4-6-scoring.3ef7"
+      ],
+      "sourceRefs": [
+        "src.research.engine-ai-branch-712-scoring-20261112",
+        "src.ccz65.3890.ekd5"
+      ]
+    }
+  ]
+}
