@@ -5,12 +5,13 @@
   "entries": [
     {
       "id": "global.64.effect-name-table.9112",
-      "title": "远距/穿透攻击特效名与范围码名称表",
+      "title": "远距/穿透攻击特效名字符串（6.4，无 16 字节特效名表）",
       "aliases": [
         "0x004FFB10",
         "0x004FFDA0",
-        "0x0040620A",
-        "effect_name_table_64"
+        "effect_name_table_64",
+        "0x004FFB20",
+        "0x004FFDB0"
       ],
       "versions": [
         "6.4"
@@ -20,19 +21,24 @@
       "evidence": "static-verified",
       "address": {
         "kind": "va",
-        "value": "0x0040620A",
+        "value": "0x004FFB10",
         "profile": "profile.ccz64.xisui.9112",
         "evidence": "static-verified"
       },
-      "width": 40,
+      "width": 32,
       "semantics": "6.4 没有 6.5/6.6 的 16 字节特效名表（0x4CC600 同址全 0）。特效名以独立字符串出现：0x4FFB10「远距攻击-物理」、0x4FFB20「远距攻击-策略」、0x4FFDA0「穿透攻击 两格」、0x4FFDB0「穿透攻击 十字」。范围码名称表在 0x40620A，10 个 DWORD 字符指针（范围码 0..9）：无/十字/九宫/没羽箭/两格/六格/大没羽箭/三格/方格/横扫。",
       "relations": [
         "fn.64.effect-group-query.9112",
-        "fn.64.pierce-loader.9112"
+        "fn.64.pierce-loader.9112",
+        "global.64.range-code-name-table.9112"
       ],
       "sourceRefs": [
         "src.dm.formulas.sample-64-20261102",
         "src.local.round101.report"
+      ],
+      "notes": [
+        "0x40620A 是范围码名称表（10 个 DWORD 指针），不是特效名表；见 global.64.range-code-name-table.9112。",
+        "2026-11-15 复核：6.4 0x4CC600 全 0；0x4FFB10/0x4FFB20/0x4FFDA0/0x4FFDB0 为 GBK 字符串。"
       ]
     }
   ]

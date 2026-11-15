@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.6/data/mechanisms/data-manager-formulas.json`、`6.6/data/mechanisms/engine-effect-assignment-and-composition.json`、`6.6/data/mechanisms/f36-shanzai-ollydbg-research.json`、`6.6/data/mechanisms/local-review-20261028.json`、`6.6/data/mechanisms/reclassified-66.json`、`6.6/data/mechanisms/shanzai-20261027-mechanisms.json`、`6.6/data/mechanisms/strategy-attribute-tables.json`、`6.6/data/mechanisms/xiaoan-speed-chain.json`
+结构化事实来源：`6.6/data/mechanisms/data-manager-formulas.json`、`6.6/data/mechanisms/engine-effect-assignment-and-composition.json`、`6.6/data/mechanisms/f36-shanzai-ollydbg-research.json`、`6.6/data/mechanisms/local-review-20261028.json`、`6.6/data/mechanisms/reclassified-66.json`、`6.6/data/mechanisms/shanzai-20261027-mechanisms.json`、`6.6/data/mechanisms/strategy-attribute-tables.json`、`6.6/data/mechanisms/strategy-effect-category-queries.json`、`6.6/data/mechanisms/strategy-effect-pipeline.json`、`6.6/data/mechanisms/xiaoan-speed-chain.json`
 
 ## 6.6 公式与常量读取、签名重定位及同值字段契约
 
@@ -4919,7 +4919,7 @@ ID: `mechanism.66.dm-constant-hit-curve-cap`；状态: `candidate`；证据: `so
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.6 高段基础值：代码固定值
+## 6.6 命中率曲线·高段基础值：代码固定值
 
 ID: `mechanism.66.dm-constant-hit-curve-high-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -4991,7 +4991,7 @@ ID: `mechanism.66.dm-constant-hit-curve-high-base`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.6 高段每点系数：代码固定值
+## 6.6 命中率曲线·高段每点系数：代码固定值
 
 ID: `mechanism.66.dm-constant-hit-curve-high-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -5279,7 +5279,7 @@ ID: `mechanism.66.dm-constant-hit-curve-low-divisor`；状态: `candidate`；证
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.6 低段基础值：代码固定值
+## 6.6 命中率曲线·低段基础值：代码固定值
 
 ID: `mechanism.66.dm-constant-hit-curve-low-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -5351,7 +5351,7 @@ ID: `mechanism.66.dm-constant-hit-curve-low-base`；状态: `candidate`；证据
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.6 低段每点系数：代码固定值
+## 6.6 命中率曲线·低段每点系数：代码固定值
 
 ID: `mechanism.66.dm-constant-hit-curve-low-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -5673,7 +5673,7 @@ ID: `mechanism.66.dm-constant-rate-curve-cap`；状态: `candidate`；证据: `s
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.6 高段每点系数：代码固定值
+## 6.6 发动率曲线·高段每点系数：代码固定值
 
 ID: `mechanism.66.dm-constant-rate-curve-high-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -5745,7 +5745,7 @@ ID: `mechanism.66.dm-constant-rate-curve-high-coef`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.6 高段基础值：代码固定值
+## 6.6 发动率曲线·高段基础值：代码固定值
 
 ID: `mechanism.66.dm-constant-rate-curve-high-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -5817,7 +5817,7 @@ ID: `mechanism.66.dm-constant-rate-curve-high-base`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.6 低段每点系数：代码固定值
+## 6.6 发动率曲线·低段每点系数：代码固定值
 
 ID: `mechanism.66.dm-constant-rate-curve-low-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -5889,7 +5889,7 @@ ID: `mechanism.66.dm-constant-rate-curve-low-coef`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.6 低段基础值：代码固定值
+## 6.6 发动率曲线·低段基础值：代码固定值
 
 ID: `mechanism.66.dm-constant-rate-curve-low-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -7523,8 +7523,6 @@ ID: `mechanism.66.f36.sp-accumulation-layout`；状态: `candidate`；证据: `s
 
 ID: `mechanism.66.shanzai6929.p0-007`；状态: `candidate`；证据: `source-reviewed`
 
-精确模块静态审阅摘取；报告中的指令关系与未决业务含义分开保存，未宣称本轮游戏动态验收。
-
 
 边界：
 
@@ -7552,8 +7550,6 @@ ID: `mechanism.66.shanzai6929.p0-007`；状态: `candidate`；证据: `source-re
 
 ID: `mechanism.66.shanzai6929.p0-008`；状态: `candidate`；证据: `source-reviewed`
 
-精确模块静态审阅摘取；报告中的指令关系与未决业务含义分开保存，未宣称本轮游戏动态验收。
-
 
 边界：
 
@@ -7577,8 +7573,6 @@ ID: `mechanism.66.shanzai6929.p0-008`；状态: `candidate`；证据: `source-re
 
 ID: `mechanism.66.shanzai6929.p0-009`；状态: `candidate`；证据: `source-reviewed`
 
-精确模块静态审阅摘取；报告中的指令关系与未决业务含义分开保存，未宣称本轮游戏动态验收。
-
 
 边界：
 
@@ -7597,8 +7591,6 @@ ID: `mechanism.66.shanzai6929.p0-009`；状态: `candidate`；证据: `source-re
 ## 复刻版6.6山贼 P0-014 资源计算与效果事件补证
 
 ID: `mechanism.66.shanzai6929.p0-014`；状态: `candidate`；证据: `source-reviewed`
-
-精确模块静态审阅摘取；报告中的指令关系与未决业务含义分开保存，未宣称本轮游戏动态验收。
 
 
 边界：
@@ -7622,8 +7614,6 @@ ID: `mechanism.66.shanzai6929.p0-014`；状态: `candidate`；证据: `source-re
 
 ID: `mechanism.66.shanzai6929.p0-015`；状态: `candidate`；证据: `source-reviewed`
 
-精确模块静态审阅摘取；报告中的指令关系与未决业务含义分开保存，未宣称本轮游戏动态验收。
-
 
 边界：
 
@@ -7646,8 +7636,6 @@ ID: `mechanism.66.shanzai6929.p0-015`；状态: `candidate`；证据: `source-re
 
 ID: `mechanism.66.shanzai6929.p0-016`；状态: `candidate`；证据: `source-reviewed`
 
-精确模块静态审阅摘取；报告中的指令关系与未决业务含义分开保存，未宣称本轮游戏动态验收。
-
 
 边界：
 
@@ -7669,8 +7657,6 @@ ID: `mechanism.66.shanzai6929.p0-016`；状态: `candidate`；证据: `source-re
 
 ID: `mechanism.66.shanzai6929.p0-010`；状态: `candidate`；证据: `source-reviewed`
 
-精确模块静态审阅摘取；报告中的指令关系与未决业务含义分开保存，未宣称本轮游戏动态验收。
-
 
 边界：
 
@@ -7689,8 +7675,6 @@ ID: `mechanism.66.shanzai6929.p0-010`；状态: `candidate`；证据: `source-re
 ## 复刻版6.6山贼 P0-011 战斗扣减与字段上限补证
 
 ID: `mechanism.66.shanzai6929.p0-011`；状态: `candidate`；证据: `source-reviewed`
-
-精确模块静态审阅摘取；报告中的指令关系与未决业务含义分开保存，未宣称本轮游戏动态验收。
 
 
 边界：
@@ -7713,8 +7697,6 @@ ID: `mechanism.66.shanzai6929.p0-011`；状态: `candidate`；证据: `source-re
 
 ID: `mechanism.66.shanzai6929.p0-012`；状态: `candidate`；证据: `source-reviewed`
 
-精确模块静态审阅摘取；报告中的指令关系与未决业务含义分开保存，未宣称本轮游戏动态验收。
-
 
 边界：
 
@@ -7736,8 +7718,6 @@ ID: `mechanism.66.shanzai6929.p0-012`；状态: `candidate`；证据: `source-re
 ## 复刻版6.6山贼 P0-013 资源继承与多目标结算补证
 
 ID: `mechanism.66.shanzai6929.p0-013`；状态: `candidate`；证据: `source-reviewed`
-
-精确模块静态审阅摘取；报告中的指令关系与未决业务含义分开保存，未宣称本轮游戏动态验收。
 
 
 边界：
@@ -7883,10 +7863,97 @@ ID: `mechanism.66.strategy-attribute-tables.25d`；状态: `canonical`；证据:
 - 0x4D1570 在 6.6 同时服务效果类分派与状态派发，修改前必须同时核对两条消费者。
 - 6.6 仍只把 68 条策略记录加载到 0x4A3E77；文件 144 行中后 76 行不在运行时数组内。
 - 0x45D343 策略穿透增强映射表：01 02 03 08 07 05 06 05 06 02 0A；0x45D36A 以 al+0xA7-1 把输入 2 映射为特效号 0xA8，0x45D316 再按穿透码查表。
+- 命中模式表之后还有兵种专项：0x43B984 在策略类型==0x05（诱惑类）且施法方兵种系==0x0C 时把命中×3/2；伤害函数 0x43C1F0 对同一条件把伤害×2。
 
 ## 6.6 strategy-extension：模仿/AI 与策略穿透增强的逐策略标志
 
 ID: `mechanism.66.strategy-extension-flags.25d`；状态: `candidate`；证据: `static-verified`
+
+
+## 6.6 信奈基底：辅助xx策略特效按策略类型选择双通道特效
+
+ID: `mechanism.66.assist-strategy-effect-category.8ba1`；状态: `candidate`；证据: `static-verified`
+
+信奈派系把“辅助xx策略”拆成兵种特效 0x27/0x77..0x7B 与装备特效 0x37/0x38 两条通道；伤害结算按策略记录运行时的策略类型（文件 +0x0B，运行时 +0x0F）选择具体特效对，命中后按“伤害 += 伤害×特效值÷100”放大；命中链则在 0x43B730 末尾用 (0x5C,0x37) 加值、再用 (0x27,0x37) 的存在性固定 +10 个百分点。
+
+1. `fn.66.strategy-type-read.8ba1`：0x420A9B 读取策略 ID（CL），经 0x484002 取 0x61 字节运行时记录，再由 0x44270C 返回运行时 +0x0F 的策略类型
+2. `fn.66.assist-effect-select.8ba1`：0x43C210..0x43C248 按类型选择特效对：0x00→(0x77,0x38)，0x01→(0x78,0x38)，0x02→(0x79,0x38)，0x03→(0x7A,0x38)，0x26→(0x7B,0x38)；其它类型调用 0x405DBD 查询 (0x27,0x37)
+3. `fn.66.effect-query-dual.8ba1`：0x42518F 是战斗/非战斗双态查询入口；战斗中转 0x4101D9，非战斗转 0x41301E。参数为（兵种特效ID, 装备特效ID, 合并模式, 装备取值模式），ECX=人物记录
+4. `fn.66.assist-damage-apply.8ba1`：0x43C26C 用 0x425AD9(伤害, 特效值) 结算，即 伤害 = 伤害 + 伤害 × 特效值 ÷ 100
+5. `fn.66.strategy-hit-main.8ba1`：命中链 0x43B9A6 查询 (0x5C,0x37) 后 命中 = min(命中+特效值,100)；随后 0x405DBD 查询 (0x27,0x37)，只要非 0 就 命中 = min(命中+10,100)
+
+## 6.6 信奈基底：学会策略特效按8位类别掩码筛选可学/可用策略
+
+ID: `mechanism.66.learn-strategy-category-mask.8ba1`；状态: `candidate`；证据: `static-verified`
+
+“学会策略”不是学某一个策略 ID：特效值是 8 位类别掩码，引擎把它与每条策略的 strategy-learning 类别字节（0x4D17B0）按位与，决定哪些策略可被选择/模仿/自动使用；兵种池 0x4E/0x4F/0x50 与装备池 0x6C 分别代表气候/兵法/四神/通用四类来源。
+
+1. `fn.66.learn-mask-query.8ba1`：0x43E1A8(人物, k) 查询 0x42518F(0x4E+k, 0x6C, 3, 0)，k 取 0..2：arg1 是兵种特效 0x4E/0x4F/0x50，arg2 是装备特效 0x6C，模式 3 = 按位或
+2. `fn.66.strategy-select-loop.8ba1`：0x41DC78（模仿/选择计数，调用点 0x43E02A）与 0x465AC1（AI/可用策略位图）遍历策略 ID 0..0x8F
+3. `fn.66.learn-category-and.8ba1`：对每个策略读取 0x4D17B0[strategyId] 作为 8 位类别字节，与 0x43E1A8 返回的掩码按位与；非 0 才进入后续条件
+4. `fn.66.strategy-extra-gates.8ba1`：后续门禁：0x4D14E0 的 bit0（AI/模仿可选用，0x41DCE6/0x465B66 测试）、0x41832B、0x40DE69；全部通过后把策略写入输出位图/计数
+5. `fn.66.learn-special-gate.8ba1`：0x41FF6E 只取 k=2（学会策略 四神）掩码；≥0x80 直接进入四神特殊路径，否则继续检查装备特效 0x3A（策略附加损伤）
+
+## 6.6 信奈基底：特效查询管线（战斗/非战斗双态、分配表与合并模式）
+
+ID: `mechanism.66.effect-query-pipeline.8ba1`；状态: `candidate`；证据: `static-verified`
+
+0x42518F 是唯一的双态查询入口：0x40B922 判定战斗场景（0x40B913()==3），战斗走 0x4101D9，非战斗走 0x41301E；两条路径最终都把“兵种分配表值”和“装备分配表值”按 4 种合并模式合成一个 0..255 的特效值。0x4101D9 额外处理特效屏蔽/特效模仿与 4 个关联人物的合并。
+
+1. `fn.66.effect-query-dual.8ba1`：0x42518F 入口：保存 ECX，压 4 个参数，按 0x40B922 分流
+2. `fn.66.unit-ref-normalize.8ba1`：战斗路径先经 0x426A07 归一化人物记录：word[record]≥0x1000 时按打包引用解析；EDX 返回同一记录指针，AL=byte[record+4]，0xFF 表示无效
+3. `fn.66.effect-query-battle.8ba1`：0x4101D9：特殊键门禁（record<0x400 时检查 0x59/0x75、0x58/0x74、0x425390）、主查询 0x41301E、合并 arg3、可选的 4 个关联人物合并
+4. `fn.66.effect-query-field.8ba1`：0x41301E：兵种分配表 0x4198BE + 装备分配表 0x43C794/0x402CF9，按 arg3 合并；返回 EAX=值、EDX=人物 ID
+5. `fn.66.effect-merge.8ba1`：0x413009→0x40BF2F：模式 0 相加、1 取大、3 按位或、2 七优先取大（旧值为 0 时先取新值）
+
+## 6.6 信奈基底：策略伤害 0x43C01D 全流程与每策略系数表
+
+ID: `mechanism.66.strategy-damage-chain.8ba1`；状态: `candidate`；证据: `static-verified`
+
+0x43C01D 先用 0x4D18D0 把策略分成“伤害型(<4)”和“状态/妨害型(>=4)”，伤害型再乘 0x4D1840 的逐策略系数与 0x4D21B0 的伤害类型比率，叠加类型加成、辅助元素增伤、减伤与防御，最后交给 0x44904E/0x445F6A。
+
+1. `fn.66.strategy-damage-main.8ba1`：0x43C01D 入口：ECX=施法者战场单位；[ebp+8]=目标战场单位、[ebp+0xc]=目标人物记录、[ebp+0x10]=策略ID、[ebp+0x14]=标志（由 0x438BF3 等调用者按“目标数组 + 施法者索引”传入）
+2. `fn.66.strategy-type-read.8ba1`：0x420A9B(策略ID) 取运行时记录与类型；类型存入 [ebp-0x24]，记录指针存入 [ebp-0x20]
+3. `fn.66.strategy-damage-main.8ba1`：0x4D1840[ID] → 系数（0xFF=特殊，取目标 HP）；0x415EFA/0x4D18D0[ID] <4 走伤害路径，>=4 走状态路径；例外类型 0x1E/0x06
+4. `fn.66.assist-effect-select.8ba1`：按类型查询 (0x77..0x7B,0x38,1,0) 或 (0x27,0x37,1,0)，把特效值作为额外百分比加进伤害
+5. `fn.66.strategy-damage-main.8ba1`：0x42E534 减伤：(0x28,0x22) 或 (0x29,0x43)，伤害 -= 伤害×值/100；然后 0x44904E → 0x445F6A
+
+## 6.6 信奈基底：策略命中 0x43B730、0x4D1720 模式与辅助妨碍加值
+
+ID: `mechanism.66.strategy-hit-chain.8ba1`；状态: `candidate`；证据: `static-verified`
+
+0x43B730 先用攻守能力曲线算基础命中，再按 0x4D1720[策略ID] 选择“特殊/不乘/固定百分比”模式，最后叠加 0x1F/0x35、0x20/0x3D、0x5C/0x37 与 0x27/0x37，封顶 100。
+
+1. `fn.66.strategy-hit-main.8ba1`：0x43B4B6 分流：模式==1 → 0x43B617（前置加/减命中），否则 → 0x43B730；0x43B730 内 [ebp-0x18]=攻方、[ebp-0x28]=守方、[ebp+0x10]=策略ID；type 0x21 且 word[守]<0xD2 → 0
+2. `fn.66.strategy-hit-curve.8ba1`：0x43B53A：A≥2D→100；A≥D→90+(A-D)*10/D；A≥D/2→60+(A-D/2)*30/(D/2)；否则 30+max(A-D/3,0)*30/(D/3)
+3. `fn.66.strategy-hit-main.8ba1`：0x4D1720[ID]：<5 查 0x43B9F3 跳表；5..0x63 乘该值%；0x64=100
+4. `fn.66.strategy-hit-main.8ba1`：type 0x14 且 0x43B4A7(攻)==0x0C → ×3/2；命中 = min(命中+(0x5C,0x37)值,100)；若 0x405DBD(0x27,0x37)≠0 → 命中 = min(命中+10,100)
+
+## 6.6 信奈基底：策略可选/可模仿位图与 0x4D14E0 bit0 门禁
+
+ID: `mechanism.66.strategy-selectable-gates.8ba1`；状态: `candidate`；证据: `static-verified`
+
+0x465AC1 与 0x41DC78 都按 0x43E1A8 的 8 位类别掩码与 0x4D17B0[id] 按位与；0x465AC1 生成输出位图，0x41DC78 返回计数。模式≠0 时两者都要求 0x4D14E0 bit0；模式>1 时 0x465AC1 还会检查 MP。
+
+1. `fn.66.learn-mask-query.8ba1`：0x43E1A8(人物,k) 取 k=0..2 的类别掩码
+2. `fn.66.strategy-select-loop.8ba1`：0x465AC1：遍历 k/id，mask & 0x4D17B0[id]；k=0 回退 0x41832B、0x40DE69；模式>1 检查 MP；模式≠0 检查 bit0；写 outBuf[id+偏移]=1
+3. `fn.66.strategy-select-count.8ba1`：0x41DC78：同样的掩码/回退逻辑，但只返回符合项数量；第二参数=0 计数全部，非0 只计 bit0=1
+
+## 6.6 信奈基底：自动使用策略链（0x6C 鬼五郎左 + 0x46 自动使用）
+
+ID: `mechanism.66.auto-use-strategy.8ba1`；状态: `candidate`；证据: `static-verified`
+
+0x422EDF 查询 (0x6C 兵种鬼五郎左, 0x46 装备自动使用, 1, 0)，非 0 后经 0x43FF54 门禁、按策略 MP 成本与目标 MP 比较，通过则 0x416442 调用 0x44F2AC 执行。它不是“学会策略”链。
+
+1. `fn.66.auto-use-check.8ba1`：0x422EDF：ECX=人物，EAX=已用 MP，[ebp+8]=目标；查询 (0x6C,0x46,1,0)
+2. `fn.66.auto-use-check.8ba1`：0x43FF54(人物, 特效值) 门禁；0x4837C2(策略ID)→0x41DD72 取 MP 成本；0x407263(目标) 取可用 MP/上限；超支返回 0
+3. `fn.66.auto-use-check.8ba1`：0x416442 在成功后调用 0x44F2AC(0x497750, 人物, 参数, 0) 执行；0x416449 是 0x422EDF 的唯一调用点
+
+## 6.6 信奈基底：策略特效 0x42518F 调用点与包装器全表
+
+ID: `mechanism.66.strategy-effect-callsite-map.8ba1`；状态: `candidate`；证据: `static-verified`
+
+静态扫描确认 0x42518F 有 12 个直接 E8 调用点；另有大量策略相关包装器直接调用 0x4101D9（战斗路径）。本条目把“特效 ID 对 → 调用点 → 语义”集中成表，便于查某个特效到底在哪个判定里生效。
 
 
 ## 小暗 S 超级加速等待链

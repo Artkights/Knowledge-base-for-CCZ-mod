@@ -8539,6 +8539,42 @@
         "kind": "repository-file",
         "sha256": "7AF8869DD246B1D5B9AD5361E4FB41232362F5CA11BBF2690EB6821C0122745A"
       }
+    },
+    {
+      "id": "src.ccz66.xinnai12.ekd5.8ba1",
+      "path": "基底/信奈的野望12关版（密码nobuna）/Ekd5.exe",
+      "sha256": "8BA1510945A8368EEADD7ED17B3002D7AA96B5C19280388B5E3486AC4DA7A727",
+      "sourceType": "sample-binary",
+      "usedFor": "信奈 6.6 派系的策略特效类别查询复核：0x43C210 辅助xx策略按策略类型分支、0x43E1A8 学会策略类别掩码、0x4D17B0 类别表与 0x9E800/0x9D9A0 名称池；不登记可执行补丁，仅保存身份与静态结论。",
+      "published": false,
+      "verification": {
+        "kind": "identity-only",
+        "reason": "只登记样本身份与 SHA256，原始 EXE 不分发；复核字节需自备同 SHA 样本，结构化结论保存在 6.6/data/mechanisms/strategy-effect-category-queries.json。"
+      }
+    },
+    {
+      "id": "src.research.strategy-job-specific-damage-modifiers-20261115",
+      "path": "sources/evidence/strategy-job-specific-damage-modifiers-20261115.json",
+      "sha256": "9166A8F3DEBFCCC4E133E09DFF947525EDAA0DAEA1AF62CE96DA89B11E5155DC",
+      "sourceType": "static-analysis-evidence",
+      "published": true,
+      "usedFor": "三基底策略伤害的兵种系/策略类型专项加成：行6受击方兵种系百分比、6.4/6.5/6.6 火系比较常量、诱惑×2与命中×3/2、0x40BF0C 详细兵种→兵种系映射和样本字节证据",
+      "verification": {
+        "kind": "repository-file",
+        "sha256": "9166A8F3DEBFCCC4E133E09DFF947525EDAA0DAEA1AF62CE96DA89B11E5155DC"
+      }
+    },
+    {
+      "id": "src.ccz66.v716.ekd5.34b8",
+      "path": "基底/曹操传6.6-V7.16 解压密码：66/Ekd5.exe",
+      "sha256": "34B810EE790F4BAA70EBF60AA286AA7BD246A2C17B425B36BD3825B36BA2D6DA",
+      "sourceType": "sample-binary",
+      "usedFor": "6.6 股票策略伤害块复核：0x43C01D 入口、策略类型 0x05 诱惑判定、行6 0x4D21B0 与火系常量 0x40/0x14；不登记可执行补丁，仅保存身份与静态结论。",
+      "published": false,
+      "verification": {
+        "kind": "identity-only",
+        "reason": "只登记样本身份与 SHA256，原始 EXE 不分发；同字节结论已在新改曹操傳6.6修正版（4A4FD8DD…）交叉校验，结构化结论保存在 sources/evidence/strategy-job-specific-damage-modifiers-20261115.json。"
+      }
     }
   ]
 }

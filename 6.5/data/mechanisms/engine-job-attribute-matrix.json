@@ -16,7 +16,7 @@
       "profile": "profile.ccz65.unencrypted.3ef7",
       "status": "candidate",
       "evidence": "static-verified",
-      "summary": "0x4D20C0 是 8 行×40 兵种系的字节矩阵。第 6 行（0x4D21B0）是 90..130 的百分比修正，策略伤害后段按 damage*row6[series]/100 乘算；第 5 行是 0..2 枚举并被 AI 评分比较 ==2；其余行为布尔/占位标志。三基底矩阵不同。",
+      "summary": "0x4D20C0 是 8 行×40 兵种系的字节矩阵。第 6 行（0x4D21B0）是 90..130 的受策略伤害百分比：策略伤害函数先由 0x40BF0C 把受击方详细兵种映射为兵种系，再按 damage*row6[series]/100 乘算；第 5 行是 0..2 枚举并被 AI 评分比较 ==2；其余行为布尔/占位标志。三基底矩阵不同。",
       "tableLayout": {
         "file": "Ekd5.exe",
         "fileOffset": "0xA38C0",
@@ -40,7 +40,12 @@
         "formula": "damage = damage * byte[0x4D21B0 + series] / 100",
         "helper": "0x425AD9",
         "seriesGate": "series <= 0x27 (39)",
-        "values": "90..130，100 中性"
+        "values": "90..130，100 中性",
+        "direction": "受击方：0x43C15E mov ecx,[ebp+0xc]；调用点 0x4231A4 证明 [ebp+8]/[ebp+0xc] 来自目标单位列表，[ebp-0x10] 才是施法方",
+        "seriesMapper": "0x40BF0C：j=byte[obj+0x2B]；j<=0x3B→j/3，0x3C<=j<0x50→j−0x28，j>=0x50→0x28",
+        "examples65": "0x0C 舞娘=100；0x1E 机关=130；0x08..0x0B=90；0x15=125",
+        "examples64": "0x00=95；0x0C=90；0x1E=100；0x1F=80",
+        "examples66Stock": "多数为100；0x11/0x12/0x14/0x15/0x1E/0x1F/0x26=110"
       },
       "crossBase": {
         "hashes": {"6.4": "89A15D7674E1", "6.5": "886F92967443", "6.6": "AC2BC420929A"},
@@ -48,12 +53,14 @@
       },
       "limitations": [
         "除第 6 行外，各行玩法名称未确定。",
-        "第 6 行在策略伤害链中的攻守方向未命名。",
+        "第 6 行已确认作用于受击方兵种系；但 row6 与火系专项、增伤/减伤、防御、浮动的精确叠乘顺序以 strategy-job-specific-modifier 条目为准。",
+        "三基底第 6 行值不同，且 MOD 可整体替换；不得按版本号推断具体百分比。",
         "未运行游戏对照。"
       ],
       "relations": [
         "mechanism.65.job-series-counter.3ef7",
-        "mechanism.65.engine-general-constant-census.3ef7"
+        "mechanism.65.engine-general-constant-census.3ef7",
+        "mechanism.65.strategy-job-specific-modifier.3ef7"
       ],
       "sourceRefs": [
         "src.research.engine-job-attribute-matrix-20261112",

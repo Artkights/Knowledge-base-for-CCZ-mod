@@ -1534,6 +1534,9 @@
           "kind": "control-code",
           "resolution": "0x4834C6：push ebp; mov ebp,esp; mov eax,6; pop ebp; ret —— 恒返回控制码 6；else 跳转由外层完成。"
         }
+      ],
+      "notes": [
+        "width=480 表示 120 个有效表项，不是物理表总长；物理表 126 项、504 字节。"
       ]
     }
   ]

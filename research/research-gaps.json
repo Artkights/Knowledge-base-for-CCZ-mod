@@ -4,6 +4,31 @@
   "profile": null,
   "entries": [
     {
+      "id": "research.66.xinnai12.strategy-effect-open-questions.8ba1",
+      "title": "信奈 12 关版策略特效链的运行时待确认点",
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "open",
+      "evidence": "static-verified-partial",
+      "known": [
+        "0x42518F 双态入口、0x4101D9/0x41301E 两条查询路径、0x413009/0x40BF2F 四种合并模式已静态闭环",
+        "0x50E000 的同尺寸装备分配表在文件内全 0；写入点为 0x411C4A（0x47D8DF 函数指针表第 10 项，调度器 0x47D89E 在 0x47D8C8 用 call [eax*4+0x47D8DF] 间接调用），0x411CB5..0x411CD3 以 0x50E000+id*16 写 4 字节组",
+        "0x43C01D 的 [ebp+0xc] 已确认是目标人物记录：[ebp+8]=目标战场单位，0x40658F 把目标单位转成人物记录后作为 arg2；ECX 才是施法者",
+        "0x43B680 的 ECX 歧义已排除：该调用点在 0x43B617 子函数内，入口把 ECX（攻方单位）保存到 [ebp-8]，查询对象正确；0x43B730 内的 [ebp-8] 才是策略类型",
+        "装备槽语义已由 0x4065F0/0x4032DF 的调用点确认：+0x2E+3i = 装备 ID，+0x2F+3i = 等级，+0x30+3i = 经验；0x407AED 对槽 0/1 把等级作为 0x4200F5 的 EDX 参数、对槽 2 用装备 ID",
+        "0x43C7CB 的函数体是 (arg+0xEA,0,1,0) 降能力标记查询；E8 调用点与 4 字节地址指针表扫描均为 0 命中，倾向为未被引用的候选代码",
+        "0x4130F8 只被 0x41307D 调用，是 3 字节记录/调色板扫描，不属于策略特效查询链"
+      ],
+      "needed": [
+        "确认 0x47D8DF 跳表第 10 项对应的脚本/命令索引与触发条件（属于运行时脚本语义，不是静态代码缺口）"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
       "id": "research.65.physical-recovery-hook-contract",
       "title": "补齐 0x00418335 物理回复 Hook 的完整桩契约",
       "versions": [

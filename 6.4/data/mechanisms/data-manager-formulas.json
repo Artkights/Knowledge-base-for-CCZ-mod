@@ -6994,11 +6994,11 @@
     },
     {
       "id": "mechanism.64.dm-constant-hit-curve-high-base",
-      "title": "6.4 高段基础值：代码固定值",
+      "title": "6.4 命中率曲线·高段基础值：代码固定值",
       "aliases": [
         "hit-curve-high-base",
-        "高段基础值",
-        "0x0043B53D"
+        "0x0043B53D",
+        "命中率高段基础值"
       ],
       "versions": [
         "6.4"
@@ -7087,11 +7087,11 @@
     },
     {
       "id": "mechanism.64.dm-constant-hit-curve-high-coef",
-      "title": "6.4 高段每点系数：代码固定值",
+      "title": "6.4 命中率曲线·高段每点系数：代码固定值",
       "aliases": [
         "hit-curve-high-coef",
-        "高段每点系数",
-        "0x0043B535"
+        "0x0043B535",
+        "命中率高段每点系数"
       ],
       "versions": [
         "6.4"
@@ -7459,11 +7459,11 @@
     },
     {
       "id": "mechanism.64.dm-constant-hit-curve-low-base",
-      "title": "6.4 低段基础值：代码固定值",
+      "title": "6.4 命中率曲线·低段基础值：代码固定值",
       "aliases": [
         "hit-curve-low-base",
-        "低段基础值",
-        "0x0043B584"
+        "0x0043B584",
+        "命中率低段基础值"
       ],
       "versions": [
         "6.4"
@@ -7552,11 +7552,11 @@
     },
     {
       "id": "mechanism.64.dm-constant-hit-curve-low-coef",
-      "title": "6.4 低段每点系数：代码固定值",
+      "title": "6.4 命中率曲线·低段每点系数：代码固定值",
       "aliases": [
         "hit-curve-low-coef",
-        "低段每点系数",
-        "0x0043B57C"
+        "0x0043B57C",
+        "命中率低段每点系数"
       ],
       "versions": [
         "6.4"
@@ -8110,11 +8110,11 @@
     },
     {
       "id": "mechanism.64.dm-constant-rate-curve-high-coef",
-      "title": "6.4 高段每点系数：代码固定值",
+      "title": "6.4 发动率曲线·高段每点系数：代码固定值",
       "aliases": [
         "rate-curve-high-coef",
-        "高段每点系数",
-        "0x00405D2F"
+        "0x00405D2F",
+        "发动率高段每点系数"
       ],
       "versions": [
         "6.4"
@@ -8203,11 +8203,11 @@
     },
     {
       "id": "mechanism.64.dm-constant-rate-curve-high-base",
-      "title": "6.4 高段基础值：代码固定值",
+      "title": "6.4 发动率曲线·高段基础值：代码固定值",
       "aliases": [
         "rate-curve-high-base",
-        "高段基础值",
-        "0x00405D37"
+        "0x00405D37",
+        "发动率高段基础值"
       ],
       "versions": [
         "6.4"
@@ -8296,11 +8296,11 @@
     },
     {
       "id": "mechanism.64.dm-constant-rate-curve-low-coef",
-      "title": "6.4 低段每点系数：代码固定值",
+      "title": "6.4 发动率曲线·低段每点系数：代码固定值",
       "aliases": [
         "rate-curve-low-coef",
-        "低段每点系数",
-        "0x00405D47"
+        "0x00405D47",
+        "发动率低段每点系数"
       ],
       "versions": [
         "6.4"
@@ -8389,11 +8389,11 @@
     },
     {
       "id": "mechanism.64.dm-constant-rate-curve-low-base",
-      "title": "6.4 低段基础值：代码固定值",
+      "title": "6.4 发动率曲线·低段基础值：代码固定值",
       "aliases": [
         "rate-curve-low-base",
-        "低段基础值",
-        "0x00405D4F"
+        "0x00405D4F",
+        "发动率低段基础值"
       ],
       "versions": [
         "6.4"

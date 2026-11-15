@@ -30,6 +30,9 @@
       "sourceRefs": [
         "src.ccz65.3890.ekd5",
         "src.local.round101.report"
+      ],
+      "notes": [
+        "126 项 = opcode 0x02–0x7F；其中 0x02–0x79 为 120 个有效处理函数，0x7A–0x7F 为 0x004D0000 哨兵。"
       ]
     }
   ]

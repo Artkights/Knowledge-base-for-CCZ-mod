@@ -1,0 +1,471 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-15",
+  "baselineCommit": "b75eb158c944a4ebdf32b47814e5505df952cee4",
+  "entityEdits": [
+    {
+      "id": "global.64.effect-name-table.9112",
+      "set": {
+        "title": "远距/穿透攻击特效名字符串（6.4，无 16 字节特效名表）",
+        "width": 32
+      },
+      "address": {
+        "kind": "va",
+        "value": "0x004FFB10",
+        "profile": "profile.ccz64.xisui.9112",
+        "evidence": "static-verified"
+      },
+      "removeAliases": [
+        "0x0040620A"
+      ],
+      "addAliases": [
+        "0x004FFB20",
+        "0x004FFDB0"
+      ],
+      "addRelations": [
+        "global.64.range-code-name-table.9112"
+      ],
+      "addNotes": [
+        "0x40620A 是范围码名称表（10 个 DWORD 指针），不是特效名表；见 global.64.range-code-name-table.9112。",
+        "2026-11-15 复核：6.4 0x4CC600 全 0；0x4FFB10/0x4FFB20/0x4FFDA0/0x4FFDB0 为 GBK 字符串。"
+      ],
+      "reason": "同一地址 0x40620A 被两个实体同时声明；本实体实际描述 0x4FFB10 起的特效名字符串组。"
+    },
+    {
+      "id": "mechanism.64.dm-constant-hit-curve-high-base",
+      "removeAliases": [
+        "高段基础值"
+      ],
+      "addAliases": [
+        "命中率高段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.4 命中率曲线·高段基础值：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.64.dm-constant-hit-curve-high-coef",
+      "removeAliases": [
+        "高段每点系数"
+      ],
+      "addAliases": [
+        "命中率高段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.4 命中率曲线·高段每点系数：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.64.dm-constant-hit-curve-low-base",
+      "removeAliases": [
+        "低段基础值"
+      ],
+      "addAliases": [
+        "命中率低段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.4 命中率曲线·低段基础值：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.64.dm-constant-hit-curve-low-coef",
+      "removeAliases": [
+        "低段每点系数"
+      ],
+      "addAliases": [
+        "命中率低段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.4 命中率曲线·低段每点系数：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.64.dm-constant-rate-curve-high-base",
+      "removeAliases": [
+        "高段基础值"
+      ],
+      "addAliases": [
+        "发动率高段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.4 发动率曲线·高段基础值：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.64.dm-constant-rate-curve-high-coef",
+      "removeAliases": [
+        "高段每点系数"
+      ],
+      "addAliases": [
+        "发动率高段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.4 发动率曲线·高段每点系数：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.64.dm-constant-rate-curve-low-base",
+      "removeAliases": [
+        "低段基础值"
+      ],
+      "addAliases": [
+        "发动率低段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.4 发动率曲线·低段基础值：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.64.dm-constant-rate-curve-low-coef",
+      "removeAliases": [
+        "低段每点系数"
+      ],
+      "addAliases": [
+        "发动率低段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.4 发动率曲线·低段每点系数：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.65.dm-constant-hit-curve-high-base",
+      "removeAliases": [
+        "高段基础值"
+      ],
+      "addAliases": [
+        "命中率高段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。"
+    },
+    {
+      "id": "mechanism.65.dm-constant-hit-curve-high-coef",
+      "removeAliases": [
+        "高段每点系数"
+      ],
+      "addAliases": [
+        "命中率高段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。"
+    },
+    {
+      "id": "mechanism.65.dm-constant-hit-curve-low-base",
+      "removeAliases": [
+        "低段基础值"
+      ],
+      "addAliases": [
+        "命中率低段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。"
+    },
+    {
+      "id": "mechanism.65.dm-constant-hit-curve-low-coef",
+      "removeAliases": [
+        "低段每点系数"
+      ],
+      "addAliases": [
+        "命中率低段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。"
+    },
+    {
+      "id": "mechanism.65.dm-constant-rate-curve-high-base",
+      "removeAliases": [
+        "高段基础值"
+      ],
+      "addAliases": [
+        "发动率高段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。"
+    },
+    {
+      "id": "mechanism.65.dm-constant-rate-curve-high-coef",
+      "removeAliases": [
+        "高段每点系数"
+      ],
+      "addAliases": [
+        "发动率高段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。"
+    },
+    {
+      "id": "mechanism.65.dm-constant-rate-curve-low-base",
+      "removeAliases": [
+        "低段基础值"
+      ],
+      "addAliases": [
+        "发动率低段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。"
+    },
+    {
+      "id": "mechanism.65.dm-constant-rate-curve-low-coef",
+      "removeAliases": [
+        "低段每点系数"
+      ],
+      "addAliases": [
+        "发动率低段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。"
+    },
+    {
+      "id": "mechanism.66.dm-constant-hit-curve-high-base",
+      "removeAliases": [
+        "高段基础值"
+      ],
+      "addAliases": [
+        "命中率高段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.6 命中率曲线·高段基础值：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.66.dm-constant-hit-curve-high-coef",
+      "removeAliases": [
+        "高段每点系数"
+      ],
+      "addAliases": [
+        "命中率高段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.6 命中率曲线·高段每点系数：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.66.dm-constant-hit-curve-low-base",
+      "removeAliases": [
+        "低段基础值"
+      ],
+      "addAliases": [
+        "命中率低段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.6 命中率曲线·低段基础值：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.66.dm-constant-hit-curve-low-coef",
+      "removeAliases": [
+        "低段每点系数"
+      ],
+      "addAliases": [
+        "命中率低段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.6 命中率曲线·低段每点系数：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.66.dm-constant-rate-curve-high-base",
+      "removeAliases": [
+        "高段基础值"
+      ],
+      "addAliases": [
+        "发动率高段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.6 发动率曲线·高段基础值：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.66.dm-constant-rate-curve-high-coef",
+      "removeAliases": [
+        "高段每点系数"
+      ],
+      "addAliases": [
+        "发动率高段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.6 发动率曲线·高段每点系数：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.66.dm-constant-rate-curve-low-base",
+      "removeAliases": [
+        "低段基础值"
+      ],
+      "addAliases": [
+        "发动率低段基础值"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.6 发动率曲线·低段基础值：代码固定值"
+      }
+    },
+    {
+      "id": "mechanism.66.dm-constant-rate-curve-low-coef",
+      "removeAliases": [
+        "低段每点系数"
+      ],
+      "addAliases": [
+        "发动率低段每点系数"
+      ],
+      "reason": "消除同一版本内命中率曲线与发动率曲线共用的通用别名。",
+      "set": {
+        "title": "6.6 发动率曲线·低段每点系数：代码固定值"
+      }
+    },
+    {
+      "id": "script.66.opcode-72-sub-14",
+      "set": {
+        "title": "6.6 演出扩展（0x72 子命令 0x0E）"
+      },
+      "reason": "6 个 0x72 子命令共用同一标题，改为带子命令号的唯一标题。"
+    },
+    {
+      "id": "script.66.opcode-72-sub-28",
+      "set": {
+        "title": "6.6 演出扩展（0x72 子命令 0x1C）"
+      },
+      "reason": "6 个 0x72 子命令共用同一标题，改为带子命令号的唯一标题。"
+    },
+    {
+      "id": "script.66.opcode-72-sub-30",
+      "set": {
+        "title": "6.6 演出扩展（0x72 子命令 0x1E）"
+      },
+      "reason": "6 个 0x72 子命令共用同一标题，改为带子命令号的唯一标题。"
+    },
+    {
+      "id": "script.66.opcode-72-sub-34",
+      "set": {
+        "title": "6.6 演出扩展（0x72 子命令 0x22）"
+      },
+      "reason": "6 个 0x72 子命令共用同一标题，改为带子命令号的唯一标题。"
+    },
+    {
+      "id": "script.66.opcode-72-sub-35",
+      "set": {
+        "title": "6.6 演出扩展（0x72 子命令 0x23）"
+      },
+      "reason": "6 个 0x72 子命令共用同一标题，改为带子命令号的唯一标题。"
+    },
+    {
+      "id": "script.66.opcode-72-sub-36",
+      "set": {
+        "title": "6.6 演出扩展（0x72 子命令 0x24）"
+      },
+      "reason": "6 个 0x72 子命令共用同一标题，改为带子命令号的唯一标题。"
+    },
+    {
+      "id": "mechanism.66.shanzai6929.p0-007",
+      "removeFields": [
+        "summary"
+      ],
+      "reason": "10 条实体共用同一句模板摘要，具体证据在 notes；删除重复摘要。"
+    },
+    {
+      "id": "mechanism.66.shanzai6929.p0-008",
+      "removeFields": [
+        "summary"
+      ],
+      "reason": "10 条实体共用同一句模板摘要，具体证据在 notes；删除重复摘要。"
+    },
+    {
+      "id": "mechanism.66.shanzai6929.p0-009",
+      "removeFields": [
+        "summary"
+      ],
+      "reason": "10 条实体共用同一句模板摘要，具体证据在 notes；删除重复摘要。"
+    },
+    {
+      "id": "mechanism.66.shanzai6929.p0-010",
+      "removeFields": [
+        "summary"
+      ],
+      "reason": "10 条实体共用同一句模板摘要，具体证据在 notes；删除重复摘要。"
+    },
+    {
+      "id": "mechanism.66.shanzai6929.p0-011",
+      "removeFields": [
+        "summary"
+      ],
+      "reason": "10 条实体共用同一句模板摘要，具体证据在 notes；删除重复摘要。"
+    },
+    {
+      "id": "mechanism.66.shanzai6929.p0-012",
+      "removeFields": [
+        "summary"
+      ],
+      "reason": "10 条实体共用同一句模板摘要，具体证据在 notes；删除重复摘要。"
+    },
+    {
+      "id": "mechanism.66.shanzai6929.p0-013",
+      "removeFields": [
+        "summary"
+      ],
+      "reason": "10 条实体共用同一句模板摘要，具体证据在 notes；删除重复摘要。"
+    },
+    {
+      "id": "mechanism.66.shanzai6929.p0-014",
+      "removeFields": [
+        "summary"
+      ],
+      "reason": "10 条实体共用同一句模板摘要，具体证据在 notes；删除重复摘要。"
+    },
+    {
+      "id": "mechanism.66.shanzai6929.p0-015",
+      "removeFields": [
+        "summary"
+      ],
+      "reason": "10 条实体共用同一句模板摘要，具体证据在 notes；删除重复摘要。"
+    },
+    {
+      "id": "mechanism.66.shanzai6929.p0-016",
+      "removeFields": [
+        "summary"
+      ],
+      "reason": "10 条实体共用同一句模板摘要，具体证据在 notes；删除重复摘要。"
+    },
+    {
+      "id": "global.65.script-command-dispatch-table.3890",
+      "set": {
+        "width": 504
+      },
+      "addNotes": [
+        "126 项 = opcode 0x02–0x7F；其中 0x02–0x79 为 120 个有效处理函数，0x7A–0x7F 为 0x004D0000 哨兵。"
+      ],
+      "reason": "明确物理分派表 126 项与 120 个有效处理函数的边界。"
+    },
+    {
+      "id": "global.65.script-handler-map.3890",
+      "addNotes": [
+        "width=480 表示 120 个有效表项，不是物理表总长；物理表 126 项、504 字节。"
+      ],
+      "reason": "明确 width=480 是有效表项覆盖范围，避免与物理表 504 字节冲突。"
+    },
+    {
+      "id": "global.65.script-handler-modes.3890",
+      "addNotes": [
+        "width=480 表示 120 个有效表项，不是物理表总长；物理表 126 项、504 字节。"
+      ],
+      "reason": "明确 width=480 是有效表项覆盖范围，避免与物理表 504 字节冲突。"
+    },
+    {
+      "id": "global.65.script-handler-profiles.3890",
+      "addNotes": [
+        "width=480 表示 120 个有效表项，不是物理表总长；物理表 126 项、504 字节。"
+      ],
+      "reason": "明确 width=480 是有效表项覆盖范围，避免与物理表 504 字节冲突。"
+    }
+  ],
+  "deleteFiles": [
+    "sources/evidence/2a47e93d6ab534f7748d.txt",
+    "sources/evidence/f05d6b73b0efd40ebdfd.txt",
+    "sources/evidence/87c0d3be482e81fc069e.txt"
+  ]
+}

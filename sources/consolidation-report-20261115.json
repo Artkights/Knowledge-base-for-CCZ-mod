@@ -1,0 +1,2441 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "tools/consolidate_kb.py",
+  "reviewDate": "2026-11-15",
+  "baselineCommit": "b75eb158c944a4ebdf32b47814e5505df952cee4",
+  "counts": {
+    "entities": 1498,
+    "structuredFiles": 258,
+    "duplicateIds": 0,
+    "sameProfileAddressGroups": 1,
+    "duplicateTitleGroups": 0,
+    "sharedAliasGroups": 107,
+    "templateSummaryGroups": 93,
+    "duplicateEvidenceGroups": 0,
+    "orphanEvidence": 180,
+    "duplicateSourcePaths": 22,
+    "placeholderTerms": 58
+  },
+  "plan": {
+    "path": "sources/consolidation-plan-20261115.json",
+    "sha256": "150C2C2AADAFBFC630A0C2FA74865874781CB687D4674B63BFE802D450115444"
+  },
+  "duplicateIds": [],
+  "sameProfileAddressGroups": [
+    {
+      "version": "6.5",
+      "entityType": "global",
+      "profile": "profile.ccz65.unencrypted.3890.scan",
+      "address": "0x00410A38",
+      "entries": [
+        {
+          "id": "global.65.script-command-dispatch-table.3890",
+          "title": "剧本指令分派表（126 项函数指针）",
+          "width": 504
+        },
+        {
+          "id": "global.65.script-handler-map.3890",
+          "title": "剧本指令处理函数映射与实测参数签名（120 项）",
+          "width": 480
+        },
+        {
+          "id": "global.65.script-handler-modes.3890",
+          "title": "剧本指令处理函数签名（120 项全量：96 项类型码 + 24 项固定动作/框架）",
+          "width": 480
+        },
+        {
+          "id": "global.65.script-handler-profiles.3890",
+          "title": "剧本指令处理函数行为画像（120 项）",
+          "width": 480
+        }
+      ]
+    }
+  ],
+  "duplicateTitleGroups": [],
+  "sharedAliasGroups": [
+    {
+      "version": "6.4",
+      "alias": "strategy-damage",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.64.strategy-damage.9112",
+        "mechanism.64.dm-formula-strategy-damage"
+      ]
+    },
+    {
+      "version": "6.4",
+      "alias": "strategy-exp",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.64.strategy-exp.9112",
+        "mechanism.64.dm-formula-strategy-exp"
+      ]
+    },
+    {
+      "version": "6.4",
+      "alias": "主动连击发动率",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.64.dm-constant-active-combo-chance",
+        "mechanism.64.dm-formula-active-combo"
+      ]
+    },
+    {
+      "version": "6.4",
+      "alias": "奋战攻击目标数",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.64.dm-constant-furious-attack-targets",
+        "mechanism.64.dm-formula-furious-attack"
+      ]
+    },
+    {
+      "version": "6.4",
+      "alias": "引导攻击追加次数",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.64.dm-constant-guided-attack-count",
+        "mechanism.64.dm-formula-guided-attack"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x0040FCB2",
+      "kind": "address-alias",
+      "ids": [
+        "fn.65.script-stream-readers.3890",
+        "fn.65.script-token-reader.3890"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x00410140",
+      "kind": "address-alias",
+      "ids": [
+        "fn.65.script-interpret-frame.3890",
+        "global.65.script-vtable.3890"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x004109E6",
+      "kind": "address-alias",
+      "ids": [
+        "fn.65.script-command-dispatch.3890",
+        "global.65.script-control-codes.3890"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x00410A38",
+      "kind": "address-alias",
+      "ids": [
+        "global.65.script-command-dispatch-table.3890",
+        "global.65.script-handler-map.3890"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x00426AA8",
+      "kind": "address-alias",
+      "ids": [
+        "fn.65.script-event-slot.3890",
+        "global.65.script-event-table.3890"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x12900",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.layer-block-constants.3ef7",
+        "mechanism.65.layer-buffer-11.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x15",
+      "kind": "address-alias",
+      "ids": [
+        "script.65.opcode-15",
+        "struct.65.item-category-semantics"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x17",
+      "kind": "address-alias",
+      "ids": [
+        "script.65.opcode-17",
+        "struct.65.item-category-semantics"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x401DFF",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.character-adaptation-table.3ef7",
+        "mechanism.65.random-variant-table.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x4065F0",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.equipment-slot-bound.3ef7",
+        "mechanism.65.runtime-character-accessors.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x408FA0",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.merit-table.3ef7",
+        "mechanism.65.unit-alloc-records.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x4101D9",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.target-direction-score.3ef7",
+        "mechanism.65pl.public-core-engine-analysis"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x41CEAB",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.embedded-byte-tables.3ef7",
+        "mechanism.65.random-variant-table.3ef7",
+        "mechanism.65.strategy-mimic-and-penetration.3890"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x43038B",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.embedded-byte-tables.3ef7",
+        "mechanism.65.item-type-action-mapping-66.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x4303C8",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.embedded-byte-tables.3ef7",
+        "mechanism.65.item-record-fields.3ef7",
+        "mechanism.65.item-type-action-mapping-66.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x43A140",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.ai-dispatch-handler-cross-base.3ef7",
+        "mechanism.65.ai-handler-constants-66.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x442871",
+      "kind": "address-alias",
+      "ids": [
+        "fn.65.strategy-penetration-enhancement.3890",
+        "mechanism.65.strategy-mimic-and-penetration.3890"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x4930C8",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.anchor-relocation-66.3ef7",
+        "mechanism.65.crit-combo-mode.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x4B0770",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.settings-block-fields.3ef7",
+        "mechanism.65.sound-settings.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x4B3D18",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.battle-mode-byte.3ef7",
+        "mechanism.65.global-mode-flags-hit-gate.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x4B422C",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.grid-bound-word-correction.3ef7",
+        "mechanism.65.grid-dimension-pair.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x4B422D",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.grid-bound-word-correction.3ef7",
+        "mechanism.65.grid-dimension-pair.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x500030",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.arithmetic-immediates-census.3ef7",
+        "mechanism.65.font-name-table.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x500AA0",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.level-context-struct.3ef7",
+        "mechanism.65.training-ground-context.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x500AE0",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.level-context-struct.3ef7",
+        "mechanism.65.training-ground-context.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x505EC8",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.crit-combo-mode.3ef7",
+        "mechanism.65.global-mode-flags-hit-gate.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x508000",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.dialog332-confirm.3ef7",
+        "mechanism.65.merit-table.3ef7",
+        "mechanism.65.unit-alloc-records.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x511E40",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.anchor-relocation-66.3ef7",
+        "mechanism.65.crit-combo-mode.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x7A",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.script-opcodes-7c-7d.3ef7",
+        "script.65.opcode-7a"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "0x7B",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.65.script-opcodes-7c-7d.3ef7",
+        "script.65.opcode-7b"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "255x8",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.shared.effect-assignment-field-and-selector-contract",
+        "struct.65.3890.active-effect-assignment"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "255表示不可买卖",
+      "kind": "generic-alias",
+      "ids": [
+        "struct.65.item-category-semantics",
+        "workflow.data-manager.item-category-editing"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "R/S eex 核心写入烟测",
+      "kind": "generic-alias",
+      "ids": [
+        "test.65.smoke-rs-write-smoke",
+        "test.65.smoke-write"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "SV%03u.E5S",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.save-file-format.3ef7",
+        "mechanism.65.save-load-constants.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "arg_stub.py",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65pl.reference-scanner-coverage-and-counterexamples",
+        "mechanism.65pl.reference-scanner-hardening"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "armor-exp-base",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.armor-exp-cross-base.3ef7",
+        "mechanism.65.dm-constant-armor-exp-base"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "armor-exp-no-damage",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.armor-exp-cross-base.3ef7",
+        "mechanism.65.dm-constant-armor-exp-no-damage"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "char-level-exp",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.char-level-exp-cross-base.3ef7",
+        "mechanism.65.dm-formula-char-level-exp"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "personal-exp",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.dm-formula-personal-exp",
+        "mechanism.65.personal-exp-cross-base.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "physical-damage",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.dm-formula-physical-damage",
+        "mechanism.65.physical-damage-constant-chain.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "strategy-battle-ai",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.strategy-ai-dispatch.3ef7",
+        "mechanism.65.strategy-attribute-tables.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "strategy-damage",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.65.strategy-damage.3890",
+        "mechanism.65.dm-formula-strategy-damage"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "strategy-damage-type",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.strategy-attribute-tables.3ef7",
+        "mechanism.65.strategy-damage-hit-resolution.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "strategy-exp",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.65.strategy-exp.3890",
+        "mechanism.65.dm-formula-strategy-exp"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "strategy-hit-rate",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.strategy-attribute-tables.3ef7",
+        "mechanism.65.strategy-damage-hit-resolution.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "strategy-training-ai",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.strategy-ai-dispatch.3ef7",
+        "mechanism.65.strategy-attribute-tables.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "stub_scan.py",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65pl.reference-scanner-coverage-and-counterexamples",
+        "mechanism.65pl.reference-scanner-hardening"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "weapon-exp-base",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.dm-constant-weapon-exp-base",
+        "mechanism.65.weapon-exp-cross-base.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "weapon-exp-no-damage",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.dm-constant-weapon-exp-no-damage",
+        "mechanism.65.weapon-exp-cross-base.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "个人经验",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.dm-formula-personal-exp",
+        "mechanism.65.personal-exp-cross-base.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "主动连击发动率",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.dm-constant-active-combo-chance",
+        "mechanism.65.dm-formula-active-combo"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "回合上限设定",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.battle-script-action-family.3ef7",
+        "mechanism.65.turn-action-weather-state.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "回合测试",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.battle-script-action-family.3ef7",
+        "mechanism.65.turn-action-weather-state.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "图鉴勾选框",
+      "kind": "generic-alias",
+      "ids": [
+        "struct.65.item-category-semantics",
+        "workflow.data-manager.item-category-editing"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "奋战攻击目标数",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.dm-constant-furious-attack-targets",
+        "mechanism.65.dm-formula-furious-attack"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "引导攻击追加次数",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.dm-constant-guided-attack-count",
+        "mechanism.65.dm-formula-guided-attack"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "强化策略穿透",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.65.strategy-penetration-enhancement.3890",
+        "mechanism.65.strategy-mimic-and-penetration.3890"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "武器经验",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.dm-formula-weapon-exp",
+        "mechanism.65.weapon-exp-cross-base.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "策略模仿",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.65.strategy-mimic-effect.3890",
+        "mechanism.65.strategy-mimic-and-penetration.3890"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "策略穿透增加",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.65.strategy-penetration-enhancement.3890",
+        "mechanism.65.strategy-mimic-and-penetration.3890"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "行动方测试",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.battle-script-action-family.3ef7",
+        "mechanism.65.turn-action-weather-state.3ef7"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "角色升级经验",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.char-level-exp-cross-base.3ef7",
+        "mechanism.65.dm-formula-char-level-exp"
+      ]
+    },
+    {
+      "version": "6.5",
+      "alias": "防具经验",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.65.armor-exp-cross-base.3ef7",
+        "mechanism.65.dm-formula-armor-exp"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x004061E4",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.character-record-index.8ba1",
+        "fn.66.f36.data-id-to-character-record"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x004061F9",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.character-record-index.8ba1",
+        "fn.66.f36.battlefield-id-to-unit-record"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x0040620A",
+      "kind": "address-alias",
+      "ids": [
+        "global.66.effect-name-table.f20c",
+        "global.66.range-code-name-table.f20c"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x004079DA",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.equip-effect-slot-scan",
+        "fn.66.equipment-effect-lookup.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x00407AED",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.equip-effect-slot-scan",
+        "fn.66.equipment-effect-accumulate.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x004101D9",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.effect-query-battle.8ba1",
+        "fn.66.effect-query-dual.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x0041301E",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.effect-query-dual.8ba1",
+        "fn.66.effect-query-field.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x0041DC78",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.strategy-select-count.8ba1",
+        "fn.66.strategy-select-loop.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x004837C2",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.f36.item-id-to-record",
+        "fn.66.item-record-index"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x405DBD",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.66.strategy-effect-callsite-map.8ba1",
+        "mechanism.66.strategy-hit-chain.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x41DC78",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "mechanism.66.strategy-selectable-gates.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x41FF6E",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "mechanism.66.strategy-selectable-gates.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x42518F",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.66.assist-strategy-effect-category.8ba1",
+        "mechanism.66.effect-query-pipeline.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x43B730",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.66.assist-strategy-effect-category.8ba1",
+        "mechanism.66.strategy-hit-chain.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x43C01D",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.66.assist-strategy-effect-category.8ba1",
+        "mechanism.66.strategy-damage-chain.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x465AC1",
+      "kind": "address-alias",
+      "ids": [
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "mechanism.66.strategy-selectable-gates.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x4D14E0",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.strategy-extra-gates.8ba1",
+        "global.66.strategy-per-id-tables.8ba1",
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "mechanism.66.strategy-attribute-tables.25d",
+        "mechanism.66.strategy-extension-flags.25d",
+        "mechanism.66.strategy-selectable-gates.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x4D1570",
+      "kind": "address-alias",
+      "ids": [
+        "global.66.strategy-per-id-tables.8ba1",
+        "mechanism.66.strategy-attribute-tables.25d"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x4D1720",
+      "kind": "address-alias",
+      "ids": [
+        "global.66.strategy-per-id-tables.8ba1",
+        "mechanism.66.strategy-hit-chain.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x4D17B0",
+      "kind": "address-alias",
+      "ids": [
+        "global.66.strategy-per-id-tables.8ba1",
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "mechanism.66.strategy-selectable-gates.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x4D1840",
+      "kind": "address-alias",
+      "ids": [
+        "global.66.strategy-per-id-tables.8ba1",
+        "mechanism.66.strategy-damage-chain.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x4D18D0",
+      "kind": "address-alias",
+      "ids": [
+        "global.66.strategy-per-id-tables.8ba1",
+        "mechanism.66.strategy-damage-chain.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x4D21B0",
+      "kind": "address-alias",
+      "ids": [
+        "global.66.strategy-per-id-tables.8ba1",
+        "mechanism.66.strategy-damage-chain.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x500C3B",
+      "kind": "address-alias",
+      "ids": [
+        "global.66.effect-assignment-defaults.8ba1",
+        "global.66.effect-query-buffers.8ba1",
+        "mechanism.66.effect-query-pipeline.8ba1",
+        "struct.66.strategy-effect-assignment.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x50E000",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.effect-record-merge.8ba1",
+        "global.66.effect-query-buffers.8ba1",
+        "mechanism.66.effect-query-pipeline.8ba1",
+        "struct.66.strategy-equipment-assignment.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0x511000",
+      "kind": "address-alias",
+      "ids": [
+        "fn.66.effect-assignment-lookup.8ba1",
+        "global.66.effect-assignment-defaults.8ba1",
+        "struct.66.strategy-effect-assignment.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "0xE2800",
+      "kind": "address-alias",
+      "ids": [
+        "global.66.effect-assignment-defaults.8ba1",
+        "structure.66.guoqing.active-effect-job-slots"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "66-legacy-data-v1",
+      "kind": "generic-alias",
+      "ids": [
+        "profile.ccz66.data-manager.17byte",
+        "profile.ccz66.data-manager.17byte"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "66-standard-v1",
+      "kind": "generic-alias",
+      "ids": [
+        "profile.ccz66.data-manager.old-shanzhai",
+        "profile.ccz66.data-manager.standard",
+        "profile.ccz66.data-manager.standard"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "StrategyRecord",
+      "kind": "generic-alias",
+      "ids": [
+        "struct.66.f36.strategy-record",
+        "struct.66.strategy-record.25d"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "ccz-6.6",
+      "kind": "generic-alias",
+      "ids": [
+        "profile.ccz66.data-manager.17byte",
+        "profile.ccz66.data-manager.old-shanzhai",
+        "profile.ccz66.data-manager.standard"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "strategy-damage",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.66.strategy-damage.aa0f",
+        "mechanism.66.dm-formula-strategy-damage"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "strategy-exp",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.66.strategy-exp.aa0f",
+        "mechanism.66.dm-formula-strategy-exp"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "strategy-hit-curve",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.66.strategy-hit-curve.8ba1",
+        "fn.66.strategy-hit-curve.aa0f"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "主动连击发动率",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.66.dm-constant-active-combo-chance",
+        "mechanism.66.dm-formula-active-combo"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "奋战攻击目标数",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.66.dm-constant-furious-attack-targets",
+        "mechanism.66.dm-formula-furious-attack"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "引导攻击追加次数",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.66.dm-constant-guided-attack-count",
+        "mechanism.66.dm-formula-guided-attack"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "火系策略增伤",
+      "kind": "generic-alias",
+      "ids": [
+        "fn.66.assist-effect-select.8ba1",
+        "mechanism.66.assist-strategy-effect-category.8ba1"
+      ]
+    },
+    {
+      "version": "6.6",
+      "alias": "辅助妨碍策略",
+      "kind": "generic-alias",
+      "ids": [
+        "mechanism.66.assist-strategy-effect-category.8ba1",
+        "mechanism.66.strategy-hit-chain.8ba1"
+      ]
+    }
+  ],
+  "templateSummaryGroups": [
+    {
+      "summary": "0x407C35(索引) 对武器/防具两槽逐件累加：先取 0x40B3D7(道具记录, 装备等级) = (等级−1)×byte[道具+0x17]（仅当 0x40B444 映射类型 ≤1），再用 0x429AD7 做类别过滤（类别 0x0A 对索引 0/2 例外），最后对宝物（+0x11 bit0）且类别映射等于索引的装备追加 0x4200F8(道具+0x16, 装备等级) 与 0x452825(单位, 索引)。结果加 100 即经验倍率（0x407FAA）。",
+      "ids": [
+        "mechanism.64.dm-formula-equip-growth",
+        "mechanism.65.dm-formula-equip-growth",
+        "mechanism.66.dm-formula-equip-growth"
+      ]
+    },
+    {
+      "summary": "0x40B913 直接返回 byte[0x4AC63C]（0x41EDEF 仅是 byte[ecx]），0x40B922 将其与 3 比较；0x4AC63C 的静态写点：0x416A78 置 2、0x416A91 自增到 3、0x43C015 置 3（紧邻策略伤害入口 0x43C022），初值 0。合并函数 0x40BF2F(mode,a,b)：0 求和、1 取大、3 按位或、其它在 a==7 时保留否则取大；0x413009 在 mode==2 且 edx==0 时把 edx 设为 eax 再合并。",
+      "ids": [
+        "mechanism.64.dm-formula-merge-mode",
+        "mechanism.65.dm-formula-merge-mode",
+        "mechanism.66.dm-formula-merge-mode"
+      ]
+    },
+    {
+      "summary": "0x4200F8(道具+0x16, 等级) 按道具 +0x14 类型分支：6.5 下 0x1F → +等级、0x55 → ×(等级+1)、0x2F → ×等级+0x1E、0x33(原值4)→+3、0x32→×2、0x36/0x42/0x46→+1、其它→×3/2；等级≥10 再查表 0x46236F[类型−0x1A]（0xFE 表示不覆盖）。随后 0x452825(索引) 在 索引<7 且 0x46230F[索引]==2 时取该字段当前能力（0..4 word+0x11+i×2、5 dword+0x1B、6 word+0x1F），用 0x425AD9 换算为 能力×成长/100。",
+      "ids": [
+        "mechanism.64.dm-formula-treasure-growth",
+        "mechanism.65.dm-formula-treasure-growth",
+        "mechanism.66.dm-formula-treasure-growth"
+      ]
+    },
+    {
+      "summary": "0x42518F(索引, 选择子, 模式, 0) 把 4 参透传给 0x40B922（判定 0x40B913()==3，0x40B913=0x41EDEF(0x4AC63C)），返回 1 走 0x4101D9（按 unit 直查，内部先 0x426A07(0,0,0,0,0) 取默认并与 0x505F78 比较），返回 0 走 0x41301E（0x40BE7D 取 ID → 0x4198BE(0x500C3B, …) → 0x43C794 → 0x413009 → 0x40BF2F）。6.4 的 0x42518F 起 44 字节为 90（函数不存在），等价函数 0x412A87，5 处调用点全部指向它。",
+      "ids": [
+        "mechanism.64.dm-formula-effect-dispatch",
+        "mechanism.65.dm-formula-effect-dispatch",
+        "mechanism.66.dm-formula-effect-dispatch"
+      ]
+    },
+    {
+      "summary": "1～2 倍区间每高 1 点加本值/D；默认 18。",
+      "ids": [
+        "mechanism.64.dm-constant-rate-curve-low-coef",
+        "mechanism.65.dm-constant-rate-curve-low-coef",
+        "mechanism.66.dm-constant-rate-curve-low-coef"
+      ]
+    },
+    {
+      "summary": "2～3 倍区间每高 1 点加本值/D；默认 80。",
+      "ids": [
+        "mechanism.64.dm-constant-rate-curve-high-coef",
+        "mechanism.65.dm-constant-rate-curve-high-coef",
+        "mechanism.66.dm-constant-rate-curve-high-coef"
+      ]
+    },
+    {
+      "summary": "6.4/6.5 高命中未打中时最多再判几次；默认 2。",
+      "ids": [
+        "mechanism.64.dm-constant-hit-retry-count",
+        "mechanism.65.dm-constant-hit-retry-count"
+      ]
+    },
+    {
+      "summary": "个人经验基础值：基础经验 = 2×等级差 + 本值；默认 6。",
+      "ids": [
+        "mechanism.64.dm-constant-personal-exp-base",
+        "mechanism.65.dm-constant-personal-exp-base",
+        "mechanism.66.dm-constant-personal-exp-base"
+      ]
+    },
+    {
+      "summary": "中段每高 1 点加本值/(D/2)；默认 30。",
+      "ids": [
+        "mechanism.64.dm-constant-hit-curve-mid-coef",
+        "mechanism.65.dm-constant-hit-curve-mid-coef",
+        "mechanism.66.dm-constant-hit-curve-mid-coef"
+      ]
+    },
+    {
+      "summary": "伤害 = 攻方等级 + 25，再用攻方智力与守方智力算能力差：攻方高就加“差值÷3”，守方高就减“差值÷3”；最低保底 1 点。之后才结算策伤保底/限伤、MP辅助、绝对策略伤害、化险为夷、攻守兼备等特效。",
+      "ids": [
+        "mechanism.64.dm-formula-strategy-damage",
+        "mechanism.65.dm-formula-strategy-damage",
+        "mechanism.66.dm-formula-strategy-damage"
+      ]
+    },
+    {
+      "summary": "伤害 = 攻方等级 + 25，再用攻方武力与守方统帅算能力差：攻方高就加“差值÷2”，守方高就减“差值÷2”；最低保底 1 点。之后才结算突破、偷袭、疾风、固定增伤、吸血、猛击、盾反等特效。",
+      "ids": [
+        "mechanism.64.dm-formula-physical-damage",
+        "mechanism.65.dm-formula-physical-damage",
+        "mechanism.66.dm-formula-physical-damage"
+      ]
+    },
+    {
+      "summary": "低段每高 1 点加本值/(D/除数)；默认 30。",
+      "ids": [
+        "mechanism.64.dm-constant-hit-curve-low-coef",
+        "mechanism.65.dm-constant-hit-curve-low-coef",
+        "mechanism.66.dm-constant-hit-curve-low-coef"
+      ]
+    },
+    {
+      "summary": "侧击按 1 档、背击按 2 档，每档增加这个百分比；25 = 侧击 +25%、背击 +50%。",
+      "ids": [
+        "mechanism.65.dm-constant-sneak-attack-step",
+        "mechanism.66.dm-constant-sneak-attack-step"
+      ]
+    },
+    {
+      "summary": "先用双方士气算暴击率，再按暴击率随机判定。命中暴击后，额外伤害 = 原伤害 × (暴击率+100)/2 / 100；暴击率 0 → +50%，100 → +100%。三基底都进入集气池：6.4 池 0，6.5/6.6 池 2。6.6 再叠加特效 112 的返回值。",
+      "ids": [
+        "mechanism.64.dm-formula-physical-crit",
+        "mechanism.65.dm-formula-physical-crit",
+        "mechanism.66.dm-formula-physical-crit"
+      ]
+    },
+    {
+      "summary": "先用双方士气算暴击率，再按暴击率随机判定。命中暴击后，额外伤害 = 原伤害 × (暴击率+100)/4 / 100；暴击率 0 → +25%，100 → +50%。三基底都进入集气池：6.4 池 0，6.5/6.6 池 18。",
+      "ids": [
+        "mechanism.64.dm-formula-strategy-crit",
+        "mechanism.65.dm-formula-strategy-crit",
+        "mechanism.66.dm-formula-strategy-crit"
+      ]
+    },
+    {
+      "summary": "先用双方敏捷算连击率，再随机判定是否追加一击。拥有特效 52 时不再看曲线，直接使用特效 52 的发动率。三基底都会进入集气池，池号默认 0。",
+      "ids": [
+        "mechanism.64.dm-formula-combo-rate",
+        "mechanism.65.dm-formula-combo-rate",
+        "mechanism.66.dm-formula-combo-rate"
+      ]
+    },
+    {
+      "summary": "兵种 ID 必须 ≤0x3B（59）；0x408A60 以 20 级为块：基础 = v(当前兵种)×max(等级−(兵种%3)×20,0) + v(前兵种)×min(等级,(兵种%3)×20)（%3==2 时先按 40 级比较）。升级条件 0x41D3DC 要求等级 ≥ (兵种%3+1)×20，兵种%3==2 或兵种>59 直接不可升。HP/MP 重算 0x4149CF 额外加 0x413FAC：6.4/6.5 = 2×Σ v(兵种−1..兵种−r)，6.6 = 2×r×v(当前兵种)。",
+      "ids": [
+        "mechanism.64.dm-formula-troop-tier",
+        "mechanism.65.dm-formula-troop-tier",
+        "mechanism.66.dm-formula-troop-tier"
+      ]
+    },
+    {
+      "summary": "击杀指定目标时，击杀经验改为固定加成本值；默认 48。",
+      "ids": [
+        "mechanism.64.dm-constant-personal-exp-kill-flat",
+        "mechanism.65.dm-constant-personal-exp-kill-flat",
+        "mechanism.66.dm-constant-personal-exp-kill-flat"
+      ]
+    },
+    {
+      "summary": "击杀目标后最多再引导几次；总攻击次数 = 这个值 + 1。6.4 默认 4（共五次），6.5/6.6 默认 2（共三次）。部分改版基底写 255 表示基本不限次数。",
+      "ids": [
+        "mechanism.64.dm-constant-guided-attack-count",
+        "mechanism.65.dm-constant-guided-attack-count",
+        "mechanism.66.dm-constant-guided-attack-count"
+      ]
+    },
+    {
+      "summary": "击杀目标后自动寻找下一个目标继续攻击。总攻击次数 = 这个值 + 1：6.4 默认 4（共五次），6.5/6.6 默认 2（共三次）。",
+      "ids": [
+        "mechanism.64.dm-formula-guided-attack",
+        "mechanism.65.dm-formula-guided-attack",
+        "mechanism.66.dm-formula-guided-attack"
+      ]
+    },
+    {
+      "summary": "击杀经验的除数 = max(攻方等级−守方等级,0) + 本值；默认 2。",
+      "ids": [
+        "mechanism.64.dm-constant-personal-exp-kill-ratio-offset",
+        "mechanism.65.dm-constant-personal-exp-kill-ratio-offset",
+        "mechanism.66.dm-constant-personal-exp-kill-ratio-offset"
+      ]
+    },
+    {
+      "summary": "击杀非指定目标时，额外经验 = 本值 ÷（攻方等级−守方等级 + 除数偏移）；等级差为负按 0 算。默认 64。",
+      "ids": [
+        "mechanism.64.dm-constant-personal-exp-kill-ratio-num",
+        "mechanism.65.dm-constant-personal-exp-kill-ratio-num",
+        "mechanism.66.dm-constant-personal-exp-kill-ratio-num"
+      ]
+    },
+    {
+      "summary": "分配函数 0x0046206C：若 0x505FAC 非 0 且 0x5083FC 非 0，则 pool = 0x5083FC × 第二实参。对 5 个槽位 i：v = char[0x21+i]；v 达到上限（6.4 为 100，6.5/6.6 为 110）跳过；v < 80 时门槛 50，否则门槛 = (v−79)×10+55；pool ≥ 门槛时 pool −= 门槛、v+1、word[char+0x11+2i]+1，并在同槽位继续；余额经 0x42ACD2/0x42AB8E 写回本场战功。6.4 在函数内内联循环，6.5/6.6 调用 0x42AC8F（第三实参 1 时只判不扣）。",
+      "ids": [
+        "mechanism.64.dm-formula-merit-allocation",
+        "mechanism.65.dm-formula-merit-allocation",
+        "mechanism.66.dm-formula-merit-allocation"
+      ]
+    },
+    {
+      "summary": "卖出价 = 买入价 × 本值 / 4；默认 3，即卖出价为买入价的 75%。分母固定 4，改本值可整体调整卖出比例。",
+      "ids": [
+        "mechanism.64.dm-constant-shop-sell-price-numerator",
+        "mechanism.65.dm-constant-shop-sell-price-numerator",
+        "mechanism.66.dm-constant-shop-sell-price-numerator"
+      ]
+    },
+    {
+      "summary": "吸收金钱结算时，按本次累计伤害 × 本值 计算金钱；6.4 默认 2 倍，6.5/6.6 默认 1 倍。改 0 就不结算金钱。",
+      "ids": [
+        "mechanism.64.dm-constant-money-absorb-multiplier",
+        "mechanism.65.dm-constant-money-absorb-multiplier",
+        "mechanism.66.dm-constant-money-absorb-multiplier"
+      ]
+    },
+    {
+      "summary": "吸血攻击最多按造成伤害的百分之几回血：100 = 全额回血，50 = 最多回一半。6.6 同名特技为“以战养战”。",
+      "ids": [
+        "mechanism.64.dm-constant-drain-attack-cap",
+        "mechanism.65.dm-constant-drain-attack-cap",
+        "mechanism.66.dm-constant-drain-attack-cap"
+      ]
+    },
+    {
+      "summary": "周围能力枚举几格：9 = 自身 + 八方，4 = 自身 + 三方向。6.4/6.5 默认 9，6.6 默认 4。6.6 同名特技为“兼济天下”。",
+      "ids": [
+        "mechanism.64.dm-constant-aura-range",
+        "mechanism.65.dm-constant-aura-range",
+        "mechanism.66.dm-constant-aura-range"
+      ]
+    },
+    {
+      "summary": "命中率曲线最高只能到本值；三基底默认 100。",
+      "ids": [
+        "mechanism.64.dm-constant-hit-curve-cap",
+        "mechanism.65.dm-constant-hit-curve-cap",
+        "mechanism.66.dm-constant-hit-curve-cap"
+      ]
+    },
+    {
+      "summary": "增量入口 0x406ECA：字段 0..4 写五维 word[rec+0x11+i×2]，min(旧+值,9999)；字段 5 写最大 HP（dword +0x1B，会顺带清零 +0x1D/+0x1E）；字段 6 写最大 MP（word +0x1F）；字段 7/8 改当前 HP/MP（走 0x45AA37，模式字节 0x505F30=1 表示增加）；字段 9 无操作；字段 10..14 写成长值 byte[rec+字段+0x17]，封顶 100；字段 15 写 0x501A84 的单位槽字节。直接设置入口 0x407027 用 min(值,0x270F)/min(值,0xFFFF) 覆盖同名字段，字段 7/8 置 0x505F30=2 直设。",
+      "ids": [
+        "mechanism.64.dm-formula-ability-write",
+        "mechanism.65.dm-formula-ability-write",
+        "mechanism.66.dm-formula-ability-write"
+      ]
+    },
+    {
+      "summary": "奋战会依次打几个相邻目标，引导共用这份列表。8 = 周围八格全算，4 = 只算十字四格。",
+      "ids": [
+        "mechanism.64.dm-constant-furious-attack-targets",
+        "mechanism.65.dm-constant-furious-attack-targets",
+        "mechanism.66.dm-constant-furious-attack-targets"
+      ]
+    },
+    {
+      "summary": "奋战会依次攻击一组相邻目标，引导攻击共用这份列表。8 = 周围八格全算，4 = 只算十字四格。",
+      "ids": [
+        "mechanism.64.dm-formula-furious-attack",
+        "mechanism.65.dm-formula-furious-attack",
+        "mechanism.66.dm-formula-furious-attack"
+      ]
+    },
+    {
+      "summary": "屏蔽/邻格类特技枚举几个方向：4 = 十字四格，8 = 八方格。6.4/6.5 默认 4，6.6 默认 8。",
+      "ids": [
+        "mechanism.64.dm-constant-effect-screen-directions",
+        "mechanism.65.dm-constant-effect-screen-directions",
+        "mechanism.66.dm-constant-effect-screen-directions"
+      ]
+    },
+    {
+      "summary": "带宝物标记的武器/防具每升一级所需经验；三基底默认 200。",
+      "ids": [
+        "mechanism.64.dm-constant-equip-exp-threshold-special",
+        "mechanism.65.dm-constant-equip-exp-threshold-special",
+        "mechanism.66.dm-constant-equip-exp-threshold-special"
+      ]
+    },
+    {
+      "summary": "带宝物标记的装备最高等级；6.4/6.5 默认 9，6.6 默认 15。",
+      "ids": [
+        "mechanism.64.dm-constant-equip-level-cap-special",
+        "mechanism.65.dm-constant-equip-level-cap-special",
+        "mechanism.66.dm-constant-equip-level-cap-special"
+      ]
+    },
+    {
+      "summary": "强化连击/连击上限类特效触发后，连击伤害不再逐次衰减，并在原伤害上额外加这个固定百分比；0 = 只不衰减，10 = 每次连击多 10%。",
+      "ids": [
+        "mechanism.65.dm-constant-combo-damage-bonus",
+        "mechanism.66.dm-constant-combo-damage-bonus"
+      ]
+    },
+    {
+      "summary": "把攻方能力与守方能力相比：攻方 ≥ 守方 2 倍直接 100%；1～2 倍是 90%～100%；1/2～1 倍是 60%～90%；低于一半只剩 30%～45%。物理命中比敏捷，策略命中比智力和士气之和。",
+      "ids": [
+        "mechanism.64.dm-formula-hit-curve",
+        "mechanism.65.dm-formula-hit-curve",
+        "mechanism.66.dm-formula-hit-curve"
+      ]
+    },
+    {
+      "summary": "把攻方能力与守方能力相比：攻方 ≥ 守方 3 倍直接 100%；2～3 倍是 20%～100%；1～2 倍是 2%～20%；攻方低于守方时只剩 1%。物理暴击和策略暴击比士气，连击比敏捷。",
+      "ids": [
+        "mechanism.64.dm-formula-rate-curve",
+        "mechanism.65.dm-formula-rate-curve",
+        "mechanism.66.dm-formula-rate-curve"
+      ]
+    },
+    {
+      "summary": "拥有主动连击时，追加一击的发动概率：100 = 每次都追加，50 = 一半机会。",
+      "ids": [
+        "mechanism.64.dm-constant-active-combo-chance",
+        "mechanism.65.dm-constant-active-combo-chance",
+        "mechanism.66.dm-constant-active-combo-chance"
+      ]
+    },
+    {
+      "summary": "拥有神锋沥辉（6.5 同名特技为“削铁如泥”）时，按比例追加伤害的保底百分点；6.5 默认 10，6.6 默认 6。改 0 就只按计算值加成。",
+      "ids": [
+        "mechanism.65.dm-constant-fengfeng-floor-bonus",
+        "mechanism.66.dm-constant-fengfeng-floor-bonus"
+      ]
+    },
+    {
+      "summary": "拥有逆乱阴阳时，策略命中概率直接加这个百分点，最多到 100%；默认 10。",
+      "ids": [
+        "mechanism.64.dm-constant-chaos-yin-yang-hit-bonus",
+        "mechanism.65.dm-constant-chaos-yin-yang-hit-bonus",
+        "mechanism.66.dm-constant-chaos-yin-yang-hit-bonus"
+      ]
+    },
+    {
+      "summary": "攻方低于守方一半时，先按守方能力除以本值作为低段基准；默认 3。",
+      "ids": [
+        "mechanism.64.dm-constant-hit-curve-low-divisor",
+        "mechanism.65.dm-constant-hit-curve-low-divisor",
+        "mechanism.66.dm-constant-hit-curve-low-divisor"
+      ]
+    },
+    {
+      "summary": "攻方能力是守方 1～2 倍时，高段从本值起算；默认 90。",
+      "ids": [
+        "mechanism.64.dm-constant-hit-curve-high-base",
+        "mechanism.65.dm-constant-hit-curve-high-base",
+        "mechanism.66.dm-constant-hit-curve-high-base"
+      ]
+    },
+    {
+      "summary": "攻方能力是守方一半到一倍时，中段从本值起算；默认 60。",
+      "ids": [
+        "mechanism.64.dm-constant-hit-curve-mid-base",
+        "mechanism.65.dm-constant-hit-curve-mid-base",
+        "mechanism.66.dm-constant-hit-curve-mid-base"
+      ]
+    },
+    {
+      "summary": "攻方能力达到守方本值倍时直接满发动；默认 3。",
+      "ids": [
+        "mechanism.64.dm-constant-rate-curve-full-multiplier",
+        "mechanism.65.dm-constant-rate-curve-full-multiplier",
+        "mechanism.66.dm-constant-rate-curve-full-multiplier"
+      ]
+    },
+    {
+      "summary": "普通武器/防具每升一级所需经验；6.4/6.6 默认 100，6.5 默认 150。",
+      "ids": [
+        "mechanism.64.dm-constant-equip-exp-threshold-normal",
+        "mechanism.65.dm-constant-equip-exp-threshold-normal",
+        "mechanism.66.dm-constant-equip-exp-threshold-normal"
+      ]
+    },
+    {
+      "summary": "普通装备最高等级；6.4/6.5 默认 5，6.6 默认 9。",
+      "ids": [
+        "mechanism.64.dm-constant-equip-level-cap-normal",
+        "mechanism.65.dm-constant-equip-level-cap-normal",
+        "mechanism.66.dm-constant-equip-level-cap-normal"
+      ]
+    },
+    {
+      "summary": "本项为代码固定每点增伤5%；目标能力A低于特效值N才触发，追加伤害=原伤害×(N−A)×5/100。N是触发门槛，5是本项立即数。",
+      "ids": [
+        "mechanism.64.dm-constant-swift-attack-bonus",
+        "mechanism.65.dm-constant-swift-attack-bonus"
+      ]
+    },
+    {
+      "summary": "武器经验基础值：造成伤害时每次加多少；6.5 默认 2，6.4/6.6 默认 3。",
+      "ids": [
+        "mechanism.64.dm-constant-weapon-exp-base",
+        "mechanism.65.dm-constant-weapon-exp-base",
+        "mechanism.66.dm-constant-weapon-exp-base"
+      ]
+    },
+    {
+      "summary": "每件防具的经验基础值；6.4/6.5 默认 3，6.6 默认 4。",
+      "ids": [
+        "mechanism.64.dm-constant-armor-exp-base",
+        "mechanism.65.dm-constant-armor-exp-base",
+        "mechanism.66.dm-constant-armor-exp-base"
+      ]
+    },
+    {
+      "summary": "每回合结算函数 0x0043CE15 循环 3 次，依次查询第 3/4/5 项（个人经验、武器经验、防具经验）的值，累加后再乘经验倍率 0x00407FAA（装备侧第 8 类成长累计 + 100）；个人经验加进 char 经验并走升级结算 0x004088CD，武器/防具经验分别走 0x004082DD 槽 0 / 槽 1。选择器表 0x0043CFCD 是装备侧的道具类型过滤值：0x0043CEE9-0x0043CEFC 把 i+3 与表值传给 0x004101D9，0x0041301E 再经 0x0043C794 调 0x00407A17 检查装备（槽 0/1 须为宝物且道具 +0x14 == 表值，槽 2 比 +0x11），命中才由 0x00407AF2 累加对应装备值；未命中时装备侧贡献为 0，因此表值本身会改变结果，而不只是标签。6.4/6.6 用 0x1D/0x1E，6.5 用 0。三件特效都为 0 时跳过结算。",
+      "ids": [
+        "mechanism.64.dm-formula-per-turn-exp",
+        "mechanism.65.dm-formula-per-turn-exp",
+        "mechanism.66.dm-formula-per-turn-exp"
+      ]
+    },
+    {
+      "summary": "永久功勋记录地址 = 0x508400 + 角色ID×14。字段 0..4 分别为五维功勋，字段 5/6 为 HP/MP 功勋。基础能力读取函数 0x00407C35（6.6 0x00407C29）在 0x0041055D 读对应字段并叠加；只有我军（char+2A==0）参与叠加。写入函数 0x00408B52 支持模式 0 设值、1 累加、2 扣减，角色 ID ≥ 102 直接丢弃；0x508400 只有读取与两条剧本命令写入。战斗事件与道具效果 0x29（获得功勋）写入另一张表：0x508000 + ID×10 的 5 个 2 字节字段，累加函数 0x42AB8E 在 0x500E9A==1 且（0x505FDC==0 或 0x505F5C≠0）时把值 ×2；策略使用经 0x42AA22 给字段 1 加 2（0x2D 类 +4）；6.5/6.6 由 0x423EAD 清零 5 字段并累计到 0x505F40，6.4 无 0x423EAD 对应函数，只有 0x408FA0 在战后按 char+2 位图清理并累计。累加前 0x42AB8E 调 0x412A87/0x42518F 查询特效 0x45（6.5 名称“获得功勋”、6.6“功勋卓著”）；总额 0x505F40 由 0x456CB4/0x456DA6 消费（缓冲区 0x4FF3B8/0x4FFF68/0x500B60），静态未发现写入永久功勋 0x508400。战后每个单位另由 0x42A8EE 给本场战功字段 0 +1，并按条件表（6.4/6.5 0x407826、6.6 0x41A139，内容均为 00 03 04）给字段 3（战斗上下文 +608≥1）与字段 4（+604==1）各 +1；6.6 的派发入口搬到 0x40DC5C。0x423F4B 在开关 0x505FA8 与 char+2 允许位下，用本场战功按 0x42AC8F 的递增成本（50/65/75…）抵扣成长值，连续开关 0x501A74；三开关初值 0，默认关闭。",
+      "ids": [
+        "mechanism.64.dm-formula-merit-record",
+        "mechanism.65.dm-formula-merit-record",
+        "mechanism.66.dm-formula-merit-record"
+      ]
+    },
+    {
+      "summary": "没有强化反击时，反击伤害 = 原攻击伤害 × 3 / 4。有强化反击时改按已损失 HP 比例加成，不走这份固定份数。6.4 未定位到同一份固定份数。",
+      "ids": [
+        "mechanism.64.dm-formula-counter-damage",
+        "mechanism.65.dm-formula-counter-damage",
+        "mechanism.66.dm-formula-counter-damage"
+      ]
+    },
+    {
+      "summary": "没有强化反击时，反击伤害按攻击伤害的几份结算：3 = 75%，4 = 全额，2 = 50%。",
+      "ids": [
+        "mechanism.65.dm-constant-counter-damage-share",
+        "mechanism.66.dm-constant-counter-damage-share"
+      ]
+    },
+    {
+      "summary": "没有强化连击时，连击伤害会逐次衰减；有强化连击/连击上限类特效后，后续连击不再衰减，并在原伤害上再加这个固定百分比。默认 0 表示只不衰减、不加伤。6.4 同址为空，未收录。",
+      "ids": [
+        "mechanism.64.dm-formula-combo-damage",
+        "mechanism.65.dm-formula-combo-damage",
+        "mechanism.66.dm-formula-combo-damage"
+      ]
+    },
+    {
+      "summary": "没有造成 HP/MP 伤害时从基础上扣多少；6.4 默认 1，6.5 默认 2，6.6 默认 3。",
+      "ids": [
+        "mechanism.64.dm-constant-armor-exp-no-damage",
+        "mechanism.65.dm-constant-armor-exp-no-damage",
+        "mechanism.66.dm-constant-armor-exp-no-damage"
+      ]
+    },
+    {
+      "summary": "没有造成 HP/MP 伤害时，武器经验直接取本值；6.4/6.5 默认 2，6.6 默认 1。",
+      "ids": [
+        "mechanism.64.dm-constant-weapon-exp-no-damage",
+        "mechanism.65.dm-constant-weapon-exp-no-damage",
+        "mechanism.66.dm-constant-weapon-exp-no-damage"
+      ]
+    },
+    {
+      "summary": "流程：索引 ≥5 直接返回传入值；否则 0x42518F(0x3D, 0x5C, 选择子, 0) 查特效（0x40B922 判阵营后走 0x4101D9 或 0x41301E），特效值非 0 时作为每级基准，否则用 (兵种字节 + 成长档) >> 1；随后 基准×等级 + byte[rec+索引+0x21] + 永久功勋，减去当前能力并取下界 0，再加传入成长值；同时返回合成值（edx）供 0x452825 作为宝物成长基数。6.6 入口 0x436E02，基准改走 0x407D48。",
+      "ids": [
+        "mechanism.64.dm-formula-growth-gap",
+        "mechanism.65.dm-formula-growth-gap",
+        "mechanism.66.dm-formula-growth-gap"
+      ]
+    },
+    {
+      "summary": "流程：编号 0x7F 时先 0x41D124 解析目标；0xFF 直接退出；取 unit/officer 后 0x406610 读兵种、inc 后 0x40E01F 写回 byte[rec+0x2B]（兵种 +1）；接着字段 5/6（最大 HP/MP）各加 0x413FAC(字段, rec, 1) = 2×v(前兵种)；随后 0x401D4E 缓冲拷贝、0x44FA7E/0x44FA1F 取文本、10 帧演出循环，最后 0x42F699(2, “兵种提升”文本 0x48B698, 新兵种) 与 UI 刷新。升级条件不在此函数，见 0x41D3DC。",
+      "ids": [
+        "mechanism.64.dm-formula-troop-up",
+        "mechanism.65.dm-formula-troop-up",
+        "mechanism.66.dm-formula-troop-up"
+      ]
+    },
+    {
+      "summary": "物理伤害函数先过命中判定：拿双方敏捷代入命中率曲线。6.4/6.5 命中率 ≥85% 时，第一次没打中会再判一次，命中率扣 10%，最多判 2 次；6.6 用最低命中率 25 的下限钳制。",
+      "ids": [
+        "mechanism.64.dm-formula-physical-hit",
+        "mechanism.65.dm-formula-physical-hit",
+        "mechanism.66.dm-formula-physical-hit"
+      ]
+    },
+    {
+      "summary": "物理攻击在能力差之外先加的固定伤害；默认25。改大后所有物理攻击都会更疼。",
+      "ids": [
+        "mechanism.64.dm-constant-physical-damage-base",
+        "mechanism.65.dm-constant-physical-damage-base",
+        "mechanism.66.dm-constant-physical-damage-base"
+      ]
+    },
+    {
+      "summary": "物理暴击判定进入的集气池编号；6.4 为 0，6.5/6.6 为 2。",
+      "ids": [
+        "mechanism.64.dm-constant-physical-crit-pool",
+        "mechanism.65.dm-constant-physical-crit-pool",
+        "mechanism.66.dm-constant-physical-crit-pool"
+      ]
+    },
+    {
+      "summary": "特效 52 返回的数值直接作为追加一击的概率：100 = 每次都追加，50 = 一半机会。这个值就是主动连击的发动率。",
+      "ids": [
+        "mechanism.64.dm-formula-active-combo",
+        "mechanism.65.dm-formula-active-combo",
+        "mechanism.66.dm-formula-active-combo"
+      ]
+    },
+    {
+      "summary": "特效值为 1 时走固定值模式：加成 = 单位等级÷2 + 本值；增伤和减伤共用。6.5 默认 10，6.6 默认 15。",
+      "ids": [
+        "mechanism.65.dm-constant-fixed-damage-basis",
+        "mechanism.66.dm-constant-fixed-damage-basis"
+      ]
+    },
+    {
+      "summary": "特效屏蔽内层判定的方向数：4 = 十字。通常要和外层方向数一起放宽，只改这个看不到效果。",
+      "ids": [
+        "mechanism.64.dm-constant-screen-inner-directions",
+        "mechanism.65.dm-constant-screen-inner-directions",
+        "mechanism.66.dm-constant-screen-inner-directions"
+      ]
+    },
+    {
+      "summary": "猛击额外造成目标当前 HP 的百分之几伤害；这里限制这个百分比最大能到多少。100 = 最多打掉目标当前 HP 的量。6.6 同名特技为“势不可挡”。",
+      "ids": [
+        "mechanism.64.dm-constant-heavy-strike-cap",
+        "mechanism.65.dm-constant-heavy-strike-cap",
+        "mechanism.66.dm-constant-heavy-strike-cap"
+      ]
+    },
+    {
+      "summary": "生命越低减伤越高；这里限制最多按已损失生命的多少比例减伤。80 = 最多减 80%。",
+      "ids": [
+        "mechanism.65.dm-constant-adversity-reduction-cap",
+        "mechanism.66.dm-constant-adversity-reduction-cap"
+      ]
+    },
+    {
+      "summary": "目标阵营字节 [unit+5] 非 0（不是我方）才结算。基础值按防具槽逐个记；攻方等级低于守方 −1；没有造成 HP/MP 伤害时从基础上扣无伤害值。乘经验倍率后按防具槽写入 ctx+430+槽×4。",
+      "ids": [
+        "mechanism.64.dm-formula-armor-exp",
+        "mechanism.65.dm-formula-armor-exp",
+        "mechanism.66.dm-formula-armor-exp"
+      ]
+    },
+    {
+      "summary": "盾反额外反弹攻击者当前 HP 的百分之几伤害；这里限制这个百分比最大能到多少。100 = 最多反弹攻击者当前 HP 的量。6.4 名称“花枪驭敌”，6.6 名称“厄难毒体”。",
+      "ids": [
+        "mechanism.64.dm-constant-shield-counter-cap",
+        "mechanism.65.dm-constant-shield-counter-cap",
+        "mechanism.66.dm-constant-shield-counter-cap"
+      ]
+    },
+    {
+      "summary": "神魔附体提升单项属性时最多算到多少；9999 是原版上限。6.6 同名特技为“洗髓易筋”。",
+      "ids": [
+        "mechanism.65.dm-constant-demon-stat-cap",
+        "mechanism.66.dm-constant-demon-stat-cap"
+      ]
+    },
+    {
+      "summary": "穿越移动检查几个方向的可通行格：4 = 十字四格，8 = 八方格。三基底默认 4。6.6 同名特技为“无人之境”。",
+      "ids": [
+        "mechanism.64.dm-constant-pass-through-directions",
+        "mechanism.65.dm-constant-pass-through-directions",
+        "mechanism.66.dm-constant-pass-through-directions"
+      ]
+    },
+    {
+      "summary": "突破攻击触发时伤害额外增加的百分比：40 = 伤害×1.4，0 = 不加成。伤害增幅走自己的装备值。",
+      "ids": [
+        "mechanism.64.dm-constant-breakthrough-damage-bonus",
+        "mechanism.65.dm-constant-breakthrough-damage-bonus",
+        "mechanism.66.dm-constant-breakthrough-damage-bonus"
+      ]
+    },
+    {
+      "summary": "突破攻击触发时显示的固定台词，最多 8 个汉字；超出会被截断。",
+      "ids": [
+        "mechanism.64.dm-constant-breakthrough-quote",
+        "mechanism.65.dm-constant-breakthrough-quote",
+        "mechanism.66.dm-constant-breakthrough-quote"
+      ]
+    },
+    {
+      "summary": "策略/精神力攻击在能力差之外先加的固定伤害；默认25。改大后所有策略攻击都会更疼。",
+      "ids": [
+        "mechanism.64.dm-constant-strategy-damage-base",
+        "mechanism.65.dm-constant-strategy-damage-base",
+        "mechanism.66.dm-constant-strategy-damage-base"
+      ]
+    },
+    {
+      "summary": "策略伤害函数先过命中判定：攻方（智力+士气）对守方（智力+士气）套命中率曲线。6.4/6.5 同样有 85% 以上的补判；6.6 用最低命中率 25 的下限钳制。",
+      "ids": [
+        "mechanism.64.dm-formula-strategy-hit",
+        "mechanism.65.dm-formula-strategy-hit",
+        "mechanism.66.dm-formula-strategy-hit"
+      ]
+    },
+    {
+      "summary": "策略伤害里双方能力差除以几；默认3。改大后能力差影响变小，改1影响最大。两处必须同时改。",
+      "ids": [
+        "mechanism.64.dm-constant-strategy-damage-divisor",
+        "mechanism.65.dm-constant-strategy-damage-divisor",
+        "mechanism.66.dm-constant-strategy-damage-divisor"
+      ]
+    },
+    {
+      "summary": "策略命中或格挡的最终概率最多到这个数；默认100%。改小后策略更容易被挡住。",
+      "ids": [
+        "mechanism.64.dm-constant-strategy-hit-cap",
+        "mechanism.65.dm-constant-strategy-hit-cap",
+        "mechanism.66.dm-constant-strategy-hit-cap"
+      ]
+    },
+    {
+      "summary": "策略暴击判定进入的集气池编号；6.4 为 0，6.5/6.6 为 18。",
+      "ids": [
+        "mechanism.64.dm-constant-strategy-crit-pool",
+        "mechanism.65.dm-constant-strategy-crit-pool",
+        "mechanism.66.dm-constant-strategy-crit-pool"
+      ]
+    },
+    {
+      "summary": "策略记录 +0x0B 的类型为 2 时固定 +20；类型为 1 时走普通档。其余情况若是伤害类策略且造成击杀：攻方低于守方时 8×级差+32（封顶 200），攻方高于守方时 max(32−4×级差,0) 且最低 10；未击杀走普通档：攻方低于守方时 4×级差+10（封顶 100），攻方高于守方时 max(10−级差÷2,0) 且最低 5。目标 Data 号等于 0x496C96 时经验 ×2，最后乘经验倍率。策略经验实际分三路缓存：个人经验取最大值写 ctx+0x502（0x0044DE9E），武器经验取最大值写 ctx+0x506（0x00421363），防具经验按策略 ID 写 ctx+0x50A+ID（0x00421409）；再由 0x0041A0AC 统一结算到 0x004088CD 与 0x004082DD（6.4 入口 0x00451085）。",
+      "ids": [
+        "mechanism.64.dm-formula-strategy-exp",
+        "mechanism.65.dm-formula-strategy-exp",
+        "mechanism.66.dm-formula-strategy-exp"
+      ]
+    },
+    {
+      "summary": "经验 = 经验 × (0x00407C35 索引 8 的装备侧成长累计 + 100) / 100。之后 0x00403D5A 再判两个条件：攻方为我军且槽位标志 0x501B00 非 0 → ×2；全局字节 0x500E9A == 1 → ×2。个人、武器、防具、策略经验都走这一条，两处翻倍因此同样作用于武器经验与防具经验。0x501B00 的逐槽标志可由 S 剧本命令 0x39/0x3A 置 3（调度表 0x00420C8E 索引 34/35 → 跳转条目 10 = 0x00420BFD：`cmp al,0x14` 后写 `[0x501B00+部队序号]=3`，序号 <20），并由命令 0x0A 的初始化函数 0x00415ACA 清零 0x501B00 起 0x140 个 DWORD；0x500E9A == 1 有静态写入（6.5 `0x41D69B` 置 1、`0x44EA34` 置 0、`0x4516FC` 自增，另有 `0x410594/0x4225F1/0x423377/0x4233EE/0x465FE0` 的 WORD 写点），阶段判定可达；按静态顺序最多 ×4，尚未实机验证。",
+      "ids": [
+        "mechanism.64.dm-formula-exp-multiplier",
+        "mechanism.65.dm-formula-exp-multiplier",
+        "mechanism.66.dm-formula-exp-multiplier"
+      ]
+    },
+    {
+      "summary": "经验倍率 = (角色第 8 项基础能力 + 本值) / 100；默认 100。",
+      "ids": [
+        "mechanism.64.dm-constant-exp-multiplier-base",
+        "mechanism.65.dm-constant-exp-multiplier-base",
+        "mechanism.66.dm-constant-exp-multiplier-base"
+      ]
+    },
+    {
+      "summary": "经验开关 ctx+600≠0 且武器槽有装备才结算。造成 HP 或 MP 伤害时：经验 = 基础值；攻方等级高于守方 −1；暴击 +1。没有造成任何伤害时直接取“无伤害值”。最后乘经验倍率并累加到 ctx+42C。",
+      "ids": [
+        "mechanism.64.dm-formula-weapon-exp",
+        "mechanism.65.dm-formula-weapon-exp",
+        "mechanism.66.dm-formula-weapon-exp"
+      ]
+    },
+    {
+      "summary": "统计 6 项能力中数值低于本阈值的项数，每低一项按特效值追加伤害；默认 3。6.5 同名特技为“落井下石”。",
+      "ids": [
+        "mechanism.65.dm-constant-exploit-weakness-threshold",
+        "mechanism.66.dm-constant-exploit-weakness-threshold"
+      ]
+    },
+    {
+      "summary": "装备经验结算 0x004082DD：只处理槽位 0（武器）与 1（防具），经验在 char+0x2E+槽×3+2、等级在 +1。阈值按道具记录 +0x11 的 bit0 分宝物/普通；宝物 200、普通 100（6.4/6.6）或 150（6.5）。上限宝物 9/9/15、普通 5/5/9。循环扣减并调用 0x004083C6 做装备成长；满级后经验写 255。使用策略还会按策略 ID 计算一笔装备经验：基础 3（6.6 4），目标等级更高时 −1，乘经验倍率后缓存到 ctx+0x50A+ID，再写入防具槽 1（0x00421409 → 0x004082DD）。",
+      "ids": [
+        "mechanism.64.dm-formula-equip-level-exp",
+        "mechanism.65.dm-formula-equip-level-exp",
+        "mechanism.66.dm-formula-equip-level-exp"
+      ]
+    },
+    {
+      "summary": "装载函数 0x004122C1 按表 0x004123BE 读取 10 个剧本变量（0x004183F7），再写入 0x494FD0、0x496C9F、0x492F90+0x3D0E、0x501BF4、0x496C94/96、0x496C98/9A 等全局。第 6 个读取值（剧本变量 0x02）写入 0x496C96，并在 0x496C94 记录“值 != 0xFFFF”的有效标志；个人经验用它和击杀目标 Data 号比较。变量/命令的剧本名称尚未闭环。",
+      "ids": [
+        "mechanism.64.dm-formula-battle-variable-load",
+        "mechanism.65.dm-formula-battle-variable-load",
+        "mechanism.66.dm-formula-battle-variable-load"
+      ]
+    },
+    {
+      "summary": "角色每升一级所需经验；6.4 默认 150，6.6 默认 250。6.5 使用分段公式，不适用本常量。",
+      "ids": [
+        "mechanism.64.dm-constant-char-exp-threshold",
+        "mechanism.66.dm-constant-char-exp-threshold"
+      ]
+    },
+    {
+      "summary": "角色经验结算 0x004088CD：读当前经验 char+0x2D、等级 char+0x2C，循环扣减阈值并升级（0x00408D52 做成长），满级后写 255。阈值：6.4 固定 150、上限 80；6.5 每 20 级一档，阈值 = (min(等级/20,3)+3)×50（150/200/250/300），上限 60；6.6 固定 250、上限 99。6.5 的分段阈值在同一次结算中只算一次。",
+      "ids": [
+        "mechanism.64.dm-formula-char-level-exp",
+        "mechanism.65.dm-formula-char-level-exp",
+        "mechanism.66.dm-formula-char-level-exp"
+      ]
+    },
+    {
+      "summary": "角色经验结算的最高等级；6.4 默认 80，6.5 默认 60，6.6 默认 99。部分改版基底设为 100。",
+      "ids": [
+        "mechanism.64.dm-constant-char-exp-max-level",
+        "mechanism.65.dm-constant-char-exp-max-level",
+        "mechanism.66.dm-constant-char-exp-max-level"
+      ]
+    },
+    {
+      "summary": "设攻方等级 AL、守方等级 DL。基础经验 = 2×clamp(DL−AL,−1,47)+6。若本次伤害 ≥ 目标当前 HP（击杀）：目标 Data 号等于全局 0x496C96 时额外 +48，否则额外 +64/(max(AL−DL,0)+2)。0x496C96 由战场变量装载 0x004122C1 从剧本变量 0x02 写入；最后乘经验倍率；同一行动多次攻击只把最大值写进 ctx+428。",
+      "ids": [
+        "mechanism.64.dm-formula-personal-exp",
+        "mechanism.65.dm-formula-personal-exp",
+        "mechanism.66.dm-formula-personal-exp"
+      ]
+    },
+    {
+      "summary": "连击判定进入的集气池编号；三基底默认 0。",
+      "ids": [
+        "mechanism.64.dm-constant-combo-pool",
+        "mechanism.65.dm-constant-combo-pool",
+        "mechanism.66.dm-constant-combo-pool"
+      ]
+    },
+    {
+      "summary": "铁索横江会检查几个方向的相邻友军：4 = 十字四格，8 = 八方格。改大后斜向相邻的友军也会纳入连锁。6.6 同名特技为“一步剑围”。",
+      "ids": [
+        "mechanism.64.dm-constant-iron-chain-directions",
+        "mechanism.65.dm-constant-iron-chain-directions",
+        "mechanism.66.dm-constant-iron-chain-directions"
+      ]
+    },
+    {
+      "summary": "风驰电掣的加成按百分比算出后还要再除以本值；6.5 默认 11，6.6 默认 10。改大后同特效值增伤变少。",
+      "ids": [
+        "mechanism.65.dm-constant-wind-rush-damage-divisor",
+        "mechanism.66.dm-constant-wind-rush-damage-divisor"
+      ]
+    },
+    {
+      "summary": "首次命中率达到本值才会补判；默认 85。",
+      "ids": [
+        "mechanism.64.dm-constant-hit-retry-threshold",
+        "mechanism.65.dm-constant-hit-retry-threshold"
+      ]
+    },
+    {
+      "summary": "高段能力每高 1 点加本值/D；默认 10。",
+      "ids": [
+        "mechanism.64.dm-constant-hit-curve-high-coef",
+        "mechanism.65.dm-constant-hit-curve-high-coef",
+        "mechanism.66.dm-constant-hit-curve-high-coef"
+      ]
+    }
+  ],
+  "duplicateEvidence": [],
+  "orphanEvidence": [
+    "sources/evidence/0575cd79c57212e12398.txt",
+    "sources/evidence/05796e618ef1c42a948d.txt",
+    "sources/evidence/06dd4258bc28a171e209.txt",
+    "sources/evidence/07ac9e68f8b810bd4b20.txt",
+    "sources/evidence/0b481913943f6e5b46df.txt",
+    "sources/evidence/0cd4cc75f6177f570832.txt",
+    "sources/evidence/0daa61a08d568d423d06.txt",
+    "sources/evidence/0e65928e7edef51bc804.txt",
+    "sources/evidence/0fab084d6e60b1eb9495.txt",
+    "sources/evidence/125362f5fd04e63de953.txt",
+    "sources/evidence/13f7d981b0246575ad06.txt",
+    "sources/evidence/1679af08e92f9a6dfcf1.txt",
+    "sources/evidence/1719549bb2b992daf80e.txt",
+    "sources/evidence/194627a636491547c33a.txt",
+    "sources/evidence/1adaf53571858f4b9dfd.txt",
+    "sources/evidence/1b8ec61598443511d9dc.txt",
+    "sources/evidence/1ba9cfbff6b471a59b39.txt",
+    "sources/evidence/1c4fc6dae4cfafeeab7c.txt",
+    "sources/evidence/1cf0ba7d0b2849e87264.txt",
+    "sources/evidence/205fe4623ca0364495e7.txt",
+    "sources/evidence/207fc77fe3ee510a54f9.txt",
+    "sources/evidence/2195b555df8009df2ef6.txt",
+    "sources/evidence/21e2a8a3a3ad3294c866.txt",
+    "sources/evidence/233c1304673d3d69921c.txt",
+    "sources/evidence/241930a84733f43b9e00.txt",
+    "sources/evidence/256e3073db85456d1ed9.txt",
+    "sources/evidence/267314fa4570355304a0.txt",
+    "sources/evidence/28b8e36cf5fe3987d23a.txt",
+    "sources/evidence/2baae4ec50353385e670.txt",
+    "sources/evidence/2c9407146ea54ce28435.txt",
+    "sources/evidence/2dd3f87dcd5e74ba8d0e.txt",
+    "sources/evidence/2f1f5f877437247424f5.txt",
+    "sources/evidence/32d609af3b258e40f999.txt",
+    "sources/evidence/33653ce1d0f00b827d27.txt",
+    "sources/evidence/34a1303d305cecee6771.txt",
+    "sources/evidence/39cc2a4a1579e6116a58.txt",
+    "sources/evidence/3bba919c8225391aa1c1.txt",
+    "sources/evidence/3bc1f0d7ac7d02c63dc7.txt",
+    "sources/evidence/3c41e545823b38e45eb2.txt",
+    "sources/evidence/3d1874002459acbec204.txt",
+    "sources/evidence/3d6713cba5930eb3ae61.txt",
+    "sources/evidence/3de83a29dadbc0cd5722.txt",
+    "sources/evidence/3f2fbb7c6779a43fc0f3.txt",
+    "sources/evidence/4004031d549c6a9cc996.txt",
+    "sources/evidence/40af35f85682b804de31.txt",
+    "sources/evidence/43e1be5f856e75a20e86.txt",
+    "sources/evidence/43e2372f8efb0eb66e60.txt",
+    "sources/evidence/43edbe0c582690970753.txt",
+    "sources/evidence/44e34529bd50e7099536.txt",
+    "sources/evidence/44fc522bb09449c48761.txt",
+    "sources/evidence/450ee0ca98c615332b40.txt",
+    "sources/evidence/45dd31c94cb2bbb7a2e6.txt",
+    "sources/evidence/48303caa5813e7b9165a.txt",
+    "sources/evidence/484610490f686f3a19fc.txt",
+    "sources/evidence/499a71fa6967c660a098.txt",
+    "sources/evidence/4a4d9f9431f750d4dce2.txt",
+    "sources/evidence/4ac7f44d3ed95224ae74.txt",
+    "sources/evidence/4bbbb49d04caa4b5c5ee.txt",
+    "sources/evidence/510001644d61a2de8163.txt",
+    "sources/evidence/5187743db76125cfbac2.txt",
+    "sources/evidence/51fdcadbe4cb39e1b685.txt",
+    "sources/evidence/530123c9203be243b675.txt",
+    "sources/evidence/55163a9cb01a3176fe5d.txt",
+    "sources/evidence/57288b686834415c5b56.txt",
+    "sources/evidence/58aa991189e31d63414d.txt",
+    "sources/evidence/5d05c2de6267c0b85b74.txt",
+    "sources/evidence/5e85684bfd63c5bcfc83.txt",
+    "sources/evidence/621fcc2a60f582837e16.txt",
+    "sources/evidence/627bfba95bd73b2268d1.txt",
+    "sources/evidence/64aac7baaf50537a0552.txt",
+    "sources/evidence/65557a11faabc91bd5cd.txt",
+    "sources/evidence/661113684351d7ab9db5.txt",
+    "sources/evidence/68ef6e23011c6f9dfdbd.txt",
+    "sources/evidence/6a32c644b08ee0573dff.txt",
+    "sources/evidence/6aabb1be5a4657a6933e.txt",
+    "sources/evidence/6b3203aca7b70dd9b8b9.txt",
+    "sources/evidence/6b782bc1c697d56c0ca2.txt",
+    "sources/evidence/6bf2d6a12d0a8cf1bfe3.txt",
+    "sources/evidence/6c8d7ea79ca8aabaefd2.txt",
+    "sources/evidence/7197e6209e500889e8c7.txt",
+    "sources/evidence/72590ac6e176c0c76ecd.txt",
+    "sources/evidence/7469b03e248200c86bca.txt",
+    "sources/evidence/74726761ddbfb9d1fe67.txt",
+    "sources/evidence/760e1cb956ba18fe3a0f.txt",
+    "sources/evidence/7a72d08574d94f086912.txt",
+    "sources/evidence/7b80accaf306cbf0c8be.txt",
+    "sources/evidence/7c97118556b799266fb7.txt",
+    "sources/evidence/7d76ea1666a5ce356aa9.txt",
+    "sources/evidence/7e7143de7ee29e5df129.txt",
+    "sources/evidence/7ea616a26a45be9a58d9.txt",
+    "sources/evidence/80bfc071877fe831dfed.txt",
+    "sources/evidence/84a1fd1ea77b162f25d4.txt",
+    "sources/evidence/86dbe531f16b711c0ec4.txt",
+    "sources/evidence/87f2be157e52f11280e1.txt",
+    "sources/evidence/8a22e5e2bf6afcddcb9b.txt",
+    "sources/evidence/8b5625feec60df369eeb.txt",
+    "sources/evidence/8b70abb1f5d7f1345e56.txt",
+    "sources/evidence/8cab8c416a0c71b5607a.txt",
+    "sources/evidence/8d8309921e2ab990c890.txt",
+    "sources/evidence/8e6cc8a4e04c59811d2d.txt",
+    "sources/evidence/8f7e6da56b35aa2d5a5a.txt",
+    "sources/evidence/8fd71c4594a4ab75f5cb.txt",
+    "sources/evidence/8fd880d538bc021d231a.txt",
+    "sources/evidence/910afe11dacf6fe3a6f4.txt",
+    "sources/evidence/915740e38c627aee6413.txt",
+    "sources/evidence/92ce6eae5d081eb61c7f.txt",
+    "sources/evidence/93c08eaa861db5586efc.txt",
+    "sources/evidence/93d89f842711aac005de.txt",
+    "sources/evidence/93fbbf63dfc9b378112b.txt",
+    "sources/evidence/964ebe5ed35b90850ef8.txt",
+    "sources/evidence/974440c7cb7825ecd83f.txt",
+    "sources/evidence/977fabe044a6792de930.txt",
+    "sources/evidence/97b4bcdb2ffd41e5eca8.txt",
+    "sources/evidence/98d3f13b17e0f3c2c890.txt",
+    "sources/evidence/9918741d58cd71157e9c.txt",
+    "sources/evidence/9aeea36b2a7d5b37b40f.txt",
+    "sources/evidence/9bc83eed1ee7200e8f64.txt",
+    "sources/evidence/9cca982cf22ac010bf22.txt",
+    "sources/evidence/9d2c165edeefeec096dc.txt",
+    "sources/evidence/9e1b24a06b60ab1edfb3.txt",
+    "sources/evidence/a078be0ee99548156bfc.txt",
+    "sources/evidence/a25eb5dd270550c1162a.txt",
+    "sources/evidence/a359440e8b9bac984639.txt",
+    "sources/evidence/a529d64c29e82896bf56.txt",
+    "sources/evidence/a57366d39daa13c1f408.txt",
+    "sources/evidence/a5f913ba2ab6434764fd.txt",
+    "sources/evidence/a6a552e4affa51861825.txt",
+    "sources/evidence/a95ff10376ea2d731eb8.txt",
+    "sources/evidence/a96235b9b6411c5c61cd.txt",
+    "sources/evidence/a97858456c18ea8fb259.txt",
+    "sources/evidence/acfc0eb8930f3f9cc3c5.txt",
+    "sources/evidence/ae194f7536ba76a47137.txt",
+    "sources/evidence/b051e29a2392e7be1e99.txt",
+    "sources/evidence/b1a40a1437f28d6da20b.txt",
+    "sources/evidence/b1bfce53a72e7dea571d.txt",
+    "sources/evidence/b2d222ffd5cd18a84202.txt",
+    "sources/evidence/b54c15bcb11b7caed62a.txt",
+    "sources/evidence/b6fc4f987411d03313dd.txt",
+    "sources/evidence/b8cd0fed2f7ce4c39f23.txt",
+    "sources/evidence/bd79f2877f522abb8258.txt",
+    "sources/evidence/c19487fa5c9e9e8ed9d8.txt",
+    "sources/evidence/c3c043e01001f9a3b88c.txt",
+    "sources/evidence/c5ad9c1d3e8f42c5d8a6.txt",
+    "sources/evidence/c7cba4d6c9d34b0005aa.txt",
+    "sources/evidence/cbe142caf0251c4db89e.txt",
+    "sources/evidence/cff71f58debc30eb3a8a.txt",
+    "sources/evidence/d00ba0aea03559a23ecb.txt",
+    "sources/evidence/d1a0951db7abeacbc570.txt",
+    "sources/evidence/d2ca189ef3a4ba58f651.txt",
+    "sources/evidence/d3af9005f592fc9565a1.txt",
+    "sources/evidence/d60d0a3eee49023bc454.txt",
+    "sources/evidence/d81076d9422c82061338.txt",
+    "sources/evidence/e02dfae09040c52be4f8.txt",
+    "sources/evidence/e0aed7df803130657076.txt",
+    "sources/evidence/e3c70cc187765dee462f.txt",
+    "sources/evidence/e4061d0dd71eead24cfd.txt",
+    "sources/evidence/e42ccbac6bafb2023e99.txt",
+    "sources/evidence/e4a0c21af3ac46ee032a.txt",
+    "sources/evidence/e51d6d790b6e7d0c59bd.txt",
+    "sources/evidence/e6fbb75f69eb36e068ab.txt",
+    "sources/evidence/e7170d83454a43f6cb3e.txt",
+    "sources/evidence/e7dad89867b67190a8c2.txt",
+    "sources/evidence/e81effd3088f0b3952c6.txt",
+    "sources/evidence/eae3c004b93ed6b94575.txt",
+    "sources/evidence/ec5c904bd09eb0ee50fd.txt",
+    "sources/evidence/ed1cbe5889ee3b66a7b0.txt",
+    "sources/evidence/edcef2dc6250c25dd5e1.txt",
+    "sources/evidence/ef6fe1073fc64ecfd246.txt",
+    "sources/evidence/efc6639051a943e9667b.txt",
+    "sources/evidence/f0388deeee84450f3d8c.txt",
+    "sources/evidence/f0875d726227e1ad35b8.txt",
+    "sources/evidence/f1356bc2e4861711d945.txt",
+    "sources/evidence/f4fd53a7c8035a9c50f0.txt",
+    "sources/evidence/f7ba933174338eafbe90.txt",
+    "sources/evidence/f8325232154c3745cf32.txt",
+    "sources/evidence/fcf9781b70589c690828.txt",
+    "sources/evidence/fde74e87c5d6bc523039.txt",
+    "sources/evidence/fe8805ce5809650b6390.txt",
+    "sources/evidence/round101-attack-range-q1-q10.md",
+    "sources/evidence/scananchors-round101.py"
+  ],
+  "duplicateSourcePaths": [
+    {
+      "path": "data管理器/config/profiles/ccz-6.5.json",
+      "ids": [
+        "src.data-manager.profile65",
+        "src.data-manager64.profile65"
+      ]
+    },
+    {
+      "path": "data管理器/config/profiles/ccz-6.6.json",
+      "ids": [
+        "src.data-manager.profile66",
+        "src.dm.core-current-20261102.profile-66"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryTableReader.cs",
+      "ids": [
+        "src.data-manager.attribute-reader",
+        "src.data-manager64.attribute-reader"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/BinaryValueCodec.cs",
+      "ids": [
+        "src.data-manager.values",
+        "src.data-manager64.values"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Binary/RecordCodecs.cs",
+      "ids": [
+        "src.data-manager.codecs",
+        "src.data-manager64.codecs"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Csv/CsvService.cs",
+      "ids": [
+        "src.data-manager.csv",
+        "src.data-manager64.csv"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Domain/EffectNamePoolService.cs",
+      "ids": [
+        "src.data-manager.name-pool",
+        "src.data-manager64.name-pool"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Editing/WorkspaceBinaryTransaction.cs",
+      "ids": [
+        "src.data-manager.transaction",
+        "src.data-manager64.transaction"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Migration/MigrationService.cs",
+      "ids": [
+        "src.data-manager.migration",
+        "src.data-manager64.migration"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Profiles/EmbeddedEngineLayoutProbe.cs",
+      "ids": [
+        "src.data-manager.embedded-probe",
+        "src.data-manager64.embedded-probe"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileAugmentationService.cs",
+      "ids": [
+        "src.data-manager.augmentation",
+        "src.data-manager64.augmentation"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Core/Profiles/ProfileRegistry.cs",
+      "ids": [
+        "src.data-manager.registry",
+        "src.data-manager64.registry"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Images/ResourceDisplayNames.cs",
+      "ids": [
+        "src.data-manager.image-source-labels",
+        "src.data-manager.incremental-20261102.image-display-names"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/ProfileWriteTests.cs",
+      "ids": [
+        "src.data-manager.test-profile-write",
+        "src.data-manager64.test-profile-write"
+      ]
+    },
+    {
+      "path": "data管理器/src/DataManager.Tests/Program.cs",
+      "ids": [
+        "src.data-manager.test-runner",
+        "src.data-manager64.test-runner",
+        "src.dm.core-current-20261102.test-runner"
+      ]
+    },
+    {
+      "path": "基底/复刻版6.6山贼/Ekd5.exe",
+      "ids": [
+        "src.ccz.shanzai.work.1b25.exe",
+        "src.ccz.shanzai.work.aa0f.exe",
+        "src.dm.formulas.sample-66-20261102"
+      ]
+    },
+    {
+      "path": "形象管理器/src/ImageManager.App/AiAtlasImportDialog.cs",
+      "ids": [
+        "src.data-manager.image-atlas-import-dialog",
+        "src.data-manager.incremental-20261102.atlas-ui"
+      ]
+    },
+    {
+      "path": "形象管理器/src/ImageManager.Core/ReferenceAtlasContext.cs",
+      "ids": [
+        "src.data-manager.image-reference-context",
+        "src.data-manager.incremental-20261102.atlas-context"
+      ]
+    },
+    {
+      "path": "形象管理器/src/ImageManager.Core/ReferenceAtlasLayoutPlanner.cs",
+      "ids": [
+        "src.data-manager.image-reference-layout",
+        "src.data-manager.incremental-20261102.atlas-layout"
+      ]
+    },
+    {
+      "path": "形象管理器/src/ImageManager.Core/ReferenceAtlasService.cs",
+      "ids": [
+        "src.data-manager.image-reference-atlas",
+        "src.data-manager.incremental-20261102.atlas-service"
+      ]
+    },
+    {
+      "path": "形象管理器/src/ImageManager.Core/SPhysicalMappingService.cs",
+      "ids": [
+        "src.data-manager.image-s-map",
+        "src.data-manager.incremental-20261102.s-physical-mapping"
+      ]
+    },
+    {
+      "path": "形象管理器/src/ImageManager.Tests/Program.cs",
+      "ids": [
+        "src.data-manager.image-test-runner",
+        "src.data-manager.incremental-20261102.image-test-runner"
+      ]
+    }
+  ],
+  "placeholderTerms": [
+    {
+      "id": "global.64.strategy-name-table.9112",
+      "token": "占位",
+      "context": "0x4FFFF0；0x4FF4F0 起 16 项占位名「策略0017…」。\", \"relations"
+    },
+    {
+      "id": "mechanism.64.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录\", \"currentValue\": \"0x"
+    },
+    {
+      "id": "mechanism.64.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": " 5 个 {00 04 01} + 尾 01 的占位记录\", \"classification\": \""
+    },
+    {
+      "id": "mechanism.64.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录\", \"currentValue\": \"0x"
+    },
+    {
+      "id": "mechanism.64.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录；只读（公式输入）\", \"特技习得查询：0x"
+    },
+    {
+      "id": "mechanism.64.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录；只读（公式输入）\", \"策略经验入口：0x"
+    },
+    {
+      "id": "struct.64.disk.64-xisui-v1.job-series-accessory-groups",
+      "token": "占位",
+      "context": "s\", \"indexFormula\": \"不解析占位 offset=0；实际地址由 VA 0x004"
+    },
+    {
+      "id": "struct.64.disk.64-xisui-v1.job-series-accessory-groups",
+      "token": "占位",
+      "context": "址/FF 分隔专用服务及专用 CSV。禁止解码此占位偏移或导出 EXE 文件头。\"], \"notes"
+    },
+    {
+      "id": "format.data-manager.inner-scene-pmap",
+      "token": "占位",
+      "context": "保留并后移。\", \"删除外场景写同尺寸同编码黑色占位，保留前40槽；删除内场景同时删除对应地形并前移"
+    },
+    {
+      "id": "format.65.accessory-job-groups",
+      "token": "占位",
+      "context": "回使用目标 PE 虚拟地址映射出的文件偏移，不把占位 DataTable offset=0 当作数据"
+    },
+    {
+      "id": "global.65.hotweapon-name-table.3890",
+      "token": "占位",
+      "context": "ble.3890\", \"title\": \"热兵器占位名表\", \"aliases\": [\"0x0050"
+    },
+    {
+      "id": "global.65.hotweapon-name-table.3890",
+      "token": "占位",
+      "context": ": 76, \"semantics\": \"19 项占位名「43热兵器…4a热兵器」等，属扩展位未正式命"
+    },
+    {
+      "id": "mechanism.65.attack-range-grid-write.3890",
+      "token": "占位",
+      "context": "\", \"meaning\": \"B 层：落格结果/占位\"}, {\"base\": \"0x004AAFF4"
+    },
+    {
+      "id": "mechanism.shared.data-manager-text-payload-budget",
+      "token": "占位",
+      "context": "不可用不回退UTF-8。\", \"原无效字节以私用占位区分于真实问号并记录警告；未改字段仍保存原槽，改"
+    },
+    {
+      "id": "mechanism.shared.data-manager-text-payload-budget",
+      "token": "占位",
+      "context": "；未改字段仍保存原槽，改该文本时要求替换不可编码占位。\", \"CR、LF、尾空格和控制码按原字节保留"
+    },
+    {
+      "id": "mechanism.65.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录\", \"currentValue\": \"0x"
+    },
+    {
+      "id": "mechanism.65.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": " 5 个 {00 04 01} + 尾 01 的占位记录\", \"classification\": \""
+    },
+    {
+      "id": "mechanism.65.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录\", \"currentValue\": \"0x"
+    },
+    {
+      "id": "mechanism.65.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录；只读（公式输入）\", \"特技习得查询：0x"
+    },
+    {
+      "id": "mechanism.65.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录；只读（公式输入）\", \"策略经验入口：0x"
+    },
+    {
+      "id": "mechanism.65.battle-unit-table.3ef7",
+      "token": "占位",
+      "context": "le.3ef7\", \"title\": \"战场单位占位表 0x4B3D21（250×5）\", \"ali"
+    },
+    {
+      "id": "mechanism.65.battle-unit-table.3ef7",
+      "token": "占位",
+      "context": "4B3D21\", \"0x4B3D24\", \"战场占位表\", \"250单位表\"], \"versions"
+    },
+    {
+      "id": "mechanism.65.battle-unit-table.3ef7",
+      "token": "占位",
+      "context": "21 为 250 条 ×5 字节的战场对象/单位占位表：byte0/1=x/y，byte2=类型（0"
+    },
+    {
+      "id": "mechanism.65.cell-byte-map.3ef7",
+      "token": "占位",
+      "context": "；初始化值 0xFF 与 0x4B3D21 单位占位表的空哨兵一致；索引函数 0x403789 与 "
+    },
+    {
+      "id": "mechanism.65.engine-general-coverage.3ef7",
+      "token": "占位",
+      "context": "目标/位置评分 0x4101D9\", \"战场单位占位表 0x4B3D21 五字段\", \"物品记录字段"
+    },
+    {
+      "id": "mechanism.65.job-series-attribute-matrix.3ef7",
+      "token": "占位",
+      "context": "枚举并被 AI 评分比较 ==2；其余行为布尔/占位标志。三基底矩阵不同。\", \"tableLayo"
+    },
+    {
+      "id": "mechanism.65.new-anchors-batch-66.3ef7",
+      "token": "待定",
+      "context": "码 0x72 子命令 31），操作码中文命令名仍待定。\", \"未运行游戏对照。\"], \"relati"
+    },
+    {
+      "id": "script.65.opcode-00",
+      "token": "暂无",
+      "context": ", \"- 分类：其他/待研究\", \"- 参数槽：暂无专用参数模板；按旧源码布局只读核对，不能直接写回"
+    },
+    {
+      "id": "script.65.opcode-04",
+      "token": "暂无",
+      "context": "\", \"- 分类：流程/变量\", \"- 参数槽：暂无专用参数模板；按旧源码布局只读核对，不能直接写回"
+    },
+    {
+      "id": "script.65.opcode-08",
+      "token": "暂无",
+      "context": "\", \"- 分类：流程/变量\", \"- 参数槽：暂无专用参数模板；按旧源码布局只读核对，不能直接写回"
+    },
+    {
+      "id": "script.65.opcode-0c",
+      "token": "暂无",
+      "context": "\", \"- 分类：流程/变量\", \"- 参数槽：暂无专用参数模板；按旧源码布局只读核对，不能直接写回"
+    },
+    {
+      "id": "script.65.opcode-0d",
+      "token": "暂无",
+      "context": "\", \"- 分类：系统/路线\", \"- 参数槽：暂无专用参数模板；按旧源码布局只读核对，不能直接写回"
+    },
+    {
+      "id": "script.65.opcode-10",
+      "token": "暂无",
+      "context": "\", \"- 分类：流程/变量\", \"- 参数槽：暂无专用参数模板；按旧源码布局只读核对，不能直接写回"
+    },
+    {
+      "id": "script.65.opcode-1c",
+      "token": "暂无",
+      "context": "\"- 分类：地图/坐标/战场\", \"- 参数槽：暂无专用参数模板；按旧源码布局只读核对，不能直接写回"
+    },
+    {
+      "id": "script.65.opcode-1d",
+      "token": "暂无",
+      "context": " \"- 分类：人物/战场单位\", \"- 参数槽：暂无专用参数模板；按旧源码布局只读核对，不能直接写回"
+    },
+    {
+      "id": "script.65.opcode-1e",
+      "token": "暂无",
+      "context": " \"- 分类：人物/战场单位\", \"- 参数槽：暂无专用参数模板；按旧源码布局只读核对，不能直接写回"
+    },
+    {
+      "id": "script.65.opcode-28",
+      "token": "暂无",
+      "context": "\", \"- 分类：流程/变量\", \"- 参数槽：暂无专用参数模板；按旧源码布局只读核对，不能直接写回"
+    },
+    {
+      "id": "struct.65.disk.65-standard-v1.job-series-accessory-groups",
+      "token": "占位",
+      "context": "s\", \"indexFormula\": \"不解析占位 offset=0；实际地址由 VA 0x004"
+    },
+    {
+      "id": "struct.65.disk.65-standard-v1.job-series-accessory-groups",
+      "token": "占位",
+      "context": "址/FF 分隔专用服务及专用 CSV。禁止解码此占位偏移或导出 EXE 文件头。\"], \"notes"
+    },
+    {
+      "id": "test.data-manager.scene-terrain-pair-contract",
+      "token": "占位",
+      "context": "复和失败回滚保持编号与尾项一致\", \"外场景黑色占位、删除最后配对保留全通行尾项、缺配对拒绝及无协议"
+    },
+    {
+      "id": "test.data-manager.physical-table-roundtrip",
+      "token": "占位",
+      "context": "证 SHA/历史\", \"边界不足、只读能力、特殊占位值和未知枚举得到明确诊断\", \"这是自定义 co"
+    },
+    {
+      "id": "workflow.data-manager.inner-scene-terrain",
+      "token": "占位",
+      "context": "片经过调色板量化\", \"前40外场景删除采用黑色占位；内场景删除必须同步Pmap\", \"最后一项删除"
+    },
+    {
+      "id": "fn.66.shanzai6929.unit-id-to-unit",
+      "token": "待补",
+      "context": " \"寄存器输入/返回，ret；完整clobber待补\", \"inputs\": \"CL为单位号，先零扩"
+    },
+    {
+      "id": "fn.66.shanzai6929.effect-aggregate",
+      "token": "待补",
+      "context": "AX/EDX数值、ECX模式；完整clobber待补\", \"inputs\": \"EAX、EDX为渠道"
+    },
+    {
+      "id": "fn.66.shanzai6929.effect-aggregate",
+      "token": "待补",
+      "context": "s\": \"EAX，按分支合并；其他寄存器完整契约待补\", \"semantics\": \"模式0为32位"
+    },
+    {
+      "id": "fn.66.shanzai6929.effect-submit",
+      "token": "待补",
+      "context": "0040BF2F返回聚合结果；完整clobber待补\", \"semantics\": \"当ECX==2"
+    },
+    {
+      "id": "global.66.effect-value.value-table",
+      "token": "待补",
+      "context": "cle\": \"静态常量表，启动期不变；长度与边界待补证，因此本条为候选。\", \"relations\""
+    },
+    {
+      "id": "mechanism.66.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录\", \"currentValue\": \"0x"
+    },
+    {
+      "id": "mechanism.66.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": " 5 个 {00 04 01} + 尾 01 的占位记录\", \"classification\": \""
+    },
+    {
+      "id": "mechanism.66.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录\", \"currentValue\": \"0x"
+    },
+    {
+      "id": "mechanism.66.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录；只读（公式输入）\", \"特技习得查询：0x"
+    },
+    {
+      "id": "mechanism.66.dm-formula-equip-level-exp",
+      "token": "占位",
+      "context": "态为 5 个 {00 04 01}+尾 01 的占位记录；只读（公式输入）\", \"策略经验入口：0x"
+    },
+    {
+      "id": "struct.66.disk.66-standard-v1.job-series-accessory-groups",
+      "token": "占位",
+      "context": "s\", \"indexFormula\": \"不解析占位 offset=0；实际地址由 VA 0x004"
+    },
+    {
+      "id": "struct.66.disk.66-standard-v1.job-series-accessory-groups",
+      "token": "占位",
+      "context": "址/FF 分隔专用服务及专用 CSV。禁止解码此占位偏移或导出 EXE 文件头。\"], \"notes"
+    },
+    {
+      "id": "struct.66.disk.66-legacy-data-v1.job-series-accessory-groups",
+      "token": "占位",
+      "context": "s\", \"indexFormula\": \"不解析占位 offset=0；实际地址由 VA 0x004"
+    },
+    {
+      "id": "struct.66.disk.66-legacy-data-v1.job-series-accessory-groups",
+      "token": "占位",
+      "context": "址/FF 分隔专用服务及专用 CSV。禁止解码此占位偏移或导出 EXE 文件头。\"], \"notes"
+    },
+    {
+      "id": "struct.66.disk.66-shanzhai-legacy.job-series-accessory-groups",
+      "token": "占位",
+      "context": "s\", \"indexFormula\": \"不解析占位 offset=0；实际地址由 VA 0x004"
+    },
+    {
+      "id": "struct.66.disk.66-shanzhai-legacy.job-series-accessory-groups",
+      "token": "占位",
+      "context": "址/FF 分隔专用服务及专用 CSV。禁止解码此占位偏移或导出 EXE 文件头。\"], \"notes"
+    }
+  ],
+  "verifiedClaims": [
+    {
+      "claim": "6.6 股票策略伤害的诱惑判定为策略类型 0x05，复刻版山贼变体为 0x14",
+      "evidence": "sources/evidence/strategy-job-specific-damage-modifiers-20261115.json",
+      "fileOffset": "0x3B5F0",
+      "bytes": {
+        "6.4": "80 7D 10 14",
+        "6.5": "80 7D 10 14",
+        "6.6-v716": "80 7D DC 05",
+        "6.6-shanzhai": "80 7D DC 14"
+      },
+      "conclusion": "条目现有写法正确，不得按版本号统一改成 0x05 或 0x14。"
+    },
+    {
+      "claim": "6.6 股票策略命中桩为 8B 45 F8 3C 05；山贼变体为 8B 45 F8 3C 14",
+      "evidence": "sources/evidence/strategy-job-specific-damage-modifiers-20261115.json",
+      "fileOffset": "0x3B5F0",
+      "bytes": {
+        "6.4": "8B 45 10 3C 14",
+        "6.5": "8B 45 10 3C 14",
+        "6.6-v716": "8B 45 F8 3C 05",
+        "6.6-shanzhai": "8B 45 F8 3C 14"
+      },
+      "conclusion": "命中判定与伤害判定的局部偏移均为 [ebp-8]（6.6），不是 [ebp+0x10]。"
+    }
+  ],
+  "notMerged": [
+    {
+      "reason": "跨画像同地址是不同样本的合法并存",
+      "rule": "同一 value 但 profile 不同不合并"
+    },
+    {
+      "reason": "来源 path 同名记录属于不同日期/用途的快照",
+      "rule": "只报告，不合并 sourceRefs"
+    },
+    {
+      "reason": "0x410A38 的四个实体分别是物理分派表、签名、模式、行为画像",
+      "rule": "保留视图，补 120/126 边界"
+    }
+  ]
+}

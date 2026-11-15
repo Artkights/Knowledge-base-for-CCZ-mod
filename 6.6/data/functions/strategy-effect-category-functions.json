@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz66.xinnai12.local.8ba1",
+  "entries": [
+    {
+      "id": "fn.66.strategy-type-read.8ba1",
+      "title": "策略类型读取（0x44270C，运行时 +0x0F）",
+      "aliases": [
+        "0x0044270C",
+        "0x00420A9B",
+        "strategy-type-read"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0044270C",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=策略运行时记录指针；无栈参",
+      "inputs": "ECX 指向 0x61 字节运行时策略记录（0x484002 以 id*0x61+0x4A3E77 计算）",
+      "returns": "AL=策略类型（文件 +0x0B 搬到运行时 +0x0F）",
+      "semantics": "0x420A9B(id) 先用 0x484002 取记录，再调 0x44270C；0x44270C 只做 movzx eax, byte [ecx+0x0F]。伤害函数 0x43C210 用它选择辅助策略特效；命中函数 0x43B730 也用同一读取。0x425AC7 读文件 +0x0B，0x425AD0 读 +0x0E（MP）。",
+      "relations": [
+        "struct.66.strategy-record.25d",
+        "mechanism.66.assist-strategy-effect-category.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.assist-effect-select.8ba1",
+      "title": "辅助xx策略特效按策略类型选择（0x43C210 分支）",
+      "aliases": [
+        "0x0043C210",
+        "assist-effect-select",
+        "火系策略增伤"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043C210",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "位于 0x43C01D 策略伤害函数内部；ECX=施法者人物记录，[ebp-0x24]=策略类型",
+      "inputs": "[ebp-0x24]=策略类型；施法者来自 [ebp-0x10]；EAX 先清零",
+      "returns": "无；命中后把特效值交给 0x425AD9 参与伤害",
+      "semantics": "类型 0x00→查询（0x77,0x38,1,0），0x01→（0x78,0x38），0x02→（0x79,0x38），0x03→（0x7A,0x38），0x26→（0x7B,0x38）；其它类型调用 0x405DBD 查询（0x27,0x37,1,0）。元素路径直接在 0x43C263 调 0x4101D9（EAX=0），不经过 0x42518F 的双态分流。",
+      "relations": [
+        "fn.66.effect-query-dual.8ba1",
+        "fn.66.assist-damage-apply.8ba1",
+        "mechanism.66.assist-strategy-effect-category.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.effect-query-dual.8ba1",
+      "title": "特效双通道查询入口（0x42518F）",
+      "aliases": [
+        "0x0042518F",
+        "effect-query-dual",
+        "0x004101D9",
+        "0x0041301E"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0042518F",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=人物记录；栈参（兵种特效ID, 装备特效ID, 合并模式, 装备取值模式）；ret 0x10",
+      "inputs": "arg1=兵种特效 ID，arg2=装备特效 ID，arg3=合并模式（0 加/1 取大/2 七优先/3 OR），arg4=装备取值模式（0 取值/非0 取存在=100）",
+      "returns": "EAX=特效查询值；EDX=人物 ID",
+      "semantics": "0x40B922 判定战斗场景（0x40B913()==3）：非 0 转 0x4101D9，否则转 0x41301E；两者都按两个特效 ID 查询并按 arg3 合并。",
+      "relations": [
+        "mechanism.66.assist-strategy-effect-category.8ba1",
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "mechanism.66.effect-query-pipeline.8ba1",
+        "fn.66.effect-query-battle.8ba1",
+        "fn.66.effect-query-field.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.assist-damage-apply.8ba1",
+      "title": "辅助策略特效值按百分比增加伤害（0x43C26C）",
+      "aliases": [
+        "0x0043C26C",
+        "0x00425AD9",
+        "assist-damage-apply"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043C26C",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "栈参 (伤害, 特效值)，调用 0x425AD9",
+      "inputs": "[ebp-4]=当前伤害；EAX=特效值",
+      "returns": "EAX=伤害×特效值÷100；调用方把它加回 [ebp-4]",
+      "semantics": "0x425AD9 为 (a*b)/100 的百分比乘法；0x43C275 执行 add [ebp-4], eax，所以 120 表示该段 +120%，不是把伤害变为 120%。",
+      "relations": [
+        "fn.66.assist-effect-select.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.learn-mask-query.8ba1",
+      "title": "学会策略类别掩码查询（0x43E1A8）",
+      "aliases": [
+        "0x0043E1A8",
+        "learn-mask-query",
+        "0x004E",
+        "0x006C"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043E1A8",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "栈参 k（0..2），ECX=人物记录",
+      "inputs": "arg1=k；查询 0x42518F(0x4E+k, 0x6C, 3, 0)",
+      "returns": "EAX=学会策略特效值（作为 8 位类别掩码）",
+      "semantics": "k=0 查兵种特效 0x4E（学会策略 气候）+装备 0x6C（学会策略）；k=1 查 0x4F（兵法 heyho!）；k=2 查 0x50（学会策略 四神）+0x6C。模式 3 = 按位或，把三路来源的类别位合并。返回的掩码在 0x41DC78/0x465AC1/0x41FF6E 与 0x4D17B0[strategyId] 按位与。",
+      "relations": [
+        "fn.66.strategy-select-loop.8ba1",
+        "mechanism.66.learn-strategy-category-mask.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.strategy-select-loop.8ba1",
+      "title": "策略选择循环（0x465AC1 / 0x41DC78）",
+      "aliases": [
+        "0x00465AC1",
+        "0x0041DC78",
+        "strategy-select-loop"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00465AC1",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "0x465AC1：ECX=人物，栈参（输出位图, 偏移, 模式），ret 0x10；0x41DC78：ECX=人物，栈参（严格模式），ret 4",
+      "inputs": "遍历策略 ID 0..0x8F；k=0..2",
+      "returns": "0x465AC1 无返回，把可选策略写成 outBuf[id+偏移]=1；0x41DC78 返回计数",
+      "semantics": "对每个 k 调 0x43E1A8 得到类别掩码，再与 0x4D17B0[strategyId] AND；k=0 且不匹配时回退 0x41832B（射程/目标）与 0x40DE69（可用性）。0x465AC1 在模式>1 时用 0x484002/0x425AD0 的 MP 与 [人物+0x14] 比较；模式≠0 时才要求 0x4D14E0 bit0。0x41DC78 的严格模式只影响是否过滤 bit0=1。",
+      "relations": [
+        "fn.66.learn-mask-query.8ba1",
+        "fn.66.learn-category-and.8ba1",
+        "fn.66.strategy-select-count.8ba1",
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "mechanism.66.strategy-selectable-gates.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.learn-category-and.8ba1",
+      "title": "类别掩码按位与判定（0x465AFB / 0x41DCAD）",
+      "aliases": [
+        "0x00465AFB",
+        "0x0041DCAD",
+        "learn-category-and"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00465AFB",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "循环体内联",
+      "inputs": "ECX=学会策略掩码；EAX=策略 ID",
+      "returns": "标志；非 0 表示该策略属于已学会类别",
+      "semantics": "mov al,[eax+0x4D17B0]; and ecx,eax; test ecx,ecx。0x41DCAD 是模仿/计数路径的同一判定。掩码为 0 时直接跳过 AND，进入 k==0 的回退检查。",
+      "relations": [
+        "fn.66.strategy-select-loop.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.strategy-extra-gates.8ba1",
+      "title": "策略可选附加门禁（0x4D14E0 bit0 等）",
+      "aliases": [
+        "0x0041DCE6",
+        "0x00465B66",
+        "0x4D14E0",
+        "strategy-extra-gates"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0041DCE6",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "循环体内联",
+      "inputs": "EAX=策略 ID",
+      "returns": "标志",
+      "semantics": "test byte [eax+0x4D14E0],1；0x465B66 为 AI 列表侧同一测试。该测试只在调用方模式≠0 时执行；模式=0 时不需要 bit0。另有 0x41832B（射程/目标合法性）、0x40DE69（策略可用性）与 MP 门禁。",
+      "relations": [
+        "fn.66.strategy-select-loop.8ba1",
+        "mechanism.66.strategy-attribute-tables.25d",
+        "mechanism.66.strategy-selectable-gates.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    }
+  ]
+}

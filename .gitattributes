@@ -1,6 +1,2 @@
-* text=auto
-*.md text eol=lf
-*.txt text eol=lf
-*.csv text eol=lf
-*.json text eol=lf
-*.py text eol=lf
+# Research snapshots are hashed byte-for-byte by the frozen knowledge ledger.
+*.json -text

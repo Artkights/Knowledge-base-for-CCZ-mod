@@ -3317,6 +3317,9 @@
       "sourceRefs": [
         "src.ccz65.3890.ekd5",
         "src.local.round101.report"
+      ],
+      "notes": [
+        "width=480 表示 120 个有效表项，不是物理表总长；物理表 126 项、504 字节。"
       ]
     }
   ]

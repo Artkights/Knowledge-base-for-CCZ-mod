@@ -1,0 +1,16 @@
+﻿{
+    "schemaVersion":  1,
+    "reviewDate":  "2026-11-13",
+    "baselineCommit":  "b75eb158c944a4ebdf32b47814e5505df952cee4",
+    "entries":  [
+                    {
+                        "path":  "6.5/data/scripts/script-commands.json",
+                        "sha256":  "9962E32BB66EF9110CBF3E9BC4E2FE3A2D0BE44115F2F6B8A88F4521B639AE1E",
+                        "disposition":  "updated-entities",
+                        "reason":  "补全 0x38 武将能力设定的能力类别枚举（0-15），与简易攻略显示映射一致。",
+                        "targetIds":  [
+                                          "script.65.opcode-38"
+                                      ]
+                    }
+                ]
+}

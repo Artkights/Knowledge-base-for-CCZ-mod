@@ -26,6 +26,8 @@ jobs:
           python -B tools/build_index.py --check
       - name: Validate entities, sources and version boundaries
         run: python -B tools/validate_kb.py
+      - name: Check consolidation report
+        run: python -B tools/consolidate_kb.py --check
       - name: Query the public CLI
         run: python -B tools/query_smoke.py
       - name: Check whitespace and unchanged checkout

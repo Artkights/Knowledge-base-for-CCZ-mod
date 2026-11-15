@@ -90,7 +90,8 @@
           ">=5": "0x64 置 100；其他值基础值×mode/100（0x425AD9）。"
         },
         "postModifiers": [
-          "ID 0x14 且 0x43B4A7==0xC：命中×3/2。",
+          "6.4/6.5：策略 ID==0x14（诱惑）且施法方兵种系 0x43B4A7==0x0C 时，命中×3/2。",
+          "6.6：策略类型==0x05 且施法方兵种系==0x0C 时，命中×3/2；6.6 的诱惑 ID 已迁到 0x1E，但 type5 判定不依赖 ID。",
           "效果值加成后 min(命中+值,100)；6.4/6.5 用 0x4101D9，6.6 用 0x42518F。",
           "0x405DBD 非零时 min(命中+10,100)。",
           "最终 >100 取 100。"
@@ -111,6 +112,7 @@
         "mechanism.65.strategy-attribute-tables.3ef7",
         "mechanism.66.strategy-attribute-tables.25d",
         "mechanism.64.strategy-attribute-tables.9112",
+        "mechanism.65.strategy-job-specific-modifier.3ef7",
         "struct.65.strategy-record.3ef7"
       ],
       "sourceRefs": [

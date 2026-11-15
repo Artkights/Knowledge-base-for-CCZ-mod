@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-15",
+  "baselineCommit": "b75eb158c944a4ebdf32b47814e5505df952cee4",
+  "entries": [
+    {
+      "path": "6.4/data/functions/strategy-and-range-functions.json",
+      "sha256": "F480DE73C5B37D268D567832FD5D890DE283C0A69C755269C8CAE9854D5131D5",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "fn.64.strategy-damage.9112"
+      ],
+      "reason": "上一轮遗留的 6.4 策略伤害函数语义修订；本轮只做增量登记与回执重建，不改写结论。"
+    },
+    {
+      "path": "6.5/data/functions/strategy-and-range-functions.json",
+      "sha256": "FC43D007ECC23FA72A29897B4A6230999FE7349B4272F148B80056AF55AC23DC",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "fn.65.strategy-damage.3890"
+      ],
+      "reason": "上一轮遗留的 6.5 策略伤害函数语义修订；本轮只做增量登记与回执重建，不改写结论。"
+    },
+    {
+      "path": "6.5/data/mechanisms/engine-job-attribute-matrix.json",
+      "sha256": "744C06305F0FB23B4F7A3A81D1986A20483D75797684783021CB7B64C8BA219B",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.job-series-attribute-matrix.3ef7"
+      ],
+      "reason": "上一轮遗留的 6.5 兵种属性矩阵机制修订；本轮只做增量登记。"
+    },
+    {
+      "path": "6.5/data/mechanisms/engine-strategy-direction-weather.json",
+      "sha256": "24335AEEC7540C7D7BB72C670CF31749E0398B34E07A8FDC252399D76FD47907",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.strategy-damage-direction-weather.3ef7"
+      ],
+      "reason": "上一轮遗留的 6.5 策略方向/天气机制修订；本轮只做增量登记。"
+    },
+    {
+      "path": "6.5/data/mechanisms/strategy-damage-hit-resolution.json",
+      "sha256": "84FDCD90B45CAD80827D2B5788EB81BF8746311E6A53C6210690290839E284BD",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.strategy-damage-hit-resolution.3ef7"
+      ],
+      "reason": "上一轮遗留的 6.5 策略伤害/命中解析机制修订；本轮只做增量登记。"
+    },
+    {
+      "path": "6.5/data/mechanisms/strategy-job-specific-modifier.json",
+      "sha256": "EA23180F4A021671E5DE330E252425095AA129F0D24F1DEBA8FA897EE910344C",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.65.strategy-job-specific-modifier.3ef7"
+      ],
+      "reason": "上一轮新增的 6.5 策略专属修正机制；本轮只做增量登记。"
+    },
+    {
+      "path": "6.5/data/scripts/script-commands.json",
+      "sha256": "9962E32BB66EF9110CBF3E9BC4E2FE3A2D0BE44115F2F6B8A88F4521B639AE1E",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "script.65.opcode-38"
+      ],
+      "reason": "上一轮遗留的剧本指令 0x38 语义修订；本轮只做增量登记与生成物重建，不改写该实体结论。"
+    },
+    {
+      "path": "6.6/data/functions/strategy-and-range-functions.json",
+      "sha256": "CAF02A772C8E2072471B2692B8C9E3F99FA3BEC22453996BBE557591A977852D",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "fn.66.strategy-damage.aa0f"
+      ],
+      "reason": "上一轮遗留的 fn.66.strategy-damage.aa0f 语义修订；本轮只做增量登记。"
+    },
+    {
+      "path": "6.6/data/functions/strategy-effect-category-functions.json",
+      "sha256": "64EC9F38CFAD2FE760F78255A543B37E466C6EAAFA7A127C8A09132CEE4870B1",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.66.strategy-type-read.8ba1",
+        "fn.66.assist-effect-select.8ba1",
+        "fn.66.effect-query-dual.8ba1",
+        "fn.66.assist-damage-apply.8ba1",
+        "fn.66.learn-mask-query.8ba1",
+        "fn.66.strategy-select-loop.8ba1",
+        "fn.66.learn-category-and.8ba1",
+        "fn.66.strategy-extra-gates.8ba1"
+      ],
+      "reason": "第二轮静态反汇编修订：补充查询契约、合并模式、命中链 +10 修正与门禁边界；均为静态复核。"
+    },
+    {
+      "path": "6.6/data/functions/strategy-effect-pipeline-functions.json",
+      "sha256": "6DF6BF7BF5F23203B31BBA3E3AF86B78B2DFBA912A561070D073DAC4C587D76A",
+      "disposition": "new-entities",
+      "targetIds": [
+        "fn.66.effect-query-battle.8ba1",
+        "fn.66.effect-query-field.8ba1",
+        "fn.66.effect-merge.8ba1",
+        "fn.66.effect-assignment-lookup.8ba1",
+        "fn.66.equipment-effect-lookup.8ba1",
+        "fn.66.equipment-effect-accumulate.8ba1",
+        "fn.66.effect-record-merge.8ba1",
+        "fn.66.unit-ref-normalize.8ba1",
+        "fn.66.character-record-index.8ba1",
+        "fn.66.strategy-damage-main.8ba1",
+        "fn.66.strategy-hit-pre.8ba1",
+        "fn.66.strategy-hit-main.8ba1",
+        "fn.66.strategy-hit-curve.8ba1",
+        "fn.66.strategy-select-count.8ba1",
+        "fn.66.learn-special-gate.8ba1",
+        "fn.66.auto-use-check.8ba1"
+      ],
+      "reason": "新增双态查询、分配表、装备累计、伤害/命中主函数、命中前置子函数、人物记录互转与自动使用检查；地址均按信奈样本复核。"
+    },
+    {
+      "path": "6.6/data/globals/effect-assignment-defaults-8ba1.json",
+      "sha256": "03920BFF40A852316AAE9381CF2027D5007E7495012B70C6A8527EF7AE58B3E7",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.66.effect-assignment-defaults.8ba1"
+      ],
+      "reason": "新增 0x511000 内嵌 256x16 默认特效分配表（含 4096 字节 rawHex 与关键样本）；把原先外部装载的待确认点改为静态可枚举。"
+    },
+    {
+      "path": "6.6/data/globals/strategy-effect-tables-8ba1.json",
+      "sha256": "15FB6D0DA4BE98D7E6D02CEEECE9D766A0DE27D59191F63CA3F23BDFFC7DDBA5",
+      "disposition": "new-entities",
+      "targetIds": [
+        "global.66.strategy-effect-name-pools.8ba1",
+        "global.66.strategy-per-id-tables.8ba1",
+        "global.66.effect-query-buffers.8ba1"
+      ],
+      "reason": "新增本样本名称池、8 张每策略表 rawHex 与查询缓冲区/阈值全局。"
+    },
+    {
+      "path": "6.6/data/mechanisms/strategy-attribute-tables.json",
+      "sha256": "674134A9A8322F6D731B94079393FB53F980BDCDB7738FAD57529643E7394C65",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.66.strategy-attribute-tables.25d"
+      ],
+      "reason": "上一轮遗留的 6.6 每策略表语义修订；本轮只做增量登记。"
+    },
+    {
+      "path": "6.6/data/mechanisms/strategy-effect-category-queries.json",
+      "sha256": "5F24B915190B0006E77C73F4335598E2FA62F953EB09EF71E84ED319C1AB4FA5",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.66.assist-strategy-effect-category.8ba1",
+        "mechanism.66.learn-strategy-category-mask.8ba1"
+      ],
+      "reason": "第二轮静态反汇编修订：补充查询契约、合并模式、命中链 +10 修正、名称池跨池差异与 0x41FF6E 消费者。"
+    },
+    {
+      "path": "6.6/data/mechanisms/strategy-effect-pipeline.json",
+      "sha256": "8BAD38705C488F2EEA70B411D4A2CC4AC1AEA0E8E377961C9DAF3CEFC60189AE",
+      "disposition": "new-entities",
+      "targetIds": [
+        "mechanism.66.effect-query-pipeline.8ba1",
+        "mechanism.66.strategy-damage-chain.8ba1",
+        "mechanism.66.strategy-hit-chain.8ba1",
+        "mechanism.66.strategy-selectable-gates.8ba1",
+        "mechanism.66.auto-use-strategy.8ba1",
+        "mechanism.66.strategy-effect-callsite-map.8ba1"
+      ],
+      "reason": "新增查询管线、伤害链、命中链、可选门禁、自动使用与 0x42518F 调用点全表六条机制；含每策略表 rawHex、内嵌默认表与雷系样本。"
+    },
+    {
+      "path": "6.6/data/profiles/engine-profiles.json",
+      "sha256": "DB461772D2D5D40B6CE081DBB6E1EC5555562FB8A2202DA42E00528B18E8B28D",
+      "disposition": "new-entities",
+      "targetIds": [
+        "profile.ccz66.xinnai12.local.8ba1",
+        "profile.ccz66.v716.34b8"
+      ],
+      "reason": "新增信奈 12 关版与 v716 样本画像；固定 VA 只对各自 SHA 成立。"
+    },
+    {
+      "path": "6.6/data/structures/strategy-effect-records.json",
+      "sha256": "60B9D96BAAF675154B3C660299BD48858D60CDA148499460A08B6B36310DD723",
+      "disposition": "new-entities",
+      "targetIds": [
+        "struct.66.strategy-effect-assignment.8ba1",
+        "struct.66.strategy-equipment-assignment.8ba1"
+      ],
+      "reason": "新增 16 字节特效分配记录与装备分配记录结构；字段偏移与 0x4198BE/0x402CF9 一致，默认表内嵌于 0x511000。"
+    },
+    {
+      "path": "sources/consolidation-report-20261115.json",
+      "sha256": "CA1BE3B6913E7A2E40C9FECED7AC3CE511AD20E50811D3B16C2FC9CCC2066C97",
+      "disposition": "existing-entities",
+      "targetIds": [
+        "global.64.effect-name-table.9112",
+        "mechanism.64.dm-constant-hit-curve-high-base",
+        "mechanism.64.dm-constant-hit-curve-high-coef",
+        "mechanism.64.dm-constant-hit-curve-low-base",
+        "mechanism.64.dm-constant-hit-curve-low-coef",
+        "mechanism.64.dm-constant-rate-curve-high-base",
+        "mechanism.64.dm-constant-rate-curve-high-coef",
+        "mechanism.64.dm-constant-rate-curve-low-base",
+        "mechanism.64.dm-constant-rate-curve-low-coef",
+        "mechanism.65.dm-constant-hit-curve-high-base",
+        "mechanism.65.dm-constant-hit-curve-high-coef",
+        "mechanism.65.dm-constant-hit-curve-low-base",
+        "mechanism.65.dm-constant-hit-curve-low-coef",
+        "mechanism.65.dm-constant-rate-curve-high-base",
+        "mechanism.65.dm-constant-rate-curve-high-coef",
+        "mechanism.65.dm-constant-rate-curve-low-base",
+        "mechanism.65.dm-constant-rate-curve-low-coef",
+        "mechanism.66.dm-constant-hit-curve-high-base",
+        "mechanism.66.dm-constant-hit-curve-high-coef",
+        "mechanism.66.dm-constant-hit-curve-low-base",
+        "mechanism.66.dm-constant-hit-curve-low-coef",
+        "mechanism.66.dm-constant-rate-curve-high-base",
+        "mechanism.66.dm-constant-rate-curve-high-coef",
+        "mechanism.66.dm-constant-rate-curve-low-base",
+        "mechanism.66.dm-constant-rate-curve-low-coef",
+        "script.66.opcode-72-sub-14",
+        "script.66.opcode-72-sub-28",
+        "script.66.opcode-72-sub-30",
+        "script.66.opcode-72-sub-34",
+        "script.66.opcode-72-sub-35",
+        "script.66.opcode-72-sub-36",
+        "mechanism.66.shanzai6929.p0-007",
+        "mechanism.66.shanzai6929.p0-008",
+        "mechanism.66.shanzai6929.p0-009",
+        "mechanism.66.shanzai6929.p0-010",
+        "mechanism.66.shanzai6929.p0-011",
+        "mechanism.66.shanzai6929.p0-012",
+        "mechanism.66.shanzai6929.p0-013",
+        "mechanism.66.shanzai6929.p0-014",
+        "mechanism.66.shanzai6929.p0-015",
+        "mechanism.66.shanzai6929.p0-016",
+        "global.65.script-command-dispatch-table.3890",
+        "global.65.script-handler-map.3890",
+        "global.65.script-handler-modes.3890",
+        "global.65.script-handler-profiles.3890"
+      ],
+      "reason": "2026-11-15 知识库整理：地址误绑修正、标题/别名消歧、模板摘要删除、分派表边界说明；技术结论未改变。"
+    }
+  ]
+}

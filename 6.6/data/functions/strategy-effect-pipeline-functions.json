@@ -1,0 +1,684 @@
+{
+  "schemaVersion": 1,
+  "entityType": "function",
+  "profile": "profile.ccz66.xinnai12.local.8ba1",
+  "entries": [
+    {
+      "id": "fn.66.effect-query-battle.8ba1",
+      "title": "战斗路径特效查询（0x4101D9）",
+      "aliases": [
+        "0x004101D9",
+        "effect-query-battle"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004101D9",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "BE UNKNOWN：ECX=人物记录，EDX 由 0x426A07 返回同一记录；栈参 4 个；ret 0x10",
+      "inputs": "arg1=兵种特效ID，arg2=装备特效ID，arg3=合并模式，arg4=装备取值模式",
+      "returns": "EAX=特效值；EDX=人物ID；无效记录返回 (0,0)",
+      "semantics": "先调用 0x426A07 归一化记录，AL=0xFF 直接返回；若 dword[record]<0x400，则用 0x40F1AC/0x425390 检查特效屏蔽(0x59/0x75)与特效模仿(0x58/0x74)，两者都不满足且 0x425390 命中时返回 0；否则调用 0x41301E 查询，再用 0x413009(arg3) 合并；若 0x43C414(0x58,0x74) 非 0，遍历 record+6 起的 4 个关联人物逐个查询并合并。",
+      "callSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004251AB",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "0x42518F 包装器的战斗分支"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043C263",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "辅助元素/妨碍伤害：EAX=0，查询 (0x77..0x7B,0x38) 或 (0x27,0x37)"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043B680",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "命中链：0x1E/0x65 → 100"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043B698",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "命中链：0x1F/0x35 加值"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043B6BD",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "命中链：0x20/0x3D 减值"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043B7D7",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "命中链：0x28/0x53 → 100"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043B8BA",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "命中链：0x1D/0x43 减命中"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043B9AD",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "命中链：0x5C/0x37 加命中"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0042E545",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "减伤：(0x28,0x22)"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0042E55D",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "减伤：(0x29,0x43)"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00422EEC",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x4101D9",
+          "meaning": "自动使用：(0x6C,0x46)"
+        }
+      ],
+      "relations": [
+        "fn.66.effect-query-field.8ba1",
+        "fn.66.effect-merge.8ba1",
+        "mechanism.66.effect-query-pipeline.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.effect-query-field.8ba1",
+      "title": "非战斗路径特效查询（0x41301E）",
+      "aliases": [
+        "0x0041301E",
+        "effect-query-field"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0041301E",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "thiscall；ECX=人物记录；栈参 4 个；ret 0x10",
+      "inputs": "arg1=兵种特效ID，arg2=装备特效ID，arg3=合并模式，arg4=装备取值模式",
+      "returns": "EAX=最终特效值；EDX=人物ID（栈上的 EAX 局部被 pop 回）",
+      "semantics": "0x40BE7D 求人物ID；0x4198BE 查 0x500C3B 指向的 16 字节特效分配记录（4 人物槽 + 2 兵种槽）；0x43C794 查装备特效（0x4079DA/0x407AED）；两次结果用 0x413009(arg3) 合并；最后 0x402CF9 查 0x50E000 的 16 字节装备分配记录再合并；返回最终值。",
+      "callSites": [
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x00410230",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x41301E",
+          "meaning": "战斗路径的主查询"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0041029E",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x41301E",
+          "meaning": "战斗路径对 4 个关联人物的逐个查询"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x004251B2",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x41301E",
+          "meaning": "0x42518F 包装器的非战斗分支"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0042B201",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x41301E",
+          "meaning": "非战斗路径的直接调用点"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043C41F",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x41301E",
+          "meaning": "0x43C414 特效模仿 (0x58,0x74,1,1)"
+        },
+        {
+          "address": {
+            "kind": "va",
+            "value": "0x0043C431",
+            "profile": "profile.ccz66.xinnai12.local.8ba1",
+            "evidence": "static-verified"
+          },
+          "instruction": "call 0x41301E",
+          "meaning": "0x43C426 特效屏蔽 (0x59,0x75,1,1)"
+        }
+      ],
+      "relations": [
+        "fn.66.effect-assignment-lookup.8ba1",
+        "fn.66.equipment-effect-lookup.8ba1",
+        "fn.66.effect-record-merge.8ba1",
+        "mechanism.66.effect-query-pipeline.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.effect-merge.8ba1",
+      "title": "特效值合并核心（0x413009 / 0x40BF2F）",
+      "aliases": [
+        "0x00413009",
+        "0x0040BF2F",
+        "effect-merge"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00413009",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=模式，EDX=旧值，EAX=新值；纯计算函数",
+      "inputs": "模式 0..3（其它值走默认）",
+      "returns": "EAX=合并结果",
+      "semantics": "模式 0：EAX+EDX；模式 1：max；模式 3：OR；模式 2：若旧值=0 先取新值，再“新值低字节=7 保 7，否则 max”；其它模式等同模式 2。0x413009 只是 0x40BF2F 的调用包装。",
+      "relations": [
+        "fn.66.effect-query-battle.8ba1",
+        "fn.66.effect-query-field.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.effect-assignment-lookup.8ba1",
+      "title": "特效分配记录按人物/兵种求值（0x4198BE）",
+      "aliases": [
+        "0x004198BE",
+        "effect-assignment-lookup",
+        "0x511000"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004198BE",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "栈参（特效ID, 合并模式, 人物记录）；ret 0xC",
+      "inputs": "arg1=特效ID；arg2=合并模式；arg3=人物记录",
+      "returns": "EAX=累计特效值",
+      "semantics": "记录基址 = DWORD[0x500C3B] + 特效ID*16。第一轮遍历 4 个 (word 人物ID, byte 值) 槽（+0/+3/+6/+9），与 0x40BE7D(人物记录) 比较；第二轮遍历 2 个 (byte 兵种ID, byte 值) 槽（+0xC/+0xE），与 0x406610(人物记录)（byte[+0x2B] 兵种）比较；命中项通过 0x413009 合并。",
+      "relations": [
+        "struct.66.effect-assignment",
+        "mechanism.66.effect-query-pipeline.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.equipment-effect-lookup.8ba1",
+      "title": "装备特效存在性与取值（0x43C794 / 0x4079DA）",
+      "aliases": [
+        "0x0043C794",
+        "0x004079DA",
+        "equipment-effect-lookup"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043C794",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=人物记录；栈参（装备特效ID, 装备取值模式, 合并模式）；ret 0xC",
+      "inputs": "arg1=装备特效ID；arg2=装备取值模式；arg3=合并模式；EAX=兵种通道旧值",
+      "returns": "EAX=合并后的值；ECX=1 表示存在装备特效，0 表示不存在",
+      "semantics": "0x4079DA(人物, 装备特效) 扫 3 个装备槽（+0x2E/+0x31/+0x34），命中返回 1。存在时：arg2≠0 → 新值=100；arg2==0 → 新值=0x407AED(人物, 装备特效, 合并模式) 的累计值。随后 0x413009(旧值, 新值, arg3) 合并。",
+      "relations": [
+        "fn.66.equipment-effect-accumulate.8ba1",
+        "mechanism.66.effect-query-pipeline.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.equipment-effect-accumulate.8ba1",
+      "title": "装备特效值累计（0x407AED / 0x407B9E）",
+      "aliases": [
+        "0x00407AED",
+        "0x00407B9E",
+        "equipment-effect-accumulate"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00407AED",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=人物记录；栈参（装备特效ID, 合并模式）；ret 8",
+      "inputs": "arg1=装备特效ID；arg2=合并模式",
+      "returns": "EAX=累计值（0..255）",
+      "semantics": "遍历 3 个装备槽：每次先 0x4065F0(i) 取装备 ID（+0x2E/+0x31/+0x34），0xFF 跳过；再 0x4837C2(装备ID) 取物品记录，0x40B4E1 过滤，0x43AD29(物品) 取 +0x14 特效ID 与 arg1 比较；命中时 0x44661A 取 +0x16 特效值，0x4200F5 调整，0x407B9E 合并。槽 0/1 另用 0x4032DF(i) 取 +0x2F/+0x32 的等级并作为 0x4200F5 的 EDX 参数；槽 2 用装备 ID 本身作 EDX。0x407B9E 的模式：0 加、1 取大、2 七优先替换、3 OR、4 替换、≥5 按槽位选择。",
+      "relations": [
+        "fn.66.equipment-effect-lookup.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.effect-record-merge.8ba1",
+      "title": "装备分配记录合并（0x402CF9）",
+      "aliases": [
+        "0x00402CF9",
+        "effect-record-merge",
+        "0x50E000"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00402CF9",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=人物记录；EDX=0x50E000；EAX=人物ID；栈参（特效ID, 合并模式, 旧值）；ret 0xC",
+      "inputs": "arg1=特效ID；arg2=合并模式；arg3=旧值",
+      "returns": "EAX=最终合并值",
+      "semantics": "记录基址 = 0x50E000 + 特效ID*16；先把人物记录 +0x2E/+0x31/+0x34 的 3 个装备槽 ID 复制到局部。上半区 2 项（0/+4）与下半区 2 项（+8/+0xC）都是 (word 人物ID, byte 装备ID, byte 值)；人物ID 匹配且装备ID 命中时，用 0x413009(arg2) 合并值。",
+      "relations": [
+        "mechanism.66.effect-query-pipeline.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.unit-ref-normalize.8ba1",
+      "title": "人物记录归一化（0x426A07）",
+      "aliases": [
+        "0x00426A07",
+        "unit-ref-normalize"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00426A07",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=记录/打包引用",
+      "inputs": "ECX；若 word[ECX]≥0x1000 视为打包引用",
+      "returns": "EDX=人物记录指针；AL=byte[record+4]（0xFF=无效）",
+      "semantics": "word[ECX]<0x1000：直接取 ECX 为记录指针，EDX=ECX，AL=byte[ECX+4]。否则按打包引用解析（0x40B922 战斗判定 + 0x43E4D6），解析结果放入 ECX/EDX。0x4101D9 依赖 EDX 返回值来保存“记录指针”。",
+      "relations": [
+        "fn.66.effect-query-battle.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.character-record-index.8ba1",
+      "title": "人物记录索引与记录/单位互转（0x40BE7D / 0x4061E4 / 0x4061F9 / 0x40658F）",
+      "aliases": [
+        "0x0040BE7D",
+        "0x004061E4",
+        "0x004061F9",
+        "0x0040658F",
+        "character-record-index"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0040BE7D",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "0x40BE7D：栈参=人物记录；0x4061E4：栈参=人物ID；0x4061F9：CL=单位序号；0x40658F：ECX=战场单位",
+      "inputs": "见语义",
+      "returns": "0x40BE7D=人物ID；0x4061E4=0x4CEA00+ID*0x48；0x4061F9=0x4A7B20+序号*0x30；0x40658F=word[unit+0] 对应的人物记录",
+      "semantics": "0x40BE7D 用 (记录-[0x4CEA00])/0x48 反算人物ID；0x4061E4 正向取人物记录；0x4061F9 取战场单位；0x40658F = 0x4061E4(word[战场单位+0])，即“战场单位 → 人物记录”。",
+      "relations": [
+        "fn.66.effect-query-field.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.strategy-damage-main.8ba1",
+      "title": "策略伤害主函数（0x43C01D）",
+      "aliases": [
+        "0x0043C01D",
+        "0x0043C022",
+        "strategy-damage-main"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043C01D",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=施法者战场单位；栈参 4 个；ret 0x10",
+      "inputs": "[ebp+8]=目标战场单位、[ebp+0xc]=目标人物记录（0x40658F 取得，用于 0x40BF0C 取兵种→伤害类型）、[ebp+0x10]=策略ID、[ebp+0x14]=标志",
+      "returns": "EAX=伤害/状态值",
+      "semantics": "0x4D1840[ID] 系数；0x415EFA 按 0x4D18D0[ID] 分流；伤害路径用 0x40D2AB 随机、+0x19、×系数%、×0x4D21B0[目标兵种映射的伤害类型]%、类型加成、辅助增伤、0x42E534 减伤，最后 0x44904E/0x445F6A；0xFF 系数取目标 HP。0x43C210 的辅助增伤查询对象是 ECX（施法者）。",
+      "relations": [
+        "mechanism.66.strategy-damage-chain.8ba1",
+        "fn.66.assist-effect-select.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.strategy-hit-pre.8ba1",
+      "title": "策略命中前置子函数（0x43B617）",
+      "aliases": [
+        "0x0043B617",
+        "strategy-hit-pre"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043B617",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=攻方单位；栈参 3 个；ret 0xC。入口把 ECX 保存到 [ebp-8]",
+      "inputs": "[ebp+8]=标志、[ebp+0xc]=守方、[ebp+0x10]=策略ID（由 0x43B4B6 压入）",
+      "returns": "EAX=命中率 0..100",
+      "semantics": "基础随机/曲线 0x40D2AB→0x43B53A；0x423FE8(守,8) 且策略非 0x0A/0x1F/0x35 → 0；(0x1E 攻击绝对命中,0x65 嗜血必中,1,1) → 100；(0x1F,0x35,1,0) 加值；(0x20,0x3D,1,0) 减值；最后 0x408EEE 做地形/状态后处理。0x43B4B6 在模式==1 时调用此函数，否则调用 0x43B730。",
+      "relations": [
+        "fn.66.strategy-hit-main.8ba1",
+        "fn.66.strategy-hit-curve.8ba1",
+        "mechanism.66.strategy-hit-chain.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.strategy-hit-main.8ba1",
+      "title": "策略命中主函数（0x43B730）",
+      "aliases": [
+        "0x0043B730",
+        "strategy-hit-main"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043B730",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=攻方单位/人物；栈参 3 个；ret 0xC",
+      "inputs": "[ebp+8]=标志、[ebp+0xc]=守方、[ebp+0x10]=策略ID",
+      "returns": "EAX=命中率 0..100",
+      "semantics": "先做目标/状态门禁（type 0x21 且 word[守]<0xD2 → 0；0x423FE8(守,8) 且策略非 0x0A/0x1F/0x35 → 0）；0x28/0x53 → 100；基础曲线 0x43B53A；0x4D1720[ID] 选择特殊/不乘/固定百分比；叠加 0x1D/0x43 减命中；type 0x14 且 0x43B4A7(攻)==0x0C → ×3/2；0x5C/0x37 加值；0x27/0x37 存在则 +10；封顶 100。0x1E/0x65、0x1F/0x35、0x20/0x3D 不在此函数，而在 0x43B617 前置子函数中。",
+      "relations": [
+        "mechanism.66.strategy-hit-chain.8ba1",
+        "fn.66.strategy-hit-curve.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.strategy-hit-curve.8ba1",
+      "title": "策略命中曲线（0x43B53A）",
+      "aliases": [
+        "0x0043B53A",
+        "strategy-hit-curve"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0043B53A",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "栈参（攻方值, 守方值）；纯计算",
+      "inputs": "arg1=A（攻方能力/智力），arg2=D（守方能力/智力）",
+      "returns": "EAX=命中率 0..100",
+      "semantics": "A≥2D→100；A≥D→90+(A-D)*10/D；A≥D/2→60+(A-D/2)*30/(D/2)；否则 30+max(A-D/3,0)*30/(D/3)。",
+      "relations": [
+        "fn.66.strategy-hit-main.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.strategy-select-count.8ba1",
+      "title": "策略可选计数（0x41DC78）",
+      "aliases": [
+        "0x0041DC78",
+        "strategy-select-count"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0041DC78",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=人物；栈参 1 个；ret 4",
+      "inputs": "arg=严格模式（0=计数全部有效项，非0=只计 0x4D14E0 bit0=1）",
+      "returns": "EAX=可选策略数量",
+      "semantics": "k=0..2 查 0x43E1A8 掩码；id=0..0x8F 与 0x4D17B0[id] AND；k=0 且不匹配时回退 0x41832B/0x40DE69；命中后按 arg 决定是否计 bit0。",
+      "relations": [
+        "mechanism.66.strategy-selectable-gates.8ba1",
+        "fn.66.learn-mask-query.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.learn-special-gate.8ba1",
+      "title": "四神学习掩码特殊门禁（0x41FF6E）",
+      "aliases": [
+        "0x0041FF6E",
+        "learn-special-gate"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x0041FF6E",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "栈参 4 个；ECX 由调用方设置",
+      "inputs": "[ebp+0x14]=人物记录；k=2",
+      "returns": "见 0x420031；掩码 ≥0x80 时进入四神特殊路径",
+      "semantics": "0x43E1A8(人物,k=2) 取学会策略 四神 掩码；≥0x80 → 0x420031；否则 0x4079DA(人物,0x3A) 检查装备特效 0x3A（策略附加损伤），未命中再扫装备槽。",
+      "relations": [
+        "mechanism.66.learn-strategy-category-mask.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "fn.66.auto-use-check.8ba1",
+      "title": "自动使用策略检查（0x422EDF / 0x416442）",
+      "aliases": [
+        "0x00422EDF",
+        "0x00416442",
+        "auto-use-check"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00422EDF",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "callingConvention": "ECX=人物；EAX=已用MP；栈参 1 个；ret 4",
+      "inputs": "EAX=已用 MP；ECX=人物；[ebp+8]=目标",
+      "returns": "EAX=自动使用特效值或 0",
+      "semantics": "查询 (0x6C 鬼五郎左, 0x46 自动使用, 1, 0)；非 0 → 0x43FF54(人物, 值) 门禁；0x4837C2/0x41DD72 取策略 MP 成本并累加；0x407263(目标) 比较；超支返回 0。0x416442 成功后调用 0x44F2AC。",
+      "relations": [
+        "mechanism.66.auto-use-strategy.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    }
+  ]
+}

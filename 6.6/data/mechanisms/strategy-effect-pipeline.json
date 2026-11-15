@@ -1,0 +1,767 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz66.xinnai12.local.8ba1",
+  "entries": [
+    {
+      "id": "mechanism.66.effect-query-pipeline.8ba1",
+      "title": "6.6 信奈基底：特效查询管线（战斗/非战斗双态、分配表与合并模式）",
+      "aliases": [
+        "0x42518F",
+        "0x4101D9",
+        "0x41301E",
+        "0x413009",
+        "0x40BF2F",
+        "0x4198BE",
+        "0x43C794",
+        "0x402CF9",
+        "0x4079DA",
+        "0x407AED",
+        "0x426A07",
+        "0x500C3B",
+        "0x50E000",
+        "特效查询管线"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x42518F 是唯一的双态查询入口：0x40B922 判定战斗场景（0x40B913()==3），战斗走 0x4101D9，非战斗走 0x41301E；两条路径最终都把“兵种分配表值”和“装备分配表值”按 4 种合并模式合成一个 0..255 的特效值。0x4101D9 额外处理特效屏蔽/特效模仿与 4 个关联人物的合并。",
+      "queryContract": {
+        "entry": "0x42518F",
+        "callingConvention": "thiscall；ECX=人物记录；栈参 4 个；ret 0x10",
+        "arguments": [
+          "arg1 = 兵种/个人特效 ID（0..0xFF）",
+          "arg2 = 装备特效 ID（0..0xFF）",
+          "arg3 = 合并模式：0 相加 / 1 取大 / 2 七优先取大 / 3 按位或",
+          "arg4 = 装备取值模式：0 取装备特效值 / 非0 存在即 100"
+        ],
+        "returns": "EAX=特效值；EDX=人物 ID（0x4101D9 会把 0x41301E 的 EDX 原样返回）",
+        "battleState": "0x40B922 → 0x40B913()==3"
+      },
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.66.effect-query-dual.8ba1",
+          "role": "0x42518F 入口：保存 ECX，压 4 个参数，按 0x40B922 分流"
+        },
+        {
+          "order": 2,
+          "entity": "fn.66.unit-ref-normalize.8ba1",
+          "role": "战斗路径先经 0x426A07 归一化人物记录：word[record]≥0x1000 时按打包引用解析；EDX 返回同一记录指针，AL=byte[record+4]，0xFF 表示无效"
+        },
+        {
+          "order": 3,
+          "entity": "fn.66.effect-query-battle.8ba1",
+          "role": "0x4101D9：特殊键门禁（record<0x400 时检查 0x59/0x75、0x58/0x74、0x425390）、主查询 0x41301E、合并 arg3、可选的 4 个关联人物合并"
+        },
+        {
+          "order": 4,
+          "entity": "fn.66.effect-query-field.8ba1",
+          "role": "0x41301E：兵种分配表 0x4198BE + 装备分配表 0x43C794/0x402CF9，按 arg3 合并；返回 EAX=值、EDX=人物 ID"
+        },
+        {
+          "order": 5,
+          "entity": "fn.66.effect-merge.8ba1",
+          "role": "0x413009→0x40BF2F：模式 0 相加、1 取大、3 按位或、2 七优先取大（旧值为 0 时先取新值）"
+        }
+      ],
+      "mergeModes": [
+        {
+          "mode": "0",
+          "operation": "add",
+          "formula": "EAX = EAX + EDX"
+        },
+        {
+          "mode": "1",
+          "operation": "max",
+          "formula": "EAX = max(EAX, EDX)"
+        },
+        {
+          "mode": "2",
+          "operation": "seven-first-max",
+          "formula": "旧值=0 时旧值先置为新值；新值低字节=7 时保 7，否则取 max"
+        },
+        {
+          "mode": "3",
+          "operation": "or",
+          "formula": "EAX = EAX | EDX"
+        }
+      ],
+      "recordLayouts": [
+        {
+          "name": "特效分配记录（兵种通道）",
+          "pointer": "DWORD[0x500C3B]（初值 0x511000，指向 .text3 内嵌的 256 条默认表；不需要外部文件）",
+          "stride": 16,
+          "index": "effect_id * 16",
+          "entries": [
+            "人物槽 0：+0x0 word 人物ID / +0x2 byte 特效值",
+            "人物槽 1：+0x3 word / +0x5 byte",
+            "人物槽 2：+0x6 word / +0x8 byte",
+            "人物槽 3：+0x9 word / +0xB byte",
+            "兵种槽 0：+0xC byte 兵种ID / +0xD byte 特效值",
+            "兵种槽 1：+0xE byte 兵种ID / +0xF byte 特效值"
+          ],
+          "consumer": "0x4198BE"
+        },
+        {
+          "name": "装备分配记录（装备通道）",
+          "base": "0x50E000",
+          "stride": 16,
+          "index": "effect_id * 16",
+          "entries": [
+            "条目 0：+0x0 word 人物ID / +0x2 byte 装备ID / +0x3 byte 特效值",
+            "条目 1：+0x4 / +0x6 / +0x7",
+            "条目 2：+0x8 / +0xA / +0xB",
+            "条目 3：+0xC / +0xE / +0xF"
+          ],
+          "consumer": "0x402CF9",
+          "note": "文件内为全 0；运行时可由 0x411C4A 的解析循环写入（0x47D8DF 跳表第 10 项，0x411CB5..0x411CD3 以 0x50E000+id*16 写 4 字节组）；匹配时用人物ID + 装备槽 ID（+0x2E/+0x31/+0x34）"
+        }
+      ],
+      "semantics": [
+        "特效查询的对象是人物记录（0x4CEA00 + 人物ID*0x48），不是战场单位记录（0x4A7B20 + 序号*0x30）。0x40658F 负责把战场单位的 word[+0]（人物ID）转成人物记录指针；0x406710 读战场单位 +5 的阵营码。",
+        "默认分配表就内嵌在 0x511000（.text3，文件 0xE2800），256 条×16 字节；0x500C3B 的初值即该地址，所以不需要外部数据即可静态枚举逐特效 ID 的默认人物/兵种值。0x50E000 的同尺寸装备分配表在文件内全 0，但可由 0x411C4A（0x47D8DF 跳表第 10 项）在运行时写入。",
+        "0x4198BE 先按人物 ID 匹配 4 个“人物槽”，再按 byte[人物记录+0x2B]（兵种）匹配 2 个“兵种槽”，每次命中都把值用 0x413009 合并；所以同一条特效记录可以同时面向具体人物和整个兵种。",
+        "0x43C794：0x4079DA 先扫人物记录的 3 个装备槽（+0x2E/+0x31/+0x34）判断是否存在该装备特效；存在时 arg4≠0 返回 100（存在标记），arg4=0 返回 0x407AED 的累计装备特效值。",
+        "0x407AED 的装备累计有自己的合并规则：模式 0 相加、1 取大、2 七优先替换、3 按位或、4 直接替换、≥5 按槽位选择；结果封顶 0xFF。0x407B9E 是这条累计的合并核心。",
+        "战斗路径的特殊门禁只对 dword[record] < 0x400 的记录生效（普通人物记录通常是 0x1000|ID，因此会跳过）：若记录本身没有特效屏蔽/特效模仿，而 0x425390 发现 4 个关联人物中存在“不同阵营且带屏蔽/模仿”者，则整次查询返回 0。",
+        "带特效模仿（0x58/0x74）时，0x4101D9 还会遍历 record+6 起的 4 个关联人物，逐个执行同样的查询并合并；这是“同队复制/模仿”语义。",
+        "0x41301E 最后用 0x402CF9 读 0x50E000 的装备分配记录再合并一次；因此一次查询最多合并 4 层：兵种人物槽、兵种兵种槽、装备特效值、装备分配记录。"
+      ],
+      "gates": [
+        "0x426A07：AL=0xFF → 返回 (0,0)",
+        "0x40F1AC：0x59/0x75（特效屏蔽）或 0x58/0x74（特效模仿）+ 同阵营关联人物",
+        "0x425390：4 个关联人物中不同阵营且带屏蔽/模仿者",
+        "0x43C414：特效模仿查询 (0x58,0x74,1,1)"
+      ],
+      "relations": [
+        "mechanism.66.assist-strategy-effect-category.8ba1",
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "struct.66.effect-assignment",
+        "global.66.effect-assignment-defaults.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "mechanism.66.strategy-damage-chain.8ba1",
+      "title": "6.6 信奈基底：策略伤害 0x43C01D 全流程与每策略系数表",
+      "aliases": [
+        "0x43C01D",
+        "0x43C022",
+        "0x4D1840",
+        "0x4D21B0",
+        "0x4D18D0",
+        "0x42E534",
+        "策略伤害",
+        "伤害系数"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x43C01D 先用 0x4D18D0 把策略分成“伤害型(<4)”和“状态/妨害型(>=4)”，伤害型再乘 0x4D1840 的逐策略系数与 0x4D21B0 的伤害类型比率，叠加类型加成、辅助元素增伤、减伤与防御，最后交给 0x44904E/0x445F6A。",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.66.strategy-damage-main.8ba1",
+          "role": "0x43C01D 入口：ECX=施法者战场单位；[ebp+8]=目标战场单位、[ebp+0xc]=目标人物记录、[ebp+0x10]=策略ID、[ebp+0x14]=标志（由 0x438BF3 等调用者按“目标数组 + 施法者索引”传入）"
+        },
+        {
+          "order": 2,
+          "entity": "fn.66.strategy-type-read.8ba1",
+          "role": "0x420A9B(策略ID) 取运行时记录与类型；类型存入 [ebp-0x24]，记录指针存入 [ebp-0x20]"
+        },
+        {
+          "order": 3,
+          "entity": "fn.66.strategy-damage-main.8ba1",
+          "role": "0x4D1840[ID] → 系数（0xFF=特殊，取目标 HP）；0x415EFA/0x4D18D0[ID] <4 走伤害路径，>=4 走状态路径；例外类型 0x1E/0x06"
+        },
+        {
+          "order": 4,
+          "entity": "fn.66.assist-effect-select.8ba1",
+          "role": "按类型查询 (0x77..0x7B,0x38,1,0) 或 (0x27,0x37,1,0)，把特效值作为额外百分比加进伤害"
+        },
+        {
+          "order": 5,
+          "entity": "fn.66.strategy-damage-main.8ba1",
+          "role": "0x42E534 减伤：(0x28,0x22) 或 (0x29,0x43)，伤害 -= 伤害×值/100；然后 0x44904E → 0x445F6A"
+        }
+      ],
+      "tables": [
+        {
+          "key": "strategy-damage-ratio",
+          "va": "0x4D1840",
+          "fileOffset": "0xA3040",
+          "rows": 144,
+          "rawHex": "46 5A 32 46 5A 32 46 5A 32 46 64 32 32 46 28 32 3C 32 46 5A 46 5A 78 3C 50 5A 50 5A 46 46 46 FF 64 64 32 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 46 37 32 14 1C 1C 1C 1C 78 00 1C 00 1C 1C 1C 1C 3C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1D 1E 1F 01 02 1E 1E 14 01 1E 1E 28 06 02 01 01 04 01 06 0A 01 01 01 0A 01 46 05 01 01 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 00 01 02 1C 46 64 1C 1C",
+          "semantics": "百分比系数；0xFF 表示特殊结算（0x43C0D9 取目标 HP）。雷系：24=0x50、25=0x5A、26=0x50、27=0x5A、28=0x46、29=0x46。"
+        },
+        {
+          "key": "strategy-damage-type-ratio",
+          "va": "0x4D21B0",
+          "fileOffset": "0xA39B0",
+          "rows": 40,
+          "rawHex": "64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 6E 64 64 64 64 64 64 64 64 64 64 78 64 64 64 64 64 64 64 64",
+          "semantics": "伤害类型 0..0x27 的百分比；仅 0x14=0x6E(110%)、0x1F=0x78(120%)，其余 0x64。"
+        },
+        {
+          "key": "strategy-damage-gate",
+          "va": "0x4D18D0",
+          "fileOffset": "0xA30D0",
+          "rows": 48,
+          "rawHex": "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 00 04 04 04 04 04 04 04 04 04 04 04 04 01 01",
+          "semantics": "0x415EFA 读此表：<4 → 0x43C07E 伤害路径；>=4（ID 32、34..45）→ 0x43C314 状态/妨害路径；ID 46/47 = 0x01 仍走伤害路径的例外分支。"
+        }
+      ],
+      "semantics": [
+        "0x4D1840[ID] 先乘：伤害 = 伤害 × 系数 ÷ 100；0xFF 时不乘，改用目标 +0x10（HP/MP）作为伤害值。",
+        "伤害类型由 0x40BF0C 从 byte[目标人物记录+0x2B]（目标兵种）映射：≤0x3B → /3；0x3C..0x4F → -0x28；≥0x50 → 0x28；结果 0..0x27 再查 0x4D21B0。",
+        "类型加成：type 0 时若伤害类型=0x40 加 0x14，且 0x435991(目标+6)∈{2,0x17} 加 0x19；type 1/3/0x26 时 0x41553B(0x4B3D08)≥2 加 0x19；type 2 时 0x43B4A7(施法者)==7 加 0x19；所有加成汇总成 [ebp-0xc]，再 伤害 += 伤害×加成/100。",
+        "type 0x14 且 0x43B4A7(施法者)==0x0C → 伤害 ×2；这里的 0x43B4A7 读取对象是施法者 [ebp-0x10]，不是目标。",
+        "辅助增伤在 0x43C210：元素/雷系用 (0x77..0x7B,0x38,1,0)，模式 1 取兵种与装备的较大值；非元素用 0x405DBD 的 (0x27,0x37,1,0)。命中后统一执行 伤害 += 伤害×值/100。",
+        "减伤 0x42E534 先查 (0x28 算无遗策,0x22 辅助精神力,1,0)，为 0 再查 (0x29 减轻策略损伤,0x43 增加策略抗性,1,0)；有值时 伤害 -= 伤害×值/100，若结果小于扣减额则归 0。",
+        "0x43C5A4 是 (0x49+属性序号,0x81,1,0) 的“辅X真伤/辅助全能力”查询，服务 0x43C4C0 的有效能力计算，不参与策略伤害百分比。",
+        "0x43C7CB 的函数体是 (arg+0xEA,0,1,0) 的降能力标记查询（0xEA..0xFF 对应 ※降低攻击力..），但静态扫描没有 E8 调用点，保留为候选。"
+      ],
+      "relations": [
+        "mechanism.66.assist-strategy-effect-category.8ba1",
+        "mechanism.66.strategy-attribute-tables.25d",
+        "fn.66.strategy-damage-main.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "mechanism.66.strategy-hit-chain.8ba1",
+      "title": "6.6 信奈基底：策略命中 0x43B730、0x4D1720 模式与辅助妨碍加值",
+      "aliases": [
+        "0x43B730",
+        "0x4D1720",
+        "0x43B9F3",
+        "0x43B53A",
+        "0x405DBD",
+        "策略命中",
+        "辅助妨碍策略"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x43B730 先用攻守能力曲线算基础命中，再按 0x4D1720[策略ID] 选择“特殊/不乘/固定百分比”模式，最后叠加 0x1F/0x35、0x20/0x3D、0x5C/0x37 与 0x27/0x37，封顶 100。",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.66.strategy-hit-main.8ba1",
+          "role": "0x43B4B6 分流：模式==1 → 0x43B617（前置加/减命中），否则 → 0x43B730；0x43B730 内 [ebp-0x18]=攻方、[ebp-0x28]=守方、[ebp+0x10]=策略ID；type 0x21 且 word[守]<0xD2 → 0"
+        },
+        {
+          "order": 2,
+          "entity": "fn.66.strategy-hit-curve.8ba1",
+          "role": "0x43B53A：A≥2D→100；A≥D→90+(A-D)*10/D；A≥D/2→60+(A-D/2)*30/(D/2)；否则 30+max(A-D/3,0)*30/(D/3)"
+        },
+        {
+          "order": 3,
+          "entity": "fn.66.strategy-hit-main.8ba1",
+          "role": "0x4D1720[ID]：<5 查 0x43B9F3 跳表；5..0x63 乘该值%；0x64=100"
+        },
+        {
+          "order": 4,
+          "entity": "fn.66.strategy-hit-main.8ba1",
+          "role": "type 0x14 且 0x43B4A7(攻)==0x0C → ×3/2；命中 = min(命中+(0x5C,0x37)值,100)；若 0x405DBD(0x27,0x37)≠0 → 命中 = min(命中+10,100)"
+        }
+      ],
+      "hitModeTable": {
+        "va": "0x4D1720",
+        "fileOffset": "0xA2F20",
+        "rows": 144,
+        "rawHex": "02 5A 02 50 3C 46 02 5A 02 50 03 46 02 5A 02 5A 5A 46 02 5A 02 50 02 46 02 5A 5A 50 04 46 3C 04 3C 64 5A 50 3C 50 3C 5A 50 5A 50 3C 50 32 5A 50 50 3C 50 3C 50 50 64 64 64 64 64 64 64 64 64 01 01 64 64 64 64 64 64 64 64 64 02 64 64 64 64 02 02 02 64 64 02 02 02 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 02 02 02 64 02 02 02 64"
+      },
+      "jumpTable": {
+        "va": "0x43B9F3",
+        "entries": [
+          "0 → 0x43B917（特殊：条件失败→0，否则类型1=100/其它=命中×90%）",
+          "1 → 0x43B917（同上）",
+          "2 → 0x43B984（不乘，直接用曲线值）",
+          "3 → 0x43B941（条件失败→0，否则命中×34%）",
+          "4 → 0x43B941（条件失败→0，否则命中×50%）"
+        ]
+      },
+      "modifiers": [
+        {
+          "address": "0x43B680",
+          "effects": "(0x1E 攻击绝对命中, 0x65 嗜血必中, 1, 1) → 命中=100",
+          "note": "0x43B680 位于 0x43B617 子函数内；该函数入口把 ECX（攻方单位）保存到 [ebp-8]，所以查询对象是攻方单位。之前把它误读为策略类型，是把 0x43B617 与 0x43B730 的函数边界混淆了。"
+        },
+        {
+          "address": "0x43B698",
+          "effects": "(0x1F 日置流弓术, 0x35 加强物伤命中, 1, 0) → 命中=min(命中+值,100)"
+        },
+        {
+          "address": "0x43B6BD",
+          "effects": "(0x20 辅助攻击格挡, 0x3D 辅助格挡盾反, 1, 0) → 命中=max(命中-值,0)"
+        },
+        {
+          "address": "0x43B7D7",
+          "effects": "(0x28 算无遗策, 0x53 策略无视限制, 1, 1) → 命中=100"
+        },
+        {
+          "address": "0x43B8BA",
+          "effects": "(0x1D 辅助策略格挡, 0x43 增加策略抗性, 1, 0) → 命中=max(命中-值,0)"
+        },
+        {
+          "address": "0x43B9AD",
+          "effects": "(0x5C 强化施法范围, 0x37 辅助妨碍策略, 1, 0) → 命中=min(命中+值,100)"
+        },
+        {
+          "address": "0x43B9C7",
+          "effects": "0x405DBD (0x27,0x37,1,0) 非 0 → 命中=min(命中+10,100)"
+        }
+      ],
+      "semantics": [
+        "命中入口 0x43B4B6 按模式分流：模式==1 → 0x43B617（先算基础命中并叠加 0x1E/0x65、0x1F/0x35、0x20/0x3D、0x408EEE），否则 → 0x43B730（再查 0x4D1720、0x1D/0x43、0x5C/0x37、0x27/0x37）。两个子函数共享同一套特效 ID。",
+        "0x4D1720 的 0..4 是“特殊模式”，不是简单的固定命中率；5..0x63 才是固定百分比，0x64 为 100。",
+        "雷系样本：24 落雷=0x02（模式2，不乘）、25 狂雷=0x5A（×90%）、26 雷阵=0x5A、27 雷龙=0x50（×80%）、28 霹雳=0x04（模式4，条件失败→0，否则×50%）、29 雷灵珠=0x46（×70%）。",
+        "“辅助妨碍策略”不是 ×110%：0x47FA89(hit,10,100)=min(hit+10,100)，固定加 10 个百分点；装备 0x37 的数值另经 (0x5C,0x37) 加一次，所以 0x37 的总贡献是 特效值+10。",
+        "兵种 0x27 与装备 0x37 都通过 0x405DBD 触发这 +10；0x5C 只加兵种侧的数值，不触发 +10。",
+        "0x1D/0x43 是守方的减命中项，0x1F/0x35 是攻方的加命中项；二者都在 0x4D1720 模式之前结算。",
+        "0x408EEE 在模式结算前做一次 0x408DB1 + min(…,100) + 0x45D52B 的后处理，具体地形/状态修正属于该函数内部，未在本条目展开。"
+      ],
+      "relations": [
+        "mechanism.66.assist-strategy-effect-category.8ba1",
+        "mechanism.66.strategy-damage-chain.8ba1",
+        "fn.66.strategy-hit-main.8ba1",
+        "fn.66.strategy-hit-pre.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "mechanism.66.strategy-selectable-gates.8ba1",
+      "title": "6.6 信奈基底：策略可选/可模仿位图与 0x4D14E0 bit0 门禁",
+      "aliases": [
+        "0x465AC1",
+        "0x41DC78",
+        "0x41FF6E",
+        "0x4D14E0",
+        "0x4D17B0",
+        "0x41832B",
+        "0x40DE69",
+        "策略可选"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x465AC1 与 0x41DC78 都按 0x43E1A8 的 8 位类别掩码与 0x4D17B0[id] 按位与；0x465AC1 生成输出位图，0x41DC78 返回计数。模式≠0 时两者都要求 0x4D14E0 bit0；模式>1 时 0x465AC1 还会检查 MP。",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.66.learn-mask-query.8ba1",
+          "role": "0x43E1A8(人物,k) 取 k=0..2 的类别掩码"
+        },
+        {
+          "order": 2,
+          "entity": "fn.66.strategy-select-loop.8ba1",
+          "role": "0x465AC1：遍历 k/id，mask & 0x4D17B0[id]；k=0 回退 0x41832B、0x40DE69；模式>1 检查 MP；模式≠0 检查 bit0；写 outBuf[id+偏移]=1"
+        },
+        {
+          "order": 3,
+          "entity": "fn.66.strategy-select-count.8ba1",
+          "role": "0x41DC78：同样的掩码/回退逻辑，但只返回符合项数量；第二参数=0 计数全部，非0 只计 bit0=1"
+        }
+      ],
+      "table": {
+        "key": "strategy-extension",
+        "va": "0x4D14E0",
+        "fileOffset": "0xA2CE0",
+        "rows": 144,
+        "rawHex": "03 03 03 03 03 03 03 03 03 03 01 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 01 01 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 01 01 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 01 00 00 00 03 03 03 03 03 03 03 03 03 03 03 00 03 03 01 03 01 01 00 00 00 00 00 00 02 02 02 02 02 02 00 02 00 02 00 00 00 00 00 00 00 02 00 00 02 00 00 00 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03",
+        "semantics": "bit0=1 表示 AI/模仿可选用；0x01/0x03 置位，0x02/0x00 不置位。bit1 为策略穿透增强（另见 mechanism.66.strategy-extension-flags.25d）。"
+      },
+      "semantics": [
+        "0x465AC1 的模式参数决定门禁强度：0=不要求 bit0、>1 才检查 MP；非 0 要求 bit0。不要把 bit0 当成所有调用的硬门禁。",
+        "0x41DC78 的第二参数只影响“计数哪些项”，不影响掩码匹配本身；0x4D14E0 bit0 的测试在 0x41DCE6。",
+        "k==0（气候来源）在掩码不匹配时会回退 0x41832B（射程/目标合法性）和 0x40DE69（策略可用性）；k==1/2 没有这条回退。",
+        "0x41FF6E 只查 k=2（四神）掩码；≥0x80 直接进入四神特殊路径，否则继续检查装备特效 0x3A（策略附加损伤）。",
+        "0x465AC1 的 MP 检查用 0x484002/0x425AD0 取策略 MP，与 [人物记录+0x14] 比较；0x43E1A8 的掩码本身不包含 MP 信息。",
+        "0x41DC78/0x465AC1 只遍历 ID 0..0x8F；文件表有 144 行，但 0x90..0xFF 区段不会被这两条循环选中。"
+      ],
+      "relations": [
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "mechanism.66.strategy-attribute-tables.25d",
+        "fn.66.strategy-select-loop.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "mechanism.66.auto-use-strategy.8ba1",
+      "title": "6.6 信奈基底：自动使用策略链（0x6C 鬼五郎左 + 0x46 自动使用）",
+      "aliases": [
+        "0x422EDF",
+        "0x416442",
+        "0x44F2AC",
+        "0x43FF54",
+        "自动使用",
+        "鬼五郎左"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "0x422EDF 查询 (0x6C 兵种鬼五郎左, 0x46 装备自动使用, 1, 0)，非 0 后经 0x43FF54 门禁、按策略 MP 成本与目标 MP 比较，通过则 0x416442 调用 0x44F2AC 执行。它不是“学会策略”链。",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.66.auto-use-check.8ba1",
+          "role": "0x422EDF：ECX=人物，EAX=已用 MP，[ebp+8]=目标；查询 (0x6C,0x46,1,0)"
+        },
+        {
+          "order": 2,
+          "entity": "fn.66.auto-use-check.8ba1",
+          "role": "0x43FF54(人物, 特效值) 门禁；0x4837C2(策略ID)→0x41DD72 取 MP 成本；0x407263(目标) 取可用 MP/上限；超支返回 0"
+        },
+        {
+          "order": 3,
+          "entity": "fn.66.auto-use-check.8ba1",
+          "role": "0x416442 在成功后调用 0x44F2AC(0x497750, 人物, 参数, 0) 执行；0x416449 是 0x422EDF 的唯一调用点"
+        }
+      ],
+      "semantics": [
+        "0x422EDF 的 (0x6C,0x46) 是“鬼五郎左 + 自动使用”组合；兵种池 0x6C=鬼五郎左，装备池 0x6C=学会策略，二者不可混淆。",
+        "0x416442 还检查 0x505F0C、0x43FF54 与 0x4202C4；这些是执行前的附加条件，具体语义未在本条目展开。",
+        "旧笔记把 0x422EDF 归入“学会策略”是错误的；学会策略链是 0x43E1A8→0x42518F(0x4E+k,0x6C,3,0)。"
+      ],
+      "relations": [
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "fn.66.auto-use-check.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "mechanism.66.strategy-effect-callsite-map.8ba1",
+      "title": "6.6 信奈基底：策略特效 0x42518F 调用点与包装器全表",
+      "aliases": [
+        "0x42518F 调用点",
+        "特效包装器",
+        "0x405DBD",
+        "0x43C414",
+        "0x43C426",
+        "0x43C3A8",
+        "0x430351",
+        "0x436DF0",
+        "0x43C5A4",
+        "0x43C7CB",
+        "0x45D377",
+        "0x45D441",
+        "0x45D4E8",
+        "0x45D524"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "静态扫描确认 0x42518F 有 12 个直接 E8 调用点；另有大量策略相关包装器直接调用 0x4101D9（战斗路径）。本条目把“特效 ID 对 → 调用点 → 语义”集中成表，便于查某个特效到底在哪个判定里生效。",
+      "callSites42518F": [
+        {
+          "address": "0x42ABAE",
+          "args": [
+            "0x45",
+            "0x1E",
+            "1",
+            "0"
+          ],
+          "meaning": "兵种 0x45 出人头地 + 装备 0x1E 获得功勋和Exp"
+        },
+        {
+          "address": "0x42E581",
+          "args": [
+            "0x3F",
+            "0",
+            "1",
+            "0"
+          ],
+          "meaning": "兵种 0x3F 中国大返还（无装备项）"
+        },
+        {
+          "address": "0x42E5AA",
+          "args": [
+            "0xF6",
+            "0",
+            "1",
+            "0"
+          ],
+          "meaning": "兵种 0xF6 ※减少移动力（无装备项）"
+        },
+        {
+          "address": "0x430362",
+          "args": [
+            "0x6D",
+            "0",
+            "1",
+            "0"
+          ],
+          "meaning": "兵种 0x6D 全职高手（无装备项）"
+        },
+        {
+          "address": "0x436DFB",
+          "args": [
+            "0x3D",
+            "0x5C",
+            "2",
+            "0"
+          ],
+          "meaning": "兵种 0x3D 天下野望 + 装备 0x5C 神魔附体，模式 2"
+        },
+        {
+          "address": "0x43C5B7",
+          "args": [
+            "0x49+属性序号",
+            "0x81",
+            "1",
+            "0"
+          ],
+          "meaning": "辅攻/辅防/辅精/辅爆/辅士真伤 + 装备 0x81 辅助全能力"
+        },
+        {
+          "address": "0x43C7EB",
+          "args": [
+            "0xEA+参数",
+            "0",
+            "1",
+            "0"
+          ],
+          "meaning": "降能力标记 0xEA..0xFF（※降低攻击力..）"
+        },
+        {
+          "address": "0x43E1B8",
+          "args": [
+            "0x4E+k",
+            "0x6C",
+            "3",
+            "0"
+          ],
+          "meaning": "学会策略 气候/兵法/四神 + 装备 学会策略，模式 3 按位或"
+        },
+        {
+          "address": "0x45D377",
+          "args": [
+            "0xA7",
+            "0x57",
+            "3",
+            "0"
+          ],
+          "meaning": "兵种 0xA7 强化穿透-攻击 + 装备 0x57 强化穿透，模式 3"
+        },
+        {
+          "address": "0x45D441",
+          "args": [
+            "0x95",
+            "0x33",
+            "2",
+            "0"
+          ],
+          "meaning": "兵种 0x95 穿透攻击 + 装备 0x33 穿透攻击，模式 2"
+        },
+        {
+          "address": "0x45D4E8",
+          "args": [
+            "0x98",
+            "0",
+            "1",
+            "0"
+          ],
+          "meaning": "兵种 0x98 战国霸主（无装备项）"
+        },
+        {
+          "address": "0x45D524",
+          "args": [
+            "0xFE",
+            "0x59",
+            "1",
+            "0"
+          ],
+          "meaning": "兵种 0xFE ☆神圣庇佑☆ + 装备 0x59 反弹伤害异常"
+        }
+      ],
+      "directWrappers": [
+        {
+          "address": "0x405DBD",
+          "args": [
+            "0x27",
+            "0x37",
+            "1",
+            "0"
+          ],
+          "meaning": "辅助妨碍策略（命中/非元素伤害）"
+        },
+        {
+          "address": "0x43C3A8",
+          "args": [
+            "0x74",
+            "0",
+            "1",
+            "0"
+          ],
+          "meaning": "兵种 0x74 状态强化"
+        },
+        {
+          "address": "0x43C3BA",
+          "args": [
+            "0x54",
+            "0x70",
+            "1",
+            "0"
+          ],
+          "meaning": "批亢捣虚（兵种+装备）"
+        },
+        {
+          "address": "0x43C3CC",
+          "args": [
+            "0x39",
+            "0x61",
+            "1",
+            "1"
+          ],
+          "meaning": "唯我独尊（兵种+装备），arg4=1"
+        },
+        {
+          "address": "0x43C3DE",
+          "args": [
+            "0x55",
+            "0x71",
+            "1",
+            "0"
+          ],
+          "meaning": "万夫莫敌（兵种+装备）"
+        },
+        {
+          "address": "0x43C3F0",
+          "args": [
+            "0x56",
+            "0x72",
+            "1",
+            "0"
+          ],
+          "meaning": "限制伤害（兵种+装备）"
+        },
+        {
+          "address": "0x43C402",
+          "args": [
+            "0x57",
+            "0x73",
+            "1",
+            "0"
+          ],
+          "meaning": "转移伤害（兵种+装备）"
+        },
+        {
+          "address": "0x43C414",
+          "args": [
+            "0x58",
+            "0x74",
+            "1",
+            "1"
+          ],
+          "meaning": "特效模仿，arg4=1"
+        },
+        {
+          "address": "0x43C426",
+          "args": [
+            "0x59",
+            "0x75",
+            "1",
+            "1"
+          ],
+          "meaning": "特效屏蔽，arg4=1"
+        },
+        {
+          "address": "0x43C438",
+          "args": [
+            "0x5A",
+            "0x45",
+            "1",
+            "1"
+          ],
+          "meaning": "倾奇舞踏 + 冲锋再动，arg4=1"
+        },
+        {
+          "address": "0x4210BE",
+          "args": [
+            "0x2D",
+            "0x3B",
+            "1",
+            "1"
+          ],
+          "meaning": "策略模仿，arg4=1"
+        },
+        {
+          "address": "0x42E534",
+          "args": [
+            "0x28/0x22 与 0x29/0x43",
+            "1",
+            "0"
+          ],
+          "meaning": "伤害减伤：算无遗策/辅助精神力，或 减轻策略损伤/增加策略抗性"
+        },
+        {
+          "address": "0x43C528",
+          "args": [
+            "0xF8",
+            "0",
+            "1",
+            "0"
+          ],
+          "meaning": "策略易伤（兵种 0xF8），伤害×值/100"
+        },
+        {
+          "address": "0x43C566",
+          "args": [
+            "0xF9",
+            "0",
+            "1",
+            "0"
+          ],
+          "meaning": "策略致死（兵种 0xF9），命中则伤害=9999"
+        }
+      ],
+      "semantics": [
+        "0x42518F 的 12 个调用点都是“双态”查询（战斗/非战斗自动分流）；直接调用 0x4101D9 的包装器则只走战斗路径，常见于伤害/命中/装备特效。",
+        "0x438C.. 等处的 0x4101D9 直接调用不属于 0x42518F 表；它们通常由 0x40658F 先取人物记录，再按具体特效 ID 查询。",
+        "0x43C5B7 的 arg1 是 0x49+属性序号（0..4），对应 辅攻真伤/辅防真伤/辅精真伤/辅爆真伤/辅士真伤；arg2=0x81 辅助全能力。",
+        "0x43C7EB 的 arg1 是 0xEA+参数，对应 0xEA..0xFF 的降能力/易伤标记；静态扫描没有找到它的 E8 调用点，保留为候选。",
+        "0x43C414/0x43C426/0x4210BE 的 arg4=1，表示装备侧只取“存在=100”，不用装备数值；这适合布尔型特效（模仿/屏蔽/二次行动）。",
+        "0x43C528/0x43C566 是伤害结算前的“易伤/致死”检查，查询只带兵种侧（0xF8/0xF9），没有装备对应项。"
+      ],
+      "relations": [
+        "mechanism.66.effect-query-pipeline.8ba1",
+        "mechanism.66.strategy-damage-chain.8ba1",
+        "mechanism.66.strategy-hit-chain.8ba1",
+        "mechanism.66.learn-strategy-category-mask.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    }
+  ]
+}

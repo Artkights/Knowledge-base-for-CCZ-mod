@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "entityType": "data-structure",
+  "profile": "profile.ccz66.xinnai12.local.8ba1",
+  "entries": [
+    {
+      "id": "struct.66.strategy-effect-assignment.8ba1",
+      "title": "6.6 信奈基底：16 字节特效分配记录（4 人物槽 + 2 兵种槽）",
+      "aliases": [
+        "特效分配记录",
+        "0x500C3B",
+        "0x511000",
+        "effect-assignment-16"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "baseRef": "DWORD[0x00500C3B]",
+      "recordCount": 256,
+      "stride": 16,
+      "indexFormula": "DWORD[0x00500C3B] + effect_id * 0x10 + field_offset",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "character_1",
+          "offset": "0x0",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 1 的 ID",
+          "overlay": "c1"
+        },
+        {
+          "name": "character_value_1",
+          "offset": "0x2",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 1 的特效值",
+          "overlay": "c1"
+        },
+        {
+          "name": "character_2",
+          "offset": "0x3",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 2 的 ID",
+          "overlay": "c2"
+        },
+        {
+          "name": "character_value_2",
+          "offset": "0x5",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 2 的特效值",
+          "overlay": "c2"
+        },
+        {
+          "name": "character_3",
+          "offset": "0x6",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 3 的 ID",
+          "overlay": "c3"
+        },
+        {
+          "name": "character_value_3",
+          "offset": "0x8",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 3 的特效值",
+          "overlay": "c3"
+        },
+        {
+          "name": "character_4",
+          "offset": "0x9",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "人物 4 的 ID",
+          "overlay": "c4"
+        },
+        {
+          "name": "character_value_4",
+          "offset": "0xB",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "人物 4 的特效值",
+          "overlay": "c4"
+        },
+        {
+          "name": "job_1",
+          "offset": "0xC",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "兵种 1 的 ID"
+        },
+        {
+          "name": "job_value_1",
+          "offset": "0xD",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "兵种 1 的特效值"
+        },
+        {
+          "name": "job_2",
+          "offset": "0xE",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "兵种 2 的 ID"
+        },
+        {
+          "name": "job_value_2",
+          "offset": "0xF",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "兵种 2 的特效值"
+        }
+      ],
+      "semantics": "0x4198BE 读取：人物槽与 0x40BE7D(人物记录) 比较，兵种槽与 byte[人物记录+0x2B] 比较；命中项用 0x413009 按模式合并。默认表内嵌在 0x511000（256 条），0x500C3B 初值即该地址；人物 1024 与兵种 0xFF 是空槽哨兵，不是通配符。",
+      "relations": [
+        "fn.66.effect-assignment-lookup.8ba1",
+        "struct.66.effect-assignment",
+        "global.66.effect-assignment-defaults.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "struct.66.strategy-equipment-assignment.8ba1",
+      "title": "6.6 信奈基底：16 字节装备分配记录（人物+装备→值）",
+      "aliases": [
+        "装备分配记录",
+        "0x50E000",
+        "equipment-assignment-16"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "baseRef": "0x0050E000",
+      "recordCount": 256,
+      "stride": 16,
+      "indexFormula": "0x0050E000 + effect_id * 0x10 + field_offset",
+      "endianness": "little",
+      "fields": [
+        {
+          "name": "entry_0_character",
+          "offset": "0x0",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "条目 0 的人物 ID"
+        },
+        {
+          "name": "entry_0_item",
+          "offset": "0x2",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "条目 0 的装备 ID"
+        },
+        {
+          "name": "entry_0_value",
+          "offset": "0x3",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "条目 0 的特效值"
+        },
+        {
+          "name": "entry_1_character",
+          "offset": "0x4",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "条目 1 的人物 ID"
+        },
+        {
+          "name": "entry_1_item",
+          "offset": "0x6",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "条目 1 的装备 ID"
+        },
+        {
+          "name": "entry_1_value",
+          "offset": "0x7",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "条目 1 的特效值"
+        },
+        {
+          "name": "entry_2_character",
+          "offset": "0x8",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "条目 2 的人物 ID"
+        },
+        {
+          "name": "entry_2_item",
+          "offset": "0xA",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "条目 2 的装备 ID"
+        },
+        {
+          "name": "entry_2_value",
+          "offset": "0xB",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "条目 2 的特效值"
+        },
+        {
+          "name": "entry_3_character",
+          "offset": "0xC",
+          "width": 2,
+          "type": "uint16",
+          "meaning": "条目 3 的人物 ID"
+        },
+        {
+          "name": "entry_3_item",
+          "offset": "0xE",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "条目 3 的装备 ID"
+        },
+        {
+          "name": "entry_3_value",
+          "offset": "0xF",
+          "width": 1,
+          "type": "uint8",
+          "meaning": "条目 3 的特效值"
+        }
+      ],
+      "semantics": "0x402CF9 读取：人物 ID 匹配且装备 ID 命中人物记录 +0x2E/+0x31/+0x34 三个装备槽之一时，用 0x413009 合并值。文件内该表全 0，启动时由外部数据填充。",
+      "relations": [
+        "fn.66.effect-record-merge.8ba1",
+        "mechanism.66.effect-query-pipeline.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    }
+  ]
+}

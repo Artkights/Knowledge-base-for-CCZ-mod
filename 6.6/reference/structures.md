@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.6/data/structures/data-manager-physical-tables.json`、`6.6/data/structures/engine-effect-job-slots.json`、`6.6/data/structures/f36-shanzai-structures.json`、`6.6/data/structures/item-category-semantics.json`、`6.6/data/structures/runtime-structures.json`、`6.6/data/structures/strategy-records.json`
+结构化事实来源：`6.6/data/structures/data-manager-physical-tables.json`、`6.6/data/structures/engine-effect-job-slots.json`、`6.6/data/structures/f36-shanzai-structures.json`、`6.6/data/structures/item-category-semantics.json`、`6.6/data/structures/runtime-structures.json`、`6.6/data/structures/strategy-effect-records.json`、`6.6/data/structures/strategy-records.json`
 
 ## 66-standard-v1 人物（persons 物理表）
 
@@ -9871,6 +9871,56 @@ ID: `struct.66.item-record`；状态: `canonical`；证据: `source-reviewed`
 | `effect_value` | `0x16` | 1 | `uint8` | 普通装备特效值；辅助保留；消耗品参数高字节。运行时该字段消费仍按原静态证据边界，不推广为所有类别通用效果值。 |
 | `growth` | `0x17` | 1 | `uint8` | 普通装备成长；辅助适用兵种；消耗品保留。 |
 | `catalog_flag` | `0x18` | 1 | `uint8` | 图鉴/宝物标志 |
+
+## 6.6 信奈基底：16 字节特效分配记录（4 人物槽 + 2 兵种槽）
+
+ID: `struct.66.strategy-effect-assignment.8ba1`；状态: `candidate`；证据: `static-verified`
+
+步长: `0x10` (16)
+
+索引公式: `DWORD[0x00500C3B] + effect_id * 0x10 + field_offset`
+
+画像：`profile.ccz66.xinnai12.local.8ba1`；记录数：`256`。
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `character_1` | `0x0` | 2 | `uint16` | 人物 1 的 ID |
+| `character_value_1` | `0x2` | 1 | `uint8` | 人物 1 的特效值 |
+| `character_2` | `0x3` | 2 | `uint16` | 人物 2 的 ID |
+| `character_value_2` | `0x5` | 1 | `uint8` | 人物 2 的特效值 |
+| `character_3` | `0x6` | 2 | `uint16` | 人物 3 的 ID |
+| `character_value_3` | `0x8` | 1 | `uint8` | 人物 3 的特效值 |
+| `character_4` | `0x9` | 2 | `uint16` | 人物 4 的 ID |
+| `character_value_4` | `0xB` | 1 | `uint8` | 人物 4 的特效值 |
+| `job_1` | `0xC` | 1 | `uint8` | 兵种 1 的 ID |
+| `job_value_1` | `0xD` | 1 | `uint8` | 兵种 1 的特效值 |
+| `job_2` | `0xE` | 1 | `uint8` | 兵种 2 的 ID |
+| `job_value_2` | `0xF` | 1 | `uint8` | 兵种 2 的特效值 |
+
+## 6.6 信奈基底：16 字节装备分配记录（人物+装备→值）
+
+ID: `struct.66.strategy-equipment-assignment.8ba1`；状态: `candidate`；证据: `static-verified`
+
+步长: `0x10` (16)
+
+索引公式: `0x0050E000 + effect_id * 0x10 + field_offset`
+
+画像：`profile.ccz66.xinnai12.local.8ba1`；记录数：`256`。
+
+| 字段 | 偏移 | 宽度 | 类型 | 含义 |
+|---|---:|---:|---|---|
+| `entry_0_character` | `0x0` | 2 | `uint16` | 条目 0 的人物 ID |
+| `entry_0_item` | `0x2` | 1 | `uint8` | 条目 0 的装备 ID |
+| `entry_0_value` | `0x3` | 1 | `uint8` | 条目 0 的特效值 |
+| `entry_1_character` | `0x4` | 2 | `uint16` | 条目 1 的人物 ID |
+| `entry_1_item` | `0x6` | 1 | `uint8` | 条目 1 的装备 ID |
+| `entry_1_value` | `0x7` | 1 | `uint8` | 条目 1 的特效值 |
+| `entry_2_character` | `0x8` | 2 | `uint16` | 条目 2 的人物 ID |
+| `entry_2_item` | `0xA` | 1 | `uint8` | 条目 2 的装备 ID |
+| `entry_2_value` | `0xB` | 1 | `uint8` | 条目 2 的特效值 |
+| `entry_3_character` | `0xC` | 2 | `uint16` | 条目 3 的人物 ID |
+| `entry_3_item` | `0xE` | 1 | `uint8` | 条目 3 的装备 ID |
+| `entry_3_value` | `0xF` | 1 | `uint8` | 条目 3 的特效值 |
 
 ## 策略记录（0x61 字节，6.6 山贼 25D4 复核）
 

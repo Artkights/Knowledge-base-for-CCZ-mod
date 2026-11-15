@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mechanism",
+  "profile": "profile.ccz66.xinnai12.local.8ba1",
+  "entries": [
+    {
+      "id": "mechanism.66.assist-strategy-effect-category.8ba1",
+      "title": "6.6 信奈基底：辅助xx策略特效按策略类型选择双通道特效",
+      "aliases": [
+        "辅助元素策略",
+        "辅助妨碍策略",
+        "火系策略增伤",
+        "水系策略增伤",
+        "地系策略增伤",
+        "风系策略增伤",
+        "雷系策略增伤",
+        "0x43C01D",
+        "0x43C210",
+        "0x43B730",
+        "0x44270C",
+        "0x420A9B",
+        "0x42518F",
+        "0x77",
+        "0x7B",
+        "0x38",
+        "0x5C",
+        "0x37"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "信奈派系把“辅助xx策略”拆成兵种特效 0x27/0x77..0x7B 与装备特效 0x37/0x38 两条通道；伤害结算按策略记录运行时的策略类型（文件 +0x0B，运行时 +0x0F）选择具体特效对，命中后按“伤害 += 伤害×特效值÷100”放大；命中链则在 0x43B730 末尾用 (0x5C,0x37) 加值、再用 (0x27,0x37) 的存在性固定 +10 个百分点。",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.66.strategy-type-read.8ba1",
+          "role": "0x420A9B 读取策略 ID（CL），经 0x484002 取 0x61 字节运行时记录，再由 0x44270C 返回运行时 +0x0F 的策略类型"
+        },
+        {
+          "order": 2,
+          "entity": "fn.66.assist-effect-select.8ba1",
+          "role": "0x43C210..0x43C248 按类型选择特效对：0x00→(0x77,0x38)，0x01→(0x78,0x38)，0x02→(0x79,0x38)，0x03→(0x7A,0x38)，0x26→(0x7B,0x38)；其它类型调用 0x405DBD 查询 (0x27,0x37)"
+        },
+        {
+          "order": 3,
+          "entity": "fn.66.effect-query-dual.8ba1",
+          "role": "0x42518F 是战斗/非战斗双态查询入口；战斗中转 0x4101D9，非战斗转 0x41301E。参数为（兵种特效ID, 装备特效ID, 合并模式, 装备取值模式），ECX=人物记录"
+        },
+        {
+          "order": 4,
+          "entity": "fn.66.assist-damage-apply.8ba1",
+          "role": "0x43C26C 用 0x425AD9(伤害, 特效值) 结算，即 伤害 = 伤害 + 伤害 × 特效值 ÷ 100"
+        },
+        {
+          "order": 5,
+          "entity": "fn.66.strategy-hit-main.8ba1",
+          "role": "命中链 0x43B9A6 查询 (0x5C,0x37) 后 命中 = min(命中+特效值,100)；随后 0x405DBD 查询 (0x27,0x37)，只要非 0 就 命中 = min(命中+10,100)"
+        }
+      ],
+      "categoryMap": [
+        {
+          "strategyType": "0x00",
+          "element": "火",
+          "jobEffect": "0x77（兵种特效池名：火系策略增伤）",
+          "itemEffect": "0x38（装备特效池名：辅助元素策略）"
+        },
+        {
+          "strategyType": "0x01",
+          "element": "水",
+          "jobEffect": "0x78（水系策略增伤）",
+          "itemEffect": "0x38"
+        },
+        {
+          "strategyType": "0x02",
+          "element": "地",
+          "jobEffect": "0x79（地系策略增伤）",
+          "itemEffect": "0x38"
+        },
+        {
+          "strategyType": "0x03",
+          "element": "风",
+          "jobEffect": "0x7A（风系策略增伤）",
+          "itemEffect": "0x38"
+        },
+        {
+          "strategyType": "0x26",
+          "element": "雷",
+          "jobEffect": "0x7B（雷系策略增伤）",
+          "itemEffect": "0x38"
+        },
+        {
+          "strategyType": "其它",
+          "element": "非元素/妨碍类",
+          "jobEffect": "0x27（兵种特效池名：辅助妨碍策略）",
+          "itemEffect": "0x37（装备特效池名：辅助妨碍策略）"
+        }
+      ],
+      "queryContract": {
+        "entry": "0x42518F",
+        "callingConvention": "thiscall；ECX=人物记录；栈参 4 个；ret 0x10",
+        "arguments": [
+          "arg1 = 兵种/个人特效 ID",
+          "arg2 = 装备特效 ID",
+          "arg3 = 合并模式（0=相加, 1=取大, 2=7 优先/取大, 3=按位或）",
+          "arg4 = 装备取值模式（0=取装备特效值, 非0=存在即 100）"
+        ],
+        "battlePath": "0x40B922==1 → 0x4101D9",
+        "fieldPath": "0x40B922==0 → 0x41301E"
+      },
+      "semantics": [
+        "类别判断不是看策略 ID，而是看策略记录的“策略类型”字节：文件 +0x0B，运行时搬到 +0x0F（0x44270C 读取），与 Data.e5 策略表“策略类型”列一一对应。",
+        "每个类型对应一对特效 ID：arg1 是兵种/个人特效池 ID（0x4CC600 / 文件 0x9E800，16 字节×256），arg2 是装备特效池 ID（0x4CB7A0 / 文件 0x9D9A0，16 字节×230，起始 ID 0x1A）。两池同时查，按 arg3 合并。",
+        "元素增伤查询使用 arg3=1（取大）：兵种 0x77..0x7B 与装备 0x38 不叠加，只取较高者；随后 伤害 += 伤害×特效值÷100，所以 120 表示该段 +120%。",
+        "命中链的“辅助妨碍”不是 ×110%：0x47FA89(hit,10,100) = min(hit+10,100)，固定加 10 个百分点；装备 0x37 的数值另经 (0x5C,0x37) 查询加一次，因此 0x37 实际贡献 = 特效值 + 10。",
+        "非元素/妨碍类型（type 不在 0/1/2/3/0x26）走 0x405DBD 查询 (0x27,0x37)，命中后同样执行 伤害 += 伤害×值÷100；因此“辅助妨碍只加命中”只对元素/雷系成立，对普通妨碍策略它同时参与伤害。",
+        "名字池按池解释：兵种池 0x38 = 二次行动，装备池 0x38 = 辅助元素策略；兵种池 0x6C = 鬼五郎左，装备池 0x6C = 学会策略。不要跨池复用名称。",
+        "0x42518F 的 arg4 只影响装备通道：arg4≠0 时装备特效只贡献 100（存在标记），用于“是否有该特效”的布尔判定；arg4=0 时才读取装备特效值。",
+        "元素增伤的特效值由 0x41301E 合并：兵种分配表（0x511000 记录）按人物 ID/兵种 ID 匹配，装备分配表（0x50E000 记录）按人物 ID/装备 ID 匹配，最后按 arg3 再合并一次。"
+      ],
+      "namePools": [
+        {
+          "pool": "兵种特效名称",
+          "va": "0x4CC600",
+          "fileOffset": "0x9E800",
+          "slotSize": 16,
+          "rows": 256,
+          "tailByte": "+0x0F = 分类码（0x27/0x77..0x7B=04，0x6C=12，0xEA=03，0xF8=02）",
+          "examples": [
+            "slot 0x27 = 辅助妨碍策略",
+            "slot 0x38 = 二次行动",
+            "slot 0x4E = 学会策略 气候",
+            "slot 0x4F = 兵法 heyho!",
+            "slot 0x50 = 学会策略 四神",
+            "slot 0x5C = 强化施法范围",
+            "slot 0x6C = 鬼五郎左",
+            "slot 0x77 = 火系策略增伤",
+            "slot 0x78 = 水系策略增伤",
+            "slot 0x79 = 地系策略增伤",
+            "slot 0x7A = 风系策略增伤",
+            "slot 0x7B = 雷系策略增伤"
+          ]
+        },
+        {
+          "pool": "装备特效名称",
+          "va": "0x4CB7A0",
+          "fileOffset": "0x9D9A0",
+          "slotSize": 16,
+          "rows": 230,
+          "beginId": "0x1A",
+          "examples": [
+            "0x37 = 辅助妨碍策略",
+            "0x38 = 辅助元素策略",
+            "0x39 = MP辅助策略",
+            "0x46 = 自动使用",
+            "0x6C = 学会策略"
+          ]
+        }
+      ],
+      "relations": [
+        "mechanism.66.strategy-attribute-tables.25d",
+        "struct.66.strategy-record.25d",
+        "mechanism.66.effect-query-pipeline.8ba1",
+        "mechanism.66.strategy-damage-chain.8ba1",
+        "mechanism.66.strategy-hit-chain.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "mechanism.66.learn-strategy-category-mask.8ba1",
+      "title": "6.6 信奈基底：学会策略特效按8位类别掩码筛选可学/可用策略",
+      "aliases": [
+        "学会策略",
+        "学会策略 气候",
+        "学会策略 四神",
+        "0x43E1A8",
+        "0x41DC78",
+        "0x41FF6E",
+        "0x465AC1",
+        "0x4D17B0",
+        "0x4D14E0",
+        "0x4E",
+        "0x6C"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "summary": "“学会策略”不是学某一个策略 ID：特效值是 8 位类别掩码，引擎把它与每条策略的 strategy-learning 类别字节（0x4D17B0）按位与，决定哪些策略可被选择/模仿/自动使用；兵种池 0x4E/0x4F/0x50 与装备池 0x6C 分别代表气候/兵法/四神/通用四类来源。",
+      "steps": [
+        {
+          "order": 1,
+          "entity": "fn.66.learn-mask-query.8ba1",
+          "role": "0x43E1A8(人物, k) 查询 0x42518F(0x4E+k, 0x6C, 3, 0)，k 取 0..2：arg1 是兵种特效 0x4E/0x4F/0x50，arg2 是装备特效 0x6C，模式 3 = 按位或"
+        },
+        {
+          "order": 2,
+          "entity": "fn.66.strategy-select-loop.8ba1",
+          "role": "0x41DC78（模仿/选择计数，调用点 0x43E02A）与 0x465AC1（AI/可用策略位图）遍历策略 ID 0..0x8F"
+        },
+        {
+          "order": 3,
+          "entity": "fn.66.learn-category-and.8ba1",
+          "role": "对每个策略读取 0x4D17B0[strategyId] 作为 8 位类别字节，与 0x43E1A8 返回的掩码按位与；非 0 才进入后续条件"
+        },
+        {
+          "order": 4,
+          "entity": "fn.66.strategy-extra-gates.8ba1",
+          "role": "后续门禁：0x4D14E0 的 bit0（AI/模仿可选用，0x41DCE6/0x465B66 测试）、0x41832B、0x40DE69；全部通过后把策略写入输出位图/计数"
+        },
+        {
+          "order": 5,
+          "entity": "fn.66.learn-special-gate.8ba1",
+          "role": "0x41FF6E 只取 k=2（学会策略 四神）掩码；≥0x80 直接进入四神特殊路径，否则继续检查装备特效 0x3A（策略附加损伤）"
+        }
+      ],
+      "maskBits": [
+        {
+          "bit": 0,
+          "value": "0x01",
+          "name": "四系"
+        },
+        {
+          "bit": 1,
+          "value": "0x02",
+          "name": "降能力"
+        },
+        {
+          "bit": 2,
+          "value": "0x04",
+          "name": "妨碍"
+        },
+        {
+          "bit": 3,
+          "value": "0x08",
+          "name": "补给"
+        },
+        {
+          "bit": 4,
+          "value": "0x10",
+          "name": "升能力"
+        },
+        {
+          "bit": 5,
+          "value": "0x20",
+          "name": "气候"
+        },
+        {
+          "bit": 6,
+          "value": "0x40",
+          "name": "绝"
+        },
+        {
+          "bit": 7,
+          "value": "0x80",
+          "name": "四神"
+        }
+      ],
+      "semantics": [
+        "兵种特效池：0x4E = 学会策略 气候，0x4F = 兵法 heyho!，0x50 = 学会策略 四神；装备特效池：0x6C = 学会策略。0x6C 只有在装备池才是学会策略，兵种池 0x6C 是鬼五郎左。",
+        "掩码位定义来自数据管理器“类型索引”的位标签（1/2/4/8/0x10/0x20/0x40/0x80 对应 四系/降能力/妨碍/补给/升能力/气候/绝/四神），与 0x4D17B0 的实际取值一致（样本值 0x01/0x02/0x04/0x08/0x10/0x20/0x40/0x80 及 0x03/0x05/0x44/0x48 等组合）。",
+        "0x43E1A8 的合并模式是 3（按位或），所以“学会策略 气候”只贡献 0x20 位，“学会策略 四神”只贡献 0x80 位，装备 0x6C 的任意类别位再 OR 进来；三者不会互相覆盖。",
+        "0x465AC1 只有在模式参数 ≠0 时才要求 0x4D14E0 bit0；模式为 0 时，类别掩码命中或 k=0 的 0x41832B/0x40DE69 回退命中即可写入输出位图。0x41DC78 则用第二个参数决定“计数全部有效项”还是“只计 bit0=1 的项”。",
+        "模式>1 时 0x465AC1 还会用 0x484002/0x425AD0 取策略 MP，与 [人物记录+0x14] 比较；这是 MP/等级可用性门禁，不是类别判断。",
+        "因为判断的是类别而不是单个策略，一个“学会策略”可以同时放开一整类策略；要只放开单个策略，需把 strategy-learning 类别字节收窄到该策略独有的位组合，或改用其它机制。",
+        "策略被选中后仍需通过 0x4D14E0 bit0（模式≠0 时）、0x41832B（射程/目标合法性）、0x40DE69（策略可用性）与 MP 等条件；类别掩码只是第一道门。"
+      ],
+      "table": {
+        "key": "strategy-learning",
+        "va": "0x4D17B0",
+        "fileOffset": "0xA2FB0",
+        "rows": 144,
+        "rowSize": 1,
+        "runtimeLimit": "0x41DC78/0x465AC1 只遍历 ID 0..0x8F",
+        "semantics": "每条策略的 8 位类别掩码；0 表示不吃任何“学会策略”类别。"
+      },
+      "maskConsumers": [
+        {
+          "address": "0x41DC78",
+          "role": "模仿/选择计数：k=0..2，mask & 0x4D17B0[id]；k=0 回退 0x41832B/0x40DE69；返回计数"
+        },
+        {
+          "address": "0x465AC1",
+          "role": "AI/可用策略位图：k=0..2，mask & 0x4D17B0[id]；k=0 回退；模式>1 检查 MP；模式≠0 检查 bit0；写 outBuf[id+偏移]=1"
+        },
+        {
+          "address": "0x41FF6E",
+          "role": "只查 k=2（四神），掩码 ≥0x80 进入四神路径；否则检查装备特效 0x3A"
+        }
+      ],
+      "relations": [
+        "mechanism.66.strategy-attribute-tables.25d",
+        "fn.65.strategy-mimic-selection.3890",
+        "mechanism.66.strategy-selectable-gates.8ba1",
+        "fn.66.learn-special-gate.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    }
+  ]
+}

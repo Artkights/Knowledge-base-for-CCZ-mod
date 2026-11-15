@@ -150,6 +150,62 @@
         "src.dm.engine-assignment-static-20261027",
         "src.dm.engine-validation-20261027"
       ]
+    },
+    {
+      "id": "profile.ccz66.xinnai12.local.8ba1",
+      "title": "信奈的野望 12 关版样本（策略特效类别查询复核）",
+      "aliases": [
+        "8BA15109",
+        "xinnai-nobuna-12",
+        "信奈的野望12关版"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "static-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "size": 1166336,
+        "sha256": "8BA1510945A8368EEADD7ED17B3002D7AA96B5C19280388B5E3486AC4DA7A727"
+      },
+      "addressPolicy": "固定 VA 只对该 SHA（1166336 字节）成立。信奈改写了策略效果处理器区（0x4256B1..0x4259C3 摘要 6EB3FA2C… 不在已验证集合，效果类 0x29 跳表项指向 0x4256B1 而非 0x425800），不得把其它 6.6 样本的效果类/处理器地址直接套用；本条目的类别查询链地址按该 SHA 复核。",
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "profile.ccz66.v716.34b8",
+      "title": "曹操传 6.6 V7.16 股票策略块样本",
+      "aliases": [
+        "34B810EE",
+        "6.6-v716-stock-strategy"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "status": "canonical",
+      "evidence": "static-verified",
+      "imageBase": "0x00400000",
+      "machine": "x86-pe32",
+      "sample": {
+        "file": "Ekd5.exe",
+        "sha256": "34B810EE790F4BAA70EBF60AA286AA7BD246A2C17B425B36BD3825B36BA2D6DA",
+        "size": 1130496
+      },
+      "companionDataFiles": [
+        {
+          "name": "Data.e5",
+          "length": 61379,
+          "sha256": "7FCDC8654256CD8D985E160689D5141FFFC10B14A32A8BD2B2CFA069B1F8C68A"
+        }
+      ],
+      "addressPolicy": "固定 VA 只对该 SHA 成立。0x43C01D 策略伤害块与 0x43B730 命中桩按该样本复核；同字节在 新改曹操傳6.6修正版（4A4FD8DD…）交叉命中，但不代表所有 6.6 MOD 都保留 0x40/0x14 与 type5 立即数。",
+      "sourceRefs": [
+        "src.ccz66.v716.ekd5.34b8"
+      ]
     }
   ]
 }

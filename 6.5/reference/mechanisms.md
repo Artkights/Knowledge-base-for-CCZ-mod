@@ -2,7 +2,7 @@
 
 <!-- GENERATED: tools/build_reference.py; DO NOT EDIT -->
 
-结构化事实来源：`6.5/data/mechanisms/attack-range-consumption.json`、`6.5/data/mechanisms/consumable-effects.json`、`6.5/data/mechanisms/data-manager-current-contracts.json`、`6.5/data/mechanisms/data-manager-formulas.json`、`6.5/data/mechanisms/data-manager-strategy-semantics.json`、`6.5/data/mechanisms/effect-range-binding.json`、`6.5/data/mechanisms/engine-ability-display-table.json`、`6.5/data/mechanisms/engine-ai-and-terrain.json`、`6.5/data/mechanisms/engine-ai-branch-2-13-15.json`、`6.5/data/mechanisms/engine-ai-branch-346-scoring.json`、`6.5/data/mechanisms/engine-ai-branch-712-scoring.json`、`6.5/data/mechanisms/engine-ai-cross-base-audit.json`、`6.5/data/mechanisms/engine-ai-damage-scoring.json`、`6.5/data/mechanisms/engine-ai-handler-constants-66.json`、`6.5/data/mechanisms/engine-anchor-relocation-66.json`、`6.5/data/mechanisms/engine-api-name-table.json`、`6.5/data/mechanisms/engine-arithmetic-immediates-census.json`、`6.5/data/mechanisms/engine-armor-exp-cross-base.json`、`6.5/data/mechanisms/engine-assignment-field-policy.json`、`6.5/data/mechanisms/engine-auto-battle-flags.json`、`6.5/data/mechanisms/engine-avi-player.json`、`6.5/data/mechanisms/engine-battle-mode-byte.json`、`6.5/data/mechanisms/engine-battle-script-actions.json`、`6.5/data/mechanisms/engine-battle-unit-table.json`、`6.5/data/mechanisms/engine-battle-viewport-context.json`、`6.5/data/mechanisms/engine-capacity-and-sentinels.json`、`6.5/data/mechanisms/engine-cell-byte-map.json`、`6.5/data/mechanisms/engine-cell-flag-writer.json`、`6.5/data/mechanisms/engine-char-exp-cross-base.json`、`6.5/data/mechanisms/engine-character-accessors.json`、`6.5/data/mechanisms/engine-character-adaptation-table.json`、`6.5/data/mechanisms/engine-color-palette.json`、`6.5/data/mechanisms/engine-crit-combo-mode.json`、`6.5/data/mechanisms/engine-cross-base-audit-late.json`、`6.5/data/mechanisms/engine-current-record-pointer.json`、`6.5/data/mechanisms/engine-damage-apply-mode.json`、`6.5/data/mechanisms/engine-dialog-framework.json`、`6.5/data/mechanisms/engine-dialog-workarea-4fff68.json`、`6.5/data/mechanisms/engine-dialog332-confirm.json`、`6.5/data/mechanisms/engine-dialog332-refresh.json`、`6.5/data/mechanisms/engine-embedded-byte-tables.json`、`6.5/data/mechanisms/engine-equipment-growth.json`、`6.5/data/mechanisms/engine-equipment-slot-bound.json`、`6.5/data/mechanisms/engine-font-name-table.json`、`6.5/data/mechanisms/engine-formula-site-audit.json`、`6.5/data/mechanisms/engine-general-constants.json`、`6.5/data/mechanisms/engine-general-coverage.json`、`6.5/data/mechanisms/engine-global-mode-flags.json`、`6.5/data/mechanisms/engine-global-ui-state-block.json`、`6.5/data/mechanisms/engine-grid-bound-correction.json`、`6.5/data/mechanisms/engine-grid-dimension-pair.json`、`6.5/data/mechanisms/engine-history-intel-341.json`、`6.5/data/mechanisms/engine-hit-height-modifier.json`、`6.5/data/mechanisms/engine-hit-retry-cross-base.json`、`6.5/data/mechanisms/engine-item-effect-code-and-range-table.json`、`6.5/data/mechanisms/engine-item-loader-64-parser.json`、`6.5/data/mechanisms/engine-item-price-boundary.json`、`6.5/data/mechanisms/engine-item-record-fields.json`、`6.5/data/mechanisms/engine-item-record-normalization.json`、`6.5/data/mechanisms/engine-item-record-table.json`、`6.5/data/mechanisms/engine-item-type-action-mapping-66.json`、`6.5/data/mechanisms/engine-item-type-classification.json`、`6.5/data/mechanisms/engine-job-attribute-matrix.json`、`6.5/data/mechanisms/engine-job-penetration.json`、`6.5/data/mechanisms/engine-layer-block-constants.json`、`6.5/data/mechanisms/engine-layer-buffer-11.json`、`6.5/data/mechanisms/engine-level-context-struct.json`、`6.5/data/mechanisms/engine-mechanisms.json`、`6.5/data/mechanisms/engine-memory-arenas.json`、`6.5/data/mechanisms/engine-merit-table.json`、`6.5/data/mechanisms/engine-money-global.json`、`6.5/data/mechanisms/engine-movement-terrain.json`、`6.5/data/mechanisms/engine-new-anchors-batch-66.json`、`6.5/data/mechanisms/engine-payment-chain.json`、`6.5/data/mechanisms/engine-personal-exp-cross-base.json`、`6.5/data/mechanisms/engine-physical-binding-groups.json`、`6.5/data/mechanisms/engine-physical-damage-chain.json`、`6.5/data/mechanisms/engine-physical-level-table.json`、`6.5/data/mechanisms/engine-physical-range-correction.json`、`6.5/data/mechanisms/engine-quick-window-host.json`、`6.5/data/mechanisms/engine-random-variant-table.json`、`6.5/data/mechanisms/engine-save-file-format.json`、`6.5/data/mechanisms/engine-save-load-constants.json`、`6.5/data/mechanisms/engine-scan-lifecycle.json`、`6.5/data/mechanisms/engine-scan-operand-provenance.json`、`6.5/data/mechanisms/engine-scan-performance-equivalence.json`、`6.5/data/mechanisms/engine-script-context-caches.json`、`6.5/data/mechanisms/engine-script-handler-capacity.json`、`6.5/data/mechanisms/engine-script-number-parser.json`、`6.5/data/mechanisms/engine-script-opcodes-7c-7d.json`、`6.5/data/mechanisms/engine-settings-block-fields.json`、`6.5/data/mechanisms/engine-settings-dialog-kankyou.json`、`6.5/data/mechanisms/engine-shop-growth.json`、`6.5/data/mechanisms/engine-slot-type-candidate.json`、`6.5/data/mechanisms/engine-sound-settings.json`、`6.5/data/mechanisms/engine-strategy-direction-weather.json`、`6.5/data/mechanisms/engine-table-506800.json`、`6.5/data/mechanisms/engine-target-direction-score.json`、`6.5/data/mechanisms/engine-temp-attribute-block.json`、`6.5/data/mechanisms/engine-text-buffers-save-header.json`、`6.5/data/mechanisms/engine-training-ground-context.json`、`6.5/data/mechanisms/engine-turn-weather-state.json`、`6.5/data/mechanisms/engine-unit-alloc-records.json`、`6.5/data/mechanisms/engine-unit-slot-arrays.json`、`6.5/data/mechanisms/engine-unit-status-bitfield.json`、`6.5/data/mechanisms/engine-weapon-exp-cross-base.json`、`6.5/data/mechanisms/param-display-name-resolution.json`、`6.5/data/mechanisms/public-reverse-analysis-methods.json`、`6.5/data/mechanisms/reviewed-stub-scanner-reference.json`、`6.5/data/mechanisms/script-command-dispatch.json`、`6.5/data/mechanisms/script-execution.json`、`6.5/data/mechanisms/script-jump-window.json`、`6.5/data/mechanisms/script-main-loop.json`、`6.5/data/mechanisms/script-short-param.json`、`6.5/data/mechanisms/strategy-and-range-chains.json`、`6.5/data/mechanisms/strategy-attribute-tables.json`、`6.5/data/mechanisms/strategy-damage-hit-resolution.json`
+结构化事实来源：`6.5/data/mechanisms/attack-range-consumption.json`、`6.5/data/mechanisms/consumable-effects.json`、`6.5/data/mechanisms/data-manager-current-contracts.json`、`6.5/data/mechanisms/data-manager-formulas.json`、`6.5/data/mechanisms/data-manager-strategy-semantics.json`、`6.5/data/mechanisms/effect-range-binding.json`、`6.5/data/mechanisms/engine-ability-display-table.json`、`6.5/data/mechanisms/engine-ai-and-terrain.json`、`6.5/data/mechanisms/engine-ai-branch-2-13-15.json`、`6.5/data/mechanisms/engine-ai-branch-346-scoring.json`、`6.5/data/mechanisms/engine-ai-branch-712-scoring.json`、`6.5/data/mechanisms/engine-ai-cross-base-audit.json`、`6.5/data/mechanisms/engine-ai-damage-scoring.json`、`6.5/data/mechanisms/engine-ai-handler-constants-66.json`、`6.5/data/mechanisms/engine-anchor-relocation-66.json`、`6.5/data/mechanisms/engine-api-name-table.json`、`6.5/data/mechanisms/engine-arithmetic-immediates-census.json`、`6.5/data/mechanisms/engine-armor-exp-cross-base.json`、`6.5/data/mechanisms/engine-assignment-field-policy.json`、`6.5/data/mechanisms/engine-auto-battle-flags.json`、`6.5/data/mechanisms/engine-avi-player.json`、`6.5/data/mechanisms/engine-battle-mode-byte.json`、`6.5/data/mechanisms/engine-battle-script-actions.json`、`6.5/data/mechanisms/engine-battle-unit-table.json`、`6.5/data/mechanisms/engine-battle-viewport-context.json`、`6.5/data/mechanisms/engine-capacity-and-sentinels.json`、`6.5/data/mechanisms/engine-cell-byte-map.json`、`6.5/data/mechanisms/engine-cell-flag-writer.json`、`6.5/data/mechanisms/engine-char-exp-cross-base.json`、`6.5/data/mechanisms/engine-character-accessors.json`、`6.5/data/mechanisms/engine-character-adaptation-table.json`、`6.5/data/mechanisms/engine-color-palette.json`、`6.5/data/mechanisms/engine-crit-combo-mode.json`、`6.5/data/mechanisms/engine-cross-base-audit-late.json`、`6.5/data/mechanisms/engine-current-record-pointer.json`、`6.5/data/mechanisms/engine-damage-apply-mode.json`、`6.5/data/mechanisms/engine-dialog-framework.json`、`6.5/data/mechanisms/engine-dialog-workarea-4fff68.json`、`6.5/data/mechanisms/engine-dialog332-confirm.json`、`6.5/data/mechanisms/engine-dialog332-refresh.json`、`6.5/data/mechanisms/engine-embedded-byte-tables.json`、`6.5/data/mechanisms/engine-equipment-growth.json`、`6.5/data/mechanisms/engine-equipment-slot-bound.json`、`6.5/data/mechanisms/engine-font-name-table.json`、`6.5/data/mechanisms/engine-formula-site-audit.json`、`6.5/data/mechanisms/engine-general-constants.json`、`6.5/data/mechanisms/engine-general-coverage.json`、`6.5/data/mechanisms/engine-global-mode-flags.json`、`6.5/data/mechanisms/engine-global-ui-state-block.json`、`6.5/data/mechanisms/engine-grid-bound-correction.json`、`6.5/data/mechanisms/engine-grid-dimension-pair.json`、`6.5/data/mechanisms/engine-history-intel-341.json`、`6.5/data/mechanisms/engine-hit-height-modifier.json`、`6.5/data/mechanisms/engine-hit-retry-cross-base.json`、`6.5/data/mechanisms/engine-item-effect-code-and-range-table.json`、`6.5/data/mechanisms/engine-item-loader-64-parser.json`、`6.5/data/mechanisms/engine-item-price-boundary.json`、`6.5/data/mechanisms/engine-item-record-fields.json`、`6.5/data/mechanisms/engine-item-record-normalization.json`、`6.5/data/mechanisms/engine-item-record-table.json`、`6.5/data/mechanisms/engine-item-type-action-mapping-66.json`、`6.5/data/mechanisms/engine-item-type-classification.json`、`6.5/data/mechanisms/engine-job-attribute-matrix.json`、`6.5/data/mechanisms/engine-job-penetration.json`、`6.5/data/mechanisms/engine-layer-block-constants.json`、`6.5/data/mechanisms/engine-layer-buffer-11.json`、`6.5/data/mechanisms/engine-level-context-struct.json`、`6.5/data/mechanisms/engine-mechanisms.json`、`6.5/data/mechanisms/engine-memory-arenas.json`、`6.5/data/mechanisms/engine-merit-table.json`、`6.5/data/mechanisms/engine-money-global.json`、`6.5/data/mechanisms/engine-movement-terrain.json`、`6.5/data/mechanisms/engine-new-anchors-batch-66.json`、`6.5/data/mechanisms/engine-payment-chain.json`、`6.5/data/mechanisms/engine-personal-exp-cross-base.json`、`6.5/data/mechanisms/engine-physical-binding-groups.json`、`6.5/data/mechanisms/engine-physical-damage-chain.json`、`6.5/data/mechanisms/engine-physical-level-table.json`、`6.5/data/mechanisms/engine-physical-range-correction.json`、`6.5/data/mechanisms/engine-quick-window-host.json`、`6.5/data/mechanisms/engine-random-variant-table.json`、`6.5/data/mechanisms/engine-save-file-format.json`、`6.5/data/mechanisms/engine-save-load-constants.json`、`6.5/data/mechanisms/engine-scan-lifecycle.json`、`6.5/data/mechanisms/engine-scan-operand-provenance.json`、`6.5/data/mechanisms/engine-scan-performance-equivalence.json`、`6.5/data/mechanisms/engine-script-context-caches.json`、`6.5/data/mechanisms/engine-script-handler-capacity.json`、`6.5/data/mechanisms/engine-script-number-parser.json`、`6.5/data/mechanisms/engine-script-opcodes-7c-7d.json`、`6.5/data/mechanisms/engine-settings-block-fields.json`、`6.5/data/mechanisms/engine-settings-dialog-kankyou.json`、`6.5/data/mechanisms/engine-shop-growth.json`、`6.5/data/mechanisms/engine-slot-type-candidate.json`、`6.5/data/mechanisms/engine-sound-settings.json`、`6.5/data/mechanisms/engine-strategy-direction-weather.json`、`6.5/data/mechanisms/engine-table-506800.json`、`6.5/data/mechanisms/engine-target-direction-score.json`、`6.5/data/mechanisms/engine-temp-attribute-block.json`、`6.5/data/mechanisms/engine-text-buffers-save-header.json`、`6.5/data/mechanisms/engine-training-ground-context.json`、`6.5/data/mechanisms/engine-turn-weather-state.json`、`6.5/data/mechanisms/engine-unit-alloc-records.json`、`6.5/data/mechanisms/engine-unit-slot-arrays.json`、`6.5/data/mechanisms/engine-unit-status-bitfield.json`、`6.5/data/mechanisms/engine-weapon-exp-cross-base.json`、`6.5/data/mechanisms/param-display-name-resolution.json`、`6.5/data/mechanisms/public-reverse-analysis-methods.json`、`6.5/data/mechanisms/reviewed-stub-scanner-reference.json`、`6.5/data/mechanisms/script-command-dispatch.json`、`6.5/data/mechanisms/script-execution.json`、`6.5/data/mechanisms/script-jump-window.json`、`6.5/data/mechanisms/script-main-loop.json`、`6.5/data/mechanisms/script-short-param.json`、`6.5/data/mechanisms/strategy-and-range-chains.json`、`6.5/data/mechanisms/strategy-attribute-tables.json`、`6.5/data/mechanisms/strategy-damage-hit-resolution.json`、`6.5/data/mechanisms/strategy-job-specific-modifier.json`
 
 ## 范围落格与格状态/槽号分层写入
 
@@ -7558,7 +7558,7 @@ ID: `mechanism.65.item-type-classification.3ef7`；状态: `canonical`；证据:
 
 ID: `mechanism.65.job-series-attribute-matrix.3ef7`；状态: `candidate`；证据: `static-verified`
 
-0x4D20C0 是 8 行×40 兵种系的字节矩阵。第 6 行（0x4D21B0）是 90..130 的百分比修正，策略伤害后段按 damage*row6[series]/100 乘算；第 5 行是 0..2 枚举并被 AI 评分比较 ==2；其余行为布尔/占位标志。三基底矩阵不同。
+0x4D20C0 是 8 行×40 兵种系的字节矩阵。第 6 行（0x4D21B0）是 90..130 的受策略伤害百分比：策略伤害函数先由 0x40BF0C 把受击方详细兵种映射为兵种系，再按 damage*row6[series]/100 乘算；第 5 行是 0..2 枚举并被 AI 评分比较 ==2；其余行为布尔/占位标志。三基底矩阵不同。
 
 
 ## 兵种穿透/属性码表 80×1
@@ -7875,11 +7875,11 @@ ID: `mechanism.65.sound-settings.3ef7`；状态: `candidate`；证据: `static-v
 音效统一由 0x474777(voice, soundId, mode, force) 播放：先以 0x474596(2)=byte[0x4B0770]&2 判断音效总开关，soundId 分三段——<0x64 用 WAV\SE00.WAV（0x48E825），0x64..0xC7 用 WAV\SE_M_xx.WAV（0x48E830，id-=0x64），0xC8..0xD0 用 WAV\SE_E_xx.WAV（0x48E83C，id-=0xC8），>=0xD1 返回 0；两位十进制数按 idiv 10 写入路径 +9/+10，0x418ED4 转绝对路径。sndPlaySoundA 标志基值 3（SND_ASYNC|SND_NODEFAULT），循环 |8（SND_LOOP），不打断 |0x10（SND_NOSTOP）。mode=1 时同曲或 force 不重启；0xFFFF 强制一次性；0 循环；其他 N 为最多 N 次重试（间隔 0x42C522(6)）。停止函数 0x474652 调 sndPlaySoundA(0,0) 并清 voice。语音由 0x4090EE 走 SE_V_%03u.WAV（0x48E810）。设置块 0x4B0770：0x41EDEF 返回 byte[0]（bit1=音效开关），0x415E19 返回 min(word[+6]/2,0x7F)，两者分别写入存档区块B 的 +0x02/+0x03。
 
 
-## 策略伤害的方向/天气/地形百分比修正
+## 策略伤害的策略类型/天气/地形百分比修正
 
 ID: `mechanism.65.strategy-damage-direction-weather.3ef7`；状态: `canonical`；证据: `static-verified`
 
-策略伤害在兵种系第 6 行百分比之后追加方向/天气/地形百分比：方向码 0 时兵种系 0x1E +40、地形码 2/0x17 +25；方向码 1/3/0x26 时天气 ID>=2 +25；方向码 2 时另一侧兵种系==7 +25；最终 damage=damage*累计百分比/100。
+策略伤害在兵种系行6百分比之后追加策略类型百分比：类型 0（火）时受击方兵种系等于样本常量则加 20/40%，受击方地形为 2 或 0x17 再加 15/25%；类型 1/3/0x26 时天气 ID>=2 加 15/25%；类型 2（地）时施法方兵种系==7（贼兵）加 15/25%；最终 damage=damage×(100+累计百分比)/100。0x44270C 读取的是策略记录 +0xF（策略类型，文件 +0x0B），不是单位方向字段。
 
 
 ## 小地图 tile 描述符表 0x506800（20 项×3 字节，含 12 字节视图）
@@ -8205,3 +8205,84 @@ ID: `mechanism.65.strategy-attribute-tables.3ef7`；状态: `canonical`；证据
 ID: `mechanism.65.strategy-damage-hit-resolution.3ef7`；状态: `canonical`；证据: `static-verified`
 
 strategy-damage-type 是伤害门控，不是四种独立伤害类型：0..3 行为完全等价，4 表示不伤血，>=4 同样被门控，但显示函数只把精确的 4 显示为 0；ID 0x46/0x16 绕过门控。strategy-hit-rate 是命中模式/基础命中率选择器：0..4 为特殊模式，>=5 为百分比乘数；模式 2 使用能力曲线，模式 3/4 固定 34/50 后仍乘基础值并受状态/效果修正，最终上限 100。
+
+
+## 策略伤害的兵种系/策略类型专项加成（受击方行6、火系+40%、诱惑×2）
+
+ID: `mechanism.65.strategy-job-specific-modifier.3ef7`；状态: `canonical`；证据: `static-verified`
+
+策略伤害函数在基础值×伤害系数之后，先用受击方详细兵种 ID→兵种系（0x40BF0C）查 0x4D21B0 行 6 的 90..130 百分比；再按策略类型（0x44270C 读记录 +0xF）累加专项百分比。6.5 加强版的火系分支对受击方兵种系 0x1E（机关）+40%；6.4/6.6 股票的对应常量为 0x40（映射不可达）+20%，MOD 可改写（6.6 山贼为 0x15/+20%）。诱惑专项按施法方兵种系判定：6.4/6.5 为策略 ID==0x14，6.6 为策略类型==0x05；命中 0x0C（舞娘/女兵）系时伤害 ×2，命中桩同条件 ×3/2。
+
+
+计算规则：
+
+- `策略伤害入口：6.4/6.5 为 0x43C022，6.6 为 0x43C01D。ECX=施法方；[ebp+8]=受击方战斗单位记录（+6/+7 为地图 X/Y）；[ebp+0xc]=受击方单位记录（+0x2B 为详细兵种 ID）；[ebp+0x10]=策略 ID；[ebp+0x14]=预览/结算标志。`
+- `base = 攻方等级 + 25 + (攻方智力−守方智力)/3；守方智力更高时用 0x47FA9E 保底 0。`
+- `base = base × 0x4D1840[策略ID] / 100（策略伤害系数）。`
+- `series = 0x40BF0C(受击方)，映射规则：j=byte[obj+0x2B]；j<=0x3B→j/3；0x3C<=j<0x50→j−0x28；j>=0x50→0x28。结果范围 0x00..0x28。`
+- `base = base × 0x4D21B0[series] / 100（行 6；series>0x27 时跳过）。`
+- `type = 0x44270C(0x484002(策略ID)) = byte[策略记录+0xF]；0 火、1 水、2 地、3 风，0x26 为 6.6 的雷类，4+ 为效果类别。`
+- `按 type 向 bonus 累加百分比：type0 若受击方 series==FIRE_SERIES 加 FIRE_BONUS，若受击方地形∈{2,0x17} 加 TERRAIN_BONUS；type∈{1,3,0x26} 若天气>=2 加 WEATHER_BONUS；type==2 若施法方 series==7 加 EARTH_BONUS。`
+- `base += base × bonus / 100（0x425AD9：a×b/100）。`
+- `诱惑专项：6.4/6.5 比较策略 ID==0x14；6.6 比较策略类型==0x05；再比较施法方 series==0x0C，命中则 base <<= 1（×2）。`
+- `后续进入 0x4101D9 增伤/减伤、0x44904E 防御、0x412CAA 浮动、0x43D3AE 阈值、0x40CA68 暴击与 HP/MP 上限。`
+- `命中桩同源：6.4/6.5 入口 0x43B6F3、6.6 入口 0x43B730；同一 ID/type 与 series==0x0C 条件把当前命中率 ×3/2（imul 3; shr 1）。`
+
+### 行6：受击方兵种系→受策略伤害百分比
+
+- 0x43C15E：mov ecx,[ebp+0xc]（受击方）
+- 0x43C161：call 0x40BF0C → series
+- 0x43C169：cmp al,0x27; ja 0x43C17F（越界跳过）
+- 0x43C16D：mov al,[eax+0x4D21B0] → 百分比
+- 0x43C174：push damage; push pct; call 0x425AD9; mov [ebp-4],eax
+- 0x43C14E..0x43C159 已先按 0x4D1840[ID] 缩放
+
+行6 是按受击方兵种系读取的全策略通用承伤百分比；6.5 的 0x1E（机关）=0x82=130，0x0C（舞娘）=0x64=100，0x08..0x0B=0x5A=90。
+
+### 火系 type0 的兵种系专项与地形加成
+
+- 0x43C17F：mov ecx,[ebp-0x20]（策略记录）；0x43C182：call 0x44270C → 策略类型
+- 0x43C18A：cmp al,0; jne 0x43C1AE
+- 0x43C18E：cmp byte [ebp-0x14],FIRE_SERIES; jne 0x43C198
+- 0x43C194：add dword [ebp-0xc],FIRE_BONUS
+- 0x43C198：0x435991([ebp+8]+6) 取受击方地形；地形==2 或 0x17 → 0x43C1DE：add [ebp-0xc],TERRAIN_BONUS
+- 0x43C1E2..0x43C1ED：damage += damage×bonus/100
+
+6.5 加强版：机关（job 0x46→series 0x1E）受火系策略额外 +40%，叠加行6 的 130% 后为 182%；6.4 股票与 6.6 股票：series 比较值 0x40 经 0x40BF0C 不可达，属保留/未启用分支（+20%）；6.6 山贼把立即数改为 0x15/+20%。
+
+### 水/风/雷的天气加成与地系的施法方兵种系加成
+
+- type∈{1,3,0x26}：0x43C1BA mov ecx,0x4B3D08; call 0x41553B 取天气；al>=2 → 0x43C1DE add bonus
+- type==2：0x43C1D2 mov ecx,[ebp-0x10]（施法方）; call 0x43B4A7；al==7（贼兵系）→ 0x43C1DE add bonus
+
+三种条件共用同一 bonus 累加器；6.5/6.6 为 +25（0x19），6.4 为 +15（0x0F）。
+
+### 诱惑/type5 与 0x0C 系：伤害×2、命中×3/2
+
+- 6.4/6.5 0x43C1F0：cmp byte [ebp+0x10],0x14; jne 继续
+- 6.6 股票 0x43C1F0：cmp byte [ebp-0x24],0x05（策略类型）
+- 0x43C1F6：mov ecx,[ebp-0x10]（施法方）；0x43C1F9：call 0x43B4A7 → series
+- 0x43C1FE：cmp al,0x0C; jne 继续
+- 0x43C202：shl dword [ebp-4],1（伤害×2）
+- 命中桩 6.4/6.5 0x43B984、6.6 0x43B984：同条件后 imul ecx,3; shr ecx,1（命中×1.5）
+
+0x0C 系在 6.5 股票名为舞娘（job 0x24/0x25/0x26），在 6.6 山贼名为女兵；判定只看系列 ID 与策略 ID/type，不看显示名称。6.6 按 type0x05 判定后，诱惑即使从 ID 0x14 迁到 0x1E 仍生效。
+
+边界：
+
+- 结论来自静态反汇编与 Data.e5 字节，未运行游戏对照；伤害数值仍受 0x4101D9 增伤/减伤、0x44904E 防御、0x412CAA 浮动与暴击影响。
+- 6.4/6.6 股票的 0x40 比较值不可达；不得据此声称存在“0x40 兵种系”或该分支在实战生效。
+- 6.6 山贼样本的 0x15/type0x14 与 6.5 加强版的 0x1E/ID0x14 是不同样本的立即数，禁止跨样本套用。
+- 本地 6.5 工作副本是补丁态（SHA 5BDC…），不是原始 3EF7 SHA；策略块与东吴霸王传6.5 字节一致，但固定地址引用仍应绑定精确画像。
+- MOD 修改这些立即数后，应以目标 EXE 的 0x43C18E/0x43C194/0x43C1F0/0x43B984 原字节重新核对，不能按版本号推断。
+
+补充说明：
+
+- 行6 与火系 +40% 的读取对象是受击方：调用点 0x4231A4 从目标循环 [edx+i+0xD] 取单位编号，两个参数都来自目标列表；施法方只用于 0x43B4A7 的 series 判断。
+- 0x40BF0C 的映射上限为 0x28，因此 6.4/6.6 股票的 fire series 0x40 永远不会命中；这是保留分支而不是隐藏兵种。
+- 0x1E 在 6.5 加强版是机关（job 0x46），行6=130；叠加火系 +40% 后实际为 1.30×1.40=1.82。
+- 0x0C 只是兵种系编号：6.5 股票叫舞娘系（job 0x24 舞娘/0x25 舞姬/0x26 巫女），6.6 山贼叫女兵系（job 0x24 舞者/0x25 战姬/0x26 凤翎）。把名称改成“女兵”不会改变判定。
+- 6.4/6.5 用策略 ID 0x14 判定诱惑；6.6 改用策略类型 0x05，因此 6.6 中所有 type5 策略都享受 ×2，且诱惑 ID 从 0x14 迁到 0x1E 不影响。
+- 命中桩对同一条件返回 ×3/2，而不是 ×2；伤害与命中的倍率不同。
+- type0 火系的地形 +25% 与火系兵种系专项是两个独立加值，满足时先累加再一次性乘算。
+- 6.4 的专项加值统一为 0x0F（15%），6.5/6.6 为 0x19（25%）；6.5 的火系专项是 0x28（40%），6.4/6.6 股票是 0x14（20%）。

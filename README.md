@@ -106,3 +106,15 @@ python tools/validate_kb.py
 来自 `lanceyuki/caocao-mod-public-knowledge-base` 固定提交的核心引擎、调度器、桩 ABI、对象身份和只读扫描器方法，已转换为 `6.5/data/` 下的 `candidate` 机制、结构、工作流、测试契约和案例。新增内容覆盖调用点到返回消费者的追踪、PE32 的 VA/RVA/文件偏移映射、CFG 与操作数最后定义、战场编号和 Data 号分离、x32dbg 运行时证据采集，以及 Hook 的原字节、指令边界、ABI、回跳和回滚门禁。
 
 这些实体都保留 `6.5pl` 样本范围和未决边界；固定地址不能跨画像套用，扫描器命中不能代替 ABI 或实机验收，缺少动态闭环时不得自动写回。整合回执见 `sources/integration-20261104.json`，审阅记录见 `sources/reverse-analysis-review-20261104.json`。
+
+## 2026-11-15 知识库整理
+
+本轮不删除任何稳定 ID，处理重复口径与结构歧义：
+
+- 修正 `global.64.effect-name-table.9112` 的地址误绑：`0x40620A` 是范围码名称表（10 个 DWORD 指针），特效名实体改绑 `0x4FFB10` 字符串组，并与 `global.64.range-code-name-table.9112` 建立关系。
+- 消歧 9 组重复标题：8 组 6.4/6.6 曲线常量补“命中率/发动率”前缀，6 个 `0x72` 子命令改为带子命令号的标题；同步消歧三版本曲线常量的通用别名。
+- 删除 3 份内容完全相同且未被来源记录引用的证据快照；移除 10 条共用同一句模板摘要的 `summary`。
+- 为 `0x410A38` 的 4 个实体补充“120 个有效表项 / 126 项物理表”边界，不合并视图。
+- 复核确认 6.6 股票为策略类型 `0x05`、山贼变体为 `0x14`，原条目正确，不作修改。
+
+逐项证据与处置见 [consolidation report](sources/consolidation-report-20261115.json) 与 [consolidation plan](sources/consolidation-plan-20261115.json)；报告同时列出 130 组跨画像同地址、22 组同名来源 path 与 183 个未引用证据文件，均按“合法并存”保留。

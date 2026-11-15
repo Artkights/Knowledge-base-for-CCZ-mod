@@ -112,9 +112,12 @@
       "callingConvention": "thiscall/ECX 或 cdecl，按函数体实际压栈；详见 semantics",
       "inputs": "见 semantics",
       "returns": "见 semantics",
-      "semantics": "策略伤害：门控 0x415EFA（ID 0x46 例外）→命中 0x43B4B6(…,2)→特殊 ID 0x46 返 HP 差、0x09/0x15 返目标 HP；否则 等级+25 → 智力差/3（保底 0x47FA9E）→×0x4D1840[ID]/100→×0x4D21B0[group]/100→属性加成（type0: group 0x1E +0x28、0x435991∈{2,0x17} +0x19；type1/3/0x26: 0x41553B(0x4B3D08)≥2 +0x19；type2: 0x43B4A7==7 +0x19；ID 0x14 且 0x43B4A7==0xC 伤害×2）→攻方 0x4101D9(0x28,0x38) 增幅、守方 0x4101D9(0x29,0x43) 减伤→0x44904E 防御→0x412CAA 浮动→0x43D3AE 阈值→[+0x14]==0 时 0x40CA68 暴击→上限（ID 0x16 用 MP，否则 HP）。",
-      "relations": [],
+      "semantics": "策略伤害：门控 0x415EFA（6.6 例外为策略类型 0x1E/0x06）→命中 0x43B4B6(…,2)→特殊处理→等级+25→智力差/3（保底 0x47FA9E）→×0x4D1840[ID]/100→×0x4D21B0[series(受击方)]/100→属性加成。6.6 股票样本（V7.16/新改修正版）实测：type0 火系受击方 series==0x40 +0x14（经 0x40BF0C 不可达）、地形∈{2,0x17} +0x19；type1/3/0x26 天气>=2 +0x19；type2 施法方 series==7 +0x19；策略类型==0x05 且施法方 series==0x0C 伤害×2。6.6 山贼家族（25D）把火系 series 改为 0x15、把 type5 改为 type0x14，AA0F 工作样本未在本地取得，其立即数需按目标 EXE 重新核对。",
+      "relations": [
+        "mechanism.65.strategy-job-specific-modifier.3ef7"
+      ],
       "sourceRefs": [
+        "src.research.strategy-job-specific-damage-modifiers-20261115",
         "src.ccz.shanzai.work.aa0f.exe",
         "src.local.round101.report"
       ]

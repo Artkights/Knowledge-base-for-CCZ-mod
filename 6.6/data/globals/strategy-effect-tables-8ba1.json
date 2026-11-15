@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "entityType": "global",
+  "profile": "profile.ccz66.xinnai12.local.8ba1",
+  "entries": [
+    {
+      "id": "global.66.strategy-effect-name-pools.8ba1",
+      "title": "6.6 信奈基底：兵种/装备特效名称池与关键 ID",
+      "aliases": [
+        "0x4CC600",
+        "0x4CB7A0",
+        "0x9E800",
+        "0x9D9A0",
+        "兵种特效名称",
+        "装备特效名称"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004CC600",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "width": 16,
+      "semantics": "两条独立名称池，均为 16 字节/条、GBK/NUL 结尾。兵种池 VA 0x4CC600（文件 0x9E800，256 条），末字节 +0x0F 为分类码；装备池 VA 0x4CB7A0（文件 0x9D9A0，230 条，起始 ID 0x1A）。同名 ID 在不同池语义不同。",
+      "pools": [
+        {
+          "pool": "job",
+          "va": "0x4CC600",
+          "fileOffset": "0x9E800",
+          "slotSize": 16,
+          "rows": 256,
+          "beginId": "0x0"
+        },
+        {
+          "pool": "item",
+          "va": "0x4CB7A0",
+          "fileOffset": "0x9D9A0",
+          "slotSize": 16,
+          "rows": 230,
+          "beginId": "0x1A"
+        }
+      ],
+      "keyIds": [
+        "job 0x27 = 辅助妨碍策略",
+        "job 0x38 = 二次行动",
+        "item 0x37 = 辅助妨碍策略",
+        "item 0x38 = 辅助元素策略",
+        "item 0x39 = MP辅助策略",
+        "job 0x39 = 唯我独尊",
+        "job 0x4E = 学会策略 气候",
+        "job 0x4F = 兵法 heyho!",
+        "job 0x50 = 学会策略 四神",
+        "job 0x58 = 特效模仿",
+        "job 0x59 = 特效屏蔽",
+        "job 0x5C = 强化施法范围",
+        "item 0x46 = 自动使用",
+        "job 0x6C = 鬼五郎左",
+        "item 0x6C = 学会策略",
+        "job 0x77..0x7B = 火/水/地/风/雷系策略增伤",
+        "job 0xEA..0xFF = ※降低攻击力..（降能力标记）"
+      ],
+      "relations": [
+        "mechanism.66.assist-strategy-effect-category.8ba1",
+        "mechanism.66.learn-strategy-category-mask.8ba1",
+        "global.66.effect-name-table.f20c"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "global.66.strategy-per-id-tables.8ba1",
+      "title": "6.6 信奈基底：每策略 144 字节表（标志/效果类/AI/命中/学习/系数/门控/比率）",
+      "aliases": [
+        "0x4D14E0",
+        "0x4D1570",
+        "0x4D1600",
+        "0x4D1720",
+        "0x4D17B0",
+        "0x4D1840",
+        "0x4D18D0",
+        "0x4D21B0",
+        "策略子表"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x004D14E0",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "width": 144,
+      "semantics": "8 张按策略 ID 索引的表，文件偏移 0xA2CE0..0xA39D8；前 6 张步长 1×144，0x4D21B0 为 40 字节伤害类型比率表。运行时只加载前 0x90 条策略（0x484002 的记录数组 0x4A3E77×0x61）。",
+      "tables": [
+        {
+          "key": "strategy-extension",
+          "va": "0x4D14E0",
+          "fileOffset": "0xA2CE0",
+          "rawHex": "03 03 03 03 03 03 03 03 03 03 01 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 01 01 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 01 01 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 01 00 00 00 03 03 03 03 03 03 03 03 03 03 03 00 03 03 01 03 01 01 00 00 00 00 00 00 02 02 02 02 02 02 00 02 00 02 00 00 00 00 00 00 00 02 00 00 02 00 00 00 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03 03",
+          "consumers": [
+            "0x41DCE6",
+            "0x465B66"
+          ]
+        },
+        {
+          "key": "strategy-effect-class",
+          "va": "0x4D1570",
+          "fileOffset": "0xA2D70",
+          "rawHex": "00 00 00 00 00 1A 00 00 00 00 00 1A 00 00 00 00 01 1A 00 00 00 00 00 1A 00 00 00 00 00 1A 00 00 00 22 03 06 06 07 07 04 04 05 05 1E 08 08 09 09 0A 0A 0B 0B 20 02 0C 0D 0D 0D 0D 0D 0E 0E 0F 0F 0F 13 13 14 14 11 11 12 12 10 1F 23 25 26 90 90 90 90 90 21 17 19 18 90 90 15 90 90 90 90 1B 1B 24 24 24 24 28 28 27 27 27 27 27 27 28 27 28 27 28 28 28 28 28 28 28 27 28 27 27 28 28 27 00 00 00 00 00 00 00 00 00 00 16 16 16 00 1A 00 1C 1D",
+          "consumers": [
+            "0x4256A6",
+            "0x43C5F1"
+          ]
+        },
+        {
+          "key": "strategy-battle-ai",
+          "va": "0x4D1600",
+          "fileOffset": "0xA2E00",
+          "rawHex": "05 05 05 05 05 05 05 05 05 05 0D 05 05 05 05 05 0D 05 05 05 05 05 05 05 05 05 05 05 05 05 05 0D 05 02 03 0E 0E 0E 0E 0D 0D 0D 0D 05 04 04 05 05 05 05 06 06 0D 0D 0D 07 07 07 07 07 0A 0A 0D 0B 0B 0F 0F 0F 0F 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0C 0D 0D 0D 0D 0D 0D 0C 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D 0D",
+          "consumers": [
+            "0x439881"
+          ]
+        },
+        {
+          "key": "strategy-hit-mode",
+          "va": "0x4D1720",
+          "fileOffset": "0xA2F20",
+          "rawHex": "02 5A 02 50 3C 46 02 5A 02 50 03 46 02 5A 02 5A 5A 46 02 5A 02 50 02 46 02 5A 5A 50 04 46 3C 04 3C 64 5A 50 3C 50 3C 5A 50 5A 50 3C 50 32 5A 50 50 3C 50 3C 50 50 64 64 64 64 64 64 64 64 64 01 01 64 64 64 64 64 64 64 64 64 02 64 64 64 64 02 02 02 64 64 02 02 02 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 02 02 02 64 02 02 02 64",
+          "consumers": [
+            "0x43B8FF",
+            "0x46FBD9"
+          ]
+        },
+        {
+          "key": "strategy-learning",
+          "va": "0x4D17B0",
+          "fileOffset": "0xA2FB0",
+          "rawHex": "01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 05 05 05 05 05 05 08 00 40 00 04 02 02 02 02 02 02 02 02 02 04 04 04 04 04 04 04 04 40 00 44 08 08 08 08 08 08 08 40 08 08 10 10 10 10 10 10 10 10 10 10 00 00 40 00 00 00 00 00 10 10 10 48 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00 00 00 20 20 20 00 80 80 80 80",
+          "consumers": [
+            "0x41DCAD",
+            "0x465AFB"
+          ]
+        },
+        {
+          "key": "strategy-damage-ratio",
+          "va": "0x4D1840",
+          "fileOffset": "0xA3040",
+          "rawHex": "46 5A 32 46 5A 32 46 5A 32 46 64 32 32 46 28 32 3C 32 46 5A 46 5A 78 3C 50 5A 50 5A 46 46 46 FF 64 64 32 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 46 37 32 14 1C 1C 1C 1C 78 00 1C 00 1C 1C 1C 1C 3C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 1D 1E 1F 01 02 1E 1E 14 01 1E 1E 28 06 02 01 01 04 01 06 0A 01 01 01 0A 01 46 05 01 01 1C 1C 1C 1C 1C 1C 1C 1C 1C 1C 00 01 02 1C 46 64 1C 1C",
+          "consumers": [
+            "0x43C05D",
+            "0x43C5F8"
+          ]
+        },
+        {
+          "key": "strategy-damage-gate",
+          "va": "0x4D18D0",
+          "fileOffset": "0xA30D0",
+          "rawHex": "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 00 04 04 04 04 04 04 04 04 04 04 04 04 01 01",
+          "consumers": [
+            "0x415F00"
+          ]
+        },
+        {
+          "key": "strategy-damage-type-ratio",
+          "va": "0x4D21B0",
+          "fileOffset": "0xA39B0",
+          "rawHex": "64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64 6E 64 64 64 64 64 64 64 64 64 64 78 64 64 64 64 64 64 64 64",
+          "consumers": [
+            "0x43C16D"
+          ]
+        }
+      ],
+      "relations": [
+        "mechanism.66.strategy-attribute-tables.25d",
+        "mechanism.66.strategy-damage-chain.8ba1",
+        "mechanism.66.strategy-hit-chain.8ba1",
+        "mechanism.66.strategy-selectable-gates.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    },
+    {
+      "id": "global.66.effect-query-buffers.8ba1",
+      "title": "6.6 信奈基底：特效查询指针槽与运行态标志",
+      "aliases": [
+        "0x500C3B",
+        "0x50E000",
+        "0x505F78",
+        "0x505F0C",
+        "0x500AD7",
+        "特效查询缓冲区"
+      ],
+      "versions": [
+        "6.6"
+      ],
+      "profile": "profile.ccz66.xinnai12.local.8ba1",
+      "status": "candidate",
+      "evidence": "static-verified",
+      "address": {
+        "kind": "va",
+        "value": "0x00500C3B",
+        "profile": "profile.ccz66.xinnai12.local.8ba1",
+        "evidence": "static-verified"
+      },
+      "width": 4,
+      "semantics": "查询管线的运行态数据槽。0x500C3B 是特效分配表指针，初值 0x511000，直接指向 .text3 内嵌的 256 条默认表；0x50E000 是装备分配表，文件内全 0，运行时可被 0x411C4A（0x47D8DF 跳表第 10 项）写入；0x505F78=0x400 是 0x4101D9 的特殊键阈值；0x500AD7=1 时 0x43C01D 走快速路径；0x505F0C 参与自动使用门禁。",
+      "slots": [
+        {
+          "va": "0x500C3B",
+          "width": 4,
+          "meaning": "特效分配表基址指针（DWORD），初值 0x511000，指向内嵌默认表"
+        },
+        {
+          "va": "0x50E000",
+          "width": 4096,
+          "meaning": "装备分配表（16 字节×256），文件默认全 0，运行时可被 0x411C4A 填充"
+        },
+        {
+          "va": "0x505F78",
+          "width": 4,
+          "meaning": "0x400；0x4101D9 用 dword[record] 与此比较决定是否走屏蔽/模仿门禁"
+        },
+        {
+          "va": "0x500AD7",
+          "width": 1,
+          "meaning": "0x43C01D 的快速路径开关（==1 时跳过常规伤害公式）"
+        },
+        {
+          "va": "0x505F0C",
+          "width": 1,
+          "meaning": "0x416442 自动使用门禁的附加开关"
+        }
+      ],
+      "relations": [
+        "mechanism.66.effect-query-pipeline.8ba1",
+        "struct.66.strategy-effect-assignment.8ba1",
+        "struct.66.strategy-equipment-assignment.8ba1"
+      ],
+      "sourceRefs": [
+        "src.ccz66.xinnai12.ekd5.8ba1"
+      ]
+    }
+  ]
+}

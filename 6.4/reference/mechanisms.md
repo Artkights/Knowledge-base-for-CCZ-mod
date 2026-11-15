@@ -2974,7 +2974,7 @@ ID: `mechanism.64.dm-constant-hit-curve-cap`；状态: `candidate`；证据: `so
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.4 高段基础值：代码固定值
+## 6.4 命中率曲线·高段基础值：代码固定值
 
 ID: `mechanism.64.dm-constant-hit-curve-high-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -3046,7 +3046,7 @@ ID: `mechanism.64.dm-constant-hit-curve-high-base`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.4 高段每点系数：代码固定值
+## 6.4 命中率曲线·高段每点系数：代码固定值
 
 ID: `mechanism.64.dm-constant-hit-curve-high-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -3334,7 +3334,7 @@ ID: `mechanism.64.dm-constant-hit-curve-low-divisor`；状态: `candidate`；证
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.4 低段基础值：代码固定值
+## 6.4 命中率曲线·低段基础值：代码固定值
 
 ID: `mechanism.64.dm-constant-hit-curve-low-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -3406,7 +3406,7 @@ ID: `mechanism.64.dm-constant-hit-curve-low-base`；状态: `candidate`；证据
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.4 低段每点系数：代码固定值
+## 6.4 命中率曲线·低段每点系数：代码固定值
 
 ID: `mechanism.64.dm-constant-hit-curve-low-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -3838,7 +3838,7 @@ ID: `mechanism.64.dm-constant-rate-curve-cap`；状态: `candidate`；证据: `s
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.4 高段每点系数：代码固定值
+## 6.4 发动率曲线·高段每点系数：代码固定值
 
 ID: `mechanism.64.dm-constant-rate-curve-high-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -3910,7 +3910,7 @@ ID: `mechanism.64.dm-constant-rate-curve-high-coef`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.4 高段基础值：代码固定值
+## 6.4 发动率曲线·高段基础值：代码固定值
 
 ID: `mechanism.64.dm-constant-rate-curve-high-base`；状态: `candidate`；证据: `source-reviewed`
 
@@ -3982,7 +3982,7 @@ ID: `mechanism.64.dm-constant-rate-curve-high-base`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.4 低段每点系数：代码固定值
+## 6.4 发动率曲线·低段每点系数：代码固定值
 
 ID: `mechanism.64.dm-constant-rate-curve-low-coef`；状态: `candidate`；证据: `source-reviewed`
 
@@ -4054,7 +4054,7 @@ ID: `mechanism.64.dm-constant-rate-curve-low-coef`；状态: `candidate`；证�
 - 成对及附加字段必须与主字段保持已证明相对位移、各自签名和同值；全部站点在同一整文件候选中等长修改，失败整组回滚。
 - 此候选缺少通用补丁配方的完整指令边界与跨版本ABI证据；使用已验证源码实现及其事务，不依据本条自动改写其它构建。
 
-## 6.4 低段基础值：代码固定值
+## 6.4 发动率曲线·低段基础值：代码固定值
 
 ID: `mechanism.64.dm-constant-rate-curve-low-base`；状态: `candidate`；证据: `source-reviewed`
 

@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "analysis": "strategy-job-specific-damage-modifiers",
+  "date": "2026-11-15",
+  "method": "PE 映射 + capstone 线性反汇编。先由 0x484002 确认策略记录指针、0x44270C 确认策略类型读取，再由 0x40BF0C 确认详细兵种 ID→兵种系映射；逐个比对 0x43C022/0x43C01D 策略伤害函数中的 0x4D21B0 行 6 乘算、策略类型分支与 0x43B4A7 施法方兵种系检查；用调用点 0x4231A4 的参数来源证明 [ebp+8]/[ebp+0xc] 均来自目标单位列表，因此行 6 与火系 +40% 作用于受击方。只读本地基底，不运行游戏、不修改游戏文件。",
+  "samples": [
+    {
+      "version": "6.4",
+      "label": "洗隋（profile.ccz64.xisui.9112）",
+      "engine": "基底/洗隋/Ekd5.exe",
+      "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+      "data": "基底/洗隋/Data.e5",
+      "dataSha256": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF"
+    },
+    {
+      "version": "6.5",
+      "label": "加强版6.5未加密版工作副本（策略伤害块与 6.5 家族样本字节一致）",
+      "engine": "基底/加强版6.5未加密版/加强版6.5未加密版/Ekd5.exe",
+      "engineSha256": "5BDC78F864340D987F5E354807EBB172652D4AEFEE3D2A61F82C3A20376B5DC9",
+      "engineSize": 1213440,
+      "data": "基底/加强版6.5未加密版/加强版6.5未加密版/Data.e5",
+      "dataSha256": "AD3D59403144B67A5584FFA3D5FE685E030D300B60094C74F0A4884E3729D94E",
+      "identityNote": "该工作副本已是本工程补丁态，不是原始 3EF7 SHA；0x43C022..0x43C31D 与 0x43B6F3 命中桩的火系/诱惑比较字节和东吴霸王传6.5（84E3A1DC…）完全一致，说明本结论针对 6.5 引擎核心块而不是本工程补丁。原始 3EF7 样本身份见 src.research.strategy-damage-hit-resolution-20261112。"
+    },
+    {
+      "version": "6.5",
+      "label": "东吴霸王传6.5（交叉校验）",
+      "engine": "基底/东吴霸王传6.5/Ekd5.exe",
+      "engineSha256": "84E3A1DC085AE6F9900D1E8C388A9CD6766379832DDF51BC7BDF780C6615B4A3",
+      "engineSize": 1196032
+    },
+    {
+      "version": "6.6",
+      "label": "曹操传6.6-V7.16（profile.ccz66.v716.34b8；6.6 股票策略块）",
+      "engine": "基底/曹操传6.6-V7.16 解压密码：66/Ekd5.exe",
+      "engineSha256": "34B810EE790F4BAA70EBF60AA286AA7BD246A2C17B425B36BD3825B36BA2D6DA",
+      "engineSize": 1130496,
+      "data": "基底/曹操传6.6-V7.16 解压密码：66/Data.e5",
+      "dataSha256": "7FCDC8654256CD8D985E160689D5141FFFC10B14A32A8BD2B2CFA069B1F8C68A"
+    },
+    {
+      "version": "6.6",
+      "label": "新改曹操傳6.6修正版（第二次股票样本交叉校验）",
+      "engine": "基底/新改曹操傳6.6修正版/Ekd5.exe",
+      "engineSha256": "4A4FD8DDBF83E5F0B769D1B97BF8F6E6431C3AB42892024A354228212D3D06A4",
+      "engineSize": 1130496
+    },
+    {
+      "version": "6.6",
+      "label": "复刻版6.6山贼（profile.ccz66.xiaoan.fixture.25d；MOD 变体）",
+      "engine": "基底/复刻版6.6山贼/Ekd5.exe",
+      "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A",
+      "engineSize": 1148928,
+      "data": "基底/复刻版6.6山贼/Data.e5",
+      "dataSha256": "C4B57DD0A9DC3EF2A7FE4D6A36EEAF0F7EDEA06BF2F6407B1A8AE3252E5807CE"
+    }
+  ],
+  "helpers": {
+    "strategyRecord": {
+      "va": "0x484002",
+      "bytes": "55 8B EC 6B C9 61 81 C1 77 3E 4A 00 5D C3",
+      "behavior": "ECX=strategyId；返回 0x4A3E77 + id*0x61。无上界检查，运行时仅初始化 68 行。",
+      "versions": "6.4/6.5/6.6 字节一致"
+    },
+    "strategyType": {
+      "va": "0x44270C",
+      "bytes": "55 8B EC 0F B6 41 0F 5D C3",
+      "behavior": "返回 byte[strategyRecord+0xF]，即文件 +0x0B 搬到运行时的策略类型。0=火、1=水、2=地、3=风；4+ 为效果类别。不是单位方向字段。",
+      "versions": "6.4/6.5/6.6 字节一致"
+    },
+    "jobSeriesMap": {
+      "va": "0x40BF0C",
+      "bytes": "55 8B EC 51 0F B6 41 2B 99 3C 3B 77 09 B9 03 00 00 00 F7 F9 EB 0A 3C 50 73 04 2C 28 EB 02 B0 28 59 5D C3",
+      "behavior": "j=byte[obj+0x2B]。j<=0x3B: series=j/3；0x3C<=j<0x50: series=j-0x28；j>=0x50: series=0x28。返回 0x00..0x28。",
+      "versions": "6.4/6.5/6.6 字节一致",
+      "examples": {
+        "job0x24_0x25_0x26": "36/37/38 /3 = 12 = 0x0C（舞娘/舞姬/巫女系；部分 MOD 将该系改名为“女兵”）",
+        "job0x46": "70-40 = 30 = 0x1E（机关系，仅 6.5 加强版样本）",
+        "job0x3D": "61-40 = 21 = 0x15（6.6 山贼样本的“皇”系）"
+      }
+    },
+    "casterSeries": {
+      "va": "0x43B4A7",
+      "behavior": "push ebp; mov ebp,esp; call 0x40658F（把 [ECX] 当作单位编号取 0x4CEA00+id*0x48 战斗单位记录）; call 0x40BF0C（读 +0x2B 详细兵种）；ret。用于取施法方兵种系。",
+      "versions": "6.4/6.5/6.6 字节一致"
+    },
+    "percentMultiply": {
+      "va": "0x425AD9",
+      "bytes": "55 8B EC 8B 45 0C 0F AF 45 08 33 D2 B9 64 00 00 00 F7 F1 5D C2 08 00",
+      "behavior": "返回 (arg1*arg2)/100 的整数商。"
+    }
+  },
+  "damageFunction": {
+    "entry": {
+      "6.4": "0x43C022",
+      "6.5": "0x43C022",
+      "6.6": "0x43C01D"
+    },
+    "arguments": {
+      "ECX": "施法方角色/单位上下文；函数内存入 [ebp-0x10]",
+      "[ebp+8]": "受击方战斗单位记录（+6/+7 为地图 X/Y，0x41C2B0 读 +4）",
+      "[ebp+0xc]": "受击方单位记录（0x40BF0C 读 +0x2B 详细兵种）",
+      "[ebp+0x10]": "策略 ID",
+      "[ebp+0x14]": "预览/结算标志，0 时走 0x43B4B6 命中预检与 0x40CA68 暴击"
+    },
+    "argumentProof": "调用点 0x4231A4：目标循环从 [edx+i+0xD] 取单位编号，0x4061F9(编号) 得单位记录作为 arg1；0x40658F 再解析该记录作为 arg2；arg3=[edx] 为策略 ID；ECX=[edx+8] 为施法方。故 0x4D21B0 与火系专项检查读取的是受击方。",
+    "formulaOrder": [
+      "门控 0x415EFA：strategy-damage-type<4 才继续；6.4/6.5 例外 ID 0x46/0x16，6.6 例外策略类型 0x1E/0x06。",
+      "base = 攻方等级 + 25 + (攻方智力-守方智力)/3；守方高时用 0x47FA9E 保底 0。",
+      "base = base * 0x4D1840[ID] / 100（策略伤害系数）。",
+      "base = base * 0x4D21B0[series(守方)] / 100（行 6 兵种系受策略伤害百分比；series>0x27 时跳过）。",
+      "按策略类型累加百分比 bonus：type0 火系专项 + 地形；type1/3/0x26 天气；type2 施法方兵种系。",
+      "base += base * bonus / 100。",
+      "诱惑专项：满足条件时 base <<= 1（×2）。",
+      "后续 0x4101D9 增伤/减伤、0x44904E 防御、0x412CAA 浮动、0x43D3AE 阈值、0x40CA68 暴击与上限。"
+    ]
+  },
+  "row6Table": {
+    "va": "0x4D21B0",
+    "fileOffset": "0xA38C0 + 6*40 = 0xA39B0",
+    "index": "series(受击方详细兵种) 0..0x27",
+    "values": "百分比，100 中性；0x5A=90、0x6E=110、0x78=120、0x7D=125、0x82=130",
+    "6.5Samples": "0x0C=0x64(100)，0x1E=0x82(130)，0x08..0x0B=0x5A(90)，0x15=0x7D(125)",
+    "6.4Samples": "0x00=0x5F(95)，0x0C=0x5A(90)，0x1E=0x64(100)，0x1F=0x50(80)",
+    "6.6StockSamples": "多为0x64(100)，仅0x11/0x12/0x14/0x15/0x1E/0x1F/0x26为0x6E(110)",
+    "consumer": "0x43C15E..0x43C17C（6.4/6.5/6.6 同构）：mov ecx,[ebp+0xc]; call 0x40BF0C; cmp al,0x27; ja skip; mov al,[eax+0x4D21B0]; push eax; push damage; call 0x425AD9; mov damage,eax"
+  },
+  "modifierBlock": {
+    "common": "al = 0x44270C(strategyRecord(ID)) = 策略类型；bonus 累加在 [ebp-0xc]。",
+    "type0Fire": {
+      "condition": "cmp al,0; jne other",
+      "fireSeriesCheck": {
+        "instruction": "cmp byte [ebp-0x14], FIRE_SERIES; jne skip; add [ebp-0xc], FIRE_BONUS",
+        "6.4": "FIRE_SERIES=0x40（0x43C18E 80 7D EC 40），FIRE_BONUS=0x14（0x43C194 83 45 F4 14）",
+        "6.5": "FIRE_SERIES=0x1E（0x43C18E 80 7D EC 1E），FIRE_BONUS=0x28（0x43C194 83 45 F4 28）",
+        "6.6Stock": "FIRE_SERIES=0x40（0x43C18E 80 7D EC 40），FIRE_BONUS=0x14（0x43C194 83 45 F4 14）",
+        "6.6Shanzhai": "FIRE_SERIES=0x15（0x43C18E 80 7D EC 15），FIRE_BONUS=0x14（0x43C194 83 45 F4 14）"
+      },
+      "terrainCheck": "0x435991([ebp+8]+6)；地形 2 或 0x17 时 add [ebp-0xc], TERRAIN_BONUS（6.4=0x0F，6.5/6.6=0x19）"
+    },
+    "type1WaterType3WindType0x26": {
+      "condition": "cmp al,1 / 3 / 0x26",
+      "weatherCheck": "0x41553B(0x4B3D08) >= 2 时 add [ebp-0xc], WEATHER_BONUS（6.4=0x0F，6.5/6.6=0x19）"
+    },
+    "type2Earth": {
+      "condition": "cmp al,2",
+      "casterCheck": "0x43B4A7([ebp-0x10]) == 7（贼兵系）时 add [ebp-0xc], EARTH_BONUS（6.4=0x0F，6.5/6.6=0x19）"
+    },
+    "apply": "0x43C1E2..0x43C1ED：push damage; push bonus; call 0x425AD9; add damage,eax。"
+  },
+  "specificChecks": {
+    "charmDoubleDamage": {
+      "6.4": {
+        "bytes": "80 7D 10 14 75 0F 8B 4D F0 E8 A9 F2 FF FF 3C 0C 75 03 D1 65 FC",
+        "va": "0x43C1F0",
+        "condition": "策略 ID==0x14（诱惑） && 0x43B4A7(施法方)==0x0C（舞娘/女兵系）",
+        "effect": "damage <<= 1"
+      },
+      "6.5": {
+        "bytes": "80 7D 10 14 75 0F 8B 4D F0 E8 A9 F2 FF FF 3C 0C 75 03 D1 65 FC",
+        "va": "0x43C1F0",
+        "condition": "策略 ID==0x14（诱惑） && 施法方兵种系==0x0C",
+        "effect": "damage <<= 1"
+      },
+      "6.6Stock": {
+        "bytes": "80 7D DC 05 75 0F 8B 4D F0 E8 A9 F2 FF FF 3C 0C 75 03 D1 65 FC",
+        "va": "0x43C1F0",
+        "condition": "策略类型==0x05（诱惑类） && 施法方兵种系==0x0C；任何 type5 策略均触发",
+        "effect": "damage <<= 1"
+      },
+      "6.6Shanzhai": {
+        "bytes": "80 7D DC 14 75 0F 8B 4D F0 E8 A9 F2 FF FF 3C 0C 75 03 D1 65 FC",
+        "va": "0x43C1F0",
+        "condition": "策略类型==0x14 && 施法方兵种系==0x0C（女兵）；该样本 Data.e5 没有“诱惑”，type0x14 为建言/献策",
+        "effect": "damage <<= 1"
+      }
+    },
+    "charmHitBonus": {
+      "6.4": {
+        "va": "0x43B984",
+        "bytes": "8B 45 10 3C 14 75 17 8B 4D E8 E8 14 FB FF FF 3C 0C 75 0B 8B 4D F0 6B C9 03 D1 E9 89 4D F0",
+        "condition": "策略 ID==0x14 && 施法方兵种系==0x0C",
+        "effect": "hit = hit*3/2"
+      },
+      "6.5": {
+        "va": "0x43B984",
+        "bytes": "8B 45 10 3C 14 75 17 8B 4D E8 E8 14 FB FF FF 3C 0C 75 0B 8B 4D F0 6B C9 03 D1 E9 89 4D F0",
+        "condition": "策略 ID==0x14 && 施法方兵种系==0x0C",
+        "effect": "hit = hit*3/2"
+      },
+      "6.6Stock": {
+        "va": "0x43B984",
+        "bytes": "8B 45 F8 3C 05 75 17 8B 4D E8 E8 14 FB FF FF 3C 0C 75 0B 8B 4D F0 6B C9 03 D1 E9 89 4D F0",
+        "condition": "策略类型==0x05 && 施法方兵种系==0x0C",
+        "effect": "hit = hit*3/2"
+      }
+    }
+  },
+  "seriesNames": {
+    "6.4": {
+      "0x0C": "舞姬（job 0x24/0x25/0x26 = 舞娘/舞姬/战姬）",
+      "0x1E": "花枪将（6.4 洗隋系列名；火系专项比较 0x40，不可达）",
+      "0x07": "贼兵"
+    },
+    "6.5": {
+      "0x0C": "舞娘（job 0x24/0x25/0x26 = 舞娘/舞姬/巫女）",
+      "0x1E": "机关（job 0x46），火系 +40% 生效",
+      "0x07": "贼兵"
+    },
+    "6.6Stock": {
+      "0x0C": "舞娘/女兵（名称由 MOD 文本决定；V7.16 为舞娘）",
+      "0x1E": "机关/花枪将（名称随 MOD；火系专项比较 0x40，不可达）",
+      "0x07": "山贼"
+    },
+    "6.6Shanzhai": {
+      "0x0C": "女兵（job 0x24/0x25/0x26 = 舞者/战姬/凤翎）",
+      "0x15": "皇（job 0x3D），火系 +20%",
+      "0x07": "山贼"
+    }
+  },
+  "strategyTypes": {
+    "6.4": {
+      "0x14": "诱惑（ID 0x14，type 0x05，伤害门控 0，伤害系数 0x46=70%）"
+    },
+    "6.5": {
+      "0x14": "诱惑（ID 0x14，type 0x05，伤害门控 0，伤害系数 0x46=70%，命中模式 0x3C=60%）"
+    },
+    "6.6Stock": {
+      "0x1E": "诱惑（type 0x05）",
+      "note": "6.6 的诱惑 ID 已改为 0x1E；代码按 type0x05 判定，因此不依赖 ID 迁移。"
+    },
+    "6.6Shanzhai": {
+      "note": "该样本 Data.e5 无“诱惑”；type0x14 为建言/献策，target=1。"
+    }
+  },
+  "limitations": [
+    "未运行游戏对照；结论来自静态反汇编与 Data.e5 字节。",
+    "6.4/6.6 股票的 FIRE_SERIES=0x40 经 0x40BF0C 映射不可达（映射上限 0x28），应视为引擎保留/未启用分支；MOD 可改写该立即数。",
+    "6.6 山贼样本把 fire series 改为 0x15、把 type5 改为 type0x14，说明这些立即数是 MOD 可定制点；不得跨样本套用。",
+    "6.5 当前工作副本不是原始 3EF7 SHA；策略块与东吴霸王传6.5 字节一致，但如需引用 3EF7 固定地址仍应以原样本复核。",
+    "6.6 AA0F 工作样本未在本地取得，既有 fn.66.strategy-damage.aa0f 的项需按本证据重新核对后才能视为该画像的结论。"
+  ]
+}

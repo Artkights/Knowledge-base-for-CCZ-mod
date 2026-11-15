@@ -14,6 +14,8 @@
 | `profile.ccz66.shanzai.work.aa0f` | 6.6 | `AA0F15B849D223F8A74ACB107CA7D0F9E2164DCAACC963C6B940DA2D245EF4E1` | `canonical` | `sample-verified` |
 | `profile.ccz66.shanzai.work.1b25` | 6.6 | `1B256D9822A59503652BFEFEDC82DA1BBEF3570550EAD53B9916656D4A70A010` | `canonical` | `sample-verified` |
 | `profile.ccz66.shanzhai-guoqing.f20c` | 6.6 | `F20C583296AD2C167AD0C732655B1F90457AA303DF6E8E15CFAA70A822B6EF19` | `canonical` | `sample-verified` |
+| `profile.ccz66.xinnai12.local.8ba1` | 6.6 | `8BA1510945A8368EEADD7ED17B3002D7AA96B5C19280388B5E3486AC4DA7A727` | `canonical` | `static-verified` |
+| `profile.ccz66.v716.34b8` | 6.6 | `34B810EE790F4BAA70EBF60AA286AA7BD246A2C17B425B36BD3825B36BA2D6DA` | `canonical` | `static-verified` |
 | `profile.ccz66x.legacy-patch-family` | 6.6 | `-` | `candidate` | `legacy-patch-bytes` |
 | `profile.ccz66.shanzai.6929.local-review` | 6.6 | `6929FE0DB049935EEC793CE785D431947E48BED406ED94233F9B3A9C6DB4BCB8` | `candidate` | `source-reviewed` |
 | `profile.ccz66.extenddata.6562.local-review` | 6.6 | `6562791F4E1AF07B8DBE0C12A8695FF6CB129D4803DF14BC9B21FDEF918EF062` | `candidate` | `source-reviewed` |

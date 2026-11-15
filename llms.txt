@@ -45,3 +45,6 @@ legacy/reference/profiles.md
 legacy/reference/globals.md
 research/research-gaps.json
 sources/source-manifest.json
+sources/consolidation-plan-20261115.json
+sources/consolidation-report-20261115.json
+sources/consolidation-review-20261115.json
