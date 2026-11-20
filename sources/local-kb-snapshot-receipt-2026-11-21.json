@@ -1,0 +1,95 @@
+{
+ "schemaVersion": 1,
+ "receiptType": "local-kb-full-snapshot",
+ "date": "2026-11-21",
+ "scope": [
+  "复刻版6.6山贼工作区 本地知识库 全量已落盘内容（含踩坑/纠正台账/来源归档）"
+ ],
+ "method": "整库文件级快照：文本件按仓库内容门禁净化（本机盘符路径掩为[本地盘]、类 Unix 用户目录特征掩码、LF 归一、GBK→UTF-8），二进制件原字节复制；全部登记为 repository-snapshot 来源，原件仅存哈希不随库发布。（注：本回执措辞不得出现被仓库扫描器禁止的路径特征字面量，含之即被拒。）",
+ "documentCount": 831,
+ "publishedCount": 816,
+ "excludedCount": 15,
+ "excluded": [
+  {
+   "path": "本地知识库/90-来源归档/原始文档/6.4一些地址.xlsx",
+   "reason": "仓库禁扩展名 .xlsx",
+   "sha256": "EF4F7704375B28081118C48C53BD64A76A2468F045EFE8C92873FEF04BC76F61"
+  },
+  {
+   "path": "本地知识库/90-来源归档/原始文档/Star175引擎发布文稿5.6-6.6.docx",
+   "reason": "仓库禁扩展名 .docx",
+   "sha256": "73E3CA22140DA8F8008289973E5999F02F6BDEF08C6C4978CD7959D370BC3E3D"
+  },
+  {
+   "path": "本地知识库/90-来源归档/原始文档/全剧本指令详解（2023）.docx",
+   "reason": "仓库禁扩展名 .docx",
+   "sha256": "F8E4322D912FDF667930D19C0A91B934A4AF18B1519483E80023136DB374A16F"
+  },
+  {
+   "path": "本地知识库/90-来源归档/原始文档/曹操传exe部分函数功能.docx",
+   "reason": "仓库禁扩展名 .docx",
+   "sha256": "58FFC7E80A24AA849898EDDC77688CF5811DEB85E9589445DCAE9B8B7315ADCA"
+  },
+  {
+   "path": "本地知识库/90-来源归档/原始文档/解读KOEI曹操传代码-远古逆向文档.docx",
+   "reason": "仓库禁扩展名 .docx",
+   "sha256": "431BD0BCF62A2AC8B4098DEF46A41240649725041D6DCF0C0D4F419CC654C056"
+  },
+  {
+   "path": "本地知识库/90-来源归档/原始文档/解读KOEI曹操传代码.docx",
+   "reason": "仓库禁扩展名 .docx",
+   "sha256": "431BD0BCF62A2AC8B4098DEF46A41240649725041D6DCF0C0D4F419CC654C056"
+  },
+  {
+   "path": "本地知识库/90-来源归档/蒸馏归档-20261014/论坛原帖存档/5.9版更新 bystar175.doc",
+   "reason": "仓库禁扩展名 .doc",
+   "sha256": "65A35EDAD47F529D3BA68D8ED4583FB35E793E4AC0EF112CE95E8392D1EA563B"
+  },
+  {
+   "path": "本地知识库/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype的最终引擎.doc",
+   "reason": "仓库禁扩展名 .doc",
+   "sha256": "CBEF84DCFA8FFA2BC6F2D5E0A2D5564720F0E14AFD7DE742C8B34A04D2F057E9"
+  },
+  {
+   "path": "本地知识库/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/Star175引擎比较特殊的整形变量和剧本指令.doc",
+   "reason": "仓库禁扩展名 .doc",
+   "sha256": "5D3064A44BDA3EEE7BAFB7941869C7604B797546D8AFDF69140D001319D8409C"
+  },
+  {
+   "path": "本地知识库/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/star5.6及旧版引擎.doc",
+   "reason": "仓库禁扩展名 .doc",
+   "sha256": "C5A37FF9473D1B7416AD9F49C45F1198D4095CE830BFC29591208ADD60596436"
+  },
+  {
+   "path": "本地知识库/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/star5.7&5.8.doc",
+   "reason": "仓库禁扩展名 .doc",
+   "sha256": "59C53FB6C6B57FF66B7BDD92449C5916C47B14CAC78AB469A246E7E6792D29DA"
+  },
+  {
+   "path": "本地知识库/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/star5.9.doc",
+   "reason": "仓库禁扩展名 .doc",
+   "sha256": "F5D5E78C85BF5BA8C67814748359687274713C53356C5C806897968C464C4596"
+  },
+  {
+   "path": "本地知识库/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/star6.0.doc",
+   "reason": "仓库禁扩展名 .doc",
+   "sha256": "CD9B651BB88360CBD05594DC1F2E8385ECF6B1FF405EEE5F8092C4E7F1AADBF1"
+  },
+  {
+   "path": "本地知识库/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/star6.1.docx",
+   "reason": "仓库禁扩展名 .docx",
+   "sha256": "E8EA089761C59B42350ADD78C3958177E43B7B780184A8A66100F86DA6540153"
+  },
+  {
+   "path": "本地知识库/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175.rar",
+   "reason": "仓库禁扩展名 .rar",
+   "sha256": "6CEE69F16E7A752FAC4F613F6D943496CB467C662772A2D941C5C4A1BAAC5555"
+  }
+ ],
+ "sanitizedTextCount": 154,
+ "encodingConverted": [
+  "本地知识库/90-来源归档/蒸馏归档-20261014/论坛原帖存档/幽人教程.txt"
+ ],
+ "snapshotPrefix": "sources/local-kb-shanzai-20261121/",
+ "note": "本回执不含任何本机绝对路径；原件仍在贡献者本地工作区，未做任何改动。"
+}

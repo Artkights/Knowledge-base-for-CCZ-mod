@@ -1,0 +1,42 @@
+#【破坏MP】攻击命中后可以清空敌人的MP（无视MP防御）。
+
+
+00405FB0   > \E9 BE6C0000   JMP Ekd5.0040CC73
+00405FB5   >  90            NOP
+00405FB6   .  90            NOP
+00405FB7   .  90            NOP
+
+
+0040CC73   > \FF75 F4       PUSH DWORD PTR SS:[EBP-C]                ; /Arg2
+0040CC76   .  FF75 E0       PUSH DWORD PTR SS:[EBP-20]               ; |Arg1
+0040CC79   .  E8 29000000   CALL Ekd5.0040CCA7                       ; \Ekd5.0040CCA7
+0040CC7E   .  85C0          TEST EAX,EAX
+0040CC80   .  74 12         JE SHORT Ekd5.0040CC94
+0040CC82   .  33C9          XOR ECX,ECX
+0040CC84   .  894D D4       MOV DWORD PTR SS:[EBP-2C],ECX
+0040CC87   .  8B55 FC       MOV EDX,DWORD PTR SS:[EBP-4]
+0040CC8A   .  8B4D F4       MOV ECX,DWORD PTR SS:[EBP-C]
+0040CC8D   .  898491 540200>MOV DWORD PTR DS:[ECX+EDX*4+254],EAX
+0040CC94   >  8B4D E0       MOV ECX,DWORD PTR SS:[EBP-20]
+0040CC97   .  E8 10440100   CALL Ekd5.004210AC
+0040CC9C   .^ E9 1493FFFF   JMP Ekd5.00405FB5
+
+
+0040CCA7  /$  55            PUSH EBP
+0040CCA8  |.  8BEC          MOV EBP,ESP
+0040CCAA  |.  6A 00         PUSH 0
+0040CCAC  |.  8B4D 0C       MOV ECX,DWORD PTR SS:[EBP+C]
+0040CCAF  |.  8B49 0C       MOV ECX,DWORD PTR DS:[ECX+C]
+0040CCB2  |.  6A 00         PUSH 0                                   ; /Arg4 = 00000000
+0040CCB4  |.  6A 01         PUSH 1                                   ; |Arg3 = 00000001
+0040CCB6  |.  6A 7F         PUSH 7F                                  ; |Arg2 = 0000007F
+0040CCB8  |.  68 B6000000   PUSH 0B6                                 ; |Arg1 = 000000B6
+0040CCBD  |.  E8 17350000   CALL Ekd5.004101D9                       ; \Ekd5.004101D9
+0040CCC2  |.  85C0          TEST EAX,EAX
+0040CCC4  |.  74 08         JE SHORT Ekd5.0040CCCE
+0040CCC6  |.  8B4D 08       MOV ECX,DWORD PTR SS:[EBP+8]
+0040CCC9  |.  E8 725B0600   CALL Ekd5.00472840
+0040CCCE  |>  8BE5          MOV ESP,EBP
+0040CCD0  |.  5D            POP EBP
+0040CCD1  \.  C2 0800       RETN 8
+

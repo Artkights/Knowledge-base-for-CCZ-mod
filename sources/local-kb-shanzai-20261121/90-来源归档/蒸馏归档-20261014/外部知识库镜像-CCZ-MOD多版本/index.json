@@ -1,0 +1,3380 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "tools/build_index.py",
+  "entries": [
+    {
+      "id": "shared.00.01",
+      "path": "00-共性知识/01-阅读顺序与版本选择.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "阅读顺序与版本选择",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "703881D6668F498A606751C0E83665F1FF446BF5E72EB4F3B4EC617B3E34CB12"
+    },
+    {
+      "id": "shared.00.02",
+      "path": "00-共性知识/02-证据等级与可信度.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "证据等级与可信度",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "0D20280BB0C1E27AB4D52E9D36D5EB8855FD3098FE1EC05D33DAA02DDD2067C3"
+    },
+    {
+      "id": "shared.00.03",
+      "path": "00-共性知识/03-术语与版本矩阵.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "术语与版本矩阵",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "239631927BB49CCEF8C193D19093DFDDB0F71D458EBF187F90E90730B29D1840"
+    },
+    {
+      "id": "shared.00.04",
+      "path": "00-共性知识/04-格式编码与路径规范.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "格式编码与路径规范",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "0C2D09CA25A0B3B9BD125C2413F482D7C218FB8C77DF16F9A6718601B113BFD7"
+    },
+    {
+      "id": "shared.00.05",
+      "path": "00-共性知识/05-知识条目模板.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "知识条目模板",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "B1CB96CADEAB6F00C15E25C421F91D2CF9BFA3653B09F3D4B864EF1B1EDD1A57"
+    },
+    {
+      "id": "shared.00.06",
+      "path": "00-共性知识/06-跨版本迁移规则.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "跨版本迁移规则",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "B2E810F1B0389A63B6E132DD1A4FCA9C59B056F73CEE06FE76D523B96DA3C76C"
+    },
+    {
+      "id": "shared.00.readme",
+      "path": "00-共性知识/README.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "共性知识",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "C14DD1965E3B4CFA74279E8B7EF207804A6E1F1742634123B48852002A79629E"
+    },
+    {
+      "id": "shared.00.00",
+      "path": "00-共性知识/资料与模板/00-总览与共性规范.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "总览与共性规范",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "data管理器/知识库/00-总览与共性规范.md"
+      ],
+      "related": [],
+      "sha256": "D8FEE8F849174F60567ECAD2A7D182B23A42A47BADED77872F0721F947EA8327"
+    },
+    {
+      "id": "shared.00.01.profile",
+      "path": "00-共性知识/资料与模板/01-Profile系统.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "Profile 系统",
+      "status": "canonical",
+      "evidenceLevel": "external-source",
+      "sourceRefs": [
+        "data管理器/知识库/01-Profile系统.md"
+      ],
+      "related": [],
+      "sha256": "254C5E0DCF394BEE5A47F92791AB8D806C85252F0F2BE0A577C5B2E055E58427"
+    },
+    {
+      "id": "shared.00.04",
+      "path": "00-共性知识/资料与模板/04-版本差异矩阵.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "版本差异矩阵",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "data管理器/知识库/04-版本差异矩阵.md"
+      ],
+      "related": [],
+      "sha256": "1ECE1E6DE41729BF9DAB5EE671ADCE4CE0034BB6DD16A01B492C2BCE978BC66B"
+    },
+    {
+      "id": "shared.00.05",
+      "path": "00-共性知识/资料与模板/05-人物与兵种.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "人物与兵种",
+      "status": "canonical",
+      "evidenceLevel": "external-source",
+      "sourceRefs": [
+        "data管理器/知识库/05-人物与兵种.md"
+      ],
+      "related": [],
+      "sha256": "D2BFEED4D970120253FC6E1550FDB4825E55C80F36BAD685A1584696AF357349"
+    },
+    {
+      "id": "shared.00.06",
+      "path": "00-共性知识/资料与模板/06-策略与宝物.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "策略与宝物",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "data管理器/知识库/06-策略与宝物.md"
+      ],
+      "related": [],
+      "sha256": "FCB1B3DC97E0CC063E2203E477A0F96F065A6ADD959D50F6A3A7BA5C12EA8466"
+    },
+    {
+      "id": "shared.00.07",
+      "path": "00-共性知识/资料与模板/07-人物与套装特效.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "人物与套装特效",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "data管理器/知识库/07-人物与套装特效.md"
+      ],
+      "related": [],
+      "sha256": "37FD8005C8CCF8246EA56D67C1F18AC784CECB68AFBDCCC1A0FA630022A8F301"
+    },
+    {
+      "id": "shared.00.08",
+      "path": "00-共性知识/资料与模板/08-扫描匹配与回退.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "扫描匹配与回退",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "data管理器/知识库/08-扫描匹配与回退.md"
+      ],
+      "related": [],
+      "sha256": "A30806AEB64228787C39FD38F1FE39DC289EB72345E1F9DBC9E32F69A214FC6D"
+    },
+    {
+      "id": "shared.00.09.csv",
+      "path": "00-共性知识/资料与模板/09-CSV与历史记录.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "CSV 与历史记录",
+      "status": "canonical",
+      "evidenceLevel": "external-source",
+      "sourceRefs": [
+        "data管理器/知识库/09-CSV与历史记录.md"
+      ],
+      "related": [],
+      "sha256": "B6098F94AB3774169053F9E08D9CAC540A285619DE8AE63C3B26C5AD8248AD90"
+    },
+    {
+      "id": "shared.00.10",
+      "path": "00-共性知识/资料与模板/10-验证与烟测.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "验证与烟测",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "data管理器/知识库/10-验证与烟测.md"
+      ],
+      "related": [],
+      "sha256": "6BA1905281DF2EE58E66B8B2EEA69E4C130AEB5492268238CFCD3F3F9F2C7ADE"
+    },
+    {
+      "id": "shared.00.6x",
+      "path": "00-共性知识/资料与模板/6X版本差异与适配.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "version-external",
+      "title": "23 6.X 版本差异与适配",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/09-版本与外部资料/6X版本差异与适配.md"
+      ],
+      "related": [],
+      "sha256": "C392DF838BFC7192DA093844A648A50BF7B8C81229ECC74E3306DA73519C1A7A"
+    },
+    {
+      "id": "shared.00.90",
+      "path": "00-共性知识/资料与模板/90-证据索引.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "证据索引",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "data管理器/知识库/90-证据索引.md"
+      ],
+      "related": [],
+      "sha256": "79605D0AB9645B9CCC864A0BC21A245CB0CF66AE826375710370842C6067418F"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/制作提示词模板.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "通用曹操传 MOD 剧本提示词模板",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/制作提示词模板.md"
+      ],
+      "related": [],
+      "sha256": "EEC7550D39DBE916A94878383306E60B3E20AF8A2C25E4D6FE9725D3AE9C1A18"
+    },
+    {
+      "id": "shared.00.ai",
+      "path": "00-共性知识/资料与模板/剧本文本导入AI说明模板.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本文本导入 AI 外部知识",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本文本导入AI说明模板.md"
+      ],
+      "related": [],
+      "sha256": "9025F9A1636C9C50E5077DC9F71C83F4554EA52709567307DD4635267EB58BBE"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/工具来源映射.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "02 工具来源映射",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/00-总览与规范/工具来源映射.md"
+      ],
+      "related": [],
+      "sha256": "29975761967624A13479175F4E04886A6320B0D9B23F13658D849B6641286B8A"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/工具查询索引.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "05 工具查询索引",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/00-总览与规范/工具查询索引.md"
+      ],
+      "related": [],
+      "sha256": "0D8899095C2654AFBE7EBB76C09D8A0948C5710202F6C01BE9B1572603F072C5"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/开发执行规则.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "08 开发执行规则",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/00-总览与规范/开发执行规则.md"
+      ],
+      "related": [],
+      "sha256": "1CD4B5054F5F8D504E7213CB096FD94F3A256CB3876D471ACF129D84A6A9818C"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/待验证清单.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "04 待补充知识清单",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/00-总览与规范/待验证清单.md"
+      ],
+      "related": [],
+      "sha256": "4232B5F8977A9836EDD7511760B4CE018C29758C4E9ABA52E9FF5BBF2426128F"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/更新记录.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "99 更新记录",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/00-总览与规范/更新记录.md"
+      ],
+      "related": [],
+      "sha256": "E1CD6BDEE8E15D4B9E65F3B22180F9E276FF8B9D7144AA71ECC8BA67727B3469"
+    },
+    {
+      "id": "shared.00.readme",
+      "path": "00-共性知识/资料与模板/来源-剧本指令大全-README.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本指令大全",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本指令大全/README.md"
+      ],
+      "related": [],
+      "sha256": "0226E8E00006FA847152A3CD194D3DBA0421FE99CD6A2191E0968038738D01C1"
+    },
+    {
+      "id": "shared.00.readme",
+      "path": "00-共性知识/资料与模板/来源-知识库-README.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "data-manager",
+      "title": "data 管理器知识库",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "data管理器/知识库/README.md"
+      ],
+      "related": [],
+      "sha256": "597C4DEE9D52AF23705CE8FC10BCB2F64E64D75912BFEA4DD484A86EBD7B88F1"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/来源清洗与整合规则.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "来源清洗与整合规则",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/00-总览与规范/来源清洗与整合规则.md"
+      ],
+      "related": [],
+      "sha256": "4D95940D691A3F380C04A923A5F3F681DD0CF1D1521004E215F5151FCB4A1330"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/格式与文件后缀.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "01 格式与文件后缀",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/00-总览与规范/格式与文件后缀.md"
+      ],
+      "related": [],
+      "sha256": "51397BED7FFB46D6658E561E001F59F72565F749E8D6ECF07089A794D4F4BC49"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/知识库规范.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "知识库规范",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/00-总览与规范/知识库规范.md"
+      ],
+      "related": [],
+      "sha256": "7C37E3C318DCAF594FACBEDB57E5895980ED8FE78B956EF80C126EAF52330EE1"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/联网深度专题.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "version-external",
+      "title": "联网深度专题",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/09-版本与外部资料/联网深度专题.md"
+      ],
+      "related": [],
+      "sha256": "6E470DE572314B23F6C2637AE1483D22DD6E5FC214FA78A8FB7B20B36DD2792F"
+    },
+    {
+      "id": "shared.00",
+      "path": "00-共性知识/资料与模板/项目约束.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "00 项目约束",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/00-总览与规范/项目约束.md"
+      ],
+      "related": [],
+      "sha256": "1D5331A4A6876FB4EC23EBF1158547287010EE13474C3FF9276D6A6A500CCB14"
+    },
+    {
+      "id": "6.5.6.5.01",
+      "path": "6.5/01-核心引擎/代码空洞与安全补丁.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "代码空洞与安全补丁方案",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/代码空洞与安全补丁.md"
+      ],
+      "related": [],
+      "sha256": "88C13EDB9549E21CE79C7E96EBA6253116D8038C719D12C5DF4A43CB80F11836"
+    },
+    {
+      "id": "6.5.6.5.01.hook",
+      "path": "6.5/01-核心引擎/地址语义与Hook契约.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "地址语义与 Hook 契约",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/地址语义与Hook契约.md"
+      ],
+      "related": [],
+      "sha256": "2FFFCA83A58C2B04674ED0F1FAF2DF681EA55C61D1F759094286E8499441DC58"
+    },
+    {
+      "id": "6.5.6.5.01",
+      "path": "6.5/01-核心引擎/引擎工作索引.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "引擎工作索引",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/引擎工作索引.md"
+      ],
+      "related": [],
+      "sha256": "9AEDA64FE1BA27AC55F5582A794DA1CD3EF601C03DAF3C6B2E5472AEB303E0C3"
+    },
+    {
+      "id": "6.5.6.5.01",
+      "path": "6.5/01-核心引擎/引擎深入分析.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "曹操传引擎逆向工程深入分析",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/引擎深入分析.md"
+      ],
+      "related": [],
+      "sha256": "C9768EBD5805AC196D80E8EA82956CC45E360E719013013B51A087F27827E301"
+    },
+    {
+      "id": "6.5.6.5.01",
+      "path": "6.5/01-核心引擎/核心引擎.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "核心引擎 - 特技判定系统",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/核心引擎.md"
+      ],
+      "related": [],
+      "sha256": "19AB5CA1E6EC4EF08E0E1CBFD3FF5BB46E7C265A65066DA55287833BC628D165"
+    },
+    {
+      "id": "6.5.6.5.01",
+      "path": "6.5/01-核心引擎/桩函数.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "桩函数",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/桩函数.md"
+      ],
+      "related": [],
+      "sha256": "F2D0F767B232584ACC384A0E5E4D422E60B5A39E85331BA378C6476BC7B7658A"
+    },
+    {
+      "id": "6.5.6.5.01",
+      "path": "6.5/01-核心引擎/特效号定位与安全读写-原生表.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "特效号定位与安全读写：原生表",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/特效号定位与安全读写-原生表.md"
+      ],
+      "related": [],
+      "sha256": "7CF2C8379C321CC03AD6B03E6665AC981F418F5810760C17B2BA6262CB7A5EE2"
+    },
+    {
+      "id": "6.5.6.5.01",
+      "path": "6.5/01-核心引擎/特效号定位与安全读写-命名空间.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "特效号定位与安全读写：命名空间",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/特效号定位与安全读写-命名空间.md"
+      ],
+      "related": [],
+      "sha256": "C291DF43025DB07E8622BAD09EBCA31E2B2E8B0B43A0F4CE9ED5F9955F51103E"
+    },
+    {
+      "id": "6.5.6.5.01",
+      "path": "6.5/01-核心引擎/特效号定位与安全读写-指令参数.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "特效号定位与安全读写：指令参数",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/特效号定位与安全读写-指令参数.md"
+      ],
+      "related": [],
+      "sha256": "6CA71C93D80119B612816D499FBF600C3BF16D37B94BEF9AD49D64D9B189BD80"
+    },
+    {
+      "id": "6.5.6.5.01",
+      "path": "6.5/01-核心引擎/特效号定位与安全读写-验证流程.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "特效号定位与安全读写：验证流程",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/特效号定位与安全读写-验证流程.md"
+      ],
+      "related": [],
+      "sha256": "848690E42DC81E48FC4E8679FD811932AD0355A6A419A55105276EF14512708A"
+    },
+    {
+      "id": "6.5.6.5.01",
+      "path": "6.5/01-核心引擎/调度函数.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "core-engine",
+      "title": "调度函数",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/调度函数.md"
+      ],
+      "related": [],
+      "sha256": "FCAA737CBB21599AF6180CB164842BC8F12D63960C1204F722AD7BAB0ABFEDF3"
+    },
+    {
+      "id": "6.5.6.5.02.6.4.6.5",
+      "path": "6.5/02-数据结构/6.4-6.5运行时静态数据表地址.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-structures",
+      "title": "6.4/6.5 运行时静态数据表地址",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/02-数据结构/6.4-6.5运行时静态数据表地址.md"
+      ],
+      "related": [],
+      "sha256": "4D1EF2CADC9DB98BB5650B54F7BD775B9B2408C63D13270B2C43454B44DCD9FD"
+    },
+    {
+      "id": "6.5.6.5.02",
+      "path": "6.5/02-数据结构/全局变量.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-structures",
+      "title": "全局变量速查表",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/02-数据结构/全局变量.md"
+      ],
+      "related": [],
+      "sha256": "41CE749B0036B15DE192B3EC114056E336E550AC97B14BD70A91A2C31A7BB2B1"
+    },
+    {
+      "id": "6.5.6.5.02",
+      "path": "6.5/02-数据结构/单位结构体.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-structures",
+      "title": "单位结构体",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/02-数据结构/单位结构体.md"
+      ],
+      "related": [],
+      "sha256": "206E0461329794CDF9AD33790E22D15F5469EA7A9EA02570539F6A4257B8E2C0"
+    },
+    {
+      "id": "6.5.6.5.02.6.4.6.5",
+      "path": "6.5/02-数据结构/战场运行时内存-6.4资料与6.5复核.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-structures",
+      "title": "战场运行时内存：6.4 资料与 6.5 复核",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/02-数据结构/战场运行时内存-6.4资料与6.5复核.md"
+      ],
+      "related": [],
+      "sha256": "0B6CA4758B9E42342D3B4945BCB7EB22E04D5F44532D7CE9395E5F5541833662"
+    },
+    {
+      "id": "6.5.6.5.02",
+      "path": "6.5/02-数据结构/战斗数据结构.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-structures",
+      "title": "物理攻击战斗数据结构 (4927F0)",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/02-数据结构/战斗数据结构.md"
+      ],
+      "related": [],
+      "sha256": "FBE63BB3F33B3621CF7536C51CEB9473D1C03C7A89214ECBD78DE2C8129D19BF"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/6.5特效注入索引.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "6.5 特效注入索引",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/6.5特效注入索引.md"
+      ],
+      "related": [],
+      "sha256": "58757000BB4F774DBF8A9742DEF8B76E20A3CE41FDDC8C00E7420B61CA9D80C2"
+    },
+    {
+      "id": "6.5.6.5.03.6.5.29.s",
+      "path": "6.5/03-机制与特效/【6.5】信息传送29 根据兵种指定特殊S.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】信息传送29 根据兵种指定特殊S",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】信息传送29 根据兵种指定特殊S.txt"
+      ],
+      "related": [],
+      "sha256": "497ED71D22114A54529B8A08689889AB2A43A3EB1504075362BF277DC8717476"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/【6.5】噬心毒咒（注入版）.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "v3 修复：1) ebx 替换为 [ebp-08] 栈变量，符合寄存器规范（ebx/es 绝对禁止） 2) 添加遍历循环，支持多目标 3) 用 mov edi,eax 替代 push/pop 正确引用效果值 4) jae 修正 off-by-one",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】噬心毒咒（注入版）.txt"
+      ],
+      "related": [],
+      "sha256": "E9D90ABE69E8AFDD80EC304B9F4EE912E08345A2C027DF9C32879E7A0930F131"
+    },
+    {
+      "id": "6.5.6.5.03.6.5.mp.1",
+      "path": "6.5/03-机制与特效/【6.5】回mp攻击(注入版) (1).txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】回mp攻击(注入版) (1)",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】回mp攻击(注入版) (1).txt"
+      ],
+      "related": [],
+      "sha256": "12151D2F7ECE519DD57FFA4918CD8EDB9957B61B820B16ED7C68BCF1790B5A5F"
+    },
+    {
+      "id": "6.5.6.5.03.6.5.mp",
+      "path": "6.5/03-机制与特效/【6.5】回mp攻击(注入版).txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】回mp攻击(注入版)",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】回mp攻击(注入版).txt"
+      ],
+      "related": [],
+      "sha256": "3D3F27D12F8C5AD36F7CCFC162E56A0FFE47AAF91F28A38D0BE86A6A23AA0BDB"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/【6.5】多多益善（注入版）.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】多多益善（注入版）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】多多益善（注入版）.txt"
+      ],
+      "related": [],
+      "sha256": "5FEBA7BF7180E7B5F83D9E577FABF68AEE3F1F311CCF70A490DAB9E4F8C50EBF"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/【6.5】大杀四方（注入版）.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "这一特技代码十分复杂，仅为探索ai上限使用，如果你对引擎结构缺乏了解，最好不要直接使用，可以让ai帮你评估一下",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】大杀四方（注入版）.txt"
+      ],
+      "related": [],
+      "sha256": "DCA30BAD2F42A56B0ABF384AC60D68AC2C4A8FF1613DA61CC0153FB3BAC775B9"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/【6.5】护卫-最终版.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】护卫-最终版",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】护卫-最终版.txt"
+      ],
+      "related": [],
+      "sha256": "00F4B807D17A8B131A42055A1E11A396DAD859AD8CC7D7D90344938F0D2E0E23"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/【6.5】敌潮逆噬（注入版）.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】敌潮逆噬（注入版）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】敌潮逆噬（注入版）.txt"
+      ],
+      "related": [],
+      "sha256": "B7B56201BB6E5AF3A792CFC62C926D14C38BC890ADC75A4E97A66E1060EA3F55"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/【6.5】殭屍大法（注入版）.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】殭屍大法（注入版）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】殭屍大法（注入版）.txt"
+      ],
+      "related": [],
+      "sha256": "EF19547F1268F118A7453517358D00C58218EF6E84F3B5F31DEC3C3E010AAFA3"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/【6.5】盛气凌人（注入版）.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】盛气凌人（注入版）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】盛气凌人（注入版）.txt"
+      ],
+      "related": [],
+      "sha256": "22A63C8DB22BD4F2C74680E5EA34ECF14234890378D41E175EAFF0692D584B6C"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/【6.5】策略偷钱（注入版）.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】策略偷钱（注入版）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】策略偷钱（注入版）.txt"
+      ],
+      "related": [],
+      "sha256": "7303450FC2A7094D2FEAC5544195D9CD7296B504B5395C4F9A696299D9A94883"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/【6.5】策略冲锋（注入版）.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】策略冲锋（注入版）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】策略冲锋（注入版）.txt"
+      ],
+      "related": [],
+      "sha256": "46E7D52A43709CE9E07B0DA76A8A90D70014DE3FF6573361EC45573E447D67CE"
+    },
+    {
+      "id": "6.5.6.5.03.6.5",
+      "path": "6.5/03-机制与特效/【6.5】聚势伐谋（注入版）.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.5】聚势伐谋（注入版）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【6.5】聚势伐谋（注入版）.txt"
+      ],
+      "related": [],
+      "sha256": "539C636B2F7BCABAF277BD007747A6DF42C5EBAD63DFBB06C40D22FF8E6D6355"
+    },
+    {
+      "id": "6.5.6.5.03.star6.5",
+      "path": "6.5/03-机制与特效/【Star6.5】强化攻击穿透.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【Star6.5】强化攻击穿透",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【Star6.5】强化攻击穿透.txt"
+      ],
+      "related": [],
+      "sha256": "22B614A03BE0C1CEE62290BAEE18FC6819EC184ACBE3B9DC149ACC71FDF8E7FF"
+    },
+    {
+      "id": "6.5.6.5.03.star6.5.4003",
+      "path": "6.5/03-机制与特效/【star6.5】整形4003控制保底伤害.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.5】整形4003控制保底伤害",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【star6.5】整形4003控制保底伤害.txt"
+      ],
+      "related": [],
+      "sha256": "F8EAC185A6B8D8FFDB6C0E96B2B2A323276C37C9D02246C2E7C1D34D05DE0A34"
+    },
+    {
+      "id": "6.5.6.5.03.star6.5",
+      "path": "6.5/03-机制与特效/【star6.5】无视策略减伤（修复版）.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.5】无视策略减伤（修复版）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【star6.5】无视策略减伤（修复版）.txt"
+      ],
+      "related": [],
+      "sha256": "17B4A94BFC78309235EFD70AFEB85EC8ECF8DFA7A7F90140E36B3E3F605B7A24"
+    },
+    {
+      "id": "6.5.6.5.03.star6.5",
+      "path": "6.5/03-机制与特效/【star6.5】策略保底&策略限伤.txt",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.5】策略保底&策略限伤",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.5/【star6.5】策略保底&策略限伤.txt"
+      ],
+      "related": [],
+      "sha256": "F92E2A02EBA5764088CD531CFD8E342C8FAC84E8D12F70B356D6222C7E5777C4"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/二次行动.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "二次行动机制详解",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/二次行动.md"
+      ],
+      "related": [],
+      "sha256": "CD4F1FFE693BF456682CCA0B2DF2802710F1BA281EED16BB70375B74438526E4"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/功勋模式与五维功勋.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "功勋模式与五维功勋",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/功勋模式与五维功勋.md"
+      ],
+      "related": [],
+      "sha256": "0CF44EDCF69A7C19FF278A9AD323115DE3031600F10A7868E61018EA3328D8A5"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/已注入特技扫描与自然语言语义.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "已注入特技扫描与自然语言语义",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/已注入特技扫描与自然语言语义.md"
+      ],
+      "related": [],
+      "sha256": "EBD86CD77D718571C11607A4D6FDDF106A50E0C77005959EF06DE360CFE2FBF6"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/引导攻击.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "引导攻击机制详解",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/引导攻击.md"
+      ],
+      "related": [],
+      "sha256": "D8FFE174C0560AF254F65667BA3E7005BAFAE8BFF2C864B0853EA5765D8F54CC"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/战斗公式.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "曹操传战斗计算公式解析",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/战斗公式.md"
+      ],
+      "related": [],
+      "sha256": "C39563817C18FF121F0B3264EA55718BF2BD4DC0B4CBA2B6F720D71650EDB2AD"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/攻击范围与穿透范围.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "攻击范围与穿透范围（6.5）",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/攻击范围与穿透范围.md"
+      ],
+      "related": [],
+      "sha256": "B74C230E48DB9143FB2188A4FF9F256C46DF8737F2C74D9EECC491E1DF06F5FD"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/攻击附带属性下降.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "攻击附带属性下降效果分析",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/攻击附带属性下降.md"
+      ],
+      "related": [],
+      "sha256": "B769DBF8BC1C651E4F01A935E2257249A141CA8C8B12E96AC527111D9304B349"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/旧版工具引擎号合并行为对照.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "旧版工具引擎号合并行为对照",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/旧版工具引擎号合并行为对照.md"
+      ],
+      "related": [],
+      "sha256": "CC5CE71B6E60FE60F67A11D954BF6071F1B0E9BF1C737DBBB5523B9FEF7B65C7"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/暴击.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "暴击（必杀）机制分析",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/暴击.md"
+      ],
+      "related": [],
+      "sha256": "10678DA05AF8FE1A9CC2516B588C8D7FCD856F5E04B1E38B1B5C02BDB34DEDD4"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/模块化复合特效制作.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "模块化复合特效制作",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/模块化复合特效制作.md"
+      ],
+      "related": [],
+      "sha256": "C07A5036D6577FE885203F9C8091B59B5A0FB3D328381BA90E7FF1F369CA5702"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/物理攻击.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "物理攻击体系架构分析",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/物理攻击.md"
+      ],
+      "related": [],
+      "sha256": "E73508C90824C64786280D28BFE17C1C2E01F40FC043FD2141D7A25DEE464D9E"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/特效值机制.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "特效值机制详解",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/特效值机制.md"
+      ],
+      "related": [],
+      "sha256": "24930D7F0FD63FB4BD2E6BC42AB532C3F60348D45513AF6F34C5CD6003D21ABA"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/特效后缀位置与读写方案.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "特效后缀位置与读写方案",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/特效后缀位置与读写方案.md"
+      ],
+      "related": [],
+      "sha256": "7ED6FFD596C13F32298AF00B0E5EA3D5BA20B7E0716B0B6B501C58644AF9C02F"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/特效扫描九概念统一词典.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "特效扫描九概念统一词典",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/特效扫描九概念统一词典.md"
+      ],
+      "related": [],
+      "sha256": "201058081CE0C4BE7CCD8A5337BF321AEF848D68E964AEE175B5FB510484B78C"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/特效扫描九概念证据台账.json",
+      "version": [
+        "6.5"
+      ],
+      "topic": "general",
+      "title": "特效扫描九概念证据台账",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "B9E1F634BE0283FCD85A3067E233853BFC0C971195123B5F306A6E1D4627494A"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/特效扫描九概念调查记录.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "特效扫描九概念调查记录",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/特效扫描九概念调查记录.md"
+      ],
+      "related": [],
+      "sha256": "0F2183613E84052D60099A6ACC597E64B72D89E993437361A4C1F46D4702A482"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/特效确认台账.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "特效确认台账",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/特效确认台账.md"
+      ],
+      "related": [],
+      "sha256": "4530300F58B977ECB9B4639FDD40E303083CAA5170ECC45A1FBBE88568BFCC9A"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/特效路径常量扫描与旧工具合并.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "特效路径常量扫描与旧工具合并",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/特效路径常量扫描与旧工具合并.md"
+      ],
+      "related": [],
+      "sha256": "4A413BD1C3AF7AB4F933E080E3418814DE37F5486B076D3E6797FEF173D9BA60"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/盛气凌人.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "盛气凌人（暴击触发全属性下降）机制分析",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/盛气凌人.md"
+      ],
+      "related": [],
+      "sha256": "573620AA62AE290E4EE510AE94B4CF34B5AB5320D14297D6627F6207472468AD"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/真实复合特效机制.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "真实复合特效机制",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/真实复合特效机制.md"
+      ],
+      "related": [],
+      "sha256": "3CE6D83648B3AD44BD647EE1B0B3F561343E6DDDFF75F69BD2D885B02372CD02"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/策略附带随机状态.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "策略附带随机异常状态 — 注入补丁解析",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/策略附带随机状态.md"
+      ],
+      "related": [],
+      "sha256": "4A53CFD1E1AF7E29B9C1DF8DB4C2A0E91ABCAF3A4DC893DD30C53877F6B84549"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/能力档位与显示补丁.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "能力档位与显示补丁",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/能力档位与显示补丁.md"
+      ],
+      "related": [],
+      "sha256": "08F7959EFF89D79084ABC2D7AB0C6164914BCA7BC078BF2851261CD5F37D13BE"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/连击.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "连击/战斗判定机制分析",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/连击.md"
+      ],
+      "related": [],
+      "sha256": "2E565C8C8CE0205AEB9FE6F471F0E4A937CC68DA6C09ACF39A11B1AF58024378"
+    },
+    {
+      "id": "6.5.6.5.03",
+      "path": "6.5/03-机制与特效/随机状态攻击.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "mechanics-effects",
+      "title": "随机状态攻击 (随机状态攻击) 机制分析",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/随机状态攻击.md"
+      ],
+      "related": [],
+      "sha256": "166F8687ABF17612E2A4A8DE831C031235E6FDD50FE5E55325AECCA96F44AC72"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-函数速查/函数速查表.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "function-reference",
+      "title": "函数速查表",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/04-函数速查/函数速查表.md"
+      ],
+      "related": [],
+      "sha256": "03F3B0E25B9FA136656B4EE7DD1864C0019969265CE3C876B8C737C28D607BB6"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/人工智能绘图-图像工作室-模型上下文协议.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "人工智能绘图 / 图像工作室 MCP",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/人工智能绘图-图像工作室-模型上下文协议.md"
+      ],
+      "related": [],
+      "sha256": "C91642847433025BCE36728B57B920F208F05BF96E26C6273961234F19A90A94"
+    },
+    {
+      "id": "6.5.6.5.04.r.s",
+      "path": "6.5/04-数据表与资源/人物R-S像素形象制作链路.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "人物 R/S 像素形象制作链路",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/人物R-S像素形象制作链路.md"
+      ],
+      "related": [],
+      "sha256": "0E2E6501AC8387E949110400354625E54EEC4AC212618907024E526F7C13C44E"
+    },
+    {
+      "id": "6.5.6.5.04.r.s",
+      "path": "6.5/04-数据表与资源/人物R-S像素形象提示词模板.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "人物 R/S 像素形象提示词模板",
+      "status": "canonical",
+      "evidenceLevel": "external-source",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/人物R-S像素形象提示词模板.md"
+      ],
+      "related": [],
+      "sha256": "83B2A8DAA2AEE29564D7EF02D83469B6C37422E35D2D5E210EC3D6DA1A5BAF7F"
+    },
+    {
+      "id": "6.5.6.5.04.rs",
+      "path": "6.5/04-数据表与资源/人物形象-RS-形象指定器.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "03 人物形象 / R/S / B形象指定器",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/人物形象-RS-形象指定器.md"
+      ],
+      "related": [],
+      "sha256": "7E6B4C9306003EA646FD4CDB6A9F8C75AE663898CF7010EBFDDC4FDA228348B8"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/兵种设定.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "11 兵种设定",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/兵种设定.md"
+      ],
+      "related": [],
+      "sha256": "E182C5D1993ADCCAF3389F720C5C0BACE061DD21F048FBB5F8C6CE2070B33660"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/动态链接库图标资源.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "09 图标资源",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/动态链接库图标资源.md"
+      ],
+      "related": [],
+      "sha256": "A77F1977C50394ABE14FD904E04B9A0B0177D1F1F212502871079ED9F0B0BB30"
+    },
+    {
+      "id": "6.5.6.5.04.e5",
+      "path": "6.5/04-数据表与资源/图片处理-E5资源.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "22 图片处理 / E5 图片资源",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/图片处理-E5资源.md"
+      ],
+      "related": [],
+      "sha256": "3312F4326D5E4D18D9CD37F8DE5E485901EB48FEF5A2AD6022D30C333922095D"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/地图制作.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "14 地图制作",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/地图制作.md"
+      ],
+      "related": [],
+      "sha256": "B53F1193A64FF270C063A45E03BD696FA144EC7689D65FC3DFFF4702D3F535E2"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/地形编辑.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "12 地形编辑",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/地形编辑.md"
+      ],
+      "related": [],
+      "sha256": "775A9026F06B3291B2B0DD7EFD187739DA272A89B0692435553F8AD456D92C06"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/宝物物品设定.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "07 宝物 / 物品设定",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/宝物物品设定.md"
+      ],
+      "related": [],
+      "sha256": "500BC68E6C6716F1054BDCD77E4C6907A588B239004FEB7F13D1CBB2C34C4235"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/曹操传坐标规律.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "曹操传地图坐标规律",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/曹操传坐标规律.md"
+      ],
+      "related": [],
+      "sha256": "3A5E09EC6C46062033F573C8EC8E29CB381A9D1040E41B3891B4A594EF47522D"
+    },
+    {
+      "id": "6.5.6.5.04.r.s",
+      "path": "6.5/04-数据表与资源/枪骑兵R-S样本学习与人工审阅.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "枪骑兵 R/S 样本学习与人工审阅",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/枪骑兵R-S样本学习与人工审阅.md"
+      ],
+      "related": [],
+      "sha256": "6E9A3F91F0870B1494C11AC222D253C075E08CE8F2238A2DDE4679441C778EFC"
+    },
+    {
+      "id": "6.5.6.5.04.meff.mcall",
+      "path": "6.5/04-数据表与资源/策略动画-Meff-Mcall.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "策略动画 / Meff 与 Mcall",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/策略动画-Meff-Mcall.md"
+      ],
+      "related": [],
+      "sha256": "716B40ABC41E8386898A2E9229288926DCD2C9A53FFCFB47DF28C4788FD518F9"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/纯净基底清洗.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "纯净基底清洗",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/纯净基底清洗.md"
+      ],
+      "related": [],
+      "sha256": "43238DDB33C294FB4552F01A31FBF93954E076F5C180A11C99774A8791A1B568"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/范围模板与图片规范.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "范围模板与图片规范",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/范围模板与图片规范.md"
+      ],
+      "related": [],
+      "sha256": "8018611E2B8F621BBD7D58CE97BEB2CD518FE465BEA1738D5BBC1474BFF499C2"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/角色与扩展数据修复记录.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "角色台词、扩展数据与辅助分组修复记录",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/角色与扩展数据修复记录.md"
+      ],
+      "related": [],
+      "sha256": "695E8B285F3792DF7E83347CA2516C71A9F60B68B491E1DB6ABF192612AF93B8"
+    },
+    {
+      "id": "6.5.6.5.04",
+      "path": "6.5/04-数据表与资源/角色设定.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-resources",
+      "title": "10 角色设定",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/07-数据表与资源/角色设定.md"
+      ],
+      "related": [],
+      "sha256": "D76785B3BABC987072F59026FD56701D5C84B0FB775B5DDAF8DC8CA72547EF59"
+    },
+    {
+      "id": "6.5.6.5.05.01.00.13",
+      "path": "6.5/05-剧本与战场/01-00-13结构流程.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本指令大全：00-13 结构流程",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本指令大全/01-00-13结构流程.md"
+      ],
+      "related": [],
+      "sha256": "22C5FDC3343E9A581738DDB37CE61B9A0080AE4BD3F7B2122F30938F45147C33"
+    },
+    {
+      "id": "6.5.6.5.05.02.14.24",
+      "path": "6.5/05-剧本与战场/02-14-24文本音画.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本指令大全：14-24 文本音画",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本指令大全/02-14-24文本音画.md"
+      ],
+      "related": [],
+      "sha256": "B13CEFF81E7029A191FC3D2CE3F6F6B14D93B1B89F11786EEB0EB4690183FBCC"
+    },
+    {
+      "id": "6.5.6.5.05.03.25.35.r",
+      "path": "6.5/05-剧本与战场/03-25-35触发与R场景.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本指令大全：25-35 触发与 R 场景",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本指令大全/03-25-35触发与R场景.md"
+      ],
+      "related": [],
+      "sha256": "2C4F310C4BC9C2A02F93A37BA4657A60DE44F13D3A1D0EBDB4E5A18AB2880187"
+    },
+    {
+      "id": "6.5.6.5.05.04.36.4b",
+      "path": "6.5/05-剧本与战场/04-36-4B变量部署.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本指令大全：36-4B 变量部署",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本指令大全/04-36-4B变量部署.md"
+      ],
+      "related": [],
+      "sha256": "CA08B9FA00B0F1554F37A5C0FA0FD57E30E0921B8107FA4BC12BB49FB157A7DC"
+    },
+    {
+      "id": "6.5.6.5.05.05.4c.5e",
+      "path": "6.5/05-剧本与战场/05-4C-5E战场操作.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本指令大全：4C-5E 战场操作",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本指令大全/05-4C-5E战场操作.md"
+      ],
+      "related": [],
+      "sha256": "6018290BB76696087FB146F35ECD8638630EFD8FADFD1B25EDC36B8FA78E1BD1"
+    },
+    {
+      "id": "6.5.6.5.05.06.5f.6f",
+      "path": "6.5/05-剧本与战场/06-5F-6F单挑与扩展.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本指令大全：5F-6F 单挑与扩展",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本指令大全/06-5F-6F单挑与扩展.md"
+      ],
+      "related": [],
+      "sha256": "F71D725557D91733DFFE93692D70F8578BB6F08692DC235E1AD5F745FBF53040"
+    },
+    {
+      "id": "6.5.6.5.05.07.70.7b",
+      "path": "6.5/05-剧本与战场/07-70-7B高级变量与系统.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本指令大全：70-7B 高级变量与系统",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本指令大全/07-70-7B高级变量与系统.md"
+      ],
+      "related": [],
+      "sha256": "6E334CE718AF4D0EC04649A8058B8225049F117AE0A292E6A636F0053D1167FA"
+    },
+    {
+      "id": "6.5.6.5.05.08.72",
+      "path": "6.5/05-剧本与战场/08-72信息传送子功能.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本指令大全：72 信息传送子功能",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本指令大全/08-72信息传送子功能.md"
+      ],
+      "related": [],
+      "sha256": "D1022A2F755F4CF83B617BBC878D843B1E587E14F6009968E253F504404CAF9F"
+    },
+    {
+      "id": "6.5.6.5.05.r",
+      "path": "6.5/05-剧本与战场/R剧本模板克隆复用规范.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "R剧本模板克隆复用规范",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/R剧本模板克隆复用规范.md"
+      ],
+      "related": [],
+      "sha256": "922184EBA701506D50840E3D954A45C8991C11119A2A00F970025D4D4FCD17F1"
+    },
+    {
+      "id": "6.5.6.5.05.tr.e5.r",
+      "path": "6.5/05-剧本与战场/Tr-e5-R插图.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "21 Tr.e5 与 R 插图",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/Tr-e5-R插图.md"
+      ],
+      "related": [],
+      "sha256": "B3A4AB1B7DD29461ECC97105481FBD07A026FBA6C354351D30B895EAF2682AD6"
+    },
+    {
+      "id": "6.5.6.5.05.2023",
+      "path": "6.5/05-剧本与战场/全剧本指令详解2023归纳.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "19 全剧本指令详解 2023 归纳",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/全剧本指令详解2023归纳.md"
+      ],
+      "related": [],
+      "sha256": "E617A03C26BFF18A2111A36BDC2A4040D2637F8BF40AEC42E82C7FC3826D6ABD"
+    },
+    {
+      "id": "6.5.6.5.05",
+      "path": "6.5/05-剧本与战场/剧本与战场制作.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "13 剧本与战场制作",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本与战场制作.md"
+      ],
+      "related": [],
+      "sha256": "1260BB738DF4EC5E02B0157BD202CD5A8534DA2BEF5FEA2F46FBA6E44EE34ED5"
+    },
+    {
+      "id": "6.5.6.5.05.v0.24",
+      "path": "6.5/05-剧本与战场/剧本编辑器v0.24静态对照.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本编辑器 v0.24 静态对照",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本编辑器v0.24静态对照.md"
+      ],
+      "related": [],
+      "sha256": "5031B51BF14C54E3DBCC3313E9EDB4C64B41E87562F511C81B7B06DBF9710E4D"
+    },
+    {
+      "id": "6.5.6.5.05",
+      "path": "6.5/05-剧本与战场/剧本设计语义命令映射表.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "剧本设计语义命令映射表",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/剧本设计语义命令映射表.md"
+      ],
+      "related": [],
+      "sha256": "A8E0FC1BB78DA17EF8B0C06AB868E48C0CFE04E87D4AAD916872900D092D7AAA"
+    },
+    {
+      "id": "6.5.6.5.05",
+      "path": "6.5/05-剧本与战场/旧剧本编辑器源码对照.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "13.1 旧剧本编辑器源码对照",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/旧剧本编辑器源码对照.md"
+      ],
+      "related": [],
+      "sha256": "DFCC4852C041C7B04954A3D8D93A9626A1ED0469F6E171923CFE0A19ABF81BC4"
+    },
+    {
+      "id": "6.5.6.5.05",
+      "path": "6.5/05-剧本与战场/曹操传剧本文案提示词工程.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "scenarios-battlefields",
+      "title": "曹操传剧本文案提示词工程",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/08-剧本与战场/曹操传剧本文案提示词工程.md"
+      ],
+      "related": [],
+      "sha256": "D1C7762B828F98A5B56F1211BFFBE7B568322F12B9627BA4316EA6829EE013B9"
+    },
+    {
+      "id": "6.5.6.5.05",
+      "path": "6.5/05-教程指南/入门指南.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "guides",
+      "title": "曹操传引擎逆向工程入门指南",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/05-教程指南/入门指南.md"
+      ],
+      "related": [],
+      "sha256": "DC037B4794A58E059B52C6430A155A1DF284B8457886E17FE0151A587BB3FB31"
+    },
+    {
+      "id": "6.5.6.5.05",
+      "path": "6.5/05-教程指南/战场操作自动化与调试流程.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "guides",
+      "title": "战场操作自动化与调试流程",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/05-教程指南/战场操作自动化与调试流程.md"
+      ],
+      "related": [],
+      "sha256": "FBED6C22D29FC9690F0BFB6EB90BD8D44C2B0079A67BC7EF8B9C5CC2BDDBD66B"
+    },
+    {
+      "id": "6.5.6.5.06.02.6.5",
+      "path": "6.5/06-工具与验证/02-6.5布局.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "data-manager",
+      "title": "6.5 布局",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "data管理器/知识库/02-6.5布局.md"
+      ],
+      "related": [],
+      "sha256": "9958D7B588D78BC9831E1F7E6E08BFDDC8509007B87E59326F55F13FE9D260EB"
+    },
+    {
+      "id": "6.5.6.5.06.cheatmaker.cmf",
+      "path": "6.5/06-工具与验证/CheatMaker-CMF证据索引.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "version-external",
+      "title": "CheatMaker CMF 证据索引",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/09-版本与外部资料/CheatMaker-CMF证据索引.md"
+      ],
+      "related": [],
+      "sha256": "6094416FEA2E565E292427724BB823A219D5D61C44830C33775D3B9AC8A35825"
+    },
+    {
+      "id": "6.5.6.5.06.cmf",
+      "path": "6.5/06-工具与验证/CMF派生功能矩阵.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "version-external",
+      "title": "CMF 派生功能矩阵",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/09-版本与外部资料/CMF派生功能矩阵.md"
+      ],
+      "related": [],
+      "sha256": "EC8255A2516A34DAF9683110D1B78965F747E35AA27CBA55D59D1B86A679F622"
+    },
+    {
+      "id": "6.5.6.5.06.star6.5.cmf",
+      "path": "6.5/06-工具与验证/Star6.5引擎CMF人工地址清单.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "version-external",
+      "title": "Star6.5 引擎 CMF 人工地址清单",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/09-版本与外部资料/Star6.5引擎CMF人工地址清单.md"
+      ],
+      "related": [],
+      "sha256": "4E4706BFCC183B561AF1C60FBB59171B3672396C8754F56134417F3AA167B540"
+    },
+    {
+      "id": "6.5.6.5.06",
+      "path": "6.5/06-工具与验证/旧扳手源码专项-功勋引擎特效战场.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "tools-validation",
+      "title": "旧扳手源码专项：功勋、引擎、特效与战场",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/旧扳手源码专项-功勋引擎特效战场.md"
+      ],
+      "related": [],
+      "sha256": "7077AA14B4316AD467147A45575524C3B61AB0A9A57918A3E8F5C345A4DEDF94"
+    },
+    {
+      "id": "6.5.6.5.06",
+      "path": "6.5/06-工具与验证/旧扳手调试器源码对照.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "tools-validation",
+      "title": "旧扳手调试器源码对照",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/旧扳手调试器源码对照.md"
+      ],
+      "related": [],
+      "sha256": "8BABB58871F950B42E220EA28163BB99D69DCA8C8206446AA325C5A3F5838E5D"
+    },
+    {
+      "id": "6.5.6.5.06.agent",
+      "path": "6.5/06-工具与验证/本地Agent特效草案安全字段.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "tools-validation",
+      "title": "本地 Agent 特效草案安全字段",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/本地Agent特效草案安全字段.md"
+      ],
+      "related": [],
+      "sha256": "53F6324C2F0DEDAA27DD90F2F9A799EA6AF11BE3DDB1079B3C8EB77BB441AFB1"
+    },
+    {
+      "id": "6.5.6.5.06.agent",
+      "path": "6.5/06-工具与验证/本地Agent生成可注入特效代码指南.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "tools-validation",
+      "title": "本地 Agent 生成可注入特效代码指南",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/本地Agent生成可注入特效代码指南.md"
+      ],
+      "related": [],
+      "sha256": "6C78455017BD73AB1D068FF372F232F0444DEBDF9C6A5D670D2B211C93B7B014"
+    },
+    {
+      "id": "6.5.6.5.06",
+      "path": "6.5/06-工具与验证/模型上下文协议接入.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "tools-validation",
+      "title": "16 MCP 接入",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/模型上下文协议接入.md"
+      ],
+      "related": [],
+      "sha256": "02E36ED5C7D7567E210CF488E5C2C0A1EFCBD657C42985594BA7C57B6711CE6C"
+    },
+    {
+      "id": "6.5.6.5.06",
+      "path": "6.5/06-工具与验证/特效工作台复盘与验收.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "tools-validation",
+      "title": "特效工作台复盘与验收",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/特效工作台复盘与验收.md"
+      ],
+      "related": [],
+      "sha256": "EFC638649C0BC8A003AA89200094B09D1C82F0CDCC74759FAA901EAB0635B4E3"
+    },
+    {
+      "id": "6.5.6.5.06.6.5",
+      "path": "6.5/06-工具与验证/联网资料索引-曹操传模组6.5.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "version-external",
+      "title": "20 联网资料索引：曹操传 模组 6.5",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/09-版本与外部资料/联网资料索引-曹操传模组6.5.md"
+      ],
+      "related": [],
+      "sha256": "007D831ECAF3328A8384736DBF3EAE9DBB49FC27B51B1C85E07E4C0478D1C1FD"
+    },
+    {
+      "id": "6.5.6.5.06.mod",
+      "path": "6.5/06-工具与验证/自动化MOD制作.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "tools-validation",
+      "title": "自动化 MOD 制作",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/自动化MOD制作.md"
+      ],
+      "related": [],
+      "sha256": "EC5FD99D1C743C4ADD0FF7E816347397363ED4D295955C120A6D0C45BA5870DC"
+    },
+    {
+      "id": "6.5.6.5.06",
+      "path": "6.5/06-工具与验证/跨设备迁移.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "tools-validation",
+      "title": "跨设备迁移与路径解析",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/跨设备迁移.md"
+      ],
+      "related": [],
+      "sha256": "D07257245B7253B4D63B0F1DC3F543980A2C7F4F2D784F112A2AD72B0B44B688"
+    },
+    {
+      "id": "6.5.6.5.06",
+      "path": "6.5/06-工具与验证/验证与烟测.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "tools-validation",
+      "title": "06 验证与烟测",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/验证与烟测.md"
+      ],
+      "related": [],
+      "sha256": "BD9C635985212C55D45B1CF65F06A1CE33EE716B03A016B5CBA44224A2AC1A36"
+    },
+    {
+      "id": "6.5.6.5.07.s",
+      "path": "6.5/07-制作案例/人工智能垂域S形象模型-延期计划.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "case-studies",
+      "title": "人工智能垂域S形象模型-延期计划",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/10-制作案例/人工智能垂域S形象模型-延期计划.md"
+      ],
+      "related": [],
+      "sha256": "17A70B8E6A6A339BF2E80208315E6D72D03173200F2B264AA45AE8EB32C19AD0"
+    },
+    {
+      "id": "6.5.6.5.07.6.4.rs",
+      "path": "6.5/07-制作案例/刘备6.4-RS模板学习.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "case-studies",
+      "title": "刘备 6.4 R/S 模板学习",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/10-制作案例/刘备6.4-RS模板学习.md"
+      ],
+      "related": [],
+      "sha256": "834676E83982D59BE00234C8519E5D841C026C9F22C41B9DD8E2774C62792FA6"
+    },
+    {
+      "id": "6.5.6.5.90.readme",
+      "path": "6.5/90-来源索引/README.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "general",
+      "title": "6.5 来源索引",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "C7C469C071AD17A006043DEF4D1F65A151B08A8EC695F3A71AD88D237E81E793"
+    },
+    {
+      "id": "6.5.6.5.readme",
+      "path": "6.5/README.md",
+      "version": [
+        "6.5"
+      ],
+      "topic": "general",
+      "title": "6.5",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "4A3B742FB5FB98D6797E269D01E00EE728E7C6F3EFD17F19D2B2D6AA04BD6019"
+    },
+    {
+      "id": "6.5pl.6.5pl.01.readme",
+      "path": "6.5pl/01-已确认能力/README.md",
+      "version": [
+        "6.5pl"
+      ],
+      "topic": "general",
+      "title": "6.5pl 已确认能力",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "1C0759BECEC9EFA946F956BA9B237B74BCD92788081B171380F2CE5DDF8D1A8F"
+    },
+    {
+      "id": "6.5pl.6.5pl.02.readme",
+      "path": "6.5pl/02-兼容与差异/README.md",
+      "version": [
+        "6.5pl"
+      ],
+      "topic": "general",
+      "title": "6.5pl 兼容与差异",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "A3F33C20B629D5C19660F157F24F5067ECAC515F9D14594268BAA5B0BC203C53"
+    },
+    {
+      "id": "6.5pl.6.5pl.03.readme",
+      "path": "6.5pl/03-工具与补丁/README.md",
+      "version": [
+        "6.5pl"
+      ],
+      "topic": "general",
+      "title": "6.5pl 工具与补丁",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "6E7680BD70ABED9E30B4253AA71D953FCC17DBC24D902DC0E3CD5E8237DB84A0"
+    },
+    {
+      "id": "6.5pl.6.5pl.90.readme",
+      "path": "6.5pl/90-待验证/README.md",
+      "version": [
+        "6.5pl"
+      ],
+      "topic": "general",
+      "title": "6.5pl 待验证",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "01904FE1E253E60F6DDC31D372A1166E82113B1EABE3EC396CAE247D55A68FCE"
+    },
+    {
+      "id": "6.5pl.6.5pl.91.readme",
+      "path": "6.5pl/91-来源索引/README.md",
+      "version": [
+        "6.5pl"
+      ],
+      "topic": "general",
+      "title": "6.5pl 来源索引",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "6F39241E0D6BB7BDE0C376108F55D4C8E477931CC946ADD8EE0F92F7C7012C82"
+    },
+    {
+      "id": "6.5pl.6.5pl.readme",
+      "path": "6.5pl/README.md",
+      "version": [
+        "6.5pl"
+      ],
+      "topic": "general",
+      "title": "6.5pl",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "0AA00E0361D92C6CB9B38B739036A593A3B9975F8E771170DB54665B0552FAF8"
+    },
+    {
+      "id": "6.6.6.6.01.6.6.p0.007",
+      "path": "6.6/01-核心引擎/复刻版6.6山贼P0-007初始化与存档补证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "core-engine",
+      "title": "复刻版6.6山贼 P0-007 初始化、存档与接口槽补证",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼P0-007初始化与存档补证.md"
+      ],
+      "related": [],
+      "sha256": "87C19FB6C981B212E2B77432057B7140BAD1289D3B56A7AFB582AA75DEAAC9F1"
+    },
+    {
+      "id": "6.6.6.6.01.6.6.p0.008",
+      "path": "6.6/01-核心引擎/复刻版6.6山贼P0-008接口消费者补证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "core-engine",
+      "title": "复刻版6.6山贼 P0-008 EXE 接口消费者补证",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼P0-008接口消费者补证.md"
+      ],
+      "related": [],
+      "sha256": "F3D50FC9C579123DD61F70D81C17FB1ACF322346D5204C370D9C0016DE3C42D8"
+    },
+    {
+      "id": "6.6.6.6.01.6.6.p0.009.getattack",
+      "path": "6.6/01-核心引擎/复刻版6.6山贼P0-009行动与GetAttack接口补证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "core-engine",
+      "title": "复刻版6.6山贼 P0-009 行动与 GetAttack 接口补证",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼P0-009行动与GetAttack接口补证.md"
+      ],
+      "related": [],
+      "sha256": "2C3BB41D461EE66CE0DC2BB3831BAB493EFC8BE57C8D835A55B55FA1DCEF5EC5"
+    },
+    {
+      "id": "6.6.6.6.01.6.6",
+      "path": "6.6/01-核心引擎/复刻版6.6山贼特效与扩展接口.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "core-engine",
+      "title": "复刻版6.6山贼特效与扩展接口",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/01-核心引擎/复刻版6.6山贼特效与扩展接口.md"
+      ],
+      "related": [],
+      "sha256": "A5C44A668D762D2F260F16B4FE8A0141B22821C5408266CB38C57ADB54852E6E"
+    },
+    {
+      "id": "6.6.6.6.02.6.6.p0.014",
+      "path": "6.6/02-数据结构/复刻版6.6山贼P0-014资源计算与效果事件补证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "data-structures",
+      "title": "复刻版6.6山贼 P0-014 资源计算与效果事件补证",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/02-数据结构/复刻版6.6山贼P0-014资源计算与效果事件补证.md"
+      ],
+      "related": [],
+      "sha256": "9709E6162FFD2FA8325DF7C0928E74FFF3A6735B34F4805B6A74422D54F0CEBD"
+    },
+    {
+      "id": "6.6.6.6.02.6.6.p0.015",
+      "path": "6.6/02-数据结构/复刻版6.6山贼P0-015资源加成与效果类别补证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "data-structures",
+      "title": "复刻版6.6山贼 P0-015 资源加成与效果类别补证",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/02-数据结构/复刻版6.6山贼P0-015资源加成与效果类别补证.md"
+      ],
+      "related": [],
+      "sha256": "DAD11FB68469DF44C59FDDD00A38E465CC28C90B29783C9051B7A9B6682F56AF"
+    },
+    {
+      "id": "6.6.6.6.02.6.6.p0.016",
+      "path": "6.6/02-数据结构/复刻版6.6山贼P0-016类别映射与字段写入补证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "data-structures",
+      "title": "复刻版6.6山贼 P0-016 类别映射与字段写入补证",
+      "status": "canonical",
+      "evidenceLevel": "external-source",
+      "sourceRefs": [
+        "工具整合包/本地知识库/02-数据结构/复刻版6.6山贼P0-016类别映射与字段写入补证.md"
+      ],
+      "related": [],
+      "sha256": "EDBC8E7AF37CAFCF20F903587C8D0999E97B3A390229D7F8155B6D44E2982E3C"
+    },
+    {
+      "id": "6.6.6.6.02.6.6",
+      "path": "6.6/02-数据结构/复刻版6.6山贼运行时数据结构.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "data-structures",
+      "title": "复刻版6.6山贼运行时数据结构",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/02-数据结构/复刻版6.6山贼运行时数据结构.md"
+      ],
+      "related": [],
+      "sha256": "D8F6BB40DF259AC8AA496BB3635799F54566E984E0D68F3113D42CD82AB2CBDF"
+    },
+    {
+      "id": "6.6.6.6.03.6.6x",
+      "path": "6.6/03-机制与特效/6.6x功勋吃果双开.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "6.6x功勋吃果双开",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/6.6x功勋吃果双开.txt"
+      ],
+      "related": [],
+      "sha256": "77C428CD07494C76C8F79FE092BF113AB47D879B6410FA4E5C8BD4A3B5D00889"
+    },
+    {
+      "id": "6.6.6.6.03.6.6",
+      "path": "6.6/03-机制与特效/6.6修改装备自动升级后价格.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "6.6修改装备自动升级后价格",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/6.6修改装备自动升级后价格.txt"
+      ],
+      "related": [],
+      "sha256": "43B22C05A06719572BAB80034A37AA81F51BCFE9C164C6B632956001007A9AC8"
+    },
+    {
+      "id": "6.6.6.6.03.6.6",
+      "path": "6.6/03-机制与特效/6.6修改記錄整理.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "6.6修改記錄整理",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/6.6修改記錄整理.txt"
+      ],
+      "related": [],
+      "sha256": "2A5CFD31D318318F6EA4B046BA4E865AB63C92E14B935B5E471AD9E248343D33"
+    },
+    {
+      "id": "6.6.6.6.03.6.6",
+      "path": "6.6/03-机制与特效/6.6冥想回蓝百分比（注入版）.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "6.6冥想回蓝百分比（注入版）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/6.6冥想回蓝百分比（注入版）.txt"
+      ],
+      "related": [],
+      "sha256": "53C7A745433AAF07BC227C08D88E043ADBC9CE5D3D8782A90B69ECD69D1B437C"
+    },
+    {
+      "id": "6.6.6.6.03.6.6.5",
+      "path": "6.6/03-机制与特效/6.6骑马步兵攻击防御偷袭共5特技.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "6.6骑马步兵攻击防御偷袭共5特技",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/6.6骑马步兵攻击防御偷袭共5特技.txt"
+      ],
+      "related": [],
+      "sha256": "37AF2A0C0DCFE243BA77C52682D5530DA7568BD6F03501F351FF2A818098FFC4"
+    },
+    {
+      "id": "6.6.6.6.03.6.6x.kf.bug",
+      "path": "6.6/03-机制与特效/【6.6x KF】BUG修复.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.6x KF】BUG修复",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【6.6x KF】BUG修复.txt"
+      ],
+      "related": [],
+      "sha256": "9E730CD413002C7428CECD0249F388F7B30B39A7323DFEC8F0BD5E6425503D97"
+    },
+    {
+      "id": "6.6.6.6.03.6.6x.kf",
+      "path": "6.6/03-机制与特效/【6.6x KF】修改档位.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.6x KF】修改档位",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【6.6x KF】修改档位.txt"
+      ],
+      "related": [],
+      "sha256": "4184A0FF539E4A95C25FE5B9C502A404C515B6B5D41B8F4FFAE1DF0BE7B5B116"
+    },
+    {
+      "id": "6.6.6.6.03.6.6x.kf",
+      "path": "6.6/03-机制与特效/【6.6x KF】修正杀敌加成卡死.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.6x KF】修正杀敌加成卡死",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【6.6x KF】修正杀敌加成卡死.txt"
+      ],
+      "related": [],
+      "sha256": "98D7A7DA7613AAA28A70C82369CA67348EA8D914FE1191BB44FB6AA07653BDD1"
+    },
+    {
+      "id": "6.6.6.6.03.6.6xkf.lv.n",
+      "path": "6.6/03-机制与特效/【6.6xKF】保底全伤害调整LV+N.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.6xKF】保底全伤害调整LV+N",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【6.6xKF】保底全伤害调整LV+N.txt"
+      ],
+      "related": [],
+      "sha256": "C8FC9BE1CC63F011EFB070625BD6B8FCAFAB65FB5126BB7AD7A67633E8D82339"
+    },
+    {
+      "id": "6.6.6.6.03.6.6xkf.hp",
+      "path": "6.6/03-机制与特效/【6.6xKF】修复回复周围HP无效.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.6xKF】修复回复周围HP无效",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【6.6xKF】修复回复周围HP无效.txt"
+      ],
+      "related": [],
+      "sha256": "A855D779DD138CA8C1D24BF625B98617EFC6B67FBBEA593AE6E26C27CA37F125"
+    },
+    {
+      "id": "6.6.6.6.03.6.6xkf.all",
+      "path": "6.6/03-机制与特效/【6.6xKF】攻击-策略-ALL后缀.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.6xKF】攻击-策略-ALL后缀",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【6.6xKF】攻击-策略-ALL后缀.txt"
+      ],
+      "related": [],
+      "sha256": "1D036185C82CD3EAF863AF876F9677B51CB524C3AE82B66BEFB0FFEB25F544CD"
+    },
+    {
+      "id": "6.6.6.6.03.6.6x",
+      "path": "6.6/03-机制与特效/【6.6x】护卫-最终版.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.6x】护卫-最终版",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【6.6x】护卫-最终版.txt"
+      ],
+      "related": [],
+      "sha256": "F7641C5B757F35E8CE1DFDA3B99B3CB5F88402B4442688F3E11E3A1DAD975F6F"
+    },
+    {
+      "id": "6.6.6.6.03.6.6x",
+      "path": "6.6/03-机制与特效/【6.6x】致死不触发转移伤害.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【6.6x】致死不触发转移伤害",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【6.6x】致死不触发转移伤害.txt"
+      ],
+      "related": [],
+      "sha256": "27E607E7E097F4547A2B43424F707D99DCF2DBD05F71AC426D19A66BFBA30281"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】化力为疗+夺锐攻击.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】化力为疗+夺锐攻击",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】化力为疗+夺锐攻击.txt"
+      ],
+      "related": [],
+      "sha256": "D7DEEC6A1056B0F382CD8E1657570EADCB8BEB11A79227918F99386D4A852549"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】增减移动力新写法（含地址）.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】增减移动力新写法（含地址）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】增减移动力新写法（含地址）.txt"
+      ],
+      "related": [],
+      "sha256": "22CC37B8FFFF787BD8CFA66103899B513DD78E68BCC9FD727D04A2C896B9F24E"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】宝物图鉴大小调整.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】宝物图鉴大小调整",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】宝物图鉴大小调整.txt"
+      ],
+      "related": [],
+      "sha256": "C232A76813B9961EAA9EA8726C1530D795F9BE67E58E13416E948D0CBAA80A51"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】拆分四系增伤，无视策略减伤.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】拆分四系增伤，无视策略减伤",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】拆分四系增伤，无视策略减伤.txt"
+      ],
+      "related": [],
+      "sha256": "753D1136BD548F0F1B351E3C66B387CAC5DBC4BA5AD3D551CC246D5D0B9F0943"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x.k",
+      "path": "6.6/03-机制与特效/【star6.6x】暴击伤害增幅 K%.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】暴击伤害增幅 K%",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】暴击伤害增幅 K%.txt"
+      ],
+      "related": [],
+      "sha256": "BDC07F1E0B3D292E3787FBBDCD350F65BC3BE2ABE6501CD5B73B9FA1028E23DC"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】武器精通.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】武器精通",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】武器精通.txt"
+      ],
+      "related": [],
+      "sha256": "1036E55C937CAC34A8CAAA92061996BDBA1B4C5E4371B1FAA9501AE707C08EA6"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】治疗效果特技（包含负面特技）.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】治疗效果特技（包含负面特技）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】治疗效果特技（包含负面特技）.txt"
+      ],
+      "related": [],
+      "sha256": "697BBD3F8F071BACDBBB5C8E527CDAA9F346B7D37939BEC6E529681F33564DA5"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】物理免疫.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】物理免疫",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】物理免疫.txt"
+      ],
+      "related": [],
+      "sha256": "AB582B9695CB9B9D7EE4604CCC0FEBE1F54C36AEC74EF193A050831F80666284"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x.mp",
+      "path": "6.6/03-机制与特效/【star6.6x】破坏MP攻击.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】破坏MP攻击",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】破坏MP攻击.txt"
+      ],
+      "related": [],
+      "sha256": "520074EBD0D95D65B78A88D6BB74778729F1A17A1E41FA11EB5DF38F3F2CB5A4"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】穿透攻击特技化.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】穿透攻击特技化",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】穿透攻击特技化.txt"
+      ],
+      "related": [],
+      "sha256": "BAD678ABE78A12211DA274E3750D2F1413C76A3265C9FCB2345714B47A14EA05"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】策略破坏能力.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】策略破坏能力",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】策略破坏能力.txt"
+      ],
+      "related": [],
+      "sha256": "572F76789D01C94E084EE14B685D73023FF7D0A38E193FB1B37AD375AD34C9CC"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x.6",
+      "path": "6.6/03-机制与特效/【star6.6x】能力6档+强化成长.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】能力6档+强化成长",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】能力6档+强化成长.txt"
+      ],
+      "related": [],
+      "sha256": "A393455CEFEF9F19D0B9377B651187276CC3B1786E35A67293E1E1180B8550B4"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【Star6.6x】调整强化穿透攻击.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【Star6.6x】调整强化穿透攻击",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【Star6.6x】调整强化穿透攻击.txt"
+      ],
+      "related": [],
+      "sha256": "030DBE33CF466071FBF3E5989CC9106EC62E9ECAFA2B9EB51CB9108155E4946C"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】辅助真伤.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】辅助真伤",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】辅助真伤.txt"
+      ],
+      "related": [],
+      "sha256": "2C59DF09685DAF698E8B1E7F65BC8D14288D6A4C560ED7299AD1AC9C9FDB419F"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】远距攻击特技化.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】远距攻击特技化",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】远距攻击特技化.txt"
+      ],
+      "related": [],
+      "sha256": "DB7B61B006BCD7698BAA67FBF0F6F184F969272824C990ED94EEA11597282701"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】连击率特效（包含负面特技）.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】连击率特效（包含负面特技）",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】连击率特效（包含负面特技）.txt"
+      ],
+      "related": [],
+      "sha256": "80D12177FCE58EC1BF71E421697591218B18C977DD8034349698D278DF9D34F2"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】连击，反击相关特技.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】连击，反击相关特技",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】连击，反击相关特技.txt"
+      ],
+      "related": [],
+      "sha256": "739FE4121EBB94A8A99A22E58EDD7DF4E9FB45CC261A4FE1D5DAD1F8874A177E"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【star6.6x】逆境减伤.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6x】逆境减伤",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6x】逆境减伤.txt"
+      ],
+      "related": [],
+      "sha256": "0F79EA7AD0407D1588EA029C33B0153AAA9A8BF26C044D7656B87D8F93A9655F"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6x",
+      "path": "6.6/03-机制与特效/【Star6.6x】附加特技到回合必定失效.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【Star6.6x】附加特技到回合必定失效",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【Star6.6x】附加特技到回合必定失效.txt"
+      ],
+      "related": [],
+      "sha256": "BD138147CC5F301AF71C6FF415B35672A0C2C6235C8880E3F543936AF6FD4600"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6.bug",
+      "path": "6.6/03-机制与特效/【star6.6】bug修正.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6】bug修正",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6】bug修正.txt"
+      ],
+      "related": [],
+      "sha256": "40B8629CD51FF4250FE39BF7934121EE91B226AA39FCC4C97427616B5ECE41A6"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6",
+      "path": "6.6/03-机制与特效/【star6.6】无视策略减伤.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6】无视策略减伤",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6】无视策略减伤.txt"
+      ],
+      "related": [],
+      "sha256": "345682582727773AA7A8E6E6F4E418D5CA7040E8B1E987E6021E2847269704D5"
+    },
+    {
+      "id": "6.6.6.6.03.star6.6",
+      "path": "6.6/03-机制与特效/【star6.6】策略保底&策略限伤.txt",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "【star6.6】策略保底&策略限伤",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "特效整理/6.6/【star6.6】策略保底&策略限伤.txt"
+      ],
+      "related": [],
+      "sha256": "2A62C1ED4C6269F331827946E47C99BFF3546F3A238A63C30AEE3007D8C3A405"
+    },
+    {
+      "id": "6.6.6.6.03.6.6.p0.010",
+      "path": "6.6/03-机制与特效/复刻版6.6山贼P0-010行动数值与战场结果补证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "复刻版6.6山贼 P0-010 行动数值与战场结果补证",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-010行动数值与战场结果补证.md"
+      ],
+      "related": [],
+      "sha256": "887556BCF6870573072B4738CD08B86008809C28423B3061F20C61A1115B7695"
+    },
+    {
+      "id": "6.6.6.6.03.6.6.p0.011",
+      "path": "6.6/03-机制与特效/复刻版6.6山贼P0-011战斗扣减与字段上限补证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "复刻版6.6山贼 P0-011 战斗扣减与字段上限补证",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-011战斗扣减与字段上限补证.md"
+      ],
+      "related": [],
+      "sha256": "E8596471143FEC06F53CA12AB49DF6A0FDAEA6CE9898BF2E347630909CCCEBAF"
+    },
+    {
+      "id": "6.6.6.6.03.6.6.p0.012",
+      "path": "6.6/03-机制与特效/复刻版6.6山贼P0-012资源同步与结算补证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "复刻版6.6山贼 P0-012 资源同步与结算补证",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-012资源同步与结算补证.md"
+      ],
+      "related": [],
+      "sha256": "CCF6C2E28C2727C5ABE8B725B792BC2B3C03071B9556E32BB3AF4593E5637CCE"
+    },
+    {
+      "id": "6.6.6.6.03.6.6.p0.013",
+      "path": "6.6/03-机制与特效/复刻版6.6山贼P0-013资源继承与多目标结算补证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "复刻版6.6山贼 P0-013 资源继承与多目标结算补证",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/复刻版6.6山贼P0-013资源继承与多目标结算补证.md"
+      ],
+      "related": [],
+      "sha256": "943B5F20690C73D96FD694ECAC4A7A7F27783177A65B1034943943BCE00EEE56"
+    },
+    {
+      "id": "6.6.6.6.03.6.6",
+      "path": "6.6/03-机制与特效/复刻版6.6山贼状态与更新记录核对.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "mechanics-effects",
+      "title": "复刻版6.6山贼状态与更新记录核对",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/03-机制详解/复刻版6.6山贼状态与更新记录核对.md"
+      ],
+      "related": [],
+      "sha256": "4098FC937AF8D6FC2C02B3EDFE27D2248DC4B3CC4060FFA8BBB45B31E2EEEBDC"
+    },
+    {
+      "id": "6.6.6.6.04.6.6",
+      "path": "6.6/04-函数速查/复刻版6.6山贼函数静态目录.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "function-reference",
+      "title": "复刻版6.6山贼函数静态目录",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [
+        "工具整合包/本地知识库/04-函数速查/复刻版6.6山贼函数静态目录.md"
+      ],
+      "related": [],
+      "sha256": "386EE9EFF67B53A96CCACA259FDD7FF7748F1672D535CF2C2B2A423CBF015D62"
+    },
+    {
+      "id": "6.6.6.6.06.03.6.6",
+      "path": "6.6/06-工具与验证/03-6.6布局变体.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "data-manager",
+      "title": "6.6 布局变体",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "data管理器/知识库/03-6.6布局变体.md"
+      ],
+      "related": [],
+      "sha256": "6EA26BEBB0088604324632FBA58E6B087F6CFCC31F571C24C089AE3E3391A435"
+    },
+    {
+      "id": "6.6.6.6.06.6.6",
+      "path": "6.6/06-工具与验证/6.6信奈与烈焰加速兼容差异.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "version-external",
+      "title": "6.6 信奈与烈焰加速兼容差异",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/09-版本与外部资料/6.6信奈与烈焰加速兼容差异.md"
+      ],
+      "related": [],
+      "sha256": "659427CD85436440AF138686CE14244710623E123F17DCABB116EBDEAC884ECC"
+    },
+    {
+      "id": "6.6.6.6.06.pl.6.6",
+      "path": "6.6/06-工具与验证/PL天气补丁迁移与复刻版6.6山贼实现方案.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "tools-validation",
+      "title": "PL 天气补丁迁移与复刻版 6.6 山贼实现方案",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/PL天气补丁迁移与复刻版6.6山贼实现方案.md"
+      ],
+      "related": [],
+      "sha256": "F441D724FE7484CA112457CD19A8E2E05DE64909086BEB222C18499780ED5D32"
+    },
+    {
+      "id": "6.6.6.6.06.star6.6.cmf",
+      "path": "6.6/06-工具与验证/Star6.6引擎CMF人工地址清单.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "version-external",
+      "title": "Star6.6 引擎 CMF 人工地址清单",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/09-版本与外部资料/Star6.6引擎CMF人工地址清单.md"
+      ],
+      "related": [],
+      "sha256": "B44B3A3F6F9DF2082BD7145656448BC4A8B9B42EF321EBF78150D3AB024086D3"
+    },
+    {
+      "id": "6.6.6.6.06.6.6",
+      "path": "6.6/06-工具与验证/复刻版6.6山贼基底身份与静态分析总览.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "version-external",
+      "title": "复刻版6.6山贼基底身份与静态分析总览",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/09-版本与外部资料/复刻版6.6山贼基底身份与静态分析总览.md"
+      ],
+      "related": [],
+      "sha256": "9FE45E75B56DFDF36A4C10C964CF88840517786E77A1D86E0CE4DF22017E317E"
+    },
+    {
+      "id": "6.6.6.6.06.6.6",
+      "path": "6.6/06-工具与验证/曹操传6.6扳手适配与自动回归验证.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "tools-validation",
+      "title": "曹操传 6.6 扳手适配与自动回归验证",
+      "status": "canonical",
+      "evidenceLevel": "local-or-test-evidence",
+      "sourceRefs": [
+        "工具整合包/本地知识库/06-项目与工具链/曹操传6.6扳手适配与自动回归验证.md"
+      ],
+      "related": [],
+      "sha256": "214CC58DC591F985110659C579FA6954FEE737865BB7F124AFB9E65758A8D03D"
+    },
+    {
+      "id": "6.6.6.6.90.readme",
+      "path": "6.6/90-来源索引/README.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "general",
+      "title": "6.6 来源索引",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "1338E496C2BF4CA6AAD636E5E432759B941847A056DC0B6CD7F44557FA6BAFEA"
+    },
+    {
+      "id": "6.6.6.6.readme",
+      "path": "6.6/README.md",
+      "version": [
+        "6.6"
+      ],
+      "topic": "general",
+      "title": "6.6",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "B23AB6C0D53281538D93882F1C89C0A1409AD7BCE4CBDDFFDD054736BBE4FE61"
+    },
+    {
+      "id": "archive.90.corrections",
+      "path": "90-来源归档/corrections.md",
+      "version": [
+        "archive"
+      ],
+      "topic": "general",
+      "title": "纠错台账",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "6D2000269FDD57F9E9F25A018BAC4F66B691D32F11195F1735128188110EC023"
+    },
+    {
+      "id": "archive.90.excluded.sources",
+      "path": "90-来源归档/excluded-sources.md",
+      "version": [
+        "archive"
+      ],
+      "topic": "general",
+      "title": "排除来源",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "F849BE556D0928717F10A75C8CE0C5BA87A5E428743356F730BBFDA83C6BC06E"
+    },
+    {
+      "id": "archive.90.migration.map",
+      "path": "90-来源归档/migration-map.md",
+      "version": [
+        "archive"
+      ],
+      "topic": "general",
+      "title": "迁移映射",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "C7A92FDC89675B53C9E1DA2828AD4CBC3C58BA18402BE9456A8EDB41EB4699EA"
+    },
+    {
+      "id": "shared.contributing",
+      "path": "CONTRIBUTING.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "贡献规范",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "44CFBAEA09FABD850CAA4A105DF716D90DBDE6AA72683EED1780A01FCEF2E0F3"
+    },
+    {
+      "id": "shared.llms",
+      "path": "llms.txt",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "CCZ MOD Knowledge Base",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "E6112F14EEDD255C464C8904E1684229C0F0280F692244757B07F6962B5F4C10"
+    },
+    {
+      "id": "shared.notice",
+      "path": "NOTICE.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "来源与使用说明",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "D5C6DFECE1678E4FD5C68603480AD77191F49EC579C49CEDB6F3D511CFFB5A13"
+    },
+    {
+      "id": "shared.readme",
+      "path": "README.md",
+      "version": [
+        "shared"
+      ],
+      "topic": "general",
+      "title": "曹操传 MOD 多版本知识库",
+      "status": "canonical",
+      "evidenceLevel": "source-reviewed",
+      "sourceRefs": [],
+      "related": [],
+      "sha256": "D5427774A142805EA1FA5CAE7582CDCB291DBD9CFCA3D4CCFE89CBF8C31CF8B7"
+    }
+  ]
+}

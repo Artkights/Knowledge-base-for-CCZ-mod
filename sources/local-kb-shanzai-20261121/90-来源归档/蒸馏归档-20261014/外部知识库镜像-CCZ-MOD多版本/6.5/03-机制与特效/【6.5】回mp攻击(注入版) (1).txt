@@ -1,0 +1,34 @@
+﻿<!-- generated-kb-entry -->
+<!-- source: 特效整理/6.5/【6.5】回mp攻击(注入版) (1).txt -->
+<!-- version: 6.5 -->
+<!-- topic: mechanics-effects -->
+<!-- status: canonical -->
+<!-- evidence: source-reviewed -->
+
+#【回mp攻击】:物理攻击后获得当前伤害乘特效值的mp。
+
+.1.0.6.5
+o
+
+-418335
+E9 C2 A5 03 00
+
+-4528FC
+8B 4D AC 6A 00 6A 01 6A 00 68 AD 00 00 00 E8 CA D8 FB FF 85 C0 74 67 8B 4D 08 36 8B 89 84 00 00
+00 83 F9 00 74 58 50 51 E8 B0 31 FD FF 8B 4D A4 E8 5E 3C FB FF 0F B7 49 1F 8B 55 A4 36 8B 52 14
+2B CA 3B C1 7F 02 EB 02 8B C1 8B D0 6B D2 02 8B C8 2B CA 8B 55 08 50 6A 00 6A 00 6A 00 6A 00 51
+6A 00 FF 32 FF 32 B9 00 01 00 00 E8 1A E0 FF FF 8B 95 34 FF FF FF 8B 45 D4 36 01 42 14 59 8B 45
+F4 85 C0 E9 B6 59 FC FF
+
+#回mp攻击宝物号
+-452904
+00
+
+#回mp攻击个人号
+-452906
+AD
+
+## 版本与证据边界
+
+- 本条目由发布整理流程归档。
+- 具体结论必须结合上方版本、状态和证据等级使用。

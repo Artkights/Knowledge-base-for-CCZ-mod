@@ -1,0 +1,26 @@
+﻿<!-- generated-kb-entry -->
+<!-- source: 特效整理/6.6/6.6冥想回蓝百分比（注入版）.txt -->
+<!-- version: 6.6 -->
+<!-- topic: mechanics-effects -->
+<!-- status: canonical -->
+<!-- evidence: source-reviewed -->
+
+#【6.6冥想回蓝百分比】：按百分比回蓝
+
+.1.0.6.6
+o
+
+-41E3FD
+E9 1B 67 00 00 90
+
+-424B1D
+51 52 8B 0D FC 7A 49 00 E8 65 27 FE FF 51 6A 32 E8 A7 0F 00 00 5A 59 8A D0 F7 DA E9 D2 98 FF FF
+
+#回蓝百分比（注意这里填的16进制，32即为10进制的50）
+-424B2C
+32
+
+## 版本与证据边界
+
+- 本条目由发布整理流程归档。
+- 具体结论必须结合上方版本、状态和证据等级使用。

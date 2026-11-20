@@ -1,0 +1,22 @@
+﻿[
+  {"query":"给这个经典战棋引擎加一个受击后反击的效果，先帮我确认原生流程和适合插入的位置。","should_trigger":true},
+  {"query":"我想把参考版本里的特技移到自己的引擎，两个版本地址不一样，怎么确认哪些部分能复用？","should_trigger":true},
+  {"query":"这个状态攻击的说明写了随机施加异常，能否先从说明和代码流确认每个类别怎么落到单位状态字段？","should_trigger":true},
+  {"query":"补丁打完一启动就退出，先保留现场，帮我按调用约定、覆盖范围和启动阶段排查。","should_trigger":true},
+  {"query":"我改了一个 x86 hook，跳回原流程后栈不平衡；请帮我逐条看命中和未命中路径。","should_trigger":true},
+  {"query":"旧版补丁看起来能实现我想要的伤害加成，但新引擎有额外门控，我该怎么验证迁移条件？","should_trigger":true},
+  {"query":"不准备改游戏，我只是想逆向追一下某个能力值从哪读取、最后加到哪一步伤害计算。","should_trigger":true},
+  {"query":"生成的补丁偶尔覆盖相邻模块；帮我检查相对跳转、块长度断言和可回滚流程。","should_trigger":true},
+  {"query":"两个 build 的同一个效果行为不一样，我怀疑返回值解释错了，想沿调用者追到最终消费者。","should_trigger":true},
+  {"query":"这项新机制已经有候选补丁了，帮我列出静态、运行时、启动和游戏内分别要验收什么。","should_trigger":true},
+  {"query":"帮我把这份特技说明翻译成日文，保持技能名称统一。","should_trigger":false},
+  {"query":"我只想给地图换一张树林图片，地图编辑器里应该怎么导入？","should_trigger":false},
+  {"query":"把这张武将头像改成像素风，保留透明背景。","should_trigger":false},
+  {"query":"我有一段普通 Python 排序代码很慢，帮我优化算法复杂度。","should_trigger":false},
+  {"query":"请检查公开知识库中有没有引擎文件、图片素材或本地路径。","should_trigger":false},
+  {"query":"能否总结一下这个论坛帖子里介绍的古早战棋游戏玩法？我不需要改程序。","should_trigger":false},
+  {"query":"我想设计一个新职业的技能树和数值成长，只讨论玩法，不涉及现有引擎实现。","should_trigger":false},
+  {"query":"帮我整理一份游戏平衡性调查问卷，并润色问题措辞。","should_trigger":false},
+  {"query":"对比这两个补丁文本的字节差异，暂时只要报告，不要分析引擎语义或验证行为。","should_trigger":false},
+  {"query":"我需要一个通用的 C++ 窗口程序按钮，不涉及游戏二进制文件或反汇编。","should_trigger":false}
+]

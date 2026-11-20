@@ -1,0 +1,37 @@
+﻿<!-- generated-kb-entry -->
+<!-- source: 特效整理/6.6/【star6.6】无视策略减伤.txt -->
+<!-- version: 6.6 -->
+<!-- topic: mechanics-effects -->
+<!-- status: canonical -->
+<!-- evidence: source-reviewed -->
+
+.1.0.6.6
+o
+
+#无视【减少策略伤害X%】的效果
+
+-43C22A
+90 90 90 90 90 90 90 90 90 90 90 90
+
+-43C242
+8B 4D F0 E8 73 9B FC FF 85 C0 0F 84 90 0E 00 00 EB 18
+
+-43c266
+0F 84 76 0E 00 00 E9 65 0E 00 00 90 90 90
+
+-43D0D6
+50 FF 75 FC E8 FA 89 FE FF 01 45 FC 6A 01 6A 01 6A 00 68 EF 00 00 00 8B 4D F0 E8 E4 30 FD FF 85
+C0 0F 84 74 F1 FF FF E9 9E F1 FF FF
+
+#（宝物号#16进制）
+-43D0E7
+00
+
+#（特技号#16进制）
+-43D0E9
+EF
+
+## 版本与证据边界
+
+- 本条目由发布整理流程归档。
+- 具体结论必须结合上方版本、状态和证据等级使用。
