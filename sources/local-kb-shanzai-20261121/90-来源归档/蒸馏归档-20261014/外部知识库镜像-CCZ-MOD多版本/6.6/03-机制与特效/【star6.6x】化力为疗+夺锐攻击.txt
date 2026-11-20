@@ -1,0 +1,53 @@
+﻿<!-- generated-kb-entry -->
+<!-- source: 特效整理/6.6/【star6.6x】化力为疗+夺锐攻击.txt -->
+<!-- version: 6.6 -->
+<!-- topic: mechanics-effects -->
+<!-- status: canonical -->
+<!-- evidence: source-reviewed -->
+
+.1.0.6.6
+o
+
+#化力为疗：特效值的概率将伤害转化为自身回复（概率默认伪随机）
+#夺锐攻击：将敌人身上的buff变为自己的，如果敌人没有buff，则随机给其施加debuff
+
+-405AA1
+52 E8 AD 72 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 5A E8 42 72 00 00
+
+
+-40CD00
+55 8B EC 6A 00 52 6A 00 6A 00 FF 75 20 FF 75 24 8B 4D 2C FF 31 FF 71 01 8B 4D 08 E8 66 3C 04 00
+8B E5 5D C3 55 8B EC 6A 00 6A 01 68 57 00 00 00 68 C0 00 00 00 E8 9F 34 00 00 5D C3 55 8B EC 6A
+00 6A 01 68 00 00 00 00 68 C1 00 00 00 E8 87 34 00 00 5D C3 55 8B EC FF 75 1C FF 75 28 E8 9E 01
+00 00 89 45 28 FF 75 1C FF 75 18 E8 EC 01 00 00 8B E5 5D C3
+
+-40CF00
+55 8B EC 8B 4D 0C E8 19 FE FF FF 85 C0 74 44 50 33 C0 B9 F5 1B 50 00 E8 09 8F 04 00 59 3B C1 77
+32 8B 4D 0C E8 D7 E5 00 00 3B 45 08 74 25 50 8B 4D 0C E8 58 96 FF FF E8 27 A3 FF FF 59 2B C1 8B
+4D 08 3B C1 72 08 6B C9 02 29 4D 08 EB 05 03 C1 29 45 08 8B 45 08 8B E5 5D C2 08 00 55 8B EC 6A
+00 6A 00 6A 01 8B 4D 08 E8 CF FD FF FF 85 C0 74 7F 8B 55 0C 8B 45 FC 3C 06 74 26 8A 4A 18 80 F9
+03 76 15 8B 45 F4 01 45 F8 8B 4D 0C 52 6A 00 FF 75 FC E8 8A C8 FF FF 5A D1 65 F4 42 FF 45 FC EB
+D3 83 7D F8 00 74 27 33 C0 40 89 45 FC 8B 45 FC 3C 06 77 3C F6 45 F8 01 74 0C 8B 4D 08 48 6A 01
+50 E8 5B C8 FF FF FF 45 FC D1 6D F8 EB DF 8B 4D 0C E8 7D 5C 06 00 85 C0 8B 4D 0C 8B 45 08 0F 45
+C8 6A 06 E8 2B 2B 07 00 6A 00 50 E8 31 C8 FF FF 8B E5 5D C2 08 00
+
+#化力为疗 宝物
+-40CD2C
+57
+
+#化力为疗 特技
+-40CD31
+C0
+
+#夺锐攻击 宝物
+-40CD44
+00
+
+#夺锐攻击 个人
+-40CD49
+C1
+
+## 版本与证据边界
+
+- 本条目由发布整理流程归档。
+- 具体结论必须结合上方版本、状态和证据等级使用。
