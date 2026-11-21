@@ -96,6 +96,20 @@
 
 同一事实只存在一个实体。版本差异用独立画像或独立实体表达；别名进入 `aliases`，旧路径进入清理/迁移记录。不要复制 Markdown 形成“另一个版本”。
 
+### 4.1 来源快照导入与文本扫描
+
+本地知识库快照统一使用 `tools/import_local_kb_snapshot.py`：
+
+```text
+python -B tools/import_local_kb_snapshot.py --audit --source <相对路径>
+python -B tools/import_local_kb_snapshot.py --apply --source <相对路径> --snapshot-prefix sources/<名称> --date YYYY-MM-DD
+python -B tools/import_local_kb_snapshot.py --check
+```
+
+`--audit` 只读输出覆盖报告，存在未登记文本文件时返回非 0；`--apply` 生成净化快照、回执、覆盖报告和清单片段；`--check` 校验快照哈希与清单条目。
+
+文本扫描覆盖 `.md`、`.txt`、`.json`、`.py`、`.csv`、`.htm`、`.html`，以及文件名含 `.bak_` 的快照。所有文本必须为 UTF-8/LF；盘符前缀掩为 `[本地盘]`，类 Unix 用户目录掩为 `[用户目录]`。禁扩展名（doc/docx/xls/xlsx/rar/zip/7z 等）不提交原件，登记 `external-local` 或 `identity-only` 的 SHA256 与 `reason`。
+
 ## 5. 本地验收
 
 依次运行：
@@ -119,6 +133,8 @@ git diff --check
 - `repository-snapshot`：`snapshotPath` 是仓库内安全相对路径，`sha256` 对应快照真实字节；若是派生快照而非原字节，必须在 `reason` 说明差别。
 - `remote-git`：提供 HTTPS `repository`、完整 40 位 `commit`、仓库相对 `path` 和原始 `sha256`。本地及 CI 离线校验固定提交元数据，不声称本次已联网取得原文。
 - `external-local` 或 `identity-only`：必须在 `reason` 说明未发布、无法取得原字节或仅保存样本身份的限制。
+
+所有会被哈希的文本格式在 `.gitattributes` 中使用 `-text`，防止 Windows `core.autocrlf` 改变字节；干净克隆必须在 CRLF/LF 两种检出配置下通过 `validate_kb.py`。
 
 路径必须使用正斜线，不得包含绝对路径、盘符或 `..`。来源存在不等于已验证玩法；静态、工具层烟测和游戏内运行验收必须分别表述。EXE、DLL 和游戏基底只登记身份及哈希。
 

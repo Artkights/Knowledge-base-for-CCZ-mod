@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "analysis": "consumable-domain-160-511-and-tool-upper-bounds",
+  "date": "2026-11-16",
+  "method": "只读核对三基底与新改/烈焰/单EXE的 Ekd5.exe、Data.e5、Star.e5 长度与 SHA256；按物品表 +0x12==3 与名称统计有效消耗品行；核对 0x493AF0/0x510C80/0x750000 计数数组与 0x408E96 的 0..0x15F 枚举；同时审查 Python 扳手与 data管理器 的消耗品上界。未运行游戏、未写回。",
+  "samples": [
+    {
+      "version": "6.4",
+      "label": "洗隋",
+      "engine": "基底/洗隋/Ekd5.exe",
+      "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+      "dataLength": 61379,
+      "dataSha256": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF",
+      "starLength": 6359,
+      "starSha256": "4A201ECC0FA3C315DA077615DE7AE4A90EF4CC61E5D94F119841F906EE4FCD15",
+      "consumableSlots": "150..254",
+      "slotCount": 105,
+      "validConsumableRows": 105,
+      "countArray": "0x510C80 / 105 bytes"
+    },
+    {
+      "version": "6.5",
+      "label": "加强版6.5未加密版（本地改后态）",
+      "engine": "基底/加强版6.5未加密版/加强版6.5未加密版/Ekd5.exe",
+      "engineSha256": "5BDC78F864340D987F5E354807EBB172652D4AEFEE3D2A61F82C3A20376B5DC9",
+      "dataLength": 61379,
+      "dataSha256": "AD3D59403144B67A5584FFA3D5FE685E030D300B60094C74F0A4884E3729D94E",
+      "starLength": 6359,
+      "starSha256": "2F357A35E4E9A40493E7AAFC154BF1FB0FAE4DA35BD06D43F460A8B9D2CE6C69",
+      "consumableSlots": "150..254",
+      "slotCount": 105,
+      "validConsumableRows": 25,
+      "validRange": "150..174；175..254 为空闲",
+      "countArray": "0x510C80 / 105 bytes"
+    },
+    {
+      "version": "6.6",
+      "label": "复刻版6.6山贼",
+      "engine": "基底/复刻版6.6山贼/Ekd5.exe",
+      "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A",
+      "dataLength": 61379,
+      "dataSha256": "C4B57DD0A9DC3EF2A7FE4D6A36EEAF0F7EDEA06BF2F6407B1A8AE3252E5807CE",
+      "starLength": 6359,
+      "starSha256": "0F196332ECF2E845EA1D93AC2E7762DAADBACC0EBF802CCE697BB1C06BAE6EB9",
+      "consumableSlots": "160..511",
+      "slotCount": 352,
+      "validConsumableRows": 95,
+      "validRange": "160..254；255=FF-End；256..511 为计数槽（无物品行）",
+      "countArray": "0x493AF0 / 352 bytes"
+    },
+    {
+      "version": "6.6",
+      "label": "新改曹操傳6.6修正版",
+      "engine": "基底/新改曹操傳6.6修正版/Ekd5.exe",
+      "engineSha256": "4A4FD8DDBF83E5F0B769D1B97BF8F6E6431C3AB42892024A354228212D3D06A4",
+      "dataLength": 61379,
+      "dataSha256": "8B89067B87265277B1EB872569A14F67D158D1E37B4032F6E7460806EF5743BF",
+      "starLength": 6359,
+      "starSha256": "991E2032C87C000FA66F34C5D85F90932057E00EC8E60FCDA9F21430D64E1822",
+      "consumableSlots": "160..511",
+      "slotCount": 352,
+      "validConsumableRows": 96,
+      "validRange": "160..255；255 为实名道具；256..511 为计数槽",
+      "countArray": "0x493AF0 / 352 bytes"
+    },
+    {
+      "version": "6.6",
+      "label": "烈焰同盟6.6x(新修版)黄线完结+红线5关",
+      "engine": "基底/烈焰同盟6.6x(新修版)黄线完结+红线5关/Ekd5.exe",
+      "engineSha256": "D4C6EA15A527C62283CAEADEFAC112109D0B5D63D66AD25BE1D1FD2413EF6EE2",
+      "dataLength": 61379,
+      "dataSha256": "AF8CE2DB83AA018A18534FB47C87AF5307F6FB4F7A3E49F636F1BDA8D3AA52C2",
+      "starLength": 10200,
+      "starSha256": "6FBF137C9D2F5CB9884747B59FE5D82A68096B34B762E65496E2BF1ABB7AC3C9",
+      "consumableSlots": "160..511",
+      "slotCount": 352,
+      "validConsumableRows": 351,
+      "validRange": "160..510；511=新扩充1FF",
+      "countArray": "0x493AF0 / 352 bytes"
+    },
+    {
+      "version": "6.6-single-exe",
+      "label": "单EXE扩展6.6（基底Ekd5）",
+      "engine": "基底/Ekd5.exe",
+      "engineSize": 6200832,
+      "engineSha256": "719F710687CAE4BAEC2B3A4B028B473EA8AEB334A7ACFA6A692B46F207B5CDF8",
+      "consumableSlots": "256..511",
+      "slotCount": 256,
+      "countArray": "0x750000 / 256 bytes",
+      "validConsumableRows": "由运行时物品目录决定"
+    }
+  ],
+  "engineEvidence": {
+    "standard66": {
+      "countArray": "0x493AF0",
+      "indexBase": "0xA0 (160)",
+      "span": "0x160 (352)",
+      "enumeration": "0x408E96 loop 0..0x15F covers item IDs 0xA0..0x1FF (160..511)",
+      "clearPattern": "33 C0 99 66 3D 60 01 73 09 ... (cmp 0x160, clear 352 bytes)",
+      "conclusion": "The engine count domain is 160..511. The old tool-side 160..199 (40 items) is a UI cap, not an engine limit."
+    },
+    "legacyExpanded": {
+      "countArray": "0x510C80",
+      "indexBase": "0x96 (150)",
+      "span": "105 bytes",
+      "conclusion": "6.4/6.5 count domain is 150..254; slot count 105 does not mean 105 valid item rows."
+    },
+    "singleExe": {
+      "countArray": "0x750000",
+      "indexBase": "0x100 (256)",
+      "span": "256 bytes",
+      "conclusion": "Single-EXE consumable counts are 256..511."
+    }
+  },
+  "toolAudit": {
+    "pythonWrench": {
+      "before": "CONSUMABLE_ID_MAX_66=199 and standard ui_item_ids=range(160,200); consumable page capped at 199.",
+      "after": "standard-66-352-v1 with 160..511 (352 slots); 6.4/6.5 keep 150..254 (105); single-exe keeps 256..511 (256); empty slots labelled 空闲."
+    },
+    "dataManager": {
+      "itemEditor": "items-low/high/extended already cover 0..511; no 160..199 cap.",
+      "forgeBefore": "ExtendForgeSlot.IsConsumable and Forge UI used 256..510, excluding valid 511.",
+      "forgeAfter": "256..511 inclusive.",
+      "itemCatalogBefore": "EngineGrowth ItemCatalog.Load read only 151 Star rows (104..254); TransformManager/ScanVerifier could not see 255 or 256..511.",
+      "itemCatalogAfter": "Reads 151 base rows, real row 255, and the 256..511 Star extension when Star.e5 >= 10200 or row 255 is a real name; 6359-byte FF-End stars remain at 254.",
+      "effectNameProbe": "EffectNamePoolProbe now rejects a full 15-byte name with a non-zero suffix byte, matching the documented name-slot contract."
+    }
+  },
+  "corrections": [
+    "旧文档/测试中的“标准 6.6 消耗品 160..199 / 40 项”是工具历史上限，已废除；引擎计数数组为 160..511 / 352 槽。",
+    "0x493AF0 的索引域已确定为 0xA0..0x1FF（160..511），不再是“未定名”。",
+    "6.4/6.5 的 105 槽是计数数组容量；6.5 加强版仅 25 行有效消耗品，槽数不等于有效行数。",
+    "旧 Python 源码快照 207fc77fe3ee510a54f9.txt 中的“标准40项”仅代表当时工具上限，已被本轮证据取代；历史快照不修改原文。"
+  ],
+  "limitations": [
+    "未运行游戏对照；有效消耗品行按物品表 +0x12==3 与名称非空统计。",
+    "单 EXE 的有效消耗品名依赖运行时物品目录，未在无资源环境验证。",
+    "本地加强版6.5 的 Ekd5 SHA 与知识库 3EF71541 样本不同，布局结论按本地样本实测。",
+    "data_manager 的 ItemCatalog 扩展读取未覆盖 Item.e5 扩展源；本轮只修 Star.e5 扩展门禁。"
+  ]
+}

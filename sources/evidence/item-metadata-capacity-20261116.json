@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "analysis": "item-metadata-capacity-and-star-extension-gate",
+  "date": "2026-11-16",
+  "method": "只读核对三基底 Data.e5/Star.e5/Ekd5.exe 长度与 SHA256，读取 Star.e5 第 255 行名称，按 engine-item-loader-64-parser 的 104+152/104+408 拼接规则计算物理槽位；用 data管理器 ExtendedItemLayoutProbe 的完整文件/实名255 门禁判断 6.6 扩展；同时核对 Python 扳手 profile 的 item_count/item_record_count/extensionActive。未运行游戏、未修改游戏文件。",
+  "samples": [
+    {
+      "version": "6.4",
+      "label": "洗隋",
+      "engine": "基底/洗隋/Ekd5.exe",
+      "engineSize": 1162240,
+      "engineSha256": "91121D4B5F7FBB987475943A590B76308C0DDB8B6BCD17C218EEDC6568CE2AD8",
+      "dataLength": 61379,
+      "dataSha256": "EC884CD967C62DDC54BA58B14CD8500B20FB1814CC467B9CC5A92270091E91CF",
+      "starLength": 6359,
+      "starSha256": "4A201ECC0FA3C315DA077615DE7AE4A90EF4CC61E5D94F119841F906EE4FCD15",
+      "row255Name": "FF-End",
+      "firstItem": "饰剑",
+      "recordCount": 256,
+      "validCount": 255,
+      "extensionActive": false,
+      "reason": "split-256"
+    },
+    {
+      "version": "6.5",
+      "label": "加强版6.5未加密版（本地改后态）",
+      "engine": "基底/加强版6.5未加密版/加强版6.5未加密版/Ekd5.exe",
+      "engineSize": 1213440,
+      "engineSha256": "5BDC78F864340D987F5E354807EBB172652D4AEFEE3D2A61F82C3A20376B5DC9",
+      "dataLength": 61379,
+      "dataSha256": "AD3D59403144B67A5584FFA3D5FE685E030D300B60094C74F0A4884E3729D94E",
+      "starLength": 6359,
+      "starSha256": "2F357A35E4E9A40493E7AAFC154BF1FB0FAE4DA35BD06D43F460A8B9D2CE6C69",
+      "row255Name": "FF-End",
+      "firstItem": "短剑",
+      "recordCount": 256,
+      "validCount": 255,
+      "extensionActive": false,
+      "reason": "split-256",
+      "note": "本地 Ekd5 SHA 与知识库样本 3EF71541803689338D40AFD86D1D34F1E74E1A02EDA29A204A40F3F95EC547ED（1213440 字节）不同；Data/Star 与本条一致。地址与布局按本地样本实测，不把样本身份当作本地身份。"
+    },
+    {
+      "version": "6.6",
+      "label": "复刻版6.6山贼",
+      "engine": "基底/复刻版6.6山贼/Ekd5.exe",
+      "engineSize": 1148928,
+      "engineSha256": "25D488C874A08553903CDAD9A07FF6FBCD1A38EE6C6B6386F40152DA963D833A",
+      "dataLength": 61379,
+      "dataSha256": "C4B57DD0A9DC3EF2A7FE4D6A36EEAF0F7EDEA06BF2F6407B1A8AE3252E5807CE",
+      "starLength": 6359,
+      "starSha256": "0F196332ECF2E845EA1D93AC2E7762DAADBACC0EBF802CCE697BB1C06BAE6EB9",
+      "row255Name": "FF-End",
+      "firstItem": "铁剑",
+      "recordCount": 256,
+      "validCount": 255,
+      "extensionActive": false,
+      "reason": "star-extension-inactive-sentinel"
+    },
+    {
+      "version": "6.6",
+      "label": "新改曹操傳6.6修正版",
+      "engine": "基底/新改曹操傳6.6修正版/Ekd5.exe",
+      "engineSize": 1130496,
+      "engineSha256": "4A4FD8DDBF83E5F0B769D1B97BF8F6E6431C3AB42892024A354228212D3D06A4",
+      "dataLength": 61379,
+      "dataSha256": "8B89067B87265277B1EB872569A14F67D158D1E37B4032F6E7460806EF5743BF",
+      "starLength": 6359,
+      "starSha256": "991E2032C87C000FA66F34C5D85F90932057E00EC8E60FCDA9F21430D64E1822",
+      "row255Name": "升級寶物符",
+      "firstItem": "短剑",
+      "recordCount": 256,
+      "validCount": 256,
+      "extensionActive": false,
+      "reason": "star-real-255-short",
+      "note": "255 行为实名道具，故 6.6 归一化域包含 255；但 Star.e5 仅 6359 字节，3800 之后仍是填充，不构成 256..511 扩展。"
+    },
+    {
+      "version": "6.6",
+      "label": "烈焰同盟6.6x(新修版)黄线完结+红线5关",
+      "engine": "基底/烈焰同盟6.6x(新修版)黄线完结+红线5关/Ekd5.exe",
+      "engineSize": 1173504,
+      "engineSha256": "D4C6EA15A527C62283CAEADEFAC112109D0B5D63D66AD25BE1D1FD2413EF6EE2",
+      "dataLength": 61379,
+      "dataSha256": "AF8CE2DB83AA018A18534FB47C87AF5307F6FB4F7A3E49F636F1BDA8D3AA52C2",
+      "starLength": 10200,
+      "starSha256": "6FBF137C9D2F5CB9884747B59FE5D82A68096B34B762E65496E2BF1ABB7AC3C9",
+      "row255Name": "天工开物",
+      "row511Name": "新扩充1FF",
+      "firstItem": "单手剑",
+      "recordCount": 512,
+      "validCount": 512,
+      "extensionActive": true,
+      "reason": "star-extension-complete"
+    }
+  ],
+  "gate": {
+    "baseSlots": {
+      "6.4": "Data.e5 104 + Star.e5 152 = 256 物理槽；有效 0..254，255=FF-End 哨兵",
+      "6.5": "Data.e5 104 + Star.e5 152 = 256 物理槽；有效 0..254，255=FF-End 哨兵",
+      "6.6": "Data.e5 104 + Star.e5 152 = 256 物理槽；归一化循环 0..0x1FF"
+    },
+    "extension": {
+      "file": "Star.e5",
+      "offset": "0xED8 (3800)",
+      "rows": 256,
+      "ids": "256..511",
+      "bytes": "0x1900 (6400)",
+      "activeWhen": "Star.e5 >= 0x27D8 (10200, 408 行) 时为完整扩展；6359 字节文件即使第 255 行为实名，也只把 255 纳入物品域，3800 之后的 0/空格填充不当作扩展",
+      "inactiveReason": "shipped 6359 字节 Star.e5 在第 255 行 FF-End 后是 0/空格填充；C# ExtendedItemLayoutProbe 与 Python 扳手均不把它读成道具"
+    }
+  },
+  "staticCompare": {
+    "starReadCapacity": {"6.4": "0x1022", "6.5": "0xED8", "6.6": "0x27D8"},
+    "starRecords": {"6.4": 152, "6.5": 152, "6.6": 408},
+    "normalizedLoops": {"6.4": "0..0xFE", "6.5": "0..0xFE", "6.6": "0..0x1FF"},
+    "singleExe": {
+      "engine": "基底/Ekd5.exe",
+      "engineSize": 6200832,
+      "engineSha256": "719F710687CAE4BAEC2B3A4B028B473EA8AEB334A7ACFA6A692B46F207B5CDF8",
+      "initializer": "0x4010B0 push 0x200（512 行）",
+      "starLoader": "0x451313 读取 0x27D8 字节，目标 = 物品基址 + 0xA28",
+      "consumables": "ID 256..511，数量区 0x750000，256 个 UInt8"
+    }
+  },
+  "conclusions": [
+    "物品元数据读取必须按基底决定记录数：6.4/6.5 物理 256 行、有效 0..254；6.6 默认物理 256 行，仅完整 Star.e5(10200) 启用 512 行。",
+    "6.6 的 255 行是否为实名只影响 255 是否进入物品域，不单独证明 256..511 扩展；扩展证据必须是完整 10200 字节 Star.e5。",
+    "三基底（洗隋/加强版6.5/山贼6.6）的 512 扩展均未启用；烈焰同盟6.6x 的 10200 字节 Star 可读到 ID 511（新扩充1FF）。",
+    "人物装备、仓库三字节行等一字节字段仍只允许 0..255；扩展 ID 只能进入元数据/独立消耗品域，不得写入一字节字段。",
+    "Python 扳手按 item_count=有效域、item_record_count=物理行数分离；6.5 本地样本 SHA 与知识库样本不同，需保留本地实测身份。"
+  ],
+  "limitations": [
+    "未运行游戏对照；结论来自磁盘文件、既有反汇编证据和 C# 扩展探针规则。",
+    "烈焰同盟6.6x 仅验证磁盘 512 行可读，未验证游戏内 256..511 的实际使用。",
+    "6.6 其它 6359 字节基底只验证到第 255 行；3800 之后的尾部字节未逐项定名。",
+    "本地加强版6.5 的 Ekd5 SHA 与知识库 3EF71541 样本不同，不能把该样本的地址集合直接当作本地身份。"
+  ]
+}

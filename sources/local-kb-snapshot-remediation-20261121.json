@@ -1,0 +1,724 @@
+{
+  "schemaVersion": 1,
+  "receiptType": "local-kb-snapshot-remediation",
+  "date": "2026-11-21",
+  "scope": "把 2026-11-21 快照中的全部文本文件统一为 UTF-8/LF，并掩去本机盘符/用户目录路径；修复原校验器扩展名盲区。",
+  "entries": [
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.36C8382F",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/(图文教程)OLLYDBG修改曹操传EXE实际操作演示 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "36C8382FEC58D953986413C1CDEF3FE7411F8E278E10049A0057AB44C11436E5",
+      "encoding": "gb18030",
+      "sanitizedSha256": "405344A9560882C150A299EC0D8319008307B5D0CE8ECFD6683B8B6491DA70B1",
+      "normalizedSha256": "405344A9560882C150A299EC0D8319008307B5D0CE8ECFD6683B8B6491DA70B1",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.833414D7",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/CCZ MOD美工之无双教程 - 风华录 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "833414D7785BD360CA9ADD4B740EDEB743DF8AED92200EB72B2AB5A1E1C6A503",
+      "encoding": "gb18030",
+      "sanitizedSha256": "242CE5CFA96A3FB0C20BA944C4BD38D9D692BD767B8171238FA6805EFB22E81B",
+      "normalizedSha256": "242CE5CFA96A3FB0C20BA944C4BD38D9D692BD767B8171238FA6805EFB22E81B",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.7C178040",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/EXE补充研究及修改 - 设计与修改 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "7C17804033655AFEACB2A5AAA5A0E50295E38D23EAB2A235C1D0366D7A16CCDC",
+      "encoding": "gb18030",
+      "sanitizedSha256": "E437CE1B476E6DFB0D2AAFF5CA9DADEF1C9AAD3012144429B9A70296DD8C2031",
+      "normalizedSha256": "E437CE1B476E6DFB0D2AAFF5CA9DADEF1C9AAD3012144429B9A70296DD8C2031",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.5AEA8C7C",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/DATA扩展类大攻略 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "5AEA8C7C0779636F5BDF88911D433CB13028A711DD2F8ED2123F47528AB75823",
+      "encoding": "gb18030",
+      "sanitizedSha256": "AA10246E5BB00594B7F7A40B6A6877616348F3DC435752906AB0F5818839D6C5",
+      "normalizedSha256": "AA10246E5BB00594B7F7A40B6A6877616348F3DC435752906AB0F5818839D6C5",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.B1D03714",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/HP回复类策略的计算 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "B1D03714CC1BB35326ACC5D909D50F576A090B9B793F967A2DFA395D8B8A6FA5",
+      "encoding": "gb18030",
+      "sanitizedSha256": "56EF90FA0F0F01AB4E6065CE082783BAAD0A7DA024A2C5FA81EB40B1603011F4",
+      "normalizedSha256": "56EF90FA0F0F01AB4E6065CE082783BAAD0A7DA024A2C5FA81EB40B1603011F4",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.771FFB72",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/Mcall文件的初步研究 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "771FFB7224155148C8AB58462F2E930317E3B401A8802E291A84F6F99871604A",
+      "encoding": "gb18030",
+      "sanitizedSha256": "CDA39479D0C4C1F443E1C80A6A51DDDA36A6DA734AB3B036579C079999C99AD0",
+      "normalizedSha256": "CDA39479D0C4C1F443E1C80A6A51DDDA36A6DA734AB3B036579C079999C99AD0",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.46A9BCCB",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/R单挑基本素材及示范剧本 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "46A9BCCB5030DB8A7C0144DE9D9F10D6057250C3BC4104E852EC0B49593647D9",
+      "encoding": "gb18030",
+      "sanitizedSha256": "7893BE25F481403F55680455631C313B7AC2F0C2A47709FA35DB4C841C9A7CB7",
+      "normalizedSha256": "7893BE25F481403F55680455631C313B7AC2F0C2A47709FA35DB4C841C9A7CB7",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.98464A9B",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/STAR175新引擎商店自动售出物品的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "98464A9B05C5098884BB2FD5E4BE3DF51869B5D619F39469F33F2E29581BFC4F",
+      "encoding": "gb18030",
+      "sanitizedSha256": "86B1DF248B7A8161822A45D85A9E7CBCD3C0C68B8E00AB1EBCD55EC313825DAC",
+      "normalizedSha256": "86B1DF248B7A8161822A45D85A9E7CBCD3C0C68B8E00AB1EBCD55EC313825DAC",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.E8CF80D9",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/godtype的最终引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "E8CF80D9767B1FDF9E0CED808FC7DCCC0E6C5A68C8E0A59614D6C502DFA9AA70",
+      "encoding": "gb18030",
+      "sanitizedSha256": "F3DA16333037DCDC909524C67D45C3C31F44CD6E242CF97A4FC722BCCB81F205",
+      "normalizedSha256": "F3DA16333037DCDC909524C67D45C3C31F44CD6E242CF97A4FC722BCCB81F205",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.65591318",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/【懒人福音】简易快速形象换色 - 风华录 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "65591318EEF06B4D2E8E0CFA6BEA04130B32D8510DFDA7229572BD1F96E6CE31",
+      "encoding": "gb18030",
+      "sanitizedSha256": "20455A816ECBCE43D2049427501A12A1C09ABACF24DE76199F129591BC9AACB5",
+      "normalizedSha256": "20455A816ECBCE43D2049427501A12A1C09ABACF24DE76199F129591BC9AACB5",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.16DEA4B0",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/【扫盲】关于每回合的天气变化 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "16DEA4B04146B30F304E5EE489F8012CB33567035BBA7D644CEA57D0C3A6449F",
+      "encoding": "gb18030",
+      "sanitizedSha256": "108A371CEF0863F42261C8419BF32AAA9F1BA7ACA333EF0BD9672B8319A6F4C3",
+      "normalizedSha256": "108A371CEF0863F42261C8419BF32AAA9F1BA7ACA333EF0BD9672B8319A6F4C3",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.1B77FAD9",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/〖各种研究成果〗 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "1B77FAD94FFD970725DD4F29204C287923DB269B0732DC5F5885028AFFFA5649",
+      "encoding": "gb18030",
+      "sanitizedSha256": "347778806B7A7C8F5026D660CBAF9EC8FA5F3524797C619E087CC0AA66084D3B",
+      "normalizedSha256": "347778806B7A7C8F5026D660CBAF9EC8FA5F3524797C619E087CC0AA66084D3B",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.50A7785D",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/〖各种研究成果〗2 - 曹操传MOD制作交流 - 轩辕春秋文化论坛(2).htm",
+      "originalSha256": "50A7785D20744C6BE7F474D7534C18D567B94D4558190C668C2969CA7DC9D071",
+      "encoding": "gb18030",
+      "sanitizedSha256": "ADBDFC0BEFB5D2A6587E7FBFE3915FA0A241147A6D75923108126C796D3729C1",
+      "normalizedSha256": "ADBDFC0BEFB5D2A6587E7FBFE3915FA0A241147A6D75923108126C796D3729C1",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.4314892B",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/修正移动下降不能显示 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "4314892B7D3B11DF466C67EC5D678ECE4CE51DCE8443E55C2585F933BF554120",
+      "encoding": "gb18030",
+      "sanitizedSha256": "DFD66D242CBD78367A3CED017A31ED35EE06510D001704080D1DD1AF5AD5ACD1",
+      "normalizedSha256": "DFD66D242CBD78367A3CED017A31ED35EE06510D001704080D1DD1AF5AD5ACD1",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.42B592D8",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/全策略效果代码分析 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "42B592D8C6C80601AAEC479C869D42CA265AF6346E0E8F639B9CFAC65A8D8A71",
+      "encoding": "gb18030",
+      "sanitizedSha256": "56E1E7A695EFA10C9ECFC1193794E23C58A91EB2F9526F110D313B0615FEC60F",
+      "normalizedSha256": "56E1E7A695EFA10C9ECFC1193794E23C58A91EB2F9526F110D313B0615FEC60F",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.E155C970",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/关于在战场中使用75特殊形象指定后实时改变形象的代码 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "E155C970B45ED0FB46EFB005E7D04826C974AB17017A823B30F4BF6CF7437FAB",
+      "encoding": "gb18030",
+      "sanitizedSha256": "5F5DC4C3DAB36222B44D12AE3CAB843DBAFF6A358CDB86F4B519B295FC355E39",
+      "normalizedSha256": "5F5DC4C3DAB36222B44D12AE3CAB843DBAFF6A358CDB86F4B519B295FC355E39",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.1A051E16",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/四类策略可使用的地形修改，可恢复地形的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "1A051E16CBBDBF46DDC26D5C342294EA5F5057460C9F18984D3450081C2C6C1A",
+      "encoding": "gb18030",
+      "sanitizedSha256": "7BCC333981190D0C9D2891CC00A31906B807B1B96901CD336491BF916A5D9D7D",
+      "normalizedSha256": "7BCC333981190D0C9D2891CC00A31906B807B1B96901CD336491BF916A5D9D7D",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.E522320B",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/在武将资料对话框中增加显示项 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "E522320B2E67C90111A5FBBE690C212516329F910697754308C3E76983767F1D",
+      "encoding": "gb18030",
+      "sanitizedSha256": "27046A0AAA919E37FA7547D83114B252C04536FD0F1F3C10F98C5B9E89629A0A",
+      "normalizedSha256": "27046A0AAA919E37FA7547D83114B252C04536FD0F1F3C10F98C5B9E89629A0A",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.87680EF0",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/增加兵种相克 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "87680EF089510E860B9D93147767BD2B8D0389D8D1831E209105B9EC2F193E9C",
+      "encoding": "gb18030",
+      "sanitizedSha256": "300104AD79A08C76D8659613E9FE29F34C4A5660286CCEDF676D58BFD9A85527",
+      "normalizedSha256": "300104AD79A08C76D8659613E9FE29F34C4A5660286CCEDF676D58BFD9A85527",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.B1C8460D",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/如何使用Ollydbg修改曹操传引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "B1C8460D0427A206CC92F3DD4F3959C8F69F89141B66B2702D0ADE378638021A",
+      "encoding": "gb18030",
+      "sanitizedSha256": "069700ADF4B2DAF1C48921ED6074423BB3FAFBF65122E6DBBF233D02A82A71AB",
+      "normalizedSha256": "069700ADF4B2DAF1C48921ED6074423BB3FAFBF65122E6DBBF233D02A82A71AB",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.01505D1C",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/存档数量的扩展 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "01505D1C074BF8432F8E9591594C52A149D8CC944F33AEC33123C144D295DCF8",
+      "encoding": "gb18030",
+      "sanitizedSha256": "8661E2D34A55D7356365C27BFD66583E733BD0D9DDDD1E0DB90C1E646BDD7F89",
+      "normalizedSha256": "8661E2D34A55D7356365C27BFD66583E733BD0D9DDDD1E0DB90C1E646BDD7F89",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.A42280B0",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/宝物特效效果值按等级提升的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "A42280B045A0065D3CCBFE9A289F0B363746122E65D0FF43FB559B4F7BA9653A",
+      "encoding": "gb18030",
+      "sanitizedSha256": "D301910DDA32B7CEFB7776ADFC960DD76EE7EC4AC91338442E89EE7C628D7537",
+      "normalizedSha256": "D301910DDA32B7CEFB7776ADFC960DD76EE7EC4AC91338442E89EE7C628D7537",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.7CDA2FBE",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/对话内容部分颜色化 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "7CDA2FBEEBDC6B751FF232886CC93F72AD359950129763F4DA483B9324A7E257",
+      "encoding": "gb18030",
+      "sanitizedSha256": "D092C7C5E5852464800B3EB7ACC521363B4EC1C950B1AE48D2E3126BB2C6B65D",
+      "normalizedSha256": "D092C7C5E5852464800B3EB7ACC521363B4EC1C950B1AE48D2E3126BB2C6B65D",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.783550A0",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/弄些色色的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "783550A04F3EE4A88A37BE930EA8B74AAE536431C0819D07E3BE56A868747A19",
+      "encoding": "gb18030",
+      "sanitizedSha256": "A185A2E0DEF5A8F1392BFB37A928904EAB01DA1498666464388A37DB81CE4528",
+      "normalizedSha256": "A185A2E0DEF5A8F1392BFB37A928904EAB01DA1498666464388A37DB81CE4528",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.6AA2D831",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/扩展引擎中的对话框 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "6AA2D83147F2BF541B6EA0F20B5828EF477BAC6212CA798711D766EDDDAB0C56",
+      "encoding": "gb18030",
+      "sanitizedSha256": "A7C7E0880C2086F4C4E23CD3707101CD9DEE566545FA273A5CEDF4C20C2A2F3F",
+      "normalizedSha256": "A7C7E0880C2086F4C4E23CD3707101CD9DEE566545FA273A5CEDF4C20C2A2F3F",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.6718CAE6",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/整型及指针变量实例 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "6718CAE63DB3A93F0CEB46353B61633BEC380DA9C6B785177812E6725D4163F2",
+      "encoding": "gb18030",
+      "sanitizedSha256": "0194722E51FCC98EEAEF2B61C460B3C5996445ED0398B60BF99FCD6F9C62D6E2",
+      "normalizedSha256": "0194722E51FCC98EEAEF2B61C460B3C5996445ED0398B60BF99FCD6F9C62D6E2",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.AEDC838F",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/整型变量的另一种用途 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "AEDC838F1342BE600060330DF2A336FC5981606569EEC7EEA1D3A219E3D45269",
+      "encoding": "gb18030",
+      "sanitizedSha256": "CC73CE706022938AAF664E486BCF7B99634E892F4C681C8EB23323BF8EA5616D",
+      "normalizedSha256": "CC73CE706022938AAF664E486BCF7B99634E892F4C681C8EB23323BF8EA5616D",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.2C9EDD4D",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/新引擎 71特效请求 指令的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "2C9EDD4D0A18760D8F16B1C411DC1666EFE22094D0F482561136D52C5A7B3E68",
+      "encoding": "gb18030",
+      "sanitizedSha256": "18B78E2AE8199CD90E661F0655466E6D54DECFB8EC05B255B72EDD7D560C3793",
+      "normalizedSha256": "18B78E2AE8199CD90E661F0655466E6D54DECFB8EC05B255B72EDD7D560C3793",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.ED42426A",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/每回合自动提升的宝物特效 + 可以恢复MP的地型 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "ED42426A6878836068397AC71AD47978576EF8DBFA13E6198B0C5A78F921CE85",
+      "encoding": "gb18030",
+      "sanitizedSha256": "5ADB1D72152120682527212D51D99D62483F43056298E2B8C92DED1DAC9F95A0",
+      "normalizedSha256": "5ADB1D72152120682527212D51D99D62483F43056298E2B8C92DED1DAC9F95A0",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.3C9B1F6D",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/章节的扩展 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "3C9B1F6DD9F701D4D071B7D43CC6E785FA362BE665594B37844D0F279DE9C61D",
+      "encoding": "gb18030",
+      "sanitizedSha256": "60945A757FD5781C387227AA91778C79ECD3E3F129F162F1C461C0928A4C7F86",
+      "normalizedSha256": "60945A757FD5781C387227AA91778C79ECD3E3F129F162F1C461C0928A4C7F86",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.B3BB2D26",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/结局显示制作人员 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "B3BB2D26334C37755EFA9D79FD33229BEDA2E765853EE3F77EB4DE3E5E14A41E",
+      "encoding": "gb18030",
+      "sanitizedSha256": "7C124F1221E8D0B11407D0AFC30A541A3E4B2ADE2ED8A90EF7F27E2C1CF02206",
+      "normalizedSha256": "7C124F1221E8D0B11407D0AFC30A541A3E4B2ADE2ED8A90EF7F27E2C1CF02206",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.735C0655",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/致命一击的改良 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "735C0655772EE61C1A87EDCB5FA22EBDA9ED22D2A4490E8A016585D29C2C90E5",
+      "encoding": "gb18030",
+      "sanitizedSha256": "67FB8EB48647FAE785BC6C291EBC01471F852901177CA02D567A48392A6E8716",
+      "normalizedSha256": "67FB8EB48647FAE785BC6C291EBC01471F852901177CA02D567A48392A6E8716",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.9E69A791",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/让引擎从普通小头像转成支持真彩半身头像 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "encoding": "gb18030",
+      "originalSha256": "9E69A79109129FD229B9DAA1EF1E2B6A7174EB811882461558D99539F0494910",
+      "sanitizedSha256": "C12D4DDAA9DD801FA4CC971F4F71AF51C02D8C03223B7EE613C12F7EA6B30A6E",
+      "normalizedSha256": "C12D4DDAA9DD801FA4CC971F4F71AF51C02D8C03223B7EE613C12F7EA6B30A6E",
+      "replacements": {
+        "drivePrefix": 1,
+        "userDirectory": 0
+      },
+      "reason": "原快照未被 .md/.txt/.json/.py 扫描覆盖，含本机绝对路径；本轮掩码并归一 LF。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.72E5C53A",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/部分剧本指令修正及改造 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "72E5C53A54A52198DF80A2D1254C34D477A3B6220C5BB71866E4F067AA4F3F12",
+      "encoding": "gb18030",
+      "sanitizedSha256": "E3DE739FE4FF62DEF0DC8D8095823F159BA98FC8E6995D0BAF3B579996A7D537",
+      "normalizedSha256": "E3DE739FE4FF62DEF0DC8D8095823F159BA98FC8E6995D0BAF3B579996A7D537",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.D26850D2",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/godtype/部分旧引擎修改资料整理 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "D26850D2C821337A486BBB2340115F1A4BE811AB13F24B4ABF53BB1476EB809A",
+      "encoding": "gb18030",
+      "sanitizedSha256": "ECC1347EAD5498BAA17EB3502CA65CEEC08BA602C056ADA12058A6612161EC12",
+      "normalizedSha256": "ECC1347EAD5498BAA17EB3502CA65CEEC08BA602C056ADA12058A6612161EC12",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.39FB90C1",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/5.8修正版 重要更新 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "39FB90C117B7086081CC2E867AD155DFCA6BC3C6144C0AB007C88B7BCA11F7BD",
+      "encoding": "gb18030",
+      "sanitizedSha256": "76604C878721A7E9C93008DE006B787F86E2238F395671A70DCCD115A45077B7",
+      "normalizedSha256": "76604C878721A7E9C93008DE006B787F86E2238F395671A70DCCD115A45077B7",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.AB47973B",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/5.9 正式版特别更新 修正头像变化的bug - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "AB47973B44E737FBDB76DE51DC4FC9596C828C7D78E6CB8DCB8CBFC321B8CE41",
+      "encoding": "gb18030",
+      "sanitizedSha256": "95F561A549316B3B4E815D1731468488CA27F626152307F164B59FC47FE6D4C7",
+      "normalizedSha256": "95F561A549316B3B4E815D1731468488CA27F626152307F164B59FC47FE6D4C7",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.387BD289",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/发一个EXE - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "387BD289C105368ACBC7A9B8B0D8C73AC041DC629A58C65046548407C9DA8982",
+      "encoding": "gb18030",
+      "sanitizedSha256": "66F584CD924E71B37E3ECE16DFBCDFBA1881054DF6F69B9352BF6C5B967C7D1A",
+      "normalizedSha256": "66F584CD924E71B37E3ECE16DFBCDFBA1881054DF6F69B9352BF6C5B967C7D1A",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.B87CE454",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/发布6.0正式版 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "B87CE454EEE3055D815AF410DAEDA8F933EF22DF4D2E2A04E4D4A6A9AEFE3547",
+      "encoding": "gb18030",
+      "sanitizedSha256": "A67C1B9C2FD6BA11AFD587F13489840EF38BA8D66E127CC18725CF29942BB40B",
+      "normalizedSha256": "A67C1B9C2FD6BA11AFD587F13489840EF38BA8D66E127CC18725CF29942BB40B",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.2F522BC2",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/指定辅助装备可以由哪些兵种装备的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "2F522BC271F5B81710280D7272383D4CDBA0804E9D825D851083D4C73BA729D7",
+      "encoding": "gb18030",
+      "sanitizedSha256": "D88B092ED0B49317F076F8CFACF0D8AA702AD5A57D234764A16B84962BCDE79B",
+      "normalizedSha256": "D88B092ED0B49317F076F8CFACF0D8AA702AD5A57D234764A16B84962BCDE79B",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.189729E4",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/star175/音效放入文件夹 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "189729E46CD7A0066E8FC2E024F07B0E0618E110AD4DC191E803045378A83453",
+      "encoding": "gb18030",
+      "sanitizedSha256": "8063EB8D50D9437FA4E4C3A840A3CCBC12BE030B60C3C2070DC13197346895E7",
+      "normalizedSha256": "8063EB8D50D9437FA4E4C3A840A3CCBC12BE030B60C3C2070DC13197346895E7",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.45E801B0",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/各种兵种与宝物特效（不断更新中） - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "45E801B0E7C09721E5D4B34F08ECA96900008E8EA3D33A26222A820DBC6BBAF0",
+      "encoding": "gb18030",
+      "sanitizedSha256": "E9720BFC297CC67CE8B37AC49FF6EB7D4C9112A37A5EB09507EEE4FC2FF2EE3D",
+      "normalizedSha256": "E9720BFC297CC67CE8B37AC49FF6EB7D4C9112A37A5EB09507EEE4FC2FF2EE3D",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.A1030373",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/各种兵种与宝物特效（不断更新中）2 - 曹操传MOD制作交流 - 轩辕春秋文化论坛(2).htm",
+      "originalSha256": "A10303736DF494887484AE648FE215354D3896C8805B6802935508D467BF4688",
+      "encoding": "gb18030",
+      "sanitizedSha256": "0A72C644A401BA4461D12701AAA58F9C14A79E6F5FC6513743BD995BC2CA2025",
+      "normalizedSha256": "0A72C644A401BA4461D12701AAA58F9C14A79E6F5FC6513743BD995BC2CA2025",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.7B6D3ADD",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/曹操传EXE修改详解 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "7B6D3ADD9C974C7585D70329D10CBC81C4C25B3E08BF219B59E6E150D8AE8AE8",
+      "encoding": "gb18030",
+      "sanitizedSha256": "1030E324EA97B98FA88B04EF5C698CCC48A08EAE548A7BA7015E6F5290756168",
+      "normalizedSha256": "1030E324EA97B98FA88B04EF5C698CCC48A08EAE548A7BA7015E6F5290756168",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.900EC61F",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/曹操传exe部分函数功能 - 设计与修改 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "900EC61FA4256A0B293C22E854664F7F0C7FC440C2F8A5DA8A1C2492BAECC1AF",
+      "encoding": "gb18030",
+      "sanitizedSha256": "FEBA3893C415CF1489A58D863080CD27675E568E60B098BCA3EDABB1ABF1E905",
+      "normalizedSha256": "FEBA3893C415CF1489A58D863080CD27675E568E60B098BCA3EDABB1ABF1E905",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.466839C8",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/用star175 5.6版exe做自己的曹操传MOD - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "466839C810B3B25AD3E849C47AE029DB3D0D80F5D416B12987B3D3BED1C9E18A",
+      "encoding": "gb18030",
+      "sanitizedSha256": "23B35A7165119D345EF00E8DA1614FC12FB96BCA48BE62830DD4A8B9809C4318",
+      "normalizedSha256": "23B35A7165119D345EF00E8DA1614FC12FB96BCA48BE62830DD4A8B9809C4318",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.AED4107E",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/解读KOEI曹操传代码 - 设计与修改 - 轩辕春秋文化论坛.htm",
+      "originalSha256": "AED4107EDF2676DE65BD10ADCB783FD6F44E6AE02BDAE9750C9295DF17B582DD",
+      "encoding": "gb18030",
+      "sanitizedSha256": "777C6FBF898F06D472ECE77750A0F9C495CF63CFD2A27FE09772D1CE9056222A",
+      "normalizedSha256": "777C6FBF898F06D472ECE77750A0F9C495CF63CFD2A27FE09772D1CE9056222A",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.D8A14AB8",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/解读KOEI曹操传代码2- 设计与修改 - 轩辕春秋文化论坛(2).htm",
+      "originalSha256": "D8A14AB83C20CEF1B5D3710DFE58238382A9D04279885F875BE2623B292B8396",
+      "encoding": "gb18030",
+      "sanitizedSha256": "0B5EB8AC7EC8D8190432D6A0FED9C8D083E3D1DFD5F9F8E6D8EC158CEEC7FB86",
+      "normalizedSha256": "0B5EB8AC7EC8D8190432D6A0FED9C8D083E3D1DFD5F9F8E6D8EC158CEEC7FB86",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.CDD1AB01",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/解读KOEI曹操传代码3 - 设计与修改 - 轩辕春秋文化论坛(2).htm",
+      "originalSha256": "CDD1AB01719972BC2942C96E1E0C75DDF2F6ABCEE40F56603D82928C4CD25428",
+      "encoding": "gb18030",
+      "sanitizedSha256": "DFF0FBF60772A47F3DF5F05F56CB4918741BC7F49377AEC4C7023DF95D268ECE",
+      "normalizedSha256": "DFF0FBF60772A47F3DF5F05F56CB4918741BC7F49377AEC4C7023DF95D268ECE",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.4DA7E293",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/蒸馏归档-20261014/论坛原帖存档/解读KOEI曹操传代码4 - 设计与修改 - 轩辕春秋文化论坛(2).htm",
+      "originalSha256": "4DA7E293C56957DAB38769E7477DB148DC858383C5C3F116E11BA0A425B474D1",
+      "encoding": "gb18030",
+      "sanitizedSha256": "B80811CE0498B60C85EDD6BB5BCE204CA7C13BD7D5C55CAB3F7ADBA370D1AFF6",
+      "normalizedSha256": "B80811CE0498B60C85EDD6BB5BCE204CA7C13BD7D5C55CAB3F7ADBA370D1AFF6",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      },
+      "reason": "快照文本统一为 UTF-8/LF 并掩去本机盘符/用户目录路径；原件哈希另存。",
+      "whitespaceNormalized": true
+    },
+    {
+      "id": "src.local-kb-snapshot-2026-11-21.43603961",
+      "path": "sources/local-kb-shanzai-20261121/90-来源归档/迁移残留-20261116/更新记录.md.bak_20261116_kb_cleanup",
+      "encoding": "utf-8-sig",
+      "originalSha256": "43603961F598680F8AE9DE9A276B41ED4C317580D5F1D85364C953F5BECD04B6",
+      "sanitizedSha256": "FF3BAEF87A8CE11070425F2E22399179C9B374D1215D3A3E8246BE89D0E6C13E",
+      "normalizedSha256": "FF3BAEF87A8CE11070425F2E22399179C9B374D1215D3A3E8246BE89D0E6C13E",
+      "replacements": {
+        "drivePrefix": 60,
+        "userDirectory": 3
+      },
+      "reason": "原快照未被 .md/.txt/.json/.py 扫描覆盖，含本机绝对路径；本轮掩码并归一 LF。",
+      "whitespaceNormalized": true
+    }
+  ],
+  "validatorGap": "原 validate_kb.py 只扫描 .md/.txt/.json/.py；*.bak_*、.htm、.csv 未被覆盖。该缺口已在本轮扩展扫描范围。",
+  "note": "历史快照回执保持冻结；本回执记录本轮修复。"
+}

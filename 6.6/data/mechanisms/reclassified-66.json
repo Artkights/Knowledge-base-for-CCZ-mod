@@ -18,7 +18,7 @@
       "profile": "profile.ccz65.unencrypted.3ef7",
       "status": "candidate",
       "evidence": "static-verified",
-      "summary": "0x4934B0 是 6.6 独有地图格标志字节数组（1 字节/格，索引 = 0x403789 的 y*width+x；数组长度至少 0x640=1600（40×40），bit0=地形/状态判定位（0x41D716 决定是否按 50% 缩放），bit2/bit3=移动范围/路径标记（0x42AAA5 清除 0xC、0x42A47F 以 0xD 统计），位1/4..7 未使用），被 0x42A2AF 全图扫描（0x501BD2>=2 门控）、0x41D716 判定与 0x42AAA5 清除使用。0x493AF0 是 6.6 独有物品计数数组（索引 = 物品 ID-0xA0，0x408E96 循环 0..0x15F 覆盖物品 ID 0xA0..0x1FF；0xFF 为上限，0 表示未拥有），被 0x408E96 的拥有物品枚举（+0xA0 后经 0x4837C2 取物品记录）与 0x420299 的钳位增减使用。",
+      "summary": "0x4934B0 是 6.6 独有地图格标志字节数组（1 字节/格，索引 = 0x403789 的 y*width+x；数组长度至少 0x640=1600（40×40），bit0=地形/状态判定位（0x41D716 决定是否按 50% 缩放），bit2/bit3=移动范围/路径标记（0x42AAA5 清除 0xC、0x42A47F 以 0xD 统计），位1/4..7 未使用），被 0x42A2AF 全图扫描（0x501BD2>=2 门控）、0x41D716 判定与 0x42AAA5 清除使用。0x493AF0 是 6.6 独有物品计数数组（索引 = 物品 ID-0xA0，0x408E96 循环 0..0x15F 覆盖物品 ID 0xA0..0x1FF，即 160..511；0xFF 为数量上限，0 表示未拥有），被 0x408E96 的拥有物品枚举（+0xA0 后经 0x4837C2 取物品记录）与 0x420299 的钳位增减使用。标准 6.6 消耗品 UI 应显示全部 160..511 共 352 个计数槽；旧工具“160..199/40 项”是历史上限，不是引擎上限。6.4/6.5 使用 0x510C80/150..254 的 105 槽；6.5 加强版实际只有 150..174 共 25 行有效消耗品。单 EXE 6.6 使用 0x750000/256..511 的 256 槽。",
       "constants": [
         "0x4934B0",
         "0x493AF0",
@@ -34,6 +34,8 @@
         "0x49F820",
         "0x501BD2",
         "0xA0",
+        "0x1FF",
+        "0x200",
         "0x160",
         "0xFF",
         "0x0D",
@@ -48,6 +50,9 @@
         "itemRecordTable": "0x49F820",
         "itemCountBase": "0xA0",
         "itemCountSpan": "0x160",
+        "itemCountIdMin": "0xA0",
+        "itemCountIdMax": "0x1FF",
+        "itemCountSlots": "352",
         "cellMaskUsed": "0x0D",
         "cellMaskCleared": "0x0C",
         "modeGate": "0x501BD2",
@@ -65,6 +70,8 @@
         "0x4088B4(0xD) 的返回语义未定名。",
         "0x493AF0 计数是拥有数量还是剩余次数未与界面文案对照。",
         "0x408E96 中 0x46708C 的用途未展开。",
+        "标准 6.6 计数槽为 160..511（352）；实际有效消耗品行由物品表 +0x12==3 与名称决定：山贼95、新改96、烈焰351（160..510）。",
+        "6.5 加强版 105 槽中仅 150..174 共 25 行有效；槽数不等于有效行数。",
         "未运行游戏对照。"
       ],
       "relations": [
@@ -74,7 +81,8 @@
         "mechanism.65.battle-unit-table.3ef7"
       ],
       "sourceRefs": [
-        "src.research.engine-cell-flag-item-count-20261112"
+        "src.research.engine-cell-flag-item-count-20261112",
+        "src.research.consumable-domain-20261116"
       ]
     },
     {

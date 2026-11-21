@@ -27,7 +27,7 @@
       "profile": "profile.ccz65.unencrypted.3ef7",
       "status": "canonical",
       "evidence": "static-verified",
-      "summary": "25 字节物品记录字段逐项展开：+0x10 使用效果码、+0x11 类型码、+0x12 买价/100、+0x14 装备子类型、+0x15 基础值、+0x17 每级成长、+0x18 存在/启用标志；+0x13 仍未定名。装载链为 DATA.E5 块1（104 条）＋ star.e5（6.5 0xED8=152 条、6.6 0x27D8=408 条）拼接：6.5 归一化 255 槽、6.6 归一化 512 槽；6.5/6.6 装载时内联旋转 +0x12..+0x14（同哈希 4aabbdb8c85a23bf），6.4 经 0x41FECC 解析式完成同一重排。买价 0x40E070=byte[+0x12]×0x64，卖价 0x40B477=买价的 75%（0xFF→0xFFFF），配合 0x4673xx 排序比较器闭合价格消费链。0x40B3D7 给出 value=byte[+0x15]+(count-1)×byte[+0x17]。6.6 新增 20 项类型表 0x4303C8。",
+      "summary": "25 字节物品记录字段逐项展开：+0x10 使用效果码、+0x11 类型码、+0x12 买价/100、+0x14 装备子类型、+0x15 基础值、+0x17 每级成长、+0x18 存在/启用标志；+0x13 仍未定名。装载链为 DATA.E5 块1（104 条）＋ star.e5（6.5 0xED8=152 条、6.6 0x27D8=408 条）拼接：6.4/6.5 物理 256 槽、有效 0..254（255=FF-End 哨兵），6.6 归一化 512 槽。6.6 的 256..511 只由完整 10200 字节 Star.e5 的 3800 偏移扩展证明；6359 字节 Star 在第 255 行 FF-End 后是 0/空格填充，即使 255 行实名也只把 255 纳入物品域，不构成 256..511 扩展。6.5/6.6 装载时内联旋转 +0x12..+0x14（同哈希 4aabbdb8c85a23bf），6.4 经 0x41FECC 解析式完成同一重排。买价 0x40E070=byte[+0x12]×0x64，卖价 0x40B477=买价的 75%（0xFF→0xFFFF），配合 0x4673xx 排序比较器闭合价格消费链。0x40B3D7 给出 value=byte[+0x15]+(count-1)×byte[+0x17]。6.6 新增 20 项类型表 0x4303C8。",
       "constants": [
         "0x19",
         "0x64",
@@ -45,6 +45,10 @@
         "0x18",
         "0xED8",
         "0x27D8",
+        "0x1022",
+        "0x1900",
+        "0x1FF",
+        "0x200",
         "0xA28",
         "0x4303C8",
         "0x4A1140",
@@ -58,6 +62,10 @@
         "+0x16 仅随 word[+0x15] 读取。",
         "6.6 类型表 0x4303C8 仅 20 项，装备类型 >=0x1A 会读入 0x90 填充，语义待核。",
         "6.4 槽位上限已由 0x41BABB 的 0..0xFE 循环证明为 255（见 item-loader-64-parser）。",
+        "6.4/6.5 物理 256 行（Data 104 + Star 152）；255 为 FF-End 哨兵，不属于可装备有效域。",
+        "6.6 的 256..511 扩展必须由 Star.e5 >= 0x27D8（10200 字节，408 行）证明；6359 字节 Star 的 3800 之后是 0/空格填充，不得当作道具。",
+        "6.6 第 255 行为实名（非空/FF-End/End）时只把 255 纳入物品域，不等于扩展成立；新改曹操傳6.6修正版即此情形。",
+        "扩展 ID 256..511 只能进入元数据或独立消耗品计数域，不得写入人物装备、仓库三字节行等一字节字段（仍限 0..255）。",
         "未运行游戏对照。"
       ],
       "relations": [
@@ -69,7 +77,8 @@
       ],
       "sourceRefs": [
         "src.research.engine-item-record-fields-20261112",
-        "src.research.engine-item-record-table-20261112"
+        "src.research.engine-item-record-table-20261112",
+        "src.research.item-metadata-capacity-20261116"
       ],
       "siteAddresses": {
         "loader65": "0x4010B0",
@@ -93,7 +102,11 @@
         "validCounter65": "0x423DFF",
         "validCounter66": "0x427A98",
         "typeTable66": "0x4303C8",
-        "typeTableReader66": "0x43038B"
+        "typeTableReader66": "0x43038B",
+        "starExtensionOffset": "0xED8",
+        "starExtensionRows": "256",
+        "extensionGate": "Star.e5 >= 0x27D8 才启用 256..511；6359 字节 Star 仅到 255",
+        "itemIndex66": "0x4837C2"
       }
     }
   ]

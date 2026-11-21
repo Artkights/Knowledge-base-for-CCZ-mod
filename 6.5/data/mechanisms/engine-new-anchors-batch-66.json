@@ -51,7 +51,7 @@
       },
       "limitations": [
         "0x500BA0 数组长度与索引来源未定。",
-        "0x493AF0/0x4934B0 的索引域（0xA0 基址、掩码 0xC/0xD 含义）未定名。",
+        "0x493AF0 的索引域已确定为 0xA0..0x1FF（160..511，352 槽），见 mechanism.65.cell-flag-item-count.3ef7；0x4934B0 的掩码 0xC/0xD 含义仍待细分。",
         "0x501BD2 的取值来源与 >=2 分支业务含义未定。",
         "0x501BF0 已定名为地图可见矩形缓存（脚本操作码 0x72 子命令 31），操作码中文命令名仍待定。",
         "未运行游戏对照。"
@@ -64,6 +64,7 @@
       ],
       "sourceRefs": [
         "src.research.engine-new-anchors-batch-20261112",
+        "src.research.consumable-domain-20261116",
         "src.research.engine-map-rect-cache-20261112"
       ]
     }

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-16",
+  "baselineCommit": "ec15f091347b223b14542b3357d91500dad59c13",
+  "scope": "修正标准 6.6 消耗品计数域为 160..511/352 槽，记录三基底有效消耗品行数；同时清理旧工具 160..199/40 项与 0x493AF0 索引域未定名的错误内容。",
+  "method": "只读核对三基底与新改/烈焰/单EXE 的 Ekd5/Data/Star 长度与 SHA256，按物品表 +0x12==3 统计有效消耗品行；引用 0x408E96 的 0..0x15F 枚举与 0x160 清零证据；审查 Python 扳手与 data管理器 Forge/ItemCatalog 上界。未运行游戏。",
+  "documentCount": 6,
+  "entries": [
+    {
+      "path": "sources/evidence/consumable-domain-20261116.json",
+      "sha256": "0451A66ED682BB1F877A7C8B48947E8138707164CF4C6288FAAA4B8651CB475D",
+      "disposition": "research",
+      "targetIds": [
+        "mechanism.65.cell-flag-item-count.3ef7",
+        "mechanism.65.new-anchors-batch-66.3ef7"
+      ],
+      "reason": "新增三基底/新改/烈焰/单EXE 的消耗品计数槽与有效行数，以及 Python 扳手、data管理器 Forge/ItemCatalog 上界修正证据。"
+    },
+    {
+      "path": "6.6/data/mechanisms/reclassified-66.json",
+      "sha256": "1EE7908F5F92C5C7A10D9F5E7E20D35092DE66D344EA5FEE8F1512DD9099C066",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.cell-flag-item-count.3ef7"
+      ],
+      "reason": "将 0x493AF0 的计数域明确为 160..511/352 槽，补充山贼95、新改96、烈焰351 与 6.5 仅25行有效；删除旧 160..199/40 项上限。"
+    },
+    {
+      "path": "6.5/data/mechanisms/engine-new-anchors-batch-66.json",
+      "sha256": "928EE6B037BB8B691D354F4CB4ACF096CC134C7D91CE4E82B169E2B5CA3E50BB",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.new-anchors-batch-66.3ef7"
+      ],
+      "reason": "更正“0x493AF0 索引域未定名”的旧限制为 0xA0..0x1FF（160..511），并追加本轮证据来源。"
+    },
+    {
+      "path": "6.5/data/mechanisms/engine-item-record-fields.json",
+      "sha256": "02F97BD882B40BE5D51E7D3DA3C196AF195635CF4E342FF81D70E7437DD95F3E",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.item-record-fields.3ef7"
+      ],
+      "reason": "上一轮物品元数据容量与 Star 扩展门禁的实体修正，纳入本轮统一增量回执。"
+    },
+    {
+      "path": "sources/source-manifest.json",
+      "sha256": "00D753AEAF1AE0BF3F72DA41F7ACD534E0769B6E4465BF5EC24601BECA417C7F",
+      "disposition": "existing-entities",
+      "targetIds": [],
+      "reason": "登记 src.research.consumable-domain-20261116，并标注旧 Python 源码快照的标准40项为历史上限、已被取代。"
+    }
+  ]
+}

@@ -1,0 +1,1226 @@
+{
+  "schemaVersion": 1,
+  "receiptType": "local-kb-workspace-snapshot",
+  "date": "2026-11-21",
+  "sourceRoot": "工具整合包/本地知识库",
+  "snapshotPrefix": "sources/local-kb-workspace-20261121",
+  "documentCount": 235,
+  "publishedTextCount": 83,
+  "excludedBinaryCount": 13,
+  "excludedArtifactCount": 2,
+  "alreadyCoveredBySnapshot": 124,
+  "alreadyCoveredByEvidence": 12,
+  "dedupedBySha256": 1,
+  "sanitizedTextCount": 52,
+  "encodingConverted": [
+    "制作区帖子备份/(图文教程)OLLYDBG修改曹操传EXE实际操作演示 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/CCZ MOD美工之无双教程 - 风华录 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/EXE补充研究及修改 - 设计与修改 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/DATA扩展类大攻略 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/HP回复类策略的计算 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/Mcall文件的初步研究 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/R单挑基本素材及示范剧本 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/STAR175新引擎商店自动售出物品的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/godtype的最终引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/【懒人福音】简易快速形象换色 - 风华录 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/【扫盲】关于每回合的天气变化 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/〖各种研究成果〗 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/〖各种研究成果〗2 - 曹操传MOD制作交流 - 轩辕春秋文化论坛(2).htm",
+    "制作区帖子备份/godtype/修正移动下降不能显示 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/全策略效果代码分析 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/关于在战场中使用75特殊形象指定后实时改变形象的代码 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/四类策略可使用的地形修改，可恢复地形的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/在武将资料对话框中增加显示项 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/增加兵种相克 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/如何使用Ollydbg修改曹操传引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/存档数量的扩展 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/宝物特效效果值按等级提升的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/对话内容部分颜色化 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/弄些色色的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/扩展引擎中的对话框 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/整型及指针变量实例 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/整型变量的另一种用途 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/新引擎 71特效请求 指令的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/每回合自动提升的宝物特效 + 可以恢复MP的地型 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/章节的扩展 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/结局显示制作人员 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/致命一击的改良 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/让引擎从普通小头像转成支持真彩半身头像 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/部分剧本指令修正及改造 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/godtype/部分旧引擎修改资料整理 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/star175/5.8修正版 重要更新 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/star175/5.9 正式版特别更新 修正头像变化的bug - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/star175/发一个EXE - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/star175/发布6.0正式版 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/star175/指定辅助装备可以由哪些兵种装备的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/star175/音效放入文件夹 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/各种兵种与宝物特效（不断更新中） - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/各种兵种与宝物特效（不断更新中）2 - 曹操传MOD制作交流 - 轩辕春秋文化论坛(2).htm",
+    "制作区帖子备份/幽人教程.txt",
+    "制作区帖子备份/曹操传EXE修改详解 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/曹操传exe部分函数功能 - 设计与修改 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/用star175 5.6版exe做自己的曹操传MOD - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/解读KOEI曹操传代码 - 设计与修改 - 轩辕春秋文化论坛.htm",
+    "制作区帖子备份/解读KOEI曹操传代码2- 设计与修改 - 轩辕春秋文化论坛(2).htm",
+    "制作区帖子备份/解读KOEI曹操传代码3 - 设计与修改 - 轩辕春秋文化论坛(2).htm",
+    "制作区帖子备份/解读KOEI曹操传代码4 - 设计与修改 - 轩辕春秋文化论坛(2).htm"
+  ],
+  "excluded": [
+    {
+      "path": ".gitattributes",
+      "reason": "非知识产物，不进入来源清单。"
+    },
+    {
+      "path": "90-来源归档/制作区帖子备份-抽取草稿/__pycache__/extract_make_zone_posts.cpython-313.pyc",
+      "reason": "非知识产物，不进入来源清单。"
+    },
+    {
+      "path": "工具整合包/本地知识库/90-来源归档/原始文档/解读KOEI曹操传代码.docx",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "431BD0BCF62A2AC8B4098DEF46A41240649725041D6DCF0C0D4F419CC654C056"
+    },
+    {
+      "path": "工具整合包/本地知识库/制作区帖子备份/star175/star5.7&5.8.doc",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "59C53FB6C6B57FF66B7BDD92449C5916C47B14CAC78AB469A246E7E6792D29DA"
+    },
+    {
+      "path": "工具整合包/本地知识库/制作区帖子备份/star175/Star175引擎比较特殊的整形变量和剧本指令.doc",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "5D3064A44BDA3EEE7BAFB7941869C7604B797546D8AFDF69140D001319D8409C"
+    },
+    {
+      "path": "工具整合包/本地知识库/制作区帖子备份/5.9版更新 bystar175.doc",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "65A35EDAD47F529D3BA68D8ED4583FB35E793E4AC0EF112CE95E8392D1EA563B"
+    },
+    {
+      "path": "工具整合包/本地知识库/制作区帖子备份/star175.rar",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "6CEE69F16E7A752FAC4F613F6D943496CB467C662772A2D941C5C4A1BAAC5555"
+    },
+    {
+      "path": "工具整合包/本地知识库/90-来源归档/原始文档/Star175引擎发布文稿5.6-6.6.docx",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "73E3CA22140DA8F8008289973E5999F02F6BDEF08C6C4978CD7959D370BC3E3D"
+    },
+    {
+      "path": "工具整合包/本地知识库/制作区帖子备份/star175/star5.6及旧版引擎.doc",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "C5A37FF9473D1B7416AD9F49C45F1198D4095CE830BFC29591208ADD60596436"
+    },
+    {
+      "path": "工具整合包/本地知识库/制作区帖子备份/godtype的最终引擎.doc",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "CBEF84DCFA8FFA2BC6F2D5E0A2D5564720F0E14AFD7DE742C8B34A04D2F057E9"
+    },
+    {
+      "path": "工具整合包/本地知识库/制作区帖子备份/star175/star6.0.doc",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "CD9B651BB88360CBD05594DC1F2E8385ECF6B1FF405EEE5F8092C4E7F1AADBF1"
+    },
+    {
+      "path": "工具整合包/本地知识库/制作区帖子备份/star175/star6.1.docx",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "E8EA089761C59B42350ADD78C3958177E43B7B780184A8A66100F86DA6540153"
+    },
+    {
+      "path": "工具整合包/本地知识库/90-来源归档/原始文档/6.4一些地址.xlsx",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "EF4F7704375B28081118C48C53BD64A76A2468F045EFE8C92873FEF04BC76F61"
+    },
+    {
+      "path": "工具整合包/本地知识库/制作区帖子备份/star175/star5.9.doc",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "F5D5E78C85BF5BA8C67814748359687274713C53356C5C806897968C464C4596"
+    },
+    {
+      "path": "工具整合包/本地知识库/90-来源归档/原始文档/全剧本指令详解（2023）.docx",
+      "reason": "仓库禁扩展名，原件不随仓库发布。",
+      "sha256": "F8E4322D912FDF667930D19C0A91B934A4AF18B1519483E80023136DB374A16F"
+    }
+  ],
+  "entries": [
+    {
+      "id": "src.local-kb-workspace-2026-11-21.3ACAD3ED",
+      "path": "01-核心引擎/引擎扫描操作数来源与验证边界.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.3ACAD3ED",
+      "encoding": "utf-8-sig",
+      "originalSha256": "7B8DDDF4C6C9215D803A3CFF0709F0C9E038F853A1F0D08FBE7419B778A95BD6",
+      "sanitizedSha256": "F3077968E46FE521C296FBBE2B56C53452FF5BA67F8DA602B3F3CBFDF5A56137",
+      "normalizedSha256": "F3077968E46FE521C296FBBE2B56C53452FF5BA67F8DA602B3F3CBFDF5A56137",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.092DD934",
+      "path": "01-核心引擎/引擎特效复合绑定与三子页分配池.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.092DD934",
+      "encoding": "utf-8-sig",
+      "originalSha256": "31A01395D431457CF5EB37A6AAEA155A4C5BE381A7D6C583E695183D1B77A8C7",
+      "sanitizedSha256": "975FD0047F010CD8EA24E19973B9C0B3044F2E3E2873163CEBD8D80D0E8B95DC",
+      "normalizedSha256": "975FD0047F010CD8EA24E19973B9C0B3044F2E3E2873163CEBD8D80D0E8B95DC",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.660CB995",
+      "path": "01-核心引擎/特效号定位与安全读写-原生表.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.660CB995",
+      "encoding": "utf-8-sig",
+      "originalSha256": "7D0AF44F6749979DAA76D38ECBD144A59094B4647DDEE3547E6A87D119D5633E",
+      "sanitizedSha256": "7D0AF44F6749979DAA76D38ECBD144A59094B4647DDEE3547E6A87D119D5633E",
+      "normalizedSha256": "7D0AF44F6749979DAA76D38ECBD144A59094B4647DDEE3547E6A87D119D5633E",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.F9A0E142",
+      "path": "01-核心引擎/特效号定位与安全读写-命名空间.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.F9A0E142",
+      "encoding": "utf-8-sig",
+      "originalSha256": "DA88BC62D5B559FFAEE183BB870686F4911F073B2640DF38D76FBBCC3410D41A",
+      "sanitizedSha256": "DA88BC62D5B559FFAEE183BB870686F4911F073B2640DF38D76FBBCC3410D41A",
+      "normalizedSha256": "DA88BC62D5B559FFAEE183BB870686F4911F073B2640DF38D76FBBCC3410D41A",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.2173D87B",
+      "path": "01-核心引擎/特效号定位与安全读写-指令参数.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.2173D87B",
+      "encoding": "utf-8-sig",
+      "originalSha256": "5447DC015312FD5E161B2D68E68F0B01058B807980F2DB97B82FA92D73BD0D9D",
+      "sanitizedSha256": "1D9AA7F394F2B1A8F7000B0907218906BDDB2194577DB2F57929FF27FD79B83D",
+      "normalizedSha256": "1D9AA7F394F2B1A8F7000B0907218906BDDB2194577DB2F57929FF27FD79B83D",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.AEBB29EC",
+      "path": "01-核心引擎/特效号定位与安全读写-验证流程.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.AEBB29EC",
+      "encoding": "utf-8-sig",
+      "originalSha256": "DAE107688DA39375DF0DFF36F95B55EF8BB6974CCF07C4CB48ECC2E38C2A02E3",
+      "sanitizedSha256": "DAE107688DA39375DF0DFF36F95B55EF8BB6974CCF07C4CB48ECC2E38C2A02E3",
+      "normalizedSha256": "DAE107688DA39375DF0DFF36F95B55EF8BB6974CCF07C4CB48ECC2E38C2A02E3",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.F51365BB",
+      "path": "03-机制详解/6.6装备特效后缀类型与质变门控.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.F51365BB",
+      "encoding": "utf-8-sig",
+      "originalSha256": "9A1BB303C9D52195D25064271651551FFFA8D2E24A06C0812AAEDCDA5ADD288F",
+      "sanitizedSha256": "9A1BB303C9D52195D25064271651551FFFA8D2E24A06C0812AAEDCDA5ADD288F",
+      "normalizedSha256": "9A1BB303C9D52195D25064271651551FFFA8D2E24A06C0812AAEDCDA5ADD288F",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.A6FF7AE7",
+      "path": "03-机制详解/Data管理器-成长常量整合与安全写入-20261112.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.A6FF7AE7",
+      "encoding": "utf-8-sig",
+      "originalSha256": "493A40D11921A30ED78EEA4DAA51DB53CA9C5D5C1C5FC149227F80A35613ADAF",
+      "sanitizedSha256": "493A40D11921A30ED78EEA4DAA51DB53CA9C5D5C1C5FC149227F80A35613ADAF",
+      "normalizedSha256": "493A40D11921A30ED78EEA4DAA51DB53CA9C5D5C1C5FC149227F80A35613ADAF",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.B703C6B9",
+      "path": "03-机制详解/人物档位-五维阈值与6.5强化成长掩码.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.B703C6B9",
+      "encoding": "utf-8-sig",
+      "originalSha256": "E9F1F932BE80D3BB3A953FD8A4942EDA7F72E8153CEAF66564AEAA6094158592",
+      "sanitizedSha256": "E9F1F932BE80D3BB3A953FD8A4942EDA7F72E8153CEAF66564AEAA6094158592",
+      "normalizedSha256": "E9F1F932BE80D3BB3A953FD8A4942EDA7F72E8153CEAF66564AEAA6094158592",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.04C6F660",
+      "path": "03-机制详解/人物档位静态扫描矩阵.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.04C6F660",
+      "encoding": "utf-8-sig",
+      "originalSha256": "807E336DF5401BEBC7AC7DC1767A16C6B9C145FA16C9FF708139CA33307E1127",
+      "sanitizedSha256": "B1F688C8B9259D35B3F7F7998A9FA8B952F680265E28A58BF2DA93D03F840463",
+      "normalizedSha256": "B1F688C8B9259D35B3F7F7998A9FA8B952F680265E28A58BF2DA93D03F840463",
+      "replacements": {
+        "drivePrefix": 26,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.BE135652",
+      "path": "03-机制详解/宝物图标特效值-三基底.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.BE135652",
+      "encoding": "utf-8-sig",
+      "originalSha256": "E69F20F3B7691D59395DA8D988F4F50F94FFBB6F42BFA0696FB0F7A320395CAA",
+      "sanitizedSha256": "09F44D98E10DDA935386AC29CCE89C8750F60A2DB6F4900167D2048E00352B6F",
+      "normalizedSha256": "09F44D98E10DDA935386AC29CCE89C8750F60A2DB6F4900167D2048E00352B6F",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.80130D92",
+      "path": "03-机制详解/宝物质变特效号与覆盖表-三基底.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.80130D92",
+      "encoding": "utf-8-sig",
+      "originalSha256": "3CD45D5EAEF0E532FDB86DB309794C257107E1A19E430BB55507A9A1572B0CB6",
+      "sanitizedSha256": "3D9E4F7EA6130757C50C7E50F6C5721D5A0A0C1E194BC0447E4C8D61DBC362C1",
+      "normalizedSha256": "3D9E4F7EA6130757C50C7E50F6C5721D5A0A0C1E194BC0447E4C8D61DBC362C1",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.1E9CA2D4",
+      "path": "03-机制详解/宝物质变覆盖表-三基底全量.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.1E9CA2D4",
+      "encoding": "utf-8-sig",
+      "originalSha256": "AB661E03BA0131083F9034741646CCD66B1F81BA4C8FB32DD767BA4CC740E1FF",
+      "sanitizedSha256": "5BB6B73444E35234D2D5BE457941820EFEA120D67F5A4442639C3B74844EBB65",
+      "normalizedSha256": "5BB6B73444E35234D2D5BE457941820EFEA120D67F5A4442639C3B74844EBB65",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.AA018DAB",
+      "path": "03-机制详解/宝物质变飞跃-物品维度-三基底.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.AA018DAB",
+      "encoding": "utf-8-sig",
+      "originalSha256": "C43F9A55AABB844E7F8EF61BFDCEFA79B4FA8DBB6EAB174AFFFEB8FF9DA30E5A",
+      "sanitizedSha256": "6F97386D0258B54BABF7F39E1A20B70970812794597B6D0B07D7C5CD3D905B84",
+      "normalizedSha256": "6F97386D0258B54BABF7F39E1A20B70970812794597B6D0B07D7C5CD3D905B84",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.1D4C85E4",
+      "path": "03-机制详解/成长与宝物常量总表-三基底.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.1D4C85E4",
+      "encoding": "utf-8-sig",
+      "originalSha256": "42EE4AF4C33E502EEBA8BDD2157E14D4792AADA2E7AEDD318CC901DADC17ACD5",
+      "sanitizedSha256": "EAA7D8901283D7CA57CBA28F7EAEA4AF9305DC77F25D37C011E25CA969DB9555",
+      "normalizedSha256": "EAA7D8901283D7CA57CBA28F7EAEA4AF9305DC77F25D37C011E25CA969DB9555",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.060AD724",
+      "path": "03-机制详解/成长与宝物相关常量总表-三基底.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.060AD724",
+      "encoding": "utf-8-sig",
+      "originalSha256": "C84617280C60C817D3828B9D2798F9F2B388894D34A5AAB805B1092649C16AB7",
+      "sanitizedSha256": "CEAE5DE13F0284B07E76D30932996EF5EB1F61C99D13F0B11A9059B69C52A407",
+      "normalizedSha256": "CEAE5DE13F0284B07E76D30932996EF5EB1F61C99D13F0B11A9059B69C52A407",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.D5CB0D59",
+      "path": "03-机制详解/成长常量全量反汇编-装备等级-宝物质变-五维档位-转职.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.D5CB0D59",
+      "encoding": "utf-8-sig",
+      "originalSha256": "C14D5FF4FF8702275D4CF660358B268AD070843CFF91B9F8D81B9F9655684C95",
+      "sanitizedSha256": "399BEDD65C773FECA4D846AF05ECAA15ADDA881C6E3B9681013D6212464284C5",
+      "normalizedSha256": "399BEDD65C773FECA4D846AF05ECAA15ADDA881C6E3B9681013D6212464284C5",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.36041169",
+      "path": "03-机制详解/特效号键-多基底验证矩阵.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.36041169",
+      "encoding": "utf-8-sig",
+      "originalSha256": "72C4B0EF95D7E4B61ED21F67215730FD4D99452ED3003ACDFCE6969691D76D26",
+      "sanitizedSha256": "85EEC60B35CE708C4451C36D3C4656F2C8E1B9F46324CF633A7F2BDA9F18810D",
+      "normalizedSha256": "85EEC60B35CE708C4451C36D3C4656F2C8E1B9F46324CF633A7F2BDA9F18810D",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.AC4C2CF6",
+      "path": "03-机制详解/特效名称槽-三基底全量.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.AC4C2CF6",
+      "encoding": "utf-8-sig",
+      "originalSha256": "91DEC90C946C1F2D46B51B6E75C15E379CE0DA22B591335AC54994A075A063B0",
+      "sanitizedSha256": "B540E21FB1BFCB92CDA817D0976C5993DF895789C324E1A4EE3403B66965C88A",
+      "normalizedSha256": "B540E21FB1BFCB92CDA817D0976C5993DF895789C324E1A4EE3403B66965C88A",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.F012A868",
+      "path": "03-机制详解/特效后缀名-三基底存储格式.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.F012A868",
+      "encoding": "utf-8-sig",
+      "originalSha256": "FE1DE7B597F768668128B9CBE47C70972E2AD5BFB34B407CA845EADA56A4DE0A",
+      "sanitizedSha256": "FE1DE7B597F768668128B9CBE47C70972E2AD5BFB34B407CA845EADA56A4DE0A",
+      "normalizedSha256": "FE1DE7B597F768668128B9CBE47C70972E2AD5BFB34B407CA845EADA56A4DE0A",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.AAB1847F",
+      "path": "03-机制详解/策略效果类表-6.6山贼.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.AAB1847F",
+      "encoding": "utf-8-sig",
+      "originalSha256": "0D2C419FC12EBEBACC72FA6FE76276B1D82AE79E8E400265365119CE356D6B0C",
+      "sanitizedSha256": "782F283D265B3571176B6A2DB025CD3AAB747A0C375DCA82AFF1B1110C23ED5E",
+      "normalizedSha256": "782F283D265B3571176B6A2DB025CD3AAB747A0C375DCA82AFF1B1110C23ED5E",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.92761877",
+      "path": "03-机制详解/策略效果类表-数据规格-6.6山贼.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.92761877",
+      "encoding": "utf-8-sig",
+      "originalSha256": "18E6EACAD49A12906A12EB06C65D77E7AC98F9AC200EF5BE654F719A0B2082A8",
+      "sanitizedSha256": "8541F3E343ABBE26E4000587E26AE67A8B951B791577F0CD6F28184673E3AF1F",
+      "normalizedSha256": "8541F3E343ABBE26E4000587E26AE67A8B951B791577F0CD6F28184673E3AF1F",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.48D73E92",
+      "path": "03-机制详解/策略效果索引与调用链-6.6山贼.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.48D73E92",
+      "encoding": "utf-8-sig",
+      "originalSha256": "35F7D22DE623C7F3FAF593ED3AC25C7648FF3EFFAC2760FF1C5F72E7078D3F95",
+      "sanitizedSha256": "35F7D22DE623C7F3FAF593ED3AC25C7648FF3EFFAC2760FF1C5F72E7078D3F95",
+      "normalizedSha256": "35F7D22DE623C7F3FAF593ED3AC25C7648FF3EFFAC2760FF1C5F72E7078D3F95",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.54B1B0A2",
+      "path": "03-机制详解/装备代次链-三基底.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.54B1B0A2",
+      "encoding": "utf-8-sig",
+      "originalSha256": "49FFADFCC4CB6A1362DC2AB7171D59D623D84BF78EF970CDEE4E2DCF81FB2CF7",
+      "sanitizedSha256": "696A79E4893118785D38C7EF6B1D1EC7C2798D26323B452533C47F9D080DE890",
+      "normalizedSha256": "696A79E4893118785D38C7EF6B1D1EC7C2798D26323B452533C47F9D080DE890",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.BABE6C7F",
+      "path": "03-机制详解/装备成长曲线-三基底.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.BABE6C7F",
+      "encoding": "utf-8-sig",
+      "originalSha256": "ADEC49E11905A0DF965BA5263BA5B9F1BC9BB8D495364D11ADB96A8CC214FEB4",
+      "sanitizedSha256": "72A4F31F73D36C8856623AFFC2B0DB5538BCB7E956AA862C9FD6FC594197F438",
+      "normalizedSha256": "72A4F31F73D36C8856623AFFC2B0DB5538BCB7E956AA862C9FD6FC594197F438",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.E37F506C",
+      "path": "03-机制详解/装备经验参数-三基底.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.E37F506C",
+      "encoding": "utf-8-sig",
+      "originalSha256": "545DF519507948DAB85A90E5739101838DD0B6BD1817ECBB1D592A29F8055BC7",
+      "sanitizedSha256": "D4EB7C6A6E77AE6B4B5CA161AB8BB8DB3D8AB83F70EDDF2D4500D3AD0BA1966E",
+      "normalizedSha256": "D4EB7C6A6E77AE6B4B5CA161AB8BB8DB3D8AB83F70EDDF2D4500D3AD0BA1966E",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.D17D2BCF",
+      "path": "03-机制详解/质变函数扩展位-6.5未加密.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.D17D2BCF",
+      "encoding": "utf-8-sig",
+      "originalSha256": "16F59FD49FD4AD81CF70A852C0CEFFF6564324C725E37E4C062A2087E74DEC57",
+      "sanitizedSha256": "E6923342273DF198BEA9224E7A0CFDE66EFC503EEB7A0BFDCDA653F778418D1E",
+      "normalizedSha256": "E6923342273DF198BEA9224E7A0CFDE66EFC503EEB7A0BFDCDA653F778418D1E",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.7BB23920",
+      "path": "03-机制详解/质变扩展位-6.5.csv",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.7BB23920",
+      "encoding": "utf-8-sig",
+      "originalSha256": "B8E15E55B1B6273C0F07297C950115D5F44A360479FACF999D41CD8C503E9A83",
+      "sanitizedSha256": "653487112067F28B992720C1686E4509155E7B365CE2B4A34DE9ED6AF067CD56",
+      "normalizedSha256": "653487112067F28B992720C1686E4509155E7B365CE2B4A34DE9ED6AF067CD56",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.D9FFD038",
+      "path": "06-项目与工具链/优化补丁v3.09b迁移实现与回归.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.D9FFD038",
+      "encoding": "utf-8-sig",
+      "originalSha256": "ED9C7041450FFE3BA7AAFBCE61ECD8DF185C2BEF1FF1AD14DF64542F49FADE81",
+      "sanitizedSha256": "0C35700713329D0D2EF44A045A5A861E541BCB1BE008B25BA2EE2C383DB663BA",
+      "normalizedSha256": "0C35700713329D0D2EF44A045A5A861E541BCB1BE008B25BA2EE2C383DB663BA",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.4F91DB9F",
+      "path": "06-项目与工具链/宝物质变工具-可行性汇报.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.4F91DB9F",
+      "encoding": "utf-8-sig",
+      "originalSha256": "F053C0C83598FA30942C41AEA3DA791740EE2FC59C2F0286447E469A494675B4",
+      "sanitizedSha256": "959D6AB42123033DC88F880667E36CF79D2DBCE1736CE6CC78B7350E39B7C3E3",
+      "normalizedSha256": "959D6AB42123033DC88F880667E36CF79D2DBCE1736CE6CC78B7350E39B7C3E3",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.94B5B345",
+      "path": "08-剧本与战场/简易攻略与战场地图迁移.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.94B5B345",
+      "encoding": "utf-8-sig",
+      "originalSha256": "EAF7D8EBA650ECA097C3411399B80DD74403F0091EE7924CFB6A3D467AB97993",
+      "sanitizedSha256": "01276F675EB8B8AA5A4349F07C342435AE055EDE29A48FF76324428AB051F2E0",
+      "normalizedSha256": "01276F675EB8B8AA5A4349F07C342435AE055EDE29A48FF76324428AB051F2E0",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.BF1D86BC",
+      "path": "09-版本与外部资料/优化补丁v3.09b功能迁移与6.6验证.md",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.BF1D86BC",
+      "encoding": "utf-8-sig",
+      "originalSha256": "25D887D55751CF18D553CD264AAF2BFCDF030CE115C5B2A24B3983678608E9EC",
+      "sanitizedSha256": "8AD265CCD1F546FD3AFD9FBEE9E0A45A2A374275F04D5AAA74A2CAF4C676C902",
+      "normalizedSha256": "8AD265CCD1F546FD3AFD9FBEE9E0A45A2A374275F04D5AAA74A2CAF4C676C902",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.753F2045",
+      "path": "制作区帖子备份/(图文教程)OLLYDBG修改曹操传EXE实际操作演示 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.753F2045",
+      "encoding": "gb18030",
+      "originalSha256": "36C8382FEC58D953986413C1CDEF3FE7411F8E278E10049A0057AB44C11436E5",
+      "sanitizedSha256": "405344A9560882C150A299EC0D8319008307B5D0CE8ECFD6683B8B6491DA70B1",
+      "normalizedSha256": "405344A9560882C150A299EC0D8319008307B5D0CE8ECFD6683B8B6491DA70B1",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.3F74CF22",
+      "path": "制作区帖子备份/CCZ MOD美工之无双教程 - 风华录 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.3F74CF22",
+      "encoding": "gb18030",
+      "originalSha256": "833414D7785BD360CA9ADD4B740EDEB743DF8AED92200EB72B2AB5A1E1C6A503",
+      "sanitizedSha256": "242CE5CFA96A3FB0C20BA944C4BD38D9D692BD767B8171238FA6805EFB22E81B",
+      "normalizedSha256": "242CE5CFA96A3FB0C20BA944C4BD38D9D692BD767B8171238FA6805EFB22E81B",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.BA8B8119",
+      "path": "制作区帖子备份/EXE补充研究及修改 - 设计与修改 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.BA8B8119",
+      "encoding": "gb18030",
+      "originalSha256": "7C17804033655AFEACB2A5AAA5A0E50295E38D23EAB2A235C1D0366D7A16CCDC",
+      "sanitizedSha256": "E437CE1B476E6DFB0D2AAFF5CA9DADEF1C9AAD3012144429B9A70296DD8C2031",
+      "normalizedSha256": "E437CE1B476E6DFB0D2AAFF5CA9DADEF1C9AAD3012144429B9A70296DD8C2031",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.58F99C13",
+      "path": "制作区帖子备份/godtype/DATA扩展类大攻略 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.58F99C13",
+      "encoding": "gb18030",
+      "originalSha256": "5AEA8C7C0779636F5BDF88911D433CB13028A711DD2F8ED2123F47528AB75823",
+      "sanitizedSha256": "AA10246E5BB00594B7F7A40B6A6877616348F3DC435752906AB0F5818839D6C5",
+      "normalizedSha256": "AA10246E5BB00594B7F7A40B6A6877616348F3DC435752906AB0F5818839D6C5",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.2CEF6605",
+      "path": "制作区帖子备份/godtype/HP回复类策略的计算 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.2CEF6605",
+      "encoding": "gb18030",
+      "originalSha256": "B1D03714CC1BB35326ACC5D909D50F576A090B9B793F967A2DFA395D8B8A6FA5",
+      "sanitizedSha256": "56EF90FA0F0F01AB4E6065CE082783BAAD0A7DA024A2C5FA81EB40B1603011F4",
+      "normalizedSha256": "56EF90FA0F0F01AB4E6065CE082783BAAD0A7DA024A2C5FA81EB40B1603011F4",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.2B2B5318",
+      "path": "制作区帖子备份/godtype/Mcall文件的初步研究 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.2B2B5318",
+      "encoding": "gb18030",
+      "originalSha256": "771FFB7224155148C8AB58462F2E930317E3B401A8802E291A84F6F99871604A",
+      "sanitizedSha256": "CDA39479D0C4C1F443E1C80A6A51DDDA36A6DA734AB3B036579C079999C99AD0",
+      "normalizedSha256": "CDA39479D0C4C1F443E1C80A6A51DDDA36A6DA734AB3B036579C079999C99AD0",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.B6DAA2C3",
+      "path": "制作区帖子备份/godtype/R单挑基本素材及示范剧本 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.B6DAA2C3",
+      "encoding": "gb18030",
+      "originalSha256": "46A9BCCB5030DB8A7C0144DE9D9F10D6057250C3BC4104E852EC0B49593647D9",
+      "sanitizedSha256": "7893BE25F481403F55680455631C313B7AC2F0C2A47709FA35DB4C841C9A7CB7",
+      "normalizedSha256": "7893BE25F481403F55680455631C313B7AC2F0C2A47709FA35DB4C841C9A7CB7",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.54EF559A",
+      "path": "制作区帖子备份/godtype/STAR175新引擎商店自动售出物品的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.54EF559A",
+      "encoding": "gb18030",
+      "originalSha256": "98464A9B05C5098884BB2FD5E4BE3DF51869B5D619F39469F33F2E29581BFC4F",
+      "sanitizedSha256": "86B1DF248B7A8161822A45D85A9E7CBCD3C0C68B8E00AB1EBCD55EC313825DAC",
+      "normalizedSha256": "86B1DF248B7A8161822A45D85A9E7CBCD3C0C68B8E00AB1EBCD55EC313825DAC",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.32704011",
+      "path": "制作区帖子备份/godtype/godtype的最终引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.32704011",
+      "encoding": "gb18030",
+      "originalSha256": "E8CF80D9767B1FDF9E0CED808FC7DCCC0E6C5A68C8E0A59614D6C502DFA9AA70",
+      "sanitizedSha256": "F3DA16333037DCDC909524C67D45C3C31F44CD6E242CF97A4FC722BCCB81F205",
+      "normalizedSha256": "F3DA16333037DCDC909524C67D45C3C31F44CD6E242CF97A4FC722BCCB81F205",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.0CD73849",
+      "path": "制作区帖子备份/godtype/【懒人福音】简易快速形象换色 - 风华录 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.0CD73849",
+      "encoding": "gb18030",
+      "originalSha256": "65591318EEF06B4D2E8E0CFA6BEA04130B32D8510DFDA7229572BD1F96E6CE31",
+      "sanitizedSha256": "20455A816ECBCE43D2049427501A12A1C09ABACF24DE76199F129591BC9AACB5",
+      "normalizedSha256": "20455A816ECBCE43D2049427501A12A1C09ABACF24DE76199F129591BC9AACB5",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.196AEBC1",
+      "path": "制作区帖子备份/godtype/【扫盲】关于每回合的天气变化 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.196AEBC1",
+      "encoding": "gb18030",
+      "originalSha256": "16DEA4B04146B30F304E5EE489F8012CB33567035BBA7D644CEA57D0C3A6449F",
+      "sanitizedSha256": "108A371CEF0863F42261C8419BF32AAA9F1BA7ACA333EF0BD9672B8319A6F4C3",
+      "normalizedSha256": "108A371CEF0863F42261C8419BF32AAA9F1BA7ACA333EF0BD9672B8319A6F4C3",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.5D4BFD4C",
+      "path": "制作区帖子备份/godtype/〖各种研究成果〗 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.5D4BFD4C",
+      "encoding": "gb18030",
+      "originalSha256": "1B77FAD94FFD970725DD4F29204C287923DB269B0732DC5F5885028AFFFA5649",
+      "sanitizedSha256": "347778806B7A7C8F5026D660CBAF9EC8FA5F3524797C619E087CC0AA66084D3B",
+      "normalizedSha256": "347778806B7A7C8F5026D660CBAF9EC8FA5F3524797C619E087CC0AA66084D3B",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.06F61C4E",
+      "path": "制作区帖子备份/godtype/〖各种研究成果〗2 - 曹操传MOD制作交流 - 轩辕春秋文化论坛(2).htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.06F61C4E",
+      "encoding": "gb18030",
+      "originalSha256": "50A7785D20744C6BE7F474D7534C18D567B94D4558190C668C2969CA7DC9D071",
+      "sanitizedSha256": "ADBDFC0BEFB5D2A6587E7FBFE3915FA0A241147A6D75923108126C796D3729C1",
+      "normalizedSha256": "ADBDFC0BEFB5D2A6587E7FBFE3915FA0A241147A6D75923108126C796D3729C1",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.B937ADF0",
+      "path": "制作区帖子备份/godtype/修正移动下降不能显示 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.B937ADF0",
+      "encoding": "gb18030",
+      "originalSha256": "4314892B7D3B11DF466C67EC5D678ECE4CE51DCE8443E55C2585F933BF554120",
+      "sanitizedSha256": "DFD66D242CBD78367A3CED017A31ED35EE06510D001704080D1DD1AF5AD5ACD1",
+      "normalizedSha256": "DFD66D242CBD78367A3CED017A31ED35EE06510D001704080D1DD1AF5AD5ACD1",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.819766FB",
+      "path": "制作区帖子备份/godtype/全策略效果代码分析 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.819766FB",
+      "encoding": "gb18030",
+      "originalSha256": "42B592D8C6C80601AAEC479C869D42CA265AF6346E0E8F639B9CFAC65A8D8A71",
+      "sanitizedSha256": "56E1E7A695EFA10C9ECFC1193794E23C58A91EB2F9526F110D313B0615FEC60F",
+      "normalizedSha256": "56E1E7A695EFA10C9ECFC1193794E23C58A91EB2F9526F110D313B0615FEC60F",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.A5DFD0AE",
+      "path": "制作区帖子备份/godtype/关于在战场中使用75特殊形象指定后实时改变形象的代码 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.A5DFD0AE",
+      "encoding": "gb18030",
+      "originalSha256": "E155C970B45ED0FB46EFB005E7D04826C974AB17017A823B30F4BF6CF7437FAB",
+      "sanitizedSha256": "5F5DC4C3DAB36222B44D12AE3CAB843DBAFF6A358CDB86F4B519B295FC355E39",
+      "normalizedSha256": "5F5DC4C3DAB36222B44D12AE3CAB843DBAFF6A358CDB86F4B519B295FC355E39",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.CE67EB17",
+      "path": "制作区帖子备份/godtype/四类策略可使用的地形修改，可恢复地形的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.CE67EB17",
+      "encoding": "gb18030",
+      "originalSha256": "1A051E16CBBDBF46DDC26D5C342294EA5F5057460C9F18984D3450081C2C6C1A",
+      "sanitizedSha256": "7BCC333981190D0C9D2891CC00A31906B807B1B96901CD336491BF916A5D9D7D",
+      "normalizedSha256": "7BCC333981190D0C9D2891CC00A31906B807B1B96901CD336491BF916A5D9D7D",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.37A2661E",
+      "path": "制作区帖子备份/godtype/在武将资料对话框中增加显示项 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.37A2661E",
+      "encoding": "gb18030",
+      "originalSha256": "E522320B2E67C90111A5FBBE690C212516329F910697754308C3E76983767F1D",
+      "sanitizedSha256": "27046A0AAA919E37FA7547D83114B252C04536FD0F1F3C10F98C5B9E89629A0A",
+      "normalizedSha256": "27046A0AAA919E37FA7547D83114B252C04536FD0F1F3C10F98C5B9E89629A0A",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.8BA93C93",
+      "path": "制作区帖子备份/godtype/增加兵种相克 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.8BA93C93",
+      "encoding": "gb18030",
+      "originalSha256": "87680EF089510E860B9D93147767BD2B8D0389D8D1831E209105B9EC2F193E9C",
+      "sanitizedSha256": "300104AD79A08C76D8659613E9FE29F34C4A5660286CCEDF676D58BFD9A85527",
+      "normalizedSha256": "300104AD79A08C76D8659613E9FE29F34C4A5660286CCEDF676D58BFD9A85527",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.3C1AB9BC",
+      "path": "制作区帖子备份/godtype/如何使用Ollydbg修改曹操传引擎 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.3C1AB9BC",
+      "encoding": "gb18030",
+      "originalSha256": "B1C8460D0427A206CC92F3DD4F3959C8F69F89141B66B2702D0ADE378638021A",
+      "sanitizedSha256": "069700ADF4B2DAF1C48921ED6074423BB3FAFBF65122E6DBBF233D02A82A71AB",
+      "normalizedSha256": "069700ADF4B2DAF1C48921ED6074423BB3FAFBF65122E6DBBF233D02A82A71AB",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.BC9A28C8",
+      "path": "制作区帖子备份/godtype/存档数量的扩展 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.BC9A28C8",
+      "encoding": "gb18030",
+      "originalSha256": "01505D1C074BF8432F8E9591594C52A149D8CC944F33AEC33123C144D295DCF8",
+      "sanitizedSha256": "8661E2D34A55D7356365C27BFD66583E733BD0D9DDDD1E0DB90C1E646BDD7F89",
+      "normalizedSha256": "8661E2D34A55D7356365C27BFD66583E733BD0D9DDDD1E0DB90C1E646BDD7F89",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.E4E4812A",
+      "path": "制作区帖子备份/godtype/宝物特效效果值按等级提升的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.E4E4812A",
+      "encoding": "gb18030",
+      "originalSha256": "A42280B045A0065D3CCBFE9A289F0B363746122E65D0FF43FB559B4F7BA9653A",
+      "sanitizedSha256": "D301910DDA32B7CEFB7776ADFC960DD76EE7EC4AC91338442E89EE7C628D7537",
+      "normalizedSha256": "D301910DDA32B7CEFB7776ADFC960DD76EE7EC4AC91338442E89EE7C628D7537",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.47F8343A",
+      "path": "制作区帖子备份/godtype/对话内容部分颜色化 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.47F8343A",
+      "encoding": "gb18030",
+      "originalSha256": "7CDA2FBEEBDC6B751FF232886CC93F72AD359950129763F4DA483B9324A7E257",
+      "sanitizedSha256": "D092C7C5E5852464800B3EB7ACC521363B4EC1C950B1AE48D2E3126BB2C6B65D",
+      "normalizedSha256": "D092C7C5E5852464800B3EB7ACC521363B4EC1C950B1AE48D2E3126BB2C6B65D",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.736D3FDA",
+      "path": "制作区帖子备份/godtype/弄些色色的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.736D3FDA",
+      "encoding": "gb18030",
+      "originalSha256": "783550A04F3EE4A88A37BE930EA8B74AAE536431C0819D07E3BE56A868747A19",
+      "sanitizedSha256": "A185A2E0DEF5A8F1392BFB37A928904EAB01DA1498666464388A37DB81CE4528",
+      "normalizedSha256": "A185A2E0DEF5A8F1392BFB37A928904EAB01DA1498666464388A37DB81CE4528",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.D38C7B61",
+      "path": "制作区帖子备份/godtype/扩展引擎中的对话框 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.D38C7B61",
+      "encoding": "gb18030",
+      "originalSha256": "6AA2D83147F2BF541B6EA0F20B5828EF477BAC6212CA798711D766EDDDAB0C56",
+      "sanitizedSha256": "A7C7E0880C2086F4C4E23CD3707101CD9DEE566545FA273A5CEDF4C20C2A2F3F",
+      "normalizedSha256": "A7C7E0880C2086F4C4E23CD3707101CD9DEE566545FA273A5CEDF4C20C2A2F3F",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.5526FDAE",
+      "path": "制作区帖子备份/godtype/整型及指针变量实例 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.5526FDAE",
+      "encoding": "gb18030",
+      "originalSha256": "6718CAE63DB3A93F0CEB46353B61633BEC380DA9C6B785177812E6725D4163F2",
+      "sanitizedSha256": "0194722E51FCC98EEAEF2B61C460B3C5996445ED0398B60BF99FCD6F9C62D6E2",
+      "normalizedSha256": "0194722E51FCC98EEAEF2B61C460B3C5996445ED0398B60BF99FCD6F9C62D6E2",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.26BC4B7B",
+      "path": "制作区帖子备份/godtype/整型变量的另一种用途 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.26BC4B7B",
+      "encoding": "gb18030",
+      "originalSha256": "AEDC838F1342BE600060330DF2A336FC5981606569EEC7EEA1D3A219E3D45269",
+      "sanitizedSha256": "CC73CE706022938AAF664E486BCF7B99634E892F4C681C8EB23323BF8EA5616D",
+      "normalizedSha256": "CC73CE706022938AAF664E486BCF7B99634E892F4C681C8EB23323BF8EA5616D",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.9E3D7924",
+      "path": "制作区帖子备份/godtype/新引擎 71特效请求 指令的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.9E3D7924",
+      "encoding": "gb18030",
+      "originalSha256": "2C9EDD4D0A18760D8F16B1C411DC1666EFE22094D0F482561136D52C5A7B3E68",
+      "sanitizedSha256": "18B78E2AE8199CD90E661F0655466E6D54DECFB8EC05B255B72EDD7D560C3793",
+      "normalizedSha256": "18B78E2AE8199CD90E661F0655466E6D54DECFB8EC05B255B72EDD7D560C3793",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.6C778999",
+      "path": "制作区帖子备份/godtype/每回合自动提升的宝物特效 + 可以恢复MP的地型 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.6C778999",
+      "encoding": "gb18030",
+      "originalSha256": "ED42426A6878836068397AC71AD47978576EF8DBFA13E6198B0C5A78F921CE85",
+      "sanitizedSha256": "5ADB1D72152120682527212D51D99D62483F43056298E2B8C92DED1DAC9F95A0",
+      "normalizedSha256": "5ADB1D72152120682527212D51D99D62483F43056298E2B8C92DED1DAC9F95A0",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.8441C411",
+      "path": "制作区帖子备份/godtype/章节的扩展 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.8441C411",
+      "encoding": "gb18030",
+      "originalSha256": "3C9B1F6DD9F701D4D071B7D43CC6E785FA362BE665594B37844D0F279DE9C61D",
+      "sanitizedSha256": "60945A757FD5781C387227AA91778C79ECD3E3F129F162F1C461C0928A4C7F86",
+      "normalizedSha256": "60945A757FD5781C387227AA91778C79ECD3E3F129F162F1C461C0928A4C7F86",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.C443C800",
+      "path": "制作区帖子备份/godtype/结局显示制作人员 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.C443C800",
+      "encoding": "gb18030",
+      "originalSha256": "B3BB2D26334C37755EFA9D79FD33229BEDA2E765853EE3F77EB4DE3E5E14A41E",
+      "sanitizedSha256": "7C124F1221E8D0B11407D0AFC30A541A3E4B2ADE2ED8A90EF7F27E2C1CF02206",
+      "normalizedSha256": "7C124F1221E8D0B11407D0AFC30A541A3E4B2ADE2ED8A90EF7F27E2C1CF02206",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.57907B30",
+      "path": "制作区帖子备份/godtype/致命一击的改良 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.57907B30",
+      "encoding": "gb18030",
+      "originalSha256": "735C0655772EE61C1A87EDCB5FA22EBDA9ED22D2A4490E8A016585D29C2C90E5",
+      "sanitizedSha256": "67FB8EB48647FAE785BC6C291EBC01471F852901177CA02D567A48392A6E8716",
+      "normalizedSha256": "67FB8EB48647FAE785BC6C291EBC01471F852901177CA02D567A48392A6E8716",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.443FBF0D",
+      "path": "制作区帖子备份/godtype/让引擎从普通小头像转成支持真彩半身头像 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.443FBF0D",
+      "encoding": "gb18030",
+      "originalSha256": "9E69A79109129FD229B9DAA1EF1E2B6A7174EB811882461558D99539F0494910",
+      "sanitizedSha256": "C12D4DDAA9DD801FA4CC971F4F71AF51C02D8C03223B7EE613C12F7EA6B30A6E",
+      "normalizedSha256": "C12D4DDAA9DD801FA4CC971F4F71AF51C02D8C03223B7EE613C12F7EA6B30A6E",
+      "replacements": {
+        "drivePrefix": 1,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.3DC37DD8",
+      "path": "制作区帖子备份/godtype/部分剧本指令修正及改造 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.3DC37DD8",
+      "encoding": "gb18030",
+      "originalSha256": "72E5C53A54A52198DF80A2D1254C34D477A3B6220C5BB71866E4F067AA4F3F12",
+      "sanitizedSha256": "E3DE739FE4FF62DEF0DC8D8095823F159BA98FC8E6995D0BAF3B579996A7D537",
+      "normalizedSha256": "E3DE739FE4FF62DEF0DC8D8095823F159BA98FC8E6995D0BAF3B579996A7D537",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.8F56AA3A",
+      "path": "制作区帖子备份/godtype/部分旧引擎修改资料整理 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.8F56AA3A",
+      "encoding": "gb18030",
+      "originalSha256": "D26850D2C821337A486BBB2340115F1A4BE811AB13F24B4ABF53BB1476EB809A",
+      "sanitizedSha256": "ECC1347EAD5498BAA17EB3502CA65CEEC08BA602C056ADA12058A6612161EC12",
+      "normalizedSha256": "ECC1347EAD5498BAA17EB3502CA65CEEC08BA602C056ADA12058A6612161EC12",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.3A43823A",
+      "path": "制作区帖子备份/star175/5.8修正版 重要更新 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.3A43823A",
+      "encoding": "gb18030",
+      "originalSha256": "39FB90C117B7086081CC2E867AD155DFCA6BC3C6144C0AB007C88B7BCA11F7BD",
+      "sanitizedSha256": "76604C878721A7E9C93008DE006B787F86E2238F395671A70DCCD115A45077B7",
+      "normalizedSha256": "76604C878721A7E9C93008DE006B787F86E2238F395671A70DCCD115A45077B7",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.8044CCBB",
+      "path": "制作区帖子备份/star175/5.9 正式版特别更新 修正头像变化的bug - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.8044CCBB",
+      "encoding": "gb18030",
+      "originalSha256": "AB47973B44E737FBDB76DE51DC4FC9596C828C7D78E6CB8DCB8CBFC321B8CE41",
+      "sanitizedSha256": "95F561A549316B3B4E815D1731468488CA27F626152307F164B59FC47FE6D4C7",
+      "normalizedSha256": "95F561A549316B3B4E815D1731468488CA27F626152307F164B59FC47FE6D4C7",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.70D8136D",
+      "path": "制作区帖子备份/star175/发一个EXE - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.70D8136D",
+      "encoding": "gb18030",
+      "originalSha256": "387BD289C105368ACBC7A9B8B0D8C73AC041DC629A58C65046548407C9DA8982",
+      "sanitizedSha256": "66F584CD924E71B37E3ECE16DFBCDFBA1881054DF6F69B9352BF6C5B967C7D1A",
+      "normalizedSha256": "66F584CD924E71B37E3ECE16DFBCDFBA1881054DF6F69B9352BF6C5B967C7D1A",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.8AD9C00D",
+      "path": "制作区帖子备份/star175/发布6.0正式版 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.8AD9C00D",
+      "encoding": "gb18030",
+      "originalSha256": "B87CE454EEE3055D815AF410DAEDA8F933EF22DF4D2E2A04E4D4A6A9AEFE3547",
+      "sanitizedSha256": "A67C1B9C2FD6BA11AFD587F13489840EF38BA8D66E127CC18725CF29942BB40B",
+      "normalizedSha256": "A67C1B9C2FD6BA11AFD587F13489840EF38BA8D66E127CC18725CF29942BB40B",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.14835201",
+      "path": "制作区帖子备份/star175/指定辅助装备可以由哪些兵种装备的修改 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.14835201",
+      "encoding": "gb18030",
+      "originalSha256": "2F522BC271F5B81710280D7272383D4CDBA0804E9D825D851083D4C73BA729D7",
+      "sanitizedSha256": "D88B092ED0B49317F076F8CFACF0D8AA702AD5A57D234764A16B84962BCDE79B",
+      "normalizedSha256": "D88B092ED0B49317F076F8CFACF0D8AA702AD5A57D234764A16B84962BCDE79B",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.5FF8D47A",
+      "path": "制作区帖子备份/star175/音效放入文件夹 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.5FF8D47A",
+      "encoding": "gb18030",
+      "originalSha256": "189729E46CD7A0066E8FC2E024F07B0E0618E110AD4DC191E803045378A83453",
+      "sanitizedSha256": "8063EB8D50D9437FA4E4C3A840A3CCBC12BE030B60C3C2070DC13197346895E7",
+      "normalizedSha256": "8063EB8D50D9437FA4E4C3A840A3CCBC12BE030B60C3C2070DC13197346895E7",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.4CE1A18F",
+      "path": "制作区帖子备份/各种兵种与宝物特效（不断更新中） - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.4CE1A18F",
+      "encoding": "gb18030",
+      "originalSha256": "45E801B0E7C09721E5D4B34F08ECA96900008E8EA3D33A26222A820DBC6BBAF0",
+      "sanitizedSha256": "E9720BFC297CC67CE8B37AC49FF6EB7D4C9112A37A5EB09507EEE4FC2FF2EE3D",
+      "normalizedSha256": "E9720BFC297CC67CE8B37AC49FF6EB7D4C9112A37A5EB09507EEE4FC2FF2EE3D",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.EF7E6C28",
+      "path": "制作区帖子备份/各种兵种与宝物特效（不断更新中）2 - 曹操传MOD制作交流 - 轩辕春秋文化论坛(2).htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.EF7E6C28",
+      "encoding": "gb18030",
+      "originalSha256": "A10303736DF494887484AE648FE215354D3896C8805B6802935508D467BF4688",
+      "sanitizedSha256": "0A72C644A401BA4461D12701AAA58F9C14A79E6F5FC6513743BD995BC2CA2025",
+      "normalizedSha256": "0A72C644A401BA4461D12701AAA58F9C14A79E6F5FC6513743BD995BC2CA2025",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.01F21419",
+      "path": "制作区帖子备份/幽人教程.txt",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.01F21419",
+      "encoding": "gb18030",
+      "originalSha256": "A95F168B440325632BDCE0375DAFC48D6EC70A1B9BEF8F6B55C3E06FE16FD664",
+      "sanitizedSha256": "0FD2C6ECBA06D48029BE15FFFA9BB7C645754B4821283768A59B4BB8A77276B5",
+      "normalizedSha256": "0FD2C6ECBA06D48029BE15FFFA9BB7C645754B4821283768A59B4BB8A77276B5",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.8FD6C3BD",
+      "path": "制作区帖子备份/曹操传EXE修改详解 - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.8FD6C3BD",
+      "encoding": "gb18030",
+      "originalSha256": "7B6D3ADD9C974C7585D70329D10CBC81C4C25B3E08BF219B59E6E150D8AE8AE8",
+      "sanitizedSha256": "1030E324EA97B98FA88B04EF5C698CCC48A08EAE548A7BA7015E6F5290756168",
+      "normalizedSha256": "1030E324EA97B98FA88B04EF5C698CCC48A08EAE548A7BA7015E6F5290756168",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.2140D2F8",
+      "path": "制作区帖子备份/曹操传exe部分函数功能 - 设计与修改 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.2140D2F8",
+      "encoding": "gb18030",
+      "originalSha256": "900EC61FA4256A0B293C22E854664F7F0C7FC440C2F8A5DA8A1C2492BAECC1AF",
+      "sanitizedSha256": "FEBA3893C415CF1489A58D863080CD27675E568E60B098BCA3EDABB1ABF1E905",
+      "normalizedSha256": "FEBA3893C415CF1489A58D863080CD27675E568E60B098BCA3EDABB1ABF1E905",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.4DB884FD",
+      "path": "制作区帖子备份/用star175 5.6版exe做自己的曹操传MOD - 曹操传MOD制作交流 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.4DB884FD",
+      "encoding": "gb18030",
+      "originalSha256": "466839C810B3B25AD3E849C47AE029DB3D0D80F5D416B12987B3D3BED1C9E18A",
+      "sanitizedSha256": "23B35A7165119D345EF00E8DA1614FC12FB96BCA48BE62830DD4A8B9809C4318",
+      "normalizedSha256": "23B35A7165119D345EF00E8DA1614FC12FB96BCA48BE62830DD4A8B9809C4318",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.0EAE1AED",
+      "path": "制作区帖子备份/解读KOEI曹操传代码 - 设计与修改 - 轩辕春秋文化论坛.htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.0EAE1AED",
+      "encoding": "gb18030",
+      "originalSha256": "AED4107EDF2676DE65BD10ADCB783FD6F44E6AE02BDAE9750C9295DF17B582DD",
+      "sanitizedSha256": "777C6FBF898F06D472ECE77750A0F9C495CF63CFD2A27FE09772D1CE9056222A",
+      "normalizedSha256": "777C6FBF898F06D472ECE77750A0F9C495CF63CFD2A27FE09772D1CE9056222A",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.F463D6DD",
+      "path": "制作区帖子备份/解读KOEI曹操传代码2- 设计与修改 - 轩辕春秋文化论坛(2).htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.F463D6DD",
+      "encoding": "gb18030",
+      "originalSha256": "D8A14AB83C20CEF1B5D3710DFE58238382A9D04279885F875BE2623B292B8396",
+      "sanitizedSha256": "0B5EB8AC7EC8D8190432D6A0FED9C8D083E3D1DFD5F9F8E6D8EC158CEEC7FB86",
+      "normalizedSha256": "0B5EB8AC7EC8D8190432D6A0FED9C8D083E3D1DFD5F9F8E6D8EC158CEEC7FB86",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.01542D9F",
+      "path": "制作区帖子备份/解读KOEI曹操传代码3 - 设计与修改 - 轩辕春秋文化论坛(2).htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.01542D9F",
+      "encoding": "gb18030",
+      "originalSha256": "CDD1AB01719972BC2942C96E1E0C75DDF2F6ABCEE40F56603D82928C4CD25428",
+      "sanitizedSha256": "DFF0FBF60772A47F3DF5F05F56CB4918741BC7F49377AEC4C7023DF95D268ECE",
+      "normalizedSha256": "DFF0FBF60772A47F3DF5F05F56CB4918741BC7F49377AEC4C7023DF95D268ECE",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    },
+    {
+      "id": "src.local-kb-workspace-2026-11-21.B29DCBBA",
+      "path": "制作区帖子备份/解读KOEI曹操传代码4 - 设计与修改 - 轩辕春秋文化论坛(2).htm",
+      "refresh_id": "src.local-kb-workspace-2026-11-21.B29DCBBA",
+      "encoding": "gb18030",
+      "originalSha256": "4DA7E293C56957DAB38769E7477DB148DC858383C5C3F116E11BA0A425B474D1",
+      "sanitizedSha256": "B80811CE0498B60C85EDD6BB5BCE204CA7C13BD7D5C55CAB3F7ADBA370D1AFF6",
+      "normalizedSha256": "B80811CE0498B60C85EDD6BB5BCE204CA7C13BD7D5C55CAB3F7ADBA370D1AFF6",
+      "replacements": {
+        "drivePrefix": 0,
+        "userDirectory": 0
+      }
+    }
+  ],
+  "stripTrailingWhitespace": true,
+  "note": "不修改历史快照回执；本回执只记录本轮工作区快照。"
+}

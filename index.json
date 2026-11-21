@@ -459,7 +459,7 @@
     },
     {
       "path": "6.5/data/mechanisms/engine-item-record-fields.json",
-      "sha256": "C1CC233187D596DF478D495D1F56B0EE7C3924EE45FEAA6A33287AFE0C6DE437"
+      "sha256": "02F97BD882B40BE5D51E7D3DA3C196AF195635CF4E342FF81D70E7437DD95F3E"
     },
     {
       "path": "6.5/data/mechanisms/engine-item-record-normalization.json",
@@ -519,7 +519,7 @@
     },
     {
       "path": "6.5/data/mechanisms/engine-new-anchors-batch-66.json",
-      "sha256": "177418834010DCCF26C94518BDB865381AFECDA4C014205E2D60377699AB0A67"
+      "sha256": "928EE6B037BB8B691D354F4CB4ACF096CC134C7D91CE4E82B169E2B5CA3E50BB"
     },
     {
       "path": "6.5/data/mechanisms/engine-payment-chain.json",
@@ -919,7 +919,7 @@
     },
     {
       "path": "6.6/data/mechanisms/reclassified-66.json",
-      "sha256": "DAD23AC4D1CEAD3B93407040D6A071568AE59F304254FD00FFEC8ABB57E2EB97"
+      "sha256": "6EA86B48CCBD7BB2339374EFB31E82037C23746556E8E9CFAF6FCEF57B5E3074"
     },
     {
       "path": "6.6/data/mechanisms/shanzai-20261027-mechanisms.json",
@@ -24015,11 +24015,14 @@
         "0x4837C2",
         "0x49F820",
         "0xA0",
+        "0x1FF",
+        "0x200",
         "0x160",
         "0xFF",
         "0x0D",
         "0x0C",
         "0x4934B0 的索引由 0x403789([ecx+6]) 产生（与第 42 轮网格索引一致）；0x493AF0 的索引在 0x420299 明确为 arg-0xA0，在 0x408E96 明确为 ecx+0xA0 后送入物品记录基址 0x4837C2。",
+        "352",
         "0x01",
         "0x04",
         "0x08",
@@ -24031,6 +24034,8 @@
         "0x4088B4(0xD) 的返回语义未定名。",
         "0x493AF0 计数是拥有数量还是剩余次数未与界面文案对照。",
         "0x408E96 中 0x46708C 的用途未展开。",
+        "标准 6.6 计数槽为 160..511（352）；实际有效消耗品行由物品表 +0x12==3 与名称决定：山贼95、新改96、烈焰351（160..510）。",
+        "6.5 加强版 105 槽中仅 150..174 共 25 行有效；槽数不等于有效行数。",
         "未运行游戏对照。",
         "mechanism.65.grid-dimension-pair.3ef7",
         "mechanism.65.item-record-fields.3ef7",
@@ -24040,7 +24045,8 @@
       "structuredDataPath": "6.6/data/mechanisms/reclassified-66.json",
       "referencePath": "6.6/reference/mechanisms.md",
       "sourceRefs": [
-        "src.research.engine-cell-flag-item-count-20261112"
+        "src.research.engine-cell-flag-item-count-20261112",
+        "src.research.consumable-domain-20261116"
       ]
     },
     {
@@ -32886,6 +32892,10 @@
         "0x18",
         "0xED8",
         "0x27D8",
+        "0x1022",
+        "0x1900",
+        "0x1FF",
+        "0x200",
         "0xA28",
         "0x4A1140",
         "0x49F820",
@@ -32895,6 +32905,10 @@
         "+0x16 仅随 word[+0x15] 读取。",
         "6.6 类型表 0x4303C8 仅 20 项，装备类型 >=0x1A 会读入 0x90 填充，语义待核。",
         "6.4 槽位上限已由 0x41BABB 的 0..0xFE 循环证明为 255（见 item-loader-64-parser）。",
+        "6.4/6.5 物理 256 行（Data 104 + Star 152）；255 为 FF-End 哨兵，不属于可装备有效域。",
+        "6.6 的 256..511 扩展必须由 Star.e5 >= 0x27D8（10200 字节，408 行）证明；6359 字节 Star 的 3800 之后是 0/空格填充，不得当作道具。",
+        "6.6 第 255 行为实名（非空/FF-End/End）时只把 255 纳入物品域，不等于扩展成立；新改曹操傳6.6修正版即此情形。",
+        "扩展 ID 256..511 只能进入元数据或独立消耗品计数域，不得写入人物装备、仓库三字节行等一字节字段（仍限 0..255）。",
         "未运行游戏对照。",
         "mechanism.65.item-record-table.3ef7",
         "mechanism.65.item-loader-64-parser.3ef7",
@@ -32917,13 +32931,17 @@
         "0x41C325",
         "0x423DFF",
         "0x427A98",
-        "0x43038B"
+        "0x43038B",
+        "256",
+        "Star.e5 >= 0x27D8 才启用 256..511；6359 字节 Star 仅到 255",
+        "0x4837C2"
       ],
       "structuredDataPath": "6.5/data/mechanisms/engine-item-record-fields.json",
       "referencePath": "6.5/reference/mechanisms.md",
       "sourceRefs": [
         "src.research.engine-item-record-fields-20261112",
-        "src.research.engine-item-record-table-20261112"
+        "src.research.engine-item-record-table-20261112",
+        "src.research.item-metadata-capacity-20261116"
       ]
     },
     {
@@ -33944,7 +33962,7 @@
         "0x40E87E",
         "0x41625B",
         "0x500BA0 数组长度与索引来源未定。",
-        "0x493AF0/0x4934B0 的索引域（0xA0 基址、掩码 0xC/0xD 含义）未定名。",
+        "0x493AF0 的索引域已确定为 0xA0..0x1FF（160..511，352 槽），见 mechanism.65.cell-flag-item-count.3ef7；0x4934B0 的掩码 0xC/0xD 含义仍待细分。",
         "0x501BD2 的取值来源与 >=2 分支业务含义未定。",
         "0x501BF0 已定名为地图可见矩形缓存（脚本操作码 0x72 子命令 31），操作码中文命令名仍待定。",
         "未运行游戏对照。",
@@ -33957,6 +33975,7 @@
       "referencePath": "6.5/reference/mechanisms.md",
       "sourceRefs": [
         "src.research.engine-new-anchors-batch-20261112",
+        "src.research.consumable-domain-20261116",
         "src.research.engine-map-rect-cache-20261112"
       ]
     },

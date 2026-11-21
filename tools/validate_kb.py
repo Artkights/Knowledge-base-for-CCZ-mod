@@ -16,6 +16,7 @@ from generated_artifacts import differences
 ALLOWED_TOP = set(VERSIONS) | {"research", "schema", "sources", "tools", ".github"}
 ALLOWED_ROOT = {".gitattributes", ".gitignore", "README.md", "llms.txt", "CONTRIBUTING.md", "NOTICE.md", "index.json"}
 FORBIDDEN_EXTENSIONS = {".exe", ".dll", ".pdb", ".bin", ".obj", ".rar", ".zip", ".7z", ".doc", ".docx", ".xls", ".xlsx", ".log", ".bak", ".tmp"}
+TEXT_SCAN_SUFFIXES = {".md", ".txt", ".json", ".py", ".csv", ".htm", ".html"}
 FORBIDDEN_PARTS = {"bin", "obj", "build", "publish", "release", "__pycache__"}
 ADDRESS_KINDS = {"va", "rva", "fileOffset", "pointerSlot", "resolvedRuntimeAddress"}
 ENTITY_TYPES = {
@@ -223,6 +224,11 @@ def validate_case_study(errors: list[str], entry: dict) -> None:
     for required in ("objective", "inputs", "procedure", "outcome", "reusableLessons"):
         if not entry.get(required):
             error(errors, f"{entry['id']} case study missing {required}")
+
+
+def is_scanned_text(path: Path) -> bool:
+    """Text snapshots include backup suffixes that are not the final suffix."""
+    return path.suffix.lower() in TEXT_SCAN_SUFFIXES or ".bak_" in path.name.lower()
 
 
 def safe_relative_path(value: object) -> bool:
@@ -554,7 +560,7 @@ def main() -> int:
             error(errors, f"unexpected top-level path: {rel}")
         if path.suffix.lower() in FORBIDDEN_EXTENSIONS or any(part.lower() in FORBIDDEN_PARTS for part in parts):
             error(errors, f"forbidden artifact: {rel}")
-        if path.suffix.lower() in {".md", ".txt", ".json", ".py"}:
+        if is_scanned_text(path):
             try:
                 text = path.read_text(encoding="utf-8-sig")
             except UnicodeDecodeError as exc:

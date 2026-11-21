@@ -118,3 +118,13 @@ python tools/validate_kb.py
 - 复核确认 6.6 股票为策略类型 `0x05`、山贼变体为 `0x14`，原条目正确，不作修改。
 
 逐项证据与处置见 [consolidation report](sources/consolidation-report-20261115.json) 与 [consolidation plan](sources/consolidation-plan-20261115.json)；报告同时列出 130 组跨画像同地址、22 组同名来源 path 与 183 个未引用证据文件，均按“合法并存”保留。
+
+## 2026-11-21 本地工作区快照与增量整合
+
+本轮把 2026-11-16 的物品元数据/消耗品域增量与本地工作区知识库并入来源树，不新增结构化实体：
+
+- 合入 3 个实体更新（物品记录容量、`0x493AF0` 索引域、6.6 消耗品 352 槽）与 2 个静态证据来源；实体总数保持 1498。
+- 新增 [`sources/local-kb-workspace-20261121/`](sources/local-kb-workspace-20261121/) 83 个净化文本文件；覆盖报告见 [local-kb-coverage-20261121.json](sources/local-kb-coverage-20261121.json)。
+- 13 个本地禁扩展名文件与 15 个快照排除文档按 SHA-256 去重登记，不发布原件；`.pyc` 与非知识 `.gitattributes` 排除。
+- 修复现有快照 2 个未净化文件，并把 49 个 GBK 编码的 htm 文本转为 UTF-8/LF；处置见 [local-kb-snapshot-remediation-20261121.json](sources/local-kb-snapshot-remediation-20261121.json)。
+- 来源清单 1404 -> 1501；本地校验通过：实体 1498、来源 1501、research 95。

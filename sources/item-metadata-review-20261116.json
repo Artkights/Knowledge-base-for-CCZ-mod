@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-16",
+  "baselineCommit": "ec15f091347b223b14542b3357d91500dad59c13",
+  "scope": "按基底核对物品元数据容量（6.4/6.5 物理 256、6.6 完整 Star.e5 才启用 512），并把 Star.e5 扩展门禁与一字节字段边界写入既有物品机制实体。",
+  "method": "只读核对三基底及新改/烈焰同盟样本的 Ekd5.exe、Data.e5、Star.e5 长度与 SHA256，读取第 255 行名称；引用 2026-11-12 物品装载链证据与 data管理器 ExtendedItemLayoutProbe 的完整文件/实名255 门禁；未运行游戏、未写回。",
+  "documentCount": 3,
+  "entries": [
+    {
+      "path": "sources/evidence/item-metadata-capacity-20261116.json",
+      "sha256": "8A67BBD687AF7738D0184AB27811BF7CC675AB63BDF8B053B14DE7F47619BB3A",
+      "disposition": "research",
+      "targetIds": [
+        "mechanism.65.item-record-fields.3ef7"
+      ],
+      "reason": "新增本轮样本字节与容量结论：三基底 6359 字节 Star 不启用 512；新改 255 行实名只扩到 256；烈焰同盟 10200 字节 Star 可读到 511。"
+    },
+    {
+      "path": "6.5/data/mechanisms/engine-item-record-fields.json",
+      "sha256": "02F97BD882B40BE5D51E7D3DA3C196AF195635CF4E342FF81D70E7437DD95F3E",
+      "disposition": "updated-entities",
+      "targetIds": [
+        "mechanism.65.item-record-fields.3ef7"
+      ],
+      "reason": "补充按基底容量、Star.e5 0xED8 扩展门禁、255 实名与 512 完整文件的区别，并明确扩展 ID 不得写入一字节装备/仓库字段。"
+    },
+    {
+      "path": "sources/source-manifest.json",
+      "sha256": "0AE395594B3F9398C45D8A99291585C55E83F5046E247FB6082E16BA95EE034E",
+      "disposition": "existing-entities",
+      "targetIds": [],
+      "reason": "登记本轮静态证据来源 src.research.item-metadata-capacity-20261116，供物品机制实体复核。"
+    }
+  ]
+}
